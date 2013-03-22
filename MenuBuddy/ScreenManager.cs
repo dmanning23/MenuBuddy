@@ -83,6 +83,10 @@ namespace MenuBuddy
 			get { return m_BlankTexture; }
 		}
 
+		//TODO: create some delegates for playing sounds
+
+		//TODO: create a few methods for playing default sounds like "menu change" "menu select"
+
 		/// <summary>
 		/// content manager used to load music files
 		/// </summary>
@@ -120,8 +124,14 @@ namespace MenuBuddy
 			ContentManager content = Game.Content;
 
 			m_SpriteBatch = new SpriteBatch(GraphicsDevice);
+
+			//TODO: take out this hard coded reference to default font
 			m_Font = content.Load<SpriteFont>(@"Resources\Fonts\DefaultFont");
+
+			//TODO: take out this hard coded reference to menu font
 			m_MenuTitleFont = content.Load<SpriteFont>(@"Resources\Fonts\MenuTitleFont");
+
+			//TODO: create a blank texture without loading some crap
 			m_BlankTexture = content.Load<Texture2D>(@"Resources\Textures\BlocksTexture");
 
 			// Tell each of the screens to load their content.

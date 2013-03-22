@@ -114,6 +114,8 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void Draw(MenuScreen screen, Vector2 position, bool isSelected, GameTime gameTime)
 		{
+			//TODO: switch this all to FontBuddy
+
 			// Draw text, centered on the middle of each line.
 			ScreenManager screenManager = screen.ScreenManager;
 			SpriteBatch spriteBatch = screenManager.SpriteBatch;

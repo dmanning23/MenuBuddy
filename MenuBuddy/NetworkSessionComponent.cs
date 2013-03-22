@@ -18,6 +18,7 @@ namespace MenuBuddy
 	{
 		#region Fields
 
+		//TODO: max gamer stuff should be set by application, not hardcoded in here
 		public const int MaxGamers = 2;
 		public const int MaxLocalGamers = 2;
 
@@ -28,6 +29,8 @@ namespace MenuBuddy
 		bool notifyWhenPlayersJoinOrLeave;
 
 		string sessionEndMessage;
+
+		//TODO: add delegate methods for getting list of screens to start game, go to main menu, etc.
 
 		#endregion //Fields
 

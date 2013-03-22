@@ -211,6 +211,8 @@ namespace MenuBuddy
 			{
 				MenuEntry menuEntry = m_listMenuEntries[i];
 
+				//TODO: switch this all to FontBuddy
+
 				//Get the menu entry X position
 				float fMenuPositionX = ScreenRect.Center.X - ((font.MeasureString(menuEntry.Text) * menuEntry.SizeMultiplier) / 2.0f).X;
 				if (ScreenState == EScreenState.TransitionOn)

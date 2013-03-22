@@ -49,6 +49,8 @@ namespace MenuBuddy
 			base.LoadContent();
 			ContentManager content = ScreenManager.Game.Content;
 
+			//TODO: these should be added to a content project
+
 			isReadyTexture = content.Load<Texture2D>(@"Textures\chat_ready");
 			hasVoiceTexture = content.Load<Texture2D>(@"Textures\chat_able");
 			isTalkingTexture = content.Load<Texture2D>(@"Textures\chat_talking");

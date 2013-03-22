@@ -96,6 +96,9 @@ namespace MenuBuddy
 		/// </summary>
 		private ScreenManager m_ScreenManager;
 
+		/// <summary>
+		/// This stuff is used to pop up demo mode
+		/// </summary>
 		private double m_dTimeSinceInput;
 		private double m_dPrevTimeSinceInput;
 
@@ -272,10 +275,14 @@ namespace MenuBuddy
 			float transitionDelta;
 
 			if (time == TimeSpan.Zero)
+			{
 				transitionDelta = 1;
+			}
 			else
+			{
 				transitionDelta = (float)(gameTime.ElapsedGameTime.TotalMilliseconds /
 										  time.TotalMilliseconds);
+			}
 
 			// Update the transition position.
 			m_fTransitionPosition += transitionDelta * direction;
@@ -309,6 +316,8 @@ namespace MenuBuddy
 			//get these objects
 			SpriteFont font = ScreenManager.MenuTitleFont;
 			SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
+
+			//TODO: switch this all to FontBuddy
 
 			// Draw the menu title.
 
