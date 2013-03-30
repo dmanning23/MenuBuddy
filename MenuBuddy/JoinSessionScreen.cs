@@ -79,7 +79,6 @@ namespace MenuBuddy
 			catch (Exception exception)
 			{
 				NetworkErrorScreen errorScreen = new NetworkErrorScreen(exception);
-
 				ScreenManager.AddScreen(errorScreen, ControllingPlayer);
 			}
 		}
@@ -108,7 +107,6 @@ namespace MenuBuddy
 			catch (Exception exception)
 			{
 				NetworkErrorScreen errorScreen = new NetworkErrorScreen(exception);
-
 				ScreenManager.AddScreen(errorScreen, ControllingPlayer);
 			}
 		}
