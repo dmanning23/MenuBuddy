@@ -330,15 +330,6 @@ namespace MenuBuddy
 				FadeAlphaDuringTransition(color));
 		}
 
-		/// <summary>
-		/// Helper modifies a color to fade its alpha value during screen transitions.
-		/// </summary>
-		Color FadeAlphaDuringTransition(Color color)
-		{
-			Vector3 myColor = color.ToVector3();
-			return new Color(myColor.X, myColor.Y, myColor.Z, TransitionAlpha);
-		}
-
 		#endregion
 	}
 }
