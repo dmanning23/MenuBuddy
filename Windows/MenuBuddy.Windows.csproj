@@ -94,17 +94,16 @@
     <Compile Include="..\Source\ScreenManager.cs">
       <Link>ScreenManager.cs</Link>
     </Compile>
-	<Compile Include="..\Source\IMainMenu.cs">
+    <Compile Include="..\Source\IMainMenu.cs">
       <Link>IMainMenu.cs</Link>
     </Compile>
-    
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\externals\HadoukInput\Windows\HadoukInput.Windows.csproj">
+    <ProjectReference Include="..\..\HadoukInput\Windows\HadoukInput.Windows.csproj">
       <Project>{85D723F7-83EF-4C75-82BA-9385D0AC8448}</Project>
       <Name>HadoukInput.Windows</Name>
     </ProjectReference>

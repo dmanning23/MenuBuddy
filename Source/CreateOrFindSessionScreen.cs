@@ -10,7 +10,7 @@ namespace MenuBuddy
 	/// This menu screen lets the user choose whether to create a new
 	/// network session, or search for an existing session to join.
 	/// </summary>
-	class CreateOrFindSessionScreen : MenuScreen
+	public class CreateOrFindSessionScreen : MenuScreen
 	{
 		#region Fields
 

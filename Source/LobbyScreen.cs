@@ -15,7 +15,7 @@ namespace MenuBuddy
 	/// and indicates which ones are currently talking. Each gamer can press a button
 	/// to mark themselves as ready: gameplay will begin after everyone has done this.
 	/// </summary>
-	class LobbyScreen : GameScreen
+	public class LobbyScreen : GameScreen
 	{
 		#region Fields
 

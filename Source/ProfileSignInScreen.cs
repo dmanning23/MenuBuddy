@@ -33,7 +33,7 @@ namespace MenuBuddy
 	/// Update, so the user just sees a transition directly from the MainMenuScreen
 	/// to the CreateOrFindSessionScreen.
 	/// </summary>
-	class ProfileSignInScreen : GameScreen
+	public class ProfileSignInScreen : GameScreen
 	{
 		#region Fields
 

@@ -14,7 +14,7 @@ namespace MenuBuddy
 	/// and also exposes the NetworkSession as a game service which can easily be
 	/// looked up by any other code that needs to access it.
 	/// </summary>
-	class NetworkSessionComponent : GameComponent
+	public class NetworkSessionComponent : GameComponent
 	{
 		#region Fields
 

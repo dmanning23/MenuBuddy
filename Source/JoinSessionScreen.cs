@@ -9,7 +9,7 @@ namespace MenuBuddy
 	/// This menu screen displays a list of available network sessions,
 	/// and lets the user choose which one to join.
 	/// </summary>
-	class JoinSessionScreen : MenuScreen
+	public class JoinSessionScreen : MenuScreen
 	{
 		#region Fields
 
