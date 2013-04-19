@@ -79,8 +79,7 @@ namespace MenuBuddy
 					LoadingScreen.Load(ScreenManager,
 						true,
 						null,
-						new CBlockScreen(),
-						new CGameplayScreen(networkSession));
+					    ScreenManager.GetGameplayScreenStack());
 				}
 				else if (networkSession.IsHost && networkSession.IsEveryoneReady && (networkSession.AllGamers.Count >= 2))
 				{

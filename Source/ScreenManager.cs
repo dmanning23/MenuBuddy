@@ -14,7 +14,7 @@ namespace MenuBuddy
 	/// methods at the appropriate times, and automatically routes input to the
 	/// topmost active screen.
 	/// </summary>
-	public class ScreenManager : DrawableGameComponent
+	public abstract class ScreenManager : DrawableGameComponent
 	{
 		#region Member Variables
 
@@ -326,6 +326,28 @@ namespace MenuBuddy
 			//TODO: start playing the new music
 			//SPFLib.CAudioManager.PlayMusic(strMusic, m_MusicContent);
 		}
+
+		#region screen stack methods
+
+		/// <summary>
+		/// Get the set of screens needed to start a game
+		/// </summary>
+		/// <returns>The gameplay screen stack.</returns>
+		public abstract GameScreen[] GetGameplayScreenStack();
+
+		/// <summary>
+		/// Get the set of screens needed for the main menu
+		/// </summary>
+		/// <returns>The gameplay screen stack.</returns>
+		public abstract GameScreen[] GetMainMenuScreenStack();
+
+		/// <summary>
+		/// Get the set of screens needed to display the network busy screen
+		/// </summary>
+		/// <returns>The gameplay screen stack.</returns>
+		public abstract GameScreen[] GetNetworkBusyScreenStack();
+
+		#endregion //screen stack methods
 
 		#endregion
 	}

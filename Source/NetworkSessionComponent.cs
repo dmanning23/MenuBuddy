@@ -227,29 +227,26 @@ namespace MenuBuddy
 				// network busy screen, which displays an animation as it waits for
 				// the join operation to complete.
 				NetworkBusyScreen busyScreen = new NetworkBusyScreen(asyncResult);
-
 				busyScreen.OperationCompleted += JoinInvitedOperationCompleted;
 
+				List<GameScreen> screenStack = new List<GameScreen>(screenManager.GetNetworkBusyScreenStack());
+				screenStack.Add(busyScreen);
 				LoadingScreen.Load(screenManager, 
 					false, 
 					null, 
-					new CBlockScreen(),
-					new CBackgroundScreen(), 
-					busyScreen);
+				    screenStack.ToArray());
 			}
 			catch (Exception exception)
 			{
-				NetworkErrorScreen errorScreen = new NetworkErrorScreen(exception);
+				//get the list of screens needed to pop up main menu and display error
+				List<GameScreen> stack = new List<GameScreen>(screenManager.GetMainMenuScreenStack());
+				stack.Add(new NetworkErrorScreen(exception));
 
 				LoadingScreen.Load(
 					screenManager, 
 					false, 
 					null, 
-					new CBlockScreen(),
-					new CBackgroundScreen(),
-					new CStartScreen(),
-					new CMainMenuScreen(),
-					errorScreen);
+					stack.ToArray());
 			}
 		}
 
@@ -274,8 +271,16 @@ namespace MenuBuddy
 			}
 			catch (Exception exception)
 			{
-				screenManager.AddScreen(new CMainMenuScreen(), null);
-				screenManager.AddScreen(new NetworkErrorScreen(exception), null);
+				//clear out all the screens, display the main menu with the error screen on top
+				foreach (GameScreen screen in screenManager.GetScreens())
+					screen.ExitScreen();
+
+				List<GameScreen> screenStack = new List<GameScreen>(screenManager.GetMainMenuScreenStack());
+				screenStack.Add(new NetworkErrorScreen(exception));
+				LoadingScreen.Load(screenManager, 
+				                   false, 
+				                   null, 
+				                   screenStack.ToArray());
 			}
 		}
 
@@ -436,11 +441,11 @@ namespace MenuBuddy
 			// Look for the MainMenuScreen.
 			for (int i = 0; i < screens.Length; i++)
 			{
-				if (screens[i] is CMainMenuScreen)
+				if (screens[i] is IMainMenu)
 				{
 					// If we found one, pop everything since then to return back to it.
-					for (int j = i + 1; j < screens.Length; j++)
-						screens[j].ExitScreen();
+					foreach (GameScreen screen in screenManager.GetScreens())
+						screen.ExitScreen();
 
 					// Display the why-did-the-session-end message box.
 					if (messageBox != null)
@@ -451,16 +456,15 @@ namespace MenuBuddy
 			}
 
 			// If we didn't find an existing MainMenuScreen, reload everything.
-			// The why-did-the-session-end message box will be displayed after
-			// the loading screen has completed.
+			// The why-did-the-session-end message box will be displayed after loading screen has completed.
+
+			//get the stack of screens
+			List<GameScreen> screenStack = new List<GameScreen>(screenManager.GetMainMenuScreenStack());
+			screenStack.Add(messageBox);
 			LoadingScreen.Load(screenManager, 
 				false, 
 				null, 
-				new CBlockScreen(),
-				new CBackgroundScreen(), 
-				new CStartScreen(),
-				new CMainMenuScreen(), 
-				messageBox);
+			    screenStack.ToArray());
 		}
 
 		/// <summary>
