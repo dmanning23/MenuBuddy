@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E83F9EAA-EB6B-4801-8BEF-C602D34EBFD3}</ProjectGuid>
+    <ProjectGuid>{06BDA02F-5559-4E95-B856-EC8EFBEA94E8}</ProjectGuid>
     <ProjectTypeGuids>{9B831FEF-F496-498F-9FE8-180DA5CB4258};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>MenuBuddy.Windows</RootNamespace>
-    <MonoGamePlatform>WindowsGL</MonoGamePlatform>
-    <AssemblyName>MenuBuddy.Windows</AssemblyName>
+    <RootNamespace>MenuBuddy.Linux</RootNamespace>
+    <MonoGamePlatform>Linux</MonoGamePlatform>
+    <AssemblyName>MenuBuddy.Linux</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,8 +20,8 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
     <ConsolePause>false</ConsolePause>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
@@ -29,8 +29,8 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
     <ConsolePause>false</ConsolePause>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -48,6 +48,9 @@
     </Compile>
     <Compile Include="..\Source\GameScreen.cs">
       <Link>GameScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\IMainMenu.cs">
+      <Link>IMainMenu.cs</Link>
     </Compile>
     <Compile Include="..\Source\IMessageDisplay.cs">
       <Link>IMessageDisplay.cs</Link>
@@ -94,18 +97,15 @@
     <Compile Include="..\Source\ScreenManager.cs">
       <Link>ScreenManager.cs</Link>
     </Compile>
-    <Compile Include="..\Source\IMainMenu.cs">
-      <Link>IMainMenu.cs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\externals\HadoukInput\Windows\HadoukInput.Windows.csproj">
-      <Project>{85D723F7-83EF-4C75-82BA-9385D0AC8448}</Project>
-      <Name>HadoukInput.Windows</Name>
+    <ProjectReference Include="..\externals\HadoukInput\Linux\HadoukInput.Linux\HadoukInput.Linux.csproj">
+      <Project>{44C9BE36-4EA1-422E-9488-345C78743D59}</Project>
+      <Name>HadoukInput.Linux</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
