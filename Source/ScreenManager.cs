@@ -329,11 +329,23 @@ namespace MenuBuddy
 
 		#region screen stack methods
 
+#if NETWORKING
 		/// <summary>
 		/// Get the set of screens needed to start a game
 		/// </summary>
 		/// <returns>The gameplay screen stack.</returns>
-		public abstract GameScreen[] GetGameplayScreenStack();
+		/// <param name="networkSession">the network session component of the game.</param>
+		public abstract GameScreen[] GetGameplayScreenStack(NetworkSession networkSession);
+
+#else
+
+		/// <summary>
+		/// Get the set of screens needed to start a game
+		/// </summary>
+		/// <returns>The gameplay screen stack.</returns>
+		/// <param name="iNumPlayers">the number of players in the game.</param>
+		public abstract GameScreen[] GetGameplayScreenStack(int iNumPlayers);
+#endif
 
 		/// <summary>
 		/// Get the set of screens needed for the main menu

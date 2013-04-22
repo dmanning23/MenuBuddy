@@ -68,6 +68,8 @@ namespace MenuBuddy
 		{
 			base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
+#if NETWORKING
+
 			if (!IsExiting)
 			{
 				if (networkSession.SessionState == NetworkSessionState.Playing)
@@ -79,7 +81,7 @@ namespace MenuBuddy
 					LoadingScreen.Load(ScreenManager,
 						true,
 						null,
-					    ScreenManager.GetGameplayScreenStack());
+						ScreenManager.GetGameplayScreenStack(networkSession));
 				}
 				else if (networkSession.IsHost && networkSession.IsEveryoneReady && (networkSession.AllGamers.Count >= 2))
 				{
@@ -88,6 +90,7 @@ namespace MenuBuddy
 					networkSession.StartGame();
 				}
 			}
+#endif
 		}
 
 		/// <summary>

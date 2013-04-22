@@ -29,9 +29,20 @@ namespace MenuBuddy
 		#region Member Variables
 
 		/// <summary>
-		/// Screen rectangle.
+		/// Gets the current position of the screen transition, ranging
+		/// from zero (fully active, no transition) to one (transitioned
+		/// fully off to nothing).
 		/// </summary>
-		private Rectangle m_ScreenRect;
+		private float m_fTransitionPosition = 1.0f;
+
+		/// <summary>
+		/// Checks whether this screen is active and can respond to user input.
+		/// </summary>
+		private bool m_bOtherScreenHasFocus;
+
+		#endregion //Member Variables
+
+		#region Properties
 
 		/// <summary>
 		/// Normally when one screen is brought up over the top of another,
@@ -40,111 +51,35 @@ namespace MenuBuddy
 		/// popup, in which case screens underneath it do not need to bother
 		/// transitioning off.
 		/// </summary>
-		private bool m_bIsPopup = false;
+		public bool IsPopup { get; protected set; }
 
 		/// <summary>
 		/// Indicates how long the screen takes to
 		/// transition on when it is activated.
 		/// </summary>
-		private TimeSpan m_TransitionOnTime = TimeSpan.Zero;
+		public TimeSpan TransitionOnTime { get; protected set; }
 
 		/// <summary>
 		/// Indicates how long the screen takes to
 		/// transition off when it is deactivated.
 		/// </summary>
-		private TimeSpan m_TransitionOffTime = TimeSpan.Zero;
-
-		/// <summary>
-		/// Gets the current position of the screen transition, ranging
-		/// from zero (fully active, no transition) to one (transitioned
-		/// fully off to nothing).
-		/// </summary>
-		private float m_fTransitionPosition = 1.0f;
-
-		/// <summary>
-		/// Gets the current screen transition state.
-		/// </summary>
-		private EScreenState m_eScreenState = EScreenState.TransitionOn;
-
-		/// <summary>
-		/// There are two possible reasons why a screen might be transitioning
-		/// off. It could be temporarily going away to make room for another
-		/// screen that is on top of it, or it could be going away for good.
-		/// This property indicates whether the screen is exiting for real:
-		/// if set, the screen will automatically remove itself as soon as the
-		/// transition finishes.
-		/// </summary>
-		private bool m_bIsExiting = false;
-
-		/// <summary>
-		/// Gets the index of the player who is currently controlling this screen,
-		/// or null if it is accepting input from any player. This is used to lock
-		/// the game to a specific player profile. The main menu responds to input
-		/// from any connected gamepad, but whichever player makes a selection from
-		/// this menu is given control over all subsequent screens, so other gamepads
-		/// are inactive until the controlling player returns to the main menu.
-		/// </summary>
-		private PlayerIndex? m_ControllingPlayer;
-
-		/// <summary>
-		/// Checks whether this screen is active and can respond to user input.
-		/// </summary>
-		private bool m_bOtherScreenHasFocus;
-
-		/// <summary>
-		/// Gets the manager that this screen belongs to.
-		/// </summary>
-		private ScreenManager m_ScreenManager;
-
-		/// <summary>
-		/// This stuff is used to pop up demo mode
-		/// </summary>
-		private double m_dTimeSinceInput;
-		private double m_dPrevTimeSinceInput;
-
-		#endregion //Member Variables
-
-		#region Properties
-
-		public bool IsPopup
-		{
-			get { return m_bIsPopup; }
-			protected set { m_bIsPopup = value; }
-		}
-
-		public TimeSpan TransitionOnTime
-		{
-			get { return m_TransitionOnTime; }
-			protected set { m_TransitionOnTime = value; }
-		}
-
-		public TimeSpan TransitionOffTime
-		{
-			get { return m_TransitionOffTime; }
-			protected set { m_TransitionOffTime = value; }
-		}
+		public TimeSpan TransitionOffTime { get; protected set; }
 
 		/// <summary>
 		/// Get the position delta to add to an item during screen transition.  
 		/// Ranges from 0.0f (fully active, no transition) to 1.0f (transitioned fully off to nothing).
 		/// </summary>
-		public float TransitionPosition
-		{
-			get { return m_fTransitionPosition; }
-			protected set { m_fTransitionPosition = value; }
-		}
+		public float TransitionPosition { get; protected set; }
 
-		public double TimeSinceInput
-		{
-			get { return m_dTimeSinceInput; }
-			set { m_dTimeSinceInput = value; }
-		}
+		/// <summary>
+		/// This stuff is used to pop up demo mode
+		/// </summary>
+		public double TimeSinceInput { get; set; }
 
-		public double PrevTimeSinceInput
-		{
-			get { return m_dPrevTimeSinceInput; }
-			set { m_dPrevTimeSinceInput = value; }
-		}
+		/// <summary>
+		/// This stuff is used to pop up demo mode
+		/// </summary>
+		public double PrevTimeSinceInput { get; set; }
 
 		/// <summary>
 		/// Gets the current alpha of the screen transition.
@@ -155,48 +90,68 @@ namespace MenuBuddy
 			get { return 1.0f - m_fTransitionPosition; }
 		}
 
-		public EScreenState ScreenState
-		{
-			get { return m_eScreenState; }
-			protected set { m_eScreenState = value; }
-		}
+		/// <summary>
+		/// Gets the current screen transition state.
+		/// </summary>
+		public EScreenState ScreenState { get; protected set; }
 
-		public bool IsExiting
-		{
-			get { return m_bIsExiting; }
-			protected internal set { m_bIsExiting = value; }
-		}
+		/// <summary>
+		/// There are two possible reasons why a screen might be transitioning
+		/// off. It could be temporarily going away to make room for another
+		/// screen that is on top of it, or it could be going away for good.
+		/// This property indicates whether the screen is exiting for real:
+		/// if set, the screen will automatically remove itself as soon as the
+		/// transition finishes.
+		/// </summary>
+		public bool IsExiting { get; protected internal set; }
 
 		public bool IsActive
 		{
 			get
 			{
 				return !m_bOtherScreenHasFocus &&
-					   (m_eScreenState == EScreenState.TransitionOn ||
-						m_eScreenState == EScreenState.Active);
+					   (ScreenState == EScreenState.TransitionOn ||
+						ScreenState == EScreenState.Active);
 			}
 		}
 
-		public ScreenManager ScreenManager
-		{
-			get { return m_ScreenManager; }
-			internal set { m_ScreenManager = value; }
-		}
+		/// <summary>
+		/// Gets the manager that this screen belongs to.
+		/// </summary>
+		public ScreenManager ScreenManager { get; internal set; }
 
-		public PlayerIndex? ControllingPlayer
-		{
-			get { return m_ControllingPlayer; }
-			internal set { m_ControllingPlayer = value; }
-		}
+		/// <summary>
+		/// Gets the index of the player who is currently controlling this screen,
+		/// or null if it is accepting input from any player. This is used to lock
+		/// the game to a specific player profile. The main menu responds to input
+		/// from any connected gamepad, but whichever player makes a selection from
+		/// this menu is given control over all subsequent screens, so other gamepads
+		/// are inactive until the controlling player returns to the main menu.
+		/// </summary>
+		public PlayerIndex? ControllingPlayer { get; internal set; }
 
-		public Rectangle ScreenRect
-		{
-			get { return m_ScreenRect; }
-		}
+		/// <summary>
+		/// Screen rectangle... this is the title safe rect
+		/// </summary>
+		public Rectangle ScreenRect { get; protected set; }
 
 		#endregion
 
 		#region Initialization
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MenuBuddy.GameScreen"/> class.
+		/// </summary>
+		public GameScreen()
+		{
+			IsPopup = false;
+			TimeSinceInput = 0.0;
+			PrevTimeSinceInput = 0.0f;
+			TransitionOnTime = TimeSpan.Zero;
+			TransitionOffTime = TimeSpan.Zero;
+			IsExiting = false;
+			ScreenState = EScreenState.TransitionOn;
+		}
 
 		/// <summary>
 		/// Load graphics content for the screen.
@@ -204,7 +159,7 @@ namespace MenuBuddy
 		public virtual void LoadContent() 
 		{
 			// Set the screen rect.
-			m_ScreenRect = ScreenManager.Game.GraphicsDevice.Viewport.TitleSafeArea;
+			ScreenRect = ScreenManager.Game.GraphicsDevice.Viewport.TitleSafeArea;
 		}
 
 		/// <summary>
@@ -225,12 +180,12 @@ namespace MenuBuddy
 		{
 			this.m_bOtherScreenHasFocus = otherScreenHasFocus;
 
-			if (m_bIsExiting)
+			if (IsExiting)
 			{
 				// If the screen is going away to die, it should transition off.
-				m_eScreenState = EScreenState.TransitionOff;
+				ScreenState = EScreenState.TransitionOff;
 
-				if (!UpdateTransition(gameTime, m_TransitionOffTime, 1))
+				if (!UpdateTransition(gameTime, TransitionOffTime, 1))
 				{
 					// When the transition finishes, remove the screen.
 					ScreenManager.RemoveScreen(this);
@@ -239,29 +194,29 @@ namespace MenuBuddy
 			else if (coveredByOtherScreen)
 			{
 				// If the screen is covered by another, it should transition off.
-				if (UpdateTransition(gameTime, m_TransitionOffTime, 1))
+				if (UpdateTransition(gameTime, TransitionOffTime, 1))
 				{
 					// Still busy transitioning.
-					m_eScreenState = EScreenState.TransitionOff;
+					ScreenState = EScreenState.TransitionOff;
 				}
 				else
 				{
 					// Transition finished!
-					m_eScreenState = EScreenState.Hidden;
+					ScreenState = EScreenState.Hidden;
 				}
 			}
 			else
 			{
 				// Otherwise the screen should transition on and become active.
-				if (UpdateTransition(gameTime, m_TransitionOnTime, -1))
+				if (UpdateTransition(gameTime, TransitionOnTime, -1))
 				{
 					// Still busy transitioning.
-					m_eScreenState = EScreenState.TransitionOn;
+					ScreenState = EScreenState.TransitionOn;
 				}
 				else
 				{
 					// Transition finished!
-					m_eScreenState = EScreenState.Active;
+					ScreenState = EScreenState.Active;
 				}
 			}
 		}
@@ -322,8 +277,8 @@ namespace MenuBuddy
 			// Draw the menu title.
 
 			//Get the menu size and location
-			float fTitlePositionX = m_ScreenRect.Center.X - (font.MeasureString(strTitle) * fScale / 2.0f).X;
-			float fTitlePositionY = m_ScreenRect.Center.Y - (font.MeasureString(strTitle) * fScale).Y;
+			float fTitlePositionX = ScreenRect.Center.X - (font.MeasureString(strTitle) * fScale / 2.0f).X;
+			float fTitlePositionY = ScreenRect.Center.Y - (font.MeasureString(strTitle) * fScale).Y;
 
 			Vector2 titlePosition = new Vector2(fTitlePositionX, fTitlePositionY);
 			Vector2 titleOrigin = new Vector2(0.0f, 0.0f); ;
@@ -362,7 +317,7 @@ namespace MenuBuddy
 			else
 			{
 				// Otherwise flag that it should transition off and then exit.
-				m_bIsExiting = true;
+				IsExiting = true;
 			}
 		}
 
