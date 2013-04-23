@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{06BDA02F-5559-4E95-B856-EC8EFBEA94E8}</ProjectGuid>
+    <ProjectGuid>{3DF33417-ECB5-45D3-8C75-CAEF900B03BD}</ProjectGuid>
     <ProjectTypeGuids>{9B831FEF-F496-498F-9FE8-180DA5CB4258};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>MenuBuddy.Linux</RootNamespace>
@@ -20,8 +20,8 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
@@ -29,8 +29,8 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -103,8 +103,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\externals\HadoukInput\Linux\HadoukInput.Linux\HadoukInput.Linux.csproj">
-      <Project>{44C9BE36-4EA1-422E-9488-345C78743D59}</Project>
+    <ProjectReference Include="..\externals\HadoukInput\Linux\HadoukInput.Linux.csproj">
+      <Project>{65AD3F27-7ECE-4BE0-AC5E-ED63AA7D09EE}</Project>
       <Name>HadoukInput.Linux</Name>
     </ProjectReference>
   </ItemGroup>

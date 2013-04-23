@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuBuddy.Linux", "MenuBuddy.Linux.csproj", "{3DF33417-ECB5-45D3-8C75-CAEF900B03BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HadoukInput.Linux", "..\externals\HadoukInput\Linux\HadoukInput.Linux.csproj", "{65AD3F27-7ECE-4BE0-AC5E-ED63AA7D09EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DF33417-ECB5-45D3-8C75-CAEF900B03BD}.Debug|x86.ActiveCfg = Debug|x86
+		{3DF33417-ECB5-45D3-8C75-CAEF900B03BD}.Debug|x86.Build.0 = Debug|x86
+		{3DF33417-ECB5-45D3-8C75-CAEF900B03BD}.Release|x86.ActiveCfg = Release|x86
+		{3DF33417-ECB5-45D3-8C75-CAEF900B03BD}.Release|x86.Build.0 = Release|x86
+		{65AD3F27-7ECE-4BE0-AC5E-ED63AA7D09EE}.Debug|x86.ActiveCfg = Debug|x86
+		{65AD3F27-7ECE-4BE0-AC5E-ED63AA7D09EE}.Debug|x86.Build.0 = Debug|x86
+		{65AD3F27-7ECE-4BE0-AC5E-ED63AA7D09EE}.Release|x86.ActiveCfg = Release|x86
+		{65AD3F27-7ECE-4BE0-AC5E-ED63AA7D09EE}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MenuBuddy.Linux.csproj
+	EndGlobalSection
+EndGlobal
