@@ -5,10 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuBuddy.Windows", "MenuBu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HadoukInput.Windows", "..\externals\HadoukInput\Windows\HadoukInput.Windows.csproj", "{85D723F7-83EF-4C75-82BA-9385D0AC8448}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuBuddy.Linux", "..\Linux\MenuBuddy.Linux.csproj", "{06BDA02F-5559-4E95-B856-EC8EFBEA94E8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HadoukInput.Linux", "..\externals\HadoukInput\Linux\HadoukInput.Linux\HadoukInput.Linux.csproj", "{44C9BE36-4EA1-422E-9488-345C78743D59}"
-EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
