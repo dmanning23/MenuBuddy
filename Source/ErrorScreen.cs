@@ -1,21 +1,23 @@
 using System;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.GamerServices;
+#if NETWORKING
 using Microsoft.Xna.Framework.Net;
+#endif
 
 namespace MenuBuddy
 {
 	/// <summary>
 	/// Specialized message box subclass, used to display network error messages.
 	/// </summary>
-	public class NetworkErrorScreen : MessageBoxScreen
+	public class ErrorScreen : MessageBoxScreen
 	{
 		#region Methods
 
 		/// <summary>
 		/// Constructs an error message box from the specified exception.
 		/// </summary>
-		public NetworkErrorScreen(Exception exception) : base(GetErrorMessage(exception), false) { }
+		public ErrorScreen(Exception exception) : base(GetErrorMessage(exception), false) { }
 
 		/// <summary>
 		/// Converts a network exception into a user friendly error message.
@@ -32,6 +34,8 @@ namespace MenuBuddy
 				else
 					return "You must sign in a suitable gamer profile \nin order to access this functionality";
 			}
+
+			#if NETWORKING
 
 			// Is it a NetworkSessionJoinException?
 			NetworkSessionJoinException joinException = exception as NetworkSessionJoinException;
@@ -62,6 +66,7 @@ namespace MenuBuddy
 			{
 				return "There was an error while \naccessing the network";
 			}
+#endif
 
 			// Otherwise just a generic error message.
 			return "An unknown error occurred:\n" + exception.Message;

@@ -49,12 +49,12 @@ namespace MenuBuddy
 		/// </summary>
 		public MessageBoxScreen(string message, bool includeUsageText)
 		{
-#if XBOX
-			const string usageText = "\nA button: OK" +
-									 "\nB button: Cancel";
-#else
+#if KEYBOARD
 			const string usageText = "\nA button, Space, Enter = ok" +
-									 "\nB button, Esc = cancel";
+				"\nB button, Esc = cancel";
+#else
+			const string usageText = "\nA button: OK" +
+				"\nB button: Cancel";
 #endif
 			if (includeUsageText)
 			{

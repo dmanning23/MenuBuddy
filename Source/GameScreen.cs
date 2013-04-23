@@ -347,7 +347,7 @@ namespace MenuBuddy
 				}
 				catch (Exception exception)
 				{
-					NetworkErrorScreen errorScreen = new NetworkErrorScreen(exception);
+					ErrorScreen errorScreen = new ErrorScreen(exception);
 					ScreenManager.AddScreen(errorScreen, ControllingPlayer);
 				}
 			}

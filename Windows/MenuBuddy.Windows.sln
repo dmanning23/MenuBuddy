@@ -5,21 +5,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuBuddy.Windows", "MenuBu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HadoukInput.Windows", "..\externals\HadoukInput\Windows\HadoukInput.Windows.csproj", "{85D723F7-83EF-4C75-82BA-9385D0AC8448}"
 EndProject
-
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontBuddy.Windows", "..\externals\FontBuddy\Windows\FontBuddy.Windows.csproj", "{65B5BB5D-0C69-4DDB-8DE6-F6B91C41279D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{06BDA02F-5559-4E95-B856-EC8EFBEA94E8}.Debug|x86.ActiveCfg = Debug|x86
-		{06BDA02F-5559-4E95-B856-EC8EFBEA94E8}.Debug|x86.Build.0 = Debug|x86
-		{06BDA02F-5559-4E95-B856-EC8EFBEA94E8}.Release|x86.ActiveCfg = Release|x86
-		{06BDA02F-5559-4E95-B856-EC8EFBEA94E8}.Release|x86.Build.0 = Release|x86
-		{44C9BE36-4EA1-422E-9488-345C78743D59}.Debug|x86.ActiveCfg = Debug|x86
-		{44C9BE36-4EA1-422E-9488-345C78743D59}.Debug|x86.Build.0 = Debug|x86
-		{44C9BE36-4EA1-422E-9488-345C78743D59}.Release|x86.ActiveCfg = Release|x86
-		{44C9BE36-4EA1-422E-9488-345C78743D59}.Release|x86.Build.0 = Release|x86
+		{65B5BB5D-0C69-4DDB-8DE6-F6B91C41279D}.Debug|x86.ActiveCfg = Debug|x86
+		{65B5BB5D-0C69-4DDB-8DE6-F6B91C41279D}.Debug|x86.Build.0 = Debug|x86
+		{65B5BB5D-0C69-4DDB-8DE6-F6B91C41279D}.Release|x86.ActiveCfg = Release|x86
+		{65B5BB5D-0C69-4DDB-8DE6-F6B91C41279D}.Release|x86.Build.0 = Release|x86
 		{85D723F7-83EF-4C75-82BA-9385D0AC8448}.Debug|x86.ActiveCfg = Debug|x86
 		{85D723F7-83EF-4C75-82BA-9385D0AC8448}.Debug|x86.Build.0 = Debug|x86
 		{85D723F7-83EF-4C75-82BA-9385D0AC8448}.Release|x86.ActiveCfg = Release|x86
@@ -28,6 +25,14 @@ Global
 		{E83F9EAA-EB6B-4801-8BEF-C602D34EBFD3}.Debug|x86.Build.0 = Debug|x86
 		{E83F9EAA-EB6B-4801-8BEF-C602D34EBFD3}.Release|x86.ActiveCfg = Release|x86
 		{E83F9EAA-EB6B-4801-8BEF-C602D34EBFD3}.Release|x86.Build.0 = Release|x86
+		{06BDA02F-5559-4E95-B856-EC8EFBEA94E8}.Debug|x86.ActiveCfg = Debug|x86
+		{06BDA02F-5559-4E95-B856-EC8EFBEA94E8}.Debug|x86.Build.0 = Debug|x86
+		{06BDA02F-5559-4E95-B856-EC8EFBEA94E8}.Release|x86.ActiveCfg = Release|x86
+		{06BDA02F-5559-4E95-B856-EC8EFBEA94E8}.Release|x86.Build.0 = Release|x86
+		{44C9BE36-4EA1-422E-9488-345C78743D59}.Debug|x86.ActiveCfg = Debug|x86
+		{44C9BE36-4EA1-422E-9488-345C78743D59}.Debug|x86.Build.0 = Debug|x86
+		{44C9BE36-4EA1-422E-9488-345C78743D59}.Release|x86.ActiveCfg = Release|x86
+		{44C9BE36-4EA1-422E-9488-345C78743D59}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = MenuBuddy.Windows.csproj

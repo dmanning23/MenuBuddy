@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using FontBuddyLib;
 
 namespace MenuBuddy
 {
@@ -114,17 +115,9 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void Draw(MenuScreen screen, Vector2 position, bool isSelected, GameTime gameTime)
 		{
-			//TODO: switch this all to FontBuddy
-
 			// Draw text, centered on the middle of each line.
 			ScreenManager screenManager = screen.ScreenManager;
 			SpriteBatch spriteBatch = screenManager.SpriteBatch;
-			SpriteFont font = screenManager.Font;
-
-			// Pulsate the size of the selected menu entry.
-			double time = gameTime.TotalGameTime.TotalSeconds;
-			float pulsate = (float)(Math.Sin(time * 4.0) + 1.0);
-			float scale = 1 + pulsate * 0.15f * m_fSelectionFade;
 
 			// Draw the selected entry in yellow, otherwise white.
 			Color color = isSelected ? Color.Red : Color.White;
@@ -135,17 +128,11 @@ namespace MenuBuddy
 			myColor = Color.Black.ToVector3();
 			Color backgroundColor = new Color(myColor.X, myColor.Y, myColor.Z, screen.TransitionAlpha);
 
-			Vector2 origin = new Vector2(0, font.LineSpacing / 2);
-
-			//First draw the menu item in black, which will add a nice shadow effect to selected items
-			spriteBatch.DrawString(font, m_strText, position, backgroundColor, 0, origin, SizeMultiplier, SpriteEffects.None, 0);
-
-			//adjust the position to account for the pulsating
-			float fAdjust = ((font.MeasureString(Text).X * SizeMultiplier * scale) - (font.MeasureString(Text).X * SizeMultiplier)) / 2.0f;
-			position.X -= fAdjust;
-
-			//Draw the menu item
-			spriteBatch.DrawString(font, m_strText, position, color, 0, origin, scale * SizeMultiplier, SpriteEffects.None, 0);
+			//if its selected, do the pulsate text, otherwise use a nice shadow text
+			ShadowTextBuddy menuFont = (isSelected ? new PulsateBuddy() : new ShadowTextBuddy());
+			menuFont.ShadowColor = backgroundColor;
+			menuFont.Font = screenManager.Font;
+			menuFont.Write(m_strText, position, Justify.Center, SizeMultiplier, color, spriteBatch, gameTime.TotalGameTime.TotalSeconds);
 		}
 
 		/// <summary>

@@ -1,3 +1,7 @@
 [submodule "externals/HadoukInput"]
 	path = externals/HadoukInput
 	url = https://github.com/dmanning23/HadoukInput.git
+
+[submodule "externals/FontBuddy"]
+	path = externals/FontBuddy
+	url = https://github.com/dmanning23/FontBuddy.git
