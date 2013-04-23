@@ -79,11 +79,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\externals\HadoukInput\Windows\HadoukInput.Windows.csproj">
+    <ProjectReference Include="..\..\HadoukInput\Windows\HadoukInput.Windows.csproj">
       <Project>{85D723F7-83EF-4C75-82BA-9385D0AC8448}</Project>
       <Name>HadoukInput.Windows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\externals\FontBuddy\Windows\FontBuddy.Windows.csproj">
+    <ProjectReference Include="..\..\FontBuddy\Windows\FontBuddy.Windows.csproj">
       <Project>{65B5BB5D-0C69-4DDB-8DE6-F6B91C41279D}</Project>
       <Name>FontBuddy.Windows</Name>
     </ProjectReference>
@@ -99,6 +99,14 @@
     </Content>
     <Content Include="..\externals\XNA\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\TestFont.xnb">
       <Link>Content\TestFont.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Source\Content\menu move.wav">
+      <Link>Content\menu move.wav</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Source\Content\menu select.wav">
+      <Link>Content\menu select.wav</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
