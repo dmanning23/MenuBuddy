@@ -5,3 +5,6 @@
 [submodule "externals/FontBuddy"]
 	path = externals/FontBuddy
 	url = https://github.com/dmanning23/FontBuddy.git
+[submodule "externals/XNA"]
+	path = externals/XNA
+	url = https://github.com/dmanning23/XnaCompiledResources.git
