@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 using HadoukInput;
 
 namespace MenuBuddy
@@ -49,9 +50,17 @@ namespace MenuBuddy
 
 		public Texture2D BlankTexture { get; private set; }
 
-		//TODO: create some delegates for playing sounds
+		/// <summary>
+		/// sound effect for when the menu selection changes
+		/// </summary>
+		/// <value>The menu change.</value>
+		public SoundEffect MenuChange { get; private set; }
 
-		//TODO: create a few methods for playing default sounds like "menu change" "menu select"
+		/// <summary>
+		/// sound effect for when a menu item is selected
+		/// </summary>
+		/// <value>The menu select.</value>
+		public SoundEffect MenuSelect { get; private set; }
 
 		/// <summary>
 		/// content manager used to load music files
@@ -97,6 +106,9 @@ namespace MenuBuddy
 
 			//TODO: take out this hard coded reference to menu font
 			MenuTitleFont = content.Load<SpriteFont>("ArialBlack72");
+
+			MenuChange = content.Load<SoundEffect>("menu move");
+			MenuSelect = content.Load<SoundEffect>("menu select");
 
 			//create a blank texture without loading some crap
 			BlankTexture = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);

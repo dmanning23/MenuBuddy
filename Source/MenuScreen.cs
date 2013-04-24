@@ -111,8 +111,8 @@ namespace MenuBuddy
 			{
 				OnSelectEntry(SelectedEntry, playerIndex);
 
-				//TODO: play menu noise
-				//SPFLib.CAudioManager.PlayCue("menu select");
+				//play menu noise
+				ScreenManager.MenuSelect.Play();
 				TimeSinceInput = 0.0;
 				PrevTimeSinceInput = 0.0f;
 			}
@@ -133,8 +133,9 @@ namespace MenuBuddy
 					SelectedEntry = MenuEntries.Count - 1;
 				}
 
-				//TODO: play menu noise
-				//SPFLib.CAudioManager.PlayCue("menu move");
+				//play menu noise
+				ScreenManager.MenuChange.Play();
+
 				TimeSinceInput = 0.0;
 				PrevTimeSinceInput = 0.0f;
 			}
