@@ -132,6 +132,8 @@ namespace MenuBuddy
 			ShadowTextBuddy menuFont = (isSelected ? new PulsateBuddy() : new ShadowTextBuddy());
 			menuFont.ShadowColor = backgroundColor;
 			menuFont.Font = screenManager.Font;
+			menuFont.ShadowOffset = Vector2.Zero;
+			menuFont.ShadowSize = 1.0f;
 			menuFont.Write(m_strText, position, Justify.Center, SizeMultiplier, color, spriteBatch, gameTime.TotalGameTime.TotalSeconds);
 		}
 

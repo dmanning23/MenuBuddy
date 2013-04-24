@@ -202,7 +202,7 @@ namespace MenuBuddy
 			// the movement slow down as it nears the end).
 			float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
 
-			spriteBatch.Begin();
+			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 
 			float fMenuPositionY = ScreenRect.Center.Y;
 

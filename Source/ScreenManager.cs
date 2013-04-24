@@ -22,66 +22,32 @@ namespace MenuBuddy
 
 		private List<GameScreen> m_ScreensToUpdate = new List<GameScreen>();
 
-		private InputState m_Input = new InputState();
-
-		/// <summary>
-		/// A default SpriteBatch shared by all the screens. 
-		/// This saves each screen having to bother creating their own local instance.
-		/// </summary>
-		private SpriteBatch m_SpriteBatch;
-
-		/// <summary>
-		/// A default font shared by all the screens. 
-		/// This saves each screen having to bother loading their own local copy.
-		/// </summary>
-		private SpriteFont m_Font;
-
-		private SpriteFont m_MenuTitleFont;
-
-		private Texture2D m_BlankTexture;
-
 		private bool m_IsInitialized;
-
-		/// <summary>
-		/// If true, the manager prints out a list of all the screens each time it is updated. 
-		/// This can be useful for making sure everything is being added and removed at the right times.
-		/// </summary>
-		private bool m_TraceEnabled;
 
 		#endregion //Member Variables
 
 		#region Properties
 
-		public SpriteBatch SpriteBatch
-		{
-			get { return m_SpriteBatch; }
-		}
+		/// <summary>
+		/// A default SpriteBatch shared by all the screens. 
+		/// This saves each screen having to bother creating their own local instance.
+		/// </summary>
+		public SpriteBatch SpriteBatch { get; private set; }
 
-		public SpriteFont Font
-		{
-			get { return m_Font; }
-		}
+		/// <summary>
+		/// A default font shared by all the screens. 
+		/// This saves each screen having to bother loading their own local copy.
+		/// </summary>
+		public SpriteFont Font { get; private set; }
 
-		public SpriteFont MenuTitleFont
-		{
-			get { return m_MenuTitleFont; }
-		}
+		/// <summary>
+		/// A bigger font, used to draw menu titles
+		/// </summary>
+		public SpriteFont MenuTitleFont { get; private set; }
 
-		public bool TraceEnabled
-		{
-			get { return m_TraceEnabled; }
-			set { m_TraceEnabled = value; }
-		}
+		public InputState InputState { get; private set; }
 
-		public InputState InputState
-		{
-			get { return m_Input; }
-		}
-
-		public Texture2D BlankTexture
-		{
-			get { return m_BlankTexture; }
-		}
+		public Texture2D BlankTexture { get; private set; }
 
 		//TODO: create some delegates for playing sounds
 
@@ -101,6 +67,7 @@ namespace MenuBuddy
 		/// </summary>
 		public ScreenManager(Game game) : base(game)
 		{
+			InputState = new InputState();
 		}
 
 		/// <summary>
@@ -123,17 +90,17 @@ namespace MenuBuddy
 			// Load content belonging to the screen manager.
 			ContentManager content = Game.Content;
 
-			m_SpriteBatch = new SpriteBatch(GraphicsDevice);
+			this.SpriteBatch = new SpriteBatch(GraphicsDevice);
 
 			//TODO: take out this hard coded reference to default font
-			m_Font = content.Load<SpriteFont>(@"ArialBlack48");
+			Font = content.Load<SpriteFont>("ArialBlack48");
 
 			//TODO: take out this hard coded reference to menu font
-			m_MenuTitleFont = content.Load<SpriteFont>(@"ArialBlack72");
+			MenuTitleFont = content.Load<SpriteFont>("ArialBlack72");
 
 			//create a blank texture without loading some crap
-			m_BlankTexture = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-			m_BlankTexture.SetData<Color>(new Color[] { Color.White });
+			BlankTexture = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+			BlankTexture.SetData<Color>(new Color[] { Color.White });
 
 			// Tell each of the screens to load their content.
 			foreach (GameScreen screen in m_Screens)
@@ -166,7 +133,7 @@ namespace MenuBuddy
 		public override void Update(GameTime gameTime)
 		{
 			// Read the keyboard and gamepad.
-			m_Input.Update();
+			InputState.Update();
 
 			// Make a copy of the master screen list, to avoid confusion if
 			// the process of updating one screen adds or removes others.
@@ -198,7 +165,7 @@ namespace MenuBuddy
 					// give it a chance to handle input.
 					if (!otherScreenHasFocus)
 					{
-						screen.HandleInput(m_Input, gameTime);
+						screen.HandleInput(InputState, gameTime);
 
 						otherScreenHasFocus = true;
 					}
@@ -209,10 +176,6 @@ namespace MenuBuddy
 						coveredByOtherScreen = true;
 				}
 			}
-
-			// Print debug trace?
-			if (m_TraceEnabled)
-				TraceScreens();
 		}
 
 		/// <summary>
@@ -307,13 +270,13 @@ namespace MenuBuddy
 		{
 			Viewport viewport = GraphicsDevice.Viewport;
 
-			m_SpriteBatch.Begin();
+			SpriteBatch.Begin();
 
-			m_SpriteBatch.Draw(m_BlankTexture,
+			SpriteBatch.Draw(BlankTexture,
 							 new Rectangle(0, 0, viewport.Width, viewport.Height),
 							 new Color(0.0f, 0.0f, 0.0f, fAlpha));
 
-			m_SpriteBatch.End();
+			SpriteBatch.End();
 		}
 
 		public void PlayMusic(string strMusic)
