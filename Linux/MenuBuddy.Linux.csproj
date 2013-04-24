@@ -40,12 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\Source\AvailableSessionMenuEntry.cs">
-      <Link>AvailableSessionMenuEntry.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\CreateOrFindSessionScreen.cs">
-      <Link>CreateOrFindSessionScreen.cs</Link>
-    </Compile>
     <Compile Include="..\Source\GameScreen.cs">
       <Link>GameScreen.cs</Link>
     </Compile>
@@ -55,14 +49,8 @@
     <Compile Include="..\Source\IMessageDisplay.cs">
       <Link>IMessageDisplay.cs</Link>
     </Compile>
-    <Compile Include="..\Source\JoinSessionScreen.cs">
-      <Link>JoinSessionScreen.cs</Link>
-    </Compile>
     <Compile Include="..\Source\LoadingScreen.cs">
       <Link>LoadingScreen.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\LobbyScreen.cs">
-      <Link>LobbyScreen.cs</Link>
     </Compile>
     <Compile Include="..\Source\MenuEntry.cs">
       <Link>MenuEntry.cs</Link>
@@ -76,23 +64,11 @@
     <Compile Include="..\Source\MessageDisplayComponent.cs">
       <Link>MessageDisplayComponent.cs</Link>
     </Compile>
-    <Compile Include="..\Source\NetworkBusyScreen.cs">
-      <Link>NetworkBusyScreen.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\NetworkErrorScreen.cs">
-      <Link>NetworkErrorScreen.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\NetworkSessionComponent.cs">
-      <Link>NetworkSessionComponent.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\OperationCompletedEventArgs.cs">
-      <Link>OperationCompletedEventArgs.cs</Link>
+    <Compile Include="..\Source\ErrorScreen.cs">
+      <Link>ErrorScreen.cs</Link>
     </Compile>
     <Compile Include="..\Source\PlayerIndexEventArgs.cs">
       <Link>PlayerIndexEventArgs.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\ProfileSignInScreen.cs">
-      <Link>ProfileSignInScreen.cs</Link>
     </Compile>
     <Compile Include="..\Source\ScreenManager.cs">
       <Link>ScreenManager.cs</Link>
@@ -107,5 +83,39 @@
       <Project>{65AD3F27-7ECE-4BE0-AC5E-ED63AA7D09EE}</Project>
       <Name>HadoukInput.Linux</Name>
     </ProjectReference>
+    <ProjectReference Include="..\externals\FontBuddy\Linux\FontBuddy.Linux.csproj">
+      <Project>{64DE607E-28C8-464D-9622-681FAC7CA36D}</Project>
+      <Name>FontBuddy.Linux</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\externals\XNA\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\TestFont.xnb">
+      <Link>Content\TestFont.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\externals\XNA\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\ArialBlack96.xnb">
+      <Link>Content\ArialBlack96.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\externals\XNA\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\ArialBlack72.xnb">
+      <Link>Content\ArialBlack72.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\externals\XNA\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\ArialBlack48.xnb">
+      <Link>Content\ArialBlack48.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\externals\XNA\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\ArialBlack24.xnb">
+      <Link>Content\ArialBlack24.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\externals\XNA\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\ArialBlack14.xnb">
+      <Link>Content\ArialBlack14.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\externals\XNA\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\ArialBlack10.xnb">
+      <Link>Content\ArialBlack10.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
