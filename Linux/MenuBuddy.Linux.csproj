@@ -79,11 +79,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\externals\HadoukInput\Linux\HadoukInput.Linux.csproj">
+    <ProjectReference Include="..\..\HadoukInput\Linux\HadoukInput.Linux.csproj">
       <Project>{65AD3F27-7ECE-4BE0-AC5E-ED63AA7D09EE}</Project>
       <Name>HadoukInput.Linux</Name>
     </ProjectReference>
-    <ProjectReference Include="..\externals\FontBuddy\Linux\FontBuddy.Linux.csproj">
+    <ProjectReference Include="..\..\FontBuddy\Linux\FontBuddy.Linux.csproj">
       <Project>{64DE607E-28C8-464D-9622-681FAC7CA36D}</Project>
       <Name>FontBuddy.Linux</Name>
     </ProjectReference>
