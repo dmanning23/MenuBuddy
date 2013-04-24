@@ -18,11 +18,6 @@ namespace MenuBuddy
 
 		protected float m_fSelectionFade;
 
-		/// <summary>
-		/// how much to resize the menu entry.
-		/// </summary>
-		protected float m_fSizeMultiplier;
-
 		#endregion
 
 		#region Properties
@@ -68,7 +63,7 @@ namespace MenuBuddy
 		public MenuEntry(string strText)
 		{
 			Text = strText;
-			m_fSizeMultiplier = 1.0f;
+			SizeMultiplier = 1.0f;
 		}
 
 		#endregion
@@ -108,10 +103,9 @@ namespace MenuBuddy
 			Color color = isSelected ? Color.Red : Color.White;
 
 			// Modify the alpha to fade text out during transitions.
-			Vector3 myColor = color.ToVector3();
-			color = new Color(myColor.X, myColor.Y, myColor.Z, screen.TransitionAlpha);
-			myColor = Color.Black.ToVector3();
-			Color backgroundColor = new Color(myColor.X, myColor.Y, myColor.Z, screen.TransitionAlpha);
+			color.A = Convert.ToByte(screen.TransitionAlpha * 255.0f);
+			Color backgroundColor = Color.Black;
+			backgroundColor.A = Convert.ToByte(screen.TransitionAlpha * 255.0f);
 
 			//if its selected, do the pulsate text, otherwise use a nice shadow text
 			ShadowTextBuddy menuFont = (isSelected ? new PulsateBuddy() : new ShadowTextBuddy());
