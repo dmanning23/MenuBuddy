@@ -126,13 +126,14 @@ namespace MenuBuddy
 			m_SpriteBatch = new SpriteBatch(GraphicsDevice);
 
 			//TODO: take out this hard coded reference to default font
-			m_Font = content.Load<SpriteFont>(@"Resources\Fonts\DefaultFont");
+			m_Font = content.Load<SpriteFont>(@"ArialBlack48");
 
 			//TODO: take out this hard coded reference to menu font
-			m_MenuTitleFont = content.Load<SpriteFont>(@"Resources\Fonts\MenuTitleFont");
+			m_MenuTitleFont = content.Load<SpriteFont>(@"ArialBlack72");
 
-			//TODO: create a blank texture without loading some crap
-			m_BlankTexture = content.Load<Texture2D>(@"Resources\Textures\BlocksTexture");
+			//create a blank texture without loading some crap
+			m_BlankTexture = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+			m_BlankTexture.SetData<Color>(new Color[] { Color.White });
 
 			// Tell each of the screens to load their content.
 			foreach (GameScreen screen in m_Screens)
