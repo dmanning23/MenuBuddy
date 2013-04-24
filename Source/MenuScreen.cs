@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using HadoukInput;
+using GameTimer;
 
 namespace MenuBuddy
 {
@@ -14,11 +15,10 @@ namespace MenuBuddy
 	{
 		#region Fields
 
-		private List<MenuEntry> m_listMenuEntries = new List<MenuEntry>();
-
-		protected int m_iSelectedEntry = 0;
-
-		private string m_strMenuTitle;
+		/// <summary>
+		/// index of the currently selected menu entry
+		/// </summary>
+		private int m_SelectedEntry = 0;
 
 		#endregion
 
@@ -28,19 +28,35 @@ namespace MenuBuddy
 		/// Gets the list of menu entries, so derived classes can add
 		/// or change the menu contents.
 		/// </summary>
-		protected IList<MenuEntry> MenuEntries
-		{
-			get { return m_listMenuEntries; }
-		}
+		protected IList<MenuEntry> MenuEntries { get; private set; }
 
 		/// <summary>
 		/// Gets or sets the menu title position.
 		/// </summary>
-		public string MenuTitle
+		public string MenuTitle { get; set; }
+
+		protected int SelectedEntry
 		{
-			get { return m_strMenuTitle; }
-			set { m_strMenuTitle = value; }
+			get
+			{
+				return m_SelectedEntry;
+			}
+			set
+			{
+				//set teh selected menu item
+				m_SelectedEntry = value;
+
+				//reset the menu clock so the entries don't pop
+				MenuClock.Start();
+			}
+
 		}
+
+		/// <summary>
+		/// Gets or sets the menu clock.
+		/// </summary>
+		/// <value>The menu clock.</value>
+		private GameClock MenuClock { get; set; }
 
 		#endregion
 
@@ -51,7 +67,10 @@ namespace MenuBuddy
 		/// </summary>
 		public MenuScreen(string strMenuTitle)
 		{
-			this.m_strMenuTitle = strMenuTitle;
+			MenuEntries = new List<MenuEntry>();
+			MenuClock = new GameClock();
+			MenuClock.Start();
+			MenuTitle = strMenuTitle;
 			TimeSinceInput = 0.0;
 			PrevTimeSinceInput = 0.0;
 
@@ -90,7 +109,7 @@ namespace MenuBuddy
 
 			if (input.IsMenuSelect(ControllingPlayer, out playerIndex))
 			{
-				OnSelectEntry(m_iSelectedEntry, playerIndex);
+				OnSelectEntry(SelectedEntry, playerIndex);
 
 				//TODO: play menu noise
 				//SPFLib.CAudioManager.PlayCue("menu select");
@@ -105,13 +124,13 @@ namespace MenuBuddy
 
 		protected virtual void MenuUp()
 		{
-			if (m_listMenuEntries.Count > 1)
+			if (MenuEntries.Count > 1)
 			{
-				m_iSelectedEntry--;
+				SelectedEntry--;
 
-				if (m_iSelectedEntry < 0)
+				if (SelectedEntry < 0)
 				{
-					m_iSelectedEntry = m_listMenuEntries.Count - 1;
+					SelectedEntry = MenuEntries.Count - 1;
 				}
 
 				//TODO: play menu noise
@@ -123,13 +142,13 @@ namespace MenuBuddy
 
 		protected virtual void MenuDown()
 		{
-			if (m_listMenuEntries.Count > 1)
+			if (MenuEntries.Count > 1)
 			{
-				m_iSelectedEntry++;
+				SelectedEntry++;
 
-				if (m_iSelectedEntry >= m_listMenuEntries.Count)
+				if (SelectedEntry >= MenuEntries.Count)
 				{
-					m_iSelectedEntry = 0;
+					SelectedEntry = 0;
 				}
 
 				//TODO: play menu noise
@@ -144,7 +163,7 @@ namespace MenuBuddy
 		/// </summary>
 		protected virtual void OnSelectEntry(int entryIndex, PlayerIndex playerIndex)
 		{
-			m_listMenuEntries[m_iSelectedEntry].OnSelectEntry(playerIndex);
+			MenuEntries[SelectedEntry].OnSelectEntry(playerIndex);
 		}
 
 		/// <summary>
@@ -175,10 +194,10 @@ namespace MenuBuddy
 			base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
 			// Update each nested MenuEntry object.
-			for (int i = 0; i < m_listMenuEntries.Count; i++)
+			for (int i = 0; i < MenuEntries.Count; i++)
 			{
-				bool isSelected = IsActive && (i == m_iSelectedEntry);
-				m_listMenuEntries[i].Update(this, isSelected, gameTime);
+				bool isSelected = IsActive && (i == SelectedEntry);
+				MenuEntries[i].Update(this, isSelected, gameTime);
 			}
 
 			//update the timers
@@ -194,46 +213,38 @@ namespace MenuBuddy
 		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
-			SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-			SpriteFont font = ScreenManager.Font;
+			MenuClock.Update(gameTime);
 
 			// Make the menu slide into place during transitions, using a
 			// power curve to make things look more interesting (this makes
 			// the movement slow down as it nears the end).
 			float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
-
-			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
-
+			float fMenuPositionX = ScreenRect.Center.X;
+			if (ScreenState == EScreenState.TransitionOn)
+			{
+				fMenuPositionX -= transitionOffset * 256;
+			}
+			else
+			{
+				fMenuPositionX += transitionOffset * 512;
+			}
 			float fMenuPositionY = ScreenRect.Center.Y;
 
+			SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
+			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
+
 			// Draw each menu entry in turn.
-			for (int i = 0; i < m_listMenuEntries.Count; i++)
+			for (int i = 0; i < MenuEntries.Count; i++)
 			{
-				MenuEntry menuEntry = m_listMenuEntries[i];
-
-				//TODO: switch this all to FontBuddy
-
-				//Get the menu entry X position
-				float fMenuPositionX = ScreenRect.Center.X;
-				if (ScreenState == EScreenState.TransitionOn)
-				{
-					fMenuPositionX -= transitionOffset * 256;
-				}
-				else
-				{
-					fMenuPositionX += transitionOffset * 512;
-				}
-
 				//Draw the menu option
-				Vector2 position = new Vector2(fMenuPositionX, fMenuPositionY);
-				bool isSelected = IsActive && (i == m_iSelectedEntry);
-				menuEntry.Draw(this, position, isSelected, gameTime);
+				bool isSelected = IsActive && (i == SelectedEntry);
+				MenuEntries[i].Draw(this, new Vector2(fMenuPositionX, fMenuPositionY), isSelected, MenuClock);
 
 				//update the menu entry Y position
-				fMenuPositionY += (menuEntry.GetHeight(this));
+				fMenuPositionY += (MenuEntries[i].GetHeight(this));
 			}
 
-			DrawMenuTitle(m_strMenuTitle, 1.0f);
+			DrawMenuTitle(MenuTitle, 1.0f);
 
 			spriteBatch.End();
 		}

@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using FontBuddyLib;
+using GameTimer;
 
 namespace MenuBuddy
 {
@@ -15,17 +16,6 @@ namespace MenuBuddy
 	{
 		#region Fields
 
-		/// <summary>
-		/// The text rendered for this entry.
-		/// </summary>
-		protected string m_strText;
-
-		/// <summary>
-		/// Tracks a fading selection effect on the entry.
-		/// </summary>
-		/// <remarks>
-		/// The entries transition out of the selection effect when they are deselected.
-		/// </remarks>
 		protected float m_fSelectionFade;
 
 		/// <summary>
@@ -38,22 +28,17 @@ namespace MenuBuddy
 		#region Properties
 
 		/// <summary>
-		/// Gets or sets the text of this menu entry.
+		/// The text rendered for this entry.
 		/// </summary>
-		public string Text
-		{
-			get { return m_strText; }
-			set { m_strText = value; }
-		}
+		public string Text { get; set; }
 
 		/// <summary>
-		/// get or set the size multiplier of this menu entry
+		/// Tracks a fading selection effect on the entry.
 		/// </summary>
-		public float SizeMultiplier
-		{
-			get { return m_fSizeMultiplier; }
-			set { m_fSizeMultiplier = value; }
-		}
+		/// <remarks>
+		/// The entries transition out of the selection effect when they are deselected.
+		/// </remarks>
+		public float SizeMultiplier { get; set; }
 
 		#endregion
 
@@ -82,7 +67,7 @@ namespace MenuBuddy
 		/// </summary>
 		public MenuEntry(string strText)
 		{
-			m_strText = strText;
+			Text = strText;
 			m_fSizeMultiplier = 1.0f;
 		}
 
@@ -113,7 +98,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Draws the menu entry. This can be overridden to customize the appearance.
 		/// </summary>
-		public virtual void Draw(MenuScreen screen, Vector2 position, bool isSelected, GameTime gameTime)
+		public virtual void Draw(MenuScreen screen, Vector2 position, bool isSelected, GameClock gameTime)
 		{
 			// Draw text, centered on the middle of each line.
 			ScreenManager screenManager = screen.ScreenManager;
@@ -134,7 +119,7 @@ namespace MenuBuddy
 			menuFont.Font = screenManager.Font;
 			menuFont.ShadowOffset = Vector2.Zero;
 			menuFont.ShadowSize = 1.0f;
-			menuFont.Write(m_strText, position, Justify.Center, SizeMultiplier, color, spriteBatch, gameTime.TotalGameTime.TotalSeconds);
+			menuFont.Write(Text, position, Justify.Center, SizeMultiplier, color, spriteBatch, gameTime.CurrentTime);
 		}
 
 		/// <summary>
