@@ -18,13 +18,12 @@ namespace MenuBuddy
 	///   next screen, which may take a long time to load its data. The loading
 	///   screen will be the only thing displayed while this load is taking place.
 	/// </summary>
-	class LoadingScreen : GameScreen
+	public class LoadingScreen : GameScreen
 	{
 		#region Fields
 		
 		bool loadingIsSlow;
 		bool otherScreensAreGone;
-		
 		GameScreen[] screensToLoad;
 		
 		#endregion
@@ -36,8 +35,7 @@ namespace MenuBuddy
 		/// The constructor is private: loading screens should
 		/// be activated via the static Load method instead.
 		/// </summary>
-		private LoadingScreen(ScreenManager screenManager, bool loadingIsSlow,
-		                      GameScreen[] screensToLoad)
+		private LoadingScreen(ScreenManager screenManager, bool loadingIsSlow, GameScreen[] screensToLoad)
 		{
 			this.loadingIsSlow = loadingIsSlow;
 			this.screensToLoad = screensToLoad;
@@ -112,7 +110,7 @@ namespace MenuBuddy
 			// screens to be gone: in order for the transition to look good we must
 			// have actually drawn a frame without them before we perform the load.
 			if ((ScreenState == EScreenState.Active) &&
-			    (ScreenManager.GetScreens().Length == 1))
+				(ScreenManager.GetScreens().Length == 1))
 			{
 				otherScreensAreGone = true;
 			}
@@ -144,7 +142,6 @@ namespace MenuBuddy
 				spriteBatch.End();
 			}
 		}
-		
 		
 		#endregion
 	}
