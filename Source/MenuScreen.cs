@@ -152,8 +152,9 @@ namespace MenuBuddy
 					SelectedEntry = 0;
 				}
 
-				//TODO: play menu noise
-				//SPFLib.CAudioManager.PlayCue("menu move");
+				//play menu noise
+				ScreenManager.MenuChange.Play();
+
 				TimeSinceInput = 0.0;
 				PrevTimeSinceInput = 0.0f;
 			}
