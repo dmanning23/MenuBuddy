@@ -84,10 +84,10 @@ namespace MenuBuddy
 
 			//TODO: load these from a content project
 
-			gradientTexture = content.Load<Texture2D>(@"Resources\Textures\gradient");
+			gradientTexture = content.Load<Texture2D>(@"gradient");
 
 			// Create the default sprite font.
-			m_Font = content.Load<SpriteFont>(@"Resources\Fonts\GameplayFont");
+			m_Font = content.Load<SpriteFont>(@"ArialBlack14");
 		}
 
 		#endregion
