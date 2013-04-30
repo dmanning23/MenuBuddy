@@ -134,10 +134,11 @@ namespace MenuBuddy
 				Vector2 textSize = font.MeasureString(message);
 				Vector2 textPosition = (viewportSize - textSize) / 2;
 				
-				Color color = Color.White * TransitionAlpha;
+				Color color = Color.White;
+				color.A = (byte)(TransitionAlpha * 255.0f);
 				
 				// Draw the text.
-				spriteBatch.Begin();
+				spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 				spriteBatch.DrawString(font, message, textPosition, color);
 				spriteBatch.End();
 			}
