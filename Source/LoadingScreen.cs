@@ -146,11 +146,8 @@ namespace MenuBuddy
 				hourglassPos.Y = (int)(textPosition.Y + 40);
 
 				//Set the colors
-				Color colorFore = Color.White;
-				colorFore.A = (byte)(TransitionAlpha * 255.0f);
-
-				Color colorBack = Color.Black;
-				colorBack.A = (byte)(TransitionAlpha * 255.0f);
+				Color colorFore = FadeAlphaDuringTransition(Color.White);
+				Color colorBack = FadeAlphaDuringTransition(Color.Black);
 
 				//create the font buddy we gonna use
 				ShadowTextBuddy loadingFont = new ShadowTextBuddy();

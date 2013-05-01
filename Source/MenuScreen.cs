@@ -56,7 +56,7 @@ namespace MenuBuddy
 		/// Gets or sets the menu clock.
 		/// </summary>
 		/// <value>The menu clock.</value>
-		private GameClock MenuClock { get; set; }
+		protected GameClock MenuClock { get; private set; }
 
 		#endregion
 

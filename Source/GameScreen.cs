@@ -283,8 +283,7 @@ namespace MenuBuddy
 			titlePosition.Y -= transitionOffset * 100;
 
 			//get the menu title color
-			Color titleColor = Color.White;
-			titleColor.A = (byte)(TransitionAlpha * 255.0f);
+			Color titleColor = FadeAlphaDuringTransition(Color.White);
 
 			//create the font buddy object
 			FontBuddy menuFont = new FontBuddy();
