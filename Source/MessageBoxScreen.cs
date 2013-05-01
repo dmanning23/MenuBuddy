@@ -87,7 +87,7 @@ namespace MenuBuddy
 			gradientTexture = content.Load<Texture2D>(@"gradient");
 
 			// Create the default sprite font.
-			m_Font = content.Load<SpriteFont>(@"ArialBlack14");
+			m_Font = content.Load<SpriteFont>(@"ArialBlack24");
 		}
 
 		#endregion
@@ -156,7 +156,7 @@ namespace MenuBuddy
 			// Fade the popup alpha during transitions.
 			Color color = new Color(1.0f, 1.0f, 1.0f, TransitionAlpha);
 
-			spriteBatch.Begin();
+			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 
 			// Draw the background rectangle.
 			spriteBatch.Draw(gradientTexture, backgroundRectangle, color);

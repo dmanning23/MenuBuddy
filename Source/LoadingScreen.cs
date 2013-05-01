@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using FontBuddyLib;
 
 namespace MenuBuddy
 {
@@ -25,11 +26,16 @@ namespace MenuBuddy
 		bool loadingIsSlow;
 		bool otherScreensAreGone;
 		GameScreen[] screensToLoad;
+
+		/// <summary>
+		/// Gets or sets the hour glass texture we gonna
+		/// </summary>
+		/// <value>The hour glass.</value>
+		private Texture2D HourGlass { get; set; }
 		
 		#endregion
 		
 		#region Initialization
-		
 		
 		/// <summary>
 		/// The constructor is private: loading screens should
@@ -41,13 +47,16 @@ namespace MenuBuddy
 			this.screensToLoad = screensToLoad;
 			
 			TransitionOnTime = TimeSpan.FromSeconds(0.5);
+
+			//load the hourglass
+			HourGlass = screenManager.Game.Content.Load<Texture2D>("hourglass");
 		}
-		
 		
 		/// <summary>
 		/// Activates the loading screen.
 		/// </summary>
-		public static void Load(ScreenManager screenManager, bool loadingIsSlow,
+		public static void Load(ScreenManager screenManager, 
+		                        bool loadingIsSlow,
 		                        PlayerIndex? controllingPlayer,
 		                        params GameScreen[] screensToLoad)
 		{
@@ -63,7 +72,6 @@ namespace MenuBuddy
 			screenManager.AddScreen(loadingScreen, controllingPlayer);
 		}
 		
-		
 		#endregion
 		
 		#region Update and Draw
@@ -72,8 +80,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Updates the loading screen.
 		/// </summary>
-		public override void Update(GameTime gameTime, bool otherScreenHasFocus,
-		                            bool coveredByOtherScreen)
+		public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
 		{
 			base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 			
@@ -97,7 +104,6 @@ namespace MenuBuddy
 				ScreenManager.Game.ResetElapsedTime();
 			}
 		}
-		
 		
 		/// <summary>
 		/// Draws the loading screen.
@@ -123,24 +129,44 @@ namespace MenuBuddy
 			// to bother drawing the message.
 			if (loadingIsSlow)
 			{
-				SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-				SpriteFont font = ScreenManager.Font;
+				const string message = "   Loading...";
+				SpriteFont myFont = ScreenManager.MenuTitleFont;
 				
-				const string message = "Loading...";
-				
-				// Center the text in the viewport.
-				Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
-				Vector2 viewportSize = new Vector2(viewport.Width, viewport.Height);
-				Vector2 textSize = font.MeasureString(message);
-				Vector2 textPosition = (viewportSize - textSize) / 2;
-				
-				Color color = Color.White;
-				color.A = (byte)(TransitionAlpha * 255.0f);
-				
+				//Get the text position
+				Rectangle viewport = ScreenManager.GraphicsDevice.Viewport.TitleSafeArea;
+				Vector2 textPosition = new Vector2(viewport.Center.X, viewport.Center.Y);
+				Vector2 fontSize = myFont.MeasureString(message);
+				textPosition.Y -= fontSize.Y;
+
+				//get the hourglass position
+				Rectangle hourglassPos = new Rectangle();
+				hourglassPos.Width = 64;
+				hourglassPos.Height = 64;
+				hourglassPos.X = (int)((textPosition.X - (fontSize.X * 0.5f)) + 20);
+				hourglassPos.Y = (int)(textPosition.Y + 40);
+
+				//Set the colors
+				Color colorFore = Color.White;
+				colorFore.A = (byte)(TransitionAlpha * 255.0f);
+
+				Color colorBack = Color.Black;
+				colorBack.A = (byte)(TransitionAlpha * 255.0f);
+
+				//create the font buddy we gonna use
+				ShadowTextBuddy loadingFont = new ShadowTextBuddy();
+				loadingFont.ShadowSize = 1.0f;
+				loadingFont.ShadowColor = colorBack;
+				loadingFont.Font = myFont;
+
+				ScreenManager.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
+
 				// Draw the text.
-				spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
-				spriteBatch.DrawString(font, message, textPosition, color);
-				spriteBatch.End();
+				loadingFont.Write(message, textPosition, Justify.Center, 1.0f, colorFore, ScreenManager.SpriteBatch, 0.0f);
+
+				//draw the hourglass
+				ScreenManager.SpriteBatch.Draw(HourGlass, hourglassPos, colorFore);
+
+				ScreenManager.SpriteBatch.End();
 			}
 		}
 		

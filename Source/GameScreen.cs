@@ -3,6 +3,7 @@ using HadoukInput;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.GamerServices;
+using FontBuddyLib;
 
 namespace MenuBuddy
 {
@@ -266,36 +267,31 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void Draw(GameTime gameTime) { }
 
+		/// <summary>
+		/// Draws the menu title.
+		/// </summary>
+		/// <param name="strTitle">The title of this menu</param>
+		/// <param name="fScale">The scale to draw the menu title at</param>
 		public void DrawMenuTitle(string strTitle, float fScale)
 		{
-			//get these objects
-			SpriteFont font = ScreenManager.MenuTitleFont;
-			SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-
-			//TODO: switch this all to FontBuddy
-
 			// Draw the menu title.
 
 			//Get the menu size and location
-			float fTitlePositionX = ScreenRect.Center.X - (font.MeasureString(strTitle) * fScale / 2.0f).X;
-			float fTitlePositionY = ScreenRect.Center.Y - (font.MeasureString(strTitle) * fScale).Y;
-
-			Vector2 titlePosition = new Vector2(fTitlePositionX, fTitlePositionY);
-			Vector2 titleOrigin = new Vector2(0.0f, 0.0f); ;
-
+			Vector2 titlePosition = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
 			float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
+			titlePosition.Y = ScreenRect.Center.Y - (ScreenManager.MenuTitleFont.MeasureString(strTitle) * fScale).Y;
 			titlePosition.Y -= transitionOffset * 100;
 
-			spriteBatch.DrawString(
-				font,
-				strTitle,
-				titlePosition,
-				Color.White,
-				0,
-				titleOrigin,
-				fScale,
-				SpriteEffects.None,
-				0);
+			//get the menu title color
+			Color titleColor = Color.White;
+			titleColor.A = (byte)(TransitionAlpha * 255.0f);
+
+			//create the font buddy object
+			FontBuddy menuFont = new FontBuddy();
+			menuFont.Font = ScreenManager.MenuTitleFont;
+
+			//draw the menu title!
+			menuFont.Write(strTitle, titlePosition, Justify.Center, fScale, titleColor, ScreenManager.SpriteBatch, 0.0f);
 		}
 
 		#endregion
