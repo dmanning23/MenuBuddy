@@ -30,13 +30,6 @@ namespace MenuBuddy
 		#region Member Variables
 
 		/// <summary>
-		/// Gets the current position of the screen transition, ranging
-		/// from zero (fully active, no transition) to one (transitioned
-		/// fully off to nothing).
-		/// </summary>
-		private float m_fTransitionPosition = 1.0f;
-
-		/// <summary>
 		/// Checks whether this screen is active and can respond to user input.
 		/// </summary>
 		private bool m_bOtherScreenHasFocus;
@@ -88,7 +81,7 @@ namespace MenuBuddy
 		/// </summary>
 		public float TransitionAlpha
 		{
-			get { return 1.0f - m_fTransitionPosition; }
+			get { return 1.0f - TransitionPosition; }
 		}
 
 		/// <summary>
@@ -152,6 +145,7 @@ namespace MenuBuddy
 			TransitionOffTime = TimeSpan.Zero;
 			IsExiting = false;
 			ScreenState = EScreenState.TransitionOn;
+			TransitionPosition = 1.0f;
 		}
 
 		/// <summary>
@@ -228,26 +222,24 @@ namespace MenuBuddy
 		bool UpdateTransition(GameTime gameTime, TimeSpan time, int direction)
 		{
 			// How much should we move by?
-			float transitionDelta;
-
-			if (time == TimeSpan.Zero)
-			{
-				transitionDelta = 1;
-			}
-			else
+			float transitionDelta = 1.0f;
+			if (time != TimeSpan.Zero)
 			{
 				transitionDelta = (float)(gameTime.ElapsedGameTime.TotalMilliseconds /
 										  time.TotalMilliseconds);
 			}
 
 			// Update the transition position.
-			m_fTransitionPosition += transitionDelta * direction;
+			if (transitionDelta != 0.0f)
+			{
+				TransitionPosition += transitionDelta * direction;
+			}
 
 			// Did we reach the end of the transition?
-			if (((direction < 0.0f) && (m_fTransitionPosition <= 0.0f)) ||
-				((direction > 0.0f) && (m_fTransitionPosition >= 1.0f)))
+			if (((direction < 0.0f) && (TransitionPosition <= 0.0f)) ||
+				((direction > 0.0f) && (TransitionPosition >= 1.0f)))
 			{
-				m_fTransitionPosition = MathHelper.Clamp(m_fTransitionPosition, 0.0f, 1.0f);
+				TransitionPosition = MathHelper.Clamp(TransitionPosition, 0.0f, 1.0f);
 				return false;
 			}
 

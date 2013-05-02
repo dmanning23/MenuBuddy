@@ -217,19 +217,24 @@ namespace MenuBuddy
 		{
 			MenuClock.Update(gameTime);
 
-			// Make the menu slide into place during transitions, using a
-			// power curve to make things look more interesting (this makes
-			// the movement slow down as it nears the end).
-			float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
 			float fMenuPositionX = ScreenRect.Center.X;
-			if (ScreenState == EScreenState.TransitionOn)
+
+			if (TransitionPosition != 0.0f)
 			{
-				fMenuPositionX -= transitionOffset * 256;
+				// Make the menu slide into place during transitions, using a
+				// power curve to make things look more interesting (this makes
+				// the movement slow down as it nears the end).
+				float transitionOffset = (float)Math.Pow(TransitionPosition, 2.0);
+				if (ScreenState == EScreenState.TransitionOn)
+				{
+					fMenuPositionX -= transitionOffset * 256;
+				}
+				else
+				{
+					fMenuPositionX += transitionOffset * 512;
+				}
 			}
-			else
-			{
-				fMenuPositionX += transitionOffset * 512;
-			}
+
 			float fMenuPositionY = ScreenRect.Center.Y;
 
 			SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
