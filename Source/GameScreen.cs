@@ -66,16 +66,6 @@ namespace MenuBuddy
 		public float TransitionPosition { get; protected set; }
 
 		/// <summary>
-		/// This stuff is used to pop up demo mode
-		/// </summary>
-		public double TimeSinceInput { get; set; }
-
-		/// <summary>
-		/// This stuff is used to pop up demo mode
-		/// </summary>
-		public double PrevTimeSinceInput { get; set; }
-
-		/// <summary>
 		/// Gets the current alpha of the screen transition.
 		/// Ranges from 1.0f (fully active, no transition) to 0.0f (transitioned fully off to nothing).
 		/// </summary>
@@ -139,8 +129,6 @@ namespace MenuBuddy
 		public GameScreen()
 		{
 			IsPopup = false;
-			TimeSinceInput = 0.0;
-			PrevTimeSinceInput = 0.0f;
 			TransitionOnTime = TimeSpan.Zero;
 			TransitionOffTime = TimeSpan.Zero;
 			IsExiting = false;
@@ -347,6 +335,15 @@ namespace MenuBuddy
 		{
 			Vector3 myColor = color.ToVector3();
 			return new Color(myColor.X, myColor.Y, myColor.Z, TransitionAlpha);
+		}
+
+		/// <summary>
+		/// This gets called when the input timer needs to be reset.
+		/// Used by menu screens to pop up attract mode
+		/// </summary>
+		public virtual void ResetInputTimer()
+		{
+			//dont do anything in this screen, only in menu screen
 		}
 
 		#endregion

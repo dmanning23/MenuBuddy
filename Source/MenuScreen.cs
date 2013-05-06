@@ -20,6 +20,11 @@ namespace MenuBuddy
 		/// </summary>
 		private int m_SelectedEntry = 0;
 
+		/// <summary>
+		/// Ammount of time that passes before attract mode is activated
+		/// </summary>
+		private const float _AttractModeTime = 15.0f;
+
 		#endregion
 
 		#region Properties
@@ -49,8 +54,13 @@ namespace MenuBuddy
 				//reset the menu clock so the entries don't pop
 				MenuClock.Start();
 			}
-
 		}
+
+		/// <summary>
+		/// Countdown timer that is used to tell when to start attract mode
+		/// </summary>
+		/// <value>The time since input.</value>
+		protected CountdownTimer TimeSinceInput { get; set; }
 
 		/// <summary>
 		/// Gets or sets the menu clock.
@@ -71,11 +81,12 @@ namespace MenuBuddy
 			MenuClock = new GameClock();
 			MenuClock.Start();
 			MenuTitle = strMenuTitle;
-			TimeSinceInput = 0.0;
-			PrevTimeSinceInput = 0.0;
 
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.5);
+
+			TimeSinceInput = new CountdownTimer();
+			ResetInputTimer();
 		}
 
 		#endregion
@@ -113,8 +124,7 @@ namespace MenuBuddy
 
 				//play menu noise
 				ScreenManager.MenuSelect.Play();
-				TimeSinceInput = 0.0;
-				PrevTimeSinceInput = 0.0f;
+				ResetInputTimer();
 			}
 			else if (input.IsMenuCancel(ControllingPlayer, out playerIndex))
 			{
@@ -136,8 +146,7 @@ namespace MenuBuddy
 				//play menu noise
 				ScreenManager.MenuChange.Play();
 
-				TimeSinceInput = 0.0;
-				PrevTimeSinceInput = 0.0f;
+				ResetInputTimer();
 			}
 		}
 
@@ -155,8 +164,7 @@ namespace MenuBuddy
 				//play menu noise
 				ScreenManager.MenuChange.Play();
 
-				TimeSinceInput = 0.0;
-				PrevTimeSinceInput = 0.0f;
+				ResetInputTimer();
 			}
 		}
 
@@ -205,8 +213,7 @@ namespace MenuBuddy
 			//update the timers
 			if (!otherScreenHasFocus && !coveredByOtherScreen)
 			{
-				PrevTimeSinceInput = TimeSinceInput;
-				TimeSinceInput += gameTime.ElapsedGameTime.TotalMilliseconds;
+				TimeSinceInput.Update(gameTime);
 			}
 		}
 
@@ -254,6 +261,15 @@ namespace MenuBuddy
 			DrawMenuTitle(MenuTitle, 1.0f);
 
 			spriteBatch.End();
+		}
+
+		/// <summary>
+		/// This gets called when the input timer needs to be reset.
+		/// Used by menu screens to pop up attract mode
+		/// </summary>
+		public override void ResetInputTimer()
+		{
+			TimeSinceInput.Start(_AttractModeTime);
 		}
 
 		#endregion

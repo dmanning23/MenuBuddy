@@ -111,7 +111,7 @@ namespace MenuBuddy
 
 				Vector2 position = new Vector2(GraphicsDevice.Viewport.Width - 100, 0);
 
-				spriteBatch.Begin();
+				spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 
 				// Draw each message in turn.
 				foreach (NotificationMessage message in messages)

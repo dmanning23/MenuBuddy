@@ -257,10 +257,9 @@ namespace MenuBuddy
 			m_ScreensToUpdate.Remove(screen);
 
 			//reset the times of all the rest of teh screens
-			for (int i = 0; i < m_Screens.Count; i++)
+			foreach (GameScreen curScreen in m_Screens)
 			{
-				m_Screens[i].TimeSinceInput = 0.0;
-				m_Screens[i].PrevTimeSinceInput = 0.0;
+				curScreen.ResetInputTimer();
 			}
 		}
 
@@ -282,7 +281,7 @@ namespace MenuBuddy
 		{
 			Viewport viewport = GraphicsDevice.Viewport;
 
-			SpriteBatch.Begin();
+			SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 
 			SpriteBatch.Draw(BlankTexture,
 							 new Rectangle(0, 0, viewport.Width, viewport.Height),
