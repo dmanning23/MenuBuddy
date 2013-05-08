@@ -115,9 +115,16 @@ namespace MenuBuddy
 		public PlayerIndex? ControllingPlayer { get; internal set; }
 
 		/// <summary>
-		/// Screen rectangle... this is the title safe rect
+		/// get the title safe area
 		/// </summary>
-		public Rectangle ScreenRect { get; protected set; }
+		/// <value>The screen rect.</value>
+		protected Rectangle ScreenRect
+		{
+			get 
+			{
+				return ScreenManager.ScreenRect;
+			}
+		}
 
 		#endregion
 
@@ -141,8 +148,7 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void LoadContent() 
 		{
-			// Set the screen rect.
-			ScreenRect = ScreenManager.Game.GraphicsDevice.Viewport.TitleSafeArea;
+
 		}
 
 		/// <summary>

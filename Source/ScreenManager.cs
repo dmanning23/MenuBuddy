@@ -67,6 +67,11 @@ namespace MenuBuddy
 		/// </summary>
 		public ContentManager m_MusicContent;
 
+		/// <summary>
+		/// Screen rectangle... this is the title safe rect
+		/// </summary>
+		public Rectangle ScreenRect { get; protected set; }
+
 		#endregion
 
 		#region Initialization
@@ -100,6 +105,9 @@ namespace MenuBuddy
 			ContentManager content = Game.Content;
 
 			this.SpriteBatch = new SpriteBatch(GraphicsDevice);
+
+			// Set the screen rect.
+			ScreenRect = Game.GraphicsDevice.Viewport.TitleSafeArea;
 
 			//TODO: take out this hard coded reference to default font
 			Font = content.Load<SpriteFont>("ArialBlack48");
@@ -191,19 +199,6 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// Prints a list of all the screens, for debugging.
-		/// </summary>
-		void TraceScreens()
-		{
-			List<string> screenNames = new List<string>();
-
-			foreach (GameScreen screen in m_Screens)
-				screenNames.Add(screen.GetType().Name);
-
-			//Trace.WriteLine(string.Join(", ", screenNames.ToArray()));
-		}
-
-		/// <summary>
 		/// Tells each screen to draw itself.
 		/// </summary>
 		public override void Draw(GameTime gameTime)
@@ -211,7 +206,9 @@ namespace MenuBuddy
 			foreach (GameScreen screen in m_Screens)
 			{
 				if (screen.ScreenState == EScreenState.Hidden)
+				{
 					continue;
+				}
 
 				screen.Draw(gameTime);
 			}
