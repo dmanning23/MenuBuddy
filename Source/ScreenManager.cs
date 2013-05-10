@@ -299,6 +299,17 @@ namespace MenuBuddy
 			//SPFLib.CAudioManager.PlayMusic(strMusic, m_MusicContent);
 		}
 
+		/// <summary>
+		/// This method pops up a recoverable error screen.
+		/// </summary>
+		/// <param name="ex">the exception that occureed</param>
+		public void ErrorScreen(Exception ex)
+		{
+			List<GameScreen> screens = new List<GameScreen>(GetMainMenuScreenStack());
+			screens.Add(new ErrorScreen(ex));
+			LoadingScreen.Load(this, false, null, screens.ToArray());
+		}
+
 		#region screen stack methods
 
 		/// <summary>

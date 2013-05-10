@@ -82,9 +82,9 @@ namespace MenuBuddy
 			base.LoadContent();
 			ContentManager content = ScreenManager.Game.Content;
 
-			//TODO: load these from a content project
-
 			gradientTexture = content.Load<Texture2D>(@"gradient");
+
+			//TODO: get font from screenmanager, or take it as parameter
 
 			// Create the default sprite font.
 			m_Font = content.Load<SpriteFont>(@"ArialBlack24");
