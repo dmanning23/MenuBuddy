@@ -124,6 +124,16 @@ namespace MenuBuddy
 			return ((float)screen.ScreenManager.Font.LineSpacing * SizeMultiplier);
 		}
 
+		/// <summary>
+		/// Get the width of this menu entry
+		/// </summary>
+		/// <returns>The width.</returns>
+		/// <param name="screen">Screen.</param>
+		public virtual float GetWidth(MenuScreen screen)
+		{
+			return (screen.ScreenManager.Font.MeasureString(this.Text).X * SizeMultiplier);
+		}
+
 		#endregion
 	}
 }
