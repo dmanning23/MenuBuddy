@@ -72,6 +72,12 @@ namespace MenuBuddy
 		/// </summary>
 		public Rectangle ScreenRect { get; protected set; }
 
+		/// <summary>
+		/// The color to clear the backbuffer to
+		/// </summary>
+		/// <value>The color of the clear.</value>
+		public Color ClearColor { get; set; }
+
 		#endregion
 
 		#region Initialization
@@ -82,6 +88,7 @@ namespace MenuBuddy
 		public ScreenManager(Game game) : base(game)
 		{
 			InputState = new InputState();
+			ClearColor = Color.Black;
 		}
 
 		/// <summary>

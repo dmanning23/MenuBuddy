@@ -155,6 +155,8 @@ namespace MenuBuddy
 				loadingFont.ShadowColor = colorBack;
 				loadingFont.Font = myFont;
 
+				ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2.0f / 3.0f);
+
 				ScreenManager.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 
 				// Draw the text.
