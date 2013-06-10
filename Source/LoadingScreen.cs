@@ -133,8 +133,7 @@ namespace MenuBuddy
 				SpriteFont myFont = ScreenManager.MenuTitleFont;
 				
 				//Get the text position
-				Rectangle viewport = ScreenManager.GraphicsDevice.Viewport.TitleSafeArea;
-				Vector2 textPosition = new Vector2(viewport.Center.X, viewport.Center.Y);
+				Vector2 textPosition = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
 				Vector2 fontSize = myFont.MeasureString(message);
 				textPosition.Y -= fontSize.Y;
 
@@ -157,15 +156,11 @@ namespace MenuBuddy
 
 				ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2.0f / 3.0f);
 
-				ScreenManager.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
-
 				// Draw the text.
 				loadingFont.Write(message, textPosition, Justify.Center, 1.0f, colorFore, ScreenManager.SpriteBatch, 0.0f);
 
 				//draw the hourglass
 				ScreenManager.SpriteBatch.Draw(HourGlass, hourglassPos, colorFore);
-
-				ScreenManager.SpriteBatch.End();
 			}
 		}
 		

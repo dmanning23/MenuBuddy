@@ -242,10 +242,9 @@ namespace MenuBuddy
 				}
 			}
 
-			float fMenuPositionY = ScreenRect.Center.Y;
+			float fMenuPositionY = ScreenRect.Center.Y * 0.9f;
 
 			SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 
 			// Draw each menu entry in turn.
 			for (int i = 0; i < MenuEntries.Count; i++)
@@ -259,8 +258,6 @@ namespace MenuBuddy
 			}
 
 			DrawMenuTitle(MenuTitle, 1.0f);
-
-			spriteBatch.End();
 		}
 
 		/// <summary>

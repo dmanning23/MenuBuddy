@@ -139,10 +139,9 @@ namespace MenuBuddy
 			ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2.0f / 3.0f);
 
 			// Center the message text in the viewport.
-			Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
-			Vector2 viewportSize = new Vector2(viewport.Width, viewport.Height);
+			Vector2 windowSize = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
 			Vector2 textSize = m_Font.MeasureString(message);
-			Vector2 textPosition = (viewportSize - textSize) / 2;
+			Vector2 textPosition = windowSize - (textSize / 2);
 
 			// The background includes a border somewhat larger than the text itself.
 			const int hPad = 32;
@@ -156,15 +155,11 @@ namespace MenuBuddy
 			// Fade the popup alpha during transitions.
 			Color color = new Color(1.0f, 1.0f, 1.0f, TransitionAlpha);
 
-			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
-
 			// Draw the background rectangle.
 			spriteBatch.Draw(gradientTexture, backgroundRectangle, color);
 
 			// Draw the message box text.
 			spriteBatch.DrawString(m_Font, message, textPosition, color);
-
-			spriteBatch.End();
 		}
 
 		#endregion

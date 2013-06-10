@@ -119,7 +119,7 @@ namespace MenuBuddy
 		/// get the title safe area
 		/// </summary>
 		/// <value>The screen rect.</value>
-		protected Rectangle ScreenRect
+		public Rectangle ScreenRect
 		{
 			get 
 			{

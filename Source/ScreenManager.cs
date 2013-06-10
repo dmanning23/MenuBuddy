@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 using HadoukInput;
+using ResolutionBuddy;
 
 namespace MenuBuddy
 {
@@ -202,6 +203,10 @@ namespace MenuBuddy
 		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
+			SpriteBatch.Begin(SpriteSortMode.Deferred, 
+			                  BlendState.NonPremultiplied,
+			                  null, null, null, null, Resolution.TransformationMatrix());
+
 			foreach (GameScreen screen in m_Screens)
 			{
 				if (screen.ScreenState == EScreenState.Hidden)
@@ -211,6 +216,12 @@ namespace MenuBuddy
 
 				screen.Draw(gameTime);
 			}
+
+//			//draw the titlesafe area
+//			BasicPrimitive rect = new BasicPrimitive(GraphicsDevice);
+//			rect.Rectangle(Resolution.TitleSafeArea, Color.Red, SpriteBatch);
+
+			SpriteBatch.End();
 		}
 
 		#endregion
@@ -277,13 +288,9 @@ namespace MenuBuddy
 		{
 			Viewport viewport = GraphicsDevice.Viewport;
 
-			SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
-
 			SpriteBatch.Draw(BlankTexture,
 							 new Rectangle(0, 0, viewport.Width, viewport.Height),
 							 new Color(0.0f, 0.0f, 0.0f, fAlpha));
-
-			SpriteBatch.End();
 		}
 
 		public void PlayMusic(string strMusic)
