@@ -11,3 +11,6 @@
 [submodule "externals/GameTimer"]
 	path = externals/GameTimer
 	url = https://github.com/dmanning23/GameTimer.git
+[submodule "externals/ResolutionBuddy"]
+	path = externals/ResolutionBuddy
+	url = https://github.com/dmanning23/ResolutionBuddy.git

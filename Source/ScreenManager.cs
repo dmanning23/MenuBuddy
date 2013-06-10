@@ -68,11 +68,6 @@ namespace MenuBuddy
 		public ContentManager m_MusicContent;
 
 		/// <summary>
-		/// Screen rectangle... this is the title safe rect
-		/// </summary>
-		public Rectangle ScreenRect { get; protected set; }
-
-		/// <summary>
 		/// The color to clear the backbuffer to
 		/// </summary>
 		/// <value>The color of the clear.</value>
@@ -112,9 +107,6 @@ namespace MenuBuddy
 			ContentManager content = Game.Content;
 
 			this.SpriteBatch = new SpriteBatch(GraphicsDevice);
-
-			// Set the screen rect.
-			ScreenRect = Game.GraphicsDevice.Viewport.TitleSafeArea;
 
 			//TODO: take out this hard coded reference to default font
 			Font = content.Load<SpriteFont>("ArialBlack48");

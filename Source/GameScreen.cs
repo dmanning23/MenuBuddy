@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.GamerServices;
 using FontBuddyLib;
+using ResolutionBuddy;
 
 namespace MenuBuddy
 {
@@ -122,7 +123,7 @@ namespace MenuBuddy
 		{
 			get 
 			{
-				return ScreenManager.ScreenRect;
+				return Resolution.TitleSafeArea;
 			}
 		}
 
