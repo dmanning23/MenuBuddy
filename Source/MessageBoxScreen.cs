@@ -87,7 +87,7 @@ namespace MenuBuddy
 			//TODO: get font from screenmanager, or take it as parameter
 
 			// Create the default sprite font.
-			m_Font = content.Load<SpriteFont>(@"ArialBlack24");
+			m_Font = content.Load<SpriteFont>(@"Atarify24");
 		}
 
 		#endregion
