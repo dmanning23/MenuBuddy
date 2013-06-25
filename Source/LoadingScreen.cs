@@ -84,10 +84,12 @@ namespace MenuBuddy
 		{
 			base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 			
-			// If all the previous screens have finished transitioning
-			// off, it is time to actually perform the load.
+			// If all the previous screens have finished transitioning off, it is time to actually perform the load.
 			if (otherScreensAreGone)
 			{
+				//clean up all the memory from those other screens
+				GC.Collect();
+
 				ScreenManager.RemoveScreen(this);
 				
 				foreach (GameScreen screen in screensToLoad)
