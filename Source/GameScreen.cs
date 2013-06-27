@@ -266,7 +266,7 @@ namespace MenuBuddy
 			//Get the menu size and location
 			Vector2 titlePosition = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
 			float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
-			titlePosition.Y = ScreenRect.Center.Y - (2.0f * (ScreenManager.MenuTitleFont.MeasureString(strTitle) * fScale).Y);
+			titlePosition.Y = ScreenRect.Center.Y - (ScreenManager.MenuTitleFont.MeasureString(strTitle) * fScale).Y;
 			titlePosition.Y -= transitionOffset * 100;
 
 			//get the menu title color

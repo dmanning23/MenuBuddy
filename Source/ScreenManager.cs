@@ -110,10 +110,10 @@ namespace MenuBuddy
 			this.SpriteBatch = new SpriteBatch(GraphicsDevice);
 
 			//TODO: take out this hard coded reference to default font
-			Font = content.Load<SpriteFont>("Atarify48");
+			Font = content.Load<SpriteFont>("ArialBlack48");
 
 			//TODO: take out this hard coded reference to menu font
-			MenuTitleFont = content.Load<SpriteFont>("Atarify72");
+			MenuTitleFont = content.Load<SpriteFont>("ArialBlack72");
 
 			MenuChange = content.Load<SoundEffect>("menu move");
 			MenuSelect = content.Load<SoundEffect>("menu select");

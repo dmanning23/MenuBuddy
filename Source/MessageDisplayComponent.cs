@@ -47,7 +47,7 @@ namespace MenuBuddy
 		protected override void LoadContent()
 		{
 			spriteBatch = new SpriteBatch(GraphicsDevice);
-			font = Game.Content.Load<SpriteFont>("Atarify48");
+			font = Game.Content.Load<SpriteFont>("ArialBlack48");
 		}
 
 		#endregion //Initialization
