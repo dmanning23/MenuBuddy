@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ResolutionBuddy;
 
 namespace MenuBuddy
 {
@@ -111,7 +112,9 @@ namespace MenuBuddy
 
 				Vector2 position = new Vector2(GraphicsDevice.Viewport.Width - 100, 0);
 
-				spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
+				spriteBatch.Begin(SpriteSortMode.Deferred, 
+				                  BlendState.NonPremultiplied,
+				                  null, null, null, null, Resolution.TransformationMatrix());
 
 				// Draw each message in turn.
 				foreach (NotificationMessage message in messages)
