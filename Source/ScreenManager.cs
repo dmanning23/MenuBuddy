@@ -60,6 +60,9 @@ namespace MenuBuddy
 
 		public Texture2D BlankTexture { get; private set; }
 
+		private string _strMenuChange;
+		private string _strMenuSelect;
+
 		/// <summary>
 		/// sound effect for when the menu selection changes
 		/// </summary>
@@ -90,13 +93,20 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new screen manager component.
 		/// </summary>
-		public ScreenManager(Game game, string strTitleFont, string strMenuFont, string strMessageBoxFont) : base(game)
+		public ScreenManager(Game game, 
+		                     string strTitleFont, 
+		                     string strMenuFont, 
+		                     string strMessageBoxFont,
+		                    string strMenuChange,
+		                    string strMenuSelect) : base(game)
 		{
 			InputState = new InputState();
 			ClearColor = Color.Black;
 			_strMenuFont = strMenuFont;
 			_strTitleFont = strTitleFont;
 			_strMessageBoxFont = strMessageBoxFont;
+			_strMenuChange = strMenuChange;
+			_strMenuSelect = strMenuSelect;
 		}
 
 		/// <summary>
@@ -125,8 +135,8 @@ namespace MenuBuddy
 			MenuFont = content.Load<SpriteFont>(_strMenuFont);
 			TitleFont = content.Load<SpriteFont>(_strTitleFont);
 
-			MenuChange = content.Load<SoundEffect>("menu move");
-			MenuSelect = content.Load<SoundEffect>("menu select");
+			MenuChange = content.Load<SoundEffect>(_strMenuChange);
+			MenuSelect = content.Load<SoundEffect>(_strMenuSelect);
 
 			//create a blank texture without loading some crap
 			BlankTexture = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);

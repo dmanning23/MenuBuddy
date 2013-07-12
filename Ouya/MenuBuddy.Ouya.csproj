@@ -74,9 +74,6 @@
     <Compile Include="..\Source\MessageDisplayComponent.cs">
       <Link>MessageDisplayComponent.cs</Link>
     </Compile>
-    <Compile Include="..\Source\NetworkBusyScreen.cs">
-      <Link>NetworkBusyScreen.cs</Link>
-    </Compile>
     <Compile Include="..\Source\OperationCompletedEventArgs.cs">
       <Link>OperationCompletedEventArgs.cs</Link>
     </Compile>
