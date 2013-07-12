@@ -78,27 +78,27 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\externals\HadoukInput\Windows\HadoukInput.Windows.csproj">
+    <ProjectReference Include="..\..\HadoukInput\Windows\HadoukInput.Windows.csproj">
       <Project>{85D723F7-83EF-4C75-82BA-9385D0AC8448}</Project>
       <Name>HadoukInput.Windows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\externals\FontBuddy\Windows\FontBuddy.Windows.csproj">
+    <ProjectReference Include="..\..\FontBuddy\Windows\FontBuddy.Windows.csproj">
       <Project>{65B5BB5D-0C69-4DDB-8DE6-F6B91C41279D}</Project>
       <Name>FontBuddy.Windows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\externals\GameTimer\Windows\GameTimer.Windows.csproj">
+    <ProjectReference Include="..\..\GameTimer\Windows\GameTimer.Windows.csproj">
       <Project>{6B6D4188-5C03-4E16-923B-96FDBC85B91A}</Project>
       <Name>GameTimer.Windows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\externals\ResolutionBuddy\Windows\ResolutionBuddy.Windows.csproj">
+    <ProjectReference Include="..\..\ResolutionBuddy\Windows\ResolutionBuddy.Windows.csproj">
       <Project>{28342DF0-0089-4A2A-B3D4-6DCD65D6D8E4}</Project>
       <Name>ResolutionBuddy.Windows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\externals\MonoGame\ThirdParty\Lidgren.Network\Lidgren.Network.Windows.csproj">
+    <ProjectReference Include="..\..\MonoGame\ThirdParty\Lidgren.Network\Lidgren.Network.Windows.csproj">
       <Project>{AE483C29-042E-4226-BA52-D247CE7676DA}</Project>
       <Name>Lidgren.Network.Windows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\externals\MonoGame\MonoGame.Framework\MonoGame.Framework.Windows.csproj">
+    <ProjectReference Include="..\..\MonoGame\MonoGame.Framework\MonoGame.Framework.Windows.csproj">
       <Project>{7DE47032-A904-4C29-BD22-2D235E8D91BA}</Project>
       <Name>MonoGame.Framework.Windows</Name>
     </ProjectReference>
