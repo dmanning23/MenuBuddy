@@ -132,7 +132,7 @@ namespace MenuBuddy
 			if (loadingIsSlow)
 			{
 				const string message = "   Loading...";
-				SpriteFont myFont = ScreenManager.MenuTitleFont;
+				SpriteFont myFont = ScreenManager.TitleFont;
 				
 				//Get the text position
 				Vector2 textPosition = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);

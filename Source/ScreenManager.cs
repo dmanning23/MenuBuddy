@@ -30,6 +30,10 @@ namespace MenuBuddy
 
 		#region Properties
 
+		private string _strMessageBoxFont;
+		private string _strMenuFont;
+		private string _strTitleFont;
+
 		/// <summary>
 		/// A default SpriteBatch shared by all the screens. 
 		/// This saves each screen having to bother creating their own local instance.
@@ -37,15 +41,20 @@ namespace MenuBuddy
 		public SpriteBatch SpriteBatch { get; private set; }
 
 		/// <summary>
-		/// A default font shared by all the screens. 
+		/// A font used to in message boxes.
+		/// </summary>
+		public SpriteFont MessageBoxFont { get; private set; }
+
+		/// <summary>
+		/// A font shared by all the screens, used to write menu text.
 		/// This saves each screen having to bother loading their own local copy.
 		/// </summary>
-		public SpriteFont Font { get; private set; }
+		public SpriteFont MenuFont { get; private set; }
 
 		/// <summary>
 		/// A bigger font, used to draw menu titles
 		/// </summary>
-		public SpriteFont MenuTitleFont { get; private set; }
+		public SpriteFont TitleFont { get; private set; }
 
 		public InputState InputState { get; private set; }
 
@@ -81,10 +90,13 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new screen manager component.
 		/// </summary>
-		public ScreenManager(Game game) : base(game)
+		public ScreenManager(Game game, string strTitleFont, string strMenuFont, string strMessageBoxFont) : base(game)
 		{
 			InputState = new InputState();
 			ClearColor = Color.Black;
+			_strMenuFont = strMenuFont;
+			_strTitleFont = strTitleFont;
+			_strMessageBoxFont = strMessageBoxFont;
 		}
 
 		/// <summary>
@@ -109,11 +121,9 @@ namespace MenuBuddy
 
 			this.SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-			//TODO: take out this hard coded reference to default font
-			Font = content.Load<SpriteFont>("ArialBlack48");
-
-			//TODO: take out this hard coded reference to menu font
-			MenuTitleFont = content.Load<SpriteFont>("ArialBlack72");
+			MessageBoxFont = content.Load<SpriteFont>(_strMessageBoxFont);
+			MenuFont = content.Load<SpriteFont>(_strMenuFont);
+			TitleFont = content.Load<SpriteFont>(_strTitleFont);
 
 			MenuChange = content.Load<SoundEffect>("menu move");
 			MenuSelect = content.Load<SoundEffect>("menu select");

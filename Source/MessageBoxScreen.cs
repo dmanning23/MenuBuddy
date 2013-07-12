@@ -18,11 +18,6 @@ namespace MenuBuddy
 
 		Texture2D gradientTexture;
 
-		/// <summary>
-		/// Default sprite font.
-		/// </summary>
-		private SpriteFont m_Font;
-
 		#endregion
 
 		#region Events
@@ -83,11 +78,6 @@ namespace MenuBuddy
 			ContentManager content = ScreenManager.Game.Content;
 
 			gradientTexture = content.Load<Texture2D>(@"gradient");
-
-			//TODO: get font from screenmanager, or take it as parameter
-
-			// Create the default sprite font.
-			m_Font = content.Load<SpriteFont>(@"ArialBlack24");
 		}
 
 		#endregion
@@ -140,7 +130,7 @@ namespace MenuBuddy
 
 			// Center the message text in the viewport.
 			Vector2 windowSize = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
-			Vector2 textSize = m_Font.MeasureString(message);
+			Vector2 textSize = ScreenManager.MessageBoxFont.MeasureString(message);
 			Vector2 textPosition = windowSize - (textSize / 2);
 
 			// The background includes a border somewhat larger than the text itself.
@@ -159,7 +149,7 @@ namespace MenuBuddy
 			spriteBatch.Draw(gradientTexture, backgroundRectangle, color);
 
 			// Draw the message box text.
-			spriteBatch.DrawString(m_Font, message, textPosition, color);
+			spriteBatch.DrawString(ScreenManager.MessageBoxFont, message, textPosition, color);
 		}
 
 		#endregion

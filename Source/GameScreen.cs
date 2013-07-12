@@ -266,7 +266,7 @@ namespace MenuBuddy
 			//Get the menu size and location
 			Vector2 titlePosition = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
 			float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
-			titlePosition.Y = ScreenRect.Center.Y - (ScreenManager.MenuTitleFont.MeasureString(strTitle) * fScale).Y;
+			titlePosition.Y = ScreenRect.Center.Y - (ScreenManager.TitleFont.MeasureString(strTitle) * fScale).Y;
 			titlePosition.Y -= transitionOffset * 100;
 
 			//get the menu title color
@@ -274,7 +274,7 @@ namespace MenuBuddy
 
 			//create the font buddy object
 			FontBuddy menuFont = new FontBuddy();
-			menuFont.Font = ScreenManager.MenuTitleFont;
+			menuFont.Font = ScreenManager.TitleFont;
 
 			//draw the menu title!
 			menuFont.Write(strTitle, titlePosition, Justify.Center, fScale, titleColor, ScreenManager.SpriteBatch, 0.0f);

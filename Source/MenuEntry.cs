@@ -110,7 +110,7 @@ namespace MenuBuddy
 			//if its selected, do the pulsate text, otherwise use a nice shadow text
 			ShadowTextBuddy menuFont = (isSelected ? new PulsateBuddy() : new ShadowTextBuddy());
 			menuFont.ShadowColor = backgroundColor;
-			menuFont.Font = screenManager.Font;
+			menuFont.Font = screenManager.MenuFont;
 			menuFont.ShadowOffset = Vector2.Zero;
 			menuFont.ShadowSize = 1.0f;
 			menuFont.Write(Text, position, Justify.Center, SizeMultiplier, color, spriteBatch, gameTime.CurrentTime);
@@ -121,7 +121,7 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual float GetHeight(MenuScreen screen)
 		{
-			return ((float)screen.ScreenManager.Font.LineSpacing * SizeMultiplier);
+			return ((float)screen.ScreenManager.MenuFont.LineSpacing * SizeMultiplier);
 		}
 
 		/// <summary>
@@ -131,7 +131,7 @@ namespace MenuBuddy
 		/// <param name="screen">Screen.</param>
 		public virtual float GetWidth(MenuScreen screen)
 		{
-			return (screen.ScreenManager.Font.MeasureString(this.Text).X * SizeMultiplier);
+			return (screen.ScreenManager.MenuFont.MeasureString(this.Text).X * SizeMultiplier);
 		}
 
 		#endregion
