@@ -104,14 +104,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\Source\Content\menu move.wav">
-      <Link>Content\menu move.wav</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Source\Content\menu select.wav">
-      <Link>Content\menu select.wav</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\Source\Content\gradient.png">
       <Link>Content\gradient.png</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
