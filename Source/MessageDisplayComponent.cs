@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
+using FontBuddyLib;
 
 namespace MenuBuddy
 {
@@ -16,7 +17,7 @@ namespace MenuBuddy
 		#region Fields
 
 		SpriteBatch spriteBatch;
-		SpriteFont font;
+		ShadowTextBuddy FontHelper;
 
 		// List of the currently visible notification messages.
 		List<NotificationMessage> messages = new List<NotificationMessage>();
@@ -48,7 +49,8 @@ namespace MenuBuddy
 		protected override void LoadContent()
 		{
 			spriteBatch = new SpriteBatch(GraphicsDevice);
-			font = Game.Content.Load<SpriteFont>("ArialBlack48");
+			FontHelper = new ShadowTextBuddy();
+			FontHelper.Font = Game.Content.Load<SpriteFont>("ArialBlack48");
 		}
 
 		#endregion //Initialization
@@ -110,8 +112,6 @@ namespace MenuBuddy
 				if (messages.Count == 0)
 					return;
 
-				Vector2 position = new Vector2(GraphicsDevice.Viewport.Width - 100, 0);
-
 				spriteBatch.Begin(SpriteSortMode.Deferred, 
 				                  BlendState.NonPremultiplied,
 				                  null, null, null, null, Resolution.TransformationMatrix());
@@ -136,21 +136,14 @@ namespace MenuBuddy
 						alpha = (byte)(255 * fadeOut.TotalSeconds / fadeOutTime.TotalSeconds);
 					}
 
-					// Compute the message position.
-					position.Y = 80 + message.Position * font.LineSpacing * scale;
-
-					// Compute an origin value to right align each message.
-					Vector2 origin = font.MeasureString(message.Text);
-					origin.Y = 0;
-
 					// Draw the message text, with a drop shadow.
-					spriteBatch.DrawString(font, message.Text, position + Vector2.One,
-										   new Color(0, 0, 0, alpha), 0,
-										   origin, scale, SpriteEffects.None, 0);
-
-					spriteBatch.DrawString(font, message.Text, position,
-										   new Color(255, 255, 0, alpha), 0,
-										   origin, scale, SpriteEffects.None, 0);
+					FontHelper.Write(message.Text,
+					                 message.Position,
+					                 Justify.Right,
+					                 scale,
+					                 new Color(255, 255, 0, alpha),
+					                 spriteBatch,
+					                 0);
 				}
 
 				spriteBatch.End();
@@ -182,17 +175,27 @@ namespace MenuBuddy
 		/// <summary>
 		/// Helper class stores the position and text of a single notification message.
 		/// </summary>
-		class NotificationMessage
+		private class NotificationMessage
 		{
+			/// <summary>
+			/// The text of this message
+			/// </summary>
 			public string Text;
-			public float Position;
+
+			/// <summary>
+			/// The screen position of this message
+			/// </summary>
+			public Vector2 Position;
+
+			/// <summary>
+			/// how old is this message
+			/// </summary>
 			public TimeSpan Age;
 
-
-			public NotificationMessage(string text, float position)
+			public NotificationMessage(string text, float yPosition)
 			{
 				Text = text;
-				Position = position;
+				Position = new Vector2(Resolution.TitleSafeArea.Right, yPosition);
 				Age = TimeSpan.Zero;
 			}
 		}
