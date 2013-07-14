@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using HadoukInput;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -44,16 +45,37 @@ namespace MenuBuddy
 		/// </summary>
 		public MessageBoxScreen(string message, bool includeUsageText)
 		{
-#if KEYBOARD
-			const string usageText = "\nA button, Space, Enter = ok" +
-				"\nB button, Esc = cancel";
-#else
-			const string usageText = "\nA button: OK" +
-				"\nB button: Cancel";
-#endif
 			if (includeUsageText)
 			{
-				this.message = message + usageText;
+				//First construct the usage text
+				StringBuilder okText = new StringBuilder();
+				StringBuilder cancelText = new StringBuilder();
+
+				//Put the correct button text in the message
+#if OUYA
+				okText.Append("\nO button");
+				cancelText.Append("\nA button");
+#else
+				okText.Append("\nA button");
+				cancelText.Append("\nB button");
+#endif
+
+				//Add the keyboard text if we have a keyboard
+#if KEYBOARD
+				okText.Append(", Space, Enter");
+				cancelText.Append(", Esc");
+#endif
+
+				//append the usage text
+				okText.Append(": OK");
+				cancelText.Append(": Cancel");
+
+				//Put the whole message together
+				StringBuilder completeMessage = new StringBuilder(message);
+				completeMessage.Append(okText.ToString());
+				completeMessage.Append(cancelText.ToString());
+
+				this.message = completeMessage.ToString();
 			}
 			else
 			{

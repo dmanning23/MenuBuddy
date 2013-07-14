@@ -18,6 +18,10 @@ namespace MenuBuddy
 
 		protected float m_fSelectionFade;
 
+		private ShadowTextBuddy shadowText = new ShadowTextBuddy();
+
+		private ShadowTextBuddy pulsateText = new PulsateBuddy();
+
 		#endregion
 
 		#region Properties
@@ -50,7 +54,9 @@ namespace MenuBuddy
 		protected internal virtual void OnSelectEntry(PlayerIndex playerIndex)
 		{
 			if (Selected != null)
+			{
 				Selected(this, new PlayerIndexEventArgs(playerIndex));
+			}
 		}
 
 		#endregion
@@ -64,6 +70,12 @@ namespace MenuBuddy
 		{
 			Text = strText;
 			SizeMultiplier = 1.0f;
+
+			shadowText.ShadowOffset = Vector2.Zero;
+			shadowText.ShadowSize = 1.0f;
+
+			pulsateText.ShadowOffset = Vector2.Zero;
+			pulsateText.ShadowSize = 1.0f;
 		}
 
 		#endregion
@@ -96,8 +108,6 @@ namespace MenuBuddy
 		public virtual void Draw(MenuScreen screen, Vector2 position, bool isSelected, GameClock gameTime)
 		{
 			// Draw text, centered on the middle of each line.
-			ScreenManager screenManager = screen.ScreenManager;
-			SpriteBatch spriteBatch = screenManager.SpriteBatch;
 
 			// Draw the selected entry in yellow, otherwise white.
 			Color color = isSelected ? Color.Red : Color.White;
@@ -108,12 +118,17 @@ namespace MenuBuddy
 			backgroundColor.A = Convert.ToByte(screen.TransitionAlpha * 255.0f);
 
 			//if its selected, do the pulsate text, otherwise use a nice shadow text
-			ShadowTextBuddy menuFont = (isSelected ? new PulsateBuddy() : new ShadowTextBuddy());
+			ShadowTextBuddy menuFont = (isSelected ? pulsateText : shadowText);
 			menuFont.ShadowColor = backgroundColor;
-			menuFont.Font = screenManager.MenuFont;
-			menuFont.ShadowOffset = Vector2.Zero;
-			menuFont.ShadowSize = 1.0f;
-			menuFont.Write(Text, position, Justify.Center, SizeMultiplier, color, spriteBatch, gameTime.CurrentTime);
+			menuFont.Font = screen.ScreenManager.MenuFont;
+
+			menuFont.Write(Text, 
+			               position, 
+			               Justify.Center,
+			               SizeMultiplier, 
+			               color,
+			               screen.ScreenManager.SpriteBatch, 
+			               gameTime.CurrentTime);
 		}
 
 		/// <summary>

@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;ANDROID;OUYA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -44,9 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
-    <Compile Include="..\Source\AvailableSessionMenuEntry.cs">
-      <Link>AvailableSessionMenuEntry.cs</Link>
-    </Compile>
     <Compile Include="..\Source\ErrorScreen.cs">
       <Link>ErrorScreen.cs</Link>
     </Compile>
@@ -67,9 +64,6 @@
     </Compile>
     <Compile Include="..\Source\MessageBoxScreen.cs">
       <Link>MessageBoxScreen.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\OperationCompletedEventArgs.cs">
-      <Link>OperationCompletedEventArgs.cs</Link>
     </Compile>
     <Compile Include="..\Source\PlayerIndexEventArgs.cs">
       <Link>PlayerIndexEventArgs.cs</Link>

@@ -35,6 +35,8 @@ namespace MenuBuddy
 		/// </summary>
 		private bool m_bOtherScreenHasFocus;
 
+		private FontBuddy menuFont = new FontBuddy();
+
 		#endregion //Member Variables
 
 		#region Properties
@@ -261,6 +263,12 @@ namespace MenuBuddy
 		/// <param name="fScale">The scale to draw the menu title at</param>
 		public void DrawMenuTitle(string strTitle, float fScale)
 		{
+			//dont do anything here if the menu title is empty
+			if (string.IsNullOrEmpty(strTitle))
+			{
+				return;
+			}
+
 			// Draw the menu title.
 
 			//Get the menu size and location
@@ -273,7 +281,6 @@ namespace MenuBuddy
 			Color titleColor = FadeAlphaDuringTransition(Color.White);
 
 			//create the font buddy object
-			FontBuddy menuFont = new FontBuddy();
 			menuFont.Font = ScreenManager.TitleFont;
 
 			//draw the menu title!
@@ -339,8 +346,7 @@ namespace MenuBuddy
 		/// </summary>
 		public Color FadeAlphaDuringTransition(Color color)
 		{
-			Vector3 myColor = color.ToVector3();
-			return new Color(myColor.X, myColor.Y, myColor.Z, TransitionAlpha);
+			return new Color(color.R, color.G, color.B, TransitionAlpha);
 		}
 
 		/// <summary>
