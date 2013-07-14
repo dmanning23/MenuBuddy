@@ -56,9 +56,6 @@
     <Compile Include="..\Source\IMainMenu.cs">
       <Link>IMainMenu.cs</Link>
     </Compile>
-    <Compile Include="..\Source\IMessageDisplay.cs">
-      <Link>IMessageDisplay.cs</Link>
-    </Compile>
     <Compile Include="..\Source\LoadingScreen.cs">
       <Link>LoadingScreen.cs</Link>
     </Compile>
@@ -70,9 +67,6 @@
     </Compile>
     <Compile Include="..\Source\MessageBoxScreen.cs">
       <Link>MessageBoxScreen.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\MessageDisplayComponent.cs">
-      <Link>MessageDisplayComponent.cs</Link>
     </Compile>
     <Compile Include="..\Source\OperationCompletedEventArgs.cs">
       <Link>OperationCompletedEventArgs.cs</Link>
