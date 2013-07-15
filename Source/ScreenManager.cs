@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 using HadoukInput;
 using ResolutionBuddy;
+using GameTimer;
 
 namespace MenuBuddy
 {
@@ -25,6 +26,8 @@ namespace MenuBuddy
 		private List<GameScreen> m_ScreensToUpdate = new List<GameScreen>();
 
 		private bool m_IsInitialized;
+
+		private CountdownTimer m_TrialModeTimer = new CountdownTimer();
 
 		#endregion //Member Variables
 
@@ -86,7 +89,13 @@ namespace MenuBuddy
 		/// <value>The color of the clear.</value>
 		public Color ClearColor { get; set; }
 
-		#endregion
+		/// <summary>
+		/// Flag for whether or not this game is running in trial mode.
+		/// </summary>
+		/// <value><c>true</c> if trial mode; otherwise, <c>false</c>.</value>
+		public bool TrialMode { get; set; }
+
+		#endregion //Properties
 
 		#region Initialization
 
@@ -107,6 +116,9 @@ namespace MenuBuddy
 			_strMessageBoxFont = strMessageBoxFont;
 			_strMenuChange = strMenuChange;
 			_strMenuSelect = strMenuSelect;
+
+			//always start in trial mode
+			TrialMode = true;
 		}
 
 		/// <summary>
@@ -116,6 +128,9 @@ namespace MenuBuddy
 		{
 			base.Initialize();
 			m_IsInitialized = true;
+
+			//start the countdown timer
+			m_TrialModeTimer.Start(300);
 		}
 
 		/// <summary>
@@ -163,7 +178,7 @@ namespace MenuBuddy
 			m_MusicContent.Unload();
 		}
 
-		#endregion
+		#endregion //Initialization
 
 		#region Update and Draw
 
@@ -216,6 +231,15 @@ namespace MenuBuddy
 						coveredByOtherScreen = true;
 				}
 			}
+
+			//update the trial mode timer
+			m_TrialModeTimer.Update(gameTime);
+
+			//is trial mode out of time?
+			if (TrialMode && (0.0f >= m_TrialModeTimer.RemainingTime()))
+			{
+				//TODO: add a Purchase screen
+			}
 		}
 
 		/// <summary>
@@ -244,7 +268,7 @@ namespace MenuBuddy
 			SpriteBatch.End();
 		}
 
-		#endregion
+		#endregion //Update and Draw
 
 		#region Public Methods
 
@@ -253,6 +277,14 @@ namespace MenuBuddy
 		/// </summary>
 		public void AddScreen(GameScreen screen, PlayerIndex? controllingPlayer)
 		{
+			//is trial mode out of time?
+			if (TrialMode && (0.0f >= m_TrialModeTimer.RemainingTime()))
+			{
+				//TODO: is there a purchase screen in the stack?
+
+				//TODO: add a Purchase screen
+			}
+
 			screen.ControllingPlayer = controllingPlayer;
 			screen.ScreenManager = this;
 			screen.IsExiting = false;
@@ -274,6 +306,14 @@ namespace MenuBuddy
 		/// </summary>
 		public void RemoveScreen(GameScreen screen)
 		{
+			//is trial mode out of time?
+			if (TrialMode && (0.0f >= m_TrialModeTimer.RemainingTime()))
+			{
+				//TODO: is there a purchase screen in the stack?
+
+				//TODO: add a Purchase screen
+			}
+
 			// If we have a graphics device, tell the screen to unload content.
 			if (m_IsInitialized)
 			{
@@ -359,6 +399,6 @@ namespace MenuBuddy
 
 		#endregion //screen stack methods
 
-		#endregion
+		#endregion //Public Methods
 	}
 }
