@@ -29,6 +29,8 @@ namespace MenuBuddy
 
 		private CountdownTimer m_TrialModeTimer = new CountdownTimer();
 
+		private const float TrialLength = 300.0f;
+
 		#endregion //Member Variables
 
 		#region Properties
@@ -130,7 +132,7 @@ namespace MenuBuddy
 			m_IsInitialized = true;
 
 			//start the countdown timer
-			m_TrialModeTimer.Start(300);
+			m_TrialModeTimer.Start(TrialLength);
 		}
 
 		/// <summary>
@@ -236,10 +238,7 @@ namespace MenuBuddy
 			m_TrialModeTimer.Update(gameTime);
 
 			//is trial mode out of time?
-			if (TrialMode && (0.0f >= m_TrialModeTimer.RemainingTime()))
-			{
-				//TODO: add a Purchase screen
-			}
+			AddPurchaseScreen();
 		}
 
 		/// <summary>
@@ -277,13 +276,8 @@ namespace MenuBuddy
 		/// </summary>
 		public void AddScreen(GameScreen screen, PlayerIndex? controllingPlayer)
 		{
-			//is trial mode out of time?
-			if (TrialMode && (0.0f >= m_TrialModeTimer.RemainingTime()))
-			{
-				//TODO: is there a purchase screen in the stack?
-
-				//TODO: add a Purchase screen
-			}
+			//clean up all the memory from those other screens
+			GC.Collect();
 
 			screen.ControllingPlayer = controllingPlayer;
 			screen.ScreenManager = this;
@@ -296,6 +290,9 @@ namespace MenuBuddy
 			}
 
 			m_Screens.Add(screen);
+
+			//is trial mode out of time?
+			AddPurchaseScreen();
 		}
 
 		/// <summary>
@@ -306,14 +303,6 @@ namespace MenuBuddy
 		/// </summary>
 		public void RemoveScreen(GameScreen screen)
 		{
-			//is trial mode out of time?
-			if (TrialMode && (0.0f >= m_TrialModeTimer.RemainingTime()))
-			{
-				//TODO: is there a purchase screen in the stack?
-
-				//TODO: add a Purchase screen
-			}
-
 			// If we have a graphics device, tell the screen to unload content.
 			if (m_IsInitialized)
 			{
@@ -327,6 +316,29 @@ namespace MenuBuddy
 			foreach (GameScreen curScreen in m_Screens)
 			{
 				curScreen.ResetInputTimer();
+			}
+
+			//is trial mode out of time?
+			AddPurchaseScreen();
+		}
+
+		private void AddPurchaseScreen()
+		{
+			//is trial mode out of time?
+			if (TrialMode && (0.0f >= m_TrialModeTimer.RemainingTime()))
+			{
+				//is there already purchase screen in the stack?
+				foreach (GameScreen screen in m_Screens)
+				{
+					if (screen is PurchaseScreen)
+					{
+						//There is already a purchase screen on the stack 
+						return;
+					}
+				}
+
+				//add a Purchase screen
+				AddScreen(new PurchaseScreen(), null);
 			}
 		}
 

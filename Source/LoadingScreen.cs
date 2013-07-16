@@ -23,15 +23,19 @@ namespace MenuBuddy
 	{
 		#region Fields
 		
-		bool loadingIsSlow;
-		bool otherScreensAreGone;
-		GameScreen[] screensToLoad;
+		private bool loadingIsSlow;
+		private bool otherScreensAreGone;
+		private GameScreen[] screensToLoad;
+
+		private ShadowTextBuddy loadingFont = new ShadowTextBuddy();
 
 		/// <summary>
 		/// Gets or sets the hour glass texture we gonna
 		/// </summary>
 		/// <value>The hour glass.</value>
 		private Texture2D HourGlass { get; set; }
+
+		private const string message = "   Loading...";
 		
 		#endregion
 		
@@ -50,6 +54,8 @@ namespace MenuBuddy
 
 			//load the hourglass
 			HourGlass = screenManager.Game.Content.Load<Texture2D>("hourglass");
+			loadingFont.Font = screenManager.TitleFont;
+			loadingFont.ShadowSize = 1.0f;
 		}
 		
 		/// <summary>
@@ -131,13 +137,19 @@ namespace MenuBuddy
 			// to bother drawing the message.
 			if (loadingIsSlow)
 			{
-				const string message = "   Loading...";
-				SpriteFont myFont = ScreenManager.TitleFont;
-				
 				//Get the text position
 				Vector2 textPosition = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
-				Vector2 fontSize = myFont.MeasureString(message);
+				Vector2 fontSize = loadingFont.Font.MeasureString(message);
 				textPosition.Y -= fontSize.Y;
+
+				//Draw on a black backgrounf
+				ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2.0f / 3.0f);
+
+				// Draw the text.
+				Color colorFore = FadeAlphaDuringTransition(Color.White);
+				Color colorBack = FadeAlphaDuringTransition(Color.Black);
+				loadingFont.ShadowColor = colorBack;
+				loadingFont.Write(message, textPosition, Justify.Center, 1.0f, colorFore, ScreenManager.SpriteBatch, 0.0f);
 
 				//get the hourglass position
 				Rectangle hourglassPos = new Rectangle();
@@ -145,21 +157,6 @@ namespace MenuBuddy
 				hourglassPos.Height = 64;
 				hourglassPos.X = (int)((textPosition.X - (fontSize.X * 0.5f)) + 20);
 				hourglassPos.Y = (int)(textPosition.Y + 40);
-
-				//Set the colors
-				Color colorFore = FadeAlphaDuringTransition(Color.White);
-				Color colorBack = FadeAlphaDuringTransition(Color.Black);
-
-				//create the font buddy we gonna use
-				ShadowTextBuddy loadingFont = new ShadowTextBuddy();
-				loadingFont.ShadowSize = 1.0f;
-				loadingFont.ShadowColor = colorBack;
-				loadingFont.Font = myFont;
-
-				ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2.0f / 3.0f);
-
-				// Draw the text.
-				loadingFont.Write(message, textPosition, Justify.Center, 1.0f, colorFore, ScreenManager.SpriteBatch, 0.0f);
 
 				//draw the hourglass
 				ScreenManager.SpriteBatch.Draw(HourGlass, hourglassPos, colorFore);
