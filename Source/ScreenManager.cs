@@ -21,23 +21,28 @@ namespace MenuBuddy
 	{
 		#region Member Variables
 
-		private List<GameScreen> m_Screens = new List<GameScreen>();
-
 		private List<GameScreen> m_ScreensToUpdate = new List<GameScreen>();
 
 		private bool m_IsInitialized;
 
-		private CountdownTimer m_TrialModeTimer = new CountdownTimer();
+		//Font names
+		private string _strMessageBoxFont;
+		private string _strMenuFont;
+		private string _strTitleFont;
 
-		private const float TrialLength = 300.0f;
+		//Sound effect names
+		private string _strMenuChange;
+		private string _strMenuSelect;
 
 		#endregion //Member Variables
 
 		#region Properties
 
-		private string _strMessageBoxFont;
-		private string _strMenuFont;
-		private string _strTitleFont;
+		/// <summary>
+		/// The list of screens that are currently in the game.
+		/// </summary>
+		/// <value>The screens.</value>
+		public List<GameScreen> Screens { get; private set; }
 
 		/// <summary>
 		/// A default SpriteBatch shared by all the screens. 
@@ -65,9 +70,6 @@ namespace MenuBuddy
 
 		public Texture2D BlankTexture { get; private set; }
 
-		private string _strMenuChange;
-		private string _strMenuSelect;
-
 		/// <summary>
 		/// sound effect for when the menu selection changes
 		/// </summary>
@@ -91,12 +93,6 @@ namespace MenuBuddy
 		/// <value>The color of the clear.</value>
 		public Color ClearColor { get; set; }
 
-		/// <summary>
-		/// Flag for whether or not this game is running in trial mode.
-		/// </summary>
-		/// <value><c>true</c> if trial mode; otherwise, <c>false</c>.</value>
-		public bool TrialMode { get; set; }
-
 		#endregion //Properties
 
 		#region Initialization
@@ -111,6 +107,7 @@ namespace MenuBuddy
 		                    string strMenuChange,
 		                    string strMenuSelect) : base(game)
 		{
+			Screens = new List<GameScreen>();
 			InputState = new InputState();
 			ClearColor = Color.Black;
 			_strMenuFont = strMenuFont;
@@ -118,9 +115,6 @@ namespace MenuBuddy
 			_strMessageBoxFont = strMessageBoxFont;
 			_strMenuChange = strMenuChange;
 			_strMenuSelect = strMenuSelect;
-
-			//always start in trial mode
-			TrialMode = true;
 		}
 
 		/// <summary>
@@ -130,9 +124,6 @@ namespace MenuBuddy
 		{
 			base.Initialize();
 			m_IsInitialized = true;
-
-			//start the countdown timer
-			m_TrialModeTimer.Start(TrialLength);
 		}
 
 		/// <summary>
@@ -160,7 +151,7 @@ namespace MenuBuddy
 			BlankTexture.SetData<Color>(new Color[] { Color.White });
 
 			// Tell each of the screens to load their content.
-			foreach (GameScreen screen in m_Screens)
+			foreach (GameScreen screen in Screens)
 			{
 				screen.LoadContent();
 			}
@@ -172,7 +163,7 @@ namespace MenuBuddy
 		protected override void UnloadContent()
 		{
 			// Tell each of the screens to unload their content.
-			foreach (GameScreen screen in m_Screens)
+			foreach (GameScreen screen in Screens)
 			{
 				screen.UnloadContent();
 			}
@@ -196,7 +187,7 @@ namespace MenuBuddy
 			// the process of updating one screen adds or removes others.
 			m_ScreensToUpdate.Clear();
 
-			foreach (GameScreen screen in m_Screens)
+			foreach (GameScreen screen in Screens)
 			{
 				m_ScreensToUpdate.Add(screen);
 			}
@@ -233,12 +224,6 @@ namespace MenuBuddy
 						coveredByOtherScreen = true;
 				}
 			}
-
-			//update the trial mode timer
-			m_TrialModeTimer.Update(gameTime);
-
-			//is trial mode out of time?
-			AddPurchaseScreen();
 		}
 
 		/// <summary>
@@ -250,7 +235,7 @@ namespace MenuBuddy
 			                  BlendState.NonPremultiplied,
 			                  null, null, null, null, Resolution.TransformationMatrix());
 
-			foreach (GameScreen screen in m_Screens)
+			foreach (GameScreen screen in Screens)
 			{
 				if (screen.ScreenState == EScreenState.Hidden)
 				{
@@ -274,7 +259,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Adds a new screen to the screen manager.
 		/// </summary>
-		public void AddScreen(GameScreen screen, PlayerIndex? controllingPlayer)
+		public virtual void AddScreen(GameScreen screen, PlayerIndex? controllingPlayer)
 		{
 			//clean up all the memory from those other screens
 			GC.Collect();
@@ -289,10 +274,7 @@ namespace MenuBuddy
 				screen.LoadContent();
 			}
 
-			m_Screens.Add(screen);
-
-			//is trial mode out of time?
-			AddPurchaseScreen();
+			Screens.Add(screen);
 		}
 
 		/// <summary>
@@ -301,7 +283,7 @@ namespace MenuBuddy
 		/// the screen can gradually transition off rather than just being
 		/// instantly removed.
 		/// </summary>
-		public void RemoveScreen(GameScreen screen)
+		public virtual void RemoveScreen(GameScreen screen)
 		{
 			// If we have a graphics device, tell the screen to unload content.
 			if (m_IsInitialized)
@@ -309,36 +291,13 @@ namespace MenuBuddy
 				screen.UnloadContent();
 			}
 
-			m_Screens.Remove(screen);
+			Screens.Remove(screen);
 			m_ScreensToUpdate.Remove(screen);
 
 			//reset the times of all the rest of teh screens
-			foreach (GameScreen curScreen in m_Screens)
+			foreach (GameScreen curScreen in Screens)
 			{
 				curScreen.ResetInputTimer();
-			}
-
-			//is trial mode out of time?
-			AddPurchaseScreen();
-		}
-
-		private void AddPurchaseScreen()
-		{
-			//is trial mode out of time?
-			if (TrialMode && (0.0f >= m_TrialModeTimer.RemainingTime()))
-			{
-				//is there already purchase screen in the stack?
-				foreach (GameScreen screen in m_Screens)
-				{
-					if (screen is PurchaseScreen)
-					{
-						//There is already a purchase screen on the stack 
-						return;
-					}
-				}
-
-				//add a Purchase screen
-				AddScreen(new PurchaseScreen(), null);
 			}
 		}
 
@@ -349,7 +308,7 @@ namespace MenuBuddy
 		/// </summary>
 		public GameScreen[] GetScreens()
 		{
-			return m_Screens.ToArray();
+			return Screens.ToArray();
 		}
 
 		/// <summary>

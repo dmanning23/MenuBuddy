@@ -310,37 +310,6 @@ namespace MenuBuddy
 			}
 		}
 
-		protected void PurchaseFullVersion(object sender, PlayerIndexEventArgs e)
-		{
-			if (!Guide.IsTrialMode)
-			{
-				return;
-			}
-
-			//make sure the gamer has correct privileges to buy game
-			if ((null == Gamer.SignedInGamers[e.PlayerIndex]) || !Gamer.SignedInGamers[e.PlayerIndex].IsSignedInToLive)
-			{
-				MessageBoxScreen ErrorMsg = new MessageBoxScreen(
-					"You must be signed into Live to buy the full version.",
-					false);
-				ScreenManager.AddScreen(ErrorMsg, null);
-			}
-			else
-			{
-				try
-				{
-					if (!Guide.IsVisible)
-					{
-						Guide.ShowMarketplace(e.PlayerIndex);
-					}
-				}
-				catch (Exception exception)
-				{
-					ScreenManager.ErrorScreen(exception);
-				}
-			}
-		}
-
 		/// <summary>
 		/// Helper modifies a color to fade its alpha value during screen transitions.
 		/// </summary>
