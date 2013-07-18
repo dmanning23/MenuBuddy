@@ -66,9 +66,6 @@
     <Compile Include="..\Source\ErrorScreen.cs">
       <Link>ErrorScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Source\PurchaseScreen.cs">
-      <Link>PurchaseScreen.cs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />

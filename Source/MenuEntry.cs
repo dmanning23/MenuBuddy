@@ -18,10 +18,6 @@ namespace MenuBuddy
 
 		protected float m_fSelectionFade;
 
-		private ShadowTextBuddy shadowText = new ShadowTextBuddy();
-
-		private ShadowTextBuddy pulsateText = new PulsateBuddy();
-
 		#endregion
 
 		#region Properties
@@ -38,6 +34,23 @@ namespace MenuBuddy
 		/// The entries transition out of the selection effect when they are deselected.
 		/// </remarks>
 		public float SizeMultiplier { get; set; }
+
+		/// <summary>
+		/// Font used to display the menu entry when it is NOT selected.
+		/// </summary>
+		public ShadowTextBuddy ShadowText { get; private set; }
+
+		/// <summary>
+		/// Font used to display the menu entry when it IS selected
+		/// </summary>
+		/// <value>The pulsate text.</value>
+		public PulsateBuddy PulsateText { get; private set; }
+
+		/// <summary>
+		/// The color to draw this item when it is not selected
+		/// </summary>
+		/// <value>The color of the non selected.</value>
+		public Color NonSelectedColor { get; set; }
 
 		#endregion
 
@@ -71,11 +84,15 @@ namespace MenuBuddy
 			Text = strText;
 			SizeMultiplier = 1.0f;
 
-			shadowText.ShadowOffset = Vector2.Zero;
-			shadowText.ShadowSize = 1.0f;
+			NonSelectedColor = Color.White;
 
-			pulsateText.ShadowOffset = Vector2.Zero;
-			pulsateText.ShadowSize = 1.0f;
+			ShadowText = new ShadowTextBuddy();
+			ShadowText.ShadowOffset = Vector2.Zero;
+			ShadowText.ShadowSize = 1.0f;
+
+			PulsateText = new PulsateBuddy();
+			PulsateText.ShadowOffset = Vector2.Zero;
+			PulsateText.ShadowSize = 1.0f;
 		}
 
 		#endregion
@@ -110,7 +127,7 @@ namespace MenuBuddy
 			// Draw text, centered on the middle of each line.
 
 			// Draw the selected entry in yellow, otherwise white.
-			Color color = isSelected ? Color.Red : Color.White;
+			Color color = isSelected ? Color.Red : NonSelectedColor;
 
 			// Modify the alpha to fade text out during transitions.
 			color.A = Convert.ToByte(screen.TransitionAlpha * 255.0f);
@@ -118,7 +135,7 @@ namespace MenuBuddy
 			backgroundColor.A = Convert.ToByte(screen.TransitionAlpha * 255.0f);
 
 			//if its selected, do the pulsate text, otherwise use a nice shadow text
-			ShadowTextBuddy menuFont = (isSelected ? pulsateText : shadowText);
+			ShadowTextBuddy menuFont = (isSelected ? PulsateText : ShadowText);
 			menuFont.ShadowColor = backgroundColor;
 			menuFont.Font = screen.ScreenManager.MenuFont;
 
