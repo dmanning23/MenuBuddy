@@ -130,7 +130,14 @@ namespace MenuBuddy
 			{
 				// Raise the cancelled event, then exit the message box.
 				if (Cancelled != null)
+				{
 					Cancelled(this, new PlayerIndexEventArgs(playerIndex));
+				}
+				else
+				{
+					//else just pop it off the stack
+					ExitScreen();
+				}
 
 				ExitScreen();
 			}
