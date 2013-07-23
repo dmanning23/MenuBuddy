@@ -261,9 +261,6 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void AddScreen(GameScreen screen, PlayerIndex? controllingPlayer)
 		{
-			//clean up all the memory from those other screens
-			GC.Collect();
-
 			screen.ControllingPlayer = controllingPlayer;
 			screen.ScreenManager = this;
 			screen.IsExiting = false;
