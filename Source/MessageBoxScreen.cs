@@ -154,6 +154,8 @@ namespace MenuBuddy
 		{
 			SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
 
+			ScreenManager.SpriteBatchBegin();
+
 			// Darken down any other screens that were drawn beneath the popup.
 			ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2.0f / 3.0f);
 
@@ -179,6 +181,8 @@ namespace MenuBuddy
 
 			// Draw the message box text.
 			spriteBatch.DrawString(ScreenManager.MessageBoxFont, message, textPosition, color);
+
+			ScreenManager.SpriteBatchEnd();
 		}
 
 		#endregion

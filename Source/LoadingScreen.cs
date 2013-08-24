@@ -142,6 +142,8 @@ namespace MenuBuddy
 				Vector2 fontSize = loadingFont.Font.MeasureString(message);
 				textPosition.Y -= fontSize.Y;
 
+				ScreenManager.SpriteBatchBegin();
+
 				//Draw on a black backgrounf
 				ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2.0f / 3.0f);
 
@@ -160,6 +162,8 @@ namespace MenuBuddy
 
 				//draw the hourglass
 				ScreenManager.SpriteBatch.Draw(HourGlass, hourglassPos, colorFore);
+
+				ScreenManager.SpriteBatchEnd();
 			}
 		}
 		

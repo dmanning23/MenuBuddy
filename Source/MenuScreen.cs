@@ -244,6 +244,8 @@ namespace MenuBuddy
 
 			float fMenuPositionY = ScreenRect.Center.Y * 0.9f;
 
+			ScreenManager.SpriteBatchBegin();
+
 			// Draw each menu entry in turn.
 			for (int i = 0; i < MenuEntries.Count; i++)
 			{
@@ -256,6 +258,8 @@ namespace MenuBuddy
 			}
 
 			DrawMenuTitle(MenuTitle, 1.0f);
+
+			ScreenManager.SpriteBatchEnd();
 		}
 
 		/// <summary>

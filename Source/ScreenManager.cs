@@ -231,10 +231,6 @@ namespace MenuBuddy
 		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
-			SpriteBatch.Begin(SpriteSortMode.Deferred, 
-			                  BlendState.NonPremultiplied,
-			                  null, null, null, null, Resolution.TransformationMatrix());
-
 			foreach (GameScreen screen in Screens)
 			{
 				if (screen.ScreenState == EScreenState.Hidden)
@@ -246,9 +242,27 @@ namespace MenuBuddy
 			}
 
 //			//draw the titlesafe area
-//			BasicPrimitive rect = new BasicPrimitive(GraphicsDevice);
+//			SpriteBatchStart();
+//			BasicPrimitive rect = new BasicPrimitive(GraphicsDevi		ce);
 //			rect.Rectangle(Resolution.TitleSafeArea, Color.Red, SpriteBatch);
+//			SpriteBatch.End();
+		}
 
+		/// <summary>
+		/// A simple way to start the spritebatch from a gamescreen
+		/// </summary>
+		public void SpriteBatchBegin()
+		{
+			SpriteBatch.Begin(SpriteSortMode.Deferred, 
+			                  BlendState.NonPremultiplied,
+			                  null, null, null, null, Resolution.TransformationMatrix());
+		}
+
+		/// <summary>
+		/// a simple way to end a spritebatch from a gamescreen
+		/// </summary>
+		public void SpriteBatchEnd()
+		{
 			SpriteBatch.End();
 		}
 
@@ -347,23 +361,10 @@ namespace MenuBuddy
 		#region screen stack methods
 
 		/// <summary>
-		/// Get the set of screens needed to start a game
-		/// </summary>
-		/// <returns>The gameplay screen stack.</returns>
-		/// <param name="iNumPlayers">the number of players in the game.</param>
-		public abstract GameScreen[] GetGameplayScreenStack(int iNumPlayers);
-
-		/// <summary>
 		/// Get the set of screens needed for the main menu
 		/// </summary>
 		/// <returns>The gameplay screen stack.</returns>
 		public abstract GameScreen[] GetMainMenuScreenStack();
-
-		/// <summary>
-		/// Get the set of screens needed to display the network busy screen
-		/// </summary>
-		/// <returns>The gameplay screen stack.</returns>
-		public abstract GameScreen[] GetNetworkBusyScreenStack();
 
 		#endregion //screen stack methods
 
