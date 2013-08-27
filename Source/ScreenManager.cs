@@ -328,10 +328,8 @@ namespace MenuBuddy
 		/// </summary>
 		public void FadeBackBufferToBlack(float fAlpha)
 		{
-			Viewport viewport = GraphicsDevice.Viewport;
-
 			SpriteBatch.Draw(BlankTexture,
-							 new Rectangle(0, 0, viewport.Width, viewport.Height),
+							 Resolution.ScreenArea,
 							 new Color(0.0f, 0.0f, 0.0f, fAlpha));
 		}
 
