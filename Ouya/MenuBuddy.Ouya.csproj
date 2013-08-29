@@ -80,31 +80,31 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\externals\MonoGame\ThirdParty\Lidgren.Network\Lidgren.Network.Android.csproj">
-      <Project>{565129E0-4EE5-4F6F-B403-C3484C9740BE}</Project>
-      <Name>Lidgren.Network.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\externals\MonoGame\MonoGame.Framework\MonoGame.Framework.Ouya.csproj">
-      <Project>{8BEA875D-66D2-4A5F-B137-83D262A3851D}</Project>
-      <Name>MonoGame.Framework.Ouya</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\externals\FontBuddy\Ouya\FontBuddyLib.Ouya.csproj">
+    <ProjectReference Include="..\..\FontBuddy\Ouya\FontBuddyLib.Ouya.csproj">
       <Project>{782A28A3-66E3-40B6-8651-8F159AF19BA6}</Project>
       <Name>FontBuddyLib.Ouya</Name>
     </ProjectReference>
-    <ProjectReference Include="..\externals\GameTimer\Ouya\GameTimer.Ouya.csproj">
+    <ProjectReference Include="..\..\GameTimer\Ouya\GameTimer.Ouya.csproj">
       <Project>{B5C54D08-EA4C-479B-8A25-09643724056A}</Project>
       <Name>GameTimer.Ouya</Name>
     </ProjectReference>
-    <ProjectReference Include="..\externals\HadoukInput\Ouya\HadoukInput.Ouya.csproj">
-      <Project>{470E9490-C300-4F2F-9DD2-BC38E28D8A27}</Project>
-      <Name>HadoukInput.Ouya</Name>
+    <ProjectReference Include="..\..\MonoGame\ThirdParty\Lidgren.Network\Lidgren.Network.Android.csproj">
+      <Project>{565129E0-4EE5-4F6F-B403-C3484C9740BE}</Project>
+      <Name>Lidgren.Network.Android</Name>
     </ProjectReference>
-    <ProjectReference Include="..\externals\ouya-csharp\Ouya.Console.Api\Ouya.Console.Api.csproj">
+    <ProjectReference Include="..\..\MonoGame\MonoGame.Framework\MonoGame.Framework.Ouya.csproj">
+      <Project>{8BEA875D-66D2-4A5F-B137-83D262A3851D}</Project>
+      <Name>MonoGame.Framework.Ouya</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ouya-csharp\Ouya.Console.Api\Ouya.Console.Api.csproj">
       <Project>{493A4B6F-98CE-4000-8A0C-4A4726299061}</Project>
       <Name>Ouya.Console.Api</Name>
     </ProjectReference>
-    <ProjectReference Include="..\externals\ResolutionBuddy\Ouya\ResolutionBuddy.Ouya.csproj">
+    <ProjectReference Include="..\..\HadoukInput\Ouya\HadoukInput.Ouya.csproj">
+      <Project>{470E9490-C300-4F2F-9DD2-BC38E28D8A27}</Project>
+      <Name>HadoukInput.Ouya</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ResolutionBuddy\Ouya\ResolutionBuddy.Ouya.csproj">
       <Project>{3BFACC81-6B4D-462B-91E2-09349A3619AD}</Project>
       <Name>ResolutionBuddy.Ouya</Name>
     </ProjectReference>
