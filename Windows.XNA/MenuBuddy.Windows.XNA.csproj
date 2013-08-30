@@ -122,19 +122,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\externals\FontBuddy\Windows.XNA\FontBuddy.Windows.XNA.csproj">
+    <ProjectReference Include="..\..\FontBuddy\Windows.XNA\FontBuddy.Windows.XNA.csproj">
       <Project>{72F572D0-338C-45EB-AB95-45F8EAFF5A7D}</Project>
       <Name>FontBuddy.Windows.XNA</Name>
     </ProjectReference>
-    <ProjectReference Include="..\externals\GameTimer\Windows.XNA\GameTimer.Windows.XNA.csproj">
+    <ProjectReference Include="..\..\GamerTimer\Windows.XNA\GameTimer.Windows.XNA.csproj">
       <Project>{C05AFDF0-1371-48FA-AD30-CF14D46EAF2B}</Project>
       <Name>GameTimer.Windows.XNA</Name>
     </ProjectReference>
-    <ProjectReference Include="..\externals\HadoukInput\Windows.XNA\HadoukInput.Windows.XNA.csproj">
+    <ProjectReference Include="..\..\HadoukInput\Windows.XNA\HadoukInput.Windows.XNA.csproj">
       <Project>{13B04F1A-2DF6-426D-B0C5-300F9ED2AA5A}</Project>
       <Name>HadoukInput.Windows.XNA</Name>
     </ProjectReference>
-    <ProjectReference Include="..\externals\ResolutionBuddy\Windows.XNA\ResolutionBuddy.Windows.XNA.csproj">
+    <ProjectReference Include="..\..\ResolutionBuddy\Windows.XNA\ResolutionBuddy.Windows.XNA.csproj">
       <Project>{1012898A-B613-4A77-8AC9-E50C9E15D67A}</Project>
       <Name>ResolutionBuddy.Windows.XNA</Name>
     </ProjectReference>
