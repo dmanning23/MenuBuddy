@@ -149,15 +149,16 @@ namespace MenuBuddy
 		/// <summary>
 		/// Load graphics content for the screen.
 		/// </summary>
-		public virtual void LoadContent() 
+		public virtual void LoadContent()
 		{
-
 		}
 
 		/// <summary>
 		/// Unload content for the screen.
 		/// </summary>
-		public virtual void UnloadContent() { }
+		public virtual void UnloadContent()
+		{
+		}
 
 		#endregion
 
