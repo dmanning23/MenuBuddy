@@ -84,10 +84,6 @@
       <Project>{28342DF0-0089-4A2A-B3D4-6DCD65D6D8E4}</Project>
       <Name>ResolutionBuddy.Windows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GamerTimer\Windows\GameTimer.Windows.csproj">
-      <Project>{6B6D4188-5C03-4E16-923B-96FDBC85B91A}</Project>
-      <Name>GameTimer.Windows</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\MonoGame\ThirdParty\Lidgren.Network\Lidgren.Network.Windows.csproj">
       <Project>{AE483C29-042E-4226-BA52-D247CE7676DA}</Project>
       <Name>Lidgren.Network.Windows</Name>
@@ -95,6 +91,10 @@
     <ProjectReference Include="..\..\MonoGame\MonoGame.Framework\MonoGame.Framework.WindowsGL.csproj">
       <Project>{7DE47032-A904-4C29-BD22-2D235E8D91BA}</Project>
       <Name>MonoGame.Framework.WindowsGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GameTimer\Windows\GameTimer.Windows.csproj">
+      <Project>{6B6D4188-5C03-4E16-923B-96FDBC85B91A}</Project>
+      <Name>GameTimer.Windows</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
