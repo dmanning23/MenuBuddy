@@ -126,7 +126,7 @@
       <Project>{72F572D0-338C-45EB-AB95-45F8EAFF5A7D}</Project>
       <Name>FontBuddy.Windows.XNA</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GamerTimer\Windows.XNA\GameTimer.Windows.XNA.csproj">
+    <ProjectReference Include="..\..\GameTimer\Windows.XNA\GameTimer.Windows.XNA.csproj">
       <Project>{C05AFDF0-1371-48FA-AD30-CF14D46EAF2B}</Project>
       <Name>GameTimer.Windows.XNA</Name>
     </ProjectReference>
