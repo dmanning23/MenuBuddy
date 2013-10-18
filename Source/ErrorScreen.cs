@@ -1,6 +1,6 @@
-using System;
-using System.Diagnostics;
 using Microsoft.Xna.Framework.GamerServices;
+using System;
+
 #if NETWORKING
 using Microsoft.Xna.Framework.Net;
 #endif

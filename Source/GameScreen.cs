@@ -1,10 +1,8 @@
-using System;
+using FontBuddyLib;
 using HadoukInput;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.GamerServices;
-using FontBuddyLib;
 using ResolutionBuddy;
+using System;
 
 namespace MenuBuddy
 {
