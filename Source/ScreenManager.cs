@@ -287,6 +287,20 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
+		/// Adds a new screen to the screen manager.
+		/// </summary>
+		public virtual void AddScreen(GameScreen [] screens, PlayerIndex? controllingPlayer)
+		{
+			foreach (GameScreen screen in screens)
+			{
+				if (screen != null)
+				{
+					AddScreen(screen, controllingPlayer);
+				}
+			}
+		}
+
+		/// <summary>
 		/// Removes a screen from the screen manager. You should normally
 		/// use GameScreen.ExitScreen instead of calling this directly, so
 		/// the screen can gradually transition off rather than just being
