@@ -1,8 +1,8 @@
+using System;
 using FontBuddyLib;
 using HadoukInput;
 using Microsoft.Xna.Framework;
 using ResolutionBuddy;
-using System;
 
 namespace MenuBuddy
 {
@@ -12,8 +12,11 @@ namespace MenuBuddy
 	public enum EScreenState
 	{
 		TransitionOn,
+
 		Active,
+
 		TransitionOff,
+
 		Hidden,
 	}
 
@@ -28,12 +31,12 @@ namespace MenuBuddy
 	{
 		#region Member Variables
 
+		private readonly FontBuddy menuFont = new FontBuddy();
+
 		/// <summary>
 		/// Checks whether this screen is active and can respond to user input.
 		/// </summary>
 		private bool m_bOtherScreenHasFocus;
-
-		private FontBuddy menuFont = new FontBuddy();
 
 		#endregion //Member Variables
 
@@ -95,8 +98,8 @@ namespace MenuBuddy
 			get
 			{
 				return !m_bOtherScreenHasFocus &&
-					   (ScreenState == EScreenState.TransitionOn ||
-						ScreenState == EScreenState.Active);
+				       (ScreenState == EScreenState.TransitionOn ||
+				        ScreenState == EScreenState.Active);
 			}
 		}
 
@@ -121,10 +124,7 @@ namespace MenuBuddy
 		/// <value>The screen rect.</value>
 		public Rectangle ScreenRect
 		{
-			get 
-			{
-				return Resolution.TitleSafeArea;
-			}
+			get { return Resolution.TitleSafeArea; }
 		}
 
 		#endregion
@@ -169,7 +169,7 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
 		{
-			this.m_bOtherScreenHasFocus = otherScreenHasFocus;
+			m_bOtherScreenHasFocus = otherScreenHasFocus;
 
 			if (IsExiting)
 			{
@@ -215,14 +215,14 @@ namespace MenuBuddy
 		/// <summary>
 		/// Helper for updating the screen transition position.
 		/// </summary>
-		bool UpdateTransition(GameTime gameTime, TimeSpan time, int direction)
+		private bool UpdateTransition(GameTime gameTime, TimeSpan time, int direction)
 		{
 			// How much should we move by?
 			float transitionDelta = 1.0f;
 			if (time != TimeSpan.Zero)
 			{
 				transitionDelta = (float)(gameTime.ElapsedGameTime.TotalMilliseconds /
-										  time.TotalMilliseconds);
+				                          time.TotalMilliseconds);
 			}
 
 			// Update the transition position.
@@ -233,7 +233,7 @@ namespace MenuBuddy
 
 			// Did we reach the end of the transition?
 			if (((direction < 0.0f) && (TransitionPosition <= 0.0f)) ||
-				((direction > 0.0f) && (TransitionPosition >= 1.0f)))
+			    ((direction > 0.0f) && (TransitionPosition >= 1.0f)))
 			{
 				TransitionPosition = MathHelper.Clamp(TransitionPosition, 0.0f, 1.0f);
 				return false;
@@ -248,12 +248,16 @@ namespace MenuBuddy
 		/// is only called when the screen is active, and not when some other
 		/// screen has taken the focus.
 		/// </summary>
-		public virtual void HandleInput(InputState input, GameTime rGameTime) { }
+		public virtual void HandleInput(InputState input, GameTime rGameTime)
+		{
+		}
 
 		/// <summary>
 		/// This is called when the screen should draw itself.
 		/// </summary>
-		public virtual void Draw(GameTime gameTime) { }
+		public virtual void Draw(GameTime gameTime)
+		{
+		}
 
 		/// <summary>
 		/// Draws the menu title.
@@ -271,8 +275,8 @@ namespace MenuBuddy
 			// Draw the menu title.
 
 			//Get the menu size and location
-			Vector2 titlePosition = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
-			float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
+			var titlePosition = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
+			var transitionOffset = (float)Math.Pow(TransitionPosition, 2);
 			titlePosition.Y = ScreenRect.Center.Y - (ScreenManager.TitleFont.MeasureString(strTitle) * fScale).Y;
 			titlePosition.Y -= transitionOffset * 100;
 

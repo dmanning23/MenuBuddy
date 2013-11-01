@@ -1,5 +1,5 @@
-using Microsoft.Xna.Framework;
 using System;
+using Microsoft.Xna.Framework;
 
 namespace MenuBuddy
 {
@@ -9,6 +9,8 @@ namespace MenuBuddy
 	/// </summary>
 	public class PlayerIndexEventArgs : EventArgs
 	{
+		private readonly PlayerIndex playerIndex;
+
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -24,7 +26,5 @@ namespace MenuBuddy
 		{
 			get { return playerIndex; }
 		}
-
-		PlayerIndex playerIndex;
 	}
 }

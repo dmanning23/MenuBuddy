@@ -1,7 +1,7 @@
+using System;
 using FontBuddyLib;
 using GameTimer;
 using Microsoft.Xna.Framework;
-using System;
 
 namespace MenuBuddy
 {
@@ -138,12 +138,12 @@ namespace MenuBuddy
 			menuFont.ShadowColor = backgroundColor;
 			menuFont.Font = screen.ScreenManager.MenuFont;
 
-			menuFont.Write(Text, 
-			               position, 
+			menuFont.Write(Text,
+			               position,
 			               Justify.Center,
-			               SizeMultiplier, 
+			               SizeMultiplier,
 			               color,
-			               screen.ScreenManager.SpriteBatch, 
+			               screen.ScreenManager.SpriteBatch,
 			               gameTime.CurrentTime);
 		}
 
@@ -152,7 +152,7 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual float GetHeight(MenuScreen screen)
 		{
-			return ((float)screen.ScreenManager.MenuFont.LineSpacing * SizeMultiplier);
+			return (screen.ScreenManager.MenuFont.LineSpacing * SizeMultiplier);
 		}
 
 		/// <summary>
@@ -162,7 +162,7 @@ namespace MenuBuddy
 		/// <param name="screen">Screen.</param>
 		public virtual float GetWidth(MenuScreen screen)
 		{
-			return (screen.ScreenManager.MenuFont.MeasureString(this.Text).X * SizeMultiplier);
+			return (screen.ScreenManager.MenuFont.MeasureString(Text).X * SizeMultiplier);
 		}
 
 		#endregion

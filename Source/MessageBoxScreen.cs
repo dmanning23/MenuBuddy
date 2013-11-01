@@ -1,9 +1,9 @@
+using System;
+using System.Text;
 using HadoukInput;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Text;
 
 namespace MenuBuddy
 {
@@ -15,21 +15,21 @@ namespace MenuBuddy
 	{
 		#region Fields
 
-		string message;
+		private readonly string message;
 
-		Texture2D gradientTexture;
+		private Texture2D gradientTexture;
 
 		#endregion
 
 		#region Events
 
 		public event EventHandler<PlayerIndexEventArgs> Accepted;
+
 		public event EventHandler<PlayerIndexEventArgs> Cancelled;
 
 		#endregion
 
 		#region Initialization
-
 
 		/// <summary>
 		/// Constructor automatically includes the standard "A=ok, B=cancel"
@@ -48,8 +48,8 @@ namespace MenuBuddy
 			if (includeUsageText)
 			{
 				//First construct the usage text
-				StringBuilder okText = new StringBuilder();
-				StringBuilder cancelText = new StringBuilder();
+				var okText = new StringBuilder();
+				var cancelText = new StringBuilder();
 
 				//Put the correct button text in the message
 #if OUYA
@@ -71,9 +71,9 @@ namespace MenuBuddy
 				cancelText.Append(": Cancel");
 
 				//Put the whole message together
-				StringBuilder completeMessage = new StringBuilder(message);
-				completeMessage.Append(okText.ToString());
-				completeMessage.Append(cancelText.ToString());
+				var completeMessage = new StringBuilder(message);
+				completeMessage.Append(okText);
+				completeMessage.Append(cancelText);
 
 				this.message = completeMessage.ToString();
 			}
@@ -122,7 +122,9 @@ namespace MenuBuddy
 			{
 				// Raise the accepted event, then exit the message box.
 				if (Accepted != null)
+				{
 					Accepted(this, new PlayerIndexEventArgs(playerIndex));
+				}
 
 				ExitScreen();
 			}
@@ -160,7 +162,7 @@ namespace MenuBuddy
 			ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2.0f / 3.0f);
 
 			// Center the message text in the viewport.
-			Vector2 windowSize = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
+			var windowSize = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
 			Vector2 textSize = ScreenManager.MessageBoxFont.MeasureString(message);
 			Vector2 textPosition = windowSize - (textSize / 2);
 
@@ -168,13 +170,13 @@ namespace MenuBuddy
 			const int hPad = 32;
 			const int vPad = 16;
 
-			Rectangle backgroundRectangle = new Rectangle((int)textPosition.X - hPad,
-														  (int)textPosition.Y - vPad,
-														  (int)textSize.X + hPad * 2,
-														  (int)textSize.Y + vPad * 2);
+			var backgroundRectangle = new Rectangle((int)textPosition.X - hPad,
+			                                        (int)textPosition.Y - vPad,
+			                                        (int)textSize.X + hPad * 2,
+			                                        (int)textSize.Y + vPad * 2);
 
 			// Fade the popup alpha during transitions.
-			Color color = new Color(1.0f, 1.0f, 1.0f, TransitionAlpha);
+			var color = new Color(1.0f, 1.0f, 1.0f, TransitionAlpha);
 
 			// Draw the background rectangle.
 			spriteBatch.Draw(gradientTexture, backgroundRectangle, color);

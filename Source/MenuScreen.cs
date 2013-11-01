@@ -1,8 +1,8 @@
+using System;
+using System.Collections.Generic;
 using GameTimer;
 using HadoukInput;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
 
 namespace MenuBuddy
 {
@@ -15,14 +15,14 @@ namespace MenuBuddy
 		#region Fields
 
 		/// <summary>
-		/// index of the currently selected menu entry
-		/// </summary>
-		private int m_SelectedEntry = 0;
-
-		/// <summary>
 		/// Ammount of time that passes before attract mode is activated
 		/// </summary>
 		private const float _AttractModeTime = 15.0f;
+
+		/// <summary>
+		/// index of the currently selected menu entry
+		/// </summary>
+		private int m_SelectedEntry;
 
 		#endregion
 
@@ -41,10 +41,7 @@ namespace MenuBuddy
 
 		protected int SelectedEntry
 		{
-			get
-			{
-				return m_SelectedEntry;
-			}
+			get { return m_SelectedEntry; }
 			set
 			{
 				//set teh selected menu item
@@ -230,7 +227,7 @@ namespace MenuBuddy
 				// Make the menu slide into place during transitions, using a
 				// power curve to make things look more interesting (this makes
 				// the movement slow down as it nears the end).
-				float transitionOffset = (float)Math.Pow(TransitionPosition, 2.0);
+				var transitionOffset = (float)Math.Pow(TransitionPosition, 2.0);
 				if (ScreenState == EScreenState.TransitionOn)
 				{
 					fMenuPositionX -= transitionOffset * 256;

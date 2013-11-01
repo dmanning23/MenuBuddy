@@ -1,5 +1,5 @@
-using Microsoft.Xna.Framework.GamerServices;
 using System;
+using Microsoft.Xna.Framework.GamerServices;
 
 #if NETWORKING
 using Microsoft.Xna.Framework.Net;
@@ -17,12 +17,14 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs an error message box from the specified exception.
 		/// </summary>
-		public ErrorScreen(Exception exception) : base(GetErrorMessage(exception), false) { }
+		public ErrorScreen(Exception exception) : base(GetErrorMessage(exception), false)
+		{
+		}
 
 		/// <summary>
 		/// Converts a network exception into a user friendly error message.
 		/// </summary>
-		static string GetErrorMessage(Exception exception)
+		private static string GetErrorMessage(Exception exception)
 		{
 			//Trace.WriteLine("Network operation threw " + exception);
 
@@ -30,14 +32,18 @@ namespace MenuBuddy
 			if (exception is GamerPrivilegeException)
 			{
 				if (Guide.IsTrialMode)
+				{
 					return "This functionality is not available in trial mode";
+				}
 				else
+				{
 					return "You must sign in a suitable gamer profile \nin order to access this functionality";
+				}
 			}
 
-			#if NETWORKING
+#if NETWORKING
 
-			// Is it a NetworkSessionJoinException?
+	// Is it a NetworkSessionJoinException?
 			NetworkSessionJoinException joinException = exception as NetworkSessionJoinException;
 
 			if (joinException != null)

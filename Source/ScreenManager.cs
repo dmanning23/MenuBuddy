@@ -1,11 +1,11 @@
+using System;
+using System.Collections.Generic;
 using HadoukInput;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
-using System;
-using System.Collections.Generic;
 
 namespace MenuBuddy
 {
@@ -19,22 +19,29 @@ namespace MenuBuddy
 	{
 		#region Member Variables
 
-		private List<GameScreen> m_ScreensToUpdate = new List<GameScreen>();
+		//Sound effect names
+		private readonly string _strMenuChange;
+
+		private readonly string _strMenuFont;
+
+		private readonly string _strMenuSelect;
+
+		private readonly string _strMessageBoxFont;
+
+		private readonly string _strTitleFont;
+
+		private readonly List<GameScreen> m_ScreensToUpdate = new List<GameScreen>();
 
 		private bool m_IsInitialized;
-
-		//Font names
-		private string _strMessageBoxFont;
-		private string _strMenuFont;
-		private string _strTitleFont;
-
-		//Sound effect names
-		private string _strMenuChange;
-		private string _strMenuSelect;
 
 		#endregion //Member Variables
 
 		#region Properties
+
+		/// <summary>
+		/// content manager used to load music files
+		/// </summary>
+		public ContentManager m_MusicContent;
 
 		/// <summary>
 		/// The list of screens that are currently in the game.
@@ -81,11 +88,6 @@ namespace MenuBuddy
 		public SoundEffect MenuSelect { get; private set; }
 
 		/// <summary>
-		/// content manager used to load music files
-		/// </summary>
-		public ContentManager m_MusicContent;
-
-		/// <summary>
 		/// The color to clear the backbuffer to
 		/// </summary>
 		/// <value>The color of the clear.</value>
@@ -98,12 +100,12 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new screen manager component.
 		/// </summary>
-		public ScreenManager(Game game, 
-		                     string strTitleFont, 
-		                     string strMenuFont, 
+		public ScreenManager(Game game,
+		                     string strTitleFont,
+		                     string strMenuFont,
 		                     string strMessageBoxFont,
-		                    string strMenuChange,
-		                    string strMenuSelect) : base(game)
+		                     string strMenuChange,
+		                     string strMenuSelect) : base(game)
 		{
 			Screens = new List<GameScreen>();
 			InputState = new InputState();
@@ -135,7 +137,7 @@ namespace MenuBuddy
 			// Load content belonging to the screen manager.
 			ContentManager content = Game.Content;
 
-			this.SpriteBatch = new SpriteBatch(GraphicsDevice);
+			SpriteBatch = new SpriteBatch(GraphicsDevice);
 
 			MessageBoxFont = content.Load<SpriteFont>(_strMessageBoxFont);
 			MenuFont = content.Load<SpriteFont>(_strMenuFont);
@@ -146,7 +148,7 @@ namespace MenuBuddy
 
 			//create a blank texture without loading some crap
 			BlankTexture = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-			BlankTexture.SetData<Color>(new Color[] { Color.White });
+			BlankTexture.SetData(new[] {Color.White});
 
 			// Tell each of the screens to load their content.
 			foreach (GameScreen screen in Screens)
@@ -205,7 +207,7 @@ namespace MenuBuddy
 				screen.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
 				if (screen.ScreenState == EScreenState.TransitionOn ||
-					screen.ScreenState == EScreenState.Active)
+				    screen.ScreenState == EScreenState.Active)
 				{
 					// If this is the first active screen we came across,
 					// give it a chance to handle input.
@@ -219,7 +221,9 @@ namespace MenuBuddy
 					// If this is an active non-popup, inform any subsequent
 					// screens that they are covered by it.
 					if (!screen.IsPopup)
+					{
 						coveredByOtherScreen = true;
+					}
 				}
 			}
 		}
@@ -251,7 +255,7 @@ namespace MenuBuddy
 		/// </summary>
 		public void SpriteBatchBegin()
 		{
-			SpriteBatch.Begin(SpriteSortMode.Deferred, 
+			SpriteBatch.Begin(SpriteSortMode.Deferred,
 			                  BlendState.NonPremultiplied,
 			                  null, null, null, null, Resolution.TransformationMatrix());
 		}
@@ -289,7 +293,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Adds a new screen to the screen manager.
 		/// </summary>
-		public virtual void AddScreen(GameScreen [] screens, PlayerIndex? controllingPlayer)
+		public virtual void AddScreen(GameScreen[] screens, PlayerIndex? controllingPlayer)
 		{
 			foreach (GameScreen screen in screens)
 			{
@@ -341,8 +345,8 @@ namespace MenuBuddy
 		public void FadeBackBufferToBlack(float fAlpha)
 		{
 			SpriteBatch.Draw(BlankTexture,
-							 Resolution.ScreenArea,
-							 new Color(0.0f, 0.0f, 0.0f, fAlpha));
+			                 Resolution.ScreenArea,
+			                 new Color(0.0f, 0.0f, 0.0f, fAlpha));
 		}
 
 		public void PlayMusic(string strMusic)
@@ -352,7 +356,7 @@ namespace MenuBuddy
 
 			//unload the music
 			m_MusicContent.Unload();
-			
+
 			//TODO: start playing the new music
 			//SPFLib.CAudioManager.PlayMusic(strMusic, m_MusicContent);
 		}
@@ -363,7 +367,7 @@ namespace MenuBuddy
 		/// <param name="ex">the exception that occureed</param>
 		public void ErrorScreen(Exception ex)
 		{
-			List<GameScreen> screens = new List<GameScreen>(GetMainMenuScreenStack());
+			var screens = new List<GameScreen>(GetMainMenuScreenStack());
 			screens.Add(new ErrorScreen(ex));
 			LoadingScreen.Load(this, false, null, screens.ToArray());
 		}

@@ -1,4 +1,3 @@
-
 namespace MenuBuddy
 {
 	/// <summary>
@@ -9,4 +8,3 @@ namespace MenuBuddy
 	{
 	}
 }
-
