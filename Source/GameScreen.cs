@@ -7,20 +7,6 @@ using ResolutionBuddy;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// Enum describes the screen transition state.
-	/// </summary>
-	public enum EScreenState
-	{
-		TransitionOn,
-
-		Active,
-
-		TransitionOff,
-
-		Hidden,
-	}
-
-	/// <summary>
 	/// A screen is a single layer that has update and draw logic, and which
 	/// can be combined with other layers to build up a complex menu system.
 	/// For instance the main menu, the options menu, the "are you sure you

@@ -51,6 +51,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Source\ScreenState.cs">
+      <Link>ScreenState.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\Source\GameScreen.cs">
       <Link>GameScreen.cs</Link>
