@@ -119,6 +119,9 @@
     <Compile Include="..\Source\ScreenManager.cs">
       <Link>ScreenManager.cs</Link>
     </Compile>
+    <Compile Include="..\Source\ScreenState.cs">
+      <Link>ScreenState.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
