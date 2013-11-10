@@ -113,6 +113,11 @@ namespace MenuBuddy
 			get { return Resolution.TitleSafeArea; }
 		}
 
+		/// <summary>
+		/// y value to offset the menu title
+		/// </summary>
+		public float MenuTitleOffset { get; set; }
+
 		#endregion
 
 		#region Initialization
@@ -263,7 +268,7 @@ namespace MenuBuddy
 			//Get the menu size and location
 			var titlePosition = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
 			var transitionOffset = (float)Math.Pow(TransitionPosition, 2);
-			titlePosition.Y = ScreenRect.Center.Y - (ScreenManager.TitleFont.MeasureString(strTitle) * fScale).Y;
+			titlePosition.Y =  MenuTitleOffset + (ScreenRect.Center.Y - (ScreenManager.TitleFont.MeasureString(strTitle) * fScale).Y);
 			titlePosition.Y -= transitionOffset * 100;
 
 			//get the menu title color

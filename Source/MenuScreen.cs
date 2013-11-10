@@ -64,6 +64,11 @@ namespace MenuBuddy
 		/// <value>The menu clock.</value>
 		protected GameClock MenuClock { get; private set; }
 
+		/// <summary>
+		/// y value to offset the menu options
+		/// </summary>
+		public float MenuOptionOffset { get; set; }
+
 		#endregion
 
 		#region Initialization
@@ -238,7 +243,7 @@ namespace MenuBuddy
 				}
 			}
 
-			float fMenuPositionY = ScreenRect.Center.Y * 0.9f;
+			float fMenuPositionY = MenuOptionOffset + (ScreenRect.Center.Y * 0.9f);
 
 			ScreenManager.SpriteBatchBegin();
 
