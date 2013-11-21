@@ -121,10 +121,12 @@ namespace MenuBuddy
 
 			if (input.IsMenuSelect(ControllingPlayer, out playerIndex))
 			{
-				OnSelectEntry(SelectedEntry, playerIndex);
-
 				//play menu noise
 				ScreenManager.MenuSelect.Play();
+
+				//run the sleected evetn
+				OnSelectEntry(SelectedEntry, playerIndex);
+
 				ResetInputTimer();
 			}
 			else if (input.IsMenuCancel(ControllingPlayer, out playerIndex))
