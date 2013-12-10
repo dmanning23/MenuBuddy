@@ -70,6 +70,9 @@
     <Compile Include="..\Source\ScreenManager.cs">
       <Link>ScreenManager.cs</Link>
     </Compile>
+    <Compile Include="..\Source\ScreenState.cs">
+      <Link>ScreenState.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -82,10 +85,6 @@
     <ProjectReference Include="..\..\FontBuddy\Android\FontBuddyLib.Android.csproj">
       <Project>{970D0C93-407B-4372-B236-0E799B22D90E}</Project>
       <Name>FontBuddyLib.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GamerTimer\Android\GameTimer.Android.csproj">
-      <Project>{1D645493-3A2F-496C-B405-A687749D74CE}</Project>
-      <Name>GameTimer.Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\MonoGame\ThirdParty\Lidgren.Network\Lidgren.Network.Android.csproj">
       <Project>{565129E0-4EE5-4F6F-B403-C3484C9740BE}</Project>
@@ -102,6 +101,10 @@
     <ProjectReference Include="..\..\HadoukInput\Android\HadoukInput.Android.csproj">
       <Project>{D3C24A24-49A5-4D98-955A-09E2F320AD45}</Project>
       <Name>HadoukInput.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GameTimer\Android\GameTimer.Android.csproj">
+      <Project>{1D645493-3A2F-496C-B405-A687749D74CE}</Project>
+      <Name>GameTimer.Android</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
