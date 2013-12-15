@@ -50,6 +50,12 @@ namespace MenuBuddy
 		public List<GameScreen> Screens { get; private set; }
 
 		/// <summary>
+		/// This is a special screen that you always want to stay on top of all teh other screens.
+		/// Useful for something like an Insert Coin screen
+		/// </summary>
+		public GameScreen TopScreen { get; private set; }
+
+		/// <summary>
 		/// A default SpriteBatch shared by all the screens. 
 		/// This saves each screen having to bother creating their own local instance.
 		/// </summary>
@@ -155,6 +161,11 @@ namespace MenuBuddy
 			{
 				screen.LoadContent();
 			}
+
+			if (null != TopScreen)
+			{
+				TopScreen.LoadContent();
+			}
 		}
 
 		/// <summary>
@@ -166,6 +177,11 @@ namespace MenuBuddy
 			foreach (GameScreen screen in Screens)
 			{
 				screen.UnloadContent();
+			}
+
+			if (null != TopScreen)
+			{
+				TopScreen.UnloadContent();
 			}
 
 			m_MusicContent.Unload();
@@ -183,9 +199,15 @@ namespace MenuBuddy
 			// Read the keyboard and gamepad.
 			InputState.Update();
 
-			// Make a copy of the master screen list, to avoid confusion if
-			// the process of updating one screen adds or removes others.
+			// Make a copy of the master screen list, to avoid confusion if the process of updating one screen adds or removes others.
 			m_ScreensToUpdate.Clear();
+
+			//Update the top screen separate from all other screens.
+			if (null != TopScreen)
+			{
+				TopScreen.Update(gameTime, false, false);
+				TopScreen.HandleInput(InputState, gameTime);
+			}
 
 			foreach (GameScreen screen in Screens)
 			{
@@ -200,7 +222,6 @@ namespace MenuBuddy
 			{
 				// Pop the topmost screen off the waiting list.
 				GameScreen screen = m_ScreensToUpdate[m_ScreensToUpdate.Count - 1];
-
 				m_ScreensToUpdate.RemoveAt(m_ScreensToUpdate.Count - 1);
 
 				// Update the screen.
@@ -214,7 +235,6 @@ namespace MenuBuddy
 					if (!otherScreenHasFocus)
 					{
 						screen.HandleInput(InputState, gameTime);
-
 						otherScreenHasFocus = true;
 					}
 
@@ -241,6 +261,12 @@ namespace MenuBuddy
 				}
 
 				screen.Draw(gameTime);
+			}
+
+			//draw the top screen
+			if (null != TopScreen)
+			{
+				TopScreen.Draw(gameTime);
 			}
 
 //			//draw the titlesafe area
@@ -302,6 +328,26 @@ namespace MenuBuddy
 					AddScreen(screen, controllingPlayer);
 				}
 			}
+		}
+
+		/// <summary>
+		/// Set the top screen
+		/// </summary>
+		/// <param name="screen"></param>
+		/// <param name="controllingPlayer"></param>
+		public virtual void SetTopScreen(GameScreen screen, PlayerIndex? controllingPlayer)
+		{
+			screen.ControllingPlayer = controllingPlayer;
+			screen.ScreenManager = this;
+			screen.IsExiting = false;
+
+			// If we have a graphics device, tell the screen to load content.
+			if (m_IsInitialized)
+			{
+				screen.LoadContent();
+			}
+
+			TopScreen = screen;
 		}
 
 		/// <summary>
