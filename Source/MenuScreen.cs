@@ -121,13 +121,7 @@ namespace MenuBuddy
 
 			if (input.IsMenuSelect(ControllingPlayer, out playerIndex))
 			{
-				//play menu noise
-				ScreenManager.MenuSelect.Play();
-
-				//run the sleected evetn
-				OnSelectEntry(SelectedEntry, playerIndex);
-
-				ResetInputTimer();
+				MenuSelect(playerIndex);
 			}
 			else if (input.IsMenuCancel(ControllingPlayer, out playerIndex))
 			{
@@ -166,6 +160,24 @@ namespace MenuBuddy
 
 				//play menu noise
 				ScreenManager.MenuChange.Play();
+
+				ResetInputTimer();
+			}
+		}
+
+		/// <summary>
+		/// User hit the "menu select" button.
+		/// </summary>
+		/// <param name="playerIndex"></param>
+		protected virtual void MenuSelect(PlayerIndex playerIndex)
+		{
+			if (MenuEntries.Count > 1)
+			{
+				//play menu noise
+				ScreenManager.MenuSelect.Play();
+
+				//run the sleected evetn
+				OnSelectEntry(SelectedEntry, playerIndex);
 
 				ResetInputTimer();
 			}
