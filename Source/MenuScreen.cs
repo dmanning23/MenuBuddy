@@ -239,24 +239,7 @@ namespace MenuBuddy
 		{
 			MenuClock.Update(gameTime);
 
-			float fMenuPositionX = ScreenRect.Center.X;
-
-			if (TransitionPosition != 0.0f)
-			{
-				// Make the menu slide into place during transitions, using a
-				// power curve to make things look more interesting (this makes
-				// the movement slow down as it nears the end).
-				var transitionOffset = (float)Math.Pow(TransitionPosition, 2.0);
-				if (ScreenState == EScreenState.TransitionOn)
-				{
-					fMenuPositionX -= transitionOffset * 256;
-				}
-				else
-				{
-					fMenuPositionX += transitionOffset * 512;
-				}
-			}
-
+			float fMenuPositionX = MenuEntryPositionX();
 			float fMenuPositionY = MenuOptionOffset + (ScreenRect.Center.Y * 0.9f);
 
 			ScreenManager.SpriteBatchBegin();
@@ -284,6 +267,33 @@ namespace MenuBuddy
 		public override void ResetInputTimer()
 		{
 			TimeSinceInput.Start(_AttractModeTime);
+		}
+
+		/// <summary>
+		/// Get the x position to draw menu entries at, using the transition position
+		/// </summary>
+		/// <returns>the correct position the place menu entries on X axis</returns>
+		public float MenuEntryPositionX()
+		{
+			float fMenuPositionX = ScreenRect.Center.X;
+
+			if (TransitionPosition != 0.0f)
+			{
+				// Make the menu slide into place during transitions, using a
+				// power curve to make things look more interesting (this makes
+				// the movement slow down as it nears the end).
+				var transitionOffset = (float)Math.Pow(TransitionPosition, 2.0);
+				if (ScreenState == EScreenState.TransitionOn)
+				{
+					fMenuPositionX -= transitionOffset * 256;
+				}
+				else
+				{
+					fMenuPositionX += transitionOffset * 512;
+				}
+			}
+
+			return fMenuPositionX;
 		}
 
 		#endregion
