@@ -110,6 +110,9 @@
     <Compile Include="..\Source\MenuScreen.cs">
       <Link>MenuScreen.cs</Link>
     </Compile>
+    <Compile Include="..\Source\MenuScreenWithBackground.cs">
+      <Link>MenuScreenWithBackground.cs</Link>
+    </Compile>
     <Compile Include="..\Source\MessageBoxScreen.cs">
       <Link>MessageBoxScreen.cs</Link>
     </Compile>
