@@ -171,7 +171,7 @@ namespace MenuBuddy
 		/// <param name="playerIndex"></param>
 		protected virtual void MenuSelect(PlayerIndex playerIndex)
 		{
-			if (MenuEntries.Count > 1)
+			if (MenuEntries.Count >= 1)
 			{
 				//play menu noise
 				ScreenManager.MenuSelect.Play();
