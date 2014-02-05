@@ -39,7 +39,10 @@ namespace MenuBuddy
 
 		public override void LoadContent()
 		{
-			Background = ScreenManager.Game.Content.Load<Texture2D>(ImageResource);
+			if (!string.IsNullOrEmpty(ImageResource))
+			{
+				Background = ScreenManager.Game.Content.Load<Texture2D>(ImageResource);
+			}
 		}
 
 		/// <summary>
@@ -48,9 +51,12 @@ namespace MenuBuddy
 		public override void Draw(GameTime gameTime)
 		{
 			//draw the background image
-			ScreenManager.SpriteBatchBegin();
-			ScreenManager.SpriteBatch.Draw(Background, ResolutionBuddy.Resolution.ScreenArea, Color.White);
-			ScreenManager.SpriteBatchEnd();
+			if (null != Background)
+			{
+				ScreenManager.SpriteBatchBegin();
+				ScreenManager.SpriteBatch.Draw(Background, ResolutionBuddy.Resolution.ScreenArea, Color.White);
+				ScreenManager.SpriteBatchEnd();
+			}
 
 			base.Draw(gameTime);
 		}
