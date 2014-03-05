@@ -73,19 +73,24 @@
     <Compile Include="..\Source\ScreenState.cs">
       <Link>ScreenState.cs</Link>
     </Compile>
+    <Compile Include="..\Source\MenuScreenWithBackground.cs">
+      <Link>MenuScreenWithBackground.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
+    <None Include="..\Source\Content\gradient.png">
+      <Link>Content\gradient.png</Link>
+    </None>
+    <None Include="..\Source\Content\hourglass.png">
+      <Link>Content\hourglass.png</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\FontBuddy\Android\FontBuddyLib.Android.csproj">
-      <Project>{970D0C93-407B-4372-B236-0E799B22D90E}</Project>
-      <Name>FontBuddyLib.Android</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\MonoGame\ThirdParty\Lidgren.Network\Lidgren.Network.Android.csproj">
       <Project>{565129E0-4EE5-4F6F-B403-C3484C9740BE}</Project>
       <Name>Lidgren.Network.Android</Name>
@@ -94,10 +99,6 @@
       <Project>{BA9476CF-99BA-4D03-92F2-73D2C5E58883}</Project>
       <Name>MonoGame.Framework.Android</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ResolutionBuddy\Android\ResolutionBuddy.Android.csproj">
-      <Project>{8C893C25-E7DE-4B40-8165-AD10F2EDCCA1}</Project>
-      <Name>ResolutionBuddy.Android</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\HadoukInput\Android\HadoukInput.Android.csproj">
       <Project>{D3C24A24-49A5-4D98-955A-09E2F320AD45}</Project>
       <Name>HadoukInput.Android</Name>
@@ -105,6 +106,14 @@
     <ProjectReference Include="..\..\GameTimer\Android\GameTimer.Android.csproj">
       <Project>{1D645493-3A2F-496C-B405-A687749D74CE}</Project>
       <Name>GameTimer.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ResolutionBuddy\Android\ResolutionBuddy.Android.csproj">
+      <Project>{8C893C25-E7DE-4B40-8165-AD10F2EDCCA1}</Project>
+      <Name>ResolutionBuddy.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FontBuddy\Android\FontBuddyLib.Android.csproj">
+      <Project>{970D0C93-407B-4372-B236-0E799B22D90E}</Project>
+      <Name>FontBuddyLib.Android</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
