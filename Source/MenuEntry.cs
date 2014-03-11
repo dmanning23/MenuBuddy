@@ -58,6 +58,16 @@ namespace MenuBuddy
 		/// <summary>
 		/// Event raised when the menu entry is selected.
 		/// </summary>
+		public event EventHandler Left;
+
+		/// <summary>
+		/// Event raised when the menu entry is selected.
+		/// </summary>
+		public event EventHandler Right;
+
+		/// <summary>
+		/// Event raised when the menu entry is selected.
+		/// </summary>
 		public event EventHandler<PlayerIndexEventArgs> Selected;
 
 		/// <summary>
@@ -68,6 +78,28 @@ namespace MenuBuddy
 			if (Selected != null)
 			{
 				Selected(this, new PlayerIndexEventArgs(playerIndex));
+			}
+		}
+
+		/// <summary>
+		/// Method for raising the Selected event.
+		/// </summary>
+		protected internal virtual void OnLeftEntry()
+		{
+			if (Left != null)
+			{
+				Left(this, new EventArgs());
+			}
+		}
+
+		/// <summary>
+		/// Method for raising the Selected event.
+		/// </summary>
+		protected internal virtual void OnRightEntry()
+		{
+			if (Right != null)
+			{
+				Right(this, new EventArgs());
 			}
 		}
 

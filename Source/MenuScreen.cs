@@ -100,16 +100,28 @@ namespace MenuBuddy
 		/// </summary>
 		public override void HandleInput(InputState input, GameTime rGameTime)
 		{
-			// Move to the previous menu entry?
+			//Check all the input
 			if (input.IsMenuUp(ControllingPlayer))
 			{
+				// Move to the previous menu entry
 				MenuUp();
 			}
-
-			// Move to the next menu entry?
-			if (input.IsMenuDown(ControllingPlayer))
+			else if (input.IsMenuDown(ControllingPlayer))
 			{
+				// Move to the next menu entry
 				MenuDown();
+			}
+
+			//checkl the left/right messages
+			if (input.IsMenuLeft(ControllingPlayer))
+			{
+				//send a left message to the current menu entry
+				MenuLeft();
+			}
+			else if (input.IsMenuRight(ControllingPlayer))
+			{
+				//send a right message to the current menu entry
+				MenuRight();
 			}
 
 			// Accept or cancel the menu? We pass in our ControllingPlayer, which may
@@ -165,6 +177,34 @@ namespace MenuBuddy
 			}
 		}
 
+		protected virtual void MenuLeft()
+		{
+			if (MenuEntries.Count >= 1)
+			{
+				//play menu noise
+				ScreenManager.MenuChange.Play();
+
+				//run the sleected evetn
+				OnLeft(SelectedEntry);
+
+				ResetInputTimer();
+			}
+		}
+
+		protected virtual void MenuRight()
+		{
+			if (MenuEntries.Count >= 1)
+			{
+				//play menu noise
+				ScreenManager.MenuChange.Play();
+
+				//run the sleected evetn
+				OnRight(SelectedEntry);
+
+				ResetInputTimer();
+			}
+		}
+
 		/// <summary>
 		/// User hit the "menu select" button.
 		/// </summary>
@@ -189,6 +229,22 @@ namespace MenuBuddy
 		protected virtual void OnSelectEntry(int entryIndex, PlayerIndex playerIndex)
 		{
 			MenuEntries[SelectedEntry].OnSelectEntry(playerIndex);
+		}
+
+		/// <summary>
+		/// Handler for when the user has hit left on a menu entry
+		/// </summary>
+		protected virtual void OnLeft(int entryIndex)
+		{
+			MenuEntries[SelectedEntry].OnLeftEntry();
+		}
+
+		/// <summary>
+		/// Handler for when the user has hit right on a menu entry
+		/// </summary>
+		protected virtual void OnRight(int entryIndex)
+		{
+			MenuEntries[SelectedEntry].OnRightEntry();
 		}
 
 		/// <summary>
