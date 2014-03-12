@@ -54,6 +54,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Source\MenuEntryBool.cs">
+      <Link>MenuEntryBool.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\MenuEntryInt.cs">
+      <Link>MenuEntryInt.cs</Link>
+    </Compile>
     <Compile Include="..\Source\MenuScreenWithBackground.cs">
       <Link>MenuScreenWithBackground.cs</Link>
     </Compile>
