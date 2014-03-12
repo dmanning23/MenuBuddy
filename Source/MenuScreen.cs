@@ -37,7 +37,13 @@ namespace MenuBuddy
 		/// <summary>
 		/// Gets or sets the menu title position.
 		/// </summary>
-		public string MenuTitle { get; set; }
+		public string MenuTitle
+		{
+			get
+			{
+				return ScreenName;
+			}
+		}
 
 		protected int SelectedEntry
 		{
@@ -76,12 +82,11 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public MenuScreen(string strMenuTitle)
+		public MenuScreen(string strMenuTitle) : base(strMenuTitle)
 		{
 			MenuEntries = new List<MenuEntry>();
 			MenuClock = new GameClock();
 			MenuClock.Start();
-			MenuTitle = strMenuTitle;
 
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.5);

@@ -418,6 +418,11 @@ namespace MenuBuddy
 			LoadingScreen.Load(this, false, null, screens.ToArray());
 		}
 
+		public GameScreen FindScreen(string screenName)
+		{
+			return Screens.Find(m => m.ScreenName == screenName);
+		}
+
 		#region screen stack methods
 
 		/// <summary>

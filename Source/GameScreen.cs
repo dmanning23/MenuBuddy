@@ -118,6 +118,11 @@ namespace MenuBuddy
 		/// </summary>
 		public float MenuTitleOffset { get; set; }
 
+		/// <summary>
+		/// Gets or sets the name of this screen
+		/// </summary>
+		public string ScreenName { get; set; }
+
 		#endregion
 
 		#region Initialization
@@ -125,7 +130,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MenuBuddy.GameScreen"/> class.
 		/// </summary>
-		public GameScreen()
+		public GameScreen(string strMenuTitle = "")
 		{
 			IsPopup = false;
 			TransitionOnTime = TimeSpan.Zero;
