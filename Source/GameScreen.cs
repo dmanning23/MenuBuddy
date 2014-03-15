@@ -138,6 +138,7 @@ namespace MenuBuddy
 			IsExiting = false;
 			ScreenState = EScreenState.TransitionOn;
 			TransitionPosition = 1.0f;
+			ScreenName = strMenuTitle;
 		}
 
 		/// <summary>

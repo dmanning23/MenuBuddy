@@ -57,13 +57,13 @@ namespace MenuBuddy
 
 		public void Increment(object sender, EventArgs e)
 		{
-			Value = Math.Max(Value + Step, Max);
+			Value = Math.Min(Value + Step, Max);
 			SetMenuEntryText();
 		}
 
 		public void Decrement(object sender, EventArgs e)
 		{
-			Value = Math.Min(Value - Step, Min);
+			Value = Math.Max(Value - Step, Min);
 			SetMenuEntryText();
 		}
 
