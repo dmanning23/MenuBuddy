@@ -77,6 +77,12 @@
     <Compile Include="..\Source\MenuScreenWithBackground.cs">
       <Link>MenuScreenWithBackground.cs</Link>
     </Compile>
+    <Compile Include="..\Source\MenuEntryBool.cs">
+      <Link>MenuEntryBool.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\MenuEntryInt.cs">
+      <Link>MenuEntryInt.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -100,21 +106,21 @@
       <Project>{BA9476CF-99BA-4D03-92F2-73D2C5E58883}</Project>
       <Name>MonoGame.Framework.Android</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\HadoukInput\Android\HadoukInput.Android.csproj">
-      <Project>{D3C24A24-49A5-4D98-955A-09E2F320AD45}</Project>
-      <Name>HadoukInput.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GameTimer\Android\GameTimer.Android.csproj">
-      <Project>{1D645493-3A2F-496C-B405-A687749D74CE}</Project>
-      <Name>GameTimer.Android</Name>
+    <ProjectReference Include="..\..\FontBuddy\Android\FontBuddyLib.Android.csproj">
+      <Project>{970D0C93-407B-4372-B236-0E799B22D90E}</Project>
+      <Name>FontBuddyLib.Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ResolutionBuddy\Android\ResolutionBuddy.Android.csproj">
       <Project>{8C893C25-E7DE-4B40-8165-AD10F2EDCCA1}</Project>
       <Name>ResolutionBuddy.Android</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\FontBuddy\Android\FontBuddyLib.Android.csproj">
-      <Project>{970D0C93-407B-4372-B236-0E799B22D90E}</Project>
-      <Name>FontBuddyLib.Android</Name>
+    <ProjectReference Include="..\..\GameTimer\Android\GameTimer.Android.csproj">
+      <Project>{1D645493-3A2F-496C-B405-A687749D74CE}</Project>
+      <Name>GameTimer.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\HadoukInput\Android\HadoukInput.Android.csproj">
+      <Project>{D3C24A24-49A5-4D98-955A-09E2F320AD45}</Project>
+      <Name>HadoukInput.Android</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
