@@ -86,12 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
-    <None Include="..\Source\Content\gradient.png">
-      <Link>Content\gradient.png</Link>
-    </None>
-    <None Include="..\Source\Content\hourglass.png">
-      <Link>Content\hourglass.png</Link>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
