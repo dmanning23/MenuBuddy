@@ -75,6 +75,8 @@ namespace MenuBuddy
 		/// </summary>
 		public float MenuOptionOffset { get; set; }
 
+		public float TitleScale { get; set; }
+
 		#endregion
 
 		#region Initialization
@@ -84,6 +86,7 @@ namespace MenuBuddy
 		/// </summary>
 		public MenuScreen(string strMenuTitle) : base(strMenuTitle)
 		{
+			TitleScale = 1.0f;
 			MenuEntries = new List<MenuEntry>();
 			MenuClock = new GameClock();
 			MenuClock.Start();
@@ -187,10 +190,13 @@ namespace MenuBuddy
 			if (MenuEntries.Count >= 1)
 			{
 				//play menu noise
-				ScreenManager.MenuChange.Play();
+				if (MenuEntries[SelectedEntry].PlayLeftRightSound)
+				{
+					ScreenManager.MenuChange.Play();
+				}
 
 				//run the sleected evetn
-				OnLeft(SelectedEntry);
+				MenuEntries[SelectedEntry].OnLeftEntry();
 
 				ResetInputTimer();
 			}
@@ -201,10 +207,13 @@ namespace MenuBuddy
 			if (MenuEntries.Count >= 1)
 			{
 				//play menu noise
-				ScreenManager.MenuChange.Play();
+				if (MenuEntries[SelectedEntry].PlayLeftRightSound)
+				{
+					ScreenManager.MenuChange.Play();
+				}
 
 				//run the sleected evetn
-				OnRight(SelectedEntry);
+				MenuEntries[SelectedEntry].OnRightEntry();
 
 				ResetInputTimer();
 			}
@@ -222,34 +231,10 @@ namespace MenuBuddy
 				ScreenManager.MenuSelect.Play();
 
 				//run the sleected evetn
-				OnSelectEntry(SelectedEntry, playerIndex);
+				MenuEntries[SelectedEntry].OnSelectEntry(playerIndex);
 
 				ResetInputTimer();
 			}
-		}
-
-		/// <summary>
-		/// Handler for when the user has chosen a menu entry.
-		/// </summary>
-		protected virtual void OnSelectEntry(int entryIndex, PlayerIndex playerIndex)
-		{
-			MenuEntries[SelectedEntry].OnSelectEntry(playerIndex);
-		}
-
-		/// <summary>
-		/// Handler for when the user has hit left on a menu entry
-		/// </summary>
-		protected virtual void OnLeft(int entryIndex)
-		{
-			MenuEntries[SelectedEntry].OnLeftEntry();
-		}
-
-		/// <summary>
-		/// Handler for when the user has hit right on a menu entry
-		/// </summary>
-		protected virtual void OnRight(int entryIndex)
-		{
-			MenuEntries[SelectedEntry].OnRightEntry();
 		}
 
 		/// <summary>
@@ -316,7 +301,7 @@ namespace MenuBuddy
 				fMenuPositionY += (MenuEntries[i].GetHeight(this));
 			}
 
-			DrawMenuTitle(MenuTitle, 1.0f);
+			DrawMenuTitle(MenuTitle, TitleScale);
 
 			ScreenManager.SpriteBatchEnd();
 		}

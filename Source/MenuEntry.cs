@@ -51,6 +51,17 @@ namespace MenuBuddy
 		/// <value>The color of the non selected.</value>
 		public Color NonSelectedColor { get; set; }
 
+		/// <summary>
+		/// Whether or not to play a sound when the user hits left/right on a menu entry
+		/// </summary>
+		public virtual bool PlayLeftRightSound
+		{
+			get
+			{
+				return false;
+			}
+		}
+
 		#endregion
 
 		#region Events

@@ -36,6 +36,18 @@ namespace MenuBuddy
 
 		#endregion //Fields
 
+		#region Properties
+
+		public override bool PlayLeftRightSound
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		#endregion //Properties
+
 		#region Methods
 
 		/// <summary>
