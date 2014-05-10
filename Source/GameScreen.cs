@@ -22,7 +22,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Checks whether this screen is active and can respond to user input.
 		/// </summary>
-		private bool m_bOtherScreenHasFocus;
+		protected bool OtherScreenHasFocus { get; private set; }
 
 		#endregion //Member Variables
 
@@ -83,7 +83,7 @@ namespace MenuBuddy
 		{
 			get
 			{
-				return !m_bOtherScreenHasFocus &&
+				return !OtherScreenHasFocus &&
 				       (ScreenState == EScreenState.TransitionOn ||
 				        ScreenState == EScreenState.Active);
 			}
@@ -166,7 +166,7 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
 		{
-			m_bOtherScreenHasFocus = otherScreenHasFocus;
+			OtherScreenHasFocus = otherScreenHasFocus;
 
 			if (IsExiting)
 			{
@@ -261,7 +261,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="strTitle">The title of this menu</param>
 		/// <param name="fScale">The scale to draw the menu title at</param>
-		public void DrawMenuTitle(string strTitle, float fScale)
+		public virtual void DrawMenuTitle(string strTitle, float fScale)
 		{
 			//dont do anything here if the menu title is empty
 			if (string.IsNullOrEmpty(strTitle))
