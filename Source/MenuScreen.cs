@@ -62,7 +62,7 @@ namespace MenuBuddy
 		/// Countdown timer that is used to tell when to start attract mode
 		/// </summary>
 		/// <value>The time since input.</value>
-		protected CountdownTimer TimeSinceInput { get; set; }
+		public  CountdownTimer TimeSinceInput { get; private set; }
 
 		/// <summary>
 		/// Gets or sets the menu clock.
