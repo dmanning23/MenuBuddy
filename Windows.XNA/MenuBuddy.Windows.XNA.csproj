@@ -107,6 +107,12 @@
     <Compile Include="..\Source\MenuEntry.cs">
       <Link>MenuEntry.cs</Link>
     </Compile>
+    <Compile Include="..\Source\MenuEntryBool.cs">
+      <Link>MenuEntryBool.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\MenuEntryInt.cs">
+      <Link>MenuEntryInt.cs</Link>
+    </Compile>
     <Compile Include="..\Source\MenuScreen.cs">
       <Link>MenuScreen.cs</Link>
     </Compile>
