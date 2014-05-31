@@ -47,6 +47,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <WarningLevel>4</WarningLevel>
+    <DefineConstants>KEYBOARD</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
