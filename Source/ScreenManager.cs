@@ -303,17 +303,24 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void AddScreen(GameScreen screen, PlayerIndex? controllingPlayer)
 		{
-			screen.ControllingPlayer = controllingPlayer;
-			screen.ScreenManager = this;
-			screen.IsExiting = false;
-
-			// If we have a graphics device, tell the screen to load content.
-			if (m_IsInitialized)
+			try
 			{
-				screen.LoadContent();
-			}
+				screen.ControllingPlayer = controllingPlayer;
+				screen.ScreenManager = this;
+				screen.IsExiting = false;
 
-			Screens.Add(screen);
+				// If we have a graphics device, tell the screen to load content.
+				if (m_IsInitialized)
+				{
+					screen.LoadContent();
+				}
+
+				Screens.Add(screen);
+			}
+			catch (Exception ex)
+			{
+				ErrorScreen(ex);
+			}
 		}
 
 		/// <summary>
