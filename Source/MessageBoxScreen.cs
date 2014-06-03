@@ -13,19 +13,21 @@ namespace MenuBuddy
 	/// </summary>
 	public class MessageBoxScreen : GameScreen
 	{
-		#region Fields
-
-		private readonly string message;
-
-		private Texture2D gradientTexture;
-
-		#endregion
-
 		#region Events
 
 		public event EventHandler<PlayerIndexEventArgs> Accepted;
 
 		public event EventHandler<PlayerIndexEventArgs> Cancelled;
+
+		/// <summary>
+		/// The message to be displayed 
+		/// </summary>
+		public string Message { get; private set; }
+
+		/// <summary>
+		/// The gradient that is drawn behind the message box.
+		/// </summary>
+		private Texture2D GradientTexture { get; set; }
 
 		#endregion
 
@@ -75,11 +77,11 @@ namespace MenuBuddy
 				completeMessage.Append(okText);
 				completeMessage.Append(cancelText);
 
-				this.message = completeMessage.ToString();
+				this.Message = completeMessage.ToString();
 			}
 			else
 			{
-				this.message = message;
+				this.Message = message;
 			}
 
 			IsPopup = true;
@@ -97,9 +99,10 @@ namespace MenuBuddy
 		public override void LoadContent()
 		{
 			base.LoadContent();
-			ContentManager content = ScreenManager.Game.Content;
 
-			gradientTexture = content.Load<Texture2D>(@"gradient");
+			//load the gradient texture
+			ContentManager content = ScreenManager.Game.Content;
+			GradientTexture = content.Load<Texture2D>(@"gradient");
 		}
 
 		#endregion
@@ -163,7 +166,7 @@ namespace MenuBuddy
 
 			// Center the message text in the viewport.
 			var windowSize = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
-			Vector2 textSize = ScreenManager.MessageBoxFont.MeasureString(message);
+			Vector2 textSize = ScreenManager.MessageBoxFont.MeasureString(Message);
 			Vector2 textPosition = windowSize - (textSize / 2);
 
 			// The background includes a border somewhat larger than the text itself.
@@ -179,10 +182,10 @@ namespace MenuBuddy
 			var color = new Color(1.0f, 1.0f, 1.0f, TransitionAlpha);
 
 			// Draw the background rectangle.
-			spriteBatch.Draw(gradientTexture, backgroundRectangle, color);
+			spriteBatch.Draw(GradientTexture, backgroundRectangle, color);
 
 			// Draw the message box text.
-			spriteBatch.DrawString(ScreenManager.MessageBoxFont, message, textPosition, color);
+			spriteBatch.DrawString(ScreenManager.MessageBoxFont, Message, textPosition, color);
 
 			ScreenManager.SpriteBatchEnd();
 		}

@@ -1,5 +1,7 @@
 using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
 
 #if NETWORKING
 using Microsoft.Xna.Framework.Net;
@@ -75,7 +77,33 @@ namespace MenuBuddy
 #endif
 
 			// Otherwise just a generic error message.
-			return "An unknown error occurred:\n" + exception.Message;
+			return "An unknown error occurred:\n" + exception.ToString();
+		}
+
+		/// <summary>
+		/// Dont load any content for this screen, because a lot of the time the missing content will be the gradient texture.
+		/// </summary>
+		public override void LoadContent()
+		{
+		}
+
+		/// <summary>
+		/// Draws the message box.
+		/// </summary>
+		public override void Draw(GameTime gameTime)
+		{
+			//Draw at the upper left to try and fit as much text as possible on teh screen
+			Vector2 textPosition = new Vector2(ScreenRect.Left, ScreenRect.Top);
+
+			ScreenManager.SpriteBatchBegin();
+
+			// Darken down any other screens that were drawn beneath the popup.
+			ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2.0f / 3.0f);
+
+			// Draw the message box text.
+			ScreenManager.SpriteBatch.DrawString(ScreenManager.MessageBoxFont, Message, textPosition, Color.White);
+
+			ScreenManager.SpriteBatchEnd();
 		}
 
 		#endregion
