@@ -196,55 +196,62 @@ namespace MenuBuddy
 		/// </summary>
 		public override void Update(GameTime gameTime)
 		{
-			// Read the keyboard and gamepad.
-			InputState.Update();
-
-			// Make a copy of the master screen list, to avoid confusion if the process of updating one screen adds or removes others.
-			m_ScreensToUpdate.Clear();
-
-			//Update the top screen separate from all other screens.
-			if (null != TopScreen)
+			try
 			{
-				TopScreen.Update(gameTime, false, false);
-				TopScreen.HandleInput(InputState, gameTime);
-			}
+				// Read the keyboard and gamepad.
+				InputState.Update();
 
-			foreach (GameScreen screen in Screens)
-			{
-				m_ScreensToUpdate.Add(screen);
-			}
+				// Make a copy of the master screen list, to avoid confusion if the process of updating one screen adds or removes others.
+				m_ScreensToUpdate.Clear();
 
-			bool otherScreenHasFocus = !Game.IsActive;
-			bool coveredByOtherScreen = false;
-
-			// Loop as long as there are screens waiting to be updated.
-			while (m_ScreensToUpdate.Count > 0)
-			{
-				// Pop the topmost screen off the waiting list.
-				GameScreen screen = m_ScreensToUpdate[m_ScreensToUpdate.Count - 1];
-				m_ScreensToUpdate.RemoveAt(m_ScreensToUpdate.Count - 1);
-
-				// Update the screen.
-				screen.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
-
-				if (screen.ScreenState == EScreenState.TransitionOn ||
-				    screen.ScreenState == EScreenState.Active)
+				//Update the top screen separate from all other screens.
+				if (null != TopScreen)
 				{
-					// If this is the first active screen we came across,
-					// give it a chance to handle input.
-					if (!otherScreenHasFocus)
-					{
-						screen.HandleInput(InputState, gameTime);
-						otherScreenHasFocus = true;
-					}
+					TopScreen.Update(gameTime, false, false);
+					TopScreen.HandleInput(InputState, gameTime);
+				}
 
-					// If this is an active non-popup, inform any subsequent
-					// screens that they are covered by it.
-					if (!screen.IsPopup)
+				foreach (GameScreen screen in Screens)
+				{
+					m_ScreensToUpdate.Add(screen);
+				}
+
+				bool otherScreenHasFocus = !Game.IsActive;
+				bool coveredByOtherScreen = false;
+
+				// Loop as long as there are screens waiting to be updated.
+				while (m_ScreensToUpdate.Count > 0)
+				{
+					// Pop the topmost screen off the waiting list.
+					GameScreen screen = m_ScreensToUpdate[m_ScreensToUpdate.Count - 1];
+					m_ScreensToUpdate.RemoveAt(m_ScreensToUpdate.Count - 1);
+
+					// Update the screen.
+					screen.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+
+					if (screen.ScreenState == EScreenState.TransitionOn ||
+						screen.ScreenState == EScreenState.Active)
 					{
-						coveredByOtherScreen = true;
+						// If this is the first active screen we came across,
+						// give it a chance to handle input.
+						if (!otherScreenHasFocus)
+						{
+							screen.HandleInput(InputState, gameTime);
+							otherScreenHasFocus = true;
+						}
+
+						// If this is an active non-popup, inform any subsequent
+						// screens that they are covered by it.
+						if (!screen.IsPopup)
+						{
+							coveredByOtherScreen = true;
+						}
 					}
 				}
+			}
+			catch (Exception ex)
+			{
+				ErrorScreen(ex);
 			}
 		}
 
@@ -253,27 +260,28 @@ namespace MenuBuddy
 		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
-			foreach (GameScreen screen in Screens)
+			try
 			{
-				if (screen.ScreenState == EScreenState.Hidden)
+				foreach (GameScreen screen in Screens)
 				{
-					continue;
+					if (screen.ScreenState == EScreenState.Hidden)
+					{
+						continue;
+					}
+
+					screen.Draw(gameTime);
 				}
 
-				screen.Draw(gameTime);
+				//draw the top screen
+				if (null != TopScreen)
+				{
+					TopScreen.Draw(gameTime);
+				}
 			}
-
-			//draw the top screen
-			if (null != TopScreen)
+			catch (Exception ex)
 			{
-				TopScreen.Draw(gameTime);
+				ErrorScreen(ex);
 			}
-
-//			//draw the titlesafe area
-//			SpriteBatchStart();
-//			BasicPrimitive rect = new BasicPrimitive(GraphicsDevi		ce);
-//			rect.Rectangle(Resolution.TitleSafeArea, Color.Red, SpriteBatch);
-//			SpriteBatch.End();
 		}
 
 		/// <summary>
