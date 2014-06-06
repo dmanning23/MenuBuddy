@@ -196,8 +196,10 @@ namespace MenuBuddy
 		/// </summary>
 		public override void Update(GameTime gameTime)
 		{
+#if !DEBUG
 			try
 			{
+#endif
 				// Read the keyboard and gamepad.
 				InputState.Update();
 
@@ -248,11 +250,13 @@ namespace MenuBuddy
 						}
 					}
 				}
+#if !DEBUG
 			}
 			catch (Exception ex)
 			{
 				ErrorScreen(ex);
 			}
+#endif
 		}
 
 		/// <summary>
