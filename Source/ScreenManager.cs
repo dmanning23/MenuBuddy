@@ -315,8 +315,10 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void AddScreen(GameScreen screen, PlayerIndex? controllingPlayer)
 		{
+#if !DEBUG
 			try
 			{
+#endif
 				screen.ControllingPlayer = controllingPlayer;
 				screen.ScreenManager = this;
 				screen.IsExiting = false;
@@ -328,11 +330,13 @@ namespace MenuBuddy
 				}
 
 				Screens.Add(screen);
+#if !DEBUG
 			}
 			catch (Exception ex)
 			{
 				ErrorScreen(ex);
 			}
+#endif
 		}
 
 		/// <summary>
