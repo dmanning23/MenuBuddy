@@ -264,8 +264,10 @@ namespace MenuBuddy
 		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
+#if !DEBUG
 			try
 			{
+#endif
 				foreach (GameScreen screen in Screens)
 				{
 					if (screen.ScreenState == EScreenState.Hidden)
@@ -281,11 +283,13 @@ namespace MenuBuddy
 				{
 					TopScreen.Draw(gameTime);
 				}
+#if !DEBUG
 			}
 			catch (Exception ex)
 			{
 				ErrorScreen(ex);
 			}
+#endif
 		}
 
 		/// <summary>
