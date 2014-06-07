@@ -101,7 +101,7 @@ namespace MenuBuddy
 			ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2.0f / 3.0f);
 
 			// Draw the message box text.
-			ScreenManager.SpriteBatch.DrawString(ScreenManager.MessageBoxFont, Message, textPosition, Color.White, 0.0f, 0.0f, 0.6f, SpriteEffects.None, 1.0f);
+			ScreenManager.SpriteBatch.DrawString(ScreenManager.MessageBoxFont, Message, textPosition, Color.White, 0.0f, new Vector2(0.6f, 0.6f), 0.6f, SpriteEffects.None, 1.0f);
 
 			ScreenManager.SpriteBatchEnd();
 		}
