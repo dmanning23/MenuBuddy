@@ -1,11 +1,11 @@
-using System;
-using System.Collections.Generic;
 using HadoukInput;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
+using System;
+using System.Collections.Generic;
 
 namespace MenuBuddy
 {

@@ -1,11 +1,6 @@
-using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-
-#if NETWORKING
-using Microsoft.Xna.Framework.Net;
-#endif
+using System;
 
 namespace MenuBuddy
 {
@@ -29,52 +24,6 @@ namespace MenuBuddy
 		private static string GetErrorMessage(Exception exception)
 		{
 			//Trace.WriteLine("Network operation threw " + exception);
-
-			// Is this a GamerPrivilegeException?
-			if (exception is GamerPrivilegeException)
-			{
-				if (Guide.IsTrialMode)
-				{
-					return "This functionality is not available in trial mode";
-				}
-				else
-				{
-					return "You must sign in a suitable gamer profile \nin order to access this functionality";
-				}
-			}
-
-#if NETWORKING
-
-	// Is it a NetworkSessionJoinException?
-			NetworkSessionJoinException joinException = exception as NetworkSessionJoinException;
-
-			if (joinException != null)
-			{
-				switch (joinException.JoinError)
-				{
-					case NetworkSessionJoinError.SessionFull:
-					return "This session is already full";
-
-					case NetworkSessionJoinError.SessionNotFound:
-					return "Session not found. It may have ended, \nor there may be no network connectivity \nbetween the local machine and session host";
-
-					case NetworkSessionJoinError.SessionNotJoinable:
-					return "You must wait for the host to return to \nthe lobby before you can join this session";
-				}
-			}
-
-			// Is this a NetworkNotAvailableException?
-			if (exception is NetworkNotAvailableException)
-			{
-				return "Networking is turned \noff or not connected";
-			}
-
-			// Is this a NetworkException?
-			if (exception is NetworkException)
-			{
-				return "There was an error while \naccessing the network";
-			}
-#endif
 
 			// Otherwise just a generic error message.
 			return "An unknown error occurred:\n" + exception.ToString();

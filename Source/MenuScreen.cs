@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
 using GameTimer;
 using HadoukInput;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace MenuBuddy
 {

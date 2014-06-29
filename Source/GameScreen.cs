@@ -1,8 +1,8 @@
-using System;
 using FontBuddyLib;
 using HadoukInput;
 using Microsoft.Xna.Framework;
 using ResolutionBuddy;
+using System;
 
 namespace MenuBuddy
 {
