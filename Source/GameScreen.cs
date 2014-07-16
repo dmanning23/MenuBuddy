@@ -315,7 +315,7 @@ namespace MenuBuddy
 		/// </summary>
 		public Color FadeAlphaDuringTransition(Color color)
 		{
-			return new Color(color.R, color.G, color.B, TransitionAlpha);
+			return new Color(color, TransitionAlpha);
 		}
 
 		/// <summary>
