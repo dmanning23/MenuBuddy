@@ -315,7 +315,11 @@ namespace MenuBuddy
 		/// </summary>
 		public Color FadeAlphaDuringTransition(Color color)
 		{
+#if XNA
+			return new Color(color.R, color.G, color.B, TransitionAlpha);
+#else
 			return new Color(color, TransitionAlpha);
+#endif
 		}
 
 		/// <summary>
