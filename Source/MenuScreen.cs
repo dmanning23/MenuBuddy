@@ -153,12 +153,8 @@ namespace MenuBuddy
 		{
 			if (MenuEntries.Count > 1)
 			{
-				SelectedEntry--;
-
-				if (SelectedEntry < 0)
-				{
-					SelectedEntry = MenuEntries.Count - 1;
-				}
+				//don't roll over
+				SelectedEntry = Math.Max(0, SelectedEntry - 1);
 
 				//play menu noise
 				ScreenManager.MenuChange.Play();
@@ -171,12 +167,8 @@ namespace MenuBuddy
 		{
 			if (MenuEntries.Count > 1)
 			{
-				SelectedEntry++;
-
-				if (SelectedEntry >= MenuEntries.Count)
-				{
-					SelectedEntry = 0;
-				}
+				//don't roll over
+				SelectedEntry = Math.Min(SelectedEntry + 1, MenuEntries.Count - 1);
 
 				//play menu noise
 				ScreenManager.MenuChange.Play();
