@@ -23,7 +23,7 @@ namespace MenuBuddy
 	{
 		#region Fields
 
-		private const string message = "   Loading...";
+		private const string message = " Loading...";
 
 		private readonly ShadowTextBuddy loadingFont = new ShadowTextBuddy();
 
@@ -141,7 +141,7 @@ namespace MenuBuddy
 			if (loadingIsSlow)
 			{
 				//Get the text position
-				var textPosition = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
+				var textPosition = new Vector2(ScreenRect.Center.X + 64, ScreenRect.Center.Y);
 				Vector2 fontSize = loadingFont.Font.MeasureString(message);
 				textPosition.Y -= fontSize.Y;
 
@@ -156,12 +156,15 @@ namespace MenuBuddy
 				loadingFont.ShadowColor = colorBack;
 				loadingFont.Write(message, textPosition, Justify.Center, 1.0f, colorFore, ScreenManager.SpriteBatch, 0.0f);
 
+				//get the size of the text
+				Vector2 textSize = loadingFont.Font.MeasureString(message);
+
 				//get the hourglass position
 				var hourglassPos = new Rectangle();
 				hourglassPos.Width = 64;
 				hourglassPos.Height = 64;
-				hourglassPos.X = (int)((textPosition.X - (fontSize.X * 0.5f)) + 20);
-				hourglassPos.Y = (int)(textPosition.Y + 40);
+				hourglassPos.X = (int)(textPosition.X - (textSize.X * 0.5f) - HourGlass.Width);
+				hourglassPos.Y = (int)(textPosition.Y + 16);
 
 				//draw the hourglass
 				ScreenManager.SpriteBatch.Draw(HourGlass, hourglassPos, colorFore);
