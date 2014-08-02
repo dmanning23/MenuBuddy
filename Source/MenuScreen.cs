@@ -84,7 +84,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public MenuScreen(string strMenuTitle) : base(strMenuTitle)
+		public MenuScreen(string strMenuTitle = "") : base(strMenuTitle)
 		{
 			TitleScale = 1.0f;
 			MenuEntries = new List<MenuEntry>();

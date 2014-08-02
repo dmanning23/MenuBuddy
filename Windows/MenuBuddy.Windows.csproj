@@ -73,6 +73,9 @@
     <Compile Include="..\Source\MenuScreenWithBackground.cs">
       <Link>MenuScreenWithBackground.cs</Link>
     </Compile>
+    <Compile Include="..\Source\PrettyMenuEntry.cs">
+      <Link>PrettyMenuEntry.cs</Link>
+    </Compile>
     <Compile Include="..\Source\ScreenState.cs">
       <Link>ScreenState.cs</Link>
     </Compile>

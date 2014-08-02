@@ -317,7 +317,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Adds a new screen to the screen manager.
 		/// </summary>
-		public virtual void AddScreen(GameScreen screen, PlayerIndex? controllingPlayer)
+		public virtual void AddScreen(GameScreen screen, PlayerIndex? controllingPlayer = null)
 		{
 #if !DEBUG
 			try
@@ -346,7 +346,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Adds a new screen to the screen manager.
 		/// </summary>
-		public virtual void AddScreen(GameScreen[] screens, PlayerIndex? controllingPlayer)
+		public virtual void AddScreen(GameScreen[] screens, PlayerIndex? controllingPlayer = null)
 		{
 			foreach (GameScreen screen in screens)
 			{

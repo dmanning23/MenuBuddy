@@ -77,7 +77,21 @@ namespace MenuBuddy
 		/// if set, the screen will automatically remove itself as soon as the
 		/// transition finishes.
 		/// </summary>
-		public bool IsExiting { get; protected internal set; }
+		public bool IsExiting
+		{
+			get { return _isExiting; }
+			protected internal set
+			{
+				bool fireEvent = !_isExiting && value;
+				_isExiting = value;
+				if (fireEvent && (Exiting != null))
+				{
+					Exiting(this, EventArgs.Empty);
+				}
+			}
+		}
+
+		private bool _isExiting = false;
 
 		public bool IsActive
 		{
@@ -122,6 +136,11 @@ namespace MenuBuddy
 		/// Gets or sets the name of this screen
 		/// </summary>
 		public string ScreenName { get; set; }
+
+		/// <summary>
+		/// Event that gets called when the screen is exiting
+		/// </summary>
+		public event EventHandler Exiting;
 
 		#endregion
 
