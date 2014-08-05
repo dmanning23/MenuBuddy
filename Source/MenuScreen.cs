@@ -62,7 +62,7 @@ namespace MenuBuddy
 		/// Countdown timer that is used to tell when to start attract mode
 		/// </summary>
 		/// <value>The time since input.</value>
-		public  CountdownTimer TimeSinceInput { get; private set; }
+		public CountdownTimer TimeSinceInput { get; private set; }
 
 		/// <summary>
 		/// Gets or sets the menu clock.
@@ -77,6 +77,11 @@ namespace MenuBuddy
 
 		public float TitleScale { get; set; }
 
+		/// <summary>
+		/// Set this to true and the menu won't play any noises when things are selected etc.
+		/// </summary>
+		public bool QuietMenu { get; set; }
+
 		#endregion
 
 		#region Initialization
@@ -84,8 +89,10 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public MenuScreen(string strMenuTitle = "") : base(strMenuTitle)
+		public MenuScreen(string strMenuTitle = "")
+			: base(strMenuTitle)
 		{
+			QuietMenu = false;
 			TitleScale = 1.0f;
 			MenuEntries = new List<MenuEntry>();
 			MenuClock = new GameClock();
@@ -156,8 +163,11 @@ namespace MenuBuddy
 				//don't roll over
 				SelectedEntry = Math.Max(0, SelectedEntry - 1);
 
-				//play menu noise
-				ScreenManager.MenuChange.Play();
+				if (!QuietMenu)
+				{
+					//play menu noise
+					ScreenManager.MenuChange.Play();
+				}
 
 				ResetInputTimer();
 			}
@@ -170,8 +180,11 @@ namespace MenuBuddy
 				//don't roll over
 				SelectedEntry = Math.Min(SelectedEntry + 1, MenuEntries.Count - 1);
 
-				//play menu noise
-				ScreenManager.MenuChange.Play();
+				if (!QuietMenu)
+				{
+					//play menu noise
+					ScreenManager.MenuChange.Play();
+				}
 
 				ResetInputTimer();
 			}
@@ -182,7 +195,7 @@ namespace MenuBuddy
 			if (MenuEntries.Count >= 1)
 			{
 				//play menu noise
-				if (MenuEntries[SelectedEntry].PlayLeftRightSound)
+				if (MenuEntries[SelectedEntry].PlayLeftRightSound && !QuietMenu)
 				{
 					ScreenManager.MenuChange.Play();
 				}
@@ -199,7 +212,7 @@ namespace MenuBuddy
 			if (MenuEntries.Count >= 1)
 			{
 				//play menu noise
-				if (MenuEntries[SelectedEntry].PlayLeftRightSound)
+				if (MenuEntries[SelectedEntry].PlayLeftRightSound && !QuietMenu)
 				{
 					ScreenManager.MenuChange.Play();
 				}
@@ -219,8 +232,11 @@ namespace MenuBuddy
 		{
 			if (MenuEntries.Count >= 1)
 			{
-				//play menu noise
-				ScreenManager.MenuSelect.Play();
+				if (!QuietMenu)
+				{
+					//play menu noise
+					ScreenManager.MenuSelect.Play();
+				}
 
 				//run the sleected evetn
 				MenuEntries[SelectedEntry].OnSelectEntry(playerIndex);
