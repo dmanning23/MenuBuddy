@@ -34,17 +34,6 @@ namespace MenuBuddy
 		/// </summary>
 		protected IList<MenuEntry> MenuEntries { get; private set; }
 
-		/// <summary>
-		/// Gets or sets the menu title position.
-		/// </summary>
-		public string MenuTitle
-		{
-			get
-			{
-				return ScreenName;
-			}
-		}
-
 		protected int SelectedEntry
 		{
 			get { return m_SelectedEntry; }
@@ -309,7 +298,7 @@ namespace MenuBuddy
 				fMenuPositionY += (MenuEntries[i].GetHeight(this));
 			}
 
-			DrawMenuTitle(MenuTitle, TitleScale);
+			DrawMenuTitle(ScreenName, TitleScale);
 
 			ScreenManager.SpriteBatchEnd();
 		}
