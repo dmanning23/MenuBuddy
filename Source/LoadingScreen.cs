@@ -164,7 +164,7 @@ namespace MenuBuddy
 				hourglassPos.Width = 64;
 				hourglassPos.Height = 64;
 				hourglassPos.X = (int)(textPosition.X - (textSize.X * 0.5f) - HourGlass.Width);
-				hourglassPos.Y = (int)(textPosition.Y + 16);
+				hourglassPos.Y = (int)(textPosition.Y + 36);
 
 				//draw the hourglass
 				ScreenManager.SpriteBatch.Draw(HourGlass, hourglassPos, colorFore);
