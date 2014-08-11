@@ -268,14 +268,14 @@ namespace MenuBuddy
 			try
 			{
 #endif
-				foreach (GameScreen screen in Screens)
+				for (int i = 0; i < Screens.Count; i++)
 				{
-					if (screen.ScreenState == EScreenState.Hidden)
+					if (Screens[i].ScreenState == EScreenState.Hidden)
 					{
 						continue;
 					}
 
-					screen.Draw(gameTime);
+					Screens[i].Draw(gameTime);
 				}
 
 				//draw the top screen

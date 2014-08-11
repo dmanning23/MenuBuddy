@@ -1,7 +1,9 @@
 using FontBuddyLib;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Threading;
 
 namespace MenuBuddy
 {
@@ -39,6 +41,12 @@ namespace MenuBuddy
 		/// <value>The hour glass.</value>
 		private Texture2D HourGlass { get; set; }
 
+		GraphicsDevice graphicsDevice;
+
+		Thread backgroundThread;
+
+		GameTime loadStartTime;
+
 		#endregion
 
 		#region Initialization
@@ -54,10 +62,15 @@ namespace MenuBuddy
 
 			TransitionOnTime = TimeSpan.FromSeconds(0.5);
 
-			//load the hourglass
-			HourGlass = screenManager.Game.Content.Load<Texture2D>("hourglass");
-			loadingFont.Font = screenManager.TitleFont;
-			loadingFont.ShadowSize = 1.0f;
+			if (loadingIsSlow)
+			{
+				//load the hourglass
+				HourGlass = screenManager.Game.Content.Load<Texture2D>("hourglass");
+				loadingFont.Font = screenManager.TitleFont;
+				loadingFont.ShadowSize = 1.0f;
+
+				graphicsDevice = screenManager.GraphicsDevice;
+			}
 		}
 
 		/// <summary>
@@ -96,23 +109,26 @@ namespace MenuBuddy
 			// If all the previous screens have finished transitioning off, it is time to actually perform the load.
 			if (otherScreensAreGone)
 			{
-				//clean up all the memory from those other screens
-				GC.Collect();
-
-				ScreenManager.RemoveScreen(this);
-
-				foreach (GameScreen screen in screensToLoad)
+				// Start up the background thread, which will update the network
+				// session and draw the animation while we are loading.
+				if (backgroundThread == null)
 				{
-					if (screen != null)
-					{
-						ScreenManager.AddScreen(screen, ControllingPlayer);
-					}
+					backgroundThread = new Thread(BackgroundWorkerThread);
+					backgroundThread.Start();
 				}
 
-				// Once the load has finished, we use ResetElapsedTime to tell
-				// the  game timing mechanism that we have just finished a very
-				// long frame, and that it should not try to catch up.
-				ScreenManager.Game.ResetElapsedTime();
+				if (!backgroundThread.IsAlive)
+				{
+					//clean up all the memory from those other screens
+					GC.Collect();
+
+					ScreenManager.RemoveScreen(this);
+
+					// Once the load has finished, we use ResetElapsedTime to tell
+					// the  game timing mechanism that we have just finished a very
+					// long frame, and that it should not try to catch up.
+					ScreenManager.Game.ResetElapsedTime();
+				}
 			}
 		}
 
@@ -170,6 +186,25 @@ namespace MenuBuddy
 				ScreenManager.SpriteBatch.Draw(HourGlass, hourglassPos, colorFore);
 
 				ScreenManager.SpriteBatchEnd();
+			}
+		}
+
+		#endregion
+
+		#region Background Thread
+
+		/// <summary>
+		/// Worker thread draws the loading animation and updates the network
+		/// session while the load is taking place.
+		/// </summary>
+		void BackgroundWorkerThread()
+		{
+			foreach (GameScreen screen in screensToLoad)
+			{
+				if (screen != null)
+				{
+					ScreenManager.AddScreen(screen, ControllingPlayer);
+				}
 			}
 		}
 
