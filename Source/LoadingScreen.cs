@@ -45,8 +45,6 @@ namespace MenuBuddy
 
 		Thread backgroundThread;
 
-		GameTime loadStartTime;
-
 		#endregion
 
 		#region Initialization
