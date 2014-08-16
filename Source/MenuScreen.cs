@@ -144,6 +144,10 @@ namespace MenuBuddy
 			//Check if one of those menu entries was selected with the mouse
 			if (ScreenManager.TouchMenus)
 			{
+				if (!ScreenManager.InputState.LMouseDown)
+				{
+					m_SelectedEntry = -1;
+				}
 				CheckForMouseClick();
 			}
 			else
@@ -241,11 +245,12 @@ namespace MenuBuddy
 			{
 				//ok find which menu entry was clicked
 				var mousePos = ScreenManager.MousePos;
-				foreach (var entry in MenuEntries)
+				for (int i = 0; i < MenuEntries.Count; i++)
 				{
-					if (entry.ButtonRect.Contains(mousePos))
+					if (MenuEntries[i].ButtonRect.Contains(mousePos))
 					{
-						FireMenuSelectEvent(PlayerIndex.One, entry);
+						m_SelectedEntry = i;
+						FireMenuSelectEvent(PlayerIndex.One, MenuEntries[i]);
 						break;
 					}
 				}
@@ -347,16 +352,7 @@ namespace MenuBuddy
 				}
 
 				//Draw the menu option
-				bool isSelected;
-				if (ScreenManager.TouchMenus)
-				{
-					//TODO: move this hack out of here... determine where the mouse pointer is and set that as the selected item
-					isSelected = false;
-				}
-				else
-				{
-					isSelected = IsActive && (i == SelectedEntry);
-				}
+				bool isSelected = IsActive && (i == SelectedEntry);
 				MenuEntries[i].Draw(this, entryPos, isSelected, MenuClock);
 
 				//update the menu entry Y position

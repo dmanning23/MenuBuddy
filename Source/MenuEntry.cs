@@ -151,6 +151,8 @@ namespace MenuBuddy
 		{
 			Text = strText;
 			SizeMultiplier = 1.0f;
+			Width = 768.0f;
+			Height = 128.0f;
 
 			NonSelectedColor = Color.White;
 
@@ -218,7 +220,7 @@ namespace MenuBuddy
 						(int)(position.X - (Width * 0.5f)),
 						(int)position.Y,
 						(int)Width,
-						(int)Height);
+						(int)GetHeight(screen)); //manually setting the height is a bitch
 				}
 
 				//check if the mouse is over this entry
@@ -244,16 +246,24 @@ namespace MenuBuddy
 				menuFont = (isSelected ? PulsateText : ShadowText);
 				menuFont.ShadowOffset = Vector2.Zero;
 				menuFont.ShadowSize = 1.0f;
+				menuFont.ShadowColor = backgroundColor;
 			}
 			else
 			{
 				//if we are doing touch menus, pop out unselected items from the shadow
 				menuFont = ShadowText;
-				menuFont.ShadowOffset = (isSelected ? Vector2.Zero : new Vector2(5.0f, 5.0f));
+				menuFont.ShadowOffset = new Vector2(7.0f, 7.0f);
 				menuFont.ShadowSize = 1.0f;
+				menuFont.ShadowColor = backgroundColor;
+
+				//set the colors
+				if (isSelected)
+				{
+					menuFont.ShadowColor = NonSelectedColor;
+					color = new Color(0, 0, 0, 0);
+				}
 			}
-			
-			menuFont.ShadowColor = backgroundColor;
+
 			menuFont.Font = screen.ScreenManager.MenuFont;
 
 			// Draw text!
