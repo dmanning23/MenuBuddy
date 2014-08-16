@@ -1,7 +1,9 @@
 using FontBuddyLib;
+using ResolutionBuddy;
 using GameTimer;
 using Microsoft.Xna.Framework;
 using System;
+using Microsoft.Xna.Framework.Input;
 
 namespace MenuBuddy
 {
@@ -23,15 +25,21 @@ namespace MenuBuddy
 
 		/// <summary>
 		/// get or set the width of the selection box of this menu entry.
-		/// Only used if TextSelectionRect.CascadeMenuEntries is set to false.
+		/// Only used if TextSelectionRect.TextSelectionRect is set to false.
 		/// </summary>
 		public float Width { get; set; }
 
 		/// <summary>
 		/// get or set the Height of the selection box of this menu entry.
-		/// Only used if TextSelectionRect.CascadeMenuEntries is set to false.
+		/// Only used if TextSelectionRect.TextSelectionRect is set to false.
 		/// </summary>
 		public float Height { get; set; }
+
+		/// <summary>
+		/// Take everything into consideration: TouchMenus, CascadeMenuEntries, & TextSelectionRect
+		/// the menu entry will set this button rect when it is updated.
+		/// </summary>
+		public Rectangle ButtonRect { get; set; }
 
 		protected float m_fSelectionFade;
 
@@ -192,13 +200,12 @@ namespace MenuBuddy
 			if (screen.ScreenManager.TouchMenus && screen.IsActive)
 			{
 				//create the rect we need
-				Rectangle rect;
 				if (screen.TextSelectionRect)
 				{
 					//use the rect of the text
 					Vector2 textSize = screen.ScreenManager.MenuFont.MeasureString(Text);
 					textSize.X *= 1.1f;
-					rect = new Rectangle(
+					ButtonRect = new Rectangle(
 						(int)(position.X - (textSize.X * 0.5f)), 
 						(int)position.Y, 
 						(int)textSize.X,
@@ -207,15 +214,26 @@ namespace MenuBuddy
 				else
 				{
 					//use the w/h stored in this dude
-					rect = new Rectangle(
+					ButtonRect = new Rectangle(
 						(int)(position.X - (Width * 0.5f)),
 						(int)position.Y,
 						(int)Width,
 						(int)Height);
 				}
 
+				//check if the mouse is over this entry
+				float buttonAlpha = screen.TransitionAlpha * 0.5f;
+				if (screen.ScreenManager.TouchMenus)
+				{
+					//get the mouse location
+					if (ButtonRect.Contains(screen.ScreenManager.MousePos))
+					{
+						buttonAlpha = screen.TransitionAlpha * 0.2f;
+					}
+				}
+
 				//draw the rect!
-				screen.ScreenManager.DrawButtonBackground(screen.TransitionAlpha * 0.5f, rect);
+				screen.ScreenManager.DrawButtonBackground(buttonAlpha, ButtonRect);
 			}
 
 			//get the correct font buddy to draw with.

@@ -88,10 +88,31 @@ namespace MenuBuddy
 		/// </summary>
 		public XNABasicPrimitive Prim { get; set; }
 
+		private bool _touchMenus = false;
+
 		/// <summary>
 		/// Whether or not this game uses touch menus (mouse or touch events)
 		/// </summary>
-		public bool TouchMenus { get; set; }
+		public bool TouchMenus 
+		{ 
+			get
+			{
+				return _touchMenus;
+			}
+			set
+			{
+				_touchMenus = value;
+				InputState = (_touchMenus ? new InputMouseState() : new InputState());
+			}
+		}
+
+		public Vector2 MousePos
+		{
+			get
+			{
+				return Resolution.ScreenToGameCoord(InputState.MousePos);
+			}
+		}
 
 		#endregion //Touch Menu stuff
 
@@ -141,7 +162,6 @@ namespace MenuBuddy
 		                     string strMenuChange,
 		                     string strMenuSelect) : base(game)
 		{
-			TouchMenus = false;
 			Screens = new List<GameScreen>();
 			InputState = new InputState();
 			ClearColor = Color.Black;

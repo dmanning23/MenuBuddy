@@ -141,20 +141,28 @@ namespace MenuBuddy
 				MenuRight();
 			}
 
-			// Accept or cancel the menu? We pass in our ControllingPlayer, which may
-			// either be null (to accept input from any player) or a specific index.
-			// If we pass a null controlling player, the InputState helper returns to
-			// us which player actually provided the input. We pass that through to
-			// OnSelectEntry and OnCancel, so they can tell which player triggered them.
-			PlayerIndex playerIndex;
-
-			if (input.IsMenuSelect(ControllingPlayer, out playerIndex))
+			//Check if one of those menu entries was selected with the mouse
+			if (ScreenManager.TouchMenus)
 			{
-				MenuSelect(playerIndex);
+				CheckForMouseClick();
 			}
-			else if (input.IsMenuCancel(ControllingPlayer, out playerIndex))
+			else
 			{
-				OnCancel(playerIndex);
+				// Accept or cancel the menu? We pass in our ControllingPlayer, which may
+				// either be null (to accept input from any player) or a specific index.
+				// If we pass a null controlling player, the InputState helper returns to
+				// us which player actually provided the input. We pass that through to
+				// OnSelectEntry and OnCancel, so they can tell which player triggered them.
+				PlayerIndex playerIndex;
+
+				if (input.IsMenuSelect(ControllingPlayer, out playerIndex))
+				{
+					MenuSelect(playerIndex);
+				}
+				else if (input.IsMenuCancel(ControllingPlayer, out playerIndex))
+				{
+					OnCancel(playerIndex);
+				}
 			}
 		}
 
@@ -226,6 +234,24 @@ namespace MenuBuddy
 			}
 		}
 
+		protected void CheckForMouseClick()
+		{
+			//did the user click somewhere?
+			if (ScreenManager.InputState.LMouseClick)
+			{
+				//ok find which menu entry was clicked
+				var mousePos = ScreenManager.MousePos;
+				foreach (var entry in MenuEntries)
+				{
+					if (entry.ButtonRect.Contains(mousePos))
+					{
+						FireMenuSelectEvent(PlayerIndex.One, entry);
+						break;
+					}
+				}
+			}
+		}
+
 		/// <summary>
 		/// User hit the "menu select" button.
 		/// </summary>
@@ -234,17 +260,27 @@ namespace MenuBuddy
 		{
 			if (MenuEntries.Count >= 1)
 			{
-				if (!QuietMenu)
-				{
-					//play menu noise
-					ScreenManager.MenuSelect.Play();
-				}
-
-				//run the sleected evetn
-				MenuEntries[SelectedEntry].OnSelectEntry(playerIndex);
-
-				ResetInputTimer();
+				FireMenuSelectEvent(playerIndex, MenuEntries[SelectedEntry]);
 			}
+		}
+
+		/// <summary>
+		/// a menu entry was selected and we want to fire it's select event
+		/// </summary>
+		/// <param name="playerIndex"></param>
+		/// <param name="entry"></param>
+		private void FireMenuSelectEvent(PlayerIndex playerIndex, MenuEntry entry)
+		{
+			if (!QuietMenu)
+			{
+				//play menu noise
+				ScreenManager.MenuSelect.Play();
+			}
+
+			//run the sleected evetn
+			entry.OnSelectEntry(playerIndex);
+
+			ResetInputTimer();
 		}
 
 		/// <summary>
