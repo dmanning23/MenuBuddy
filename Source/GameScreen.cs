@@ -119,15 +119,6 @@ namespace MenuBuddy
 		public PlayerIndex? ControllingPlayer { get; internal set; }
 
 		/// <summary>
-		/// get the title safe area
-		/// </summary>
-		/// <value>The screen rect.</value>
-		public Rectangle ScreenRect
-		{
-			get { return Resolution.TitleSafeArea; }
-		}
-
-		/// <summary>
 		/// y value to offset the menu title
 		/// </summary>
 		public float MenuTitleOffset { get; set; }
@@ -291,9 +282,13 @@ namespace MenuBuddy
 			// Draw the menu title.
 
 			//Get the menu size and location
-			var titlePosition = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
+			var titlePosition = new Vector2(
+				Resolution.TitleSafeArea.Center.X,
+				Resolution.TitleSafeArea.Center.Y);
+
 			var transitionOffset = (float)Math.Pow(TransitionPosition, 2);
-			titlePosition.Y =  MenuTitleOffset + (ScreenRect.Center.Y - (ScreenManager.TitleFont.MeasureString(strTitle) * fScale).Y);
+			titlePosition.Y = MenuTitleOffset + 
+				(Resolution.TitleSafeArea.Center.Y - (ScreenManager.TitleFont.MeasureString(strTitle) * fScale).Y);
 			titlePosition.Y -= transitionOffset * 100;
 
 			//get the menu title color

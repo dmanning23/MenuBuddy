@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using ResolutionBuddy;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
@@ -42,7 +43,7 @@ namespace MenuBuddy
 		public override void Draw(GameTime gameTime)
 		{
 			//Draw at the upper left to try and fit as much text as possible on teh screen
-			Vector2 textPosition = new Vector2(ScreenRect.Left, ScreenRect.Top);
+			Vector2 textPosition = new Vector2(Resolution.TitleSafeArea.Left, Resolution.TitleSafeArea.Top);
 
 			ScreenManager.SpriteBatchBegin();
 

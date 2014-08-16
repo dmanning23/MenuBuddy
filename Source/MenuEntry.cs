@@ -15,6 +15,24 @@ namespace MenuBuddy
 	{
 		#region Fields
 
+		/// <summary>
+		/// Gets or sets the position of this menu entry.
+		/// Only used if MenuScreen.CascadeMenuEntries is set to false.
+		/// </summary>
+		public Vector2 Position { get; set; }
+
+		/// <summary>
+		/// get or set the width of the selection box of this menu entry.
+		/// Only used if TextSelectionRect.CascadeMenuEntries is set to false.
+		/// </summary>
+		public float Width { get; set; }
+
+		/// <summary>
+		/// get or set the Height of the selection box of this menu entry.
+		/// Only used if TextSelectionRect.CascadeMenuEntries is set to false.
+		/// </summary>
+		public float Height { get; set; }
+
 		protected float m_fSelectionFade;
 
 		#endregion
@@ -129,12 +147,7 @@ namespace MenuBuddy
 			NonSelectedColor = Color.White;
 
 			ShadowText = new ShadowTextBuddy();
-			ShadowText.ShadowOffset = Vector2.Zero;
-			ShadowText.ShadowSize = 1.0f;
-
 			PulsateText = new PulsateBuddy();
-			PulsateText.ShadowOffset = Vector2.Zero;
-			PulsateText.ShadowSize = 1.0f;
 		}
 
 		#endregion
@@ -164,23 +177,68 @@ namespace MenuBuddy
 		/// <summary>
 		/// Draws the menu entry. This can be overridden to customize the appearance.
 		/// </summary>
-		public virtual void Draw(MenuScreen screen, Vector2 position, bool isSelected, GameClock gameTime)
+		public void Draw(MenuScreen screen, Vector2 position, bool isSelected, GameClock gameTime)
 		{
-			// Draw text, centered on the middle of each line.
-
 			// Draw the selected entry in yellow, otherwise white.
 			Color color = isSelected ? Color.Red : NonSelectedColor;
 
 			// Modify the alpha to fade text out during transitions.
-			color.A = Convert.ToByte(screen.TransitionAlpha * 255.0f);
+			float alpha = (screen.TransitionAlpha * 255.0f);
+			color.A = Convert.ToByte(alpha);
 			Color backgroundColor = Color.Black;
-			backgroundColor.A = Convert.ToByte(screen.TransitionAlpha * 255.0f);
+			backgroundColor.A = Convert.ToByte(alpha);
 
-			//if its selected, do the pulsate text, otherwise use a nice shadow text
-			ShadowTextBuddy menuFont = (isSelected ? PulsateText : ShadowText);
+			//darw the background rectangle if in touch mode
+			if (screen.ScreenManager.TouchMenus && screen.IsActive)
+			{
+				//create the rect we need
+				Rectangle rect;
+				if (screen.TextSelectionRect)
+				{
+					//use the rect of the text
+					Vector2 textSize = screen.ScreenManager.MenuFont.MeasureString(Text);
+					textSize.X *= 1.1f;
+					rect = new Rectangle(
+						(int)(position.X - (textSize.X * 0.5f)), 
+						(int)position.Y, 
+						(int)textSize.X,
+						(int)GetHeight(screen));
+				}
+				else
+				{
+					//use the w/h stored in this dude
+					rect = new Rectangle(
+						(int)(position.X - (Width * 0.5f)),
+						(int)position.Y,
+						(int)Width,
+						(int)Height);
+				}
+
+				//draw the rect!
+				screen.ScreenManager.DrawButtonBackground(screen.TransitionAlpha * 0.5f, rect);
+			}
+
+			//get the correct font buddy to draw with.
+			ShadowTextBuddy menuFont;
+			if (!screen.ScreenManager.TouchMenus)
+			{
+				//if its selected, do the pulsate text, otherwise use a nice shadow text
+				menuFont = (isSelected ? PulsateText : ShadowText);
+				menuFont.ShadowOffset = Vector2.Zero;
+				menuFont.ShadowSize = 1.0f;
+			}
+			else
+			{
+				//if we are doing touch menus, pop out unselected items from the shadow
+				menuFont = ShadowText;
+				menuFont.ShadowOffset = (isSelected ? Vector2.Zero : new Vector2(5.0f, 5.0f));
+				menuFont.ShadowSize = 1.0f;
+			}
+			
 			menuFont.ShadowColor = backgroundColor;
 			menuFont.Font = screen.ScreenManager.MenuFont;
 
+			// Draw text!
 			menuFont.Write(Text,
 			               position,
 			               Justify.Center,
@@ -193,7 +251,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Queries how much space this menu entry requires.
 		/// </summary>
-		public virtual float GetHeight(MenuScreen screen)
+		public float GetHeight(MenuScreen screen)
 		{
 			return (screen.ScreenManager.MenuFont.LineSpacing * SizeMultiplier);
 		}
@@ -203,7 +261,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <returns>The width.</returns>
 		/// <param name="screen">Screen.</param>
-		public virtual float GetWidth(MenuScreen screen)
+		public float GetWidth(MenuScreen screen)
 		{
 			return (screen.ScreenManager.MenuFont.MeasureString(Text).X * SizeMultiplier);
 		}

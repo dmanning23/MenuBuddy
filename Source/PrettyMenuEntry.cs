@@ -22,11 +22,6 @@ namespace MenuBuddy
 		public SpriteFont Font { get; set; }
 
 		/// <summary>
-		/// Gets or sets the position of this menu entry.
-		/// </summary>
-		public Vector2 Position { get; set; }
-
-		/// <summary>
 		/// A description of the function of the button.
 		/// </summary>
 		public string Description { get; set; }

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System;
 using System.Collections.Generic;
+using BasicPrimitiveBuddy;
 
 namespace MenuBuddy
 {
@@ -17,31 +18,86 @@ namespace MenuBuddy
 	/// </summary>
 	public abstract class ScreenManager : DrawableGameComponent
 	{
-		#region Member Variables
+		#region Properties
 
-		//Sound effect names
+		#region Sound Effects
+
+		/// <summary>
+		/// name of sound effect to play when the menu selection changes
+		/// </summary>
 		private readonly string _strMenuChange;
 
-		private readonly string _strMenuFont;
-
+		/// <summary>
+		/// name of the sound effect when a menu item is selected
+		/// </summary>
 		private readonly string _strMenuSelect;
 
+		/// <summary>
+		/// sound effect for when the menu selection changes
+		/// </summary>
+		/// <value>The menu change.</value>
+		public SoundEffect MenuChange { get; private set; }
+
+		/// <summary>
+		/// sound effect for when a menu item is selected
+		/// </summary>
+		/// <value>The menu select.</value>
+		public SoundEffect MenuSelect { get; private set; }
+
+		#endregion //Sound Effects
+
+		#region Fonts stuff
+
+		/// <summary>
+		/// name of the font to draw menu entries
+		/// </summary>
+		private readonly string _strMenuFont;
+
+		/// <summary>
+		/// name of the font for message boxes
+		/// </summary>
 		private readonly string _strMessageBoxFont;
 
+		/// <summary>
+		/// name of the font for the menu title
+		/// </summary>
 		private readonly string _strTitleFont;
+
+		/// <summary>
+		/// A font shared by all the screens, used to write menu text.
+		/// This saves each screen having to bother loading their own local copy.
+		/// </summary>
+		public SpriteFont MenuFont { get; private set; }
+
+		/// <summary>
+		/// A font used to in message boxes.
+		/// </summary>
+		public SpriteFont MessageBoxFont { get; private set; }
+
+		/// <summary>
+		/// A bigger font, used to draw menu titles
+		/// </summary>
+		public SpriteFont TitleFont { get; private set; }
+
+		#endregion //Fonts stuff
+
+		#region Touch Menu stuff
+
+		/// <summary>
+		/// basic primitive for drawing the outline arounds touch buttons
+		/// </summary>
+		public XNABasicPrimitive Prim { get; set; }
+
+		/// <summary>
+		/// Whether or not this game uses touch menus (mouse or touch events)
+		/// </summary>
+		public bool TouchMenus { get; set; }
+
+		#endregion //Touch Menu stuff
 
 		private readonly List<GameScreen> m_ScreensToUpdate = new List<GameScreen>();
 
 		private bool m_IsInitialized;
-
-		#endregion //Member Variables
-
-		#region Properties
-
-		/// <summary>
-		/// content manager used to load music files
-		/// </summary>
-		public ContentManager m_MusicContent;
 
 		/// <summary>
 		/// The list of screens that are currently in the game.
@@ -61,37 +117,9 @@ namespace MenuBuddy
 		/// </summary>
 		public SpriteBatch SpriteBatch { get; private set; }
 
-		/// <summary>
-		/// A font used to in message boxes.
-		/// </summary>
-		public SpriteFont MessageBoxFont { get; private set; }
-
-		/// <summary>
-		/// A font shared by all the screens, used to write menu text.
-		/// This saves each screen having to bother loading their own local copy.
-		/// </summary>
-		public SpriteFont MenuFont { get; private set; }
-
-		/// <summary>
-		/// A bigger font, used to draw menu titles
-		/// </summary>
-		public SpriteFont TitleFont { get; private set; }
-
 		public InputState InputState { get; private set; }
 
 		public Texture2D BlankTexture { get; private set; }
-
-		/// <summary>
-		/// sound effect for when the menu selection changes
-		/// </summary>
-		/// <value>The menu change.</value>
-		public SoundEffect MenuChange { get; private set; }
-
-		/// <summary>
-		/// sound effect for when a menu item is selected
-		/// </summary>
-		/// <value>The menu select.</value>
-		public SoundEffect MenuSelect { get; private set; }
 
 		/// <summary>
 		/// The color to clear the backbuffer to
@@ -113,6 +141,7 @@ namespace MenuBuddy
 		                     string strMenuChange,
 		                     string strMenuSelect) : base(game)
 		{
+			TouchMenus = false;
 			Screens = new List<GameScreen>();
 			InputState = new InputState();
 			ClearColor = Color.Black;
@@ -129,6 +158,7 @@ namespace MenuBuddy
 		public override void Initialize()
 		{
 			base.Initialize();
+
 			m_IsInitialized = true;
 		}
 
@@ -137,13 +167,14 @@ namespace MenuBuddy
 		/// </summary>
 		protected override void LoadContent()
 		{
-			//create the music content manager
-			m_MusicContent = new ContentManager(Game.Services, "Content");
-
 			// Load content belonging to the screen manager.
 			ContentManager content = Game.Content;
 
 			SpriteBatch = new SpriteBatch(GraphicsDevice);
+
+			//init the basic primitive
+			Prim = new XNABasicPrimitive(GraphicsDevice, SpriteBatch);
+			Prim.Thickness = 5.0f;
 
 			MessageBoxFont = content.Load<SpriteFont>(_strMessageBoxFont);
 			MenuFont = content.Load<SpriteFont>(_strMenuFont);
@@ -183,8 +214,6 @@ namespace MenuBuddy
 			{
 				TopScreen.UnloadContent();
 			}
-
-			m_MusicContent.Unload();
 		}
 
 		#endregion //Initialization
@@ -402,36 +431,32 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// Expose an array holding all the screens. We return a copy rather
-		/// than the real master list, because screens should only ever be added
-		/// or removed using the AddScreen and RemoveScreen methods.
-		/// </summary>
-		public GameScreen[] GetScreens()
-		{
-			return Screens.ToArray();
-		}
-
-		/// <summary>
 		/// Helper draws a translucent black fullscreen sprite, used for fading
 		/// screens in and out, and for darkening the background behind popups.
 		/// </summary>
 		public void FadeBackBufferToBlack(float fAlpha)
 		{
-			SpriteBatch.Draw(BlankTexture,
-			                 Resolution.ScreenArea,
-			                 new Color(0.0f, 0.0f, 0.0f, fAlpha));
+			FilledRect(fAlpha, Resolution.ScreenArea);
 		}
 
-		public void PlayMusic(string strMusic)
+		/// <summary>
+		/// Helper draws a translucent black sprite, used for fading specific areas
+		/// </summary>
+		public void FilledRect(float fAlpha, Rectangle rect)
 		{
-			//TODO: first stop the music
-			//SPFLib.CAudioManager.StopMusic();
+			SpriteBatch.Draw(BlankTexture, rect, new Color(0.0f, 0.0f, 0.0f, fAlpha));
+		}
 
-			//unload the music
-			m_MusicContent.Unload();
+		/// <summary>
+		/// Helper draws a translucent black sprite, used for fading specific areas
+		/// </summary>
+		public void DrawButtonBackground(float fAlpha, Rectangle rect)
+		{
+			//draw the filled background
+			SpriteBatch.Draw(BlankTexture, rect, new Color(0.0f, 0.0f, 0.0f, fAlpha));
 
-			//TODO: start playing the new music
-			//SPFLib.CAudioManager.PlayMusic(strMusic, m_MusicContent);
+			//draw the button outline
+			Prim.Rectangle(rect, new Color(0.0f, 0.0f, 0.0f, 1.0f));
 		}
 
 		/// <summary>
@@ -451,6 +476,16 @@ namespace MenuBuddy
 		}
 
 		#region screen stack methods
+
+		/// <summary>
+		/// Expose an array holding all the screens. We return a copy rather
+		/// than the real master list, because screens should only ever be added
+		/// or removed using the AddScreen and RemoveScreen methods.
+		/// </summary>
+		public GameScreen[] GetScreens()
+		{
+			return Screens.ToArray();
+		}
 
 		/// <summary>
 		/// Get the set of screens needed for the main menu

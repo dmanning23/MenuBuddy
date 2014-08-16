@@ -1,4 +1,5 @@
 using FontBuddyLib;
+using ResolutionBuddy;
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -155,7 +156,9 @@ namespace MenuBuddy
 			if (loadingIsSlow)
 			{
 				//Get the text position
-				var textPosition = new Vector2(ScreenRect.Center.X + 64, ScreenRect.Center.Y);
+				var textPosition = new Vector2(
+					Resolution.TitleSafeArea.Center.X + 64, 
+					Resolution.TitleSafeArea.Center.Y);
 				Vector2 fontSize = loadingFont.Font.MeasureString(message);
 				textPosition.Y -= fontSize.Y;
 

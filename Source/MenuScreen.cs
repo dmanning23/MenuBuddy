@@ -1,4 +1,5 @@
 using GameTimer;
+using ResolutionBuddy;
 using HadoukInput;
 using Microsoft.Xna.Framework;
 using System;
@@ -71,6 +72,16 @@ namespace MenuBuddy
 		/// </summary>
 		public bool QuietMenu { get; set; }
 
+		/// <summary>
+		/// Flag to draw menu entries at center screen, or to use the menu entry rect to place them
+		/// </summary>
+		public bool CascadeMenuEntries { get; set; }
+
+		/// <summary>
+		/// flag to draw the selection rect around the menu entries as the text size, or use the menu entry rect to place them
+		/// </summary>
+		public bool TextSelectionRect { get; set; }
+
 		#endregion
 
 		#region Initialization
@@ -81,6 +92,8 @@ namespace MenuBuddy
 		public MenuScreen(string strMenuTitle = "")
 			: base(strMenuTitle)
 		{
+			CascadeMenuEntries = true;
+			TextSelectionRect = true;
 			QuietMenu = false;
 			TitleScale = 1.0f;
 			MenuEntries = new List<MenuEntry>();
@@ -280,22 +293,38 @@ namespace MenuBuddy
 		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
+			//update the menu clock
 			MenuClock.Update(gameTime);
 
-			float fMenuPositionX = MenuEntryPositionX();
-			float fMenuPositionY = MenuOptionOffset + (ScreenRect.Center.Y * 0.9f);
+			//Get the default position for menu entries
+			Vector2 entryPos = new Vector2(MenuEntryPositionX(), MenuOptionOffset + (Resolution.TitleSafeArea.Center.Y * 0.9f));
 
 			ScreenManager.SpriteBatchBegin();
 
 			// Draw each menu entry in turn.
 			for (int i = 0; i < MenuEntries.Count; i++)
 			{
+				//If we aren't doing cascading menus, use the menu position
+				if (!CascadeMenuEntries)
+				{
+					entryPos = MenuEntries[i].Position;
+				}
+
 				//Draw the menu option
-				bool isSelected = IsActive && (i == SelectedEntry);
-				MenuEntries[i].Draw(this, new Vector2(fMenuPositionX, fMenuPositionY), isSelected, MenuClock);
+				bool isSelected;
+				if (ScreenManager.TouchMenus)
+				{
+					//TODO: move this hack out of here... determine where the mouse pointer is and set that as the selected item
+					isSelected = false;
+				}
+				else
+				{
+					isSelected = IsActive && (i == SelectedEntry);
+				}
+				MenuEntries[i].Draw(this, entryPos, isSelected, MenuClock);
 
 				//update the menu entry Y position
-				fMenuPositionY += (MenuEntries[i].GetHeight(this));
+				entryPos.Y += (MenuEntries[i].GetHeight(this));
 			}
 
 			DrawMenuTitle(ScreenName, TitleScale);
@@ -318,7 +347,12 @@ namespace MenuBuddy
 		/// <returns>the correct position the place menu entries on X axis</returns>
 		public float MenuEntryPositionX()
 		{
-			float fMenuPositionX = ScreenRect.Center.X;
+			return XPositionWithOffset((float)Resolution.TitleSafeArea.Center.X);
+		}
+
+		public float XPositionWithOffset(float pos)
+		{
+			float fMenuPositionX = pos;
 
 			if (TransitionPosition != 0.0f)
 			{

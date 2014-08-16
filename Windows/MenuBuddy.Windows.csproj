@@ -113,6 +113,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\..\BasicPrimitiveBuddy\Windows\BasicPrimitiveBuddy.Windows.csproj">
+      <Project>{0faa1286-7bfa-4765-8b51-62e438cb121d}</Project>
+      <Name>BasicPrimitiveBuddy.Windows</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\HadoukInput\Windows\HadoukInput.Windows.csproj">
       <Project>{85D723F7-83EF-4C75-82BA-9385D0AC8448}</Project>
       <Name>HadoukInput.Windows</Name>

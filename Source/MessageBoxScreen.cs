@@ -1,4 +1,5 @@
 using HadoukInput;
+using ResolutionBuddy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -165,7 +166,9 @@ namespace MenuBuddy
 			ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2.0f / 3.0f);
 
 			// Center the message text in the viewport.
-			var windowSize = new Vector2(ScreenRect.Center.X, ScreenRect.Center.Y);
+			var windowSize = new Vector2(
+				Resolution.TitleSafeArea.Center.X, 
+				Resolution.TitleSafeArea.Center.Y);
 			Vector2 textSize = ScreenManager.MessageBoxFont.MeasureString(Message);
 			Vector2 textPosition = windowSize - (textSize / 2);
 
