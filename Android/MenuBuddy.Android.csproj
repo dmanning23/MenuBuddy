@@ -14,7 +14,7 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <AssemblyName>MenuBuddy.Android</AssemblyName>
-    <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.2</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -92,9 +92,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\MonoGame\ThirdParty\Lidgren.Network\Lidgren.Network.Android.csproj">
-      <Project>{565129E0-4EE5-4F6F-B403-C3484C9740BE}</Project>
-      <Name>Lidgren.Network.Android</Name>
+    <ProjectReference Include="..\..\ResolutionBuddy\Android\ResolutionBuddy.Android.csproj">
+      <Project>{8C893C25-E7DE-4B40-8165-AD10F2EDCCA1}</Project>
+      <Name>ResolutionBuddy.Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\MonoGame\MonoGame.Framework\MonoGame.Framework.Android.csproj">
       <Project>{BA9476CF-99BA-4D03-92F2-73D2C5E58883}</Project>
@@ -104,17 +104,17 @@
       <Project>{970D0C93-407B-4372-B236-0E799B22D90E}</Project>
       <Name>FontBuddyLib.Android</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ResolutionBuddy\Android\ResolutionBuddy.Android.csproj">
-      <Project>{8C893C25-E7DE-4B40-8165-AD10F2EDCCA1}</Project>
-      <Name>ResolutionBuddy.Android</Name>
+    <ProjectReference Include="..\..\HadoukInput\Android\HadoukInput.Android.csproj">
+      <Project>{D3C24A24-49A5-4D98-955A-09E2F320AD45}</Project>
+      <Name>HadoukInput.Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\GameTimer\Android\GameTimer.Android.csproj">
       <Project>{1D645493-3A2F-496C-B405-A687749D74CE}</Project>
       <Name>GameTimer.Android</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\HadoukInput\Android\HadoukInput.Android.csproj">
-      <Project>{D3C24A24-49A5-4D98-955A-09E2F320AD45}</Project>
-      <Name>HadoukInput.Android</Name>
+    <ProjectReference Include="..\..\BasicPrimitiveBuddy\Android\BasicPrimitiveBuddy.Android.csproj">
+      <Project>{F793F13D-E131-4A2F-8EF0-7E8299FADE57}</Project>
+      <Name>BasicPrimitiveBuddy.Android</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

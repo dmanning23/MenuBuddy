@@ -95,10 +95,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\ResolutionBuddy\Ouya\ResolutionBuddy.Ouya.csproj">
-      <Project>{3BFACC81-6B4D-462B-91E2-09349A3619AD}</Project>
-      <Name>ResolutionBuddy.Ouya</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\MonoGame\MonoGame.Framework\MonoGame.Framework.Ouya.csproj">
       <Project>{8BEA875D-66D2-4A5F-B137-83D262A3851D}</Project>
       <Name>MonoGame.Framework.Ouya</Name>
@@ -114,6 +110,10 @@
     <ProjectReference Include="..\..\HadoukInput\Ouya\HadoukInput.Ouya.csproj">
       <Project>{470E9490-C300-4F2F-9DD2-BC38E28D8A27}</Project>
       <Name>HadoukInput.Ouya</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ResolutionBuddy\Ouya\ResolutionBuddy.Ouya.csproj">
+      <Project>{3BFACC81-6B4D-462B-91E2-09349A3619AD}</Project>
+      <Name>ResolutionBuddy.Ouya</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

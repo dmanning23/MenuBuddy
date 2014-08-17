@@ -4,6 +4,7 @@ using HadoukInput;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace MenuBuddy
 {
@@ -252,6 +253,27 @@ namespace MenuBuddy
 						m_SelectedEntry = i;
 						FireMenuSelectEvent(PlayerIndex.One, MenuEntries[i]);
 						break;
+					}
+				}
+			}
+		}
+
+		protected void CheckForTouch()
+		{
+			while (TouchPanel.IsGestureAvailable)
+			{
+				GestureSample gesture = TouchPanel.ReadGesture();
+				if (gesture.GestureType == GestureType.Tap)
+				{
+					Vector2 touchPos = Resolution.ScreenToGameCoord(gesture.Position);
+					for (int i = 0; i < MenuEntries.Count; i++)
+					{
+						if (MenuEntries[i].ButtonRect.Contains(touchPos))
+						{
+							m_SelectedEntry = i;
+							FireMenuSelectEvent(PlayerIndex.One, MenuEntries[i]);
+							break;
+						}
 					}
 				}
 			}

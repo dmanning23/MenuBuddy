@@ -7,6 +7,7 @@ using ResolutionBuddy;
 using System;
 using System.Collections.Generic;
 using BasicPrimitiveBuddy;
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace MenuBuddy
 {
@@ -101,8 +102,10 @@ namespace MenuBuddy
 			}
 			set
 			{
+				#if WINDOWS
 				_touchMenus = value;
 				InputState = (_touchMenus ? new InputMouseState() : new InputState());
+				#endif
 			}
 		}
 
@@ -178,6 +181,8 @@ namespace MenuBuddy
 		public override void Initialize()
 		{
 			base.Initialize();
+
+			TouchPanel.EnabledGestures = GestureType.Tap;
 
 			m_IsInitialized = true;
 		}
