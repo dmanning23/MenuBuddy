@@ -133,6 +133,10 @@
       <Project>{6B6D4188-5C03-4E16-923B-96FDBC85B91A}</Project>
       <Name>GameTimer.Windows</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\TouchScreenBuddy\Windows\TouchScreenBuddy.Windows.csproj">
+      <Project>{764d3dc6-927a-45ee-901d-ea07966dde72}</Project>
+      <Name>TouchScreenBuddy.Windows</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\Source\Content\gradient.png">

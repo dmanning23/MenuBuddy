@@ -116,5 +116,9 @@
       <Project>{F793F13D-E131-4A2F-8EF0-7E8299FADE57}</Project>
       <Name>BasicPrimitiveBuddy.Android</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\TouchScreenBuddy\Android\TouchScreenBuddy.Android.csproj">
+      <Project>{1939A621-A300-43A8-9F9B-E3ECC5812B13}</Project>
+      <Name>TouchScreenBuddy.Android</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

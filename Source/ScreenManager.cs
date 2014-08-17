@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using BasicPrimitiveBuddy;
 using Microsoft.Xna.Framework.Input.Touch;
+using TouchScreenBuddy;
 
 namespace MenuBuddy
 {
@@ -119,6 +120,12 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// the touch manager service component.
+		/// warning: this dude might be null if the compoent isnt in this game
+		/// </summary>
+		public ITouchManager Touch { get; private set; }
+
 		#endregion //Touch Menu stuff
 
 		private readonly List<GameScreen> m_ScreensToUpdate = new List<GameScreen>();
@@ -175,6 +182,9 @@ namespace MenuBuddy
 			_strMessageBoxFont = strMessageBoxFont;
 			_strMenuChange = strMenuChange;
 			_strMenuSelect = strMenuSelect;
+
+			//get the touch service
+			Touch = game.Services.GetService(typeof(ITouchManager)) as ITouchManager;
 		}
 
 		/// <summary>
@@ -183,9 +193,6 @@ namespace MenuBuddy
 		public override void Initialize()
 		{
 			base.Initialize();
-
-			TouchPanel.EnabledGestures = GestureType.Tap;
-
 			m_IsInitialized = true;
 		}
 

@@ -145,10 +145,7 @@ namespace MenuBuddy
 			//Check if one of those menu entries was selected with the mouse
 			if (ScreenManager.TouchMenus)
 			{
-				if (!ScreenManager.InputState.LMouseDown)
-				{
-					m_SelectedEntry = -1;
-				}
+				CheckForMenuHeld();
 				CheckForMouseClick();
 				CheckForTouch();
 			}
@@ -240,6 +237,48 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// Check if the player is holding the menu entry down
+		/// If the player isn't holding it down, the current selected entry is set to -1
+		/// </summary>
+		/// <returns></returns>
+		protected void CheckForMenuHeld()
+		{
+			//if no selected entry, no reason to check this
+			if (-1 == SelectedEntry)
+			{
+				return;
+			}
+
+			//flag used to reset selected entry
+			bool heldDown = false;
+
+			//check if the player is holding the LMouseButton down in the menu entry
+			if (ScreenManager.InputState.LMouseDown)
+			{
+				if (MenuEntries[SelectedEntry].ButtonRect.Contains(ScreenManager.MousePos))
+				{
+					heldDown = true;
+				}
+			}
+
+			//check if the player is holding down the touch screen in the menu entry
+			foreach (var touch in ScreenManager.Touch.Touches)
+			{
+				if (MenuEntries[SelectedEntry].ButtonRect.Contains(touch))
+				{
+					heldDown = true;
+					break;
+				}
+			}
+
+			//well the player isn't holding anything... reset the selected entry
+			if (!heldDown)
+			{
+				m_SelectedEntry = -1;
+			}
+		}
+
 		protected void CheckForMouseClick()
 		{
 			//did the user click somewhere?
@@ -251,7 +290,7 @@ namespace MenuBuddy
 				{
 					if (MenuEntries[i].ButtonRect.Contains(mousePos))
 					{
-						m_SelectedEntry = i;
+						SelectedEntry = i;
 						FireMenuSelectEvent(PlayerIndex.One, MenuEntries[i]);
 						break;
 					}
@@ -261,17 +300,15 @@ namespace MenuBuddy
 
 		protected void CheckForTouch()
 		{
-			while (TouchPanel.IsGestureAvailable)
+			if (null != ScreenManager.Touch)
 			{
-				GestureSample gesture = TouchPanel.ReadGesture();
-				if (gesture.GestureType == GestureType.Tap)
+				foreach (var tapPos in ScreenManager.Touch.Taps)
 				{
-					Vector2 touchPos = Resolution.ScreenToGameCoord(gesture.Position);
 					for (int i = 0; i < MenuEntries.Count; i++)
 					{
-						if (MenuEntries[i].ButtonRect.Contains(touchPos))
+						if (MenuEntries[i].ButtonRect.Contains(tapPos))
 						{
-							m_SelectedEntry = i;
+							SelectedEntry = i;
 							FireMenuSelectEvent(PlayerIndex.One, MenuEntries[i]);
 							break;
 						}
