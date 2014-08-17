@@ -263,12 +263,15 @@ namespace MenuBuddy
 			}
 
 			//check if the player is holding down the touch screen in the menu entry
-			foreach (var touch in ScreenManager.Touch.Touches)
+			if (null != ScreenManager.Touch)
 			{
-				if (MenuEntries[SelectedEntry].ButtonRect.Contains(touch))
+				foreach (var touch in ScreenManager.Touch.Touches)
 				{
-					heldDown = true;
-					break;
+					if (MenuEntries[SelectedEntry].ButtonRect.Contains(touch))
+					{
+						heldDown = true;
+						break;
+					}
 				}
 			}
 
@@ -398,7 +401,7 @@ namespace MenuBuddy
 			MenuClock.Update(gameTime);
 
 			//Get the default position for menu entries
-			Vector2 entryPos = new Vector2(MenuEntryPositionX(), MenuOptionOffset + (Resolution.TitleSafeArea.Center.Y * 0.9f));
+			Vector2 entryPos = EntryStartPosition();
 
 			ScreenManager.SpriteBatchBegin();
 
@@ -422,6 +425,11 @@ namespace MenuBuddy
 			DrawMenuTitle(ScreenName, TitleScale);
 
 			ScreenManager.SpriteBatchEnd();
+		}
+
+		protected virtual Vector2 EntryStartPosition()
+		{
+			return new Vector2(MenuEntryPositionX(), MenuOptionOffset + (Resolution.TitleSafeArea.Center.Y * 0.9f));
 		}
 
 		/// <summary>

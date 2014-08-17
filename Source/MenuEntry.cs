@@ -1,4 +1,5 @@
 using FontBuddyLib;
+using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using GameTimer;
 using Microsoft.Xna.Framework;
@@ -88,6 +89,11 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// whether or not to use the MenuFont or MessageBoxFont
+		/// </summary>
+		private bool MessageBoxEntry { get; set; }
+
 		#endregion
 
 		#region Events
@@ -147,8 +153,9 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public MenuEntry(string strText)
+		public MenuEntry(string strText, bool messageBoxEntry = false)
 		{
+			MessageBoxEntry = messageBoxEntry;
 			Text = strText;
 			SizeMultiplier = 1.0f;
 			Width = 768.0f;
@@ -158,6 +165,10 @@ namespace MenuBuddy
 
 			ShadowText = new ShadowTextBuddy();
 			PulsateText = new PulsateBuddy();
+			if (messageBoxEntry)
+			{
+				PulsateText.PulsateSize *= 0.25f;
+			}
 		}
 
 		#endregion
@@ -198,37 +209,37 @@ namespace MenuBuddy
 			Color backgroundColor = Color.Black;
 			backgroundColor.A = Convert.ToByte(alpha);
 
+			//set teh rect around this entry
+			//create the rect we need
+			if (screen.TextSelectionRect)
+			{
+				//use the rect of the text
+				float width = GetWidth(screen) * 1.1f;
+				ButtonRect = new Rectangle(
+					(int)(position.X - (width * 0.5f)),
+					(int)position.Y,
+					(int)width,
+					(int)GetHeight(screen));
+			}
+			else
+			{
+				//use the w/h stored in this dude
+				ButtonRect = new Rectangle(
+					(int)(position.X - (Width * 0.5f)),
+					(int)position.Y,
+					(int)Width,
+					(int)GetHeight(screen)); //manually setting the height is a bitch
+			}
+
 			//darw the background rectangle if in touch mode
 			if (screen.ScreenManager.TouchMenus && screen.IsActive)
 			{
-				//create the rect we need
-				if (screen.TextSelectionRect)
-				{
-					//use the rect of the text
-					Vector2 textSize = screen.ScreenManager.MenuFont.MeasureString(Text);
-					textSize.X *= 1.1f;
-					ButtonRect = new Rectangle(
-						(int)(position.X - (textSize.X * 0.5f)), 
-						(int)position.Y, 
-						(int)textSize.X,
-						(int)GetHeight(screen));
-				}
-				else
-				{
-					//use the w/h stored in this dude
-					ButtonRect = new Rectangle(
-						(int)(position.X - (Width * 0.5f)),
-						(int)position.Y,
-						(int)Width,
-						(int)GetHeight(screen)); //manually setting the height is a bitch
-				}
-
 				//check if the mouse is over this entry
 				float buttonAlpha = screen.TransitionAlpha * 0.5f;
 				if (screen.ScreenManager.TouchMenus)
 				{
 					//get the mouse location
-					if (ButtonRect.Contains(screen.ScreenManager.MousePos))
+					if (ButtonHighlight(screen))
 					{
 						buttonAlpha = screen.TransitionAlpha * 0.2f;
 					}
@@ -264,7 +275,7 @@ namespace MenuBuddy
 				}
 			}
 
-			menuFont.Font = screen.ScreenManager.MenuFont;
+			menuFont.Font = MenuEntryFont(screen.ScreenManager);
 
 			// Draw text!
 			menuFont.Write(Text,
@@ -281,7 +292,7 @@ namespace MenuBuddy
 		/// </summary>
 		public float GetHeight(MenuScreen screen)
 		{
-			return (screen.ScreenManager.MenuFont.LineSpacing * SizeMultiplier);
+			return (MenuEntryFont(screen.ScreenManager).LineSpacing * SizeMultiplier);
 		}
 
 		/// <summary>
@@ -291,7 +302,41 @@ namespace MenuBuddy
 		/// <param name="screen">Screen.</param>
 		public float GetWidth(MenuScreen screen)
 		{
-			return (screen.ScreenManager.MenuFont.MeasureString(Text).X * SizeMultiplier);
+			return (MenuEntryFont(screen.ScreenManager).MeasureString(Text).X * SizeMultiplier);
+		}
+
+		public bool ButtonHighlight(MenuScreen screen)
+		{
+			//Check if the mouse cursor is inside this menu entry
+			if (ButtonRect.Contains(screen.ScreenManager.MousePos))
+			{
+				return true;
+			}
+
+			//check if the user is holding the thouch screen inside this menu entry
+			if (null != screen.ScreenManager.Touch)
+			{
+				foreach (var touch in screen.ScreenManager.Touch.Touches)
+				{
+					if (ButtonRect.Contains(touch))
+					{
+						return true;
+					}
+				}
+			}
+
+			//nothing held in this dude
+			return false;
+		}
+
+		/// <summary>
+		/// Get the correct font, if this is message box or regular menu entry
+		/// </summary>
+		/// <param name="screenManager"></param>
+		/// <returns></returns>
+		protected SpriteFont MenuEntryFont(ScreenManager screenManager)
+		{
+			return (MessageBoxEntry ? screenManager.MessageBoxFont : screenManager.MenuFont);
 		}
 
 		#endregion

@@ -9,12 +9,11 @@ using System.Text;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// A popup message box screen, used to display "are you sure?"
-	/// confirmation messages.
+	/// A popup message box screen, used to display "are you sure?" confirmation messages.
 	/// </summary>
-	public class MessageBoxScreen : GameScreen
+	public class MessageBoxScreen : MenuScreen
 	{
-		#region Events
+		#region Properties
 
 		public event EventHandler<PlayerIndexEventArgs> Accepted;
 
@@ -30,7 +29,9 @@ namespace MenuBuddy
 		/// </summary>
 		private Texture2D GradientTexture { get; set; }
 
-		#endregion
+		private MenuEntry _cancelEntry;
+
+		#endregion //Properties
 
 		#region Initialization
 
@@ -48,19 +49,24 @@ namespace MenuBuddy
 		/// </summary>
 		public MessageBoxScreen(string message, bool includeUsageText)
 		{
+			//grab the message
+			Message = message;
+
+			//create the strings to hold the menu text
+			var okText = new StringBuilder();
+			okText.Append("Ok");
+			var cancelText = new StringBuilder();
+			cancelText.Append("Cancel");
+
 			if (includeUsageText)
 			{
-				//First construct the usage text
-				var okText = new StringBuilder();
-				var cancelText = new StringBuilder();
-
 				//Put the correct button text in the message
 #if OUYA
-				okText.Append("\nO button");
-				cancelText.Append("\nA button");
+				okText.Append(": O button");
+				cancelText.Append(": A button");
 #else
-				okText.Append("\nA button");
-				cancelText.Append("\nB button");
+				okText.Append(": A button");
+				cancelText.Append(": B button");
 #endif
 
 				//Add the keyboard text if we have a keyboard
@@ -68,27 +74,23 @@ namespace MenuBuddy
 				okText.Append(", Space, Enter");
 				cancelText.Append(", Esc");
 #endif
-
-				//append the usage text
-				okText.Append(": OK");
-				cancelText.Append(": Cancel");
-
-				//Put the whole message together
-				var completeMessage = new StringBuilder(message);
-				completeMessage.Append(okText);
-				completeMessage.Append(cancelText);
-
-				this.Message = completeMessage.ToString();
 			}
-			else
-			{
-				this.Message = message;
-			}
+
+			//Create the menu entries for "OK" and "Cancel"
+			var okEntry = new MenuEntry(okText.ToString(), true);
+			okEntry.Selected += OnAccept;
+			MenuEntries.Add(okEntry);
+
+			_cancelEntry = new MenuEntry(cancelText.ToString(), true);
+			_cancelEntry.Selected += OnCancel;
+			MenuEntries.Add(_cancelEntry);
 
 			IsPopup = true;
 
 			TransitionOnTime = TimeSpan.FromSeconds(0.2);
 			TransitionOffTime = TimeSpan.FromSeconds(0.2);
+
+			TextSelectionRect = false;
 		}
 
 		/// <summary>
@@ -110,43 +112,31 @@ namespace MenuBuddy
 
 		#region Handle Input
 
-		/// <summary>
-		/// Responds to user input, accepting or cancelling the message box.
-		/// </summary>
-		public override void HandleInput(InputState input, GameTime rGameTime)
+		private void OnAccept(object sender, PlayerIndexEventArgs e)
 		{
-			PlayerIndex playerIndex;
-
-			// We pass in our ControllingPlayer, which may either be null (to
-			// accept input from any player) or a specific index. If we pass a null
-			// controlling player, the InputState helper returns to us which player
-			// actually provided the input. We pass that through to our Accepted and
-			// Cancelled events, so they can tell which player triggered them.
-			if (input.IsMenuSelect(ControllingPlayer, out playerIndex))
+			// Raise the accepted event, then exit the message box.
+			if (Accepted != null)
 			{
-				// Raise the accepted event, then exit the message box.
-				if (Accepted != null)
-				{
-					Accepted(this, new PlayerIndexEventArgs(playerIndex));
-				}
+				Accepted(sender, e);
+			}
 
+			ExitScreen();
+		}
+
+		protected override void OnCancel(PlayerIndex playerIndex)
+		{
+			// Raise the cancelled event, then exit the message box.
+			if (Cancelled != null)
+			{
+				Cancelled(this, new PlayerIndexEventArgs(playerIndex));
+			}
+			else
+			{
+				//else just pop it off the stack
 				ExitScreen();
 			}
-			else if (input.IsMenuCancel(ControllingPlayer, out playerIndex))
-			{
-				// Raise the cancelled event, then exit the message box.
-				if (Cancelled != null)
-				{
-					Cancelled(this, new PlayerIndexEventArgs(playerIndex));
-				}
-				else
-				{
-					//else just pop it off the stack
-					ExitScreen();
-				}
 
-				ExitScreen();
-			}
+			ExitScreen();
 		}
 
 		#endregion
@@ -166,11 +156,10 @@ namespace MenuBuddy
 			ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2.0f / 3.0f);
 
 			// Center the message text in the viewport.
-			var windowSize = new Vector2(
-				Resolution.TitleSafeArea.Center.X, 
-				Resolution.TitleSafeArea.Center.Y);
-			Vector2 textSize = ScreenManager.MessageBoxFont.MeasureString(Message);
-			Vector2 textPosition = windowSize - (textSize / 2);
+			Vector2 textSize = TotalMessageSize();
+			Vector2 textPosition = new Vector2(
+				Resolution.TitleSafeArea.Center.X - (textSize.X / 2),
+				_cancelEntry.ButtonRect.Bottom - textSize.Y);
 
 			// The background includes a border somewhat larger than the text itself.
 			const int hPad = 32;
@@ -191,6 +180,40 @@ namespace MenuBuddy
 			spriteBatch.DrawString(ScreenManager.MessageBoxFont, Message, textPosition, color);
 
 			ScreenManager.SpriteBatchEnd();
+
+			base.Draw(gameTime);
+		}
+
+		private Vector2 TotalMessageSize()
+		{
+			//measure the message
+			Vector2 messageSize = ScreenManager.MessageBoxFont.MeasureString(Message);
+			messageSize.Y *= 1.5f;
+
+			//measure the menu entries text
+			foreach (var entry in MenuEntries)
+			{
+				Vector2 entrySize = Vector2.Zero;
+				if (ScreenManager.TouchMenus && IsActive)
+				{
+					//use the button rect
+					entrySize = new Vector2(entry.ButtonRect.Width, entry.ButtonRect.Height);
+				}
+				else
+				{
+					//measure the text...
+					entrySize.X = entry.GetWidth(this);
+					entrySize.Y = entry.GetHeight(this);
+				}
+
+				messageSize.X = Math.Max(messageSize.X, entrySize.X);
+				messageSize.Y += entrySize.Y;
+
+				//set the button rect width too
+				entry.Width = messageSize.X;
+			}
+
+			return messageSize;
 		}
 
 		#endregion
