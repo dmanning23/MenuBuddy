@@ -150,6 +150,7 @@ namespace MenuBuddy
 					m_SelectedEntry = -1;
 				}
 				CheckForMouseClick();
+				CheckForTouch();
 			}
 			else
 			{

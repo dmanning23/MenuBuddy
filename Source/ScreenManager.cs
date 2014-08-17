@@ -89,7 +89,11 @@ namespace MenuBuddy
 		/// </summary>
 		public XNABasicPrimitive Prim { get; set; }
 
+		#if ANDROID
+		private bool _touchMenus = true;
+		#else
 		private bool _touchMenus = false;
+		#endif
 
 		/// <summary>
 		/// Whether or not this game uses touch menus (mouse or touch events)
@@ -102,10 +106,8 @@ namespace MenuBuddy
 			}
 			set
 			{
-				#if WINDOWS
 				_touchMenus = value;
 				InputState = (_touchMenus ? new InputMouseState() : new InputState());
-				#endif
 			}
 		}
 
