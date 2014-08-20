@@ -44,6 +44,11 @@ namespace MenuBuddy
 
 		protected float m_fSelectionFade;
 
+		/// <summary>
+		/// A description of the function of the menu entry.
+		/// </summary>
+		public string Description { get; set; }
+
 		#endregion
 
 		#region Properties

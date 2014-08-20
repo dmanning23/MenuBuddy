@@ -62,9 +62,9 @@ namespace MenuBuddy
 		protected GameClock MenuClock { get; private set; }
 
 		/// <summary>
-		/// y value to offset the menu options
+		/// amount to offset the menu options from center screen
 		/// </summary>
-		public float MenuOptionOffset { get; set; }
+		public Vector2 MenuOptionOffset { get; set; }
 
 		public float TitleScale { get; set; }
 
@@ -93,6 +93,7 @@ namespace MenuBuddy
 		public MenuScreen(string strMenuTitle = "")
 			: base(strMenuTitle)
 		{
+			MenuOptionOffset = Vector2.Zero;
 			CascadeMenuEntries = true;
 			TextSelectionRect = true;
 			QuietMenu = false;
@@ -429,7 +430,7 @@ namespace MenuBuddy
 
 		protected virtual Vector2 EntryStartPosition()
 		{
-			return new Vector2(MenuEntryPositionX(), MenuOptionOffset + (Resolution.TitleSafeArea.Center.Y * 0.9f));
+			return (MenuOptionOffset + new Vector2(MenuEntryPositionX(), (Resolution.TitleSafeArea.Center.Y * 0.9f)));
 		}
 
 		/// <summary>
