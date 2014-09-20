@@ -119,6 +119,15 @@ namespace MenuBuddy
 		public PlayerIndex? ControllingPlayer { get; internal set; }
 
 		/// <summary>
+		/// get the title safe area
+		/// </summary>
+		/// <value>The screen rect.</value>
+		public Rectangle ScreenRect
+		{
+			get { return Resolution.TitleSafeArea; }
+		}
+
+		/// <summary>
 		/// y value to offset the menu title
 		/// </summary>
 		public float MenuTitleOffset { get; set; }
