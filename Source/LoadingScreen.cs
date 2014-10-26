@@ -1,8 +1,7 @@
 using FontBuddyLib;
-using ResolutionBuddy;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ResolutionBuddy;
 using System;
 using System.Threading;
 

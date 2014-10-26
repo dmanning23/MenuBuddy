@@ -1,10 +1,9 @@
 using GameTimer;
-using ResolutionBuddy;
 using HadoukInput;
 using Microsoft.Xna.Framework;
+using ResolutionBuddy;
 using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Input.Touch;
 
 namespace MenuBuddy
 {
