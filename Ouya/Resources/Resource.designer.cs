@@ -40,6 +40,12 @@ namespace MenuBuddy.Ouya
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f020002
+			public static int ApplicationName = 2130837506;
+			
+			// aapt resource value: 0x7f020001
+			public static int Hello = 2130837505;
+			
 			// aapt resource value: 0x7f020000
 			public static int library_name = 2130837504;
 			
