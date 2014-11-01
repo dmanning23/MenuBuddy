@@ -115,5 +115,9 @@
       <Project>{CA0A3695-B4CD-4129-9593-AD56D5A63F1E}</Project>
       <Name>BasicPrimitiveBuddy.Ouya</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\TouchScreenBuddy\Ouya\TouchScreenBuddy.Ouya.csproj">
+      <Project>{12ae06c4-f065-4399-9a17-d13ab6961f55}</Project>
+      <Name>TouchScreenBuddy.Ouya</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
