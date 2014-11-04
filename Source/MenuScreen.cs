@@ -30,8 +30,7 @@ namespace MenuBuddy
 		#region Properties
 
 		/// <summary>
-		/// Gets the list of menu entries, so derived classes can add
-		/// or change the menu contents.
+		/// Gets the list of menu entries, so derived classes can add or change the menu contents.
 		/// </summary>
 		protected IList<MenuEntry> MenuEntries { get; private set; }
 
@@ -365,6 +364,22 @@ namespace MenuBuddy
 		protected void OnCancel(object sender, PlayerIndexEventArgs e)
 		{
 			OnCancel(e.PlayerIndex);
+		}
+
+		/// <summary>
+		/// Remove a menu entry from the menu
+		/// </summary>
+		/// <param name="entry"></param>
+		protected void RemoveMenuEntry(MenuEntry entry)
+		{
+			//remove the entry from the list
+			MenuEntries.Remove(entry);
+
+			//set the selected item if needed
+			if (SelectedEntry >= MenuEntries.Count)
+			{
+				SelectedEntry = MenuEntries.Count - 1;
+			}
 		}
 
 		#endregion
