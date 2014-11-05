@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{306D806B-EEC5-4699-848D-1A15DDA46EC2}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
@@ -116,7 +114,7 @@
       <Name>BasicPrimitiveBuddy.Ouya</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\TouchScreenBuddy\Ouya\TouchScreenBuddy.Ouya.csproj">
-      <Project>{12ae06c4-f065-4399-9a17-d13ab6961f55}</Project>
+      <Project>{12AE06C4-F065-4399-9A17-D13AB6961F55}</Project>
       <Name>TouchScreenBuddy.Ouya</Name>
     </ProjectReference>
   </ItemGroup>
