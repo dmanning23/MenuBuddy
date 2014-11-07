@@ -89,7 +89,7 @@ namespace MenuBuddy
 		/// </summary>
 		public XNABasicPrimitive Prim { get; set; }
 
-		#if ANDROID
+		#if ANDROID && !OUYA
 		private bool _touchMenus = true;
 		#else
 		private bool _touchMenus = false;

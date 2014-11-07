@@ -30,6 +30,12 @@ namespace MenuBuddy
 
 		private MenuEntry _cancelEntry;
 
+		/// <summary>
+		/// If this is true, will pad out the message box to make it taller.
+		/// Set to false for multiline message boxes, true for touchscreen games!
+		/// </summary>
+		public bool InflateMessageBox { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -48,6 +54,8 @@ namespace MenuBuddy
 		/// </summary>
 		public MessageBoxScreen(string message, bool includeUsageText)
 		{
+			InflateMessageBox = true;
+
 			//grab the message
 			Message = message;
 
@@ -187,7 +195,11 @@ namespace MenuBuddy
 		{
 			//measure the message
 			Vector2 messageSize = ScreenManager.MessageBoxFont.MeasureString(Message);
-			messageSize.Y *= 1.5f;
+
+			if (InflateMessageBox)
+			{
+				messageSize.Y *= 1.5f;
+			}
 
 			//measure the menu entries text
 			foreach (var entry in MenuEntries)
