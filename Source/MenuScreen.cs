@@ -444,7 +444,7 @@ namespace MenuBuddy
 
 		protected virtual Vector2 EntryStartPosition()
 		{
-			return (MenuOptionOffset + new Vector2(MenuEntryPositionX(), (Resolution.TitleSafeArea.Center.Y * 0.9f)));
+			return (MenuOptionOffset + new Vector2(MenuEntryPositionX(), MenuEntryPositionY()));
 		}
 
 		/// <summary>
@@ -460,9 +460,18 @@ namespace MenuBuddy
 		/// Get the x position to draw menu entries at, using the transition position
 		/// </summary>
 		/// <returns>the correct position the place menu entries on X axis</returns>
-		public float MenuEntryPositionX()
+		public virtual float MenuEntryPositionX()
 		{
 			return XPositionWithOffset((float)Resolution.TitleSafeArea.Center.X);
+		}
+
+		/// <summary>
+		/// Get the x position to draw menu entries at, using the transition position
+		/// </summary>
+		/// <returns>the correct position the place menu entries on Y axis</returns>
+		public virtual float MenuEntryPositionY()
+		{
+			return (Resolution.TitleSafeArea.Center.Y * 0.9f);
 		}
 
 		public float XPositionWithOffset(float pos)

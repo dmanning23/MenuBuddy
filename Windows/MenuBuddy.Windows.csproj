@@ -63,6 +63,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Source\DialogBox.cs">
+      <Link>DialogBox.cs</Link>
+    </Compile>
     <Compile Include="..\Source\MenuEntryBool.cs">
       <Link>MenuEntryBool.cs</Link>
     </Compile>
