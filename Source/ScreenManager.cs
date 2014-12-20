@@ -275,9 +275,9 @@ namespace MenuBuddy
 					TopScreen.HandleInput(InputState, gameTime);
 				}
 
-				foreach (GameScreen screen in Screens)
+				for (int i = 0; i < Screens.Count; i++)
 				{
-					m_ScreensToUpdate.Add(screen);
+					m_ScreensToUpdate.Add(Screens[i]);
 				}
 
 				bool otherScreenHasFocus = !Game.IsActive;
