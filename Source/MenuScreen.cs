@@ -437,7 +437,7 @@ namespace MenuBuddy
 				entryPos.Y += (MenuEntries[i].GetHeight(this));
 			}
 
-			DrawMenuTitle(ScreenName, TitleScale);
+			DrawMenuTitle(ScreenName, TitleScale, gameTime);
 
 			ScreenManager.SpriteBatchEnd();
 		}

@@ -15,18 +15,12 @@ namespace MenuBuddy
 	/// </summary>
 	public abstract class GameScreen
 	{
-		#region Member Variables
-
-		private readonly FontBuddy menuFont = new FontBuddy();
+		#region Properties
 
 		/// <summary>
 		/// Checks whether this screen is active and can respond to user input.
 		/// </summary>
 		protected bool OtherScreenHasFocus { get; private set; }
-
-		#endregion //Member Variables
-
-		#region Properties
 
 		/// <summary>
 		/// Normally when one screen is brought up over the top of another,
@@ -142,6 +136,8 @@ namespace MenuBuddy
 		/// </summary>
 		public event EventHandler Exiting;
 
+		protected FontBuddy MenuTitleFont { get; set; }
+
 		#endregion
 
 		#region Initialization
@@ -165,6 +161,9 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void LoadContent()
 		{
+			//create the font buddy object
+			MenuTitleFont = new FontBuddy();
+			MenuTitleFont.Font = ScreenManager.TitleFont;
 		}
 
 		/// <summary>
@@ -280,7 +279,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="strTitle">The title of this menu</param>
 		/// <param name="fScale">The scale to draw the menu title at</param>
-		public virtual void DrawMenuTitle(string strTitle, float fScale)
+		public virtual void DrawMenuTitle(string strTitle, float fScale, GameTime gameTime)
 		{
 			//dont do anything here if the menu title is empty
 			if (string.IsNullOrEmpty(strTitle))
@@ -303,11 +302,8 @@ namespace MenuBuddy
 			//get the menu title color
 			Color titleColor = FadeAlphaDuringTransition(Color.White);
 
-			//create the font buddy object
-			menuFont.Font = ScreenManager.TitleFont;
-
 			//draw the menu title!
-			menuFont.Write(strTitle, titlePosition, Justify.Center, fScale, titleColor, ScreenManager.SpriteBatch, 0.0f);
+			MenuTitleFont.Write(strTitle, titlePosition, Justify.Center, fScale, titleColor, ScreenManager.SpriteBatch, gameTime.TotalGameTime.TotalSeconds);
 		}
 
 		#endregion
