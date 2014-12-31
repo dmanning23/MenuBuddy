@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 using ResolutionBuddy;
 using System;
 using System.Collections.Generic;
@@ -208,6 +210,7 @@ namespace MenuBuddy
 			//init the basic primitive
 			Prim = new XNABasicPrimitive(GraphicsDevice, SpriteBatch);
 			Prim.Thickness = 5.0f;
+			Prim.NumCircleSegments = 4;
 
 			MessageBoxFont = content.Load<SpriteFont>(_strMessageBoxFont);
 			MenuFont = content.Load<SpriteFont>(_strMenuFont);
@@ -345,6 +348,39 @@ namespace MenuBuddy
 				{
 					TopScreen.Draw(gameTime);
 				}
+
+#if MOUSE
+				if (TouchMenus)
+				{
+					var mouse = Mouse.GetState();
+					var mousePos = new Vector2((float)mouse.X, (float)mouse.Y);
+
+					SpriteBatch.Begin();
+					//draw a circle around the mouse cursor
+					Prim.NumCircleSegments = 4;
+					Prim.Circle(mousePos, 6.0f, Color.Red);
+					SpriteBatch.End();
+				}
+#endif
+
+#if TOUCH
+				if (TouchMenus)
+				{
+					SpriteBatch.Begin();
+					//go though the points that are being touched
+					TouchCollection touchCollection = TouchPanel.GetState();
+					foreach (var touch in touchCollection)
+					{
+						if ((touch.State == TouchLocationState.Pressed) || (touch.State == TouchLocationState.Moved))
+						{
+							//draw a circle around each touch point
+							Prim.Circle(touch.Position, 40.0f, new Color(1.0f, 1.0f, 1.0f, 0.25f));
+						}
+					}
+					SpriteBatch.End();
+				}
+#endif
+
 #if !DEBUG
 			}
 			catch (Exception ex)
