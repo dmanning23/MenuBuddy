@@ -45,6 +45,9 @@ namespace MenuBuddy
 				//set teh selected menu item
 				m_SelectedIndex = value;
 
+				//set the highlighted item to match
+				HighlightedIndex = m_SelectedIndex;
+
 				//reset the menu clock so the entries don't pop
 				MenuClock.Start();
 			}
@@ -61,6 +64,29 @@ namespace MenuBuddy
 					(SelectedIndex < MenuEntries.Count))
 				{
 					return MenuEntries[SelectedIndex]; 
+				}
+
+				//no menu entry selected or something is not setup correctly
+				return null;
+			}
+		}
+
+		/// <summary>
+		/// Get the currently selected menu entry index, -1 if no entry selected
+		/// </summary>
+		protected int HighlightedIndex { get; set; }
+
+		/// <summary>
+		/// Get the currently Highlighted menu entry, null if no menu entry selected
+		/// </summary>
+		public MenuEntry HighlightedEntry
+		{
+			get
+			{
+				if ((HighlightedIndex > -1) &&
+					(HighlightedIndex < MenuEntries.Count))
+				{
+					return MenuEntries[HighlightedIndex];
 				}
 
 				//no menu entry selected or something is not setup correctly
@@ -162,6 +188,7 @@ namespace MenuBuddy
 				CheckForMenuHeld();
 				CheckForMouseClick();
 				CheckForTouch();
+				CheckForHighlightedItem();
 			}
 			else
 			{
@@ -264,11 +291,13 @@ namespace MenuBuddy
 			//check if the player is holding the LMouseButton down in the menu entry
 			if (ScreenManager.InputState.LMouseDown)
 			{
-				foreach (var entry in MenuEntries)
+				for (int i = 0; i < MenuEntries.Count; i++)
 				{
-					if (entry.ButtonRect.Contains(ScreenManager.MousePos))
+					if (MenuEntries[i].ButtonRect.Contains(ScreenManager.MousePos))
 					{
+						SelectedIndex = i;
 						heldDown = true;
+						break;
 					}
 				}
 			}
@@ -278,10 +307,11 @@ namespace MenuBuddy
 			{
 				foreach (var touch in ScreenManager.Touch.Touches)
 				{
-					foreach (var entry in MenuEntries)
+					for (int i = 0; i < MenuEntries.Count; i++)
 					{
-						if (entry.ButtonRect.Contains(touch))
+						if (MenuEntries[i].ButtonRect.Contains(touch))
 						{
+							SelectedIndex = i;
 							heldDown = true;
 							break;
 						}
@@ -330,6 +360,24 @@ namespace MenuBuddy
 							break;
 						}
 					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Check if the cursor is in a menu item
+		/// </summary>
+		/// <returns></returns>
+		protected void CheckForHighlightedItem()
+		{
+			//check if the mouse cursor is in a button
+			for (int i = 0; i < MenuEntries.Count; i++)
+			{
+				//Check if the mouse cursor is inside this menu entry
+				if (MenuEntries[i].ButtonRect.Contains(ScreenManager.MousePos))
+				{
+					HighlightedIndex = i;
+					break;
 				}
 			}
 		}
