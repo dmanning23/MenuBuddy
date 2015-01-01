@@ -201,7 +201,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Draws the menu entry. This can be overridden to customize the appearance.
 		/// </summary>
-		public void Draw(MenuScreen screen, Vector2 position, bool isSelected, GameClock gameTime)
+		public virtual void Draw(MenuScreen screen, Vector2 position, bool isSelected, GameClock gameTime)
 		{
 			// Draw the selected entry in yellow, otherwise white.
 			Color color = isSelected ? Color.Red : NonSelectedColor;
@@ -308,7 +308,7 @@ namespace MenuBuddy
 			return (MenuEntryFont(screen.ScreenManager).MeasureString(Text).X * SizeMultiplier);
 		}
 
-		public bool ButtonHighlight(MenuScreen screen)
+		public bool ButtonHighlight(GameScreen screen)
 		{
 			//Check if the mouse cursor is inside this menu entry
 			if (ButtonRect.Contains(screen.ScreenManager.MousePos))
@@ -319,7 +319,7 @@ namespace MenuBuddy
 			//check if the user is holding the thouch screen inside this menu entry
 			if (null != screen.ScreenManager.Touch)
 			{
-				foreach (var touch in screen.ScreenManager.Touch.Touches)
+				foreach (Vector2 touch in screen.ScreenManager.Touch.Touches)
 				{
 					if (ButtonRect.Contains(touch))
 					{

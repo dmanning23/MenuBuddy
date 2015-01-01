@@ -145,7 +145,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MenuBuddy.GameScreen"/> class.
 		/// </summary>
-		public GameScreen(string strMenuTitle = "")
+		protected GameScreen(string strMenuTitle = "")
 		{
 			IsPopup = false;
 			TransitionOnTime = TimeSpan.Zero;

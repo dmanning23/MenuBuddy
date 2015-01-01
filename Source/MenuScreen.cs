@@ -88,7 +88,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public MenuScreen(string strMenuTitle = "")
+		protected MenuScreen(string strMenuTitle = "")
 			: base(strMenuTitle)
 		{
 			MenuOptionOffset = Vector2.Zero;
