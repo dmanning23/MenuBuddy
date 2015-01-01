@@ -57,8 +57,8 @@ namespace MenuBuddy
 		{
 			get 
 			{
-				if ((m_SelectedIndex > -1) &&
-					(m_SelectedIndex < MenuEntries.Count))
+				if ((SelectedIndex > -1) &&
+					(SelectedIndex < MenuEntries.Count))
 				{
 					return MenuEntries[SelectedIndex]; 
 				}
@@ -93,11 +93,6 @@ namespace MenuBuddy
 		public bool QuietMenu { get; set; }
 
 		/// <summary>
-		/// Flag to draw menu entries at center screen, or to use the menu entry rect to place them
-		/// </summary>
-		public bool CascadeMenuEntries { get; set; }
-
-		/// <summary>
 		/// flag to draw the selection rect around the menu entries as the text size, or use the menu entry rect to place them
 		/// </summary>
 		public bool TextSelectionRect { get; set; }
@@ -113,7 +108,6 @@ namespace MenuBuddy
 			: base(strMenuTitle)
 		{
 			MenuOptionOffset = Vector2.Zero;
-			CascadeMenuEntries = true;
 			TextSelectionRect = true;
 			QuietMenu = false;
 			TitleScale = 1.0f;
@@ -264,21 +258,18 @@ namespace MenuBuddy
 		/// <returns></returns>
 		protected void CheckForMenuHeld()
 		{
-			//if no selected entry, no reason to check this
-			if (null != SelectedEntry)
-			{
-				return;
-			}
-
 			//flag used to reset selected entry
 			bool heldDown = false;
 
 			//check if the player is holding the LMouseButton down in the menu entry
 			if (ScreenManager.InputState.LMouseDown)
 			{
-				if (SelectedEntry.ButtonRect.Contains(ScreenManager.MousePos))
+				foreach (var entry in MenuEntries)
 				{
-					heldDown = true;
+					if (entry.ButtonRect.Contains(ScreenManager.MousePos))
+					{
+						heldDown = true;
+					}
 				}
 			}
 
@@ -287,10 +278,13 @@ namespace MenuBuddy
 			{
 				foreach (var touch in ScreenManager.Touch.Touches)
 				{
-					if (SelectedEntry.ButtonRect.Contains(touch))
+					foreach (var entry in MenuEntries)
 					{
-						heldDown = true;
-						break;
+						if (entry.ButtonRect.Contains(touch))
+						{
+							heldDown = true;
+							break;
+						}
 					}
 				}
 			}
@@ -444,12 +438,6 @@ namespace MenuBuddy
 			// Draw each menu entry in turn.
 			for (int i = 0; i < MenuEntries.Count; i++)
 			{
-				//If we aren't doing cascading menus, use the menu position
-				if (!CascadeMenuEntries)
-				{
-					entryPos = MenuEntries[i].Position;
-				}
-
 				//Draw the menu option
 				bool isSelected = IsActive && (i == SelectedIndex);
 				MenuEntries[i].Draw(this, entryPos, isSelected, MenuClock);

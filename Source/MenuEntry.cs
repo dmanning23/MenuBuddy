@@ -17,12 +17,6 @@ namespace MenuBuddy
 		#region Fields
 
 		/// <summary>
-		/// Gets or sets the position of this menu entry.
-		/// Only used if MenuScreen.CascadeMenuEntries is set to false.
-		/// </summary>
-		public Vector2 Position { get; set; }
-
-		/// <summary>
 		/// get or set the width of the selection box of this menu entry.
 		/// Only used if TextSelectionRect.TextSelectionRect is set to false.
 		/// </summary>
@@ -203,15 +197,6 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void Draw(MenuScreen screen, Vector2 position, bool isSelected, GameClock gameTime)
 		{
-			// Draw the selected entry in yellow, otherwise white.
-			Color color = isSelected ? Color.Red : NonSelectedColor;
-
-			// Modify the alpha to fade text out during transitions.
-			float alpha = (screen.TransitionAlpha * 255.0f);
-			color.A = Convert.ToByte(alpha);
-			Color backgroundColor = Color.Black;
-			backgroundColor.A = Convert.ToByte(alpha);
-
 			//set teh rect around this entry
 			//create the rect we need
 			if (screen.TextSelectionRect)
@@ -234,24 +219,52 @@ namespace MenuBuddy
 					(int)GetHeight(screen)); //manually setting the height is a bitch
 			}
 
+			DrawBackground(screen, ButtonRect);
+
+			DrawText(screen, position, isSelected, gameTime);
+		}
+
+		protected void DrawBackground(MenuScreen screen, Rectangle rect)
+		{
 			//darw the background rectangle if in touch mode
 			if (screen.ScreenManager.TouchMenus && screen.IsActive)
 			{
 				//check if the mouse is over this entry
 				float buttonAlpha = screen.TransitionAlpha * 0.5f;
-				if (screen.ScreenManager.TouchMenus)
+
+				//get the mouse location
+				if (ButtonHighlight(screen))
 				{
-					//get the mouse location
-					if (ButtonHighlight(screen))
-					{
-						buttonAlpha = screen.TransitionAlpha * 0.2f;
-					}
+					buttonAlpha = screen.TransitionAlpha * 0.2f;
 				}
 
 				//draw the rect!
-				screen.ScreenManager.DrawButtonBackground(buttonAlpha, ButtonRect);
+				screen.ScreenManager.DrawButtonBackground(buttonAlpha, rect);
 			}
+		}
 
+		protected void GetTextColors(MenuScreen screen, bool isSelected, out Color color, out Color backgroundColor)
+		{
+			// Draw the selected entry in yellow, otherwise white.
+			color = isSelected ? Color.Red : NonSelectedColor;
+
+			// Modify the alpha to fade text out during transitions.
+			float alpha = (screen.TransitionAlpha * 255.0f);
+			color.A = Convert.ToByte(alpha);
+			backgroundColor = Color.Black;
+			backgroundColor.A = Convert.ToByte(alpha);
+		}
+
+		/// <summary>
+		/// Get the menu font that is going to be used to draw the text for this dude
+		/// </summary>
+		/// <param name="screen"></param>
+		/// <param name="isSelected"></param>
+		/// <param name="color"></param>
+		/// <param name="backgroundColor"></param>
+		/// <returns></returns>
+		protected ShadowTextBuddy GetMenuEntryFont(MenuScreen screen, bool isSelected,  Color backgroundColor, ref Color color)
+		{
 			//get the correct font buddy to draw with.
 			ShadowTextBuddy menuFont;
 			if (!screen.ScreenManager.TouchMenus)
@@ -279,15 +292,27 @@ namespace MenuBuddy
 			}
 
 			menuFont.Font = MenuEntryFont(screen.ScreenManager);
+			return menuFont;
+		}
+
+		protected void DrawText(MenuScreen screen, Vector2 position, bool isSelected, GameClock gameTime)
+		{
+			//Get the colors to write the text in
+			Color color;
+			Color backgroundColor;
+			GetTextColors(screen, isSelected, out color, out backgroundColor);
+
+			//get the font to draw the menu in
+			ShadowTextBuddy menuFont = GetMenuEntryFont(screen, isSelected, backgroundColor, ref color);
 
 			// Draw text!
 			menuFont.Write(Text,
-			               position,
-			               Justify.Center,
-			               SizeMultiplier,
-			               color,
-			               screen.ScreenManager.SpriteBatch,
-			               gameTime.CurrentTime);
+						   position,
+						   Justify.Center,
+						   SizeMultiplier,
+						   color,
+						   screen.ScreenManager.SpriteBatch,
+						   gameTime.CurrentTime);
 		}
 
 		/// <summary>

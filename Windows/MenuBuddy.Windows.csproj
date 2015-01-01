@@ -81,8 +81,8 @@
     <Compile Include="..\Source\TouchEntry.cs">
       <Link>TouchEntry.cs</Link>
     </Compile>
-    <Compile Include="..\Source\TouchScreen.cs">
-      <Link>TouchScreen.cs</Link>
+    <Compile Include="..\Source\TouchFillEntry.cs">
+      <Link>TouchFillEntry.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\Source\GameScreen.cs">
