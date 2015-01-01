@@ -23,7 +23,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// index of the currently selected menu entry
 		/// </summary>
-		private int m_SelectedEntry;
+		private int m_SelectedIndex;
 
 		#endregion
 
@@ -34,16 +34,37 @@ namespace MenuBuddy
 		/// </summary>
 		protected IList<MenuEntry> MenuEntries { get; private set; }
 
-		protected int SelectedEntry
+		/// <summary>
+		/// Get the currently selected menu entry index, -1 if no entry selected
+		/// </summary>
+		protected int SelectedIndex
 		{
-			get { return m_SelectedEntry; }
+			get { return m_SelectedIndex; }
 			set
 			{
 				//set teh selected menu item
-				m_SelectedEntry = value;
+				m_SelectedIndex = value;
 
 				//reset the menu clock so the entries don't pop
 				MenuClock.Start();
+			}
+		}
+
+		/// <summary>
+		/// Get the currently selected menu entry, null if no menu entry selected
+		/// </summary>
+		public MenuEntry SelectedEntry
+		{
+			get 
+			{
+				if ((m_SelectedIndex > -1) &&
+					(m_SelectedIndex < MenuEntries.Count))
+				{
+					return MenuEntries[SelectedIndex]; 
+				}
+
+				//no menu entry selected or something is not setup correctly
+				return null;
 			}
 		}
 
@@ -173,7 +194,7 @@ namespace MenuBuddy
 			if (MenuEntries.Count > 1)
 			{
 				//don't roll over
-				SelectedEntry = Math.Max(0, SelectedEntry - 1);
+				SelectedIndex = Math.Max(0, SelectedIndex - 1);
 
 				if (!QuietMenu)
 				{
@@ -190,7 +211,7 @@ namespace MenuBuddy
 			if (MenuEntries.Count > 1)
 			{
 				//don't roll over
-				SelectedEntry = Math.Min(SelectedEntry + 1, MenuEntries.Count - 1);
+				SelectedIndex = Math.Min(SelectedIndex + 1, MenuEntries.Count - 1);
 
 				if (!QuietMenu)
 				{
@@ -204,16 +225,16 @@ namespace MenuBuddy
 
 		protected virtual void MenuLeft()
 		{
-			if (MenuEntries.Count >= 1)
+			if (null != SelectedEntry)
 			{
 				//play menu noise
-				if (MenuEntries[SelectedEntry].PlayLeftRightSound && !QuietMenu)
+				if (SelectedEntry.PlayLeftRightSound && !QuietMenu)
 				{
 					ScreenManager.MenuChange.Play();
 				}
 
 				//run the sleected evetn
-				MenuEntries[SelectedEntry].OnLeftEntry();
+				SelectedEntry.OnLeftEntry();
 
 				ResetInputTimer();
 			}
@@ -221,16 +242,16 @@ namespace MenuBuddy
 
 		protected virtual void MenuRight()
 		{
-			if (MenuEntries.Count >= 1)
+			if (null != SelectedEntry)
 			{
 				//play menu noise
-				if (MenuEntries[SelectedEntry].PlayLeftRightSound && !QuietMenu)
+				if (SelectedEntry.PlayLeftRightSound && !QuietMenu)
 				{
 					ScreenManager.MenuChange.Play();
 				}
 
 				//run the sleected evetn
-				MenuEntries[SelectedEntry].OnRightEntry();
+				SelectedEntry.OnRightEntry();
 
 				ResetInputTimer();
 			}
@@ -244,7 +265,7 @@ namespace MenuBuddy
 		protected void CheckForMenuHeld()
 		{
 			//if no selected entry, no reason to check this
-			if (-1 == SelectedEntry)
+			if (null != SelectedEntry)
 			{
 				return;
 			}
@@ -255,7 +276,7 @@ namespace MenuBuddy
 			//check if the player is holding the LMouseButton down in the menu entry
 			if (ScreenManager.InputState.LMouseDown)
 			{
-				if (MenuEntries[SelectedEntry].ButtonRect.Contains(ScreenManager.MousePos))
+				if (SelectedEntry.ButtonRect.Contains(ScreenManager.MousePos))
 				{
 					heldDown = true;
 				}
@@ -266,7 +287,7 @@ namespace MenuBuddy
 			{
 				foreach (var touch in ScreenManager.Touch.Touches)
 				{
-					if (MenuEntries[SelectedEntry].ButtonRect.Contains(touch))
+					if (SelectedEntry.ButtonRect.Contains(touch))
 					{
 						heldDown = true;
 						break;
@@ -277,7 +298,7 @@ namespace MenuBuddy
 			//well the player isn't holding anything... reset the selected entry
 			if (!heldDown)
 			{
-				m_SelectedEntry = -1;
+				SelectedIndex = -1;
 			}
 		}
 
@@ -292,7 +313,7 @@ namespace MenuBuddy
 				{
 					if (MenuEntries[i].ButtonRect.Contains(mousePos))
 					{
-						SelectedEntry = i;
+						SelectedIndex = i;
 						FireMenuSelectEvent(PlayerIndex.One, MenuEntries[i]);
 						break;
 					}
@@ -310,7 +331,7 @@ namespace MenuBuddy
 					{
 						if (MenuEntries[i].ButtonRect.Contains(tapPos))
 						{
-							SelectedEntry = i;
+							SelectedIndex = i;
 							FireMenuSelectEvent(PlayerIndex.One, MenuEntries[i]);
 							break;
 						}
@@ -325,9 +346,9 @@ namespace MenuBuddy
 		/// <param name="playerIndex"></param>
 		protected virtual void MenuSelect(PlayerIndex playerIndex)
 		{
-			if (MenuEntries.Count >= 1)
+			if (null != SelectedEntry)
 			{
-				FireMenuSelectEvent(playerIndex, MenuEntries[SelectedEntry]);
+				FireMenuSelectEvent(playerIndex, SelectedEntry);
 			}
 		}
 
@@ -376,9 +397,9 @@ namespace MenuBuddy
 			MenuEntries.Remove(entry);
 
 			//set the selected item if needed
-			if (SelectedEntry >= MenuEntries.Count)
+			if (SelectedIndex >= MenuEntries.Count)
 			{
-				SelectedEntry = MenuEntries.Count - 1;
+				SelectedIndex = MenuEntries.Count - 1;
 			}
 		}
 
@@ -396,7 +417,7 @@ namespace MenuBuddy
 			// Update each nested MenuEntry object.
 			for (int i = 0; i < MenuEntries.Count; i++)
 			{
-				bool isSelected = IsActive && (i == SelectedEntry);
+				bool isSelected = IsActive && (i == SelectedIndex);
 				MenuEntries[i].Update(this, isSelected, gameTime);
 			}
 
@@ -430,7 +451,7 @@ namespace MenuBuddy
 				}
 
 				//Draw the menu option
-				bool isSelected = IsActive && (i == SelectedEntry);
+				bool isSelected = IsActive && (i == SelectedIndex);
 				MenuEntries[i].Draw(this, entryPos, isSelected, MenuClock);
 
 				//update the menu entry Y position
