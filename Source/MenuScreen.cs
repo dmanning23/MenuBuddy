@@ -401,10 +401,18 @@ namespace MenuBuddy
 		/// <param name="entry"></param>
 		private void FireMenuSelectEvent(PlayerIndex playerIndex, MenuEntry entry)
 		{
-			if (!QuietMenu)
+			if (!QuietMenu && !entry.QuietEntry)
 			{
-				//play menu noise
-				ScreenManager.MenuSelect.Play();
+				if (null != entry.SelectionSound)
+				{
+					//this menu entry has a special sound
+					entry.SelectionSound.Play();
+				}
+				else
+				{
+					//play the defualt menu noise
+					ScreenManager.MenuSelect.Play();
+				}
 			}
 
 			//run the sleected evetn

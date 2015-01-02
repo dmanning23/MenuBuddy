@@ -3,6 +3,7 @@ using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Microsoft.Xna.Framework.Audio;
 
 namespace MenuBuddy
 {
@@ -91,6 +92,17 @@ namespace MenuBuddy
 		/// </summary>
 		private bool MessageBoxEntry { get; set; }
 
+		/// <summary>
+		/// You can change individual menu entries to not play sound at all
+		/// </summary>
+		public bool QuietEntry { get; set; }
+
+		/// <summary>
+		/// You can change the sound to play for individual menu entries.
+		/// if not quiet menu, not quiet menu entry, and this is null, will play MenuSoud from screen manager
+		/// </summary>
+		public SoundEffect SelectionSound { get; set; }
+
 		#endregion
 
 		#region Events
@@ -157,6 +169,7 @@ namespace MenuBuddy
 			SizeMultiplier = 1.0f;
 			Width = 768.0f;
 			Height = 128.0f;
+			QuietEntry = false;
 
 			NonSelectedColor = Color.White;
 
