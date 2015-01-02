@@ -161,6 +161,8 @@ namespace MenuBuddy
 		/// <value>The color of the clear.</value>
 		public Color ClearColor { get; set; }
 
+		public string MessageBoxBackgroundTextureName { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -168,7 +170,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new screen manager component.
 		/// </summary>
-		public ScreenManager(Game game,
+		protected ScreenManager(Game game,
 		                     string strTitleFont,
 		                     string strMenuFont,
 		                     string strMessageBoxFont,
@@ -183,6 +185,7 @@ namespace MenuBuddy
 			_strMessageBoxFont = strMessageBoxFont;
 			_strMenuChange = strMenuChange;
 			_strMenuSelect = strMenuSelect;
+			MessageBoxBackgroundTextureName = "gradient";
 
 			//get the touch service
 			Touch = game.Services.GetService(typeof(ITouchManager)) as ITouchManager;

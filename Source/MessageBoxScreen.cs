@@ -112,7 +112,7 @@ namespace MenuBuddy
 
 			//load the gradient texture
 			ContentManager content = ScreenManager.Game.Content;
-			GradientTexture = content.Load<Texture2D>(@"gradient");
+			GradientTexture = content.Load<Texture2D>(ScreenManager.MessageBoxBackgroundTextureName);
 		}
 
 		#endregion
@@ -165,7 +165,7 @@ namespace MenuBuddy
 			// Center the message text in the viewport.
 			Vector2 textSize = TotalMessageSize();
 			Vector2 textPosition = new Vector2(
-				Resolution.TitleSafeArea.Center.X - (textSize.X / 2),
+				XPositionWithOffset(Resolution.TitleSafeArea.Center.X - (textSize.X / 2)),
 				_cancelEntry.ButtonRect.Bottom - textSize.Y);
 
 			// The background includes a border somewhat larger than the text itself.
