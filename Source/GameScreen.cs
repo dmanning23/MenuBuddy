@@ -306,6 +306,15 @@ namespace MenuBuddy
 			MenuTitleFont.Write(strTitle, titlePosition, Justify.Center, fScale, titleColor, ScreenManager.SpriteBatch, gameTime.TotalGameTime.TotalSeconds);
 		}
 
+		/// <summary>
+		/// Fade the background behind this screen
+		/// </summary>
+		protected void FadeBackground()
+		{
+			//gray out the screens under this one
+			ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2.0f / 3.0f);
+		}
+
 		#endregion
 
 		#region Public Methods

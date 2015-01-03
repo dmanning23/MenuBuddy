@@ -160,7 +160,7 @@ namespace MenuBuddy
 			ScreenManager.SpriteBatchBegin();
 
 			// Darken down any other screens that were drawn beneath the popup.
-			ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2.0f / 3.0f);
+			FadeBackground();
 
 			// Center the message text in the viewport.
 			Vector2 textSize = TotalMessageSize();

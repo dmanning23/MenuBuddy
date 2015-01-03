@@ -164,7 +164,7 @@ namespace MenuBuddy
 				ScreenManager.SpriteBatchBegin();
 
 				//Draw on a black backgrounf
-				ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2.0f / 3.0f);
+				FadeBackground();
 
 				// Draw the text.
 				Color colorFore = FadeAlphaDuringTransition(Color.White);
