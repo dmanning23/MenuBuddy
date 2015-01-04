@@ -32,7 +32,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Gets the list of menu entries, so derived classes can add or change the menu contents.
 		/// </summary>
-		protected IList<MenuEntry> MenuEntries { get; private set; }
+		public IList<MenuEntry> MenuEntries { get; private set; }
 
 		/// <summary>
 		/// Get the currently selected menu entry index, -1 if no entry selected
