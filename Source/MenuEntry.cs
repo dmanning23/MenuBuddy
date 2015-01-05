@@ -380,6 +380,11 @@ namespace MenuBuddy
 			return (MessageBoxEntry ? screenManager.MessageBoxFont : screenManager.MenuFont);
 		}
 
+		public override string ToString()
+		{
+			return Text;
+		}
+
 		#endregion
 	}
 }

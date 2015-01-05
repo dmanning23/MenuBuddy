@@ -359,6 +359,11 @@ namespace MenuBuddy
 			//dont do anything in this screen, only in menu screen
 		}
 
+		public override string ToString()
+		{
+			return ScreenName;
+		}
+
 		#endregion
 	}
 }
