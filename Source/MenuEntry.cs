@@ -308,7 +308,7 @@ namespace MenuBuddy
 			return menuFont;
 		}
 
-		protected void DrawText(MenuScreen screen, Vector2 position, bool isSelected, GameClock gameTime)
+		protected  virtual void DrawText(MenuScreen screen, Vector2 position, bool isSelected, GameClock gameTime)
 		{
 			//Get the colors to write the text in
 			Color color;

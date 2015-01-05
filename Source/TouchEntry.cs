@@ -30,7 +30,8 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public TouchEntry(string text, bool drawOutline = true) : base(text, false)
+		public TouchEntry(string text, bool drawOutline = true, bool messageBoxEntry = false)
+			: base(text, messageBoxEntry)
 		{
 			DrawOutline = drawOutline;
 		}
@@ -38,11 +39,10 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public TouchEntry(string text, Texture2D image, Rectangle rect, bool drawOutline = true)
-			: this(text, drawOutline)
+		public TouchEntry(string text, bool drawOutline, bool messageBoxEntry, Texture2D image)
+			: this(text, drawOutline, messageBoxEntry)
 		{
 			Image = image;
-			ButtonRect = rect;
 		}
 
 		#endregion
@@ -82,7 +82,7 @@ namespace MenuBuddy
 			{
 				Vector2 loc = new Vector2(
 					offsetRect.Center.X,
-					offsetRect.Center.Y);
+					offsetRect.Center.Y - (GetHeight(screen) / 2f));
 
 				DrawText(screen, loc, isSelected, gameTime);
 			}

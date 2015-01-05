@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E83F9EAA-EB6B-4801-8BEF-C602D34EBFD3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>MenuBuddy.Windows</RootNamespace>
@@ -119,7 +117,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\..\BasicPrimitiveBuddy\Windows\BasicPrimitiveBuddy.Windows.csproj">
-      <Project>{0faa1286-7bfa-4765-8b51-62e438cb121d}</Project>
+      <Project>{0FAA1286-7BFA-4765-8B51-62E438CB121D}</Project>
       <Name>BasicPrimitiveBuddy.Windows</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\HadoukInput\Windows\HadoukInput.Windows.csproj">
@@ -139,7 +137,7 @@
       <Name>GameTimer.Windows</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\TouchScreenBuddy\Windows\TouchScreenBuddy.Windows.csproj">
-      <Project>{764d3dc6-927a-45ee-901d-ea07966dde72}</Project>
+      <Project>{764D3DC6-927A-45EE-901D-EA07966DDE72}</Project>
       <Name>TouchScreenBuddy.Windows</Name>
     </ProjectReference>
   </ItemGroup>
