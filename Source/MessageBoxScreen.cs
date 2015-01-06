@@ -36,6 +36,8 @@ namespace MenuBuddy
 		/// </summary>
 		public bool InflateMessageBox { get; set; }
 
+		private bool IncludeUsageText { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -58,39 +60,7 @@ namespace MenuBuddy
 
 			//grab the message
 			Message = message;
-
-			//create the strings to hold the menu text
-			var okText = new StringBuilder();
-			okText.Append("Ok");
-			var cancelText = new StringBuilder();
-			cancelText.Append("Cancel");
-
-			if (includeUsageText)
-			{
-				//Put the correct button text in the message
-#if OUYA
-				okText.Append(": O button");
-				cancelText.Append(": A button");
-#else
-				okText.Append(": A button");
-				cancelText.Append(": B button");
-#endif
-
-				//Add the keyboard text if we have a keyboard
-#if KEYBOARD
-				okText.Append(", Space, Enter");
-				cancelText.Append(", Esc");
-#endif
-			}
-
-			//Create the menu entries for "OK" and "Cancel"
-			var okEntry = new MenuEntry(okText.ToString(), true);
-			okEntry.Selected += OnAccept;
-			MenuEntries.Add(okEntry);
-
-			_cancelEntry = new MenuEntry(cancelText.ToString(), true);
-			_cancelEntry.Selected += OnCancel;
-			MenuEntries.Add(_cancelEntry);
+			IncludeUsageText = includeUsageText;
 
 			IsPopup = true;
 
@@ -113,6 +83,69 @@ namespace MenuBuddy
 			//load the gradient texture
 			ContentManager content = ScreenManager.Game.Content;
 			GradientTexture = content.Load<Texture2D>(ScreenManager.MessageBoxBackgroundTextureName);
+
+			AddButtons(IncludeUsageText);
+		}
+
+		protected virtual void AddButtons(bool includeUsageText)
+		{
+			AddOkButton(includeUsageText);
+
+			AddCancelButton(includeUsageText);
+		}
+
+		protected void AddOkButton(bool includeUsageText)
+		{
+			//create the strings to hold the menu text
+			var okText = new StringBuilder();
+			okText.Append("Ok");
+
+			if (includeUsageText)
+			{
+				//Put the correct button text in the message
+#if OUYA
+				okText.Append(": O button");
+#else
+				okText.Append(": A button");
+#endif
+
+				//Add the keyboard text if we have a keyboard
+#if KEYBOARD
+				okText.Append(", Space, Enter");
+#endif
+			}
+
+			//Create the menu entry for "OK"
+			var okEntry = new MenuEntry(okText.ToString(), true);
+			okEntry.Selected += OnAccept;
+			MenuEntries.Add(okEntry);
+		}
+
+		protected void AddCancelButton(bool includeUsageText)
+		{
+			//create the strings to hold the menu text
+			var cancelText = new StringBuilder();
+			cancelText.Append("Cancel");
+
+			if (includeUsageText)
+			{
+				//Put the correct button text in the message
+#if OUYA
+				cancelText.Append(": A button");
+#else
+				cancelText.Append(": B button");
+#endif
+
+				//Add the keyboard text if we have a keyboard
+#if KEYBOARD
+				cancelText.Append(", Esc");
+#endif
+			}
+
+			//Create the menu entry "Cancel"
+			_cancelEntry = new MenuEntry(cancelText.ToString(), true);
+			_cancelEntry.Selected += OnCancel;
+			MenuEntries.Add(_cancelEntry);
 		}
 
 		#endregion
@@ -137,12 +170,7 @@ namespace MenuBuddy
 			{
 				Cancelled(this, new PlayerIndexEventArgs(playerIndex));
 			}
-			else
-			{
-				//else just pop it off the stack
-				ExitScreen();
-			}
-
+			
 			ExitScreen();
 		}
 
@@ -166,7 +194,7 @@ namespace MenuBuddy
 			Vector2 textSize = TotalMessageSize();
 			Vector2 textPosition = new Vector2(
 				XPositionWithOffset(Resolution.TitleSafeArea.Center.X - (textSize.X / 2)),
-				_cancelEntry.ButtonRect.Bottom - textSize.Y);
+				MenuEntries[MenuEntries.Count - 1].ButtonRect.Bottom - textSize.Y);
 
 			// The background includes a border somewhat larger than the text itself.
 			const int hPad = 32;
