@@ -71,12 +71,6 @@ namespace MenuBuddy
 		public PulsateBuddy PulsateText { get; private set; }
 
 		/// <summary>
-		/// The color to draw this item when it is not selected
-		/// </summary>
-		/// <value>The color of the non selected.</value>
-		public Color NonSelectedColor { get; set; }
-
-		/// <summary>
 		/// Whether or not to play a sound when the user hits left/right on a menu entry
 		/// </summary>
 		public virtual bool PlayLeftRightSound
@@ -171,8 +165,6 @@ namespace MenuBuddy
 			Height = 128.0f;
 			QuietEntry = false;
 
-			NonSelectedColor = Color.White;
-
 			ShadowText = new ShadowTextBuddy();
 			PulsateText = new PulsateBuddy();
 			if (messageBoxEntry)
@@ -232,40 +224,51 @@ namespace MenuBuddy
 					(int)GetHeight(screen)); //manually setting the height is a bitch
 			}
 
-			DrawBackground(screen, ButtonRect);
+			DrawBackground(screen, ButtonRect, GetButtonAlpha(screen));
 
-			DrawText(screen, position, isSelected, gameTime);
+			DrawText(screen, position, isSelected, GetTextAlpha(screen), gameTime);
 		}
 
-		protected void DrawBackground(MenuScreen screen, Rectangle rect)
+		protected void DrawBackground(MenuScreen screen, Rectangle rect, byte alpha)
 		{
 			//darw the background rectangle if in touch mode
 			if (screen.ScreenManager.TouchMenus && screen.IsActive)
 			{
-				//check if the mouse is over this entry
-				float buttonAlpha = screen.TransitionAlpha * 0.5f;
-
-				//get the mouse location
-				if (ButtonHighlight(screen))
-				{
-					buttonAlpha = screen.TransitionAlpha * 0.2f;
-				}
-
 				//draw the rect!
-				screen.ScreenManager.DrawButtonBackground(buttonAlpha, rect);
+				screen.ScreenManager.DrawButtonBackground(alpha, rect);
 			}
 		}
 
-		protected void GetTextColors(MenuScreen screen, bool isSelected, out Color color, out Color backgroundColor)
+		protected byte GetButtonAlpha(MenuScreen screen)
+		{
+			//check if the mouse is over this entry
+			float alpha = screen.TransitionAlpha * 0.5f;
+
+			//get the mouse location
+			if (ButtonHighlight(screen))
+			{
+				alpha = screen.TransitionAlpha * 0.7f;
+			}
+
+			alpha *= 255f;
+			return Convert.ToByte(alpha); ;
+		}
+
+		protected byte GetTextAlpha(MenuScreen screen)
+		{
+			float alpha = (screen.TransitionAlpha * 255.0f);
+			return Convert.ToByte(alpha);
+		}
+
+		protected virtual void GetTextColors(MenuScreen screen, bool isSelected, byte alpha, out Color color, out Color backgroundColor)
 		{
 			// Draw the selected entry in yellow, otherwise white.
-			color = isSelected ? Color.Red : NonSelectedColor;
+			color = isSelected ? screen.ScreenManager.SelectedTextColor : screen.ScreenManager.NonSelectedTextColor;
 
 			// Modify the alpha to fade text out during transitions.
-			float alpha = (screen.TransitionAlpha * 255.0f);
-			color.A = Convert.ToByte(alpha);
-			backgroundColor = Color.Black;
-			backgroundColor.A = Convert.ToByte(alpha);
+			color.A = alpha;
+			backgroundColor = screen.ScreenManager.TextShadowColor;
+			backgroundColor.A = alpha;
 		}
 
 		/// <summary>
@@ -276,7 +279,7 @@ namespace MenuBuddy
 		/// <param name="color"></param>
 		/// <param name="backgroundColor"></param>
 		/// <returns></returns>
-		protected ShadowTextBuddy GetMenuEntryFont(MenuScreen screen, bool isSelected,  Color backgroundColor, ref Color color)
+		protected ShadowTextBuddy GetMenuEntryFont(MenuScreen screen, bool isSelected, Color backgroundColor, ref Color color)
 		{
 			//get the correct font buddy to draw with.
 			ShadowTextBuddy menuFont;
@@ -299,7 +302,7 @@ namespace MenuBuddy
 				//set the colors
 				if (isSelected)
 				{
-					menuFont.ShadowColor = NonSelectedColor;
+					menuFont.ShadowColor = screen.ScreenManager.SelectedTextColor;
 					color = new Color(0, 0, 0, 0);
 				}
 			}
@@ -308,12 +311,12 @@ namespace MenuBuddy
 			return menuFont;
 		}
 
-		protected  virtual void DrawText(MenuScreen screen, Vector2 position, bool isSelected, GameClock gameTime)
+		protected  virtual void DrawText(MenuScreen screen, Vector2 position, bool isSelected, byte alpha, GameClock gameTime)
 		{
 			//Get the colors to write the text in
 			Color color;
 			Color backgroundColor;
-			GetTextColors(screen, isSelected, out color, out backgroundColor);
+			GetTextColors(screen, isSelected, alpha, out color, out backgroundColor);
 
 			//get the font to draw the menu in
 			ShadowTextBuddy menuFont = GetMenuEntryFont(screen, isSelected, backgroundColor, ref color);

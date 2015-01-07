@@ -59,10 +59,12 @@ namespace MenuBuddy
 				ButtonRect.Y,
 				ButtonRect.Width, ButtonRect.Height);
 
+			byte alpha = GetButtonAlpha(screen);
+
 			//Draw the outline
 			if (DrawOutline)
 			{
-				DrawBackground(screen, offsetRect);
+				DrawBackground(screen, offsetRect, alpha);
 			}
 
 			//Draw the image
@@ -70,8 +72,7 @@ namespace MenuBuddy
 			{
 				// Modify the alpha to fade text out during transitions.
 				Color color = Color.White;
-				float alpha = (screen.TransitionAlpha * 255.0f);
-				color.A = Convert.ToByte(alpha);
+				color.A = alpha;
 
 				//draw the image
 				DrawButtonImage(screen, color, offsetRect);
@@ -84,7 +85,7 @@ namespace MenuBuddy
 					offsetRect.Center.X,
 					offsetRect.Center.Y - (GetHeight(screen) / 2f));
 
-				DrawText(screen, loc, isSelected, gameTime);
+				DrawText(screen, loc, isSelected, GetTextAlpha(screen), gameTime);
 			}
 		}
 

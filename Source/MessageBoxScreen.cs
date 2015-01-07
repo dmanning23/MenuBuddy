@@ -24,13 +24,6 @@ namespace MenuBuddy
 		public string Message { get; private set; }
 
 		/// <summary>
-		/// The gradient that is drawn behind the message box.
-		/// </summary>
-		private Texture2D GradientTexture { get; set; }
-
-		private MenuEntry _cancelEntry;
-
-		/// <summary>
 		/// If this is true, will pad out the message box to make it taller.
 		/// Set to false for multiline message boxes, true for touchscreen games!
 		/// </summary>
@@ -79,10 +72,6 @@ namespace MenuBuddy
 		public override void LoadContent()
 		{
 			base.LoadContent();
-
-			//load the gradient texture
-			ContentManager content = ScreenManager.Game.Content;
-			GradientTexture = content.Load<Texture2D>(ScreenManager.MessageBoxBackgroundTextureName);
 
 			AddButtons(IncludeUsageText);
 		}
@@ -143,9 +132,9 @@ namespace MenuBuddy
 			}
 
 			//Create the menu entry "Cancel"
-			_cancelEntry = new MenuEntry(cancelText.ToString(), true);
-			_cancelEntry.Selected += OnCancel;
-			MenuEntries.Add(_cancelEntry);
+			var cancel = new MenuEntry(cancelText.ToString(), true);
+			cancel.Selected += OnCancel;
+			MenuEntries.Add(cancel);
 		}
 
 		#endregion
@@ -209,7 +198,7 @@ namespace MenuBuddy
 			var color = new Color(1.0f, 1.0f, 1.0f, TransitionAlpha);
 
 			// Draw the background rectangle.
-			spriteBatch.Draw(GradientTexture, backgroundRectangle, color);
+			spriteBatch.Draw(ScreenManager.MessageBoxBackgroundTexture, backgroundRectangle, color);
 
 			// Draw the message box text.
 			spriteBatch.DrawString(ScreenManager.MessageBoxFont, Message, textPosition, color);

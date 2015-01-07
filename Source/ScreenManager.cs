@@ -129,6 +129,36 @@ namespace MenuBuddy
 
 		#endregion //Touch Menu stuff
 
+		#region Menu Entry Colors
+
+		/// <summary>
+		/// The color to draw the text of a menu entry item when it is not selected
+		/// </summary>
+		/// <value>The color of the non selected.</value>
+		public Color NonSelectedTextColor { get; set; }
+
+		/// <summary>
+		/// The color to draw the text of a menu entry item when it is not selected
+		/// </summary>
+		public Color SelectedTextColor { get; set; }
+
+		/// <summary>
+		/// The color to use for text shadow
+		/// </summary>
+		public Color TextShadowColor { get; set; }
+
+		/// <summary>
+		/// The color to draw the background of buttons
+		/// </summary>
+		public Color ButtonBackgroundColor { get; set; }
+
+		/// <summary>
+		/// The color to draw the borders around buttons
+		/// </summary>
+		public Color ButtonBorderColor { get; set; }
+
+		#endregion Menu Entry Colors
+
 		private readonly List<GameScreen> m_ScreensToUpdate = new List<GameScreen>();
 
 		private bool m_IsInitialized;
@@ -161,7 +191,25 @@ namespace MenuBuddy
 		/// <value>The color of the clear.</value>
 		public Color ClearColor { get; set; }
 
+		/// <summary>
+		/// file to use for message box background
+		/// </summary>
 		public string MessageBoxBackgroundTextureName { get; set; }
+
+		/// <summary>
+		/// texture to use for message box backgrounds
+		/// </summary>
+		public Texture2D MessageBoxBackgroundTexture { get; set; }
+
+		/// <summary>
+		/// The filename of the gradient texture to use
+		/// </summary>
+		public string GradientTextureName { get; set; }
+
+		/// <summary>
+		/// The gradient that is drawn behind the message box, behind buttons.
+		/// </summary>
+		private Texture2D GradientTexture { get; set; }
 
 		#endregion //Properties
 
@@ -185,7 +233,14 @@ namespace MenuBuddy
 			_strMessageBoxFont = strMessageBoxFont;
 			_strMenuChange = strMenuChange;
 			_strMenuSelect = strMenuSelect;
+			GradientTextureName = "gradient";
 			MessageBoxBackgroundTextureName = "gradient";
+
+			NonSelectedTextColor = Color.White;
+			SelectedTextColor = Color.Red;
+			ButtonBorderColor = Color.LightGray;
+			ButtonBackgroundColor = new Color(0.0f, 0.0f, 0.2f);
+			TextShadowColor = Color.Black;
 
 			//get the touch service
 			Touch = game.Services.GetService(typeof(ITouchManager)) as ITouchManager;
@@ -225,6 +280,10 @@ namespace MenuBuddy
 			//create a blank texture without loading some crap
 			BlankTexture = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
 			BlankTexture.SetData(new[] {Color.White});
+
+			//load the textures
+			GradientTexture = content.Load<Texture2D>(GradientTextureName);
+			MessageBoxBackgroundTexture = content.Load<Texture2D>(MessageBoxBackgroundTextureName);
 
 			// Tell each of the screens to load their content.
 			foreach (GameScreen screen in Screens)
@@ -522,13 +581,19 @@ namespace MenuBuddy
 		/// <summary>
 		/// Helper draws a translucent black sprite, used for fading specific areas
 		/// </summary>
-		public void DrawButtonBackground(float fAlpha, Rectangle rect)
+		public void DrawButtonBackground(byte alpha, Rectangle rect)
 		{
+			//get the color for the background & border
+			Color backgroundColor = ButtonBackgroundColor;
+			backgroundColor.A = alpha;
+			Color borderColor = ButtonBorderColor;
+			borderColor.A = alpha;
+
 			//draw the filled background
-			SpriteBatch.Draw(BlankTexture, rect, new Color(0.0f, 0.0f, 0.0f, fAlpha));
+			SpriteBatch.Draw(GradientTexture, rect, backgroundColor);
 
 			//draw the button outline
-			Prim.Rectangle(rect, new Color(0.0f, 0.0f, 0.0f, 1.0f));
+			Prim.Rectangle(rect, borderColor);
 		}
 
 		/// <summary>
