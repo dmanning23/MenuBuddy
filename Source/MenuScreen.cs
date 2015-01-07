@@ -443,13 +443,31 @@ namespace MenuBuddy
 		/// <param name="entry"></param>
 		protected void RemoveMenuEntry(MenuEntry entry)
 		{
-			//remove the entry from the list
-			MenuEntries.Remove(entry);
-
-			//set the selected item if needed
-			if (SelectedIndex >= MenuEntries.Count)
+			//try to remove the entry from the list
+			if (MenuEntries.Remove(entry))
 			{
-				SelectedIndex = MenuEntries.Count - 1;
+				//set the selected item if needed
+				if (SelectedIndex >= MenuEntries.Count)
+				{
+					SelectedIndex = MenuEntries.Count - 1;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Remove a menu entry from the menu
+		/// </summary>
+		/// <param name="entryText">the text of the item to remove</param>
+		protected virtual void RemoveMenuEntry(string entryText)
+		{
+			foreach (var menuItem in MenuEntries)
+			{
+				//check if the menu item has the same text
+				if (menuItem.Text == entryText)
+				{
+					RemoveMenuEntry(menuItem);
+					return;
+				}
 			}
 		}
 
