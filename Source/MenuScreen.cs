@@ -148,6 +148,13 @@ namespace MenuBuddy
 			ResetInputTimer();
 		}
 
+		public override void LoadContent()
+		{
+			//set teh selected index so touch menus arent selected the first time they pop up
+			SelectedIndex = (ScreenManager.TouchMenus ? -1 : 0);
+			base.LoadContent();
+		}
+
 		#endregion
 
 		#region Handle Input
