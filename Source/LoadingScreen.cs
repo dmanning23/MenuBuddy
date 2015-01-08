@@ -41,8 +41,6 @@ namespace MenuBuddy
 		/// <value>The hour glass.</value>
 		private Texture2D HourGlass { get; set; }
 
-		GraphicsDevice graphicsDevice;
-
 		Thread backgroundThread;
 
 		#endregion
@@ -66,8 +64,6 @@ namespace MenuBuddy
 				HourGlass = screenManager.Game.Content.Load<Texture2D>("hourglass");
 				loadingFont.Font = screenManager.TitleFont;
 				loadingFont.ShadowSize = 1.0f;
-
-				graphicsDevice = screenManager.GraphicsDevice;
 			}
 		}
 
