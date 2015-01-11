@@ -455,9 +455,9 @@ namespace MenuBuddy
 		/// <summary>
 		/// A simple way to start the spritebatch from a gamescreen
 		/// </summary>
-		public void SpriteBatchBegin()
+		public void SpriteBatchBegin(SpriteSortMode sortMode = SpriteSortMode.Deferred)
 		{
-			SpriteBatch.Begin(SpriteSortMode.Deferred,
+			SpriteBatch.Begin(sortMode,
 			                  BlendState.NonPremultiplied,
 			                  null, null, null, null, Resolution.TransformationMatrix());
 		}

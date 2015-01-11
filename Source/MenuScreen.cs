@@ -338,17 +338,8 @@ namespace MenuBuddy
 			//did the user click somewhere?
 			if (ScreenManager.InputState.LMouseClick)
 			{
-				//ok find which menu entry was clicked
-				var mousePos = ScreenManager.MousePos;
-				for (int i = 0; i < MenuEntries.Count; i++)
-				{
-					if (MenuEntries[i].ButtonRect.Contains(mousePos))
-					{
-						SelectedIndex = i;
-						FireMenuSelectEvent(PlayerIndex.One, MenuEntries[i]);
-						break;
-					}
-				}
+				//if the user clicks the mouse, register it as a tap
+				ScreenManager.Touch.Taps.Add(ScreenManager.MousePos);
 			}
 		}
 
