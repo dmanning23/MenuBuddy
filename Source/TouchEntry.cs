@@ -55,9 +55,7 @@ namespace MenuBuddy
 		public override void Draw(MenuScreen screen, Vector2 position, bool isSelected, GameClock gameTime)
 		{
 			//create a rect that takes into account the transition offset
-			Rectangle offsetRect = new Rectangle((int)screen.XPositionWithOffset(ButtonRect.X),
-				ButtonRect.Y,
-				ButtonRect.Width, ButtonRect.Height);
+			Rectangle offsetRect = GetDrawRect(screen);
 
 			byte alpha = GetButtonAlpha(screen);
 
@@ -87,6 +85,13 @@ namespace MenuBuddy
 
 				DrawText(screen, loc, isSelected, GetTextAlpha(screen), gameTime);
 			}
+		}
+
+		protected virtual Rectangle GetDrawRect(MenuScreen screen)
+		{
+			return new Rectangle((int)screen.XPositionWithOffset(ButtonRect.X),
+						 ButtonRect.Y,
+						 ButtonRect.Width, ButtonRect.Height);
 		}
 
 		protected virtual void DrawButtonImage(GameScreen screen, Color color, Rectangle rect)
