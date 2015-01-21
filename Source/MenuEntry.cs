@@ -239,7 +239,7 @@ namespace MenuBuddy
 			}
 		}
 
-		protected byte GetButtonAlpha(MenuScreen screen)
+		protected virtual byte GetButtonAlpha(MenuScreen screen)
 		{
 			//check if the mouse is over this entry
 			float alpha = screen.TransitionAlpha * 0.5f;
@@ -251,7 +251,7 @@ namespace MenuBuddy
 			}
 
 			alpha *= 255f;
-			return Convert.ToByte(alpha); ;
+			return Convert.ToByte(alpha);
 		}
 
 		protected byte GetTextAlpha(MenuScreen screen)

@@ -87,6 +87,14 @@ namespace MenuBuddy
 			}
 		}
 
+		protected override byte GetButtonAlpha(MenuScreen screen)
+		{
+			//check if the mouse is over this entry
+			float alpha = screen.TransitionAlpha * 0.5f;
+			alpha *= 255f;
+			return Convert.ToByte(alpha);
+		}
+
 		protected virtual Rectangle GetDrawRect(MenuScreen screen)
 		{
 			return new Rectangle((int)screen.XPositionWithOffset(ButtonRect.X),
