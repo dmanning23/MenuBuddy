@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Vector2Extensions;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
@@ -182,12 +183,12 @@ namespace MenuBuddy
 			// Center the message text in the viewport.
 			Vector2 textSize = TotalMessageSize();
 			Vector2 textPosition = new Vector2(
-				XPositionWithOffset(Resolution.TitleSafeArea.Center.X - (textSize.X / 2)),
+				LeftTransition(Resolution.TitleSafeArea.Center.ToVector2() - (textSize / 2)).X,
 				MenuEntries[MenuEntries.Count - 1].ButtonRect.Bottom - textSize.Y);
 
 			// The background includes a border somewhat larger than the text itself.
-			const int hPad = 32;
-			const int vPad = 16;
+			const int hPad = 64;
+			const int vPad = 32;
 
 			var backgroundRectangle = new Rectangle((int)textPosition.X - hPad,
 			                                        (int)textPosition.Y - vPad,

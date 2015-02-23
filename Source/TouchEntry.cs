@@ -3,6 +3,7 @@ using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Vector2Extensions;
 
 namespace MenuBuddy
 {
@@ -97,9 +98,8 @@ namespace MenuBuddy
 
 		protected virtual Rectangle GetDrawRect(MenuScreen screen)
 		{
-			return new Rectangle((int)screen.XPositionWithOffset(ButtonRect.X),
-						 ButtonRect.Y,
-						 ButtonRect.Width, ButtonRect.Height);
+			var pos = screen.EntryPosition(ButtonRect.Location.ToVector2(), this);
+			return new Rectangle((int)pos.X, (int)pos.Y, ButtonRect.Width, ButtonRect.Height);
 		}
 
 		protected virtual void DrawButtonImage(GameScreen screen, Color color, Rectangle rect)

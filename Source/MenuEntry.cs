@@ -94,6 +94,8 @@ namespace MenuBuddy
 		/// </summary>
 		public SoundEffect SelectionSound { get; set; }
 
+		public MenuTransition TransitionType { get; set; }
+
 		#endregion
 
 		#region Events
@@ -161,6 +163,7 @@ namespace MenuBuddy
 			Width = 768.0f;
 			Height = 128.0f;
 			QuietEntry = false;
+			TransitionType = MenuTransition.Left;
 
 			UnselectedFont = new ShadowTextBuddy();
 			var pulsate = new PulsateBuddy();
@@ -258,7 +261,10 @@ namespace MenuBuddy
 			return Convert.ToByte(alpha);
 		}
 
-		protected virtual void GetTextColors(MenuScreen screen, bool isSelected, byte alpha, out Color color,
+		protected virtual void GetTextColors(MenuScreen screen, 
+			bool isSelected, 
+			byte alpha, 
+			out Color color,
 			out Color backgroundColor)
 		{
 			// Draw the selected entry in yellow, otherwise white.
@@ -278,7 +284,10 @@ namespace MenuBuddy
 		/// <param name="color"></param>
 		/// <param name="backgroundColor"></param>
 		/// <returns></returns>
-		protected FontBuddy GetMenuEntryFont(MenuScreen screen, bool isSelected, Color backgroundColor, ref Color color)
+		protected FontBuddy GetMenuEntryFont(MenuScreen screen, 
+			bool isSelected, 
+			Color backgroundColor, 
+			ref Color color)
 		{
 			//get the correct font buddy to draw with.
 			FontBuddy menuFont;
@@ -316,7 +325,11 @@ namespace MenuBuddy
 			return menuFont;
 		}
 
-		protected virtual void DrawText(MenuScreen screen, Vector2 position, bool isSelected, byte alpha, GameClock gameTime)
+		protected virtual void DrawText(MenuScreen screen, 
+			Vector2 position, 
+			bool isSelected, 
+			byte alpha, 
+			GameClock gameTime)
 		{
 			//Get the colors to write the text in
 			Color color;

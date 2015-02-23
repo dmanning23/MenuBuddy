@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using ResolutionBuddy;
 using System;
 using System.Collections.Generic;
+using Vector2Extensions;
 
 namespace MenuBuddy
 {
@@ -58,12 +59,12 @@ namespace MenuBuddy
 		/// </summary>
 		public MenuEntry SelectedEntry
 		{
-			get 
+			get
 			{
 				if ((SelectedIndex > -1) &&
 					(SelectedIndex < MenuEntries.Count))
 				{
-					return MenuEntries[SelectedIndex]; 
+					return MenuEntries[SelectedIndex];
 				}
 
 				//no menu entry selected or something is not setup correctly
@@ -510,9 +511,12 @@ namespace MenuBuddy
 			// Draw each menu entry in turn.
 			for (int i = 0; i < MenuEntries.Count; i++)
 			{
+				//get the correct entry position 
+				var transitionPos = EntryPosition(entryPos, MenuEntries[i]);
+
 				//Draw the menu option
 				bool isSelected = IsActive && (i == SelectedIndex);
-				MenuEntries[i].Draw(this, entryPos, isSelected, MenuClock);
+				MenuEntries[i].Draw(this, transitionPos, isSelected, MenuClock);
 
 				//update the menu entry Y position
 				entryPos.Y += (MenuEntries[i].GetHeight(this));
@@ -525,7 +529,9 @@ namespace MenuBuddy
 
 		protected virtual Vector2 EntryStartPosition()
 		{
-			return (MenuOptionOffset + new Vector2(MenuEntryPositionX(), MenuEntryPositionY()));
+			return (MenuOptionOffset +
+					new Vector2(Resolution.TitleSafeArea.Center.X,
+						Resolution.TitleSafeArea.Center.Y * 0.9f));
 		}
 
 		/// <summary>
@@ -535,47 +541,6 @@ namespace MenuBuddy
 		public override void ResetInputTimer()
 		{
 			TimeSinceInput.Start(_AttractModeTime);
-		}
-
-		/// <summary>
-		/// Get the x position to draw menu entries at, using the transition position
-		/// </summary>
-		/// <returns>the correct position the place menu entries on X axis</returns>
-		public virtual float MenuEntryPositionX()
-		{
-			return XPositionWithOffset((float)Resolution.TitleSafeArea.Center.X);
-		}
-
-		/// <summary>
-		/// Get the x position to draw menu entries at, using the transition position
-		/// </summary>
-		/// <returns>the correct position the place menu entries on Y axis</returns>
-		public virtual float MenuEntryPositionY()
-		{
-			return (Resolution.TitleSafeArea.Center.Y * 0.9f);
-		}
-
-		public float XPositionWithOffset(float pos)
-		{
-			float fMenuPositionX = pos;
-
-			if (TransitionPosition != 0.0f)
-			{
-				// Make the menu slide into place during transitions, using a
-				// power curve to make things look more interesting (this makes
-				// the movement slow down as it nears the end).
-				var transitionOffset = (float)Math.Pow(TransitionPosition, 2.0);
-				if (ScreenState == EScreenState.TransitionOn)
-				{
-					fMenuPositionX -= transitionOffset * 256;
-				}
-				else
-				{
-					fMenuPositionX += transitionOffset * 512;
-				}
-			}
-
-			return fMenuPositionX;
 		}
 
 		#endregion

@@ -365,5 +365,198 @@ namespace MenuBuddy
 		}
 
 		#endregion
+
+		#region Transition Positions
+
+		public Vector2 EntryPosition(Vector2 pos, MenuEntry entry)
+		{
+			switch (entry.TransitionType)
+			{
+				case MenuTransition.Left: { return LeftTransition(pos); }
+				case MenuTransition.Right: { return RightTransition(pos); }
+				case MenuTransition.SlideLeft: { return SlideLeftTransition(pos); }
+				case MenuTransition.SlideRight: { return SlideRightTransition(pos); }
+				case MenuTransition.Top: { return TopTransition(pos); }
+				default: { return BottomTransition(pos); }
+			}
+		}
+
+		public Vector2 LeftTransition(float x, float y)
+		{
+			return LeftTransition(new Vector2(x, y));
+		}
+
+		public Vector2 RightTransition(float x, float y)
+		{
+			return RightTransition(new Vector2(x, y));
+		}
+
+		public Vector2 TopTransition(float x, float y)
+		{
+			return TopTransition(new Vector2(x, y));
+		}
+
+		public Vector2 BottomTransition(float x, float y)
+		{
+			return BottomTransition(new Vector2(x, y));
+		}
+
+		/// <summary>
+		/// Slide in from the left, slide out the right
+		/// </summary>
+		/// <param name="pos"></param>
+		/// <returns></returns>
+		public Vector2 LeftTransition(Vector2 pos)
+		{
+			if (TransitionPosition != 0.0f)
+			{
+				// Make the menu slide into place during transitions, using a
+				// power curve to make things look more interesting (this makes
+				// the movement slow down as it nears the end).
+				var transitionOffset = (float)Math.Pow(TransitionPosition, 2.0);
+				if (ScreenState == EScreenState.TransitionOn)
+				{
+					pos.X -= transitionOffset * 256;
+				}
+				else
+				{
+					pos.X += transitionOffset * 512;
+				}
+			}
+
+			return pos;
+		}
+
+		/// <summary>
+		/// Slide in from the left, slide out the left
+		/// </summary>
+		/// <param name="pos"></param>
+		/// <returns></returns>
+		public Vector2 SlideLeftTransition(Vector2 pos)
+		{
+			if (TransitionPosition != 0.0f)
+			{
+				// Make the menu slide into place during transitions, using a
+				// power curve to make things look more interesting (this makes
+				// the movement slow down as it nears the end).
+				var transitionOffset = (float)Math.Pow(TransitionPosition, 2.0);
+				if (ScreenState == EScreenState.TransitionOn)
+				{
+					pos.X -= transitionOffset * 256;
+				}
+				else
+				{
+					pos.X -= transitionOffset * 512;
+				}
+			}
+
+			return pos;
+		}
+
+		/// <summary>
+		/// Slide in from the right, slide out left
+		/// </summary>
+		/// <param name="pos"></param>
+		/// <returns></returns>
+		public Vector2 RightTransition(Vector2 pos)
+		{
+			if (TransitionPosition != 0.0f)
+			{
+				// Make the menu slide into place during transitions, using a
+				// power curve to make things look more interesting (this makes
+				// the movement slow down as it nears the end).
+				var transitionOffset = (float)Math.Pow(TransitionPosition, 2.0);
+				if (ScreenState == EScreenState.TransitionOn)
+				{
+					pos.X += transitionOffset * 256;
+				}
+				else
+				{
+					pos.X -= transitionOffset * 512;
+				}
+			}
+
+			return pos;
+		}
+
+		/// <summary>
+		/// Slide in from the left, slide out the left
+		/// </summary>
+		/// <param name="pos"></param>
+		/// <returns></returns>
+		public Vector2 SlideRightTransition(Vector2 pos)
+		{
+			if (TransitionPosition != 0.0f)
+			{
+				// Make the menu slide into place during transitions, using a
+				// power curve to make things look more interesting (this makes
+				// the movement slow down as it nears the end).
+				var transitionOffset = (float)Math.Pow(TransitionPosition, 2.0);
+				if (ScreenState == EScreenState.TransitionOn)
+				{
+					pos.X += transitionOffset * 256;
+				}
+				else
+				{
+					pos.X += transitionOffset * 512;
+				}
+			}
+
+			return pos;
+		}
+
+		/// <summary>
+		/// Slide in from the top, slide out the top
+		/// </summary>
+		/// <param name="pos"></param>
+		/// <returns></returns>
+		public Vector2 TopTransition(Vector2 pos)
+		{
+			if (TransitionPosition != 0.0f)
+			{
+				// Make the menu slide into place during transitions, using a
+				// power curve to make things look more interesting (this makes
+				// the movement slow down as it nears the end).
+				var transitionOffset = (float)Math.Pow(TransitionPosition, 2.0);
+				if (ScreenState == EScreenState.TransitionOn)
+				{
+					pos.Y -= transitionOffset * 256;
+				}
+				else
+				{
+					pos.Y -= transitionOffset * 512;
+				}
+			}
+
+			return pos;
+		}
+
+		/// <summary>
+		/// Slide in from the bottom, slide out bottom
+		/// </summary>
+		/// <param name="pos"></param>
+		/// <returns></returns>
+		public Vector2 BottomTransition(Vector2 pos)
+		{
+			if (TransitionPosition != 0.0f)
+			{
+				// Make the menu slide into place during transitions, using a
+				// power curve to make things look more interesting (this makes
+				// the movement slow down as it nears the end).
+				var transitionOffset = (float)Math.Pow(TransitionPosition, 2.0);
+				if (ScreenState == EScreenState.TransitionOn)
+				{
+					pos.Y += transitionOffset * 256;
+				}
+				else
+				{
+					pos.Y += transitionOffset * 512;
+				}
+			}
+
+			return pos;
+		}
+
+		#endregion //Transition Positions
 	}
 }
