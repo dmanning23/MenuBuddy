@@ -58,23 +58,17 @@ namespace MenuBuddy
 			//create a rect that takes into account the transition offset
 			Rectangle offsetRect = GetDrawRect(screen);
 
-			byte alpha = GetButtonAlpha(screen);
-
 			//Draw the outline
 			if (DrawOutline)
 			{
-				DrawBackground(screen, offsetRect, alpha);
+				DrawBackground(screen, offsetRect, GetButtonAlpha(screen));
 			}
 
 			//Draw the image
 			if (null != Image)
 			{
-				// Modify the alpha to fade text out during transitions.
-				Color color = Color.White;
-				color.A = alpha;
-
 				//draw the image
-				DrawButtonImage(screen, color, offsetRect);
+				DrawButtonImage(screen, screen.FadeAlphaDuringTransition(Color.White), offsetRect);
 			}
 
 			//draw the text
