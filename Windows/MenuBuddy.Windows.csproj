@@ -61,6 +61,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Source\CancelMenuEntry.cs">
+      <Link>CancelMenuEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ContinueMenuEntry.cs">
+      <Link>ContinueMenuEntry.cs</Link>
+    </Compile>
     <Compile Include="..\Source\MenuEntryBool.cs">
       <Link>MenuEntryBool.cs</Link>
     </Compile>
@@ -151,6 +157,10 @@
   <ItemGroup>
     <Content Include="..\Source\Content\AlphaGradient.png">
       <Link>Content\AlphaGradient.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Source\Content\Cancel.png">
+      <Link>Content\Cancel.png</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\Source\Content\gradient.png">

@@ -24,6 +24,11 @@ namespace MenuBuddy
 		/// </summary>
 		public Texture2D Image { get; set; }
 
+		/// <summary>
+		/// You can set this flag to prevent drawing this button when the screen is inactive.
+		/// </summary>
+		public bool DrawWhenInactive { get; set; }
+
 		#endregion
 
 		#region Initialization
@@ -35,6 +40,7 @@ namespace MenuBuddy
 			: base(text, messageBoxEntry)
 		{
 			DrawOutline = drawOutline;
+			DrawWhenInactive = true;
 		}
 
 		/// <summary>
@@ -55,6 +61,12 @@ namespace MenuBuddy
 		/// </summary>
 		public override void Draw(MenuScreen screen, Vector2 position, bool isSelected, GameClock gameTime)
 		{
+			//check if we don't want to draw this button when inactive
+			if (!DrawWhenInactive && !screen.IsActive)
+			{
+				return;
+			}
+
 			//create a rect that takes into account the transition offset
 			Rectangle offsetRect = GetDrawRect(screen);
 
