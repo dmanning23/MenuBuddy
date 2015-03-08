@@ -166,7 +166,7 @@ namespace MenuBuddy
 				Color colorFore = FadeAlphaDuringTransition(Color.White);
 				Color colorBack = FadeAlphaDuringTransition(Color.Black);
 				loadingFont.ShadowColor = colorBack;
-				loadingFont.Write(message, textPosition, Justify.Center, 1.0f, colorFore, ScreenManager.SpriteBatch, 0.0f);
+				loadingFont.Write(message, textPosition, Justify.Center, 1.0f, colorFore, ScreenManager.SpriteBatch, Time);
 
 				//get the size of the text
 				Vector2 textSize = loadingFont.Font.MeasureString(message);

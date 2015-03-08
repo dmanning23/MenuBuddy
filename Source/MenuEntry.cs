@@ -261,9 +261,9 @@ namespace MenuBuddy
 			return Convert.ToByte(alpha);
 		}
 
-		protected virtual void GetTextColors(MenuScreen screen, 
-			bool isSelected, 
-			byte alpha, 
+		protected virtual void GetTextColors(MenuScreen screen,
+			bool isSelected,
+			byte alpha,
 			out Color color,
 			out Color backgroundColor)
 		{
@@ -284,9 +284,9 @@ namespace MenuBuddy
 		/// <param name="color"></param>
 		/// <param name="backgroundColor"></param>
 		/// <returns></returns>
-		protected FontBuddy GetMenuEntryFont(MenuScreen screen, 
-			bool isSelected, 
-			Color backgroundColor, 
+		protected FontBuddy GetMenuEntryFont(MenuScreen screen,
+			bool isSelected,
+			Color backgroundColor,
 			ref Color color)
 		{
 			//get the correct font buddy to draw with.
@@ -325,10 +325,10 @@ namespace MenuBuddy
 			return menuFont;
 		}
 
-		protected virtual void DrawText(MenuScreen screen, 
-			Vector2 position, 
-			bool isSelected, 
-			byte alpha, 
+		protected virtual void DrawText(MenuScreen screen,
+			Vector2 position,
+			bool isSelected,
+			byte alpha,
 			GameClock gameTime)
 		{
 			//Get the colors to write the text in
@@ -346,7 +346,7 @@ namespace MenuBuddy
 						   SizeMultiplier,
 						   color,
 						   screen.ScreenManager.SpriteBatch,
-						   gameTime.CurrentTime);
+						   gameTime);
 		}
 
 		/// <summary>

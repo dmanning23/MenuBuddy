@@ -501,6 +501,9 @@ namespace MenuBuddy
 		{
 			base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
+			//update the menu clock
+			MenuClock.Update(gameTime);
+
 			// Update each nested MenuEntry object.
 			for (int i = 0; i < MenuEntries.Count; i++)
 			{
@@ -520,9 +523,6 @@ namespace MenuBuddy
 		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
-			//update the menu clock
-			MenuClock.Update(gameTime);
-
 			//Get the default position for menu entries
 			Vector2 entryPos = EntryStartPosition();
 

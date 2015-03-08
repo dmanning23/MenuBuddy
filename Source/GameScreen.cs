@@ -3,6 +3,7 @@ using HadoukInput;
 using Microsoft.Xna.Framework;
 using ResolutionBuddy;
 using System;
+using GameTimer;
 
 namespace MenuBuddy
 {
@@ -138,6 +139,8 @@ namespace MenuBuddy
 
 		protected FontBuddy MenuTitleFont { get; set; }
 
+		public GameClock Time { get; private set; }
+
 		#endregion
 
 		#region Initialization
@@ -154,6 +157,9 @@ namespace MenuBuddy
 			ScreenState = EScreenState.TransitionOn;
 			TransitionPosition = 1.0f;
 			ScreenName = strMenuTitle;
+
+			Time = new GameClock();
+			Time.Start();
 		}
 
 		/// <summary>
@@ -185,6 +191,7 @@ namespace MenuBuddy
 		public virtual void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
 		{
 			OtherScreenHasFocus = otherScreenHasFocus;
+			Time.Update(gameTime);
 
 			if (IsExiting)
 			{
@@ -279,6 +286,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="strTitle">The title of this menu</param>
 		/// <param name="fScale">The scale to draw the menu title at</param>
+		/// <param name="gameTime"></param>
 		public virtual void DrawMenuTitle(string strTitle, float fScale, GameTime gameTime)
 		{
 			//dont do anything here if the menu title is empty
@@ -303,7 +311,7 @@ namespace MenuBuddy
 			Color titleColor = FadeAlphaDuringTransition(Color.White);
 
 			//draw the menu title!
-			MenuTitleFont.Write(strTitle, titlePosition, Justify.Center, fScale, titleColor, ScreenManager.SpriteBatch, gameTime.TotalGameTime.TotalSeconds);
+			MenuTitleFont.Write(strTitle, titlePosition, Justify.Center, fScale, titleColor, ScreenManager.SpriteBatch, Time);
 		}
 
 		/// <summary>
