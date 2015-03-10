@@ -15,11 +15,6 @@ namespace MenuBuddy
 		#region Properties
 
 		/// <summary>
-		/// Whether or not the outline should be drawn around this touch entry
-		/// </summary>
-		public bool DrawOutline { get; set; }
-
-		/// <summary>
 		/// The image to draw on this button
 		/// </summary>
 		public Texture2D Image { get; set; }
@@ -36,18 +31,17 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public TouchEntry(string text, bool drawOutline = true, bool messageBoxEntry = false)
-			: base(text, messageBoxEntry)
+		public TouchEntry(string text)
+			: base(text)
 		{
-			DrawOutline = drawOutline;
 			DrawWhenInactive = true;
 		}
 
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public TouchEntry(string text, bool drawOutline, bool messageBoxEntry, Texture2D image)
-			: this(text, drawOutline, messageBoxEntry)
+		public TouchEntry(string text, Texture2D image)
+			: this(text)
 		{
 			Image = image;
 		}
@@ -71,10 +65,7 @@ namespace MenuBuddy
 			Rectangle offsetRect = GetDrawRect(screen);
 
 			//Draw the outline
-			if (DrawOutline)
-			{
-				DrawBackground(screen, offsetRect, GetButtonAlpha(screen));
-			}
+			DrawBackground(screen, offsetRect, GetButtonAlpha(screen));
 
 			//Draw the image
 			if (null != Image)

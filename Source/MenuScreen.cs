@@ -159,21 +159,23 @@ namespace MenuBuddy
 		/// <summary>
 		/// This method adds a continue button to the menu and attachs it to OnCancel
 		/// </summary>
-		protected void AddContinueButton()
+		protected MenuEntry AddContinueButton()
 		{
 			var continueButton = new ContinueMenuEntry();
 			continueButton.Selected += OnCancel;
 			MenuEntries.Add(continueButton);
+			return continueButton;
 		}
 
 		/// <summary>
 		/// This method adds a continue button to the menu and attachs it to OnCancel
 		/// </summary>
-		protected void AddCancelButton()
+		protected MenuEntry AddCancelButton()
 		{
 			var cancelButton = new CancelMenuEntry(ScreenManager.Game.Content);
 			cancelButton.Selected += OnCancel;
 			MenuEntries.Add(cancelButton);
+			return cancelButton;
 		}
 
 		#endregion

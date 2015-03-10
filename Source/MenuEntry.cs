@@ -81,7 +81,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// whether or not to use the MenuFont or MessageBoxFont
 		/// </summary>
-		private bool MessageBoxEntry { get; set; }
+		public bool MessageBoxEntry { private get; set; }
 
 		/// <summary>
 		/// You can change individual menu entries to not play sound at all
@@ -95,6 +95,11 @@ namespace MenuBuddy
 		public SoundEffect SelectionSound { get; set; }
 
 		public MenuTransition TransitionType { get; set; }
+
+		/// <summary>
+		/// Whether or not the outline should be drawn around this touch entry
+		/// </summary>
+		public bool HasBackground { private get; set; }
 
 		#endregion
 
@@ -155,19 +160,20 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public MenuEntry(string strText, bool messageBoxEntry = false)
+		public MenuEntry(string strText)
 		{
-			MessageBoxEntry = messageBoxEntry;
+			MessageBoxEntry = false;
 			Text = strText;
 			SizeMultiplier = 1.0f;
 			Width = 768.0f;
 			Height = 128.0f;
 			QuietEntry = false;
+			HasBackground = true;
 			TransitionType = MenuTransition.Left;
 
 			UnselectedFont = new ShadowTextBuddy();
 			var pulsate = new PulsateBuddy();
-			if (messageBoxEntry)
+			if (MessageBoxEntry)
 			{
 				pulsate.PulsateSize *= 0.25f;
 			}
@@ -233,7 +239,7 @@ namespace MenuBuddy
 		protected virtual void DrawBackground(MenuScreen screen, Rectangle rect, byte alpha)
 		{
 			//darw the background rectangle if in touch mode
-			if (screen.ScreenManager.TouchMenus && screen.IsActive)
+			if (screen.ScreenManager.TouchMenus && screen.IsActive && HasBackground)
 			{
 				//draw the rect!
 				screen.ScreenManager.DrawButtonBackground(alpha, rect);

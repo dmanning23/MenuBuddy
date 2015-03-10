@@ -285,9 +285,9 @@ namespace MenuBuddy
 		/// Draws the menu title.
 		/// </summary>
 		/// <param name="strTitle">The title of this menu</param>
-		/// <param name="fScale">The scale to draw the menu title at</param>
+		/// <param name="scale">The scale to draw the menu title at</param>
 		/// <param name="gameTime"></param>
-		public virtual void DrawMenuTitle(string strTitle, float fScale, GameTime gameTime)
+		public virtual void DrawMenuTitle(string strTitle, float scale, GameTime gameTime)
 		{
 			//dont do anything here if the menu title is empty
 			if (string.IsNullOrEmpty(strTitle))
@@ -295,23 +295,29 @@ namespace MenuBuddy
 				return;
 			}
 
-			// Draw the menu title.
+			//get the title position
+			var titlePosition = MenuTitlePosition(scale);
 
+			//get the menu title color
+			Color titleColor = FadeAlphaDuringTransition(Color.White);
+
+			//draw the menu title!
+			MenuTitleFont.Write(strTitle, titlePosition, Justify.Center, scale, titleColor, ScreenManager.SpriteBatch, Time);
+		}
+
+		public Vector2 MenuTitlePosition(float scale)
+		{
 			//Get the menu size and location
 			var titlePosition = new Vector2(
 				Resolution.TitleSafeArea.Center.X,
 				Resolution.TitleSafeArea.Center.Y);
 
 			var transitionOffset = (float)Math.Pow(TransitionPosition, 2);
-			titlePosition.Y = MenuTitleOffset + 
-				(Resolution.TitleSafeArea.Center.Y - (ScreenManager.TitleFont.MeasureString(strTitle) * fScale).Y);
+			titlePosition.Y = MenuTitleOffset +
+				(Resolution.TitleSafeArea.Center.Y - (ScreenManager.TitleFont.LineSpacing * scale));
 			titlePosition.Y -= transitionOffset * 100;
 
-			//get the menu title color
-			Color titleColor = FadeAlphaDuringTransition(Color.White);
-
-			//draw the menu title!
-			MenuTitleFont.Write(strTitle, titlePosition, Justify.Center, fScale, titleColor, ScreenManager.SpriteBatch, Time);
+			return titlePosition;
 		}
 
 		/// <summary>

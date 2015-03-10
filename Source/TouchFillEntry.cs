@@ -16,16 +16,16 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public TouchFillEntry(string text, bool drawOutline = true, bool messageBoxEntry = false)
-			: base(text, drawOutline, messageBoxEntry)
+		public TouchFillEntry(string text)
+			: base(text)
 		{
 		}
 
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public TouchFillEntry(string text, bool drawOutline, bool messageBoxEntry, Texture2D image)
-			: base(text, drawOutline, messageBoxEntry, image)
+		public TouchFillEntry(string text, Texture2D image)
+			: base(text, image)
 		{
 		}
 

@@ -106,7 +106,10 @@ namespace MenuBuddy
 			}
 
 			//Create the menu entry for "OK"
-			var okEntry = new MenuEntry(okText.ToString(), true);
+			var okEntry = new MenuEntry(okText.ToString())
+			{
+				MessageBoxEntry = true
+			};
 			okEntry.Selected += OnAccept;
 			MenuEntries.Add(okEntry);
 		}
@@ -133,7 +136,10 @@ namespace MenuBuddy
 			}
 
 			//Create the menu entry "Cancel"
-			var cancel = new MenuEntry(cancelText.ToString(), true);
+			var cancel = new MenuEntry(cancelText.ToString())
+			{
+				MessageBoxEntry = true
+			};
 			cancel.Selected += OnCancel;
 			MenuEntries.Add(cancel);
 		}

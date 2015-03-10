@@ -12,13 +12,15 @@ namespace MenuBuddy
 	{
 		#region Methods
 
-		public CancelMenuEntry(ContentManager content, string icon = "Cancel", int iconSize = 96, bool drawOutline = false, bool messageBoxEntry = false)
-			: base("", drawOutline, messageBoxEntry)
+		public CancelMenuEntry(ContentManager content, string icon = "Cancel", int iconSize = 96)
+			: base("")
 		{
 			TransitionType = MenuTransition.SlideRight;
 			
 			//load the icon
 			Image = content.Load<Texture2D>(icon);
+
+			HasBackground = false;
 
 			//set the location
 			ButtonRect = new Rectangle(Resolution.TitleSafeArea.Right - (int)(1.5f * iconSize),
