@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using ResolutionBuddy;
 using System;
 using System.Linq;
+using Vector2Extensions;
 
 namespace MenuBuddy
 {
@@ -18,6 +19,9 @@ namespace MenuBuddy
 		/// index of the currently selected menu entry
 		/// </summary>
 		private int _selectedIndex;
+
+		private Point _menuTitleOffset;
+		private Point _menuEntryOffset;
 
 		#endregion
 
@@ -66,19 +70,25 @@ namespace MenuBuddy
 
 		protected Point MenuEntryOffset
 		{
+			get { return _menuEntryOffset; }
 			set
 			{
+				_menuEntryOffset = value;
 				var prevPos = MenuEntries.Position;
-				MenuEntries.Position = new Point(prevPos.X + value.X, prevPos.Y + value.Y);
+				MenuEntries.Position = new Point(prevPos.X + _menuEntryOffset.X,
+					prevPos.Y + _menuEntryOffset.Y);
 			}
 		}
 
 		protected Point MenuTitleOffset
 		{
+			get { return _menuTitleOffset; }
 			set
 			{
+				_menuTitleOffset = value;
 				var prevPos = MenuTitle.Position;
-				MenuTitle.Position = new Point(prevPos.X + value.X, prevPos.Y + value.Y);
+				MenuTitle.Position = new Point(prevPos.X + _menuTitleOffset.X,
+					prevPos.Y + _menuTitleOffset.Y);
 			}
 		}
 
@@ -100,12 +110,17 @@ namespace MenuBuddy
 
 			//Create the stack layout for teh menu entries
 			MenuEntries = new StackLayout();
-			MenuEntries.Position = new Point(Resolution.TitleSafeArea.Center.X,
-						(int)(Resolution.TitleSafeArea.Center.Y * 0.9f));
+			MenuEntries.Position = new Point(MenuEntryOffset.X + Resolution.TitleSafeArea.Center.X,
+						MenuEntryOffset.Y + (int)(Resolution.TitleSafeArea.Center.Y * 0.8f));
 			AddItem(MenuEntries);
 
 			//Add the menu title
-			MenuTitle = new Label(Style, ScreenName);
+			var menuTitleSize = ScreenManager.Styles.MenuTitleStyle.SelectedFont.Font.MeasureString(ScreenName);
+			MenuTitle = new Label(ScreenManager.Styles.MenuTitleStyle, ScreenName);
+			MenuTitle.Position = new Point(
+				MenuTitleOffset.X + Resolution.TitleSafeArea.Center.X - (int)(menuTitleSize.X / 2f),
+				MenuTitleOffset.Y + Resolution.TitleSafeArea.Center.Y - (int)(menuTitleSize.Y * 2f));
+
 			AddItem(MenuTitle);
 		}
 

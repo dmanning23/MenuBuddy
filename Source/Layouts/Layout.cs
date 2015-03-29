@@ -48,7 +48,7 @@ namespace MenuBuddy
 				}
 				else
 				{
-					return new Rectangle();
+					return new Rectangle(Position.X, Position.Y, 0, 0);
 				}
 			}
 		}

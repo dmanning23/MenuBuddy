@@ -95,7 +95,7 @@ namespace MenuBuddy
 
 			//set the menu title style
 			MenuTitleStyle = new StyleSheet(MainStyle);
-			MenuTitleStyle.SelectedFont = new ShadowTextBuddy();
+			MenuTitleStyle.SelectedFont = new FontBuddy();
 			MenuTitleStyle.SelectedFont.Font = Game.Content.Load<SpriteFont>(MenuTitleFontName);
 			MenuTitleStyle.SelectedTextColor = Color.White;
 			MenuTitleStyle.Transition = TransitionType.PopTop;

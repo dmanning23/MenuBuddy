@@ -16,6 +16,17 @@ namespace MenuBuddy
 
 		//TODO: state machine for button state
 
+		public override Rectangle Rect
+		{
+			get 
+			{
+				var rect = base.Rect;
+				rect.Width = 768;
+				rect.Height = 128;
+				return rect;
+			}
+		}
+
 		/// <summary>
 		/// A description of the function of the menu entry.
 		/// </summary>
