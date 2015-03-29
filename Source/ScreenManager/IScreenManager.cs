@@ -32,15 +32,19 @@ namespace MenuBuddy
 		Color ClearColor { set; }
 
 		/// <summary>
-		/// The default styles for this game.
-		/// Should be setup in LoadContent
-		/// </summary>
-		StyleSheet Styles { get; }
-
-		/// <summary>
 		/// The object used by screen items to help render things like button backgrounds, etc.
 		/// </summary>
 		DrawHelper DrawHelper { get; }
+
+		/// <summary>
+		/// This is a set of the styles that will be used for this game.
+		/// </summary>
+		IDefaultStyles Styles { get; }
+
+		/// <summary>
+		/// Delegate method to get the stack of screens used for the main menu.
+		/// </summary>
+		ScreenStackDelegate MainMenuStack { get; }
 
 		#endregion //Properties
 
@@ -102,12 +106,6 @@ namespace MenuBuddy
 		/// <param name="screenName"></param>
 		/// <returns></returns>
 		IScreen FindScreen(string screenName);
-
-		/// <summary>
-		/// Get the set of screens needed for the main menu
-		/// </summary>
-		/// <returns>The gameplay screen stack.</returns>
-		IScreen[] GetMainMenuScreenStack();
 
 		#endregion //Public Methods
 	}

@@ -96,8 +96,11 @@ namespace MenuBuddy
 		public override void Draw(GameTime gameTime)
 		{
 			base.Draw(gameTime);
+
+			ScreenManager.SpriteBatchBegin();
 			DrawBackground(this, Time);
 			Draw(this, Time);
+			ScreenManager.SpriteBatchEnd();
 		}
 
 		/// <summary>

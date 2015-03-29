@@ -88,9 +88,6 @@
     <Compile Include="..\Source\Menus\IMenuScreen.cs">
       <Link>Menus\IMenuScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Source\Menus\MenuDefaults.cs">
-      <Link>Menus\MenuDefaults.cs</Link>
-    </Compile>
     <Compile Include="..\Source\Menus\MenuEntry.cs">
       <Link>Menus\MenuEntry.cs</Link>
     </Compile>
@@ -111,6 +108,9 @@
     </Compile>
     <Compile Include="..\Source\ScreenManager\ScreenManager.cs">
       <Link>ScreenManager\ScreenManager.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ScreenManager\ScreenStackDelegate.cs">
+      <Link>ScreenManager\ScreenStackDelegate.cs</Link>
     </Compile>
     <Compile Include="..\Source\Screens\ErrorScreen.cs">
       <Link>Screens\ErrorScreen.cs</Link>
@@ -145,8 +145,14 @@
     <Compile Include="..\Source\Style\ColorStyleItem.cs">
       <Link>Style\ColorStyleItem.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Style\DefaultStyles.cs">
+      <Link>Style\DefaultStyles.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Style\FontStyleItem.cs">
       <Link>Style\FontStyleItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Style\IDefaultStyles.cs">
+      <Link>Style\IDefaultStyles.cs</Link>
     </Compile>
     <Compile Include="..\Source\Style\ImageStyleItem.cs">
       <Link>Style\ImageStyleItem.cs</Link>
@@ -162,6 +168,9 @@
     </Compile>
     <Compile Include="..\Source\Style\StyleSheet.cs">
       <Link>Style\StyleSheet.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Style\TouchStyles.cs">
+      <Link>Style\TouchStyles.cs</Link>
     </Compile>
     <Compile Include="..\Source\Style\TransitionStyleItem.cs">
       <Link>Style\TransitionStyleItem.cs</Link>

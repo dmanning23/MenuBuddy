@@ -18,7 +18,7 @@ namespace MenuBuddy
 	/// methods at the appropriate times, and automatically routes input to the
 	/// topmost active screen.
 	/// </summary>
-	public abstract class ScreenManager : DrawableGameComponent, IScreenManager
+	public class ScreenManager : DrawableGameComponent, IScreenManager
 	{
 		#region Properties
 
@@ -54,9 +54,11 @@ namespace MenuBuddy
 
 		public Color ClearColor { get; set; }
 
-		public StyleSheet Styles { get; set; }
-
 		public DrawHelper DrawHelper { get; private set; }
+		
+		public IDefaultStyles Styles { get; private set; }
+
+		public ScreenStackDelegate MainMenuStack { get; set; }
 
 		#endregion //Properties
 
@@ -65,16 +67,18 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new screen manager component.
 		/// </summary>
-		protected ScreenManager(Game game)
+		public ScreenManager(Game game, ScreenStackDelegate mainMenuStack)
 			: base(game)
 		{
 			Initialized = false;
+			MainMenuStack = mainMenuStack;
 
 			ScreensToUpdate = new List<IScreen>();
 			Screens = new List<IScreen>();
 			ClearColor = Color.Black;
 
-			Styles = new StyleSheet();
+			//get teh set of styles that will be used in this game
+			Styles = game.Services.GetService(typeof(IDefaultStyles)) as IDefaultStyles;
 
 			//get the touch service
 			Input = game.Services.GetService(typeof(IInputHelper)) as IInputHelper;
@@ -123,7 +127,7 @@ namespace MenuBuddy
 		private void LoadScreenContent(IScreen screen)
 		{
 			//set the style of teh screen
-			screen.SetStyle(Styles);
+			screen.SetStyle(Styles.MainStyle);
 
 			//load the screen content
 			screen.LoadContent();
@@ -372,7 +376,7 @@ namespace MenuBuddy
 		/// <param name="ex">the exception that occureed</param>
 		public void ErrorScreen(Exception ex)
 		{
-			var screens = new List<IScreen>(GetMainMenuScreenStack());
+			var screens = new List<IScreen>(MainMenuStack());
 			screens.Add(new ErrorScreen(ex));
 			LoadingScreen.Load(this, false, null, screens.ToArray());
 		}
@@ -391,12 +395,6 @@ namespace MenuBuddy
 		{
 			return Screens.ToArray();
 		}
-
-		/// <summary>
-		/// Get the set of screens needed for the main menu
-		/// </summary>
-		/// <returns>The gameplay screen stack.</returns>
-		public abstract IScreen[] GetMainMenuScreenStack();
 
 		#endregion //Public Methods
 	}
