@@ -61,64 +61,154 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Source\CancelMenuEntry.cs">
-      <Link>CancelMenuEntry.cs</Link>
+    <Compile Include="..\Source\DrawHelper.cs">
+      <Link>DrawHelper.cs</Link>
     </Compile>
-    <Compile Include="..\Source\ContinueMenuEntry.cs">
-      <Link>ContinueMenuEntry.cs</Link>
+    <Compile Include="..\Source\Input\ControllerInputHelper.cs">
+      <Link>Input\ControllerInputHelper.cs</Link>
     </Compile>
-    <Compile Include="..\Source\MenuEntryBool.cs">
-      <Link>MenuEntryBool.cs</Link>
+    <Compile Include="..\Source\Input\IIinputHelper.cs">
+      <Link>Input\IIinputHelper.cs</Link>
     </Compile>
-    <Compile Include="..\Source\MenuEntryInt.cs">
-      <Link>MenuEntryInt.cs</Link>
+    <Compile Include="..\Source\Input\TouchInputHelper.cs">
+      <Link>Input\TouchInputHelper.cs</Link>
     </Compile>
-    <Compile Include="..\Source\MenuScreenWithBackground.cs">
-      <Link>MenuScreenWithBackground.cs</Link>
+    <Compile Include="..\Source\Layouts\AbsoluteLayout.cs">
+      <Link>Layouts\AbsoluteLayout.cs</Link>
     </Compile>
-    <Compile Include="..\Source\MenuTransition.cs">
-      <Link>MenuTransition.cs</Link>
+    <Compile Include="..\Source\Layouts\Layout.cs">
+      <Link>Layouts\Layout.cs</Link>
     </Compile>
-    <Compile Include="..\Source\OkScreen.cs">
-      <Link>OkScreen.cs</Link>
+    <Compile Include="..\Source\Layouts\StackLayout.cs">
+      <Link>Layouts\StackLayout.cs</Link>
     </Compile>
-    <Compile Include="..\Source\ScreenState.cs">
-      <Link>ScreenState.cs</Link>
+    <Compile Include="..\Source\Menus\ContinueMenuEntry.cs">
+      <Link>Menus\ContinueMenuEntry.cs</Link>
     </Compile>
-    <Compile Include="..\Source\TouchEntry.cs">
-      <Link>TouchEntry.cs</Link>
+    <Compile Include="..\Source\Menus\IMenuScreen.cs">
+      <Link>Menus\IMenuScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Source\TouchFillEntry.cs">
-      <Link>TouchFillEntry.cs</Link>
+    <Compile Include="..\Source\Menus\MenuDefaults.cs">
+      <Link>Menus\MenuDefaults.cs</Link>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\Source\GameScreen.cs">
-      <Link>GameScreen.cs</Link>
+    <Compile Include="..\Source\Menus\MenuEntry.cs">
+      <Link>Menus\MenuEntry.cs</Link>
     </Compile>
-    <Compile Include="..\Source\LoadingScreen.cs">
-      <Link>LoadingScreen.cs</Link>
+    <Compile Include="..\Source\Menus\MenuEntryBool.cs">
+      <Link>Menus\MenuEntryBool.cs</Link>
     </Compile>
-    <Compile Include="..\Source\MenuEntry.cs">
-      <Link>MenuEntry.cs</Link>
+    <Compile Include="..\Source\Menus\MenuEntryInt.cs">
+      <Link>Menus\MenuEntryInt.cs</Link>
     </Compile>
-    <Compile Include="..\Source\MenuScreen.cs">
-      <Link>MenuScreen.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\MessageBoxScreen.cs">
-      <Link>MessageBoxScreen.cs</Link>
+    <Compile Include="..\Source\Menus\MenuScreen.cs">
+      <Link>Menus\MenuScreen.cs</Link>
     </Compile>
     <Compile Include="..\Source\PlayerIndexEventArgs.cs">
       <Link>PlayerIndexEventArgs.cs</Link>
     </Compile>
-    <Compile Include="..\Source\ScreenManager.cs">
-      <Link>ScreenManager.cs</Link>
+    <Compile Include="..\Source\ScreenManager\IScreenManager.cs">
+      <Link>ScreenManager\IScreenManager.cs</Link>
     </Compile>
-    <Compile Include="..\Source\IMainMenu.cs">
-      <Link>IMainMenu.cs</Link>
+    <Compile Include="..\Source\ScreenManager\ScreenManager.cs">
+      <Link>ScreenManager\ScreenManager.cs</Link>
     </Compile>
-    <Compile Include="..\Source\ErrorScreen.cs">
-      <Link>ErrorScreen.cs</Link>
+    <Compile Include="..\Source\Screens\ErrorScreen.cs">
+      <Link>Screens\ErrorScreen.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Screens\IGameScreen.cs">
+      <Link>Screens\IGameScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Screens\IMainScreen.cs">
+      <Link>Screens\IMainScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Screens\IScreen.cs">
+      <Link>Screens\IScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Screens\LoadingScreen.cs">
+      <Link>Screens\LoadingScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Screens\MessageBoxScreen.cs">
+      <Link>Screens\MessageBoxScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Screens\OkScreen.cs">
+      <Link>Screens\OkScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Screens\Screen.cs">
+      <Link>Screens\Screen.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Screens\WidgetScreen.cs">
+      <Link>Screens\WidgetScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Style\BoolStyleItem.cs">
+      <Link>Style\BoolStyleItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Style\ColorStyleItem.cs">
+      <Link>Style\ColorStyleItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Style\FontStyleItem.cs">
+      <Link>Style\FontStyleItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Style\ImageStyleItem.cs">
+      <Link>Style\ImageStyleItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Style\SoundStyleItem.cs">
+      <Link>Style\SoundStyleItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Style\StyleItem.cs">
+      <Link>Style\StyleItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Style\StyleItemType.cs">
+      <Link>Style\StyleItemType.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Style\StyleSheet.cs">
+      <Link>Style\StyleSheet.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Style\TransitionStyleItem.cs">
+      <Link>Style\TransitionStyleItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Transitions\Transition.cs">
+      <Link>Transitions\Transition.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Transitions\TransitionState.cs">
+      <Link>Transitions\TransitionState.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Transitions\TransitionType.cs">
+      <Link>Transitions\TransitionType.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\BackgroundImage.cs">
+      <Link>Widgets\BackgroundImage.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\Button.cs">
+      <Link>Widgets\Button.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\CancelButton.cs">
+      <Link>Widgets\CancelButton.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\IButton.cs">
+      <Link>Widgets\IButton.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\Image.cs">
+      <Link>Widgets\Image.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\ImageButton.cs">
+      <Link>Widgets\ImageButton.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\IScreenItem.cs">
+      <Link>Widgets\IScreenItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\IScreenItemContainer.cs">
+      <Link>Widgets\IScreenItemContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\IWidget.cs">
+      <Link>Widgets\IWidget.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\Label.cs">
+      <Link>Widgets\Label.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\Widget.cs">
+      <Link>Widgets\Widget.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -137,6 +227,10 @@
       <Project>{65B5BB5D-0C69-4DDB-8DE6-F6B91C41279D}</Project>
       <Name>FontBuddy.Windows</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\MouseBuddy\Windows\MouseBuddy.Windows.csproj">
+      <Project>{274f9781-c163-41f3-8922-2e4877486017}</Project>
+      <Name>MouseBuddy.Windows</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ResolutionBuddy\Windows\ResolutionBuddy.Windows.csproj">
       <Project>{28342DF0-0089-4A2A-B3D4-6DCD65D6D8E4}</Project>
       <Name>ResolutionBuddy.Windows</Name>
@@ -154,24 +248,7 @@
       <Name>Vector2Extensions.Windows</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\Source\Content\AlphaGradient.png">
-      <Link>Content\AlphaGradient.png</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Source\Content\Cancel.png">
-      <Link>Content\Cancel.png</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Source\Content\gradient.png">
-      <Link>Content\gradient.png</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Source\Content\hourglass.png">
-      <Link>Content\hourglass.png</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="..\..\..\Windows\packages\MonoGame.Binaries.3.2.0\build\net40\MonoGame.Binaries.targets" Condition="Exists('..\..\..\Windows\packages\MonoGame.Binaries.3.2.0\build\net40\MonoGame.Binaries.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

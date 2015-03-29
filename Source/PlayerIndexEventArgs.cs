@@ -9,22 +9,22 @@ namespace MenuBuddy
 	/// </summary>
 	public class PlayerIndexEventArgs : EventArgs
 	{
-		private readonly PlayerIndex playerIndex;
+		private readonly PlayerIndex? _playerIndex;
 
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public PlayerIndexEventArgs(PlayerIndex playerIndex)
+		public PlayerIndexEventArgs(PlayerIndex? playerIndex)
 		{
-			this.playerIndex = playerIndex;
+			_playerIndex = playerIndex;
 		}
 
 		/// <summary>
 		/// Gets the index of the player who triggered this event.
 		/// </summary>
-		public PlayerIndex PlayerIndex
+		public PlayerIndex? PlayerIndex
 		{
-			get { return playerIndex; }
+			get { return _playerIndex; }
 		}
 	}
 }
