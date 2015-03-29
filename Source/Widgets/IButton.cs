@@ -9,6 +9,8 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IButton : IWidget
 	{
+		bool IsHighlighted { set; }
+
 		/// <summary>
 		/// A description of the function of the menu entry.
 		/// </summary>

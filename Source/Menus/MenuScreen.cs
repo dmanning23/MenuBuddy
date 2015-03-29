@@ -15,11 +15,6 @@ namespace MenuBuddy
 	{
 		#region Fields
 
-		/// <summary>
-		/// index of the currently selected menu entry
-		/// </summary>
-		private int _selectedIndex;
-
 		private Point _menuTitleOffset;
 		private Point _menuEntryOffset;
 
@@ -40,15 +35,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Get the currently selected menu entry index, -1 if no entry selected
 		/// </summary>
-		protected int SelectedIndex
-		{
-			get { return _selectedIndex; }
-			set
-			{
-				//set teh selected menu item
-				_selectedIndex = value;
-			}
-		}
+		protected int SelectedIndex { get; set; }
 
 		/// <summary>
 		/// Get the currently selected menu entry, null if no menu entry selected
@@ -269,6 +256,13 @@ namespace MenuBuddy
 			//update the timers
 			if (!otherScreenHasFocus && !coveredByOtherScreen)
 			{
+				//set teh highlighted item
+				var entries = MenuEntries.Items.OfType<MenuEntry>().ToList();
+				for (int i = 0; i < entries.Count; i++)
+				{
+					entries[i].IsHighlighted = (i == SelectedIndex);
+				}
+
 				TimeSinceInput.Update(gameTime);
 			}
 		}

@@ -30,7 +30,7 @@ namespace MenuBuddy
 			game.Services.AddService(typeof(IInputHelper), this);
 		}
 
-		public void Update()
+		public override void Update(GameTime gameTime)
 		{
 			//Read the keyboard and gamepad.
 			InputState.Update();

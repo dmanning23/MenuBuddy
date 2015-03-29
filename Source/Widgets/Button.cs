@@ -14,7 +14,7 @@ namespace MenuBuddy
 	{
 		#region Properties
 
-		//TODO: state machine for button state
+		public bool IsHighlighted { protected get; set; }
 
 		public override Rectangle Rect
 		{
@@ -64,6 +64,7 @@ namespace MenuBuddy
 		/// </summary>
 		public void OnHighlighted()
 		{
+			IsHighlighted = true;
 		}
 
 		/// <summary>
@@ -71,6 +72,7 @@ namespace MenuBuddy
 		/// </summary>
 		public void OnNotHighlighted()
 		{
+			IsHighlighted = false;
 		}
 
 		#endregion //Properties
@@ -100,22 +102,21 @@ namespace MenuBuddy
 
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
-			//set the shadow color?
-			var shadow = Style.SelectedFont as ShadowTextBuddy;
-			if (null != shadow)
-			{
-				shadow.ShadowColor = Style.SelectedShadowColor;
-			}
+			//Get the font to use
+			var font = IsHighlighted ? Style.SelectedFont : Style.UnselectedFont;
+
+			//get the color to use
+			var color = IsHighlighted ? Style.SelectedTextColor : Style.UnselectedTextColor;
 
 			//get teh position
 			var pos = new Vector2(Rect.Center.X, Rect.Top);
 
 			//Write the text
-			Style.SelectedFont.Write(Text,
+			font.Write(Text,
 				pos,
 				Justify.Center,
 				1.0f,
-				Style.SelectedTextColor,
+				color,
 				screen.ScreenManager.SpriteBatch,
 				gameTime);
 		}

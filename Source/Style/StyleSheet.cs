@@ -33,16 +33,35 @@ namespace MenuBuddy
 
 		#region Properties
 
-		public IFontBuddy SelectedFont 
+		public IFontBuddy SelectedFont
 		{
 			get { return _selectedFontStyle.Style; }
-			set { _selectedFontStyle = new FontStyleItem(StyleItemType.SelectedFont, value); } 
+			set
+			{
+				//set the font item
+				_selectedFontStyle = new FontStyleItem(StyleItemType.SelectedFont, value);
+
+				//also set teh shadow color
+				var shadow = SelectedFont as ShadowTextBuddy;
+				if (null != shadow)
+				{
+					shadow.ShadowColor = SelectedShadowColor;
+				}
+			}
 		}
 
 		public IFontBuddy UnselectedFont
 		{
 			get { return _unselectedFontStyle.Style; }
-			set { _unselectedFontStyle = new FontStyleItem(StyleItemType.UnselectedFont, value); }
+			set
+			{
+				_unselectedFontStyle = new FontStyleItem(StyleItemType.UnselectedFont, value);
+				var shadow = UnselectedFont as ShadowTextBuddy;
+				if (null != shadow)
+				{
+					shadow.ShadowColor = UnselectedShadowColor;
+				}
+			}
 		}
 
 		public Color SelectedTextColor
@@ -60,13 +79,35 @@ namespace MenuBuddy
 		public Color SelectedShadowColor
 		{
 			get { return _selectedShadowColorStyle.Style; }
-			set { _selectedShadowColorStyle = new ColorStyleItem(StyleItemType.SelectedShadowColor, value); }
+			set
+			{
+				//set teh shadow color
+				_selectedShadowColorStyle = new ColorStyleItem(StyleItemType.SelectedShadowColor, value);
+
+				//tell the selected font to use that shadow color too
+				var shadow = SelectedFont as ShadowTextBuddy;
+				if (null != shadow)
+				{
+					shadow.ShadowColor = SelectedShadowColor;
+				}
+			}
 		}
 
 		public Color UnselectedShadowColor
 		{
 			get { return _unselectedShadowColorStyle.Style; }
-			set { _unselectedShadowColorStyle = new ColorStyleItem(StyleItemType.UnselectedShadowColor, value); }
+			set
+			{
+				//set the shadow color
+				_unselectedShadowColorStyle = new ColorStyleItem(StyleItemType.UnselectedShadowColor, value);
+
+				//also set it in the font item
+				var shadow = UnselectedFont as ShadowTextBuddy;
+				if (null != shadow)
+				{
+					shadow.ShadowColor = UnselectedShadowColor;
+				}
+			}
 		}
 
 		public Color SelectedOutlineColor

@@ -154,12 +154,12 @@ namespace MenuBuddy
 		/// <param name="button"></param>
 		private void OnButtonHighlighted(IButton button)
 		{
-			//TODO: this widget is the current selected item
+			button.IsHighlighted = true;
 		}
 
 		private void OnButtonNotHighlighted(IButton button)
 		{
-			//TODO: this widget is NOT the current selected item
+			button.IsHighlighted = false;
 		}
 
 		/// <summary>
