@@ -73,9 +73,12 @@ namespace MenuBuddy
 			set
 			{
 				_menuTitleOffset = value;
-				var prevPos = MenuTitle.Position;
-				MenuTitle.Position = new Point(prevPos.X + _menuTitleOffset.X,
-					prevPos.Y + _menuTitleOffset.Y);
+				if (null != MenuTitle)
+				{
+					var prevPos = MenuTitle.Position;
+					MenuTitle.Position = new Point(prevPos.X + _menuTitleOffset.X,
+						prevPos.Y + _menuTitleOffset.Y);
+				}
 			}
 		}
 
@@ -193,7 +196,7 @@ namespace MenuBuddy
 		/// User hit the "menu select" button.
 		/// </summary>
 		/// <param name="playerIndex"></param>
-		public void OnSelect(PlayerIndex playerIndex)
+		public override void OnSelect(PlayerIndex? playerIndex)
 		{
 			if (null != SelectedEntry)
 			{

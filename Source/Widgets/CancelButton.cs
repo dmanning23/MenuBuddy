@@ -1,4 +1,3 @@
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,6 +10,8 @@ namespace MenuBuddy
 	/// </summary>
 	public class CancelButton : ImageButton
 	{
+		#region Properties
+
 		private int IconSize { get; set; }
 
 		public override Rectangle Rect
@@ -23,6 +24,10 @@ namespace MenuBuddy
 					IconSize, IconSize);
 			}
 		}
+
+		#endregion //Properties
+
+		#region Methods
 
 		public CancelButton(StyleSheet style, ContentManager content, string icon = "Cancel", int iconSize = 96)
 			: base(style, "")
@@ -41,5 +46,7 @@ namespace MenuBuddy
 			: base(style, "Cancel")
 		{
 		}
+
+		#endregion //Methods
 	}
 }

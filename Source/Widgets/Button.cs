@@ -105,11 +105,21 @@ namespace MenuBuddy
 			//Get the font to use
 			var font = IsHighlighted ? Style.SelectedFont : Style.UnselectedFont;
 
+			//get the shadow color
+			var shadow = font as ShadowTextBuddy;
+			if (null != shadow)
+			{
+				var shadowColor = IsHighlighted ? Style.SelectedShadowColor : Style.UnselectedShadowColor;
+				shadow.ShadowColor = screen.Transition.AlphaColor(shadowColor);
+			}
+
 			//get the color to use
 			var color = IsHighlighted ? Style.SelectedTextColor : Style.UnselectedTextColor;
+			color = screen.Transition.AlphaColor(color);
 
 			//get teh position
 			var pos = new Vector2(Rect.Center.X, Rect.Top);
+			pos = screen.Transition.Position(pos, Style.Transition);
 
 			//Write the text
 			font.Write(Text,

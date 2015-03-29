@@ -32,8 +32,6 @@ namespace MenuBuddy
 
 		#region Methods
 
-		#endregion //Methods
-
 		/// <summary>
 		/// constructor!
 		/// </summary>
@@ -68,5 +66,7 @@ namespace MenuBuddy
 			//draw the item with all the correct parameters
 			screen.ScreenManager.SpriteBatch.Draw(_texture, new Rectangle((int)pos.X, (int)pos.Y, Rect.Width, Rect.Height), color);
 		}
+
+		#endregion //Methods
 	}
 }

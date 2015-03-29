@@ -47,22 +47,26 @@ namespace MenuBuddy
 
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
+			var color = Style.SelectedTextColor;
+			color = screen.Transition.AlphaColor(color);
+
 			//set the shadow color?
 			var shadow = Style.SelectedFont as ShadowTextBuddy;
 			if (null != shadow)
 			{
-				shadow.ShadowColor = Style.SelectedShadowColor;
+				shadow.ShadowColor = screen.Transition.AlphaColor(Style.SelectedShadowColor);
 			}
 
 			//get teh position
 			var pos = new Vector2(Rect.Center.X, Rect.Top);
+			pos = screen.Transition.Position(pos, Style.Transition);
 
 			//Write the text
 			Style.SelectedFont.Write(Text,
 				pos,
 				Justify.Center,
 				1.0f,
-				Style.SelectedTextColor,
+				color,
 				screen.ScreenManager.SpriteBatch,
 				gameTime);
 		}
