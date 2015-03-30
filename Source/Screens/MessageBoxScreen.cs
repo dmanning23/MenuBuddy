@@ -76,7 +76,7 @@ namespace MenuBuddy
 			var label = new Label(messageStyle, Message);
 			label.Horizontal = HorizontalAlignment.Center;
 			label.Vertical = VerticalAlignment.Bottom;
-			label.Position = MenuEntries.Position;
+			label.Position = MenuEntries.Position + new Point(0, -32);
 			AddItem(label);
 
 			AddButtons(IncludeUsageText);
