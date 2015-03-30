@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System;
 using System.Text;
+using FontBuddyLib;
 using Vector2Extensions;
 
 namespace MenuBuddy
@@ -66,14 +67,23 @@ namespace MenuBuddy
 		{
 			base.LoadContent();
 
+			var messageStyle = new StyleSheet(ScreenManager.Styles.MessageBoxStyle);
+			messageStyle.SelectedFont = new FontBuddy();
+			messageStyle.SelectedFont.Font = ScreenManager.Styles.MessageBoxStyle.SelectedFont.Font;
+			messageStyle.SelectedTextColor = messageStyle.UnselectedTextColor;
+
 			//add the label text
-			var label = new Label(Style, Message);
+			var label = new Label(messageStyle, Message);
+			label.Horizontal = HorizontalAlignment.Center;
+			label.Vertical = VerticalAlignment.Bottom;
+			label.Position = MenuEntries.Position;
 			AddItem(label);
 
 			AddButtons(IncludeUsageText);
 
 			//set the background image size
-			BackgroundImage = new Image(Style, Style.Texture);
+			BackgroundImage = new Image(ScreenManager.Styles.MessageBoxStyle,
+				ScreenManager.Styles.MessageBoxStyle.Texture);
 			const int hPad = 64;
 			const int vPad = 32;
 			var rect = Layout.Rect;
@@ -113,7 +123,7 @@ namespace MenuBuddy
 			}
 
 			//Create the menu entry for "OK"
-			var okEntry = new MenuEntry(Style, okText.ToString());
+			var okEntry = new MenuEntry(ScreenManager.Styles.MessageBoxStyle, okText.ToString());
 			okEntry.Selected += OnAccept;
 			AddMenuEntry(okEntry);
 		}
@@ -140,7 +150,7 @@ namespace MenuBuddy
 			}
 
 			//Create the menu entry "Cancel"
-			var cancel = new MenuEntry(Style, cancelText.ToString());
+			var cancel = new MenuEntry(ScreenManager.Styles.MessageBoxStyle, cancelText.ToString());
 			cancel.Selected += OnCancel;
 			AddMenuEntry(cancel);
 		}

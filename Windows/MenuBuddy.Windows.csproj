@@ -193,6 +193,9 @@
     <Compile Include="..\Source\Widgets\CancelButton.cs">
       <Link>Widgets\CancelButton.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Widgets\HorizontalAlignment.cs">
+      <Link>Widgets\HorizontalAlignment.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Widgets\IButton.cs">
       <Link>Widgets\IButton.cs</Link>
     </Compile>
@@ -213,6 +216,9 @@
     </Compile>
     <Compile Include="..\Source\Widgets\Label.cs">
       <Link>Widgets\Label.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\VerticalAlignment.cs">
+      <Link>Widgets\VerticalAlignment.cs</Link>
     </Compile>
     <Compile Include="..\Source\Widgets\Widget.cs">
       <Link>Widgets\Widget.cs</Link>

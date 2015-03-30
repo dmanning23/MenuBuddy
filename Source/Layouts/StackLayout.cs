@@ -23,7 +23,7 @@ namespace MenuBuddy
 			var itemRect = item.Rect;
 
 			//set the position of the new item
-			item.Position = new Point(Position.X - (itemRect.Width / 2), rect.Bottom);
+			item.Position = new Point(Position.X, rect.Bottom);
 
 			//store the new item
 			Items.Add(item);

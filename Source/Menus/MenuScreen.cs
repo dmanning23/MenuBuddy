@@ -30,7 +30,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Gets the list of menu entries, so derived classes can add or change the menu contents.
 		/// </summary>
-		private StackLayout MenuEntries { get; set; }
+		protected StackLayout MenuEntries { get; private set; }
 
 		/// <summary>
 		/// Get the currently selected menu entry index, -1 if no entry selected
@@ -108,14 +108,16 @@ namespace MenuBuddy
 			var menuTitleSize = ScreenManager.Styles.MenuTitleStyle.SelectedFont.Font.MeasureString(ScreenName);
 			MenuTitle = new Label(ScreenManager.Styles.MenuTitleStyle, ScreenName);
 			MenuTitle.Position = new Point(
-				MenuTitleOffset.X + Resolution.TitleSafeArea.Center.X - (int)(menuTitleSize.X / 2f),
+				MenuTitleOffset.X + Resolution.TitleSafeArea.Center.X,
 				MenuTitleOffset.Y + Resolution.TitleSafeArea.Center.Y - (int)(menuTitleSize.Y * 2f));
+			MenuTitle.Horizontal = HorizontalAlignment.Center;
 
 			AddItem(MenuTitle);
 		}
 
 		protected void AddMenuEntry(MenuEntry menuEntry)
 		{
+			menuEntry.Horizontal = HorizontalAlignment.Center;
 			MenuEntries.AddItem(menuEntry);
 		}
 
@@ -267,6 +269,11 @@ namespace MenuBuddy
 				}
 
 				TimeSinceInput.Update(gameTime);
+			}
+			else if (null != SelectedEntry)
+			{
+				//make sure that highlighted entry isn't being a butt
+				SelectedEntry.IsHighlighted = false;
 			}
 		}
 

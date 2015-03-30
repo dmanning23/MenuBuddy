@@ -1,6 +1,7 @@
 using FontBuddyLib;
 using GameTimer;
 using Microsoft.Xna.Framework;
+using Vector2Extensions;
 
 namespace MenuBuddy
 {
@@ -57,13 +58,9 @@ namespace MenuBuddy
 				shadow.ShadowColor = screen.Transition.AlphaColor(Style.SelectedShadowColor);
 			}
 
-			//get teh position
-			var pos = new Vector2(Rect.Center.X, Rect.Top);
-			pos = screen.Transition.Position(pos, Style.Transition);
-
 			//Write the text
 			Style.SelectedFont.Write(Text,
-				pos,
+				TextPosition(screen),
 				Justify.Center,
 				1.0f,
 				color,

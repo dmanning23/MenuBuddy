@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Microsoft.Xna.Framework.Audio;
+using Vector2Extensions;
 
 namespace MenuBuddy
 {
@@ -20,9 +21,11 @@ namespace MenuBuddy
 		{
 			get 
 			{
+				//measure the text size of the button text
 				var rect = base.Rect;
-				rect.Width = 768;
-				rect.Height = 128;
+				var textSize = Style.SelectedFont.Font.MeasureString(Text);
+				rect.Width = (int)textSize.X;
+				rect.Height = (int)textSize.Y;
 				return rect;
 			}
 		}
@@ -117,13 +120,9 @@ namespace MenuBuddy
 			var color = IsHighlighted ? Style.SelectedTextColor : Style.UnselectedTextColor;
 			color = screen.Transition.AlphaColor(color);
 
-			//get teh position
-			var pos = new Vector2(Rect.Center.X, Rect.Top);
-			pos = screen.Transition.Position(pos, Style.Transition);
-
 			//Write the text
 			font.Write(Text,
-				pos,
+				TextPosition(screen),
 				Justify.Center,
 				1.0f,
 				color,

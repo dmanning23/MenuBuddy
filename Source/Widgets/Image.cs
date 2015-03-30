@@ -60,8 +60,7 @@ namespace MenuBuddy
 			var color = screen.Transition.AlphaColor(Color.White);
 
 			//Get the transition location
-			var pos = Rect.Location.ToVector2();
-			pos = screen.Transition.Position(pos, Style.Transition);
+			var pos = DrawPosition(screen);
 
 			//draw the item with all the correct parameters
 			screen.ScreenManager.SpriteBatch.Draw(_texture, new Rectangle((int)pos.X, (int)pos.Y, Rect.Width, Rect.Height), color);

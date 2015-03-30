@@ -17,5 +17,15 @@ namespace MenuBuddy
 		/// The stylesheet of this item
 		/// </summary>
 		StyleSheet Style { get; }
+
+		/// <summary>
+		/// horizontal alignment of this item
+		/// </summary>
+		HorizontalAlignment Horizontal { get; set; }
+
+		/// <summary>
+		/// vertical alignment of this item
+		/// </summary>
+		VerticalAlignment Vertical { get; set; }
 	}
 }

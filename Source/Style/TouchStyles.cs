@@ -9,7 +9,8 @@ namespace MenuBuddy
 	/// </summary>
 	public class TouchStyles : DefaultStyles
 	{
-		public TouchStyles(Game game) : base(game)
+		public TouchStyles(Game game, StyleSheet gameStyle)
+			: base(game, gameStyle)
 		{
 		}
 

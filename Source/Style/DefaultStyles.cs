@@ -12,6 +12,8 @@ namespace MenuBuddy
 	{
 		#region Properties
 
+		private StyleSheet GameStyle { get; set; }
+
 		public string MenuTitleFontName { protected get; set; }
 		public string MenuEntryFontName { protected get; set; }
 		public string MessageBoxFontName { protected get; set; }
@@ -29,9 +31,11 @@ namespace MenuBuddy
 
 		#region Methods
 
-		public DefaultStyles(Game game)
+		public DefaultStyles(Game game, StyleSheet gameStyle)
 			: base(game)
 		{
+			GameStyle = gameStyle;
+
 			//Register ourselves to implement the DI container service.
 			game.Components.Add(this);
 			game.Services.AddService(typeof(IDefaultStyles), this);
@@ -42,7 +46,7 @@ namespace MenuBuddy
 			base.Initialize();
 
 			//set the main style
-			MainStyle = new StyleSheet();
+			MainStyle = new StyleSheet(GameStyle);
 			MainStyle.Transition = TransitionType.SlideLeft;
 
 			//load the selected text stuff
@@ -82,11 +86,12 @@ namespace MenuBuddy
 			pulsate = new PulsateBuddy();
 			pulsate.ShadowSize = 1.0f;
 			pulsate.ShadowOffset = Vector2.Zero;
-			pulsate.PulsateSize *= 0.25f;
+			pulsate.PulsateSize *= 0.5f;
 			pulsate.Font = Game.Content.Load<SpriteFont>(MessageBoxFontName);
 			MessageBoxStyle.SelectedFont = pulsate;
 
 			shadow = new ShadowTextBuddy();
+			shadow.ShadowSize = 1.0f;
 			shadow.ShadowOffset = Vector2.Zero;
 			shadow.Font = Game.Content.Load<SpriteFont>(MessageBoxFontName);
 			MessageBoxStyle.UnselectedFont = shadow;
