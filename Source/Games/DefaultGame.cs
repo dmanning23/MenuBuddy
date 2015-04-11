@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using ResolutionBuddy;
 using TouchScreenBuddy;
 
-namespace MenuBuddySample
+namespace MenuBuddy
 {
 	/// <summary>
 	/// This is some boilerplate code for doing a game.
