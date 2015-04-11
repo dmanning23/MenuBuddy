@@ -23,6 +23,16 @@ namespace MenuBuddy
 		/// </summary>
 		protected ScreenManager ScreenManager { get; private set; }
 
+		/// <summary>
+		/// The desired resolution of the game
+		/// </summary>
+		protected Point DesiredScreenResolution { get; set; }
+
+		/// <summary>
+		/// whether or not the game should be displayed in fullscreen
+		/// </summary>
+		protected bool FullScreen { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -32,6 +42,9 @@ namespace MenuBuddy
 			Graphics = new GraphicsDeviceManager(this);
 			Graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft;
 			Content.RootDirectory = "Content";
+
+			DesiredScreenResolution = new Point(1280, 720);
+			FullScreen = false;
 		}
 
 		/// <summary>
@@ -62,11 +75,11 @@ namespace MenuBuddy
 			ScreenManager = new ScreenManager(this, GetMainMenuScreenStack);
 			ScreenManager.ClearColor = new Color(0.0f, 0.1f, 0.2f);
 
-			// Change Virtual Resolution
-			Resolution.SetDesiredResolution(1280, 720);
+			//Change Virtual Resolution
+			Resolution.SetDesiredResolution(DesiredScreenResolution.X, DesiredScreenResolution.Y);
 
 			//set the desired resolution
-			Resolution.SetScreenResolution(1280, 720, false);
+			Resolution.SetScreenResolution(DesiredScreenResolution.X, DesiredScreenResolution.Y, FullScreen);
 
 			// Activate the first screens.
 			ScreenManager.AddScreen(GetMainMenuScreenStack(), null);
@@ -80,7 +93,10 @@ namespace MenuBuddy
 		protected virtual void InitStyles()
 		{
 			var gameStyle = new StyleSheet();
-			gameStyle.HasOutline = true;
+			
+			//uncomment this line if need to test widget placement
+			//gameStyle.HasOutline = true;
+
 			var styles = new DefaultStyles(this, gameStyle);
 
 			styles.MenuTitleFontName = @"Fonts\ArialBlack72";
