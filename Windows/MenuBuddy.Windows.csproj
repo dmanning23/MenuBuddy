@@ -79,6 +79,9 @@
     <Compile Include="..\Source\Layouts\Layout.cs">
       <Link>Layouts\Layout.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Layouts\RelativeLayout.cs">
+      <Link>Layouts\RelativeLayout.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Layouts\StackLayout.cs">
       <Link>Layouts\StackLayout.cs</Link>
     </Compile>

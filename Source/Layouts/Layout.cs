@@ -17,7 +17,7 @@ namespace MenuBuddy
 		/// </summary>
 		public List<IScreenItem> Items { get; private set; }
 
-		public Rectangle Rect
+		public virtual Rectangle Rect
 		{
 			get
 			{
