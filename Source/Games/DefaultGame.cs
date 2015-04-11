@@ -33,6 +33,11 @@ namespace MenuBuddy
 		/// </summary>
 		protected bool FullScreen { get; set; }
 
+		/// <summary>
+		/// The style sheet of this game.
+		/// </summary>
+		protected DefaultStyles GameStyle { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -90,23 +95,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Initialize the default styles to use for this game.
 		/// </summary>
-		protected virtual void InitStyles()
-		{
-			var gameStyle = new StyleSheet();
-			
-			//uncomment this line if need to test widget placement
-			//gameStyle.HasOutline = true;
-
-			var styles = new DefaultStyles(this, gameStyle);
-
-			styles.MenuTitleFontName = @"Fonts\ArialBlack72";
-			styles.MenuEntryFontName = @"Fonts\ArialBlack48";
-			styles.MessageBoxFontName = @"Fonts\ArialBlack24";
-			styles.MenuSelectSoundName = @"MenuSelect";
-			styles.MenuChangeSoundName = @"MenuMove";
-			styles.MessageBoxBackground = @"gradient";
-			styles.ButtonBackground = @"AlphaGradient";
-		}
+		protected abstract void InitStyles();
 
 		/// <summary>
 		/// initialize the input to use for this game
