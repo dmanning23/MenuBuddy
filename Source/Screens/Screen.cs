@@ -108,7 +108,7 @@ namespace MenuBuddy
 		/// </summary>
 		protected Screen(string screenName = "")
 		{
-			CoverOtherScreens = true;
+			CoverOtherScreens = false;
 			IsExiting = false;
 			ScreenName = screenName;
 

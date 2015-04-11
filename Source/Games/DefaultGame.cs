@@ -83,9 +83,9 @@ namespace MenuBuddySample
 			gameStyle.HasOutline = true;
 			var styles = new DefaultStyles(this, gameStyle);
 
-			styles.MenuTitleFontName = @"ArialBlack72";
-			styles.MenuEntryFontName = @"ArialBlack48";
-			styles.MessageBoxFontName = @"ArialBlack24";
+			styles.MenuTitleFontName = @"Fonts\ArialBlack72";
+			styles.MenuEntryFontName = @"Fonts\ArialBlack48";
+			styles.MessageBoxFontName = @"Fonts\ArialBlack24";
 			styles.MenuSelectSoundName = @"MenuSelect";
 			styles.MenuChangeSoundName = @"MenuMove";
 			styles.MessageBoxBackground = @"gradient";

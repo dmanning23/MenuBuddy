@@ -256,6 +256,12 @@ namespace MenuBuddy
 		/// </summary>
 		public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
 		{
+			//Hide menu screens when they are covered
+			if (otherScreenHasFocus)
+			{
+				coveredByOtherScreen = true;
+			}
+
 			base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
 			//update the timers
