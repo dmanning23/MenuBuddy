@@ -109,7 +109,7 @@ namespace MenuBuddy
 			MenuTitle = new Label(ScreenManager.Styles.MenuTitleStyle, ScreenName);
 			MenuTitle.Position = new Point(
 				MenuTitleOffset.X + Resolution.TitleSafeArea.Center.X,
-				MenuTitleOffset.Y + Resolution.TitleSafeArea.Center.Y - (int)(menuTitleSize.Y * 2f));
+				MenuTitleOffset.Y + Resolution.TitleSafeArea.Center.Y - (int)(menuTitleSize.Y * 1.75f));
 			MenuTitle.Horizontal = HorizontalAlignment.Center;
 
 			AddItem(MenuTitle);

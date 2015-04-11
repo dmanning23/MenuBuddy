@@ -1,6 +1,7 @@
 using MenuBuddy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using MouseBuddy;
 using ResolutionBuddy;
 using TouchScreenBuddy;
 
@@ -70,6 +71,10 @@ namespace MenuBuddy
 
 			//create the touch manager component
 			var touches = new TouchManager(this, Resolution.ScreenToGameCoord);
+
+#if MOUSE
+			var mouse = new MouseManager(this);
+#endif
 
 			//add the input helper for menus
 			InitInput();

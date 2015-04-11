@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Xna.Framework;
 
 namespace MenuBuddy
 {
@@ -10,6 +11,19 @@ namespace MenuBuddy
 	/// </summary>
 	public class MenuEntry : Button
 	{
+		#region Properties
+
+		public override Rectangle Rect
+		{
+			get
+			{
+				var rect = base.Rect;
+				rect.Width = 768;
+				return rect;
+			}
+		}
+
+		#endregion //Properties
 		#region Events
 
 		/// <summary>

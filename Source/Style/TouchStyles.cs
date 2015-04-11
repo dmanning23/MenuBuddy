@@ -22,7 +22,6 @@ namespace MenuBuddy
 			MenuEntryStyle.HasOutline = true;
 			MenuEntryStyle.SelectedTextColor = MenuEntryStyle.UnselectedTextColor;
 
-
 			//load the selected text stuff
 			var shadow = new ShadowTextBuddy();
 			shadow.ShadowSize = 1.0f;
@@ -38,11 +37,18 @@ namespace MenuBuddy
 			MenuEntryStyle.UnselectedShadowColor = MenuEntryStyle.SelectedShadowColor;
 
 			//set the messagebox style
+			MessageBoxStyle.HasBackground = true;
+			MessageBoxStyle.HasOutline = true;
+			MessageBoxStyle.SelectedTextColor = MenuEntryStyle.UnselectedTextColor;
+
 			shadow = new ShadowTextBuddy();
 			shadow.ShadowSize = 1.0f;
 			shadow.ShadowOffset = new Vector2(7.0f, 7.0f);
 			shadow.Font = Game.Content.Load<SpriteFont>(MessageBoxFontName);
 			MessageBoxStyle.SelectedFont = shadow;
+			MessageBoxStyle.SelectedTextColor = Color.White;
+			MessageBoxStyle.SelectedShadowColor = Color.Black;
+
 			MessageBoxStyle.UnselectedFont = MessageBoxStyle.SelectedFont;
 			MessageBoxStyle.UnselectedTextColor = MessageBoxStyle.SelectedTextColor;
 			MessageBoxStyle.UnselectedShadowColor = MessageBoxStyle.SelectedShadowColor;

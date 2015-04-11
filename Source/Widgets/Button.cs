@@ -19,13 +19,13 @@ namespace MenuBuddy
 
 		public override Rectangle Rect
 		{
-			get 
+			get
 			{
 				//measure the text size of the button text
 				var rect = base.Rect;
 				var textSize = Style.SelectedFont.Font.MeasureString(Text);
-				rect.Width = (int)textSize.X;
-				rect.Height = (int)textSize.Y;
+				rect.Width = (int)(textSize.X * 1.1f);
+				rect.Height = (int)(textSize.Y * 0.95f);
 				return rect;
 			}
 		}

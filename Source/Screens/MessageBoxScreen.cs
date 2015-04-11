@@ -73,7 +73,10 @@ namespace MenuBuddy
 			messageStyle.SelectedTextColor = messageStyle.UnselectedTextColor;
 
 			//add the label text
-			var label = new Label(messageStyle, Message);
+			var labelStyle = new StyleSheet(messageStyle);
+			labelStyle.HasOutline = false;
+			labelStyle.HasBackground = false;
+			var label = new Label(labelStyle, Message);
 			label.Horizontal = HorizontalAlignment.Center;
 			label.Vertical = VerticalAlignment.Bottom;
 			label.Position = MenuEntries.Position + new Point(0, -32);

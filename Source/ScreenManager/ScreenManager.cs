@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Microsoft.Xna.Framework.Input.Touch;
+using MouseBuddy;
 using OpenTK.Graphics.OpenGL;
 using TouchScreenBuddy;
 
@@ -55,10 +57,15 @@ namespace MenuBuddy
 		public Color ClearColor { get; set; }
 
 		public DrawHelper DrawHelper { get; private set; }
-		
+
 		public IDefaultStyles Styles { get; private set; }
 
 		public ScreenStackDelegate MainMenuStack { get; set; }
+
+#if DEBUG
+		private IMouseManager MouseManager { get; set; }
+		private ITouchManager TouchManager { get; set; }
+#endif
 
 		#endregion //Properties
 
@@ -86,6 +93,11 @@ namespace MenuBuddy
 
 			game.Components.Add(this);
 			game.Services.AddService(typeof(IScreenManager), this);
+
+#if DEBUG
+			MouseManager = game.Services.GetService(typeof(IMouseManager)) as IMouseManager;
+			TouchManager = game.Services.GetService(typeof(ITouchManager)) as ITouchManager;
+#endif
 		}
 
 		/// <summary>
@@ -246,6 +258,40 @@ namespace MenuBuddy
 			catch (Exception ex)
 			{
 				ErrorScreen(ex);
+			}
+#endif
+
+#if DEBUG
+			//draw a circle around the mouse cursor
+			if (null != MouseManager)
+			{
+				var mouse = Mouse.GetState();
+				var mousePos = new Vector2(mouse.X, mouse.Y);
+
+				SpriteBatch.Begin();
+
+				DrawHelper.Prim.NumCircleSegments = 4;
+				DrawHelper.Prim.Circle(mousePos, 6.0f, Color.Red);
+
+				SpriteBatch.End();
+			}
+
+			//draw a circle around each touch point
+			if (null != TouchManager)
+			{
+				SpriteBatch.Begin();
+
+				//go though the points that are being touched
+				TouchCollection touchCollection = TouchPanel.GetState();
+				foreach (var touch in touchCollection)
+				{
+					if ((touch.State == TouchLocationState.Pressed) || (touch.State == TouchLocationState.Moved))
+					{
+						DrawHelper.Prim.Circle(touch.Position, 40.0f, new Color(1.0f, 1.0f, 1.0f, 0.25f));
+					}
+				}
+
+				SpriteBatch.End();
 			}
 #endif
 		}
