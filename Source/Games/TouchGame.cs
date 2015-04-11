@@ -1,6 +1,6 @@
 using MenuBuddy;
 
-namespace MenuBuddySample
+namespace MenuBuddy
 {
 	/// <summary>
 	/// This is some boilerplate code for doing a controller based game.
