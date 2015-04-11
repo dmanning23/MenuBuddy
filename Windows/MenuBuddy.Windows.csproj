@@ -64,6 +64,15 @@
     <Compile Include="..\Source\DrawHelper.cs">
       <Link>DrawHelper.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Games\ControllerGame.cs">
+      <Link>Games\ControllerGame.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Games\DefaultGame.cs">
+      <Link>Games\DefaultGame.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Games\TouchGame.cs">
+      <Link>Games\TouchGame.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Input\ControllerInputHelper.cs">
       <Link>Input\ControllerInputHelper.cs</Link>
     </Compile>
