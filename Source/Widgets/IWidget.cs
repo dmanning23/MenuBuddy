@@ -1,9 +1,3 @@
-using System;
-using FontBuddyLib;
-using GameTimer;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace MenuBuddy
 {
@@ -27,5 +21,11 @@ namespace MenuBuddy
 		/// vertical alignment of this item
 		/// </summary>
 		VerticalAlignment Vertical { get; set; }
+
+		/// <summary>
+		/// Available load content method for child classes.
+		/// </summary>
+		/// <param name="screen"></param>
+		void LoadContent(IScreen screen);
 	}
 }

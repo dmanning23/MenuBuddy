@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using GameTimer;
 using Microsoft.Xna.Framework;
 using Vector2Extensions;
@@ -210,6 +209,14 @@ namespace MenuBuddy
 			_vertical = VerticalAlignment.Top;
 		}
 
+		/// <summary>
+		/// Available load content method for child classes.
+		/// </summary>
+		/// <param name="screen"></param>
+		public virtual void LoadContent(IScreen screen)
+		{
+		}
+
 		public abstract void Update(IScreen screen, GameClock gameTime);
 
 		public virtual void DrawBackground(IScreen screen, GameClock gameTime)
@@ -228,19 +235,31 @@ namespace MenuBuddy
 		public abstract void Draw(IScreen screen, GameClock gameTime);
 
 		/// <summary>
+		/// Get the transition this dude will use.
+		/// Defaults to the screen transition object.
+		/// Can be overloaded by child classes to use special transition objects.
+		/// </summary>
+		/// <param name="screen"></param>
+		/// <returns></returns>
+		protected virtual Transition GetTransition(IScreen screen)
+		{
+			return screen.Transition;
+		}
+
+		/// <summary>
 		/// Get teh position to draw this widget
 		/// </summary>
 		/// <returns></returns>
 		protected Vector2 DrawPosition(IScreen screen)
 		{
 			//take the transition position into account
-			return screen.Transition.Position(Position.ToVector2(), Style.Transition);
+			return GetTransition(screen).Position(Position.ToVector2(), Style.Transition);
 		}
 
 		protected Vector2 TextPosition(IScreen screen)
 		{
 			//get the draw position
-			var pos = screen.Transition.Position(Position.ToVector2(), Style.Transition);
+			var pos = GetTransition(screen).Position(Position.ToVector2(), Style.Transition);
 
 			//text is always centered
 			pos.X += Rect.Width / 2f;

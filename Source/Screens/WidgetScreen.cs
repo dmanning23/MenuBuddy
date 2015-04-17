@@ -141,6 +141,13 @@ namespace MenuBuddy
 		public void AddItem(IScreenItem item)
 		{
 			Layout.AddItem(item);
+
+			//If the item is a widget, load it's content too.
+			var widget = item as IWidget;
+			if (null != widget)
+			{
+				widget.LoadContent(this);
+			}
 		}
 
 		public bool RemoveItem(IScreenItem item)

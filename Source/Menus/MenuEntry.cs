@@ -24,6 +24,7 @@ namespace MenuBuddy
 		}
 
 		#endregion //Properties
+
 		#region Events
 
 		/// <summary>

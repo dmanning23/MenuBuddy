@@ -190,6 +190,9 @@
     <Compile Include="..\Source\Style\TransitionStyleItem.cs">
       <Link>Style\TransitionStyleItem.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Transitions\PointTransition.cs">
+      <Link>Transitions\PointTransition.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Transitions\Transition.cs">
       <Link>Transitions\Transition.cs</Link>
     </Compile>
@@ -231,6 +234,9 @@
     </Compile>
     <Compile Include="..\Source\Widgets\Label.cs">
       <Link>Widgets\Label.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\RelativeLayoutButton.cs">
+      <Link>Widgets\RelativeLayoutButton.cs</Link>
     </Compile>
     <Compile Include="..\Source\Widgets\VerticalAlignment.cs">
       <Link>Widgets\VerticalAlignment.cs</Link>

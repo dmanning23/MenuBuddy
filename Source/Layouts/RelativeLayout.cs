@@ -66,7 +66,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Set the position of a widget to be relative to this layout
 		/// </summary>
-		/// <param name="widget"></param>
+		/// <param name="item"></param>
 		private void SetWidgetPosition(IScreenItem item)
 		{
 			//Check if the item is a widget

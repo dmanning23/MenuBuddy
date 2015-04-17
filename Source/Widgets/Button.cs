@@ -1,10 +1,7 @@
 using FontBuddyLib;
 using GameTimer;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
-using Microsoft.Xna.Framework.Audio;
-using Vector2Extensions;
 
 namespace MenuBuddy
 {
