@@ -1,33 +1,18 @@
 using HadoukInput;
 using Microsoft.Xna.Framework;
-using TouchScreenBuddy;
 
 namespace MenuBuddy
 {
 	/// <summary>
 	/// This is an input helper that uses the hadoukinput to do keyboard/controller input
 	/// </summary>
-	public class ControllerInputHelper : GameComponent, IInputHelper
+	public class ControllerInputHelper : BaseInputHelper
 	{
-		#region Properties
-
-		/// <summary>
-		/// This object controls all the controller and keyboard stuff.
-		/// </summary>
-		public InputState InputState { get; private set; }
-
-		#endregion //Properties
-
 		#region Methods
 
 		public ControllerInputHelper(Game game)
 			: base(game)
 		{
-			InputState = new InputState();
-
-			//Register ourselves to implement the DI container service.
-			game.Components.Add(this);
-			game.Services.AddService(typeof(IInputHelper), this);
 		}
 
 		public override void Update(GameTime gameTime)
@@ -36,14 +21,9 @@ namespace MenuBuddy
 			InputState.Update();
 		}
 
-		public void HandleInput(IScreen screen)
+		public override void HandleInput(IScreen screen)
 		{
-			//check if this is the game screen
-			var game = screen as IGameScreen;
-			if (null != game)
-			{
-				game.HandleInput(InputState);
-			}
+			base.HandleInput(screen);
 
 			//check if is a menu screen
 			var menu = screen as IMenuScreen;

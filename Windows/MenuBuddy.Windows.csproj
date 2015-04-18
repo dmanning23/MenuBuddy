@@ -73,6 +73,9 @@
     <Compile Include="..\Source\Games\TouchGame.cs">
       <Link>Games\TouchGame.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Input\BaseInputHelper.cs">
+      <Link>Input\BaseInputHelper.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Input\ControllerInputHelper.cs">
       <Link>Input\ControllerInputHelper.cs</Link>
     </Compile>

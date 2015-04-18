@@ -1,11 +1,9 @@
-using System.Collections.Generic;
-using Microsoft.Xna.Framework.Input;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input.Touch;
 using MouseBuddy;
 using ResolutionBuddy;
+using System.Collections.Generic;
+using System.Diagnostics;
 using TouchScreenBuddy;
 
 namespace MenuBuddy
@@ -13,7 +11,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is an input helper that does mouse/touchscreen input
 	/// </summary>
-	public class TouchInputHelper : DrawableGameComponent, IInputHelper
+	public class TouchInputHelper : BaseInputHelper
 	{
 		#region Properties
 
@@ -43,8 +41,6 @@ namespace MenuBuddy
 
 		private SpriteBatch SpriteBatch { get; set; }
 
-		private DrawHelper DrawHelper { get; set; }
-
 		#endregion //Properties
 
 		#region Initialization
@@ -73,16 +69,18 @@ namespace MenuBuddy
 		/// </summary>
 		protected override void LoadContent()
 		{
+			base.LoadContent();
 			SpriteBatch = new SpriteBatch(GraphicsDevice);
-			DrawHelper = new DrawHelper(GraphicsDevice, SpriteBatch);
 		}
 
 		#endregion //Initialization
 
 		#region Methods
 
-		public void HandleInput(IScreen screen)
+		public override void HandleInput(IScreen screen)
 		{
+			base.HandleInput(screen);
+
 			var widgetScreen = screen as WidgetScreen;
 			if (null != widgetScreen)
 			{
