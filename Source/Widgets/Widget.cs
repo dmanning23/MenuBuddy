@@ -18,6 +18,8 @@ namespace MenuBuddy
 
 		#region Properties
 
+		public virtual bool Highlight { protected get; set; }
+
 		/// <summary>
 		/// The area of this item
 		/// </summary>
@@ -194,6 +196,8 @@ namespace MenuBuddy
 			}
 		}
 
+		public virtual bool DrawWhenInactive { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -219,8 +223,25 @@ namespace MenuBuddy
 
 		public abstract void Update(IScreen screen, GameClock gameTime);
 
+		/// <summary>
+		/// Check if we should draw this widget.
+		/// Widgets can be hidden is the screen is inactive
+		/// </summary>
+		/// <param name="screen"></param>
+		/// <returns></returns>
+		protected bool ShouldDraw(IScreen screen)
+		{
+			//check if we don't want to draw this widget when inactive
+			return (DrawWhenInactive || screen.IsActive);
+		}
+
 		public virtual void DrawBackground(IScreen screen, GameClock gameTime)
 		{
+			if (!ShouldDraw(screen))
+			{
+				return;
+			}
+
 			//darw the background rectangle if in touch mode
 			if (screen.IsActive)
 			{

@@ -271,7 +271,7 @@ namespace MenuBuddy
 				var entries = MenuEntries.Items.OfType<MenuEntry>().ToList();
 				for (int i = 0; i < entries.Count; i++)
 				{
-					entries[i].IsHighlighted = (i == SelectedIndex);
+					entries[i].Highlight = (i == SelectedIndex);
 				}
 
 				TimeSinceInput.Update(gameTime);
@@ -279,7 +279,7 @@ namespace MenuBuddy
 			else if (null != SelectedEntry)
 			{
 				//make sure that highlighted entry isn't being a butt
-				SelectedEntry.IsHighlighted = false;
+				SelectedEntry.Highlight = false;
 			}
 		}
 

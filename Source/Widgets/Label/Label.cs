@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 
 namespace MenuBuddy
 {
-	public class Label : Widget
+	public class Label : Widget, ILabel
 	{
 		#region Properties
 
@@ -37,8 +37,6 @@ namespace MenuBuddy
 			: base(style)
 		{
 			Text = text;
-
-
 		}
 
 		public override void Update(IScreen screen, GameClock gameTime)
@@ -47,18 +45,28 @@ namespace MenuBuddy
 
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
-			var color = Style.SelectedTextColor;
-			color = screen.Transition.AlphaColor(color);
-
-			//set the shadow color?
-			var shadow = Style.SelectedFont as ShadowTextBuddy;
-			if (null != shadow)
+			if (!ShouldDraw(screen))
 			{
-				shadow.ShadowColor = screen.Transition.AlphaColor(Style.SelectedShadowColor);
+				return;
 			}
 
+			//Get the font to use
+			var font = Highlight ? Style.SelectedFont : Style.UnselectedFont;
+
+			//get the shadow color
+			var shadow = font as ShadowTextBuddy;
+			if (null != shadow)
+			{
+				var shadowColor = Highlight ? Style.SelectedShadowColor : Style.UnselectedShadowColor;
+				shadow.ShadowColor = screen.Transition.AlphaColor(shadowColor);
+			}
+
+			//get the color to use
+			var color = Highlight ? Style.SelectedTextColor : Style.UnselectedTextColor;
+			color = screen.Transition.AlphaColor(color);
+
 			//Write the text
-			Style.SelectedFont.Write(Text,
+			font.Write(Text,
 				TextPosition(screen),
 				Justify.Center,
 				1.0f,

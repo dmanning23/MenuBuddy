@@ -7,7 +7,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// An image that is displayed onteh screen
 	/// </summary>
-	public class Image : Widget
+	public class Image : Widget, IImage
 	{
 		#region Fields
 
@@ -55,6 +55,11 @@ namespace MenuBuddy
 
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
+			if (!ShouldDraw(screen))
+			{
+				return;
+			}
+
 			//get the transition color
 			var color = screen.Transition.AlphaColor(Color.White);
 

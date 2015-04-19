@@ -20,6 +20,16 @@ namespace MenuBuddy
 		Point Position { get; set; }
 
 		/// <summary>
+		/// Highlight or don't highlight this screen item
+		/// </summary>
+		bool Highlight { set; }
+
+		/// <summary>
+		/// You can set this flag to prevent drawing this button when the screen is inactive.
+		/// </summary>
+		bool DrawWhenInactive { set; }
+
+		/// <summary>
 		/// Updates the screen item.
 		/// </summary>
 		void Update(IScreen screen, GameClock gameTime);
@@ -29,15 +39,13 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="screen">the screen this dude is part of</param>
 		/// <param name="gameTime">the current gametime</param>
-		/// <param name="isSelected">whether or not this item is selected</param>
-		void DrawBackground(IScreen screen, GameClock gameTime, bool isSelected);
+		void DrawBackground(IScreen screen, GameClock gameTime);
 
 		/// <summary>
 		/// Draws this screen item. This can be overridden to customize the appearance.
 		/// </summary>
 		/// <param name="screen">the screen this dude is part of</param>
 		/// <param name="gameTime">the current gametime</param>
-		/// <param name="isSelected">whether or not this item is selected</param>
-		void Draw(IScreen screen, GameClock gameTime, bool isSelected);
+		void Draw(IScreen screen, GameClock gameTime);
 	}
 }

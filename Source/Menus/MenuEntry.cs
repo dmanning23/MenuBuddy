@@ -9,7 +9,7 @@ namespace MenuBuddy
 	/// entries in different ways. This also provides an event that will be raised
 	/// when the menu entry is selected.
 	/// </summary>
-	public class MenuEntry : Button
+	public class MenuEntry : RelativeLayoutButton, ILabel
 	{
 		#region Properties
 
@@ -22,6 +22,8 @@ namespace MenuBuddy
 				return rect;
 			}
 		}
+
+		public string Text { get; set; }
 
 		#endregion //Properties
 
@@ -78,8 +80,20 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public MenuEntry(StyleSheet style, string text) : base(style, text)
+		public MenuEntry(StyleSheet style, string text) : base(style)
 		{
+			Text = text;
+		}
+
+		public override void LoadContent(IScreen screen)
+		{
+			base.LoadContent(screen);
+			
+			//Add the text label
+			var label = new Label(Style, Text);
+			label.Vertical = VerticalAlignment.Center;
+			label.Horizontal = HorizontalAlignment.Center;
+			AddItem(label);
 		}
 
 		#endregion

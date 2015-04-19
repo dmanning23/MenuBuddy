@@ -205,26 +205,29 @@
     <Compile Include="..\Source\Transitions\TransitionType.cs">
       <Link>Transitions\TransitionType.cs</Link>
     </Compile>
-    <Compile Include="..\Source\Widgets\BackgroundImage.cs">
-      <Link>Widgets\BackgroundImage.cs</Link>
+    <Compile Include="..\Source\Widgets\Buttons\BaseButton.cs">
+      <Link>Widgets\Buttons\BaseButton.cs</Link>
     </Compile>
-    <Compile Include="..\Source\Widgets\Button.cs">
-      <Link>Widgets\Button.cs</Link>
+    <Compile Include="..\Source\Widgets\Buttons\CancelButton.cs">
+      <Link>Widgets\Buttons\CancelButton.cs</Link>
     </Compile>
-    <Compile Include="..\Source\Widgets\CancelButton.cs">
-      <Link>Widgets\CancelButton.cs</Link>
+    <Compile Include="..\Source\Widgets\Buttons\IButton.cs">
+      <Link>Widgets\Buttons\IButton.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\Buttons\RelativeLayoutButton.cs">
+      <Link>Widgets\Buttons\RelativeLayoutButton.cs</Link>
     </Compile>
     <Compile Include="..\Source\Widgets\HorizontalAlignment.cs">
       <Link>Widgets\HorizontalAlignment.cs</Link>
     </Compile>
-    <Compile Include="..\Source\Widgets\IButton.cs">
-      <Link>Widgets\IButton.cs</Link>
+    <Compile Include="..\Source\Widgets\Images\BackgroundImage.cs">
+      <Link>Widgets\Images\BackgroundImage.cs</Link>
     </Compile>
-    <Compile Include="..\Source\Widgets\Image.cs">
-      <Link>Widgets\Image.cs</Link>
+    <Compile Include="..\Source\Widgets\Images\IImage.cs">
+      <Link>Widgets\Images\IImage.cs</Link>
     </Compile>
-    <Compile Include="..\Source\Widgets\ImageButton.cs">
-      <Link>Widgets\ImageButton.cs</Link>
+    <Compile Include="..\Source\Widgets\Images\Image.cs">
+      <Link>Widgets\Images\Image.cs</Link>
     </Compile>
     <Compile Include="..\Source\Widgets\IScreenItem.cs">
       <Link>Widgets\IScreenItem.cs</Link>
@@ -235,11 +238,11 @@
     <Compile Include="..\Source\Widgets\IWidget.cs">
       <Link>Widgets\IWidget.cs</Link>
     </Compile>
-    <Compile Include="..\Source\Widgets\Label.cs">
-      <Link>Widgets\Label.cs</Link>
+    <Compile Include="..\Source\Widgets\Label\ILabel.cs">
+      <Link>Widgets\Labels\ILabel.cs</Link>
     </Compile>
-    <Compile Include="..\Source\Widgets\RelativeLayoutButton.cs">
-      <Link>Widgets\RelativeLayoutButton.cs</Link>
+    <Compile Include="..\Source\Widgets\Label\Label.cs">
+      <Link>Widgets\Labels\Label.cs</Link>
     </Compile>
     <Compile Include="..\Source\Widgets\VerticalAlignment.cs">
       <Link>Widgets\VerticalAlignment.cs</Link>

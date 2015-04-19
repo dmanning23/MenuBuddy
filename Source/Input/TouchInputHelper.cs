@@ -152,12 +152,12 @@ namespace MenuBuddy
 		/// <param name="button"></param>
 		private void OnButtonHighlighted(IButton button)
 		{
-			button.IsHighlighted = true;
+			button.Highlight = true;
 		}
 
 		private void OnButtonNotHighlighted(IButton button)
 		{
-			button.IsHighlighted = false;
+			button.Highlight = false;
 		}
 
 		/// <summary>

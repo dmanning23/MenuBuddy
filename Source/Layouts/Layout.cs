@@ -8,9 +8,31 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a list of items on a screen
 	/// </summary>
-	public abstract class Layout : IScreenItemContainer
+	public abstract class Layout : IScreenItemContainer, IScreenItem
 	{
 		#region Properties
+
+		public bool DrawWhenInactive
+		{
+			set
+			{
+				foreach (var item in Items)
+				{
+					item.DrawWhenInactive = value;
+				}
+			}
+		}
+
+		public bool Highlight
+		{
+			set 
+			{
+				foreach (var item in Items)
+				{
+					item.Highlight = value;
+				}
+			}
+		}
 
 		/// <summary>
 		/// all the items that are stacked

@@ -8,15 +8,17 @@ namespace MenuBuddy
 	/// <summary>
 	/// THis is a menu entry that pops up from the bottom of a window and says "Continue"
 	/// </summary>
-	public class CancelButton : ImageButton
+	public class CancelButton : RelativeLayoutButton
 	{
 		#region Properties
 
+		/// <summary>
+		/// The size of the icon to draw
+		/// </summary>
 		private int IconSize { get; set; }
 
 		public override Rectangle Rect
 		{
-			get { return base.Rect; }
 			set
 			{
 				base.Rect = new Rectangle(Resolution.TitleSafeArea.Right - (int)(1.5f * IconSize),
@@ -25,26 +27,35 @@ namespace MenuBuddy
 			}
 		}
 
+		private string IconTextureName { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
 
-		public CancelButton(StyleSheet style, ContentManager content, string icon = "Cancel", int iconSize = 96)
-			: base(style, "")
+		public CancelButton(StyleSheet style, ContentManager content, string iconTextureName = "Cancel", int iconSize = 96)
+			: base(style)
 		{
 			style.Transition = TransitionType.PopRight;
 			style.HasBackground = false;
 
-			//load the icon
-			Image.Texture = content.Load<Texture2D>(icon);
+			IconTextureName = iconTextureName;
 			IconSize = iconSize;
-
-			DrawWhenInactive = false;
 		}
 
-		public CancelButton(StyleSheet style)
-			: base(style, "Cancel")
+		public override void LoadContent(IScreen screen)
 		{
+			base.LoadContent(screen);
+
+			//load the icon
+			StyleSheet style = Style;
+			style.Texture = screen.ScreenManager.Game.Content.Load<Texture2D>(IconTextureName);
+			var image = new Image(style);
+			image.Vertical = VerticalAlignment.Center;
+			image.Horizontal = HorizontalAlignment.Center;
+			AddItem(image);
+
+			DrawWhenInactive = false;
 		}
 
 		#endregion //Methods

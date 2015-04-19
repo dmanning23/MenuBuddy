@@ -7,19 +7,12 @@ namespace MenuBuddy
 	/// Interface for the button object
 	/// This is a widget that can be selected
 	/// </summary>
-	public interface IButton : IWidget
+	public interface IButton : IWidget, IScreenItemContainer
 	{
-		bool IsHighlighted { set; }
-
 		/// <summary>
-		/// A description of the function of the menu entry.
+		/// A description of the function of the button.
 		/// </summary>
 		string Description { get; }
-
-		/// <summary>
-		/// The text rendered for this entry.
-		/// </summary>
-		string Text { get; }
 
 		/// <summary>
 		/// Event raised when the menu entry is selected.
@@ -30,15 +23,5 @@ namespace MenuBuddy
 		/// Method for raising the Selected event.
 		/// </summary>
 		void OnSelect(PlayerIndex? playerIndex);
-
-		/// <summary>
-		/// This item is currently highlighted
-		/// </summary>
-		void OnHighlighted();
-
-		/// <summary>
-		/// This item is currently NOT highlighted
-		/// </summary>
-		void OnNotHighlighted();
 	}
 }
