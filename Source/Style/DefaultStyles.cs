@@ -103,6 +103,9 @@ namespace MenuBuddy
 			MenuTitleStyle.SelectedFont = new FontBuddy();
 			MenuTitleStyle.SelectedFont.Font = Game.Content.Load<SpriteFont>(MenuTitleFontName);
 			MenuTitleStyle.SelectedTextColor = Color.White;
+			MenuTitleStyle.UnselectedFont = new FontBuddy();
+			MenuTitleStyle.UnselectedFont.Font = Game.Content.Load<SpriteFont>(MenuTitleFontName);
+			MenuTitleStyle.UnselectedTextColor = Color.White;
 			MenuTitleStyle.Transition = TransitionType.PopTop;
 		}
 
