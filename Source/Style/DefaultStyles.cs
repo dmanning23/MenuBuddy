@@ -12,7 +12,7 @@ namespace MenuBuddy
 	{
 		#region Properties
 
-		private StyleSheet GameStyle { get; set; }
+		public StyleSheet GameStyle { get; set; }
 
 		public string MenuTitleFontName { protected get; set; }
 		public string MenuEntryFontName { protected get; set; }

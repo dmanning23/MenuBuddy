@@ -118,6 +118,7 @@ namespace MenuBuddy
 		protected void AddMenuEntry(MenuEntry menuEntry)
 		{
 			menuEntry.Horizontal = HorizontalAlignment.Center;
+			menuEntry.LoadContent(this);
 			MenuEntries.AddItem(menuEntry);
 		}
 

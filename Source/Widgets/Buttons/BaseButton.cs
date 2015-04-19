@@ -125,14 +125,13 @@ namespace MenuBuddy
 		{
 		}
 
-		/// <summary>
-		/// You HAVE to set the layout of a button before you can use it.
-		/// </summary>
-		protected abstract void SetLayout();
-
 		public void AddItem(IScreenItem item)
 		{
 			Layout.AddItem(item);
+
+			//Set the rect width and height to the layout width and height
+			var pos = Position;
+			Rect = new Rectangle(pos.X, pos.Y, Layout.Rect.Width, Layout.Rect.Height);
 		}
 
 		public bool RemoveItem(IScreenItem item)

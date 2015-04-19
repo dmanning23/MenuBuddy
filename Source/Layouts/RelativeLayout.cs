@@ -61,6 +61,26 @@ namespace MenuBuddy
 
 			//store the new item
 			Items.Add(item);
+
+			//should the layout rect expand?
+			var expanded = false;
+			var pos = Position;
+			var rect = base.Rect;
+			if (rect.Width > _rect.Width)
+			{
+				rect = new Rectangle(pos.X, pos.Y, rect.Width, rect.Height);
+				expanded = true;
+			}
+			if (rect.Height > _rect.Height)
+			{
+				rect = new Rectangle(pos.X, pos.Y, rect.Width, rect.Height);
+				expanded = true;
+			}
+
+			if (expanded)
+			{
+				Rectangle = rect;
+			}
 		}
 
 		/// <summary>

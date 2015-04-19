@@ -19,9 +19,6 @@ namespace MenuBuddy
 		protected override void InitStyles()
 		{
 			var gameStyle = new StyleSheet();
-			
-			//uncomment this line if need to test widget placement
-			//gameStyle.HasOutline = true;
 
 			GameStyle = new DefaultStyles(this, gameStyle);
 

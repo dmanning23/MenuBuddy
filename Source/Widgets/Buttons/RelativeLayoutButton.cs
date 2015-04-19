@@ -30,6 +30,7 @@ namespace MenuBuddy
 		}
 
 		#endregion //Properties
+
 		#region Initialization
 
 		/// <summary>
@@ -38,20 +39,18 @@ namespace MenuBuddy
 		public RelativeLayoutButton(StyleSheet style)
 			: base(style)
 		{
+			Layout = new RelativeLayout();
 		}
 
 		public override void LoadContent(IScreen screen)
 		{
 			base.LoadContent(screen);
-			SetLayout();
-		}
-
-		protected override void SetLayout()
-		{
-			RelativeLayout layout = new RelativeLayout();
-			layout.Position = Position;
-			layout.Rectangle = Rect;
-			Layout = layout;
+			var layout = Layout as RelativeLayout;
+			if (null != layout)
+			{
+				layout.Position = Position;
+				layout.Rectangle = Rect;
+			}
 		}
 
 		#endregion
@@ -71,7 +70,5 @@ namespace MenuBuddy
 		}
 
 		#endregion
-
-		
 	}
 }
