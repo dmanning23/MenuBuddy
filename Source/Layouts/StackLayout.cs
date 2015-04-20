@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Net;
 
 namespace MenuBuddy
 {
@@ -97,6 +99,54 @@ namespace MenuBuddy
 
 			//store the new item
 			Items.Add(item);
+		}
+
+		/// <summary>
+		/// Add an item to the start position of the stack lacyout
+		/// </summary>
+		/// <param name="item"></param>
+		public void AddItemAtBeginning(IScreenItem item)
+		{
+			//create a temp list to hold everything
+			var tempItems = new List<IScreenItem>();
+
+			//add the item to the new list
+			tempItems.Add(item);
+
+			//add the rest of the items
+			tempItems.AddRange(Items);
+
+			//create a new layout list
+			Items = new List<IScreenItem>();
+
+			//add all the temp items to the layout list
+			foreach (var tempItem in tempItems)
+			{
+				Items.Add(tempItem);
+			}
+		}
+
+		public override bool RemoveItem(IScreenItem item)
+		{
+			//Store the list of items in a temp variable
+			var tempItems = Items;
+
+			//Remove the specified item
+			var removed = tempItems.Remove(item);
+
+			if (removed)
+			{
+				//Create a new list
+				Items = new List<IScreenItem>();
+
+				//Add all the items back in the list
+				foreach (var tempItem in tempItems)
+				{
+					AddItem(tempItem);
+				}
+			}
+
+			return removed;
 		}
 
 		#endregion //Methods

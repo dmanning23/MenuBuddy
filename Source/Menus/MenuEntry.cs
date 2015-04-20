@@ -9,7 +9,7 @@ namespace MenuBuddy
 	/// entries in different ways. This also provides an event that will be raised
 	/// when the menu entry is selected.
 	/// </summary>
-	public class MenuEntry : RelativeLayoutButton, ILabel
+	public class MenuEntry : RelativeLayoutButton, ILabel, IMenuEntry
 	{
 		#region Properties
 

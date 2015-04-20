@@ -103,6 +103,9 @@
     <Compile Include="..\Source\Menus\ContinueMenuEntry.cs">
       <Link>Menus\ContinueMenuEntry.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Menus\IMenuEntry.cs">
+      <Link>Menus\IMenuEntry.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Menus\IMenuScreen.cs">
       <Link>Menus\IMenuScreen.cs</Link>
     </Compile>

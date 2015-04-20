@@ -37,7 +37,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// all the items that are stacked
 		/// </summary>
-		public List<IScreenItem> Items { get; private set; }
+		public List<IScreenItem> Items { get; protected set; }
 
 		public virtual Rectangle Rect
 		{
@@ -88,7 +88,7 @@ namespace MenuBuddy
 
 		public abstract void AddItem(IScreenItem item);
 
-		public bool RemoveItem(IScreenItem item)
+		public virtual bool RemoveItem(IScreenItem item)
 		{
 			return Items.Remove(item);
 		}

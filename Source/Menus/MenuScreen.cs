@@ -115,7 +115,7 @@ namespace MenuBuddy
 			AddItem(MenuTitle);
 		}
 
-		protected void AddMenuEntry(MenuEntry menuEntry)
+		protected void AddMenuEntry(IMenuEntry menuEntry)
 		{
 			menuEntry.Horizontal = HorizontalAlignment.Center;
 			menuEntry.LoadContent(this);
@@ -125,7 +125,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// This method adds a continue button to the menu and attachs it to OnCancel
 		/// </summary>
-		protected MenuEntry AddContinueButton()
+		protected IMenuEntry AddContinueButton()
 		{
 			var continueButton = new ContinueMenuEntry(Style);
 			continueButton.Selected += OnCancel;
@@ -173,7 +173,7 @@ namespace MenuBuddy
 
 		public void MenuLeft()
 		{
-			var menuEntry = SelectedEntry as MenuEntry;
+			var menuEntry = SelectedEntry as IMenuEntry;
 			if (null != menuEntry)
 			{
 				//run the sleected evetn
@@ -185,7 +185,7 @@ namespace MenuBuddy
 
 		public void MenuRight()
 		{
-			var menuEntry = SelectedEntry as MenuEntry;
+			var menuEntry = SelectedEntry as IMenuEntry;
 			if (null != menuEntry)
 			{
 				//run the sleected evetn
@@ -215,7 +215,7 @@ namespace MenuBuddy
 		/// Remove a menu entry from the menu
 		/// </summary>
 		/// <param name="entry"></param>
-		protected void RemoveMenuEntry(MenuEntry entry)
+		protected void RemoveMenuEntry(IMenuEntry entry)
 		{
 			//try to remove the entry from the list
 			if (MenuEntries.RemoveItem(entry))
@@ -235,7 +235,7 @@ namespace MenuBuddy
 		protected virtual void RemoveMenuEntry(string entryText)
 		{
 			//get the menu items as buttons
-			var buttons = MenuEntries.Items.OfType<MenuEntry>();
+			var buttons = MenuEntries.Items.OfType<IMenuEntry>();
 
 			foreach (var menuItem in buttons)
 			{
@@ -245,6 +245,22 @@ namespace MenuBuddy
 					RemoveMenuEntry(menuItem);
 					return;
 				}
+			}
+		}
+
+		/// <summary>
+		/// Remove a menu entry from the menu
+		/// </summary>
+		/// <param name="index">the index of the item to remove</param>
+		protected virtual void RemoveMenuEntry(int index)
+		{
+			//get the menu items as buttons
+			var buttons = MenuEntries.Items.OfType<IMenuEntry>().ToList();
+
+			//check if there are enough items
+			if (index < buttons.Count())
+			{
+				RemoveMenuEntry(buttons[index]);
 			}
 		}
 
@@ -269,7 +285,7 @@ namespace MenuBuddy
 			if (!otherScreenHasFocus && !coveredByOtherScreen)
 			{
 				//set teh highlighted item
-				var entries = MenuEntries.Items.OfType<MenuEntry>().ToList();
+				var entries = MenuEntries.Items.OfType<IMenuEntry>().ToList();
 				for (int i = 0; i < entries.Count; i++)
 				{
 					entries[i].Highlight = (i == SelectedIndex);
