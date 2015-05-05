@@ -9,21 +9,15 @@ namespace MenuBuddy
 	/// </summary>
 	public class Image : Widget, IImage
 	{
-		#region Fields
-
-		private Texture2D _texture;
-
-		#endregion //Fields
-
 		#region Properties
 
 		public Texture2D Texture
 		{
-			get { return _texture; }
+			get { return Style.Texture; }
 			set
 			{
-				_texture = value;
-				Rect = new Rectangle(Rect.X, Rect.Y, _texture.Width, _texture.Height);
+				Style.Texture = value;
+				Rect = new Rectangle(Rect.X, Rect.Y, Style.Texture.Width, Style.Texture.Height);
 			}
 		}
 
@@ -67,7 +61,7 @@ namespace MenuBuddy
 			var pos = DrawPosition(screen);
 
 			//draw the item with all the correct parameters
-			screen.ScreenManager.SpriteBatch.Draw(_texture, new Rectangle((int)pos.X, (int)pos.Y, Rect.Width, Rect.Height), color);
+			screen.ScreenManager.SpriteBatch.Draw(Texture, new Rectangle((int)pos.X, (int)pos.Y, Rect.Width, Rect.Height), color);
 		}
 
 		#endregion //Methods

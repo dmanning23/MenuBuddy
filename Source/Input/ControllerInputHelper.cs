@@ -13,6 +13,9 @@ namespace MenuBuddy
 		public ControllerInputHelper(Game game)
 			: base(game)
 		{
+			//Register ourselves to implement the DI container service.
+			game.Components.Add(this);
+			game.Services.AddService(typeof(IInputHelper), this);
 		}
 
 		public override void Update(GameTime gameTime)

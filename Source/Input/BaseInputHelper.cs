@@ -23,10 +23,6 @@ namespace MenuBuddy
 			: base(game)
 		{
 			InputState = new InputState();
-
-			//Register ourselves to implement the DI container service.
-			game.Components.Add(this);
-			game.Services.AddService(typeof(IInputHelper), this);
 		}
 
 		public virtual void HandleInput(IScreen screen)

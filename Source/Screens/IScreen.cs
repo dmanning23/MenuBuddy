@@ -1,3 +1,4 @@
+using GameTimer;
 using HadoukInput;
 using Microsoft.Xna.Framework;
 
@@ -23,6 +24,8 @@ namespace MenuBuddy
 		/// Gets or sets the name of this screen
 		/// </summary>
 		string ScreenName { get; set; }
+
+		GameClock Time { get; }
 
 		/// <summary>
 		/// The default style of this screen.

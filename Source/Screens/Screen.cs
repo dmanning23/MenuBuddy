@@ -120,7 +120,7 @@ namespace MenuBuddy
 
 		public virtual void SetStyle(StyleSheet styles)
 		{
-			Style = styles;
+			Style = new StyleSheet(styles);
 		}
 
 		/// <summary>

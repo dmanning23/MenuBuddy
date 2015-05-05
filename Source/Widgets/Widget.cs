@@ -13,6 +13,8 @@ namespace MenuBuddy
 
 		private HorizontalAlignment _horizontal;
 		private VerticalAlignment _vertical;
+		private StyleSheet _style;
+		private bool _drawWhenInactive = true;
 
 		#endregion //Fields
 
@@ -54,7 +56,16 @@ namespace MenuBuddy
 		/// <summary>
 		/// The stylesheet of this item
 		/// </summary>
-		public StyleSheet Style { get; private set; }
+		public StyleSheet Style {
+			get
+			{
+				return _style;
+			}
+			private set
+			{
+				_style = new StyleSheet(value);
+			}
+		}
 
 		public HorizontalAlignment Horizontal
 		{
@@ -196,7 +207,16 @@ namespace MenuBuddy
 			}
 		}
 
-		public virtual bool DrawWhenInactive { get; set; }
+		public virtual bool DrawWhenInactive {
+			get
+			{
+				return _drawWhenInactive;
+			}
+			set
+			{
+				_drawWhenInactive = value;
+			}
+		}
 
 		#endregion //Properties
 

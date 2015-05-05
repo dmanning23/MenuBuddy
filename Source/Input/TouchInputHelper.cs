@@ -171,7 +171,7 @@ namespace MenuBuddy
 			button.OnSelect(null);
 
 			//tell the menu too
-			screen.OnSelect(null);
+			//screen.OnSelect(null);
 		}
 
 		#endregion //Methods

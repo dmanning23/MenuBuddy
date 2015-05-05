@@ -51,7 +51,8 @@ namespace MenuBuddy
 		/// </summary>
 		public void BlackRect(float fAlpha, Rectangle rect)
 		{
-			SpriteBatch.Draw(Prim.Texture, rect, new Color(0.0f, 0.0f, 0.0f, fAlpha));
+			var color = new Color(0.0f, 0.0f, 0.0f, fAlpha);
+			SpriteBatch.Draw(Prim.Texture, rect, color);
 		}
 
 		public void DrawOutline(Transition transition, StyleSheet style, Rectangle rect)
@@ -79,7 +80,7 @@ namespace MenuBuddy
 			{
 				//get the color for the background & border
 				Color backgroundColor = style.SelectedBackgroundColor;
-				backgroundColor.A = (byte)(255f * transition.Alpha);
+				backgroundColor.A = (byte)(backgroundColor.A * transition.Alpha);
 
 				//set the transition location
 				rect.Location = transition.Position(rect, style.Transition);

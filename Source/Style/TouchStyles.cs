@@ -43,7 +43,7 @@ namespace MenuBuddy
 
 			shadow = new ShadowTextBuddy();
 			shadow.ShadowSize = 1.0f;
-			shadow.ShadowOffset = new Vector2(7.0f, 7.0f);
+			shadow.ShadowOffset = new Vector2(4.0f, 4.0f);
 			shadow.Font = Game.Content.Load<SpriteFont>(MessageBoxFontName);
 			MessageBoxStyle.SelectedFont = shadow;
 			MessageBoxStyle.SelectedTextColor = Color.White;

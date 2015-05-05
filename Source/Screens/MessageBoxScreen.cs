@@ -27,8 +27,6 @@ namespace MenuBuddy
 
 		private bool IncludeUsageText { get; set; }
 
-		public Image BackgroundImage { get; set; }
-
 		#endregion //Properties
 
 		#region Initialization
@@ -65,36 +63,36 @@ namespace MenuBuddy
 		/// </summary>
 		public override void LoadContent()
 		{
+			//Add the background image
+			var bkgImage = new BackgroundImage(ScreenManager.Styles.MessageBoxStyle);
+			const int hPad = 64;
+			const int vPad = 32;
+			AddItem(bkgImage);
+
 			base.LoadContent();
 
-			var messageStyle = new StyleSheet(ScreenManager.Styles.MessageBoxStyle);
-			messageStyle.SelectedFont = new FontBuddy();
-			messageStyle.SelectedFont.Font = ScreenManager.Styles.MessageBoxStyle.SelectedFont.Font;
-			messageStyle.SelectedTextColor = messageStyle.UnselectedTextColor;
-
-			//add the label text
-			var labelStyle = new StyleSheet(messageStyle);
-			labelStyle.HasOutline = false;
-			labelStyle.HasBackground = false;
-			var label = new Label(labelStyle, Message);
+			//Set the label text
+			var label = new Label(ScreenManager.Styles.MessageBoxStyle, Message);
+			label.Style.SelectedFont = new FontBuddy();
+			label.Style.SelectedFont.Font = ScreenManager.Styles.MessageBoxStyle.SelectedFont.Font;
+			label.Style.SelectedTextColor = label.Style.UnselectedTextColor;
+			label.Style.HasOutline = false;
+			label.Style.HasBackground = false;
 			label.Horizontal = HorizontalAlignment.Center;
 			label.Vertical = VerticalAlignment.Bottom;
 			label.Position = MenuEntries.Position + new Point(0, -32);
 			AddItem(label);
 
+			//Add the buttons
 			AddButtons(IncludeUsageText);
 
-			//set the background image size
-			BackgroundImage = new Image(ScreenManager.Styles.MessageBoxStyle,
-				ScreenManager.Styles.MessageBoxStyle.Texture);
-			const int hPad = 64;
-			const int vPad = 32;
+			//Set the background rectangle to fill up under everything
 			var rect = Layout.Rect;
 			var backgroundRectangle = new Rectangle(rect.X - hPad,
 				rect.Y - vPad,
 				rect.Width + hPad * 2,
 				rect.Height + vPad * 2);
-			BackgroundImage.Rect = backgroundRectangle;
+			bkgImage.Rect = backgroundRectangle;
 		}
 
 		protected virtual void AddButtons(bool includeUsageText)
@@ -127,6 +125,7 @@ namespace MenuBuddy
 
 			//Create the menu entry for "OK"
 			var okEntry = new MenuEntry(ScreenManager.Styles.MessageBoxStyle, okText.ToString());
+			okEntry.Style.Texture = ScreenManager.Styles.MenuEntryStyle.Texture;
 			okEntry.Selected += OnAccept;
 			AddMenuEntry(okEntry);
 		}
@@ -154,6 +153,7 @@ namespace MenuBuddy
 
 			//Create the menu entry "Cancel"
 			var cancel = new MenuEntry(ScreenManager.Styles.MessageBoxStyle, cancelText.ToString());
+			cancel.Style.Texture = ScreenManager.Styles.MenuEntryStyle.Texture;
 			cancel.Selected += OnCancel;
 			AddMenuEntry(cancel);
 		}
@@ -197,9 +197,6 @@ namespace MenuBuddy
 
 			//Darken down any other screens that were drawn beneath the popup.
 			FadeBackground();
-
-			//Draw the background image.
-			BackgroundImage.Draw(this, Time);
 
 			ScreenManager.SpriteBatchEnd();
 

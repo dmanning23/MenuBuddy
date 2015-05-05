@@ -1,4 +1,7 @@
 using MenuBuddy;
+using MouseBuddy;
+using ResolutionBuddy;
+using TouchScreenBuddy;
 
 namespace MenuBuddy
 {
@@ -36,6 +39,13 @@ namespace MenuBuddy
 
 		protected override void InitInput()
 		{
+			//create the touch manager component
+			var touches = new TouchManager(this, Resolution.ScreenToGameCoord);
+
+#if MOUSE
+			var mouse = new MouseManager(this);
+#endif
+
 			//add the input helper for menus
 			var input = new TouchInputHelper(this);
 			//var input = new ControllerInputHelper(this);

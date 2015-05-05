@@ -69,13 +69,6 @@ namespace MenuBuddy
 		{
 			Resolution.Init(Graphics);
 
-			//create the touch manager component
-			var touches = new TouchManager(this, Resolution.ScreenToGameCoord);
-
-#if MOUSE
-			var mouse = new MouseManager(this);
-#endif
-
 			//add the input helper for menus
 			InitInput();
 

@@ -1,35 +1,44 @@
+using GameTimer;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace MenuBuddy
 {
 	/// <summary>
-	/// The main menu screen is the first thing displayed when the game starts up.
+	/// Background image is an image that is drawn behind all the button backgrounds and screen items
 	/// </summary>
 	public class BackgroundImage : Image
 	{
-		#region Members
+		#region Methods
 
 		/// <summary>
-		/// Override the rectangle to return the area of the whole screen
+		/// constructor!
 		/// </summary>
-		public override Rectangle Rect
-		{
-			get { return ResolutionBuddy.Resolution.ScreenArea; }
-			set { base.Rect = value; }
-		}
-
-		#endregion //Members
-
-		#region Initialization
-
-		/// <summary>
-		/// Constructor fills in the menu contents.
-		/// </summary>
-		public BackgroundImage(StyleSheet styleSheet)
-			: base(styleSheet)
+		/// <param name="style"></param>
+		public BackgroundImage(StyleSheet style)
+			: base(style)
 		{
 		}
 
-		#endregion //Initialization
+		/// <summary>
+		/// constructor!
+		/// </summary>
+		public BackgroundImage(StyleSheet style, Texture2D texture)
+			: base(style, texture)
+		{
+		}
+
+		public override void DrawBackground(IScreen screen, GameClock gameTime)
+		{
+			//Draw the image as the background item
+			base.Draw(screen, gameTime);
+		}
+
+		public override void Draw(IScreen screen, GameClock gameTime)
+		{
+			//Do nothing when this item is asked to "draw"
+		}
+
+		#endregion //Methods
 	}
 }
