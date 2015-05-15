@@ -63,6 +63,7 @@ namespace MenuBuddy
 
 			//store the new item
 			Items.Add(item);
+			Sort();
 		}
 
 		private void AddBottom(IScreenItem item)
@@ -75,6 +76,7 @@ namespace MenuBuddy
 
 			//store the new item
 			Items.Add(item);
+			Sort();
 		}
 
 		private void AddLeft(IScreenItem item)
@@ -87,6 +89,7 @@ namespace MenuBuddy
 
 			//store the new item
 			Items.Add(item);
+			Sort();
 		}
 
 		private void AddRight(IScreenItem item)
@@ -99,6 +102,7 @@ namespace MenuBuddy
 
 			//store the new item
 			Items.Add(item);
+			Sort();
 		}
 
 		/// <summary>

@@ -20,6 +20,12 @@ namespace MenuBuddy
 		Point Position { get; set; }
 
 		/// <summary>
+		/// Where to layer the item.
+		/// low numbers go in the back, higher numbers in the front
+		/// </summary>
+		float Layer { get; set; }
+
+		/// <summary>
 		/// Highlight or don't highlight this screen item
 		/// </summary>
 		bool Highlight { set; }

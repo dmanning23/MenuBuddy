@@ -77,6 +77,12 @@ namespace MenuBuddy
 
 		public Point Position { get; set; }
 
+		/// <summary>
+		/// Where to layer the item.
+		/// low numbers go in the back, higher numbers in the front
+		/// </summary>
+		public float Layer { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -87,6 +93,11 @@ namespace MenuBuddy
 		}
 
 		public abstract void AddItem(IScreenItem item);
+
+		protected void Sort()
+		{
+			Items.Sort((x, y) => x.Layer.CompareTo(y.Layer));
+		}
 
 		public virtual bool RemoveItem(IScreenItem item)
 		{
@@ -105,13 +116,13 @@ namespace MenuBuddy
 				foreach (var item in containers)
 				{
 					buttons.AddRange(item.Buttons);
-				}
+			}
 
 				//add the items that are themselves buttons
 				buttons.AddRange(Items.OfType<IButton>());
 
 				return buttons;
-			}
+		}
 		}
 
 		public void Update(IScreen screen, GameClock gameTime)

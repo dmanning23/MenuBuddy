@@ -61,6 +61,7 @@ namespace MenuBuddy
 
 			//store the new item
 			Items.Add(item);
+			Sort();
 
 			//should the layout rect expand?
 			var expanded = false;

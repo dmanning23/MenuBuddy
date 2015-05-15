@@ -218,6 +218,12 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// Where to layer the item.
+		/// low numbers go in the back, higher numbers in the front
+		/// </summary>
+		public float Layer { get; set; }
+
 		#endregion //Properties
 
 		#region Methods

@@ -17,6 +17,7 @@ namespace MenuBuddy
 		{
 			//store the new item
 			Items.Add(item);
+			Sort();
 		}
 
 		#endregion //Methods
