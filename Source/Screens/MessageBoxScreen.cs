@@ -64,7 +64,10 @@ namespace MenuBuddy
 		public override void LoadContent()
 		{
 			//Add the background image
-			var bkgImage = new BackgroundImage(ScreenManager.Styles.MessageBoxStyle);
+			var bkgImage = new BackgroundImage(ScreenManager.Styles.MessageBoxStyle)
+			{
+				Layer = -1.0f
+			};
 			const int hPad = 64;
 			const int vPad = 32;
 			AddItem(bkgImage);
