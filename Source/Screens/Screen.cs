@@ -205,7 +205,16 @@ namespace MenuBuddy
 		protected void FadeBackground()
 		{
 			//gray out the screens under this one
-			ScreenManager.DrawHelper.FadeBackground(Transition.Alpha * 2.0f / 3.0f);
+			FadeBackground(Transition.Alpha * 2.0f / 3.0f);
+		}
+
+		/// <summary>
+		/// Fade the background behind this screen
+		/// </summary>
+		protected void FadeBackground(float alpha)
+		{
+			//gray out the screens under this one
+			ScreenManager.DrawHelper.FadeBackground(alpha);
 		}
 
 		#endregion

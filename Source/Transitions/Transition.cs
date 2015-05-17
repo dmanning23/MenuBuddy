@@ -111,6 +111,11 @@ namespace MenuBuddy
 			return pos.ToPoint();
 		}
 
+		public virtual Vector2 Position(Point pos, TransitionType transition)
+		{
+			return Position(pos.ToVector2(), transition);
+		}
+
 		public virtual Vector2 Position(Vector2 pos, TransitionType transition)
 		{
 			switch (transition)
