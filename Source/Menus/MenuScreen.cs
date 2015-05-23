@@ -90,6 +90,7 @@ namespace MenuBuddy
 		protected MenuScreen(string menuTitle = "")
 			: base(menuTitle)
 		{
+			CoverOtherScreens = true;
 		}
 
 		public override void LoadContent()

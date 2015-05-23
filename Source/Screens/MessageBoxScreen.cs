@@ -32,14 +32,6 @@ namespace MenuBuddy
 		#region Initialization
 
 		/// <summary>
-		/// Constructor automatically includes the standard "A=ok, B=cancel"
-		/// usage text prompt.
-		/// </summary>
-		public MessageBoxScreen(string message) : this(message, true)
-		{
-		}
-
-		/// <summary>
 		/// Constructor lets the caller specify whether to include the standard
 		/// "A=ok, B=cancel" usage text prompt.
 		/// </summary>
@@ -53,6 +45,15 @@ namespace MenuBuddy
 
 			Transition.OnTime = TimeSpan.FromSeconds(0.2);
 			Transition.OffTime = TimeSpan.FromSeconds(0.2);
+		}
+
+		/// <summary>
+		/// Constructor automatically includes the standard "A=ok, B=cancel"
+		/// usage text prompt.
+		/// </summary>
+		public MessageBoxScreen(string message)
+			: this(message, true)
+		{
 		}
 
 		/// <summary>
