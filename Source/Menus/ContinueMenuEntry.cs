@@ -8,7 +8,7 @@ namespace MenuBuddy
 	{
 		public ContinueMenuEntry(StyleSheet style) : base(style, "Continue")
 		{
-			style.Transition = TransitionType.PopBottom;
+			Style.Transition = TransitionType.PopBottom;
 		}
 	}
 }

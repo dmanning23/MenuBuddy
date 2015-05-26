@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System;
 using System.Threading;
+using OpenTK.Graphics.OpenGL;
 
 namespace MenuBuddy
 {
@@ -21,23 +22,15 @@ namespace MenuBuddy
 	///   next screen, which may take a long time to load its data. The loading
 	///   screen will be the only thing displayed while this load is taking place.
 	/// </summary>
-	public class LoadingScreen : Screen
+	public class LoadingScreen : WidgetScreen
 	{
 		#region Fields
-
-		private const string Message = " Loading...";
 
 		private bool LoadingIsSlow { get; set; }
 
 		private IScreen[] ScreensToLoad { get; set; }
 
 		private bool OtherScreensAreGone { get; set; }
-
-		/// <summary>
-		/// Gets or sets the hour glass texture we gonna
-		/// </summary>
-		/// <value>The hour glass.</value>
-		private Texture2D HourGlass { get; set; }
 
 		Thread _backgroundThread;
 
@@ -50,17 +43,12 @@ namespace MenuBuddy
 		/// be activated via the static Load method instead.
 		/// </summary>
 		private LoadingScreen(ScreenManager screenManager, bool loadingIsSlow, IScreen[] screensToLoad)
+			: base("Loading")
 		{
 			LoadingIsSlow = loadingIsSlow;
 			ScreensToLoad = screensToLoad;
 
 			Transition.OnTime = TimeSpan.FromSeconds(0.5);
-
-			if (loadingIsSlow)
-			{
-				//load the hourglass
-				HourGlass = screenManager.Game.Content.Load<Texture2D>("hourglass");
-			}
 		}
 
 		/// <summary>
@@ -83,6 +71,39 @@ namespace MenuBuddy
 												  screensToLoad);
 
 			screenManager.AddScreen(loadingScreen, controllingPlayer);
+		}
+
+		public override void LoadContent()
+		{
+			base.LoadContent();
+			
+			//Add the loading message
+			if (LoadingIsSlow)
+			{
+				//create the hourglass widget
+				var hourglass = new Image(Style);
+				hourglass.Texture = ScreenManager.Game.Content.Load<Texture2D>("hourglass");
+				hourglass.Horizontal = HorizontalAlignment.Left;
+				hourglass.Vertical = VerticalAlignment.Center;
+
+				//create the message widget
+				var msg = new Label(Style, "Loading...");
+				msg.Horizontal = HorizontalAlignment.Left;
+				msg.Vertical = VerticalAlignment.Center;
+
+				//get the width of the stack panel
+				var width = hourglass.Rect.Width;
+				width += msg.Rect.Width;
+
+				var layout = new StackLayout();
+				layout.Alignment = StackAlignment.Left;
+				layout.Position = new Point(Resolution.TitleSafeArea.Center.X - (width / 2),
+								  Resolution.TitleSafeArea.Center.Y);
+				layout.AddItem(hourglass);
+				layout.AddItem(msg);
+
+				AddItem(layout);
+			}
 		}
 
 		#endregion
@@ -146,37 +167,11 @@ namespace MenuBuddy
 			// to bother drawing the message.
 			if (LoadingIsSlow)
 			{
-				//Get the text position
-				var textPosition = new Vector2(
-					Resolution.TitleSafeArea.Center.X + 64,
-					Resolution.TitleSafeArea.Center.Y);
-				Vector2 fontSize = Style.SelectedFont.Font.MeasureString(Message);
-				textPosition.Y -= fontSize.Y;
-
 				ScreenManager.SpriteBatchBegin();
-
-				//Draw on a black backgrounf
 				FadeBackground();
-
-				// Draw the text.
-				Color colorFore = Transition.AlphaColor(Color.White);
-				Color colorBack = Transition.AlphaColor(Color.Black);
-				Style.SelectedFont.Write(Message, textPosition, Justify.Center, 1.0f, colorFore, ScreenManager.SpriteBatch, Time);
-
-				//get the size of the text
-				Vector2 textSize = Style.SelectedFont.Font.MeasureString(Message);
-
-				//get the hourglass position
-				var hourglassPos = new Rectangle();
-				hourglassPos.Width = 64;
-				hourglassPos.Height = 64;
-				hourglassPos.X = (int)(textPosition.X - (textSize.X * 0.5f) - HourGlass.Width);
-				hourglassPos.Y = (int)(textPosition.Y + 36);
-
-				//draw the hourglass
-				ScreenManager.SpriteBatch.Draw(HourGlass, hourglassPos, colorFore);
-
 				ScreenManager.SpriteBatchEnd();
+
+				base.Draw(gameTime);
 			}
 		}
 

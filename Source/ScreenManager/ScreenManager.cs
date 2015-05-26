@@ -1,15 +1,13 @@
-using HadoukInput;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
+using MouseBuddy;
 using ResolutionBuddy;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Microsoft.Xna.Framework.Input.Touch;
-using MouseBuddy;
-using OpenTK.Graphics.OpenGL;
 using TouchScreenBuddy;
 
 namespace MenuBuddy
