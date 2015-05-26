@@ -21,6 +21,31 @@ namespace MenuBuddy
 			}
 		}
 
+		public override Rectangle Rect
+		{
+			get
+			{
+				return base.Rect;
+			}
+			set
+			{
+				Vector2 size;
+				if (FillRect)
+				{
+					size = new Vector2(value.Width, value.Height);
+				}
+				else
+				{
+					size = new Vector2(Style.Texture.Width, Style.Texture.Height);
+					size *= Scale;
+					size += Padding * 2;
+				}
+				base.Rect = new Rectangle(value.X, value.Y, (int)size.X, (int)size.Y);
+			}
+		}
+
+		public bool FillRect { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -32,6 +57,7 @@ namespace MenuBuddy
 		public Image(StyleSheet style)
 			: base(style)
 		{
+			FillRect = false;
 		}
 
 		/// <summary>
@@ -60,8 +86,16 @@ namespace MenuBuddy
 			//Get the transition location
 			var pos = DrawPosition(screen);
 
+			var width = Texture.Width * Scale;
+			var height = Texture.Height * Scale;
+			if (FillRect)
+			{
+				width = Rect.Width;
+				height = Rect.Height;
+			}
+
 			//draw the item with all the correct parameters
-			screen.ScreenManager.SpriteBatch.Draw(Texture, new Rectangle((int)pos.X, (int)pos.Y, Rect.Width, Rect.Height), color);
+			screen.ScreenManager.SpriteBatch.Draw(Texture, new Rectangle((int)pos.X, (int)pos.Y, (int)width, (int)height), color);
 		}
 
 		#endregion //Methods

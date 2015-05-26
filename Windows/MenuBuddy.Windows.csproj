@@ -247,6 +247,12 @@
     <Compile Include="..\Source\Widgets\Label\Label.cs">
       <Link>Widgets\Labels\Label.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Widgets\Shim\IShim.cs">
+      <Link>Widgets\Shim\IShim.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\Shim\Shim.cs">
+      <Link>Widgets\Shim\Shim.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Widgets\VerticalAlignment.cs">
       <Link>Widgets\VerticalAlignment.cs</Link>
     </Compile>

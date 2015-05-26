@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 
 namespace MenuBuddy
 {
@@ -27,5 +28,16 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="screen"></param>
 		void LoadContent(IScreen screen);
+
+		/// <summary>
+		/// How much to resize this widget.
+		/// Default is 1.0
+		/// </summary>
+		float Scale { get; }
+
+		/// <summary>
+		/// How many pixels worth of padding to add around this widget.
+		/// </summary>
+		Vector2 Padding { get; }
 	}
 }

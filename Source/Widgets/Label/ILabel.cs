@@ -9,8 +9,6 @@ namespace MenuBuddy
 	/// </summary>
 	public interface ILabel : IWidget
 	{
-		float Size { get; }
-
 		/// <summary>
 		/// The text of this label
 		/// </summary>

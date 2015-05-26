@@ -85,9 +85,15 @@ namespace MenuBuddy
 				hourglass.Texture = ScreenManager.Game.Content.Load<Texture2D>("hourglass");
 				hourglass.Horizontal = HorizontalAlignment.Left;
 				hourglass.Vertical = VerticalAlignment.Center;
+				hourglass.Scale = 1.5f;
+
+				//create the shim to place between the widgets
+				var shim = new Shim(Style);
+				shim.Padding = new Vector2(32f, 0);
 
 				//create the message widget
 				var msg = new Label(Style, "Loading...");
+				msg.Scale = 2f;
 				msg.Horizontal = HorizontalAlignment.Left;
 				msg.Vertical = VerticalAlignment.Center;
 
@@ -100,6 +106,7 @@ namespace MenuBuddy
 				layout.Position = new Point(Resolution.TitleSafeArea.Center.X - (width / 2),
 								  Resolution.TitleSafeArea.Center.Y);
 				layout.AddItem(hourglass);
+				layout.AddItem(shim);
 				layout.AddItem(msg);
 
 				AddItem(layout);

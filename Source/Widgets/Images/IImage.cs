@@ -13,5 +13,10 @@ namespace MenuBuddy
 		/// The image to display
 		/// </summary>
 		Texture2D Texture { get; set; }
+
+		/// <summary>
+		/// If true, the image will fill the rect
+		/// </summary>
+		bool FillRect { get; set; }
 	}
 }

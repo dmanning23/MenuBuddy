@@ -224,6 +224,10 @@ namespace MenuBuddy
 		/// </summary>
 		public float Layer { get; set; }
 
+		public float Scale { get; set; }
+
+		public Vector2 Padding { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -237,6 +241,8 @@ namespace MenuBuddy
 			Style = style;
 			_horizontal = HorizontalAlignment.Left;
 			_vertical = VerticalAlignment.Top;
+			Scale = 1.0f;
+			Padding = Vector2.Zero;
 		}
 
 		/// <summary>
@@ -300,13 +306,16 @@ namespace MenuBuddy
 		protected Vector2 DrawPosition(IScreen screen)
 		{
 			//take the transition position into account
-			return GetTransition(screen).Position(Position.ToVector2(), Style.Transition);
+			var pos = Position.ToVector2() + Padding;
+			pos = GetTransition(screen).Position(pos, Style.Transition);
+			return pos;
 		}
 
 		protected Vector2 TextPosition(IScreen screen)
 		{
 			//get the draw position
-			var pos = GetTransition(screen).Position(Position.ToVector2(), Style.Transition);
+			var pos = Position.ToVector2() + Padding;
+			pos = GetTransition(screen).Position(pos, Style.Transition);
 
 			//text is always centered
 			pos.X += Rect.Width / 2f;

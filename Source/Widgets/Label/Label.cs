@@ -14,7 +14,8 @@ namespace MenuBuddy
 			set
 			{
 				//set the rectangle
-				var size = Style.SelectedFont.Font.MeasureString(Text) * Size;
+				var size = Style.SelectedFont.Font.MeasureString(Text) * Scale;
+				size += Padding * 2;
 				base.Rect = new Rectangle(value.X, value.Y, (int)size.X, (int)size.Y);
 			}
 		}
@@ -23,8 +24,6 @@ namespace MenuBuddy
 		/// The text of this label
 		/// </summary>
 		public string Text { get; set; }
-
-		public float Size { get; set; }
 
 		#endregion //Properties
 
@@ -38,7 +37,6 @@ namespace MenuBuddy
 		public Label(StyleSheet style, string text)
 			: base(style)
 		{
-			Size = 1.0f;
 			Text = text;
 		}
 
@@ -72,7 +70,7 @@ namespace MenuBuddy
 			font.Write(Text,
 				TextPosition(screen),
 				Justify.Center,
-				Size,
+				Scale,
 				color,
 				screen.ScreenManager.SpriteBatch,
 				gameTime);

@@ -25,8 +25,6 @@ namespace MenuBuddy
 
 		public string Text { get; set; }
 
-		public float Size { get; set; }
-
 		#endregion //Properties
 
 		#region Events

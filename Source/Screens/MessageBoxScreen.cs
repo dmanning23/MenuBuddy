@@ -64,16 +64,15 @@ namespace MenuBuddy
 		/// </summary>
 		public override void LoadContent()
 		{
+			base.LoadContent();
+
 			//Add the background image
 			var bkgImage = new BackgroundImage(ScreenManager.Styles.MessageBoxStyle)
 			{
-				Layer = -1.0f
+				Layer = -1.0f,
+				FillRect = true
 			};
-			const int hPad = 64;
-			const int vPad = 32;
 			AddItem(bkgImage);
-
-			base.LoadContent();
 
 			//Set the label text
 			var label = new Label(ScreenManager.Styles.MessageBoxStyle, Message);
@@ -91,6 +90,8 @@ namespace MenuBuddy
 			AddButtons(IncludeUsageText);
 
 			//Set the background rectangle to fill up under everything
+			const int hPad = 64;
+			const int vPad = 32;
 			var rect = Layout.Rect;
 			var backgroundRectangle = new Rectangle(rect.X - hPad,
 				rect.Y - vPad,
