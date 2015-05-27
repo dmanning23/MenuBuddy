@@ -36,11 +36,33 @@ namespace MenuBuddy
 				}
 				else
 				{
-					size = new Vector2(Style.Texture.Width, Style.Texture.Height);
-					size *= Scale;
-					size += Padding * 2;
+					if (null != Texture)
+					{
+						size = new Vector2(Texture.Width, Texture.Height);
+						size *= Scale;
+						size += Padding * 2;
+					}
+					else
+					{
+						size = Padding * 2;
+					}
 				}
 				base.Rect = new Rectangle(value.X, value.Y, (int)size.X, (int)size.Y);
+			}
+		}
+
+		public override float Scale
+		{
+			get
+			{
+				return base.Scale;
+			}
+			set
+			{
+				base.Scale = value;
+
+				//Set the rect to grab the new scale value
+				Rect = Rect;
 			}
 		}
 

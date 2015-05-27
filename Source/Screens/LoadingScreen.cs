@@ -82,6 +82,7 @@ namespace MenuBuddy
 			{
 				//create the hourglass widget
 				var hourglass = new Image(Style);
+				
 				hourglass.Texture = ScreenManager.Game.Content.Load<Texture2D>("hourglass");
 				hourglass.Horizontal = HorizontalAlignment.Left;
 				hourglass.Vertical = VerticalAlignment.Center;

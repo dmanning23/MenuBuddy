@@ -224,7 +224,7 @@ namespace MenuBuddy
 		/// </summary>
 		public float Layer { get; set; }
 
-		public float Scale { get; set; }
+		public virtual float Scale { get; set; }
 
 		public Vector2 Padding { get; set; }
 
