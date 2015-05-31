@@ -49,10 +49,17 @@ namespace MenuBuddy
 		/// <summary>
 		/// Helper draws a translucent black sprite, used for fading specific areas
 		/// </summary>
+		public void DrawRect(Color color, Rectangle rect)
+		{
+			SpriteBatch.Draw(Prim.Texture, rect, color);
+		}
+
+		/// <summary>
+		/// Helper draws a translucent black sprite, used for fading specific areas
+		/// </summary>
 		public void BlackRect(float fAlpha, Rectangle rect)
 		{
-			var color = new Color(0.0f, 0.0f, 0.0f, fAlpha);
-			SpriteBatch.Draw(Prim.Texture, rect, color);
+			DrawRect(new Color(0.0f, 0.0f, 0.0f, fAlpha), rect);
 		}
 
 		public void DrawOutline(Transition transition, StyleSheet style, Rectangle rect)
