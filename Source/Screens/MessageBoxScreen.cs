@@ -5,7 +5,6 @@ using ResolutionBuddy;
 using System;
 using System.Text;
 using FontBuddyLib;
-using Vector2Extensions;
 
 namespace MenuBuddy
 {

@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using ResolutionBuddy;
 using System;
 using System.Linq;
-using Vector2Extensions;
 
 namespace MenuBuddy
 {

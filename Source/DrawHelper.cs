@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System.Diagnostics;
-using Vector2Extensions;
 
 namespace MenuBuddy
 {

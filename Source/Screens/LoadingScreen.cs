@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System;
 using System.Threading;
-using OpenTK.Graphics.OpenGL;
 
 namespace MenuBuddy
 {
