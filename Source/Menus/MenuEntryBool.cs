@@ -26,8 +26,8 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public MenuEntryBool(StyleSheet style, string text, bool startValue)
-			: base(style, text)
+		public MenuEntryBool(string text, bool startValue)
+			: base(text)
 		{
 			Label = text;
 			Value = startValue;

@@ -36,21 +36,18 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public RelativeLayoutButton(StyleSheet style)
-			: base(style)
+		public RelativeLayoutButton()
 		{
-			Layout = new RelativeLayout();
 		}
 
 		public override void LoadContent(IScreen screen)
 		{
 			base.LoadContent(screen);
-			var layout = Layout as RelativeLayout;
-			if (null != layout)
+			Layout = new RelativeLayout
 			{
-				layout.Position = Position;
-				layout.Rectangle = Rect;
-			}
+				Position = Position,
+				Rectangle = Rect
+			};
 		}
 
 		#endregion

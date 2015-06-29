@@ -75,9 +75,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// constructor!
 		/// </summary>
-		/// <param name="style"></param>
-		public Image(StyleSheet style)
-			: base(style)
+		public Image()
 		{
 			FillRect = false;
 		}
@@ -85,8 +83,8 @@ namespace MenuBuddy
 		/// <summary>
 		/// constructor!
 		/// </summary>
-		public Image(StyleSheet style, Texture2D texture)
-			: this(style)
+		public Image(Texture2D texture)
+			: this()
 		{
 			Texture = texture;
 		}

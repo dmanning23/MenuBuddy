@@ -125,6 +125,9 @@
     <Compile Include="..\Source\Menus\MenuScreen.cs">
       <Link>Menus\MenuScreen.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Menus\MenuTitle.cs">
+      <Link>Menus\MenuTitle.cs</Link>
+    </Compile>
     <Compile Include="..\Source\PlayerIndexEventArgs.cs">
       <Link>PlayerIndexEventArgs.cs</Link>
     </Compile>
@@ -175,9 +178,6 @@
     </Compile>
     <Compile Include="..\Source\Style\FontStyleItem.cs">
       <Link>Style\FontStyleItem.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Style\IDefaultStyles.cs">
-      <Link>Style\IDefaultStyles.cs</Link>
     </Compile>
     <Compile Include="..\Source\Style\ImageStyleItem.cs">
       <Link>Style\ImageStyleItem.cs</Link>

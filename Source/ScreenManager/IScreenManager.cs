@@ -37,11 +37,6 @@ namespace MenuBuddy
 		DrawHelper DrawHelper { get; }
 
 		/// <summary>
-		/// This is a set of the styles that will be used for this game.
-		/// </summary>
-		IDefaultStyles Styles { get; }
-
-		/// <summary>
 		/// Delegate method to get the stack of screens used for the main menu.
 		/// </summary>
 		ScreenStackDelegate MainMenuStack { get; }

@@ -6,7 +6,7 @@ namespace MenuBuddy
 	/// </summary>
 	public class ContinueMenuEntry : MenuEntry
 	{
-		public ContinueMenuEntry(StyleSheet style) : base(style, "Continue")
+		public ContinueMenuEntry() : base("Continue")
 		{
 			Style.Transition = TransitionType.PopBottom;
 		}

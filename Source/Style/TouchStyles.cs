@@ -9,12 +9,23 @@ namespace MenuBuddy
 	/// </summary>
 	public class TouchStyles : DefaultStyles
 	{
-		public TouchStyles(Game game, StyleSheet gameStyle)
-			: base(game, gameStyle)
+		#region Singleton
+
+		public new static void Init(Game game)
+		{
+			var inst = new TouchStyles(game);
+			inst.Initialize();
+			_instance = inst;
+		}
+
+		#endregion //Singleton
+
+		protected TouchStyles(Game game)
+			: base(game)
 		{
 		}
 
-		public override void Initialize()
+		protected override void Initialize()
 		{
 			base.Initialize();
 
@@ -26,7 +37,7 @@ namespace MenuBuddy
 			var shadow = new ShadowTextBuddy();
 			shadow.ShadowSize = 1.0f;
 			shadow.ShadowOffset = new Vector2(7.0f, 7.0f);
-			shadow.Font = Game.Content.Load<SpriteFont>(MenuEntryFontName);
+			shadow.Font = _game.Content.Load<SpriteFont>(MenuEntryFontName);
 			MenuEntryStyle.SelectedFont = shadow;
 			MenuEntryStyle.SelectedTextColor = Color.White;
 			MenuEntryStyle.SelectedShadowColor = Color.Black;
@@ -44,7 +55,7 @@ namespace MenuBuddy
 			shadow = new ShadowTextBuddy();
 			shadow.ShadowSize = 1.0f;
 			shadow.ShadowOffset = new Vector2(4.0f, 4.0f);
-			shadow.Font = Game.Content.Load<SpriteFont>(MessageBoxFontName);
+			shadow.Font = _game.Content.Load<SpriteFont>(MessageBoxFontName);
 			MessageBoxStyle.SelectedFont = shadow;
 			MessageBoxStyle.SelectedTextColor = Color.White;
 			MessageBoxStyle.SelectedShadowColor = Color.Black;

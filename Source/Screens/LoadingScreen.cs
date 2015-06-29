@@ -41,7 +41,7 @@ namespace MenuBuddy
 		/// The constructor is private: loading screens should
 		/// be activated via the static Load method instead.
 		/// </summary>
-		private LoadingScreen(ScreenManager screenManager, bool loadingIsSlow, IScreen[] screensToLoad)
+		private LoadingScreen(bool loadingIsSlow, IScreen[] screensToLoad)
 			: base("Loading")
 		{
 			LoadingIsSlow = loadingIsSlow;
@@ -65,10 +65,7 @@ namespace MenuBuddy
 			}
 
 			// Create and activate the loading screen.
-			var loadingScreen = new LoadingScreen(screenManager,
-												  loadingIsSlow,
-												  screensToLoad);
-
+			var loadingScreen = new LoadingScreen(loadingIsSlow, screensToLoad);
 			screenManager.AddScreen(loadingScreen, controllingPlayer);
 		}
 
@@ -80,31 +77,36 @@ namespace MenuBuddy
 			if (LoadingIsSlow)
 			{
 				//create the hourglass widget
-				var hourglass = new Image(Style);
-				
-				hourglass.Texture = ScreenManager.Game.Content.Load<Texture2D>("hourglass");
-				hourglass.Horizontal = HorizontalAlignment.Left;
-				hourglass.Vertical = VerticalAlignment.Center;
-				hourglass.Scale = 1.5f;
+				var hourglass = new Image()
+				{
+					Texture = ScreenManager.Game.Content.Load<Texture2D>("hourglass"),
+					Horizontal = HorizontalAlignment.Left,
+					Vertical = VerticalAlignment.Center,
+					Scale = 1.5f
+				};
 
 				//create the shim to place between the widgets
-				var shim = new Shim(Style);
+				var shim = new Shim();
 				shim.Padding = new Vector2(32f, 0);
 
 				//create the message widget
-				var msg = new Label(Style, "Loading...");
-				msg.Scale = 2f;
-				msg.Horizontal = HorizontalAlignment.Left;
-				msg.Vertical = VerticalAlignment.Center;
+				var msg = new Label("Loading...")
+				{
+					Scale = 2f,
+					Horizontal = HorizontalAlignment.Left,
+					Vertical = VerticalAlignment.Center
+				};
 
 				//get the width of the stack panel
 				var width = hourglass.Rect.Width;
 				width += msg.Rect.Width;
 
-				var layout = new StackLayout();
-				layout.Alignment = StackAlignment.Left;
-				layout.Position = new Point(Resolution.TitleSafeArea.Center.X - (width / 2),
-								  Resolution.TitleSafeArea.Center.Y);
+				var layout = new StackLayout()
+				{
+					Alignment = StackAlignment.Left,
+					Position = new Point(Resolution.TitleSafeArea.Center.X - (width / 2),
+						Resolution.TitleSafeArea.Center.Y)
+				};
 				layout.AddItem(hourglass);
 				layout.AddItem(shim);
 				layout.AddItem(msg);

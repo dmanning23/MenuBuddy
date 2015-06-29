@@ -55,12 +55,13 @@ namespace MenuBuddy
 		/// <summary>
 		/// The stylesheet of this item
 		/// </summary>
-		public StyleSheet Style {
+		public StyleSheet Style
+		{
 			get
 			{
 				return _style;
 			}
-			private set
+			set
 			{
 				_style = new StyleSheet(value);
 			}
@@ -234,10 +235,9 @@ namespace MenuBuddy
 		/// <summary>
 		/// constructor!
 		/// </summary>
-		/// <param name="style"></param>
-		protected Widget(StyleSheet style)
+		protected Widget()
 		{
-			Style = style;
+			Style = DefaultStyles.Instance().MainStyle;
 			_horizontal = HorizontalAlignment.Left;
 			_vertical = VerticalAlignment.Top;
 			Scale = 1.0f;

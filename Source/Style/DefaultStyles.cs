@@ -2,25 +2,50 @@ using FontBuddyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace MenuBuddy
 {
 	/// <summary>
 	/// Static storage of SpriteFont objects and colors for use throughout the game.
+	/// This class is accessed via a singleton interface.
 	/// </summary>
-	public class DefaultStyles : GameComponent, IDefaultStyles
+	public class DefaultStyles
 	{
+		#region Singleton
+
+		protected static DefaultStyles _instance;
+
+		public static DefaultStyles Instance()
+		{
+			Debug.Assert(null != _instance);
+			return _instance;
+		}
+
+		public static void Init(Game game)
+		{
+			var inst = new DefaultStyles(game);
+			inst.Initialize();
+			_instance = inst;
+		}
+
+		#endregion //Singleton
+
+		#region Fields
+
+		protected Game _game;
+
+		#endregion //Fields
+
 		#region Properties
 
-		public StyleSheet GameStyle { get; set; }
-
-		public string MenuTitleFontName { protected get; set; }
-		public string MenuEntryFontName { protected get; set; }
-		public string MessageBoxFontName { protected get; set; }
-		public string MenuSelectSoundName { protected get; set; }
-		public string MenuChangeSoundName { protected get; set; }
-		public string MessageBoxBackground { protected get; set; }
-		public string ButtonBackground { protected get; set; }
+		public static string MenuTitleFontName { protected get; set; }
+		public static string MenuEntryFontName { protected get; set; }
+		public static string MessageBoxFontName { protected get; set; }
+		public static string MenuSelectSoundName { protected get; set; }
+		public static string MenuChangeSoundName { protected get; set; }
+		public static string MessageBoxBackground { protected get; set; }
+		public static string ButtonBackground { protected get; set; }
 
 		public StyleSheet MainStyle { get; private set; }
 		public StyleSheet MenuTitleStyle { get; private set; }
@@ -31,29 +56,22 @@ namespace MenuBuddy
 
 		#region Methods
 
-		public DefaultStyles(Game game, StyleSheet gameStyle)
-			: base(game)
+		protected DefaultStyles(Game game)
 		{
-			GameStyle = gameStyle;
-
-			//Register ourselves to implement the DI container service.
-			game.Components.Add(this);
-			game.Services.AddService(typeof(IDefaultStyles), this);
+			_game = game;
 		}
 
-		public override void Initialize()
+		protected virtual void Initialize()
 		{
-			base.Initialize();
-
 			//set the main style
-			MainStyle = new StyleSheet(GameStyle);
+			MainStyle = new StyleSheet();
 			MainStyle.Transition = TransitionType.SlideLeft;
 
 			//load the selected text stuff
 			var pulsate = new PulsateBuddy();
 			pulsate.ShadowOffset = Vector2.Zero;
 			pulsate.ShadowSize = 1.0f;
-			pulsate.Font = Game.Content.Load<SpriteFont>(MenuEntryFontName);
+			pulsate.Font = _game.Content.Load<SpriteFont>(MenuEntryFontName);
 			MainStyle.SelectedFont = pulsate;
 			MainStyle.SelectedTextColor = Color.Red;
 			MainStyle.SelectedShadowColor = Color.Black;
@@ -62,7 +80,7 @@ namespace MenuBuddy
 			var shadow = new ShadowTextBuddy();
 			shadow.ShadowSize = 1.0f;
 			shadow.ShadowOffset = Vector2.Zero;
-			shadow.Font = Game.Content.Load<SpriteFont>(MenuEntryFontName);
+			shadow.Font = _game.Content.Load<SpriteFont>(MenuEntryFontName);
 			MainStyle.UnselectedFont = shadow;
 			MainStyle.UnselectedTextColor = Color.White;
 			MainStyle.UnselectedShadowColor = Color.Black;
@@ -74,12 +92,12 @@ namespace MenuBuddy
 			MainStyle.UnselectedBackgroundColor = new Color(0.0f, 0.0f, 0.2f, 0.5f);
 
 			//load the sound effects
-			MainStyle.SelectedSoundEffect = Game.Content.Load<SoundEffect>(MenuSelectSoundName);
-			MainStyle.SelectionChangeSoundEffect = Game.Content.Load<SoundEffect>(MenuChangeSoundName);
+			MainStyle.SelectedSoundEffect = _game.Content.Load<SoundEffect>(MenuSelectSoundName);
+			MainStyle.SelectionChangeSoundEffect = _game.Content.Load<SoundEffect>(MenuChangeSoundName);
 
 			//set the menu entry style
 			MenuEntryStyle = new StyleSheet(MainStyle);
-			MenuEntryStyle.Texture = Game.Content.Load<Texture2D>(ButtonBackground);
+			MenuEntryStyle.Texture = _game.Content.Load<Texture2D>(ButtonBackground);
 
 			//set the messagebox style
 			MessageBoxStyle = new StyleSheet(MenuEntryStyle);
@@ -87,24 +105,24 @@ namespace MenuBuddy
 			pulsate.ShadowSize = 1.0f;
 			pulsate.ShadowOffset = Vector2.Zero;
 			pulsate.PulsateSize *= 0.5f;
-			pulsate.Font = Game.Content.Load<SpriteFont>(MessageBoxFontName);
+			pulsate.Font = _game.Content.Load<SpriteFont>(MessageBoxFontName);
 			MessageBoxStyle.SelectedFont = pulsate;
 
 			shadow = new ShadowTextBuddy();
 			shadow.ShadowSize = 1.0f;
 			shadow.ShadowOffset = Vector2.Zero;
-			shadow.Font = Game.Content.Load<SpriteFont>(MessageBoxFontName);
+			shadow.Font = _game.Content.Load<SpriteFont>(MessageBoxFontName);
 			MessageBoxStyle.UnselectedFont = shadow;
 
-			MessageBoxStyle.Texture = Game.Content.Load<Texture2D>(MessageBoxBackground);
+			MessageBoxStyle.Texture = _game.Content.Load<Texture2D>(MessageBoxBackground);
 
 			//set the menu title style
 			MenuTitleStyle = new StyleSheet(MainStyle);
 			MenuTitleStyle.SelectedFont = new FontBuddy();
-			MenuTitleStyle.SelectedFont.Font = Game.Content.Load<SpriteFont>(MenuTitleFontName);
+			MenuTitleStyle.SelectedFont.Font = _game.Content.Load<SpriteFont>(MenuTitleFontName);
 			MenuTitleStyle.SelectedTextColor = Color.White;
 			MenuTitleStyle.UnselectedFont = new FontBuddy();
-			MenuTitleStyle.UnselectedFont.Font = Game.Content.Load<SpriteFont>(MenuTitleFontName);
+			MenuTitleStyle.UnselectedFont.Font = _game.Content.Load<SpriteFont>(MenuTitleFontName);
 			MenuTitleStyle.UnselectedTextColor = Color.White;
 			MenuTitleStyle.Transition = TransitionType.PopTop;
 		}

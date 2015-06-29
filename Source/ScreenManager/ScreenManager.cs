@@ -56,8 +56,6 @@ namespace MenuBuddy
 
 		public DrawHelper DrawHelper { get; private set; }
 
-		public IDefaultStyles Styles { get; private set; }
-
 		public ScreenStackDelegate MainMenuStack { get; set; }
 
 #if DEBUG
@@ -81,9 +79,6 @@ namespace MenuBuddy
 			ScreensToUpdate = new List<IScreen>();
 			Screens = new List<IScreen>();
 			ClearColor = Color.Black;
-
-			//get teh set of styles that will be used in this game
-			Styles = game.Services.GetService(typeof(IDefaultStyles)) as IDefaultStyles;
 
 			//get the touch service
 			Input = game.Services.GetService(typeof(IInputHelper)) as IInputHelper;
@@ -137,7 +132,7 @@ namespace MenuBuddy
 		private void LoadScreenContent(IScreen screen)
 		{
 			//set the style of teh screen
-			screen.SetStyle(Styles.MainStyle);
+			screen.SetStyle(DefaultStyles.Instance().MainStyle);
 
 			//load the screen content
 			screen.LoadContent();

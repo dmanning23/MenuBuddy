@@ -21,20 +21,11 @@ namespace MenuBuddy
 		/// </summary>
 		protected override void InitStyles()
 		{
-			var gameStyle = new StyleSheet();
-
 			//uncomment this line if need to test widget placement
 			//gameStyle.HasOutline = true;
 
-			GameStyle = new TouchStyles(this, gameStyle);
-
-			GameStyle.MenuTitleFontName = @"Fonts\ArialBlack72";
-			GameStyle.MenuEntryFontName = @"Fonts\ArialBlack48";
-			GameStyle.MessageBoxFontName = @"Fonts\ArialBlack24";
-			GameStyle.MenuSelectSoundName = @"MenuSelect";
-			GameStyle.MenuChangeSoundName = @"MenuMove";
-			GameStyle.MessageBoxBackground = @"gradient";
-			GameStyle.ButtonBackground = @"AlphaGradient";
+			TouchStyles.Init(this);
+			var style = DefaultStyles.Instance();
 		}
 
 		protected override void InitInput()

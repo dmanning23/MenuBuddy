@@ -80,7 +80,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public MenuEntry(StyleSheet style, string text) : base(style)
+		public MenuEntry(string text)
 		{
 			Text = text;
 		}
@@ -88,11 +88,15 @@ namespace MenuBuddy
 		public override void LoadContent(IScreen screen)
 		{
 			base.LoadContent(screen);
+
+			Style = DefaultStyles.Instance().MenuEntryStyle;
 			
 			//Add the text label
-			var label = new Label(Style, Text);
-			label.Vertical = VerticalAlignment.Center;
-			label.Horizontal = HorizontalAlignment.Center;
+			var label = new Label(Text)
+			{
+				Vertical = VerticalAlignment.Center,
+				Horizontal = HorizontalAlignment.Center
+			};
 			AddItem(label);
 		}
 
