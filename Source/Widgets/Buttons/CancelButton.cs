@@ -51,7 +51,8 @@ namespace MenuBuddy
 			var image = new Image
 			{
 				Vertical = VerticalAlignment.Center,
-				Horizontal = HorizontalAlignment.Center
+				Horizontal = HorizontalAlignment.Center,
+				Style = this.Style
 			};
 			AddItem(image);
 
