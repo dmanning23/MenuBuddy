@@ -116,13 +116,13 @@ namespace MenuBuddy
 				foreach (var item in containers)
 				{
 					buttons.AddRange(item.Buttons);
-			}
+				}
 
 				//add the items that are themselves buttons
 				buttons.AddRange(Items.OfType<IButton>());
 
 				return buttons;
-		}
+			}
 		}
 
 		public void Update(IScreen screen, GameClock gameTime)

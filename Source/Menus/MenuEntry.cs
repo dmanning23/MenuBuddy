@@ -11,6 +11,13 @@ namespace MenuBuddy
 	/// </summary>
 	public class MenuEntry : RelativeLayoutButton, ILabel, IMenuEntry
 	{
+		#region Fields
+
+		private string _text;
+		private Label _label;
+
+		#endregion //Fields
+
 		#region Properties
 
 		public override Rectangle Rect
@@ -23,7 +30,21 @@ namespace MenuBuddy
 			}
 		}
 
-		public string Text { get; set; }
+		public string Text 
+		{
+			get
+			{
+				return _text;
+			}
+			set
+			{
+				_text = value;
+				if (null != _label)
+				{
+					_label.Text = value;
+				}
+			}
+		}
 
 		#endregion //Properties
 
@@ -82,6 +103,7 @@ namespace MenuBuddy
 		/// </summary>
 		public MenuEntry(string text)
 		{
+			Style = DefaultStyles.Instance().MenuEntryStyle;
 			Text = text;
 		}
 
@@ -89,15 +111,19 @@ namespace MenuBuddy
 		{
 			base.LoadContent(screen);
 
-			Style = DefaultStyles.Instance().MenuEntryStyle;
-			
 			//Add the text label
-			var label = new Label(Text)
+			_label = new Label(Text)
 			{
 				Vertical = VerticalAlignment.Center,
-				Horizontal = HorizontalAlignment.Center
+				Horizontal = HorizontalAlignment.Center,
+				Style = this.Style
 			};
-			AddItem(label);
+			AddItem(_label);
+		}
+
+		public override string ToString()
+		{
+			return Text;
 		}
 
 		#endregion

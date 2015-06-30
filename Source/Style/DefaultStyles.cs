@@ -64,8 +64,11 @@ namespace MenuBuddy
 		protected virtual void Initialize()
 		{
 			//set the main style
-			MainStyle = new StyleSheet();
-			MainStyle.Transition = TransitionType.SlideLeft;
+			MainStyle = new StyleSheet
+			{
+				Name = "MainStyle",
+				Transition = TransitionType.SlideLeft
+			};
 
 			//load the selected text stuff
 			var pulsate = new PulsateBuddy();
@@ -96,11 +99,18 @@ namespace MenuBuddy
 			MainStyle.SelectionChangeSoundEffect = _game.Content.Load<SoundEffect>(MenuChangeSoundName);
 
 			//set the menu entry style
-			MenuEntryStyle = new StyleSheet(MainStyle);
-			MenuEntryStyle.Texture = _game.Content.Load<Texture2D>(ButtonBackground);
+			MenuEntryStyle = new StyleSheet(MainStyle)
+			{
+				Name = "MenuEntryStyle",
+				Texture = _game.Content.Load<Texture2D>(ButtonBackground)
+			};
 
 			//set the messagebox style
-			MessageBoxStyle = new StyleSheet(MenuEntryStyle);
+			MessageBoxStyle = new StyleSheet(MenuEntryStyle)
+			{
+				Name = "MessageBoxStyle"
+			};
+
 			pulsate = new PulsateBuddy();
 			pulsate.ShadowSize = 1.0f;
 			pulsate.ShadowOffset = Vector2.Zero;
