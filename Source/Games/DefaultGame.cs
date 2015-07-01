@@ -1,9 +1,6 @@
-using MenuBuddy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using MouseBuddy;
 using ResolutionBuddy;
-using TouchScreenBuddy;
 
 namespace MenuBuddy
 {

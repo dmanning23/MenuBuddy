@@ -1,5 +1,6 @@
 using GameTimer;
 using Microsoft.Xna.Framework;
+using Vector2Extensions;
 
 namespace MenuBuddy
 {

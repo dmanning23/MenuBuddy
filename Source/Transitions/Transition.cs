@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using System;
+using Vector2Extensions;
 
 namespace MenuBuddy
 {
