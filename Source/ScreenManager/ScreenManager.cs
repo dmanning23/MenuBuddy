@@ -417,7 +417,7 @@ namespace MenuBuddy
 		{
 			var screens = new List<IScreen>(MainMenuStack());
 			screens.Add(new ErrorScreen(ex));
-			LoadingScreen.Load(this, false, null, screens.ToArray());
+			LoadingScreen.Load(this, true, null, screens.ToArray());
 		}
 
 		public IScreen FindScreen(string screenName)
