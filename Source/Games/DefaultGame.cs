@@ -76,7 +76,6 @@ namespace MenuBuddy
 
 			// Create the screen manager component.
 			ScreenManager = new ScreenManager(this, GetMainMenuScreenStack);
-			ScreenManager.ClearColor = new Color(0.0f, 0.1f, 0.2f);
 
 			//Change Virtual Resolution
 			Resolution.SetDesiredResolution(DesiredScreenResolution.X, DesiredScreenResolution.Y);
