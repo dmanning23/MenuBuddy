@@ -161,64 +161,60 @@ namespace MenuBuddy
 
 		public override void Update(GameTime gameTime)
 		{
-#if !DEBUG
 			try
 			{
-#endif
-			// Make a copy of the master screen list, to avoid confusion if the process of updating one screen adds or removes others.
-			ScreensToUpdate.Clear();
+				// Make a copy of the master screen list, to avoid confusion if the process of updating one screen adds or removes others.
+				ScreensToUpdate.Clear();
 
-			//Update the top screen separate from all other screens.
-			if (null != TopScreen)
-			{
-				TopScreen.Update(gameTime, false, false);
-				Input.HandleInput(TopScreen);
-			}
-
-			for (int i = 0; i < Screens.Count; i++)
-			{
-				ScreensToUpdate.Add(Screens[i]);
-			}
-
-			bool otherScreenHasFocus = !Game.IsActive;
-			bool coveredByOtherScreen = false;
-
-			// Loop as long as there are screens waiting to be updated.
-			while (ScreensToUpdate.Count > 0)
-			{
-				// Pop the topmost screen off the waiting list.
-				var screen = ScreensToUpdate[ScreensToUpdate.Count - 1];
-				ScreensToUpdate.RemoveAt(ScreensToUpdate.Count - 1);
-
-				// Update the screen.
-				screen.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
-
-				if (screen.Transition.State == TransitionState.TransitionOn ||
-					screen.Transition.State == TransitionState.Active)
+				//Update the top screen separate from all other screens.
+				if (null != TopScreen)
 				{
-					// If this is the first active screen we came across,
-					// give it a chance to handle input.
-					if (!otherScreenHasFocus)
-					{
-						Input.HandleInput(screen);
-						otherScreenHasFocus = true;
-					}
+					TopScreen.Update(gameTime, false, false);
+					Input.HandleInput(TopScreen);
+				}
 
-					// If this is an active non-popup, inform any subsequent
-					// screens that they are covered by it.
-					if (screen.CoverOtherScreens)
+				for (int i = 0; i < Screens.Count; i++)
+				{
+					ScreensToUpdate.Add(Screens[i]);
+				}
+
+				bool otherScreenHasFocus = !Game.IsActive;
+				bool coveredByOtherScreen = false;
+
+				// Loop as long as there are screens waiting to be updated.
+				while (ScreensToUpdate.Count > 0)
+				{
+					// Pop the topmost screen off the waiting list.
+					var screen = ScreensToUpdate[ScreensToUpdate.Count - 1];
+					ScreensToUpdate.RemoveAt(ScreensToUpdate.Count - 1);
+
+					// Update the screen.
+					screen.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+
+					if (screen.Transition.State == TransitionState.TransitionOn ||
+						screen.Transition.State == TransitionState.Active)
 					{
-						coveredByOtherScreen = true;
+						// If this is the first active screen we came across,
+						// give it a chance to handle input.
+						if (!otherScreenHasFocus)
+						{
+							Input.HandleInput(screen);
+							otherScreenHasFocus = true;
+						}
+
+						// If this is an active non-popup, inform any subsequent
+						// screens that they are covered by it.
+						if (screen.CoverOtherScreens)
+						{
+							coveredByOtherScreen = true;
+						}
 					}
 				}
-			}
-#if !DEBUG
 			}
 			catch (Exception ex)
 			{
 				ErrorScreen(ex);
 			}
-#endif
 		}
 
 		/// <summary>
@@ -332,16 +328,16 @@ namespace MenuBuddy
 			try
 			{
 #endif
-			screen.ControllingPlayer = controllingPlayer;
-			screen.ScreenManager = this;
+				screen.ControllingPlayer = controllingPlayer;
+				screen.ScreenManager = this;
 
-			// If we have a graphics device, tell the screen to load content.
-			if (Initialized)
-			{
-				LoadScreenContent(screen);
-			}
+				// If we have a graphics device, tell the screen to load content.
+				if (Initialized)
+				{
+					LoadScreenContent(screen);
+				}
 
-			Screens.Add(screen);
+				Screens.Add(screen);
 #if !DEBUG
 			}
 			catch (Exception ex)
