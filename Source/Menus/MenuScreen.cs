@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using ResolutionBuddy;
 using System;
 using System.Linq;
-using Vector2Extensions;
 
 namespace MenuBuddy
 {
@@ -108,7 +107,7 @@ namespace MenuBuddy
 			AddItem(MenuEntries);
 
 			//Add the menu title
-			MenuTitle = new Label(ScreenManager.Styles.MenuTitleStyle, ScreenName)
+			MenuTitle = new MenuTitle(ScreenName)
 			{
 				Layer = 2.0f
 			};
@@ -120,7 +119,7 @@ namespace MenuBuddy
 		private void SetMenuTitlePosition()
 		{
 			//Add the menu title
-			var menuTitleSize = ScreenManager.Styles.MenuTitleStyle.SelectedFont.Font.MeasureString(ScreenName);
+			var menuTitleSize = MenuTitle.Style.SelectedFont.Font.MeasureString(ScreenName);
 			var pos = new Point(Resolution.TitleSafeArea.Center.X,
 				Resolution.TitleSafeArea.Center.Y - (int)(menuTitleSize.Y * 1.75f));
 			MenuTitle.Position = pos + MenuTitleOffset;
@@ -138,7 +137,7 @@ namespace MenuBuddy
 		/// </summary>
 		protected IMenuEntry AddContinueButton()
 		{
-			var continueButton = new ContinueMenuEntry(Style);
+			var continueButton = new ContinueMenuEntry();
 			continueButton.Selected += OnCancel;
 			AddMenuEntry(continueButton);
 			return continueButton;

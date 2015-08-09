@@ -41,8 +41,8 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public MenuEntryInt(StyleSheet style, string text, int startValue)
-			: base(style, text)
+		public MenuEntryInt(string text, int startValue)
+			: base(text)
 		{
 			Label = text;
 			Value = startValue;

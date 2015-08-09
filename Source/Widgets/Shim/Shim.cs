@@ -26,9 +26,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// constructor
 		/// </summary>
-		/// <param name="style"></param>
-		public Shim(StyleSheet style)
-			: base(style)
+		public Shim()
 		{
 		}
 

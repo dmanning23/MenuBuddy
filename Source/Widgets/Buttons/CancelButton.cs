@@ -33,12 +33,8 @@ namespace MenuBuddy
 
 		#region Methods
 
-		public CancelButton(StyleSheet style, ContentManager content, string iconTextureName = "Cancel", int iconSize = 96)
-			: base(style)
+		public CancelButton(string iconTextureName = "Cancel", int iconSize = 96)
 		{
-			style.Transition = TransitionType.PopRight;
-			style.HasBackground = false;
-
 			IconTextureName = iconTextureName;
 			IconSize = iconSize;
 		}
@@ -49,10 +45,15 @@ namespace MenuBuddy
 
 			//load the icon
 			StyleSheet style = Style;
+			style.Transition = TransitionType.PopRight;
+			style.HasBackground = false;
 			style.Texture = screen.ScreenManager.Game.Content.Load<Texture2D>(IconTextureName);
-			var image = new Image(style);
-			image.Vertical = VerticalAlignment.Center;
-			image.Horizontal = HorizontalAlignment.Center;
+			var image = new Image
+			{
+				Vertical = VerticalAlignment.Center,
+				Horizontal = HorizontalAlignment.Center,
+				Style = this.Style
+			};
 			AddItem(image);
 
 			DrawWhenInactive = false;

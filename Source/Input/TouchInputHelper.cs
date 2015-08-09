@@ -140,9 +140,17 @@ namespace MenuBuddy
 			{
 				if (button.Rect.Contains(point))
 				{
-					OnButtonClick(screen, button);
-					break;
+					//run the selected event
+					button.OnSelect(null);
+					return;
 				}
+			}
+
+			//if no buttons were clicked, send it to the game screen itself
+			var gameScreen = screen as IGameScreen;
+			if (null != gameScreen)
+			{
+				gameScreen.Click(point);
 			}
 		}
 
@@ -158,20 +166,6 @@ namespace MenuBuddy
 		private void OnButtonNotHighlighted(IButton button)
 		{
 			button.Highlight = false;
-		}
-
-		/// <summary>
-		/// Called when a widget is selected
-		/// </summary>
-		/// <param name="screen"></param>
-		/// <param name="button"></param>
-		private void OnButtonClick(WidgetScreen screen, IButton button)
-		{
-			//run the selected event
-			button.OnSelect(null);
-
-			//tell the menu too
-			//screen.OnSelect(null);
 		}
 
 		#endregion //Methods

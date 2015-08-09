@@ -132,7 +132,7 @@ namespace MenuBuddy
 		/// </summary>
 		protected CancelButton AddCancelButton()
 		{
-			var cancelButton = new CancelButton(Style, ScreenManager.Game.Content);
+			var cancelButton = new CancelButton();
 			cancelButton.Selected += OnCancel;
 			AddItem(cancelButton);
 			return cancelButton;

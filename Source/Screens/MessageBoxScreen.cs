@@ -5,7 +5,6 @@ using ResolutionBuddy;
 using System;
 using System.Text;
 using FontBuddyLib;
-using Vector2Extensions;
 
 namespace MenuBuddy
 {
@@ -67,17 +66,21 @@ namespace MenuBuddy
 			base.LoadContent();
 
 			//Add the background image
-			var bkgImage = new BackgroundImage(ScreenManager.Styles.MessageBoxStyle)
+			var bkgImage = new BackgroundImage
 			{
 				Layer = -1.0f,
-				FillRect = true
+				FillRect = true,
+				Style = DefaultStyles.Instance().MessageBoxStyle
 			};
 			AddItem(bkgImage);
 
 			//Set the label text
-			var label = new Label(ScreenManager.Styles.MessageBoxStyle, Message);
+			var label = new Label(Message)
+			{
+				Style = DefaultStyles.Instance().MessageBoxStyle
+			};
 			label.Style.SelectedFont = new FontBuddy();
-			label.Style.SelectedFont.Font = ScreenManager.Styles.MessageBoxStyle.SelectedFont.Font;
+			label.Style.SelectedFont.Font = DefaultStyles.Instance().MessageBoxStyle.SelectedFont.Font;
 			label.Style.SelectedTextColor = label.Style.UnselectedTextColor;
 			label.Style.HasOutline = false;
 			label.Style.HasBackground = false;
@@ -129,8 +132,11 @@ namespace MenuBuddy
 			}
 
 			//Create the menu entry for "OK"
-			var okEntry = new MenuEntry(ScreenManager.Styles.MessageBoxStyle, okText.ToString());
-			okEntry.Style.Texture = ScreenManager.Styles.MenuEntryStyle.Texture;
+			var okEntry = new MenuEntry(okText.ToString())
+			{
+				Style = DefaultStyles.Instance().MessageBoxStyle
+			};
+			okEntry.Style.Texture = DefaultStyles.Instance().MenuEntryStyle.Texture;
 			okEntry.Selected += OnAccept;
 			AddMenuEntry(okEntry);
 		}
@@ -157,8 +163,11 @@ namespace MenuBuddy
 			}
 
 			//Create the menu entry "Cancel"
-			var cancel = new MenuEntry(ScreenManager.Styles.MessageBoxStyle, cancelText.ToString());
-			cancel.Style.Texture = ScreenManager.Styles.MenuEntryStyle.Texture;
+			var cancel = new MenuEntry(cancelText.ToString())
+			{
+				Style = DefaultStyles.Instance().MessageBoxStyle
+			};
+			cancel.Style.Texture = DefaultStyles.Instance().MenuEntryStyle.Texture;
 			cancel.Selected += OnCancel;
 			AddMenuEntry(cancel);
 		}

@@ -33,6 +33,8 @@ namespace MenuBuddy
 
 		#region Properties
 
+		public string Name { get; set; }
+
 		public IFontBuddy SelectedFont
 		{
 			get { return _selectedFontStyle.Style; }
@@ -211,6 +213,7 @@ namespace MenuBuddy
 		public StyleSheet(StyleSheet styles)
 		{
 			//Shallow copy to all the parent style sheet
+			Name = styles.Name;
 			_selectedFontStyle = styles._selectedFontStyle;
 			_unselectedFontStyle = styles._unselectedFontStyle;
 			_selectedTextColorStyle = styles._selectedTextColorStyle;
@@ -228,6 +231,11 @@ namespace MenuBuddy
 			_selectedSoundEffect = styles._selectedSoundEffect;
 			_selectionChangeSoundEffect = styles._selectionChangeSoundEffect;
 			_texture = styles._texture;
+		}
+
+		public override string ToString()
+		{
+			return Name;
 		}
 
 		#endregion //Methods

@@ -120,8 +120,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new button with the specified text.
 		/// </summary>
-		protected BaseButton(StyleSheet style)
-			: base(style)
+		protected BaseButton()
 		{
 		}
 

@@ -14,17 +14,15 @@ namespace MenuBuddy
 		/// <summary>
 		/// constructor!
 		/// </summary>
-		/// <param name="style"></param>
-		public BackgroundImage(StyleSheet style)
-			: base(style)
+		public BackgroundImage()
 		{
 		}
 
 		/// <summary>
 		/// constructor!
 		/// </summary>
-		public BackgroundImage(StyleSheet style, Texture2D texture)
-			: base(style, texture)
+		public BackgroundImage(Texture2D texture)
+			: base(texture)
 		{
 		}
 

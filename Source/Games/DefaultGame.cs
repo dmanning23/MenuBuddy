@@ -1,9 +1,6 @@
-using MenuBuddy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using MouseBuddy;
 using ResolutionBuddy;
-using TouchScreenBuddy;
 
 namespace MenuBuddy
 {
@@ -34,11 +31,6 @@ namespace MenuBuddy
 		/// </summary>
 		protected bool FullScreen { get; set; }
 
-		/// <summary>
-		/// The style sheet of this game.
-		/// </summary>
-		protected DefaultStyles GameStyle { get; set; }
-
 		#endregion //Properties
 
 		#region Methods
@@ -51,6 +43,14 @@ namespace MenuBuddy
 
 			DesiredScreenResolution = new Point(1280, 720);
 			FullScreen = false;
+
+			DefaultStyles.MenuTitleFontName = @"Fonts\ArialBlack72";
+			DefaultStyles.MenuEntryFontName = @"Fonts\ArialBlack48";
+			DefaultStyles.MessageBoxFontName = @"Fonts\ArialBlack24";
+			DefaultStyles.MenuSelectSoundName = @"MenuSelect";
+			DefaultStyles.MenuChangeSoundName = @"MenuMove";
+			DefaultStyles.MessageBoxBackground = @"gradient";
+			DefaultStyles.ButtonBackground = @"AlphaGradient";
 		}
 
 		/// <summary>

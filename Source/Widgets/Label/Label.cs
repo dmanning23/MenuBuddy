@@ -32,10 +32,8 @@ namespace MenuBuddy
 		/// <summary>
 		/// constructor
 		/// </summary>
-		/// <param name="style"></param>
 		/// <param name="text"></param>
-		public Label(StyleSheet style, string text)
-			: base(style)
+		public Label(string text)
 		{
 			Text = text;
 		}
