@@ -15,7 +15,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs an error message box from the specified exception.
 		/// </summary>
-		public ErrorScreen(Exception exception) : base(GetErrorMessage(exception), false)
+		public ErrorScreen(Exception exception) : base(GetErrorMessage(exception), false, "Error Screen")
 		{
 		}
 

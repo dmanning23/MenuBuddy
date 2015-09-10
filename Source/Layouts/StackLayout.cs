@@ -16,6 +16,26 @@ namespace MenuBuddy
 		/// </summary>
 		public StackAlignment Alignment { get; set; }
 
+		public override Point Position
+		{
+			get
+			{
+				return base.Position;
+			}
+			set
+			{
+				base.Position = value;
+
+				//readd all the items
+				var items = Items;
+				Items = new List<IScreenItem>();
+				foreach (var item in items)
+				{
+					AddItem(item);
+				}
+			}
+		}
+
 		#endregion //Properties
 
 		#region Methods

@@ -34,7 +34,8 @@ namespace MenuBuddy
 		/// Constructor lets the caller specify whether to include the standard
 		/// "A=ok, B=cancel" usage text prompt.
 		/// </summary>
-		public MessageBoxScreen(string message, bool includeUsageText)
+		public MessageBoxScreen(string message, bool includeUsageText, string menuTitle = "") :
+			base(menuTitle)
 		{
 			//grab the message
 			Message = message;

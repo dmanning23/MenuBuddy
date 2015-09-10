@@ -75,7 +75,7 @@ namespace MenuBuddy
 			}
 		}
 
-		public Point Position { get; set; }
+		public virtual Point Position { get; set; }
 
 		/// <summary>
 		/// Where to layer the item.

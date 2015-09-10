@@ -81,7 +81,7 @@ namespace MenuBuddy
 
 		#endregion
 
-		#region Initialization
+		#region Methods
 
 		/// <summary>
 		/// Constructor.
@@ -143,7 +143,7 @@ namespace MenuBuddy
 			return continueButton;
 		}
 
-		#endregion
+		#endregion //Methods
 
 		#region Handle Input
 

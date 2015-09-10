@@ -76,18 +76,11 @@ namespace MenuBuddy
 			//Add the loading message
 			if (LoadingIsSlow)
 			{
-				//create the hourglass widget
-				var hourglass = new Image()
+				var layout = new StackLayout
 				{
-					Texture = ScreenManager.Game.Content.Load<Texture2D>("hourglass"),
-					Horizontal = HorizontalAlignment.Left,
-					Vertical = VerticalAlignment.Center,
-					Scale = 1.5f
+					Alignment = StackAlignment.Left,
+					
 				};
-
-				//create the shim to place between the widgets
-				var shim = new Shim();
-				shim.Padding = new Vector2(32f, 0);
 
 				//create the message widget
 				var msg = new Label("Loading...")
@@ -97,25 +90,43 @@ namespace MenuBuddy
 					Vertical = VerticalAlignment.Center
 				};
 
-				//get the width of the stack panel
-				var width = hourglass.Rect.Width;
-				width += msg.Rect.Width;
-
-				var layout = new StackLayout()
+				Texture2D hourglassTex = null;
+				try
 				{
-					Alignment = StackAlignment.Left,
-					Position = new Point(Resolution.TitleSafeArea.Center.X - (width / 2),
-						Resolution.TitleSafeArea.Center.Y)
-				};
-				layout.AddItem(hourglass);
-				layout.AddItem(shim);
-				layout.AddItem(msg);
+					hourglassTex = ScreenManager.Game.Content.Load<Texture2D>("hourglass");
+				}
+				catch (Exception)
+				{
+					//No hourglass texture :P
+				}
 
+				if (null != hourglassTex)
+				{
+					//create the hourglass widget
+					var hourglass = new Image()
+					{
+						Texture = hourglassTex,
+						Horizontal = HorizontalAlignment.Left,
+						Vertical = VerticalAlignment.Center,
+						Scale = 1.5f
+					};
+					layout.AddItem(hourglass);
+
+					//create the shim to place between the widgets
+					var shim = new Shim();
+					shim.Padding = new Vector2(16f, 0);
+					layout.AddItem(shim);
+				}
+
+				layout.AddItem(msg);
 				AddItem(layout);
+
+				layout.Position = new Point(Resolution.TitleSafeArea.Center.X - layout.Rect.Width / 2,
+						Resolution.TitleSafeArea.Center.Y);
 			}
 		}
 
-		#endregion
+		#endregion //Initialization
 
 		#region Update and Draw
 
@@ -184,7 +195,7 @@ namespace MenuBuddy
 			}
 		}
 
-		#endregion
+		#endregion //Update and Draw
 
 		#region Background Thread
 
@@ -203,6 +214,6 @@ namespace MenuBuddy
 			}
 		}
 
-		#endregion
+		#endregion //Background Thread
 	}
 }
