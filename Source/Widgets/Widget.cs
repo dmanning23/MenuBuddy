@@ -227,7 +227,7 @@ namespace MenuBuddy
 
 		public virtual float Scale { get; set; }
 
-		public Vector2 Padding { get; set; }
+		public virtual Vector2 Padding { get; set; }
 
 		#endregion //Properties
 

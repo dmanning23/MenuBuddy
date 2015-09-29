@@ -29,6 +29,17 @@ namespace MenuBuddy
 			_instance = inst;
 		}
 
+
+		public static void InitUnitTests()
+		{
+			_instance = new DefaultStyles();
+			_instance.MainStyle = new StyleSheet
+			{
+				Name = "MainStyle",
+				Transition = TransitionType.SlideLeft
+			};
+		}
+
 		#endregion //Singleton
 
 		#region Fields
@@ -47,7 +58,7 @@ namespace MenuBuddy
 		public static string MessageBoxBackground { protected get; set; }
 		public static string ButtonBackground { protected get; set; }
 
-		public StyleSheet MainStyle { get; private set; }
+		public StyleSheet MainStyle { get; set; }
 		public StyleSheet MenuTitleStyle { get; private set; }
 		public StyleSheet MenuEntryStyle { get; private set; }
 		public StyleSheet MessageBoxStyle { get; private set; }
@@ -59,6 +70,13 @@ namespace MenuBuddy
 		protected DefaultStyles(Game game)
 		{
 			_game = game;
+		}
+
+		/// <summary>
+		/// default constructor used for unit tests
+		/// </summary>
+		protected DefaultStyles()
+		{
 		}
 
 		protected virtual void Initialize()

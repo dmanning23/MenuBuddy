@@ -1,6 +1,7 @@
 using GameTimer;
 using Microsoft.Xna.Framework;
 
+using Vector2Extensions;
 namespace MenuBuddy
 {
 	public class Shim : Widget, IShim
@@ -9,13 +10,54 @@ namespace MenuBuddy
 
 		public override Rectangle Rect
 		{
-			get { return base.Rect; }
+			get
+			{
+				return base.Rect;
+			}
+
 			set
 			{
-				//set the rectangle
-				var size = new Vector2(value.Width, value.Height);
-				size += Padding * 2;
-				base.Rect = new Rectangle(value.X, value.Y, (int)size.X, (int)size.Y);
+				//if the user implicitly sets the rect, the padding and scale are reset
+				base.Padding = Vector2.Zero;
+				base.Scale = 1f;
+				base.Rect = value;
+			}
+		}
+
+		public override Vector2 Padding
+		{
+			get
+			{
+				return base.Padding;
+			}
+
+			set
+			{
+				var oldPadding = (Padding * 2) * Scale;
+				var size = new Vector2(Rect.Width - oldPadding.X, Rect.Height - oldPadding.Y);
+
+				base.Padding = value;
+				size += (Padding * 2) * Scale;
+				base.Rect = new Rectangle(Rect.X, Rect.Y, (int)size.X, (int)size.Y);
+			}
+		}
+
+		public override float Scale
+		{
+			get
+			{
+				return base.Scale;
+			}
+
+			set
+			{
+				var oldPadding = (Padding * 2) * Scale;
+				var size = new Vector2(Rect.Width - oldPadding.X, Rect.Height - oldPadding.Y);
+
+				base.Scale = value;
+				size *= Scale;
+				size += (Padding * 2) * Scale;
+				base.Rect = new Rectangle(Rect.X, Rect.Y, (int)size.X, (int)size.Y);
 			}
 		}
 
