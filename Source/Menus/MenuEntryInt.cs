@@ -12,7 +12,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// The text of this menu entry without the value of it
 		/// </summary>
-		public string Label { get; set; }
+		public string LabelText { get; set; }
 
 		/// <summary>
 		/// The current value of this menu entry.
@@ -44,7 +44,7 @@ namespace MenuBuddy
 		public MenuEntryInt(string text, int startValue)
 			: base(text)
 		{
-			Label = text;
+			LabelText = text;
 			Value = startValue;
 			Step = 1;
 			Min = 0;
@@ -73,7 +73,7 @@ namespace MenuBuddy
 		/// </summary>
 		private void SetMenuEntryText()
 		{
-			Text = string.Format("{0}: {1}", Label, Value);
+			Text = string.Format("{0}: {1}", LabelText, Value);
 		}
 
 		#endregion //Methods

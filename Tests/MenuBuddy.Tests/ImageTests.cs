@@ -42,10 +42,8 @@ namespace MenuBuddy.Tests
 	{
 		#region Fields
 
-		private Mock<IScreen> _screen;
 		private Mock<Image> _mockImage;
 		private Image _image;
-
 
 		#endregion //Fields
 
