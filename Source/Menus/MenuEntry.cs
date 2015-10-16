@@ -1,5 +1,5 @@
-using System;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace MenuBuddy
 {
@@ -14,23 +14,14 @@ namespace MenuBuddy
 		#region Fields
 
 		private string _text;
-		private Label _label;
 
 		#endregion //Fields
 
 		#region Properties
 
-		public override Rectangle Rect
-		{
-			get
-			{
-				var rect = base.Rect;
-				rect.Width = 768;
-				return rect;
-			}
-		}
-
-		public string Text 
+		public Label Label { get; private set; }
+		
+		public string Text
 		{
 			get
 			{
@@ -39,9 +30,9 @@ namespace MenuBuddy
 			set
 			{
 				_text = value;
-				if (null != _label)
+				if (null != Label)
 				{
-					_label.Text = value;
+					Label.Text = value;
 				}
 			}
 		}
@@ -105,6 +96,8 @@ namespace MenuBuddy
 		{
 			Style = DefaultStyles.Instance().MenuEntryStyle;
 			Text = text;
+			Horizontal = HorizontalAlignment.Center;
+			Vertical = VerticalAlignment.Top;
 		}
 
 		public override void LoadContent(IScreen screen)
@@ -112,13 +105,18 @@ namespace MenuBuddy
 			base.LoadContent(screen);
 
 			//Add the text label
-			_label = new Label(Text)
+			Label = new Label(Text)
 			{
-				Vertical = VerticalAlignment.Center,
-				Horizontal = HorizontalAlignment.Center,
-				Style = this.Style
+				Style = this.Style,
+                Vertical = VerticalAlignment.Top,
+				Horizontal = HorizontalAlignment.Center
 			};
-			AddItem(_label);
+
+			//get the label rect
+			var labelRect = Label.Rect;
+			Size = new Vector2(768f, labelRect.Size.Y);
+
+			AddItem(Label);
 		}
 
 		public override string ToString()

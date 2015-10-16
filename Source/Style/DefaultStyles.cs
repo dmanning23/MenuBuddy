@@ -60,7 +60,7 @@ namespace MenuBuddy
 
 		public StyleSheet MainStyle { get; set; }
 		public StyleSheet MenuTitleStyle { get; private set; }
-		public StyleSheet MenuEntryStyle { get; private set; }
+		public StyleSheet MenuEntryStyle { get; set; }
 		public StyleSheet MessageBoxStyle { get; private set; }
 
 		#endregion //Properties

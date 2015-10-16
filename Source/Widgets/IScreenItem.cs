@@ -17,7 +17,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Set the position of this screen item
 		/// </summary>
-		Point Position { get; set; }
+		Point Position { set; }
 
 		/// <summary>
 		/// Where to layer the item.
@@ -34,6 +34,16 @@ namespace MenuBuddy
 		/// You can set this flag to prevent drawing this button when the screen is inactive.
 		/// </summary>
 		bool DrawWhenInactive { set; }
+
+		/// <summary>
+		/// horizontal alignment of this item
+		/// </summary>
+		HorizontalAlignment Horizontal { get; set; }
+
+		/// <summary>
+		/// vertical alignment of this item
+		/// </summary>
+		VerticalAlignment Vertical { get; set; }
 
 		/// <summary>
 		/// Updates the screen item.

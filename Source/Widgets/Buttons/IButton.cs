@@ -9,6 +9,8 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IButton : IWidget, IScreenItemContainer
 	{
+		Vector2 Size { set; }
+
 		/// <summary>
 		/// A description of the function of the button.
 		/// </summary>

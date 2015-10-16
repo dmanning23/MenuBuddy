@@ -99,6 +99,8 @@ namespace MenuBuddy
 			//Create the stack layout for teh menu entries
 			MenuEntries = new StackLayout()
 			{
+				Alignment = StackAlignment.Top,
+				Horizontal = HorizontalAlignment.Center,
 				Layer = 1.0f
 			};
 			var pos = new Point(Resolution.TitleSafeArea.Center.X,
@@ -127,7 +129,6 @@ namespace MenuBuddy
 
 		protected void AddMenuEntry(IMenuEntry menuEntry)
 		{
-			menuEntry.Horizontal = HorizontalAlignment.Center;
 			menuEntry.LoadContent(this);
 			MenuEntries.AddItem(menuEntry);
 		}

@@ -21,9 +21,27 @@ namespace MenuBuddy
 		/// </summary>
 		private bool _drawWhenInactive;
 
+		private Vector2 _size;
+
 		#endregion //Fields
 
 		#region Properties
+
+		public Vector2 Size
+		{
+			protected get
+			{
+				return _size;
+			}
+			set
+			{
+				if (_size != value)
+				{
+					_size = value;
+					CalculateRect();
+				}
+			}
+		}
 
 		/// <summary>
 		/// The layout to add to this button
@@ -61,10 +79,10 @@ namespace MenuBuddy
 			get { return base.Position; }
 			set
 			{
-				base.Position = value;
-				if (null != Layout)
+				if (base.Position != value)
 				{
-					Layout.Position = value;
+					base.Position = value;
+					CalculateRect();
 				}
 			}
 		}
@@ -127,16 +145,15 @@ namespace MenuBuddy
 		public void AddItem(IScreenItem item)
 		{
 			Layout.AddItem(item);
-
-			//Set the rect width and height to the layout width and height
-			var pos = Position;
-			Rect = new Rectangle(pos.X, pos.Y, Layout.Rect.Width, Layout.Rect.Height);
+			CalculateRect();
 		}
 
 		public bool RemoveItem(IScreenItem item)
 		{
-			return Layout.RemoveItem(item);
-		}
+			var result = Layout.RemoveItem(item);
+			CalculateRect();
+			return result;
+        }
 
 		public override void Update(IScreen screen, GameTimer.GameClock gameTime)
 		{
@@ -146,6 +163,11 @@ namespace MenuBuddy
 		public override void Draw(IScreen screen, GameTimer.GameClock gameTime)
 		{
 			Layout.Draw(screen, gameTime);
+		}
+
+		protected override void CalculateRect()
+		{
+			_rect = Layout.Rect;
 		}
 
 		#endregion //Methods

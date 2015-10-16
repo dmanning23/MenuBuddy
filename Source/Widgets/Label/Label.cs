@@ -6,24 +6,32 @@ namespace MenuBuddy
 {
 	public class Label : Widget, ILabel
 	{
-		#region Properties
+		#region Fields
 
-		public override Rectangle Rect
-		{
-			get { return base.Rect; }
-			set
-			{
-				//set the rectangle
-				var size = Style.SelectedFont.Font.MeasureString(Text) * Scale;
-				size += Padding * 2;
-				base.Rect = new Rectangle(value.X, value.Y, (int)size.X, (int)size.Y);
-			}
-		}
+		private string _text;
+
+		#endregion //Fields
+
+		#region Properties
 
 		/// <summary>
 		/// The text of this label
 		/// </summary>
-		public string Text { get; set; }
+		public string Text
+		{
+			get
+			{
+				return _text;
+			}
+			set
+			{
+				if (_text != value)
+				{
+					_text = value;
+					CalculateRect();
+				}
+			}
+		}
 
 		#endregion //Properties
 
@@ -72,6 +80,30 @@ namespace MenuBuddy
 				color,
 				screen.ScreenManager.SpriteBatch,
 				gameTime);
+		}
+
+		protected override void CalculateRect()
+		{
+			//get the size of the rect
+			var size = Style.SelectedFont.MeasureString(Text);
+			size = (size + (Padding * 2f)) * Scale;
+
+			//set the x component
+			Vector2 pos = Position.ToVector2();
+			switch (Horizontal)
+			{
+				case HorizontalAlignment.Center: { pos.X -= size.X / 2f; } break;
+				case HorizontalAlignment.Right: { pos.X -= size.X; } break;
+			}
+
+			//set the y component
+			switch (Vertical)
+			{
+				case VerticalAlignment.Center: { pos.Y -= size.Y / 2f; } break;
+				case VerticalAlignment.Bottom: { pos.Y -= size.Y; } break;
+			}
+
+			_rect = new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
 		}
 
 		#endregion //Methods

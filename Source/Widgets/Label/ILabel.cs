@@ -1,7 +1,3 @@
-using FontBuddyLib;
-using GameTimer;
-using Microsoft.Xna.Framework;
-
 namespace MenuBuddy
 {
 	/// <summary>
@@ -12,6 +8,6 @@ namespace MenuBuddy
 		/// <summary>
 		/// The text of this label
 		/// </summary>
-		string Text { get; }
+		string Text { get; set; }
 	}
 }

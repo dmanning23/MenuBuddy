@@ -257,6 +257,9 @@
     <Compile Include="..\Source\Widgets\Images\Image.cs">
       <Link>Widgets\Images\Image.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Widgets\IScalable.cs">
+      <Link>Widgets\IScalable.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Widgets\IScreenItem.cs">
       <Link>Widgets\IScreenItem.cs</Link>
     </Compile>

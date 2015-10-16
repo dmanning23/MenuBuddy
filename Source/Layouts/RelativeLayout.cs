@@ -6,36 +6,86 @@ namespace MenuBuddy
 	/// This is a layout that places items based on the alignmentof the item
 	/// Set the rectangle of this layout first, then add all the items
 	/// </summary>
-	public class RelativeLayout : Layout
+	public class RelativeLayout : Layout, IScalable
 	{
 		#region Fields
 
-		/// <summary>
-		/// This layout type stores its own rect
-		/// </summary>
-		private Rectangle _rect;
+		private Vector2 _size;
 
 		#endregion //Fields
 
 		#region Properties
 
-		public override Rectangle Rect
+		public Vector2 Size
 		{
-			get { return _rect; }
-		}
-
-		public Rectangle Rectangle
-		{
+			get
+			{
+				return _size;
+			}
 			set
 			{
-				//Grab the rect for this layout
-				_rect = value;
+				_size = value;
+				UpdateItems();
+			}
+		}
 
-				//update the positions of all the current widgets
-				foreach (var item in Items)
-				{
-					SetWidgetPosition(item);
-				}
+		public override Point Position
+		{
+			get
+			{
+				return base.Position;
+			}
+			set
+			{
+				base.Position = value;
+				UpdateItems();
+			}
+		}
+
+		public override HorizontalAlignment Horizontal
+		{
+			get
+			{
+				return base.Horizontal;
+			}
+			set
+			{
+				base.Horizontal = value;
+				UpdateItems();
+			}
+		}
+
+		public override VerticalAlignment Vertical
+		{
+			get
+			{
+				return base.Vertical;
+			}
+			set
+			{
+				base.Vertical = value;
+				UpdateItems();
+			}
+		}
+
+		public override float Scale
+		{
+			get
+			{
+				return base.Scale;
+			}
+
+			set
+			{
+				base.Scale = value;
+			}
+		}
+
+		public override Rectangle Rect
+		{
+			get
+			{
+				return CalculateRect();
 			}
 		}
 
@@ -48,7 +98,7 @@ namespace MenuBuddy
 		/// </summary>
 		public RelativeLayout()
 		{
-			_rect = Rectangle.Empty;
+			_size = Vector2.Zero;
 		}
 
 		/// <summary>
@@ -57,30 +107,41 @@ namespace MenuBuddy
 		/// <param name="item"></param>
 		public override void AddItem(IScreenItem item)
 		{
-			SetWidgetPosition(item);
+			SetWidgetPosition(item, CalculateRect());
 
 			//store the new item
 			Items.Add(item);
 			Sort();
+		}
 
-			//should the layout rect expand?
-			var expanded = false;
+		private Rectangle CalculateRect()
+		{
 			var pos = Position;
-			var rect = base.Rect;
-			if (rect.Width > _rect.Width)
+
+			switch (Horizontal)
 			{
-				rect = new Rectangle(pos.X, pos.Y, rect.Width, rect.Height);
-				expanded = true;
-			}
-			if (rect.Height > _rect.Height)
-			{
-				rect = new Rectangle(pos.X, pos.Y, rect.Width, rect.Height);
-				expanded = true;
+				case HorizontalAlignment.Center: { pos.X -= (int)(Size.X / 2f); } break;
+				case HorizontalAlignment.Right: { pos.X -= (int)Size.X; } break;
 			}
 
-			if (expanded)
+			switch (Vertical)
 			{
-				Rectangle = rect;
+				case VerticalAlignment.Center: { pos.Y -= (int)(Size.Y / 2f); } break;
+				case VerticalAlignment.Bottom: { pos.Y -= (int)Size.Y; } break;
+			}
+
+			return new Rectangle(pos.X, pos.Y, (int)Size.X, (int)Size.Y);
+		}
+
+		private void UpdateItems()
+		{
+			//Grab the rect for this layout
+			var rect = CalculateRect();
+
+			//update the positions of all the current widgets
+			foreach (var item in Items)
+			{
+				SetWidgetPosition(item, rect);
 			}
 		}
 
@@ -88,7 +149,7 @@ namespace MenuBuddy
 		/// Set the position of a widget to be relative to this layout
 		/// </summary>
 		/// <param name="item"></param>
-		private void SetWidgetPosition(IScreenItem item)
+		private void SetWidgetPosition(IScreenItem item, Rectangle rect)
 		{
 			//Check if the item is a widget
 			IWidget widget = item as IWidget;

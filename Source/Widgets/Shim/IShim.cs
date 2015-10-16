@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 
 namespace MenuBuddy
 {
@@ -6,5 +7,9 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IShim : IWidget
 	{
+		Vector2 Size
+		{
+			set;
+		}
 	}
 }

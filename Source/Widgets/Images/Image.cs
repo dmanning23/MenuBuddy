@@ -9,7 +9,54 @@ namespace MenuBuddy
 	/// </summary>
 	public class Image : Widget, IImage
 	{
+		#region Fields
+
+		private Vector2 _size;
+		private bool _fillRect;
+
+		#endregion //Fields
+
 		#region Properties
+
+		public virtual int Width
+		{
+			get
+			{
+				return Texture.Width;
+			}
+		}
+
+		public virtual int Height
+		{
+			get
+			{
+				return Texture.Height;
+			}
+		}
+
+		public virtual Rectangle Bounds
+		{
+			get
+			{
+				return Texture.Bounds;
+			}
+		}
+
+		public Vector2 Size
+		{
+			protected get
+			{
+				return _size;
+			}
+			set
+			{
+				if (_size != value)
+				{
+					_size = value;
+					CalculateRect();
+				}
+			}
+		}
 
 		public Texture2D Texture
 		{
@@ -17,56 +64,25 @@ namespace MenuBuddy
 			set
 			{
 				Style.Texture = value;
-				Rect = new Rectangle(Rect.X, Rect.Y, Style.Texture.Width, Style.Texture.Height);
+				CalculateRect();
 			}
 		}
 
-		public override Rectangle Rect
+		public bool FillRect
 		{
 			get
 			{
-				return base.Rect;
-			}
+				return _fillRect;
+            }
 			set
 			{
-				Vector2 size;
-				if (FillRect)
+				if (_fillRect != value)
 				{
-					size = new Vector2(value.Width, value.Height);
+					_fillRect = value;
+					CalculateRect();
 				}
-				else
-				{
-					if (null != Texture)
-					{
-						size = new Vector2(Texture.Width, Texture.Height);
-						size *= Scale;
-						size += Padding * 2;
-					}
-					else
-					{
-						size = Padding * 2;
-					}
-				}
-				base.Rect = new Rectangle(value.X, value.Y, (int)size.X, (int)size.Y);
 			}
 		}
-
-		public override float Scale
-		{
-			get
-			{
-				return base.Scale;
-			}
-			set
-			{
-				base.Scale = value;
-
-				//Set the rect to grab the new scale value
-				Rect = Rect;
-			}
-		}
-
-		public bool FillRect { get; set; }
 
 		#endregion //Properties
 
@@ -106,16 +122,40 @@ namespace MenuBuddy
 			//Get the transition location
 			var pos = DrawPosition(screen);
 
-			var width = Texture.Width * Scale;
-			var height = Texture.Height * Scale;
+			//draw the item with all the correct parameters
+			screen.ScreenManager.SpriteBatch.Draw(Texture, new Rectangle((int)pos.X, (int)pos.Y, Rect.Width, Rect.Height), color);
+		}
+
+		protected override void CalculateRect()
+		{
+			//get the size of the rect
+			Vector2 size;
 			if (FillRect)
 			{
-				width = Rect.Width;
-				height = Rect.Height;
+				size = Size;
+			}
+			else
+			{
+				size = new Vector2(Width, Height);
+			}
+			size = (size + (Padding * 2f)) * Scale;
+
+			//set the x component
+			Vector2 pos = Position.ToVector2();
+			switch (Horizontal)
+			{
+				case HorizontalAlignment.Center: { pos.X -= size.X / 2f; } break;
+				case HorizontalAlignment.Right: { pos.X -= size.X; } break;
 			}
 
-			//draw the item with all the correct parameters
-			screen.ScreenManager.SpriteBatch.Draw(Texture, new Rectangle((int)pos.X, (int)pos.Y, (int)width, (int)height), color);
+			//set the y component
+			switch (Vertical)
+			{
+				case VerticalAlignment.Center: { pos.Y -= size.Y / 2f; } break;
+				case VerticalAlignment.Bottom: { pos.Y -= size.Y; } break;
+			}
+
+			_rect = new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
 		}
 
 		#endregion //Methods

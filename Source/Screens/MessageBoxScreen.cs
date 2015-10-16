@@ -66,15 +66,6 @@ namespace MenuBuddy
 		{
 			base.LoadContent();
 
-			//Add the background image
-			var bkgImage = new BackgroundImage
-			{
-				Layer = -1.0f,
-				FillRect = true,
-				Style = DefaultStyles.Instance().MessageBoxStyle
-			};
-			AddItem(bkgImage);
-
 			//Set the label text
 			var label = new Label(Message)
 			{
@@ -87,22 +78,26 @@ namespace MenuBuddy
 			label.Style.HasBackground = false;
 			label.Horizontal = HorizontalAlignment.Center;
 			label.Vertical = VerticalAlignment.Bottom;
-			label.Position = MenuEntries.Position + new Point(0, -32);
+			label.Position = MenuEntries.Position + new Point(0, -64);
 			AddItem(label);
 
 			//Add the buttons
 			AddButtons(IncludeUsageText);
 
-			//Set the background rectangle to fill up under everything
-			const int hPad = 64;
-			const int vPad = 32;
-			var rect = Layout.Rect;
-			var backgroundRectangle = new Rectangle(rect.X - hPad,
-				rect.Y - vPad,
-				rect.Width + hPad * 2,
-				rect.Height + vPad * 2);
-			bkgImage.Rect = backgroundRectangle;
-		}
+			//Add the background image
+			var bkgImage = new BackgroundImage
+			{
+				Layer = -1.0f,
+				FillRect = true,
+				Style = DefaultStyles.Instance().MessageBoxStyle,
+				Padding = new Vector2(64, 32),
+				Position = new Point(MenuEntries.Position.X, Layout.Rect.Y),
+                Size = new Vector2(Layout.Rect.Width, Layout.Rect.Height),
+                Horizontal = HorizontalAlignment.Center,
+				Vertical = VerticalAlignment.Top
+			};
+			AddItem(bkgImage);
+        }
 
 		protected virtual void AddButtons(bool includeUsageText)
 		{

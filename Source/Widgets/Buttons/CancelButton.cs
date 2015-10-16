@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 
@@ -16,16 +15,6 @@ namespace MenuBuddy
 		/// The size of the icon to draw
 		/// </summary>
 		private int IconSize { get; set; }
-
-		public override Rectangle Rect
-		{
-			set
-			{
-				base.Rect = new Rectangle(Resolution.TitleSafeArea.Right - (int)(1.5f * IconSize),
-					Resolution.TitleSafeArea.Top,
-					IconSize, IconSize);
-			}
-		}
 
 		private string IconTextureName { get; set; }
 
@@ -52,9 +41,13 @@ namespace MenuBuddy
 			{
 				Vertical = VerticalAlignment.Center,
 				Horizontal = HorizontalAlignment.Center,
-				Style = this.Style
+				Style = this.Style,
+				Scale = 2f
 			};
 			AddItem(image);
+
+			Position = new Point(Resolution.TitleSafeArea.Right - (int)(1.5f * IconSize),
+					Resolution.TitleSafeArea.Top);
 
 			DrawWhenInactive = false;
 		}

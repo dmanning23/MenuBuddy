@@ -8,8 +8,15 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a list of items on a screen
 	/// </summary>
-	public abstract class Layout : IScreenItemContainer, IScreenItem
+	public abstract class Layout : IScreenItemContainer, IScreenItem, IScalable
 	{
+		#region Fields
+
+		private HorizontalAlignment _horizontal;
+		private VerticalAlignment _vertical;
+
+		#endregion //Fields
+
 		#region Properties
 
 		public bool DrawWhenInactive
@@ -83,6 +90,12 @@ namespace MenuBuddy
 		/// </summary>
 		public float Layer { get; set; }
 
+		public virtual HorizontalAlignment Horizontal { get; set; }
+
+		public virtual VerticalAlignment Vertical { get; set; }
+
+		public virtual float Scale { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -90,6 +103,7 @@ namespace MenuBuddy
 		protected Layout()
 		{
 			Items = new List<IScreenItem>();
+			Scale = 1.0f;
 		}
 
 		public abstract void AddItem(IScreenItem item);

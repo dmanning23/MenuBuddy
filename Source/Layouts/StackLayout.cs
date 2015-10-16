@@ -9,12 +9,36 @@ namespace MenuBuddy
 	/// </summary>
 	public class StackLayout : Layout
 	{
+		#region Fields
+
+		private StackAlignment _alignment;
+
+		#endregion //Fields
+
 		#region Properties
 
 		/// <summary>
 		/// How to layout the items in this stack
 		/// </summary>
-		public StackAlignment Alignment { get; set; }
+		public StackAlignment Alignment
+		{
+			get
+			{
+				return _alignment;
+			}
+			set
+			{
+				_alignment = value;
+
+				switch (_alignment)
+				{
+					case StackAlignment.Bottom: { Vertical = VerticalAlignment.Bottom; } break;
+					case StackAlignment.Top: { Vertical = VerticalAlignment.Top; } break;
+					case StackAlignment.Right: { Horizontal = HorizontalAlignment.Right; } break;
+					case StackAlignment.Left: { Horizontal = HorizontalAlignment.Left; } break;
+				}
+			}
+		}
 
 		public override Point Position
 		{
@@ -36,6 +60,103 @@ namespace MenuBuddy
 			}
 		}
 
+		public override float Scale
+		{
+			get
+			{
+				return base.Scale;
+			}
+			set
+			{
+				//grab the scale
+				base.Scale = value;
+
+				//readd all the items
+				var items = Items;
+				Items = new List<IScreenItem>();
+				foreach (var item in items)
+				{
+					AddItem(item);
+				}
+			}
+		}
+
+		public override HorizontalAlignment Horizontal
+		{
+			get
+			{
+				return base.Horizontal;
+			}
+			set
+			{
+				switch (Alignment)
+				{
+					case StackAlignment.Right:
+						{
+							base.Horizontal = HorizontalAlignment.Right;
+						}
+						break;
+					case StackAlignment.Left:
+						{
+							base.Horizontal = HorizontalAlignment.Left;
+						}
+						break;
+					default:
+						{
+							base.Horizontal = value;
+						}
+						break;
+				}
+				SetWidgetHorizontal(base.Horizontal);
+            }
+		}
+
+		private void SetWidgetHorizontal(HorizontalAlignment alignment)
+		{
+			foreach (var item in Items)
+			{
+				item.Horizontal = alignment;
+			}
+		}
+
+		public override VerticalAlignment Vertical
+		{
+			get
+			{
+				return base.Vertical;
+			}
+			set
+			{
+				switch (Alignment)
+				{
+					case StackAlignment.Bottom:
+						{
+							base.Vertical = VerticalAlignment.Bottom;
+						}
+						break;
+					case StackAlignment.Top:
+						{
+							base.Vertical = VerticalAlignment.Top;
+						}
+						break;
+					default:
+						{
+							base.Vertical = value;
+						}
+						break;
+				}
+				SetWidgetVertical(base.Vertical);
+			}
+		}
+
+		private void SetWidgetVertical(VerticalAlignment alignment)
+		{
+			foreach (var item in Items)
+			{
+				item.Vertical = alignment;
+			}
+		}
+
 		#endregion //Properties
 
 		#region Methods
@@ -43,10 +164,21 @@ namespace MenuBuddy
 		public StackLayout(StackAlignment alignment = StackAlignment.Top)
 		{
 			Alignment = alignment;
+			Horizontal = HorizontalAlignment.Center;
 		}
 
 		public override void AddItem(IScreenItem item)
 		{
+			item.Horizontal = Horizontal;
+			item.Vertical = Vertical;
+
+			//Check if it is a scalable item
+			var scalable = item as IScalable;
+			if (null != scalable)
+			{
+				scalable.Scale = Scale;
+			}
+
 			switch (Alignment)
 			{
 				case StackAlignment.Top:
@@ -70,6 +202,8 @@ namespace MenuBuddy
 				}
 				break;
 			}
+
+			Sort();
 		}
 
 		private void AddTop(IScreenItem item)
@@ -95,7 +229,6 @@ namespace MenuBuddy
 
 			//store the new item
 			Items.Add(item);
-			Sort();
 		}
 
 		private void AddLeft(IScreenItem item)
@@ -108,7 +241,6 @@ namespace MenuBuddy
 
 			//store the new item
 			Items.Add(item);
-			Sort();
 		}
 
 		private void AddRight(IScreenItem item)
@@ -121,7 +253,6 @@ namespace MenuBuddy
 
 			//store the new item
 			Items.Add(item);
-			Sort();
 		}
 
 		/// <summary>
@@ -145,7 +276,7 @@ namespace MenuBuddy
 			//add all the temp items to the layout list
 			foreach (var tempItem in tempItems)
 			{
-				Items.Add(tempItem);
+				AddItem(tempItem);
 			}
 		}
 
