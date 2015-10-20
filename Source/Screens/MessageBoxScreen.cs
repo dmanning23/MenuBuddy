@@ -5,6 +5,7 @@ using ResolutionBuddy;
 using System;
 using System.Text;
 using FontBuddyLib;
+using System.Linq;
 
 namespace MenuBuddy
 {
@@ -66,20 +67,38 @@ namespace MenuBuddy
 		{
 			base.LoadContent();
 
-			//Set the label text
-			var label = new Label(Message)
+			//Create the stack for the label text
+			var labelStack = new StackLayout()
 			{
-				Style = DefaultStyles.Instance().MessageBoxStyle
+				Horizontal = HorizontalAlignment.Center,
+				Vertical = VerticalAlignment.Bottom,
+				Alignment = StackAlignment.Bottom,
+				Position = MenuEntries.Position + new Point(0, -64)
 			};
-			label.Style.SelectedFont = new FontBuddy();
-			label.Style.SelectedFont.Font = DefaultStyles.Instance().MessageBoxStyle.SelectedFont.Font;
-			label.Style.SelectedTextColor = label.Style.UnselectedTextColor;
-			label.Style.HasOutline = false;
-			label.Style.HasBackground = false;
-			label.Horizontal = HorizontalAlignment.Center;
-			label.Vertical = VerticalAlignment.Bottom;
-			label.Position = MenuEntries.Position + new Point(0, -64);
-			AddItem(label);
+
+			//Split up the label text into lines
+			var lines = Message.Split('\n').Reverse().ToList();
+
+			//Add all the label text to the stack
+			foreach (var line in lines)
+			{
+				//Set the label text
+				var label = new Label(line)
+				{
+					Style = DefaultStyles.Instance().MessageBoxStyle
+				};
+				label.Style.SelectedFont = new FontBuddy();
+				label.Style.SelectedFont.Font = DefaultStyles.Instance().MessageBoxStyle.SelectedFont.Font;
+				label.Style.SelectedTextColor = label.Style.UnselectedTextColor;
+				label.Style.HasOutline = true;
+				label.Style.HasBackground = false;
+				label.Horizontal = HorizontalAlignment.Center;
+				//label.Vertical = VerticalAlignment.Bottom;
+
+				labelStack.AddItem(label);
+            }
+
+			AddItem(labelStack);
 
 			//Add the buttons
 			AddButtons(IncludeUsageText);

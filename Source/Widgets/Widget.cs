@@ -165,7 +165,7 @@ namespace MenuBuddy
 		/// </summary>
 		protected Widget()
 		{
-			_style = DefaultStyles.Instance().MainStyle;
+			_style = new StyleSheet(DefaultStyles.Instance().MainStyle);
 			_horizontal = HorizontalAlignment.Left;
 			_vertical = VerticalAlignment.Top;
 			_scale = 1.0f;

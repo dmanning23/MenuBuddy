@@ -161,8 +161,8 @@ namespace MenuBuddy
 
 		public override void Update(GameTime gameTime)
 		{
-			try
-			{
+			//try
+			//{
 				// Make a copy of the master screen list, to avoid confusion if the process of updating one screen adds or removes others.
 				ScreensToUpdate.Clear();
 
@@ -210,11 +210,11 @@ namespace MenuBuddy
 						}
 					}
 				}
-			}
-			catch (Exception ex)
-			{
-				ErrorScreen(ex);
-			}
+			//}
+			//catch (Exception ex)
+			//{
+			//	ErrorScreen(ex);
+			//}
 		}
 
 		/// <summary>
