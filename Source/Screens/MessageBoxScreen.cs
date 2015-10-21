@@ -73,8 +73,11 @@ namespace MenuBuddy
 				Horizontal = HorizontalAlignment.Center,
 				Vertical = VerticalAlignment.Bottom,
 				Alignment = StackAlignment.Bottom,
-				Position = MenuEntries.Position + new Point(0, -64)
+				Position = MenuEntries.Position
 			};
+
+			//add a shim at the bottom
+			labelStack.AddItem(new Shim() { Size = new Vector2(0, 16f) });
 
 			//Split up the label text into lines
 			var lines = Message.Split('\n').Reverse().ToList();
@@ -90,13 +93,13 @@ namespace MenuBuddy
 				label.Style.SelectedFont = new FontBuddy();
 				label.Style.SelectedFont.Font = DefaultStyles.Instance().MessageBoxStyle.SelectedFont.Font;
 				label.Style.SelectedTextColor = label.Style.UnselectedTextColor;
-				label.Style.HasOutline = true;
+				label.Style.HasOutline = false;
 				label.Style.HasBackground = false;
-				label.Horizontal = HorizontalAlignment.Center;
-				//label.Vertical = VerticalAlignment.Bottom;
-
 				labelStack.AddItem(label);
             }
+
+			//add a shim at the top too
+			labelStack.AddItem(new Shim() { Size = new Vector2(0, 32f) });
 
 			AddItem(labelStack);
 
@@ -104,7 +107,7 @@ namespace MenuBuddy
 			AddButtons(IncludeUsageText);
 
 			//Add the background image
-			var bkgImage = new BackgroundImage
+			var bkgImage = new BackgroundImage(DefaultStyles.Instance().MessageBoxStyle.Texture)
 			{
 				Layer = -1.0f,
 				FillRect = true,

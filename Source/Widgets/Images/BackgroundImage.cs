@@ -13,13 +13,6 @@ namespace MenuBuddy
 		/// <summary>
 		/// constructor!
 		/// </summary>
-		public BackgroundImage()
-		{
-		}
-
-		/// <summary>
-		/// constructor!
-		/// </summary>
 		public BackgroundImage(Texture2D texture)
 			: base(texture)
 		{

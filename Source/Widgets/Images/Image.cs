@@ -92,17 +92,9 @@ namespace MenuBuddy
 		/// <summary>
 		/// constructor!
 		/// </summary>
-		public Image()
+		public Image(Texture2D texture)
 		{
 			FillRect = false;
-		}
-
-		/// <summary>
-		/// constructor!
-		/// </summary>
-		public Image(Texture2D texture)
-			: this()
-		{
 			Texture = texture;
 		}
 

@@ -103,9 +103,8 @@ namespace MenuBuddy
 				if (null != hourglassTex)
 				{
 					//create the hourglass widget
-					var hourglass = new Image()
+					var hourglass = new Image(hourglassTex)
 					{
-						Texture = hourglassTex,
 						Horizontal = HorizontalAlignment.Left,
 						Vertical = VerticalAlignment.Center,
 						Scale = 1.5f
