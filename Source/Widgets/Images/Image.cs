@@ -90,6 +90,13 @@ namespace MenuBuddy
 		#region Methods
 
 		/// <summary>
+		/// only for unit testing
+		/// </summary>
+		public Image()
+		{
+		}
+
+		/// <summary>
 		/// constructor!
 		/// </summary>
 		public Image(Texture2D texture)
