@@ -75,7 +75,7 @@ namespace MenuBuddy
 			//Write the text
 			font.Write(Text,
 				TextPosition(screen),
-				Justify.Center,
+				AlignmentToJustify(),
 				Scale,
 				color,
 				screen.ScreenManager.SpriteBatch,
@@ -104,6 +104,16 @@ namespace MenuBuddy
 			}
 
 			_rect = new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
+		}
+
+		private Justify AlignmentToJustify()
+		{
+			switch (Horizontal)
+			{
+				case HorizontalAlignment.Center: return Justify.Center;
+				case HorizontalAlignment.Left: return Justify.Left;
+				default: return Justify.Right;
+			}
 		}
 
 		#endregion //Methods

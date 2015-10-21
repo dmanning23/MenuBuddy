@@ -244,7 +244,7 @@ namespace MenuBuddy
 		protected Vector2 TextPosition(IScreen screen)
 		{
 			//get the draw position
-			return GetTransition(screen).Position(Position, Style.Transition);
+			return GetTransition(screen).Position(new Point(Position.X, Rect.Y), Style.Transition);
 		}
 
 		#endregion //Methods

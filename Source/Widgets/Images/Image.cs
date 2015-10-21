@@ -13,6 +13,7 @@ namespace MenuBuddy
 
 		private Vector2 _size;
 		private bool _fillRect;
+		private Texture2D _texture;
 
 		#endregion //Fields
 
@@ -60,10 +61,10 @@ namespace MenuBuddy
 
 		public Texture2D Texture
 		{
-			get { return Style.Texture; }
+			get { return _texture; }
 			set
 			{
-				Style.Texture = value;
+				_texture = value;
 				CalculateRect();
 			}
 		}

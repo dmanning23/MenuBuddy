@@ -212,7 +212,7 @@ namespace MenuBuddy
 			Rectangle rect = Rect;
 
 			//set the position of the new item
-			item.Position = new Point(Position.X, rect.Top - item.Rect.Height);
+			item.Position = new Point(Position.X, rect.Top);
 
 			//store the new item
 			Items.Add(item);
@@ -237,7 +237,7 @@ namespace MenuBuddy
 			Rectangle rect = Rect;
 
 			//set the position of the new item
-			item.Position = new Point(rect.Left - item.Rect.Width, Position.Y);
+			item.Position = new Point(rect.Left, Position.Y);
 
 			//store the new item
 			Items.Add(item);

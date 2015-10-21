@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ImageTests.cs" />
+    <Compile Include="LabelStack.cs" />
     <Compile Include="MenuEntryTests.cs" />
     <Compile Include="RelButtonTests.cs" />
     <Compile Include="LabelTests.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelativeLayoutTests.cs" />
     <Compile Include="AbsoluteLayoutTests.cs" />
+    <Compile Include="StackAlignments.cs" />
     <Compile Include="StackTests.cs" />
     <Compile Include="StyleItemTests.cs" />
   </ItemGroup>

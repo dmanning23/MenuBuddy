@@ -36,9 +36,8 @@ namespace MenuBuddy
 			StyleSheet style = Style;
 			style.Transition = TransitionType.PopRight;
 			style.HasBackground = false;
-			style.Texture = screen.ScreenManager.Game.Content.Load<Texture2D>(IconTextureName);
-			var image = new Image
-			{
+			var image = new Image(screen.ScreenManager.Game.Content.Load<Texture2D>(IconTextureName))
+            {
 				Vertical = VerticalAlignment.Center,
 				Horizontal = HorizontalAlignment.Center,
 				Style = this.Style,
