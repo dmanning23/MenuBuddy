@@ -119,6 +119,9 @@
     <Compile Include="..\Source\Layouts\RelativeLayout.cs">
       <Link>Layouts\RelativeLayout.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Layouts\ScrollLayout.cs">
+      <Link>Layouts\ScrollLayout.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Layouts\StackAlignment.cs">
       <Link>Layouts\StackAlignment.cs</Link>
     </Compile>

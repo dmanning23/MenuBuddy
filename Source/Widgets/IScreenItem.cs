@@ -17,7 +17,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Set the position of this screen item
 		/// </summary>
-		Point Position { set; }
+		Point Position { get; set; }
 
 		/// <summary>
 		/// Where to layer the item.

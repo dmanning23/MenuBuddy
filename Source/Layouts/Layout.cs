@@ -157,7 +157,7 @@ namespace MenuBuddy
 			}
 		}
 
-		public void Draw(IScreen screen, GameClock gameTime)
+		public virtual void Draw(IScreen screen, GameClock gameTime)
 		{
 			//draw all the items
 			for (int i = 0; i < Items.Count; i++)

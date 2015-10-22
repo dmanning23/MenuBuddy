@@ -74,7 +74,6 @@ namespace MenuBuddy
 			{
 				return base.Scale;
 			}
-
 			set
 			{
 				base.Scale = value;
@@ -107,7 +106,7 @@ namespace MenuBuddy
 		/// <param name="item"></param>
 		public override void AddItem(IScreenItem item)
 		{
-			SetWidgetPosition(item, CalculateRect());
+			SetItemPosition(item, CalculateRect());
 
 			//store the new item
 			Items.Add(item);
@@ -141,7 +140,7 @@ namespace MenuBuddy
 			//update the positions of all the current widgets
 			foreach (var item in Items)
 			{
-				SetWidgetPosition(item, rect);
+				SetItemPosition(item, rect);
 			}
 		}
 
@@ -149,32 +148,27 @@ namespace MenuBuddy
 		/// Set the position of a widget to be relative to this layout
 		/// </summary>
 		/// <param name="item"></param>
-		private void SetWidgetPosition(IScreenItem item, Rectangle rect)
+		private void SetItemPosition(IScreenItem item, Rectangle rect)
 		{
-			//Check if the item is a widget
-			IWidget widget = item as IWidget;
-			if (null != widget)
+			//point to set the location of the item
+			Point pos = Point.Zero;
+
+			switch (item.Horizontal)
 			{
-				//point to set the location of the item
-				Point pos = Point.Zero;
-
-				switch (widget.Horizontal)
-				{
-					case HorizontalAlignment.Center: { pos.X = Rect.Center.X; } break;
-					case HorizontalAlignment.Left: { pos.X = Rect.Left; } break;
-					case HorizontalAlignment.Right: { pos.X = Rect.Right; } break;
-				}
-
-				switch (widget.Vertical)
-				{
-					case VerticalAlignment.Center: { pos.Y = Rect.Center.Y; } break;
-					case VerticalAlignment.Top: { pos.Y = Rect.Top; } break;
-					case VerticalAlignment.Bottom: { pos.Y = Rect.Bottom; } break;
-				}
-
-				//set the position of the new item
-				item.Position = pos;
+				case HorizontalAlignment.Center: { pos.X = Rect.Center.X; } break;
+				case HorizontalAlignment.Left: { pos.X = Rect.Left; } break;
+				case HorizontalAlignment.Right: { pos.X = Rect.Right; } break;
 			}
+
+			switch (item.Vertical)
+			{
+				case VerticalAlignment.Center: { pos.Y = Rect.Center.Y; } break;
+				case VerticalAlignment.Top: { pos.Y = Rect.Top; } break;
+				case VerticalAlignment.Bottom: { pos.Y = Rect.Bottom; } break;
+			}
+
+			//set the position of the new item
+			item.Position = pos;
 		}
 
 		#endregion //Methods
