@@ -79,7 +79,18 @@ namespace MenuBuddy
 		{
 		}
 
-		protected virtual void Initialize()
+		protected void Initialize()
+		{
+			InitMainStyle();
+
+			InitMenuEntryStyle();
+
+			InitMessageBoxTyle();
+
+			InitMenuTitleStyle();
+        }
+
+		protected virtual void InitMainStyle()
 		{
 			//set the main style
 			MainStyle = new StyleSheet
@@ -115,35 +126,44 @@ namespace MenuBuddy
 			//load the sound effects
 			MainStyle.SelectedSoundEffect = _game.Content.Load<SoundEffect>(MenuSelectSoundName);
 			MainStyle.SelectionChangeSoundEffect = _game.Content.Load<SoundEffect>(MenuChangeSoundName);
+		}
 
+		protected virtual void InitMenuEntryStyle()
+		{
 			//set the menu entry style
 			MenuEntryStyle = new StyleSheet(MainStyle)
 			{
 				Name = "MenuEntryStyle",
 				Texture = _game.Content.Load<Texture2D>(ButtonBackground)
 			};
+		}
 
+		protected virtual void InitMessageBoxTyle()
+		{
 			//set the messagebox style
 			MessageBoxStyle = new StyleSheet(MenuEntryStyle)
 			{
 				Name = "MessageBoxStyle"
 			};
 
-			pulsate = new PulsateBuddy();
+			var pulsate = new PulsateBuddy();
 			pulsate.ShadowSize = 1.0f;
 			pulsate.ShadowOffset = Vector2.Zero;
 			pulsate.PulsateSize *= 0.5f;
 			pulsate.Font = _game.Content.Load<SpriteFont>(MessageBoxFontName);
 			MessageBoxStyle.SelectedFont = pulsate;
 
-			shadow = new ShadowTextBuddy();
+			var shadow = new ShadowTextBuddy();
 			shadow.ShadowSize = 1.0f;
 			shadow.ShadowOffset = Vector2.Zero;
 			shadow.Font = _game.Content.Load<SpriteFont>(MessageBoxFontName);
 			MessageBoxStyle.UnselectedFont = shadow;
 
 			MessageBoxStyle.Texture = _game.Content.Load<Texture2D>(MessageBoxBackground);
+		}
 
+		protected virtual void InitMenuTitleStyle()
+		{
 			//set the menu title style
 			MenuTitleStyle = new StyleSheet(MainStyle);
 			MenuTitleStyle.SelectedFont = new FontBuddy();

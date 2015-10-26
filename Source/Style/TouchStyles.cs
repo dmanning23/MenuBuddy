@@ -25,9 +25,9 @@ namespace MenuBuddy
 		{
 		}
 
-		protected override void Initialize()
+		protected override void InitMenuEntryStyle()
 		{
-			base.Initialize();
+			base.InitMenuEntryStyle();
 
 			MenuEntryStyle.HasBackground = true;
 			MenuEntryStyle.HasOutline = true;
@@ -46,13 +46,18 @@ namespace MenuBuddy
 			MenuEntryStyle.UnselectedFont = MenuEntryStyle.SelectedFont;
 			MenuEntryStyle.UnselectedTextColor = MenuEntryStyle.SelectedTextColor;
 			MenuEntryStyle.UnselectedShadowColor = MenuEntryStyle.SelectedShadowColor;
+		}
+
+		protected override void InitMessageBoxTyle()
+		{
+			base.InitMessageBoxTyle();
 
 			//set the messagebox style
 			MessageBoxStyle.HasBackground = true;
 			MessageBoxStyle.HasOutline = true;
 			MessageBoxStyle.SelectedTextColor = MenuEntryStyle.UnselectedTextColor;
 
-			shadow = new ShadowTextBuddy();
+			var shadow = new ShadowTextBuddy();
 			shadow.ShadowSize = 1.0f;
 			shadow.ShadowOffset = new Vector2(4.0f, 4.0f);
 			shadow.Font = _game.Content.Load<SpriteFont>(MessageBoxFontName);
