@@ -132,9 +132,6 @@ namespace MenuBuddy
 					buttons.AddRange(item.Buttons);
 				}
 
-				//add the items that are themselves buttons
-				buttons.AddRange(Items.OfType<IButton>());
-
 				return buttons;
 			}
 		}
