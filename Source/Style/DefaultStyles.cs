@@ -134,7 +134,7 @@ namespace MenuBuddy
 			MenuEntryStyle = new StyleSheet(MainStyle)
 			{
 				Name = "MenuEntryStyle",
-				Texture = _game.Content.Load<Texture2D>(ButtonBackground)
+				BackgroundImage = _game.Content.Load<Texture2D>(ButtonBackground)
 			};
 		}
 
@@ -159,7 +159,7 @@ namespace MenuBuddy
 			shadow.Font = _game.Content.Load<SpriteFont>(MessageBoxFontName);
 			MessageBoxStyle.UnselectedFont = shadow;
 
-			MessageBoxStyle.Texture = _game.Content.Load<Texture2D>(MessageBoxBackground);
+			MessageBoxStyle.BackgroundImage = _game.Content.Load<Texture2D>(MessageBoxBackground);
 		}
 
 		protected virtual void InitMenuTitleStyle()

@@ -172,7 +172,7 @@ namespace MenuBuddy
 			set { _selectionChangeSoundEffect = new SoundStyleItem(StyleItemType.SelectionChangeSoundEffect, value); }
 		}
 
-		public Texture2D Texture
+		public Texture2D BackgroundImage
 		{
 			get { return _texture.Style; }
 			set { _texture = new ImageStyleItem(StyleItemType.Texture, value); }
@@ -203,7 +203,7 @@ namespace MenuBuddy
 			Transition = TransitionType.SlideLeft;
 			SelectedSoundEffect = null;
 			SelectionChangeSoundEffect = null;
-			Texture = null;
+			BackgroundImage = null;
 		}
 
 		/// <summary>

@@ -92,7 +92,7 @@ namespace MenuBuddy
 				rect.Location = transition.Position(rect, style.Transition);
 
 				//draw the filled background
-				SpriteBatch.Draw(style.Texture, rect, backgroundColor);
+				SpriteBatch.Draw(style.BackgroundImage, rect, backgroundColor);
 			}
 		}
 

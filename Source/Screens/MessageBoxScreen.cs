@@ -107,7 +107,7 @@ namespace MenuBuddy
 			AddItem(labelStack);
 
 			//Add the background image
-			var bkgImage = new BackgroundImage(DefaultStyles.Instance().MessageBoxStyle.Texture)
+			var bkgImage = new BackgroundImage(DefaultStyles.Instance().MessageBoxStyle.BackgroundImage)
 			{
 				Layer = -1.0f,
 				FillRect = true,
@@ -154,7 +154,7 @@ namespace MenuBuddy
 			{
 				Style = DefaultStyles.Instance().MessageBoxStyle
 			};
-			okEntry.Style.Texture = DefaultStyles.Instance().MenuEntryStyle.Texture;
+			okEntry.Style.BackgroundImage = DefaultStyles.Instance().MenuEntryStyle.BackgroundImage;
 			okEntry.Selected += OnSelect;
 			okEntry.LoadContent(this);
 			stack.AddItem(okEntry);
@@ -186,7 +186,7 @@ namespace MenuBuddy
 			{
 				Style = DefaultStyles.Instance().MessageBoxStyle
 			};
-			cancel.Style.Texture = DefaultStyles.Instance().MenuEntryStyle.Texture;
+			cancel.Style.BackgroundImage = DefaultStyles.Instance().MenuEntryStyle.BackgroundImage;
 			cancel.Selected += OnCancel;
 			cancel.LoadContent(this);
 			stack.AddItem(cancel);
