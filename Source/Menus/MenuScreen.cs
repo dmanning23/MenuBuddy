@@ -210,16 +210,21 @@ namespace MenuBuddy
 		/// User hit the "menu select" button.
 		/// </summary>
 		/// <param name="playerIndex"></param>
-		public override void OnSelect(PlayerIndex? playerIndex)
+		public override void OnSelect(object obj, PlayerIndexEventArgs playerIndex)
 		{
 			if (null != SelectedEntry)
 			{
 				//run the selected event
-				SelectedEntry.OnSelect(playerIndex);
+				SelectedEntry.OnSelect(playerIndex.PlayerIndex);
 			}
 
-			base.OnSelect(playerIndex);
+			base.OnSelect(obj, playerIndex);
 
+		}
+
+		public override void OnCancel(object obj, PlayerIndexEventArgs playerIndex)
+		{
+			base.OnCancel(obj, playerIndex);
 		}
 
 		/// <summary>

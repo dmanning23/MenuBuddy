@@ -38,6 +38,7 @@ namespace MenuBuddy
 		/// </summary>
 		public Shim()
 		{
+			Style.HasOutline = false;
 		}
 
 		public override void Update(IScreen screen, GameClock gameTime)

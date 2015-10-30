@@ -7,7 +7,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a screen that can display a bunch of widgets.
 	/// </summary>
-	public class WidgetScreen : Screen, IScreenItemContainer
+	public class WidgetScreen : Screen, IWidgetScreen
 	{
 		#region Fields
 
@@ -159,19 +159,14 @@ namespace MenuBuddy
 		/// User hit the "menu select" button.
 		/// </summary>
 		/// <param name="playerIndex"></param>
-		public virtual void OnSelect(PlayerIndex? playerIndex)
+		public virtual void OnSelect(object obj, PlayerIndexEventArgs playerIndex)
 		{
 			ResetInputTimer();
 		}
 
-		public virtual void OnCancel(PlayerIndex? playerIndex)
+		public virtual void OnCancel(object obj, PlayerIndexEventArgs playerIndex)
 		{
 			ExitScreen();
-		}
-
-		protected void OnCancel(object obj, PlayerIndexEventArgs playerIndex)
-		{
-			OnCancel(playerIndex.PlayerIndex);
 		}
 
 		/// <summary>

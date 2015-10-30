@@ -71,13 +71,9 @@ namespace MenuBuddy
 			var labelStack = new StackLayout()
 			{
 				Horizontal = HorizontalAlignment.Center,
-				Vertical = VerticalAlignment.Bottom,
-				Alignment = StackAlignment.Bottom,
-				Position = MenuEntries.Position
+				Vertical = VerticalAlignment.Center,
+				Alignment = StackAlignment.Top,
 			};
-
-			//add a shim at the bottom
-			labelStack.AddItem(new Shim() { Size = new Vector2(0, 16f) });
 
 			//Split up the label text into lines
 			var lines = Message.Split('\n').Reverse().ToList();
@@ -98,13 +94,17 @@ namespace MenuBuddy
 				labelStack.AddItem(label);
             }
 
-			//add a shim at the top too
-			labelStack.AddItem(new Shim() { Size = new Vector2(0, 32f) });
-
-			AddItem(labelStack);
+			//add a shim between the text and the buttons
+			labelStack.AddItem(new Shim() { Size = new Vector2(0, 16f) });
 
 			//Add the buttons
-			AddButtons(IncludeUsageText);
+			AddButtons(labelStack, IncludeUsageText);
+
+			//Set the position of the labelstack
+			labelStack.Position = new Point(Resolution.TitleSafeArea.Center.X,
+				Resolution.TitleSafeArea.Center.Y - (labelStack.Rect.Height / 2));
+
+			AddItem(labelStack);
 
 			//Add the background image
 			var bkgImage = new BackgroundImage(DefaultStyles.Instance().MessageBoxStyle.Texture)
@@ -113,22 +113,22 @@ namespace MenuBuddy
 				FillRect = true,
 				Style = DefaultStyles.Instance().MessageBoxStyle,
 				Padding = new Vector2(64, 32),
-				Position = new Point(MenuEntries.Position.X, Layout.Rect.Y),
-                Size = new Vector2(Layout.Rect.Width, Layout.Rect.Height),
+				Position = new Point(labelStack.Rect.Center.X, labelStack.Rect.Center.Y),
+                Size = new Vector2(labelStack.Rect.Width, labelStack.Rect.Height),
                 Horizontal = HorizontalAlignment.Center,
-				Vertical = VerticalAlignment.Top
+				Vertical = VerticalAlignment.Center
 			};
 			AddItem(bkgImage);
         }
 
-		protected virtual void AddButtons(bool includeUsageText)
+		protected virtual void AddButtons(StackLayout stack, bool includeUsageText)
 		{
-			AddOkButton(includeUsageText);
+			AddOkButton(stack, includeUsageText);
 
-			AddCancelButton(includeUsageText);
+			AddCancelButton(stack, includeUsageText);
 		}
 
-		protected void AddOkButton(bool includeUsageText)
+		protected void AddOkButton(StackLayout stack, bool includeUsageText)
 		{
 			//create the strings to hold the menu text
 			var okText = new StringBuilder();
@@ -155,11 +155,12 @@ namespace MenuBuddy
 				Style = DefaultStyles.Instance().MessageBoxStyle
 			};
 			okEntry.Style.Texture = DefaultStyles.Instance().MenuEntryStyle.Texture;
-			okEntry.Selected += OnAccept;
-			AddMenuEntry(okEntry);
+			okEntry.Selected += OnSelect;
+			okEntry.LoadContent(this);
+			stack.AddItem(okEntry);
 		}
 
-		protected void AddCancelButton(bool includeUsageText)
+		protected void AddCancelButton(StackLayout stack, bool includeUsageText)
 		{
 			//create the strings to hold the menu text
 			var cancelText = new StringBuilder();
@@ -187,14 +188,15 @@ namespace MenuBuddy
 			};
 			cancel.Style.Texture = DefaultStyles.Instance().MenuEntryStyle.Texture;
 			cancel.Selected += OnCancel;
-			AddMenuEntry(cancel);
+			cancel.LoadContent(this);
+			stack.AddItem(cancel);
 		}
 
 		#endregion
 
 		#region Handle Input
 
-		private void OnAccept(object sender, PlayerIndexEventArgs e)
+		public override void OnSelect(object sender, PlayerIndexEventArgs e)
 		{
 			// Raise the accepted event, then exit the message box.
 			if (Accepted != null)
@@ -205,15 +207,15 @@ namespace MenuBuddy
 			ExitScreen();
 		}
 
-		public override void OnCancel(PlayerIndex? playerIndex)
+		public override void OnCancel(object sender, PlayerIndexEventArgs e)
 		{
 			// Raise the cancelled event, then exit the message box.
 			if (Cancelled != null)
 			{
-				Cancelled(this, new PlayerIndexEventArgs(playerIndex));
+				Cancelled(this, new PlayerIndexEventArgs(e.PlayerIndex));
 			}
 			
-			base.OnCancel(playerIndex);
+			base.OnCancel(sender, e);
 		}
 
 		#endregion

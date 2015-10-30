@@ -46,8 +46,6 @@ namespace MenuBuddy
 			};
 			AddItem(image);
 
-
-
 			//set the size to the texture size
 			var size = new Vector2(image.Rect.Width, image.Rect.Height);
 			var relLayout = Layout as RelativeLayout;

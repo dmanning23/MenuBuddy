@@ -65,11 +65,11 @@ namespace MenuBuddy
 
 				if (InputState.IsMenuSelect(screen.ControllingPlayer, out playerIndex))
 				{
-					menu.OnSelect(playerIndex);
+					menu.OnSelect(this, new PlayerIndexEventArgs(playerIndex));
 				}
 				else if (InputState.IsMenuCancel(screen.ControllingPlayer, out playerIndex))
 				{
-					menu.OnCancel(playerIndex);
+					menu.OnCancel(this, new PlayerIndexEventArgs(playerIndex));
 				}
 			}
 		}

@@ -6,7 +6,7 @@ namespace MenuBuddy
 	/// Base class for screens that contain a stack of menu options. 
 	/// The user can move up and down to select an entry, or cancel to back out of the screen.
 	/// </summary>
-	public interface IMenuScreen : IScreen
+	public interface IMenuScreen : IWidgetScreen
 	{
 		/// <summary>
 		/// Select the previous menu entry
@@ -27,16 +27,5 @@ namespace MenuBuddy
 		/// User hit right on the current entry
 		/// </summary>
 		void MenuRight();
-
-		/// <summary>
-		/// User hit the "menu select" button.
-		/// </summary>
-		/// <param name="playerIndex"></param>
-		void OnSelect(PlayerIndex? playerIndex);
-
-		/// <summary>
-		/// Handler for when the user has cancelled the menu.
-		/// </summary>
-		void OnCancel(PlayerIndex? playerIndex);
-	}
+    }
 }

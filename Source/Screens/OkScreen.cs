@@ -24,10 +24,10 @@ namespace MenuBuddy
 		{
 		}
 
-		protected override void AddButtons(bool includeUsageText)
+		protected override void AddButtons(StackLayout stack, bool includeUsageText)
 		{
 			//just an ok button on this screen
-			AddOkButton(includeUsageText);
+			AddOkButton(stack, includeUsageText);
 		}
 	}
 }

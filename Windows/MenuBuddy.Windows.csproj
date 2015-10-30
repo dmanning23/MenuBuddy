@@ -176,6 +176,9 @@
     <Compile Include="..\Source\Screens\IScreen.cs">
       <Link>Screens\IScreen.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Screens\IWidgetScreen.cs">
+      <Link>Screens\IWidgetScreen.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Screens\LoadingScreen.cs">
       <Link>Screens\LoadingScreen.cs</Link>
     </Compile>
