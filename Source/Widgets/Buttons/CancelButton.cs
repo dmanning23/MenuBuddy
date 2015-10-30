@@ -36,20 +36,35 @@ namespace MenuBuddy
 			StyleSheet style = Style;
 			style.Transition = TransitionType.PopRight;
 			style.HasBackground = false;
+			style.HasOutline = true;
 			var image = new Image(screen.ScreenManager.Game.Content.Load<Texture2D>(IconTextureName))
             {
 				Vertical = VerticalAlignment.Center,
 				Horizontal = HorizontalAlignment.Center,
-				Style = this.Style,
+				Style = style,
 				Scale = 2f
 			};
 			AddItem(image);
 
+
+
+			//set the size to the texture size
+			var size = new Vector2(image.Rect.Width, image.Rect.Height);
+			var relLayout = Layout as RelativeLayout;
+			relLayout.Size = size;
+			Size = size;
+			
 			Position = new Point(Resolution.TitleSafeArea.Right - (int)(1.5f * IconSize),
 					Resolution.TitleSafeArea.Top);
 
 			DrawWhenInactive = false;
-		}
+
+			//Exit the screen when this button is selected
+			Selected += ((object obj, PlayerIndexEventArgs e) => 
+			{
+				screen.ExitScreen();
+			});
+        }
 
 		#endregion //Methods
 	}
