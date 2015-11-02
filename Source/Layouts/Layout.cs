@@ -96,6 +96,24 @@ namespace MenuBuddy
 
 		public virtual float Scale { get; set; }
 
+		public virtual IEnumerable<IButton> Buttons
+		{
+			get
+			{
+				//create the list to hold all the buttons
+				var buttons = new List<IButton>();
+
+				//let each screen item add it's buttons
+				var containers = Items.OfType<IScreenItemContainer>();
+				foreach (var item in containers)
+				{
+					buttons.AddRange(item.Buttons);
+				}
+
+				return buttons;
+			}
+		}
+
 		#endregion //Properties
 
 		#region Methods
@@ -118,24 +136,6 @@ namespace MenuBuddy
 			return Items.Remove(item);
 		}
 
-		public IEnumerable<IButton> Buttons
-		{
-			get
-			{
-				//create the list to hold all the buttons
-				var buttons = new List<IButton>();
-
-				//let each screen item add it's buttons
-				var containers = Items.OfType<IScreenItemContainer>();
-				foreach (var item in containers)
-				{
-					buttons.AddRange(item.Buttons);
-				}
-
-				return buttons;
-			}
-		}
-
 		public void Update(IScreen screen, GameClock gameTime)
 		{
 			//update all the items
@@ -145,7 +145,7 @@ namespace MenuBuddy
 			}
 		}
 
-		public void DrawBackground(IScreen screen, GameClock gameTime)
+		public virtual void DrawBackground(IScreen screen, GameClock gameTime)
 		{
 			//draw the backgrounds of all the items
 			for (int i = 0; i < Items.Count; i++)

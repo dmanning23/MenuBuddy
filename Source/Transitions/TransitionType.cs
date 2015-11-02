@@ -35,5 +35,10 @@ namespace MenuBuddy
 		/// in right, out left
 		/// </summary>
 		SlideRight,
+
+		/// <summary>
+		/// This item doesn't transition at all.
+		/// </summary>
+		None
 	}
 }

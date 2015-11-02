@@ -25,7 +25,7 @@ namespace MenuBuddy
 
 		#region Properties
 
-		public Vector2 Size
+		public virtual Vector2 Size
 		{
 			get
 			{
@@ -61,9 +61,12 @@ namespace MenuBuddy
 			}
 			set
 			{
-				SetPrevRect();
-				base.Horizontal = value;
-				UpdateItems();
+				if (base.Horizontal != value)
+				{
+					SetPrevRect();
+					base.Horizontal = value;
+					UpdateItems();
+				}
 			}
 		}
 
@@ -75,9 +78,12 @@ namespace MenuBuddy
 			}
 			set
 			{
-				SetPrevRect();
-				base.Vertical = value;
-				UpdateItems();
+				if (base.Vertical != value)
+				{
+					SetPrevRect();
+					base.Vertical = value;
+					UpdateItems();
+				}
 			}
 		}
 
@@ -127,7 +133,7 @@ namespace MenuBuddy
 			PreviousRect = CalculateRect();
 		}
 
-		private Rectangle CalculateRect()
+		protected Rectangle CalculateRect()
 		{
 			var pos = Position;
 
@@ -175,7 +181,7 @@ namespace MenuBuddy
 		/// Set the position of a widget to be relative to this layout
 		/// </summary>
 		/// <param name="item"></param>
-		private void SetItemPosition(IScreenItem item, Rectangle rect)
+		protected virtual void SetItemPosition(IScreenItem item, Rectangle rect)
 		{
 			//add the position of the layout to the item
 			item.Position += rect.Location;

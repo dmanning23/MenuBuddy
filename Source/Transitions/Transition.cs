@@ -125,7 +125,12 @@ namespace MenuBuddy
 				case TransitionType.PopTop: { return PopTopTransition(pos); }
 				case TransitionType.PopBottom: { return PopBottomTransition(pos); }
 				case TransitionType.SlideLeft: { return SlideLeftTransition(pos); }
-				default: { return SlideRightTransition(pos); }
+				case TransitionType.SlideRight: { return SlideRightTransition(pos); }
+				default:
+					{
+						//None transition type
+						return pos;
+					}
 			}
 		}
 
