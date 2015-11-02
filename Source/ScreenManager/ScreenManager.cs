@@ -91,6 +91,9 @@ namespace MenuBuddy
 			MouseManager = game.Services.GetService(typeof(IMouseManager)) as IMouseManager;
 			TouchManager = game.Services.GetService(typeof(ITouchManager)) as ITouchManager;
 #endif
+
+			//When using render targets, don't clear the screen!!!
+			GraphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.PreserveContents;
 		}
 
 		/// <summary>

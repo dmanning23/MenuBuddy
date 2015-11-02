@@ -118,7 +118,13 @@ namespace MenuBuddy
 			if (null == _renderTarget)
 			{
 				_renderTarget = new RenderTarget2D(screen.ScreenManager.GraphicsDevice, 
-					(int)Size.X, (int)Size.Y);
+					(int)Size.X,
+					(int)Size.Y,
+					false,
+					screen.ScreenManager.GraphicsDevice.PresentationParameters.BackBufferFormat,
+					screen.ScreenManager.GraphicsDevice.PresentationParameters.DepthStencilFormat,
+					0,
+					RenderTargetUsage.PreserveContents);
 			}
 		}
 
@@ -140,11 +146,15 @@ namespace MenuBuddy
 			//end the current draw loop
 			screenManager.SpriteBatchEnd();
 
+			var curRenderTarget = screenManager.GraphicsDevice.GetRenderTargets();
+
 			//set the rendertarget
 			screenManager.GraphicsDevice.SetRenderTarget(_renderTarget);
 
+			screenManager.GraphicsDevice.Clear(screenManager.ClearColor);
+
 			//start a new draw loop
-			screenManager.SpriteBatchBegin();
+			screenManager.SpriteBatchBegin(BlendState.AlphaBlend);
 
 			//call the provided delegate to draw everything
 			del(screen, gameTime);
@@ -165,10 +175,10 @@ namespace MenuBuddy
 
 			//render the texture
 			var rect = CalculateRect();
-			screenManager.SpriteBatch.Draw(_renderTarget, 
-				screen.Transition.Position(rect, Transition).ToVector2(), 
+			screenManager.SpriteBatch.Draw(_renderTarget,
+				screen.Transition.Position(rect, Transition).ToVector2(),
 				Color.White);
-        }
+		}
 
 		public override void DrawBackground(IScreen screen, GameClock gameTime)
 		{
