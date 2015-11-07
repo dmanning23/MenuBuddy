@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
-using ResolutionBuddy;
 using Microsoft.Xna.Framework.Graphics;
+using ResolutionBuddy;
 using System;
 
 namespace MenuBuddy
@@ -8,24 +8,29 @@ namespace MenuBuddy
 	/// <summary>
 	/// Specialized message box subclass, used to display network error messages.
 	/// </summary>
-	public class ErrorScreen : MessageBoxScreen
+	public class ErrorScreen : WidgetScreen
 	{
+		#region Fields
+
+		private string _message;
+
+		#endregion //Fields
+
 		#region Methods
 
 		/// <summary>
 		/// Constructs an error message box from the specified exception.
 		/// </summary>
-		public ErrorScreen(Exception exception) : base(GetErrorMessage(exception), false, "Error Screen")
+		public ErrorScreen(Exception exception) : base("Error Screen")
 		{
-		}
+			_message = GetErrorMessage(exception);
+        }
 
 		/// <summary>
 		/// Converts a network exception into a user friendly error message.
 		/// </summary>
 		private static string GetErrorMessage(Exception exception)
 		{
-			//Trace.WriteLine("Network operation threw " + exception);
-
 			// Otherwise just a generic error message.
 			return "An unknown error occurred:\n" + exception.ToString();
 		}
@@ -35,6 +40,7 @@ namespace MenuBuddy
 		/// </summary>
 		public override void LoadContent()
 		{
+			AddCancelButton();
 		}
 
 		/// <summary>
@@ -51,11 +57,13 @@ namespace MenuBuddy
 			FadeBackground();
 
 			// Draw the message box text.
-			ScreenManager.SpriteBatch.DrawString(Style.SelectedFont.Font, Message, textPosition, Color.White, 0.0f, new Vector2(0.0f, 0.0f), 0.4f, SpriteEffects.None, 1.0f);
+			ScreenManager.SpriteBatch.DrawString(Style.SelectedFont.Font, _message, textPosition, Color.White, 0.0f, new Vector2(0.0f, 0.0f), 0.4f, SpriteEffects.None, 1.0f);
 
 			ScreenManager.SpriteBatchEnd();
-		}
 
-		#endregion
+			base.Draw(gameTime);
+        }
+
+		#endregion //Methods
 	}
 }
