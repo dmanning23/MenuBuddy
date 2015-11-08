@@ -49,29 +49,6 @@ namespace MenuBuddy
 			}
 		}
 
-		public override IEnumerable<IButton> Buttons
-		{
-			get
-			{
-				//will hold the final list of buttons
-				var result = new List<IButton>();
-
-				//the list of all the buttons
-				var buttons = base.Buttons;
-
-				//go through the list of buttons and only return the visible ones
-				foreach (var button in buttons)
-				{
-					if (button.Rect.Intersects(Rect))
-					{
-						result.Add(button);
-					}
-				}
-
-				return result;
-			}
-		}
-
 		public override Vector2 Size
 		{
 			get

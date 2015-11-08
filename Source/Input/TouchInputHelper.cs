@@ -81,24 +81,21 @@ namespace MenuBuddy
 		{
 			base.HandleInput(screen);
 
-			var widgetScreen = screen as WidgetScreen;
+			var widgetScreen = screen as IWidgetScreen;
 			if (null != widgetScreen)
 			{
-				//Get all the widgets from the screen
-				var buttons = widgetScreen.Buttons;
-
 				if (null != MouseManager)
 				{
 					//check if the player is holding the LMouseButton down in the widget
 					if (MouseManager.LMouseDown)
 					{
-						CheckHighlight(buttons, MouseManager.MousePos);
+						CheckHighlight(widgetScreen, MouseManager.MousePos);
 					}
 
 					//check if the player selected an item
 					if (MouseManager.LMouseClick)
 					{
-						CheckClick(widgetScreen, buttons, MouseManager.MousePos);
+						CheckClick(widgetScreen, MouseManager.MousePos);
 					}
 				}
 
@@ -107,65 +104,34 @@ namespace MenuBuddy
 					//check if the player is holding down on the screen
 					foreach (var touch in TouchManager.Touches)
 					{
-						CheckHighlight(buttons, touch);
+						CheckHighlight(widgetScreen, touch);
 					}
 
 					//check if the player tapped on the screen
 					foreach (var tap in TouchManager.Taps)
 					{
-						CheckClick(widgetScreen, buttons, tap);
+						CheckClick(widgetScreen, tap);
 					}
 				}
 			}
 		}
 
-		private void CheckHighlight(IEnumerable<IButton> buttons, Vector2 point)
+		private void CheckHighlight(IWidgetScreen screen, Vector2 point)
 		{
-			foreach (var button in buttons)
-			{
-				if (button.Rect.Contains(point))
-				{
-					OnButtonHighlighted(button);
-				}
-				else
-				{
-					OnButtonNotHighlighted(button);
-				}
-			}
-		}
+			screen.CheckHighlight(point);
+        }
 
-		private void CheckClick(WidgetScreen screen, IEnumerable<IButton> buttons, Vector2 point)
+		private void CheckClick(IWidgetScreen screen, Vector2 point)
 		{
-			foreach (var button in buttons)
+			if (!screen.CheckClick(point))
 			{
-				if (button.Rect.Contains(point))
+				//if no buttons were clicked, send it to the game screen itself
+				var gameScreen = screen as IGameScreen;
+				if (null != gameScreen)
 				{
-					//run the selected event
-					button.OnSelect(null);
-					return;
+					gameScreen.Click(point);
 				}
 			}
-
-			//if no buttons were clicked, send it to the game screen itself
-			var gameScreen = screen as IGameScreen;
-			if (null != gameScreen)
-			{
-				gameScreen.Click(point);
-			}
-		}
-
-		/// <summary>
-		/// Called every time update while a widget is highlighted
-		/// </summary>
-		/// <param name="button"></param>
-		private void OnButtonHighlighted(IButton button)
-		{
-			button.Highlight = true;
-		}
-
-		private void OnButtonNotHighlighted(IButton button)
-		{
-			button.Highlight = false;
 		}
 
 		#endregion //Methods

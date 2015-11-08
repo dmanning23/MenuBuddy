@@ -114,23 +114,6 @@ namespace MenuBuddy
 			}
 		}
 
-		public IEnumerable<IButton> Buttons
-		{
-			get
-			{
-				//create the list to hold all the buttons
-				var buttons = new List<IButton>();
-
-				//add the layout buttons
-				buttons.AddRange(Layout.Buttons);
-
-				//add this dude
-				buttons.Add(this);
-
-				return buttons;
-			}
-		}
-
 		#endregion //Properties
 
 		#region Methods
@@ -168,6 +151,18 @@ namespace MenuBuddy
 		protected override void CalculateRect()
 		{
 			_rect = Layout.Rect;
+		}
+
+		public override bool CheckClick(Vector2 position)
+		{
+			//check if the button was clicked
+			if (Rect.Contains(position))
+			{
+				OnSelect(null);
+				return true;
+			}
+
+			return false;
 		}
 
 		#endregion //Methods

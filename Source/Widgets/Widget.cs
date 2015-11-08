@@ -1,3 +1,4 @@
+using System;
 using GameTimer;
 using Microsoft.Xna.Framework;
 
@@ -245,6 +246,17 @@ namespace MenuBuddy
 		{
 			//get the draw position
 			return GetTransition(screen).Position(new Point(Position.X, Rect.Y), Style.Transition);
+		}
+
+		public void CheckHighlight(Vector2 position)
+		{
+			Highlight = Rect.Contains(position);
+		}
+
+		public virtual bool CheckClick(Vector2 position)
+		{
+			//dont need to do anything here
+			return false;
 		}
 
 		#endregion //Methods

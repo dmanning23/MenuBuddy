@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace MenuBuddy
 {
@@ -19,10 +19,5 @@ namespace MenuBuddy
 		/// <param name="item">The item to remove</param>
 		/// <returns>true if the item was removed</returns>
 		bool RemoveItem(IScreenItem item);
-
-		/// <summary>
-		/// Get all the widgets currently displayed in this layout
-		/// </summary>
-		IEnumerable<IButton> Buttons { get; }
 	}
 }

@@ -22,11 +22,6 @@ namespace MenuBuddy
 
 		protected AbsoluteLayout Layout { get; private set; }
 
-		public IEnumerable<IButton> Buttons
-		{
-			get { return Layout.Buttons; }
-		}
-
 		public Rectangle Rect
 		{
 			get { return ResolutionBuddy.Resolution.ScreenArea; }
@@ -168,6 +163,24 @@ namespace MenuBuddy
 		{
 			ExitScreen();
 		}
+
+		public void CheckHighlight(Vector2 point)
+		{
+			Layout.CheckHighlight(point);
+		}
+
+		/// <summary>
+		/// User clicked somewhere in this screen.
+		/// </summary>
+		/// <param name="point"></param>
+		public bool CheckClick(Vector2 point)
+		{
+			//restart the input timer thing
+			TimeSinceInput.Start(_AttractModeTime);
+
+			//check if they clicked in the layout
+			return Layout.CheckClick(point);
+        }
 
 		/// <summary>
 		/// This gets called when the input timer needs to be reset.

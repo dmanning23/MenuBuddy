@@ -8,7 +8,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a list of items on a screen
 	/// </summary>
-	public abstract class Layout : IScreenItemContainer, IScreenItem, IScalable
+	public abstract class Layout : IScreenItemContainer, IScreenItem, IScalable, IClickable
 	{
 		#region Fields
 
@@ -96,24 +96,6 @@ namespace MenuBuddy
 
 		public virtual float Scale { get; set; }
 
-		public virtual IEnumerable<IButton> Buttons
-		{
-			get
-			{
-				//create the list to hold all the buttons
-				var buttons = new List<IButton>();
-
-				//let each screen item add it's buttons
-				var containers = Items.OfType<IScreenItemContainer>();
-				foreach (var item in containers)
-				{
-					buttons.AddRange(item.Buttons);
-				}
-
-				return buttons;
-			}
-		}
-
 		#endregion //Properties
 
 		#region Methods
@@ -161,6 +143,28 @@ namespace MenuBuddy
 			{
 				Items[i].Draw(screen, gameTime);
 			}
+		}
+
+		public void CheckHighlight(Vector2 position)
+		{
+			foreach (var item in Items)
+			{
+				item.CheckHighlight(position);
+			}
+		}
+
+		public bool CheckClick(Vector2 position)
+		{
+			foreach (var item in Items)
+			{
+				if (item.CheckClick(position))
+				{
+					return true;
+				}
+			}
+
+			//None of the items in this container were clicked
+			return false;
 		}
 
 		#endregion //Methods

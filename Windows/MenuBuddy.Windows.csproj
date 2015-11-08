@@ -254,6 +254,9 @@
     <Compile Include="..\Source\Widgets\HorizontalAlignment.cs">
       <Link>Widgets\HorizontalAlignment.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Widgets\IClickable.cs">
+      <Link>Widgets\IClickable.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Widgets\Images\BackgroundImage.cs">
       <Link>Widgets\Images\BackgroundImage.cs</Link>
     </Compile>
