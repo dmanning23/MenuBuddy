@@ -1,5 +1,6 @@
 using GameTimer;
 using Microsoft.Xna.Framework;
+using ResolutionBuddy;
 using System.Collections.Generic;
 
 namespace MenuBuddy
@@ -46,7 +47,10 @@ namespace MenuBuddy
 		public WidgetScreen(string name)
 			: base(name)
 		{
-			Layout = new AbsoluteLayout();
+			Layout = new AbsoluteLayout()
+			{
+				Size = new Vector2(Resolution.ScreenArea.Width, Resolution.ScreenArea.Height)
+			};
 
 			TimeSinceInput = new CountdownTimer();
 			ResetInputTimer();

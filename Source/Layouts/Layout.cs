@@ -147,19 +147,25 @@ namespace MenuBuddy
 
 		public void CheckHighlight(Vector2 position)
 		{
-			foreach (var item in Items)
+			if (Rect.Contains(position))
 			{
-				item.CheckHighlight(position);
+				foreach (var item in Items)
+				{
+					item.CheckHighlight(position);
+				}
 			}
 		}
 
 		public bool CheckClick(Vector2 position)
 		{
-			foreach (var item in Items)
+			if (Rect.Contains(position))
 			{
-				if (item.CheckClick(position))
+				foreach (var item in Items)
 				{
-					return true;
+					if (item.CheckClick(position))
+					{
+						return true;
+					}
 				}
 			}
 

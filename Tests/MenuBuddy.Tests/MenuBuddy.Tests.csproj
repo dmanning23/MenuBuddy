@@ -97,6 +97,7 @@
     <Compile Include="MenuEntryTests.cs" />
     <Compile Include="RelButtonTests.cs" />
     <Compile Include="LabelTests.cs" />
+    <Compile Include="ScrollLayoutTests.cs" />
     <Compile Include="ShimTests_VerticalBottom.cs" />
     <Compile Include="ShimTests_VerticalCentered.cs" />
     <Compile Include="ShimTests_HorizontalRight.cs" />

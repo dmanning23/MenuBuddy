@@ -22,6 +22,10 @@ namespace MenuBuddy
 
 		private RenderTarget2D _renderTarget = null;
 
+		private Vector2 _minScroll = Vector2.Zero;
+
+		private Vector2 _maxScroll = Vector2.Zero;
+
 		#endregion //Fields
 
 		#region Properties
@@ -37,14 +41,20 @@ namespace MenuBuddy
 			}
 			set
 			{
-				//set the scroll position
-				var delta = (_scrollPos - value).ToPoint();
-				_scrollPos = value;
+				//constrain the scroll to within the total rect
+				value = ConstrainScroll(value);
 
-				//update the position of all the items
-				foreach (var item in Items)
+				if (_scrollPos != value)
 				{
-					item.Position += delta;
+					//set the scroll position
+					var delta = (_scrollPos - value).ToPoint();
+					_scrollPos = value;
+
+					//update the position of all the items
+					foreach (var item in Items)
+					{
+						item.Position += delta;
+					}
 				}
 			}
 		}
@@ -55,7 +65,6 @@ namespace MenuBuddy
 			{
 				return base.Size;
 			}
-
 			set
 			{
 				//make sure to redo the rendertarget
@@ -67,6 +76,41 @@ namespace MenuBuddy
 		public TransitionType Transition
 		{
 			get; set;
+		}
+
+		/// <summary>
+		/// This is the total max rect, containing all the widgets.
+		/// </summary>
+		public Rectangle TotalRect
+		{
+			get
+			{
+				Rectangle result = Rect;
+
+				//add all the widgets in this dude
+				foreach (var item in Items)
+				{
+					result = Rectangle.Union(result, item.Rect);
+				}
+
+				return result;
+			}
+		}
+
+		public Vector2 MinScroll
+		{
+			get
+			{
+				return _minScroll;
+			}
+		}
+
+		public Vector2 MaxScroll
+		{
+			get
+			{
+				return _maxScroll;
+			}
 		}
 
 		#endregion //Properties
@@ -88,6 +132,8 @@ namespace MenuBuddy
 			}
 
 			base.AddItem(item);
+
+			UpdateMinMaxScroll();
 		}
 
 		private void InitializeRenderTarget(IScreen screen)
@@ -165,6 +211,44 @@ namespace MenuBuddy
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
 			DrawStuff(screen, gameTime, base.Draw);
+		}
+
+		public void UpdateMinMaxScroll()
+		{
+			//get the total rectangle
+			var total = TotalRect;
+
+			//get the layout rectangle
+			var current = Rect;
+
+			//set the min and max to be the diff between the two
+			_minScroll = new Vector2(total.Left - current.Left, total.Top - current.Top);
+			_maxScroll = new Vector2(total.Right- current.Right, total.Bottom - current.Bottom);
+		}
+
+		private Vector2 ConstrainScroll(Vector2 value)
+		{
+			//set the x value
+			if (value.X < _minScroll.X)
+			{
+				value.X = _minScroll.X;
+			}
+			else if (value.X > _maxScroll.X)
+			{
+				value.X = _maxScroll.X;
+			}
+
+			//set the y value
+			if (value.Y < _minScroll.Y)
+			{
+				value.Y = _minScroll.Y;
+			}
+			else if (value.Y > _maxScroll.Y)
+			{
+				value.Y = _maxScroll.Y;
+			}
+
+			return value;
 		}
 
 		#endregion //Methods
