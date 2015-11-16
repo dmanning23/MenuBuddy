@@ -86,11 +86,8 @@ namespace MenuBuddy
 			{
 				if (null != MouseManager)
 				{
-					//check if the player is holding the LMouseButton down in the widget
-					if (MouseManager.LMouseDown)
-					{
-						CheckHighlight(widgetScreen, MouseManager.MousePos);
-					}
+					//check if the mouse cursor in the widget
+					CheckHighlight(widgetScreen, MouseManager.MousePos);
 
 					//check if the player selected an item
 					if (MouseManager.LMouseClick)

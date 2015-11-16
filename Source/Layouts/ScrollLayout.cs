@@ -26,6 +26,12 @@ namespace MenuBuddy
 
 		private Vector2 _maxScroll = Vector2.Zero;
 
+		private Rectangle _verticalScrollBar = Rectangle.Empty;
+
+		private Rectangle _horizScrollBar = Rectangle.Empty;
+
+		public const float ScrollBarWidth = 16f;
+
 		#endregion //Fields
 
 		#region Properties
@@ -55,7 +61,9 @@ namespace MenuBuddy
 					{
 						item.Position += delta;
 					}
-				}
+
+					UpdateScrollBars();
+                }
 			}
 		}
 
@@ -113,6 +121,31 @@ namespace MenuBuddy
 			}
 		}
 
+		public Rectangle VerticalScrollBar
+		{
+			get
+			{
+				return _verticalScrollBar;
+			}
+		}
+
+		public Rectangle HorizontalScrollBar
+		{
+			get
+			{
+				return _horizScrollBar;
+			}
+		}
+
+		public bool DrawVerticalScrollBar { get; private set; }
+
+		public bool DrawHorizontalScrollBar { get; private set; }
+
+		private bool DrawScrollbars
+		{
+			get; set;
+		}
+
 		#endregion //Properties
 
 		#region Methods
@@ -120,7 +153,11 @@ namespace MenuBuddy
 		public ScrollLayout()
 		{
 			Transition = TransitionType.SlideLeft;
-		}
+			DrawVerticalScrollBar = false;
+			DrawHorizontalScrollBar = false;
+			UpdateScrollBars();
+			DrawScrollbars = false;
+        }
 
 		public override void AddItem(IScreenItem item)
 		{
@@ -134,7 +171,8 @@ namespace MenuBuddy
 			base.AddItem(item);
 
 			UpdateMinMaxScroll();
-		}
+			UpdateScrollBars();
+        }
 
 		private void InitializeRenderTarget(IScreen screen)
 		{
@@ -211,7 +249,23 @@ namespace MenuBuddy
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
 			DrawStuff(screen, gameTime, base.Draw);
-		}
+
+			//Draw the scroll bars if the mouse pointer or a touch is inside the layout
+			if (DrawScrollbars)
+			{
+				if (DrawVerticalScrollBar)
+				{
+					screen.ScreenManager.DrawHelper.DrawRect(screen.Transition, Transition, screen.Style.SelectedBackgroundColor, VerticalScrollBar);
+					//screen.ScreenManager.DrawHelper.DrawOutline(screen.Transition, Transition, screen.Style.SelectedOutlineColor, VerticalScrollBar);
+				}
+
+				if (DrawHorizontalScrollBar)
+				{
+					screen.ScreenManager.DrawHelper.DrawRect(screen.Transition, Transition, screen.Style.SelectedBackgroundColor, HorizontalScrollBar);
+					//screen.ScreenManager.DrawHelper.DrawOutline(screen.Transition, Transition, screen.Style.SelectedOutlineColor, HorizontalScrollBar);
+				}
+			}
+        }
 
 		public void UpdateMinMaxScroll()
 		{
@@ -249,6 +303,63 @@ namespace MenuBuddy
 			}
 
 			return value;
+		}
+
+		private void UpdateScrollBars()
+		{
+			//get the window size
+			var windowSize = Size;
+
+			//get the total size
+			var totalRect = TotalRect;
+			var totalSize = new Vector2(totalRect.Width, totalRect.Height);
+
+			//get the size ratio
+			var ratio = new Vector2()
+			{
+				X = (totalSize.X != 0f) ? windowSize.X / totalSize.X : 0f,
+				Y = (totalSize.Y != 0f) ? windowSize.Y / totalSize.Y : 0f,
+			};
+
+			//Do we even need to draw these things?
+			DrawHorizontalScrollBar = ((0f < ratio.X) && (ratio.X < 1f));
+			DrawVerticalScrollBar = ((0f < ratio.Y) && (ratio.Y < 1f));
+
+			//get the scroll bar sizes
+			var scrollbarSize = windowSize * ratio;
+
+			//get the scroll delta
+			var scrollDelta = (MaxScroll - MinScroll);
+			var deltaRatio = new Vector2()
+			{
+				X = (scrollDelta.X != 0f) ? (ScrollPosition.X - MinScroll.X) / scrollDelta.X : 0f,
+				Y = (scrollDelta.Y != 0f) ? (ScrollPosition.Y - MinScroll.Y) / scrollDelta.Y : 0f,
+			};
+
+			//Get the max number of pixels to add to the scroll bar position
+			var maxScrollDelta = windowSize - scrollbarSize;
+
+			//get the delta to add to the window pos
+			var delta = maxScrollDelta * deltaRatio;
+
+			//set the scrollbar rectangles
+			var rect = Rect;
+			_verticalScrollBar = new Rectangle((int)(rect.Right - ScrollBarWidth),
+				(int)(rect.Top + delta.Y),
+				(int)(ScrollBarWidth),
+				(int)(scrollbarSize.Y));
+
+			_horizScrollBar = new Rectangle((int)(rect.Left + delta.X),
+				(int)(rect.Bottom - ScrollBarWidth),
+				(int)(scrollbarSize.X),
+				(int)(ScrollBarWidth));
+
+		}
+
+		public override void CheckHighlight(Vector2 position)
+		{
+			DrawScrollbars = Rect.Contains(position);
+            base.CheckHighlight(position);
 		}
 
 		#endregion //Methods

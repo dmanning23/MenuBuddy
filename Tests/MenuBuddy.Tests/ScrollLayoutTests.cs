@@ -281,5 +281,360 @@ namespace MenuBuddy.Tests
 		}
 
 		#endregion //Constrain Scroll
+
+		#region Scrollbar tests
+
+		[Test]
+		public void Scrollbar__defaultvertical()
+		{
+			Assert.AreEqual(_layout.Rect.Right - ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.X);
+			Assert.AreEqual(0, _layout.VerticalScrollBar.Y);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
+			Assert.AreEqual(0, _layout.VerticalScrollBar.Height);
+		}
+
+		[Test]
+		public void Scrollbar__defaulthorizontal()
+		{
+			Assert.AreEqual(0, _layout.HorizontalScrollBar.X);
+			Assert.AreEqual(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Y);
+			Assert.AreEqual(0, _layout.HorizontalScrollBar.Width);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+		}
+
+		[Test]
+		public void Scrollbar__defaultdraw()
+		{
+			Assert.AreEqual(false, _layout.DrawVerticalScrollBar);
+			Assert.AreEqual(false, _layout.DrawHorizontalScrollBar);
+		}
+
+		[Test]
+		public void Scrollbar_HorizontalDefaults()
+		{
+			_layout.Size = new Vector2(100, 0);
+
+			var shim = new Shim()
+			{
+				Size = new Vector2(200, 0)
+			};
+			_layout.AddItem(shim);
+
+			Assert.AreEqual(84, _layout.VerticalScrollBar.X);
+			Assert.AreEqual(0, _layout.VerticalScrollBar.Y);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
+			Assert.AreEqual(0, _layout.VerticalScrollBar.Height);
+
+			Assert.AreEqual(Vector2.Zero, _layout.MinScroll);
+			Assert.AreEqual(100, _layout.MaxScroll.X);
+			Assert.AreEqual(0, _layout.MaxScroll.Y);
+
+			Assert.AreEqual(false, _layout.DrawVerticalScrollBar);
+			Assert.AreEqual(true, _layout.DrawHorizontalScrollBar);
+		}
+
+		[Test]
+		public void Scrollbar_HorizontalStart()
+		{
+			_layout.Size = new Vector2(100, 0);
+
+			var shim = new Shim()
+			{
+				Size = new Vector2(200, 0)
+			};
+			_layout.AddItem(shim);
+
+			Assert.AreEqual(0, _layout.HorizontalScrollBar.X);
+			Assert.AreEqual(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Y);
+			Assert.AreEqual(50, _layout.HorizontalScrollBar.Width);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+		}
+
+		[Test]
+		public void Scrollbar_HorizontalMid()
+		{
+			_layout.Size = new Vector2(100, 0);
+
+			var shim = new Shim()
+			{
+				Size = new Vector2(200, 0)
+			};
+			_layout.AddItem(shim);
+
+			_layout.ScrollPosition = new Vector2(50, 0);
+
+			Assert.AreEqual(25, _layout.HorizontalScrollBar.X);
+			Assert.AreEqual(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Y);
+			Assert.AreEqual(50, _layout.HorizontalScrollBar.Width);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+		}
+
+		[Test]
+		public void Scrollbar_HorizontalEnd()
+		{
+			_layout.Size = new Vector2(100, 0);
+
+			var shim = new Shim()
+			{
+				Size = new Vector2(200, 0)
+			};
+			_layout.AddItem(shim);
+
+			_layout.ScrollPosition = new Vector2(100, 0);
+
+			Assert.AreEqual(50, _layout.HorizontalScrollBar.X);
+			Assert.AreEqual(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Y);
+			Assert.AreEqual(50, _layout.HorizontalScrollBar.Width);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+		}
+
+		[Test]
+		public void Scrollbar_VerticalDefaults()
+		{
+			_layout.Size = new Vector2(0, 100);
+
+			var shim = new Shim()
+			{
+				Size = new Vector2(0, 200)
+			};
+			_layout.AddItem(shim);
+
+			Assert.AreEqual(0, _layout.HorizontalScrollBar.X);
+			Assert.AreEqual(84, _layout.HorizontalScrollBar.Y);
+			Assert.AreEqual(0, _layout.HorizontalScrollBar.Width);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+
+			Assert.AreEqual(Vector2.Zero, _layout.MinScroll);
+			Assert.AreEqual(0, _layout.MaxScroll.X);
+			Assert.AreEqual(100, _layout.MaxScroll.Y);
+
+			Assert.AreEqual(true, _layout.DrawVerticalScrollBar);
+			Assert.AreEqual(false, _layout.DrawHorizontalScrollBar);
+		}
+
+		[Test]
+		public void Scrollbar_VerticalStart()
+		{
+			_layout.Size = new Vector2(0, 100);
+
+			var shim = new Shim()
+			{
+				Size = new Vector2(0, 200)
+			};
+			_layout.AddItem(shim);
+
+			Assert.AreEqual(_layout.Rect.Right - ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.X);
+			Assert.AreEqual(0, _layout.VerticalScrollBar.Y);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
+			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+		}
+
+		[Test]
+		public void Scrollbar_VerticalMid()
+		{
+			_layout.Size = new Vector2(0, 100);
+
+			var shim = new Shim()
+			{
+				Size = new Vector2(0, 200)
+			};
+			_layout.AddItem(shim);
+
+			_layout.ScrollPosition = new Vector2(0, 50);
+
+			Assert.AreEqual(_layout.Rect.Right - ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.X);
+			Assert.AreEqual(25, _layout.VerticalScrollBar.Y);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
+			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+		}
+
+		[Test]
+		public void Scrollbar_VerticalEnd()
+		{
+			_layout.Size = new Vector2(0, 100);
+
+			var shim = new Shim()
+			{
+				Size = new Vector2(0, 200)
+			};
+			_layout.AddItem(shim);
+
+			_layout.ScrollPosition = new Vector2(0, 100);
+
+			Assert.AreEqual(_layout.Rect.Right - ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.X);
+			Assert.AreEqual(50, _layout.VerticalScrollBar.Y);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
+			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+		}
+
+		[Test]
+		public void Scrollbar_BothStart()
+		{
+			_layout.Size = new Vector2(1000, 100);
+
+			var shim = new Shim()
+			{
+				Size = new Vector2(2000, 200)
+			};
+			_layout.AddItem(shim);
+
+			Assert.AreEqual(0, _layout.HorizontalScrollBar.X);
+			Assert.AreEqual(84, _layout.HorizontalScrollBar.Y);
+			Assert.AreEqual(500, _layout.HorizontalScrollBar.Width);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+
+			Assert.AreEqual(984, _layout.VerticalScrollBar.X);
+			Assert.AreEqual(0, _layout.VerticalScrollBar.Y);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
+			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+
+			Assert.AreEqual(Vector2.Zero, _layout.MinScroll);
+			Assert.AreEqual(1000, _layout.MaxScroll.X);
+			Assert.AreEqual(100, _layout.MaxScroll.Y);
+		}
+
+		[Test]
+		public void Scrollbar_BothMid()
+		{
+			_layout.Size = new Vector2(1000, 100);
+
+			var shim = new Shim()
+			{
+				Size = new Vector2(2000, 200)
+			};
+			_layout.AddItem(shim);
+
+			_layout.ScrollPosition = new Vector2(500, 50);
+
+			Assert.AreEqual(250, _layout.HorizontalScrollBar.X);
+			Assert.AreEqual(84, _layout.HorizontalScrollBar.Y);
+			Assert.AreEqual(500, _layout.HorizontalScrollBar.Width);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+
+			Assert.AreEqual(984, _layout.VerticalScrollBar.X);
+			Assert.AreEqual(25, _layout.VerticalScrollBar.Y);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
+			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+		}
+
+		[Test]
+		public void Scrollbar_BothEnd()
+		{
+			_layout.Size = new Vector2(1000, 100);
+
+			var shim = new Shim()
+			{
+				Size = new Vector2(2000, 200)
+			};
+			_layout.AddItem(shim);
+
+			_layout.ScrollPosition = new Vector2(1000, 100);
+
+			Assert.AreEqual(500, _layout.HorizontalScrollBar.X);
+			Assert.AreEqual(84, _layout.HorizontalScrollBar.Y);
+			Assert.AreEqual(500, _layout.HorizontalScrollBar.Width);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+
+			Assert.AreEqual(984, _layout.VerticalScrollBar.X);
+			Assert.AreEqual(50, _layout.VerticalScrollBar.Y);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
+			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+		}
+
+		[Test]
+		public void Scrollbar_MoveLayout_HorizontalStart()
+		{
+			_layout.Position = new Point(10000, 10000);
+			_layout.Size = new Vector2(1000, 100);
+
+			var shim = new Shim()
+			{
+				Size = new Vector2(2000, 200)
+			};
+			_layout.AddItem(shim);
+
+			Assert.AreEqual(10000, _layout.HorizontalScrollBar.X);
+			Assert.AreEqual(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Y);
+			Assert.AreEqual(500, _layout.HorizontalScrollBar.Width);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+
+			Assert.AreEqual(Vector2.Zero, _layout.MinScroll);
+			Assert.AreEqual(1000, _layout.MaxScroll.X);
+			Assert.AreEqual(100, _layout.MaxScroll.Y);
+		}
+
+		[Test]
+		public void Scrollbar_MoveLayout_VerticalStart()
+		{
+			_layout.Position = new Point(10000, 10000);
+			_layout.Size = new Vector2(1000, 100);
+
+			var shim = new Shim()
+			{
+				Size = new Vector2(2000, 200)
+			};
+			_layout.AddItem(shim);
+
+			Assert.AreEqual(_layout.Rect.Right - ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.X);
+			Assert.AreEqual(10000, _layout.VerticalScrollBar.Y);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
+			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+
+			Assert.AreEqual(Vector2.Zero, _layout.MinScroll);
+			Assert.AreEqual(1000, _layout.MaxScroll.X);
+			Assert.AreEqual(100, _layout.MaxScroll.Y);
+		}
+
+		[Test]
+		public void Scrollbar_MoveLayout_Mid()
+		{
+			_layout.Position = new Point(10000, 10000);
+			_layout.Size = new Vector2(1000, 100);
+
+			var shim = new Shim()
+			{
+				Size = new Vector2(2000, 200)
+			};
+			_layout.AddItem(shim);
+
+			_layout.ScrollPosition = new Vector2(500, 50);
+
+			Assert.AreEqual(10250, _layout.HorizontalScrollBar.X);
+			Assert.AreEqual(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Y);
+			Assert.AreEqual(500, _layout.HorizontalScrollBar.Width);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+
+			Assert.AreEqual(_layout.Rect.Right - ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.X);
+			Assert.AreEqual(10025, _layout.VerticalScrollBar.Y);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
+			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+		}
+
+		[Test]
+		public void Scrollbar_MoveLayout_End()
+		{
+			_layout.Position = new Point(10000, 10000);
+			_layout.Size = new Vector2(1000, 100);
+
+			var shim = new Shim()
+			{
+				Size = new Vector2(2000, 200)
+			};
+			_layout.AddItem(shim);
+
+			_layout.ScrollPosition = new Vector2(1000, 100);
+
+			Assert.AreEqual(10500, _layout.HorizontalScrollBar.X);
+			Assert.AreEqual(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Y);
+			Assert.AreEqual(500, _layout.HorizontalScrollBar.Width);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+
+			Assert.AreEqual(_layout.Rect.Right - ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.X);
+			Assert.AreEqual(10050, _layout.VerticalScrollBar.Y);
+			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
+			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+		}
+
+		#endregion //Scrollbar tests
 	}
 }

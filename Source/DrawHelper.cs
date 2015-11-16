@@ -77,6 +77,33 @@ namespace MenuBuddy
 			}
 		}
 
+		public void DrawOutline(Transition transition, TransitionType transitionType, Color color, Rectangle rect)
+		{
+			//get teh correct color
+			color.A = (byte)(255f * transition.Alpha);
+
+			//set the transition location
+			rect.Location = transition.Position(rect, transitionType);
+
+			//draw the button outline
+			Prim.Rectangle(rect, color);
+		}
+
+		/// <summary>
+		/// Helper draws a translucent black sprite, used for fading specific areas
+		/// </summary>
+		public void DrawRect(Transition transition, TransitionType transitionType, Color color, Rectangle rect)
+		{
+			//get the color for the background & border
+			color.A = (byte)(color.A * transition.Alpha);
+
+			//set the transition location
+			rect.Location = transition.Position(rect, transitionType);
+
+			//draw the filled background
+			DrawRect(color, rect);
+		}
+
 		/// <summary>
 		/// Helper draws a translucent black sprite, used for fading specific areas
 		/// </summary>

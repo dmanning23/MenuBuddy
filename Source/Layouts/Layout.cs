@@ -145,7 +145,7 @@ namespace MenuBuddy
 			}
 		}
 
-		public void CheckHighlight(Vector2 position)
+		public virtual void CheckHighlight(Vector2 position)
 		{
 			if (Rect.Contains(position))
 			{
@@ -156,7 +156,7 @@ namespace MenuBuddy
 			}
 		}
 
-		public bool CheckClick(Vector2 position)
+		public virtual bool CheckClick(Vector2 position)
 		{
 			if (Rect.Contains(position))
 			{
