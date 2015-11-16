@@ -181,7 +181,7 @@ namespace MenuBuddy
 					ScreensToUpdate.Add(Screens[i]);
 				}
 
-				bool otherScreenHasFocus = !Game.IsActive;
+				bool otherWindowHasFocus = !Game.IsActive;
 				bool coveredByOtherScreen = false;
 
 				// Loop as long as there are screens waiting to be updated.
@@ -192,21 +192,14 @@ namespace MenuBuddy
 					ScreensToUpdate.RemoveAt(ScreensToUpdate.Count - 1);
 
 					// Update the screen.
-					screen.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+					screen.Update(gameTime, otherWindowHasFocus, coveredByOtherScreen);
 
-					if (screen.Transition.State == TransitionState.TransitionOn ||
-						screen.Transition.State == TransitionState.Active)
+					//If the screen is active, let it check the input
+					if (screen.IsActive)
 					{
-						// If this is the first active screen we came across,
-						// give it a chance to handle input.
-						if (!otherScreenHasFocus)
-						{
-							Input.HandleInput(screen);
-							otherScreenHasFocus = true;
-						}
+						Input.HandleInput(screen);
 
-						// If this is an active non-popup, inform any subsequent
-						// screens that they are covered by it.
+						//If this is a covering screen, let other screens know they are covered.
 						if (screen.CoverOtherScreens)
 						{
 							coveredByOtherScreen = true;

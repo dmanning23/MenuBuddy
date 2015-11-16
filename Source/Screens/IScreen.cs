@@ -35,11 +35,14 @@ namespace MenuBuddy
 		Transition Transition { get; }
 
 		/// <summary>
-		/// Normally when one screen is brought up over the top of another,
-		/// the first screen will transition off to make room for the new one.
-		/// This property indicates whether screens underneath it need to bother transitioning off.
+		/// Whether or not screens underneath this one should tranisition off
 		/// </summary>
 		bool CoverOtherScreens { get; set; }
+
+		/// <summary>
+		/// Whether or not this screen should transition off when covered by other screens
+		/// </summary>
+		bool CoveredByOtherScreens { set; }
 
 		PlayerIndex? ControllingPlayer { get; set; }
 
@@ -77,7 +80,7 @@ namespace MenuBuddy
 		/// Unlike HandleInput, this method is called regardless of whether the screen
 		/// is active, hidden, or in the middle of a transition.
 		/// </summary>
-		void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen);
+		void Update(GameTime gameTime, bool otherWindowHasFocus, bool covered);
 
 		/// <summary>
 		/// This is called when the screen should draw itself.

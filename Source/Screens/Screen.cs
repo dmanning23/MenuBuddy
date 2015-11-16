@@ -16,20 +16,28 @@ namespace MenuBuddy
 		#region Properties
 
 		/// <summary>
-		/// Checks whether this screen is active and can respond to user input.
+		/// Checks whether this game is active and can respond to user input.
 		/// </summary>
-		protected bool OtherScreenHasFocus { get; private set; }
+		private bool OtherWindowHasFocus { get; set; }
 
 		/// <summary>
-		/// Normally when one screen is brought up over the top of another,
-		/// the first screen will transition off to make room for the new one.
-		/// This property indicates whether screens underneath it need to bother transitioning off.
+		/// Whether or not this screen is currently covered by another screen
+		/// </summary>
+		private bool CurrentlyCovered { get; set; }
+
+		/// <summary>
+		/// Whether or not screens underneath this one should tranisition off
 		/// </summary>
 		public bool CoverOtherScreens { get; set; }
 
 		/// <summary>
-		/// There are two possible reasons why a screen might be transitioning
-		/// off. It could be temporarily going away to make room for another
+		/// Whether or not this screen should transition off when covered by other screens
+		/// </summary>
+		public bool CoveredByOtherScreens { private get; set; }
+
+		/// <summary>
+		/// There are two possible reasons why a screen might be transitioning off. 
+		/// It could be temporarily going away to make room for another
 		/// screen that is on top of it, or it could be going away for good.
 		/// This property indicates whether the screen is exiting for real:
 		/// if set, the screen will automatically remove itself as soon as the
@@ -55,7 +63,8 @@ namespace MenuBuddy
 		{
 			get
 			{
-				return !OtherScreenHasFocus &&
+				return !OtherWindowHasFocus &&
+					!(CurrentlyCovered && CoveredByOtherScreens) &&
 					   (Transition.State == TransitionState.TransitionOn ||
 						Transition.State == TransitionState.Active);
 			}
@@ -109,6 +118,10 @@ namespace MenuBuddy
 		protected Screen(string screenName = "")
 		{
 			CoverOtherScreens = false;
+			CoveredByOtherScreens = false;
+			CurrentlyCovered = false;
+			OtherWindowHasFocus = false;
+
 			IsExiting = false;
 			ScreenName = screenName;
 
@@ -146,9 +159,15 @@ namespace MenuBuddy
 		/// Unlike HandleInput, this method is called regardless of whether the screen
 		/// is active, hidden, or in the middle of a transition.
 		/// </summary>
-		public virtual void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+		/// <param name="gameTime"></param>
+		/// <param name="otherWindowHasFocus"></param>
+		/// <param name="covered"></param>
+		public virtual void Update(GameTime gameTime, bool otherWindowHasFocus, bool covered)
 		{
-			OtherScreenHasFocus = otherScreenHasFocus;
+			//Grab the parameters that were passed in
+			OtherWindowHasFocus = otherWindowHasFocus;
+			CurrentlyCovered = covered;
+
 			Time.Update(gameTime);
 
 			if (IsExiting)
@@ -162,7 +181,7 @@ namespace MenuBuddy
 					ScreenManager.RemoveScreen(this);
 				}
 			}
-			else if (coveredByOtherScreen)
+			else if (CurrentlyCovered && CoveredByOtherScreens)
 			{
 				// If the screen is covered by another, it should transition off.
 				if (Transition.Update(gameTime, false))

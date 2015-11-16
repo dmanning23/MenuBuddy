@@ -90,6 +90,7 @@ namespace MenuBuddy
 			: base(menuTitle)
 		{
 			CoverOtherScreens = true;
+			CoveredByOtherScreens = true;
 		}
 
 		public override void LoadContent()
@@ -292,7 +293,7 @@ namespace MenuBuddy
 			base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
 			//update the timers
-			if (!otherScreenHasFocus && !coveredByOtherScreen)
+			if (IsActive)
 			{
 				//set teh highlighted item
 				var entries = MenuEntries.Items.OfType<IMenuEntry>().ToList();
