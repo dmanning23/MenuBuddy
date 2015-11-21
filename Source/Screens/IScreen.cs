@@ -34,6 +34,8 @@ namespace MenuBuddy
 
 		Transition Transition { get; }
 
+		TransitionState TransitionState { get; }
+
 		/// <summary>
 		/// Whether or not screens underneath this one should tranisition off
 		/// </summary>

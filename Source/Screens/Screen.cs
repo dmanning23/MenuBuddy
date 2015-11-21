@@ -102,6 +102,14 @@ namespace MenuBuddy
 		/// </summary>
 		public Transition Transition { get; set; }
 
+		public TransitionState TransitionState
+		{
+			get
+			{
+				return Transition.State;
+			}
+		}
+
 		/// <summary>
 		/// The style of this screen.
 		/// Inherits from the ScreenManager style
@@ -141,6 +149,8 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void LoadContent()
 		{
+			//set the style of teh screen
+			SetStyle(DefaultStyles.Instance().MainStyle);
 		}
 
 		/// <summary>

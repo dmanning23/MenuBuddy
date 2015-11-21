@@ -22,26 +22,10 @@ namespace MenuBuddy
 	{
 		#region Properties
 
-		#region Screen Properties
-
-		/// <summary>
-		/// A list of screens currently waiting to be updated
-		/// </summary>
-		private List<IScreen> ScreensToUpdate { get; set; }
-
-		/// <summary>
-		/// The list of screens that are currently in the game.
-		/// </summary>
-		/// <value>The screens.</value>
-		public List<IScreen> Screens { get; private set; }
-
-		/// <summary>
-		/// This is a special screen that you always want to stay on top of all teh other screens.
-		/// Useful for something like an Insert Coin screen
-		/// </summary>
-		public IScreen TopScreen { get; private set; }
-
-		#endregion //Screen Properties
+		public ScreenStack ScreenStack
+		{
+			get; set;
+		}
 
 		/// <summary>
 		/// Flag for whether or not this screen manager has been initialized
@@ -76,8 +60,8 @@ namespace MenuBuddy
 			Initialized = false;
 			MainMenuStack = mainMenuStack;
 
-			ScreensToUpdate = new List<IScreen>();
-			Screens = new List<IScreen>();
+			ScreenStack = new ScreenStack();
+
 			ClearColor = new Color(0.0f, 0.1f, 0.2f);
 
 			//get the touch service
@@ -116,29 +100,7 @@ namespace MenuBuddy
 
 			DrawHelper = new DrawHelper(GraphicsDevice, SpriteBatch);
 
-			// Tell each of the screens to load their content.
-			foreach (var screen in Screens)
-			{
-				LoadScreenContent(screen);
-			}
-
-			if (null != TopScreen)
-			{
-				TopScreen.LoadContent();
-			}
-		}
-
-		/// <summary>
-		/// Setup the style and content of a screen
-		/// </summary>
-		/// <param name="screen"></param>
-		private void LoadScreenContent(IScreen screen)
-		{
-			//set the style of teh screen
-			screen.SetStyle(DefaultStyles.Instance().MainStyle);
-
-			//load the screen content
-			screen.LoadContent();
+			ScreenStack.LoadContent();
 		}
 
 		/// <summary>
@@ -146,16 +108,7 @@ namespace MenuBuddy
 		/// </summary>
 		protected override void UnloadContent()
 		{
-			// Tell each of the screens to unload their content.
-			foreach (var screen in Screens)
-			{
-				screen.UnloadContent();
-			}
-
-			if (null != TopScreen)
-			{
-				TopScreen.UnloadContent();
-			}
+			ScreenStack.UnloadContent();
 		}
 
 		#endregion //Initialization
@@ -166,46 +119,9 @@ namespace MenuBuddy
 		{
 			//try
 			//{
-				// Make a copy of the master screen list, to avoid confusion if the process of updating one screen adds or removes others.
-				ScreensToUpdate.Clear();
 
-				//Update the top screen separate from all other screens.
-				if (null != TopScreen)
-				{
-					TopScreen.Update(gameTime, false, false);
-					Input.HandleInput(TopScreen);
-				}
+			ScreenStack.Update(gameTime, Input, !Game.IsActive);
 
-				for (int i = 0; i < Screens.Count; i++)
-				{
-					ScreensToUpdate.Add(Screens[i]);
-				}
-
-				bool otherWindowHasFocus = !Game.IsActive;
-				bool coveredByOtherScreen = false;
-
-				// Loop as long as there are screens waiting to be updated.
-				while (ScreensToUpdate.Count > 0)
-				{
-					// Pop the topmost screen off the waiting list.
-					var screen = ScreensToUpdate[ScreensToUpdate.Count - 1];
-					ScreensToUpdate.RemoveAt(ScreensToUpdate.Count - 1);
-
-					// Update the screen.
-					screen.Update(gameTime, otherWindowHasFocus, coveredByOtherScreen);
-
-					//If the screen is active, let it check the input
-					if (screen.IsActive)
-					{
-						Input.HandleInput(screen);
-
-						//If this is a covering screen, let other screens know they are covered.
-						if (screen.CoverOtherScreens)
-						{
-							coveredByOtherScreen = true;
-						}
-					}
-				}
 			//}
 			//catch (Exception ex)
 			//{
@@ -222,21 +138,7 @@ namespace MenuBuddy
 			try
 			{
 #endif
-			for (int i = 0; i < Screens.Count; i++)
-			{
-				if (Screens[i].Transition.State == TransitionState.Hidden)
-				{
-					continue;
-				}
-
-				Screens[i].Draw(gameTime);
-			}
-
-			//draw the top screen
-			if (null != TopScreen)
-			{
-				TopScreen.Draw(gameTime);
-			}
+			ScreenStack.Draw(gameTime);
 
 #if !DEBUG
 			}
@@ -330,10 +232,10 @@ namespace MenuBuddy
 				// If we have a graphics device, tell the screen to load content.
 				if (Initialized)
 				{
-					LoadScreenContent(screen);
+					screen.LoadContent();
 				}
 
-				Screens.Add(screen);
+				ScreenStack.Screens.Add(screen);
 #if !DEBUG
 			}
 			catch (Exception ex)
@@ -370,10 +272,10 @@ namespace MenuBuddy
 			// If we have a graphics device, tell the screen to load content.
 			if (Initialized)
 			{
-				LoadScreenContent(screen);
+				screen.LoadContent();
 			}
 
-			TopScreen = screen;
+			ScreenStack.TopScreen = screen;
 		}
 
 		/// <summary>
@@ -390,11 +292,10 @@ namespace MenuBuddy
 				screen.UnloadContent();
 			}
 
-			Screens.Remove(screen);
-			ScreensToUpdate.Remove(screen);
+			ScreenStack.RemoveScreen(screen);
 
 			//reset the times of all the rest of teh screens
-			var widgetScreens = Screens.OfType<WidgetScreen>();
+			var widgetScreens = ScreenStack.Screens.OfType<WidgetScreen>();
 			foreach (var curScreen in widgetScreens)
 			{
 				curScreen.ResetInputTimer();
@@ -414,7 +315,7 @@ namespace MenuBuddy
 
 		public IScreen FindScreen(string screenName)
 		{
-			return Screens.Find(m => m.ScreenName == screenName);
+			return ScreenStack.Screens.Find(m => m.ScreenName == screenName);
 		}
 
 		/// <summary>
@@ -424,7 +325,7 @@ namespace MenuBuddy
 		/// </summary>
 		public IScreen[] GetScreens()
 		{
-			return Screens.ToArray();
+			return ScreenStack.Screens.ToArray();
 		}
 
 		#endregion //Public Methods

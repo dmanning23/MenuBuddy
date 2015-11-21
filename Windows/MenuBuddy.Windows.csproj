@@ -161,6 +161,9 @@
     <Compile Include="..\Source\ScreenManager\ScreenManager.cs">
       <Link>ScreenManager\ScreenManager.cs</Link>
     </Compile>
+    <Compile Include="..\Source\ScreenManager\ScreenStack.cs">
+      <Link>ScreenManager\ScreenStack.cs</Link>
+    </Compile>
     <Compile Include="..\Source\ScreenManager\ScreenStackDelegate.cs">
       <Link>ScreenManager\ScreenStackDelegate.cs</Link>
     </Compile>
