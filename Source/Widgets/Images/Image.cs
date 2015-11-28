@@ -1,6 +1,7 @@
 using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MouseBuddy;
 
 namespace MenuBuddy
 {
@@ -156,6 +157,11 @@ namespace MenuBuddy
 			}
 
 			_rect = new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
+		}
+
+		public override bool CheckClick(ClickEventArgs click)
+		{
+			return false;
 		}
 
 		#endregion //Methods

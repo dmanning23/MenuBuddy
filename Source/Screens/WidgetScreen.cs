@@ -2,6 +2,8 @@ using GameTimer;
 using Microsoft.Xna.Framework;
 using ResolutionBuddy;
 using System.Collections.Generic;
+using System;
+using MouseBuddy;
 
 namespace MenuBuddy
 {
@@ -16,6 +18,9 @@ namespace MenuBuddy
 		/// Ammount of time that passes before attract mode is activated
 		/// </summary>
 		private const float _AttractModeTime = 15.0f;
+
+		public event EventHandler<ClickEventArgs> OnClick;
+		public event EventHandler<HighlightEventArgs> OnHighlight;
 
 		#endregion
 
@@ -75,17 +80,13 @@ namespace MenuBuddy
 		public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
 		{
 			base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
-			Update(this, Time);
-		}
 
-		/// <summary>
-		/// The item container update
-		/// </summary>
-		/// <param name="screen"></param>
-		/// <param name="gameTime"></param>
-		public void Update(IScreen screen, GameClock gameTime)
-		{
-			Layout.Update(screen, gameTime);
+			if (IsActive)
+			{
+				TimeSinceInput.Update(gameTime);
+			}
+
+			Layout.Update(this, Time);
 		}
 
 		/// <summary>
@@ -132,7 +133,9 @@ namespace MenuBuddy
 		protected CancelButton AddCancelButton()
 		{
 			var cancelButton = new CancelButton();
-			cancelButton.Selected += OnCancel;
+			cancelButton.OnClick += ((obj, e) => {
+				ExitScreen();
+			});
 			AddItem(cancelButton);
 			return cancelButton;
 		}
@@ -154,37 +157,23 @@ namespace MenuBuddy
 			return Layout.RemoveItem(item);
 		}
 
-		/// <summary>
-		/// User hit the "menu select" button.
-		/// </summary>
-		/// <param name="playerIndex"></param>
-		public virtual void OnSelect(object obj, PlayerIndexEventArgs playerIndex)
+		public bool CheckHighlight(HighlightEventArgs highlight)
 		{
-			ResetInputTimer();
-		}
-
-		public virtual void OnCancel(object obj, PlayerIndexEventArgs playerIndex)
-		{
-			ExitScreen();
-		}
-
-		public void CheckHighlight(Vector2 point)
-		{
-			Layout.CheckHighlight(point);
+			return Layout.CheckHighlight(highlight);
 		}
 
 		/// <summary>
 		/// User clicked somewhere in this screen.
 		/// </summary>
 		/// <param name="point"></param>
-		public bool CheckClick(Vector2 point)
+		public bool CheckClick(ClickEventArgs click)
 		{
 			//restart the input timer thing
-			TimeSinceInput.Start(_AttractModeTime);
+			ResetInputTimer();
 
 			//check if they clicked in the layout
-			return Layout.CheckClick(point);
-        }
+			return Layout.CheckClick(click);
+		}
 
 		/// <summary>
 		/// This gets called when the input timer needs to be reset.

@@ -29,7 +29,6 @@ namespace MenuBuddy
 			_instance = inst;
 		}
 
-
 		public static void InitUnitTests()
 		{
 			_instance = new DefaultStyles();
@@ -59,9 +58,17 @@ namespace MenuBuddy
 		public static string ButtonBackground { protected get; set; }
 
 		public StyleSheet MainStyle { get; set; }
-		public StyleSheet MenuTitleStyle { get; private set; }
+		public StyleSheet MenuTitleStyle { get; set; }
 		public StyleSheet MenuEntryStyle { get; set; }
-		public StyleSheet MessageBoxStyle { get; private set; }
+		public StyleSheet MessageBoxStyle { get; set; }
+
+		public virtual bool TouchStyle
+		{
+			get
+			{
+				return false;
+			}
+		}
 
 		#endregion //Properties
 

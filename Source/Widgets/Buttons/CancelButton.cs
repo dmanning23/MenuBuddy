@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MouseBuddy;
 using ResolutionBuddy;
 
 namespace MenuBuddy
@@ -58,7 +59,7 @@ namespace MenuBuddy
 			DrawWhenInactive = false;
 
 			//Exit the screen when this button is selected
-			Selected += ((object obj, PlayerIndexEventArgs e) => 
+			OnClick += ((object obj, ClickEventArgs e) => 
 			{
 				screen.ExitScreen();
 			});

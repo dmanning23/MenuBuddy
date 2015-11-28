@@ -7,27 +7,17 @@ namespace MenuBuddy
 	public class OkScreen : MessageBoxScreen
 	{
 		/// <summary>
-		/// Constructor automatically includes the standard "A=ok, B=cancel"
-		/// usage text prompt.
+		/// Constructor
 		/// </summary>
 		public OkScreen(string message)
-			: this(message, true)
+			: base(message)
 		{
 		}
 
-		/// <summary>
-		/// Constructor lets the caller specify whether to include the standard
-		/// "A=ok, B=cancel" usage text prompt.
-		/// </summary>
-		public OkScreen(string message, bool includeUsageText)
-			: base(message, includeUsageText)
-		{
-		}
-
-		protected override void AddButtons(StackLayout stack, bool includeUsageText)
+		protected override void AddButtons(StackLayout stack)
 		{
 			//just an ok button on this screen
-			AddOkButton(stack, includeUsageText);
+			AddOkButton(stack);
 		}
 	}
 }

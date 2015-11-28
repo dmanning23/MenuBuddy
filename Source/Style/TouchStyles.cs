@@ -20,6 +20,14 @@ namespace MenuBuddy
 
 		#endregion //Singleton
 
+		public override bool TouchStyle
+		{
+			get
+			{
+				return true;
+			}
+		}
+
 		protected TouchStyles(Game game)
 			: base(game)
 		{
@@ -34,16 +42,18 @@ namespace MenuBuddy
 			MenuEntryStyle.SelectedTextColor = MenuEntryStyle.UnselectedTextColor;
 
 			//load the selected text stuff
-			var shadow = new ShadowTextBuddy();
-			shadow.ShadowSize = 1.0f;
+			var shadow = MenuEntryStyle.SelectedFont as ShadowTextBuddy;
+            shadow.ShadowSize = 1.0f;
 			shadow.ShadowOffset = new Vector2(7.0f, 7.0f);
-			shadow.Font = _game.Content.Load<SpriteFont>(MenuEntryFontName);
-			MenuEntryStyle.SelectedFont = shadow;
 			MenuEntryStyle.SelectedTextColor = Color.White;
 			MenuEntryStyle.SelectedShadowColor = Color.Black;
 
 			//load unselected text stuff
-			MenuEntryStyle.UnselectedFont = MenuEntryStyle.SelectedFont;
+			shadow = new ShadowTextBuddy();
+			shadow.ShadowSize = 1.0f;
+			shadow.ShadowOffset = new Vector2(7.0f, 7.0f);
+			shadow.Font = _game.Content.Load<SpriteFont>(MenuEntryFontName);
+			MenuEntryStyle.UnselectedFont = shadow;
 			MenuEntryStyle.UnselectedTextColor = MenuEntryStyle.SelectedTextColor;
 			MenuEntryStyle.UnselectedShadowColor = MenuEntryStyle.SelectedShadowColor;
 		}
@@ -57,15 +67,17 @@ namespace MenuBuddy
 			MessageBoxStyle.HasOutline = true;
 			MessageBoxStyle.SelectedTextColor = MenuEntryStyle.UnselectedTextColor;
 
-			var shadow = new ShadowTextBuddy();
+			var shadow = MessageBoxStyle.SelectedFont as ShadowTextBuddy;
 			shadow.ShadowSize = 1.0f;
 			shadow.ShadowOffset = new Vector2(4.0f, 4.0f);
-			shadow.Font = _game.Content.Load<SpriteFont>(MessageBoxFontName);
-			MessageBoxStyle.SelectedFont = shadow;
 			MessageBoxStyle.SelectedTextColor = Color.White;
 			MessageBoxStyle.SelectedShadowColor = Color.Black;
 
-			MessageBoxStyle.UnselectedFont = MessageBoxStyle.SelectedFont;
+			shadow = new ShadowTextBuddy();
+			shadow.ShadowSize = 1.0f;
+			shadow.ShadowOffset = new Vector2(4.0f, 4.0f);
+			shadow.Font = _game.Content.Load<SpriteFont>(MessageBoxFontName);
+			MessageBoxStyle.UnselectedFont = shadow;
 			MessageBoxStyle.UnselectedTextColor = MessageBoxStyle.SelectedTextColor;
 			MessageBoxStyle.UnselectedShadowColor = MessageBoxStyle.SelectedShadowColor;
 		}

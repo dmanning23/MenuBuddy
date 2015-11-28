@@ -1,6 +1,7 @@
 using FontBuddyLib;
 using GameTimer;
 using Microsoft.Xna.Framework;
+using MouseBuddy;
 
 namespace MenuBuddy
 {
@@ -57,6 +58,8 @@ namespace MenuBuddy
 				return;
 			}
 
+			HighlightClock.Update(gameTime);
+
 			//Get the font to use
 			var font = Highlight ? Style.SelectedFont : Style.UnselectedFont;
 
@@ -79,7 +82,7 @@ namespace MenuBuddy
 				Scale,
 				color,
 				screen.ScreenManager.SpriteBatch,
-				gameTime);
+				HighlightClock);
 		}
 
 		protected override void CalculateRect()
@@ -114,6 +117,11 @@ namespace MenuBuddy
 				case HorizontalAlignment.Left: return Justify.Left;
 				default: return Justify.Right;
 			}
+		}
+
+		public override bool CheckClick(ClickEventArgs click)
+		{
+			return false;
 		}
 
 		#endregion //Methods

@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using MouseBuddy;
 using System;
 using System.Collections.Generic;
 
@@ -11,10 +12,7 @@ namespace MenuBuddy
 	{
 		#region Fields
 
-		/// <summary>
-		/// whether or not this dude is highlighted
-		/// </summary>
-		private bool _highlight;
+		
 
 		/// <summary>
 		/// whether or not to draw this item when inactive
@@ -22,6 +20,8 @@ namespace MenuBuddy
 		private bool _drawWhenInactive;
 
 		private Vector2 _size;
+
+		public event EventHandler<SelectedEventArgs> OnSelect;
 
 		#endregion //Fields
 
@@ -52,11 +52,11 @@ namespace MenuBuddy
 		{
 			protected get
 			{
-				return _highlight;
+				return base.Highlight;
 			}
 			set
 			{
-				_highlight = value;
+				base.Highlight = value;
 				Layout.Highlight = value;
 			}
 		}
@@ -92,28 +92,6 @@ namespace MenuBuddy
 		/// </summary>
 		public string Description { get; set; }
 
-		/// <summary>
-		/// Event raised when the menu entry is selected.
-		/// </summary>
-		public event EventHandler<PlayerIndexEventArgs> Selected;
-
-		/// <summary>
-		/// Method for raising the Selected event.
-		/// </summary>
-		public virtual void OnSelect(PlayerIndex? playerIndex)
-		{
-			if (Selected != null)
-			{
-				Selected(this, new PlayerIndexEventArgs(playerIndex));
-			}
-
-			//play the sound effect
-			if (!Style.IsQuiet && (null != Style.SelectedSoundEffect))
-			{
-				Style.SelectedSoundEffect.Play();
-			}
-		}
-
 		#endregion //Properties
 
 		#region Methods
@@ -123,6 +101,22 @@ namespace MenuBuddy
 		/// </summary>
 		protected BaseButton()
 		{
+			//when this item is clicked, run the OnSelect event
+			OnClick += ((obj, e) =>
+			{
+				if (null != OnSelect)
+				{
+					Selected(obj, PlayerIndex.One);
+				}
+			});
+
+			//by default, just play a sound when this item is selected
+			OnSelect += PlaySelectedSound;
+			OnHighlight += PlayHighlightSound;
+			OnHighlight += ((obj, e) =>
+			{
+				Highlight = true;
+			});
 		}
 
 		public void AddItem(IScreenItem item)
@@ -136,7 +130,7 @@ namespace MenuBuddy
 			var result = Layout.RemoveItem(item);
 			CalculateRect();
 			return result;
-        }
+		}
 
 		public override void Update(IScreen screen, GameTimer.GameClock gameTime)
 		{
@@ -153,16 +147,33 @@ namespace MenuBuddy
 			_rect = Layout.Rect;
 		}
 
-		public override bool CheckClick(Vector2 position)
+		/// <summary>
+		/// Method for raising the Selected event.
+		/// </summary>
+		public void PlaySelectedSound(object obj, SelectedEventArgs e)
 		{
-			//check if the button was clicked
-			if (Rect.Contains(position))
+			//play the sound effect
+			if (!Style.IsQuiet && (null != Style.SelectedSoundEffect))
 			{
-				OnSelect(null);
-				return true;
+				Style.SelectedSoundEffect.Play();
 			}
+		}
 
-			return false;
+		public void PlayHighlightSound(object obj, HighlightEventArgs e)
+		{
+			if (!Style.IsQuiet && (null != Style.SelectionChangeSoundEffect))
+			{
+				//play menu noise
+				Style.SelectionChangeSoundEffect.Play();
+			}
+		}
+
+		public void Selected(object obj, PlayerIndex player)
+		{
+			if (null != OnSelect)
+			{
+				OnSelect(obj, new SelectedEventArgs(player));
+			}
 		}
 
 		#endregion //Methods

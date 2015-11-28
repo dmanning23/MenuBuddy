@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+using HadoukInput;
 
 namespace MenuBuddy
 {
@@ -8,24 +8,8 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IMenuScreen : IWidgetScreen
 	{
-		/// <summary>
-		/// Select the previous menu entry
-		/// </summary>
-		void MenuUp();
+		void CheckInput(InputState input);
 
-		/// <summary>
-		/// Select the next menu entry
-		/// </summary>
-		void MenuDown();
-
-		/// <summary>
-		/// User hit left on the current entry
-		/// </summary>
-		void MenuLeft();
-
-		/// <summary>
-		/// User hit right on the current entry
-		/// </summary>
-		void MenuRight();
+		void Cancelled(object obj, SelectedEventArgs e);
     }
 }

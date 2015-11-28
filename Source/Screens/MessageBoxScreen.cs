@@ -6,26 +6,25 @@ using System;
 using System.Text;
 using FontBuddyLib;
 using System.Linq;
+using MouseBuddy;
 
 namespace MenuBuddy
 {
 	/// <summary>
 	/// A popup message box screen, used to display "are you sure?" confirmation messages.
 	/// </summary>
-	public class MessageBoxScreen : MenuScreen
+	public class MessageBoxScreen : MenuScreen, ISelectable
 	{
 		#region Properties
-
-		public event EventHandler<PlayerIndexEventArgs> Accepted;
-
-		public event EventHandler<PlayerIndexEventArgs> Cancelled;
 
 		/// <summary>
 		/// The message to be displayed 
 		/// </summary>
 		public string Message { get; private set; }
 
-		private bool IncludeUsageText { get; set; }
+		public event EventHandler<SelectedEventArgs> OnSelect;
+
+		public event EventHandler<SelectedEventArgs> OnCancel;
 
 		#endregion //Properties
 
@@ -35,26 +34,16 @@ namespace MenuBuddy
 		/// Constructor lets the caller specify whether to include the standard
 		/// "A=ok, B=cancel" usage text prompt.
 		/// </summary>
-		public MessageBoxScreen(string message, bool includeUsageText, string menuTitle = "") :
+		public MessageBoxScreen(string message, string menuTitle = "") :
 			base(menuTitle)
 		{
 			//grab the message
 			Message = message;
-			IncludeUsageText = includeUsageText;
 
-			CoverOtherScreens = false;
+			CoverOtherScreens = true;
 
 			Transition.OnTime = TimeSpan.FromSeconds(0.2);
 			Transition.OffTime = TimeSpan.FromSeconds(0.2);
-		}
-
-		/// <summary>
-		/// Constructor automatically includes the standard "A=ok, B=cancel"
-		/// usage text prompt.
-		/// </summary>
-		public MessageBoxScreen(string message)
-			: this(message, true)
-		{
 		}
 
 		/// <summary>
@@ -86,9 +75,7 @@ namespace MenuBuddy
 				{
 					Style = DefaultStyles.Instance().MessageBoxStyle
 				};
-				label.Style.SelectedFont = new FontBuddy();
-				label.Style.SelectedFont.Font = DefaultStyles.Instance().MessageBoxStyle.SelectedFont.Font;
-				label.Style.SelectedTextColor = label.Style.UnselectedTextColor;
+				label.Style.SelectedFont = label.Style.UnselectedFont;
 				label.Style.HasOutline = false;
 				label.Style.HasBackground = false;
 				labelStack.AddItem(label);
@@ -98,7 +85,7 @@ namespace MenuBuddy
 			labelStack.AddItem(new Shim() { Size = new Vector2(0, 16f) });
 
 			//Add the buttons
-			AddButtons(labelStack, IncludeUsageText);
+			AddButtons(labelStack);
 
 			//Set the position of the labelstack
 			labelStack.Position = new Point(Resolution.TitleSafeArea.Center.X,
@@ -106,6 +93,60 @@ namespace MenuBuddy
 
 			AddItem(labelStack);
 
+			AddBackgroundImage(labelStack);
+        }
+
+		protected virtual void AddButtons(StackLayout stack)
+		{
+			AddOkButton(stack);
+
+			AddCancelButton(stack);
+		}
+
+		protected void AddOkButton(StackLayout stack)
+		{
+			//Create the menu entry for "OK"
+			var ok = new MenuEntry("Ok")
+			{
+				Style = DefaultStyles.Instance().MessageBoxStyle
+			};
+			ok.Style.BackgroundImage = DefaultStyles.Instance().MenuEntryStyle.BackgroundImage;
+			ok.OnSelect += ((obj, e) =>
+			{
+				if (null != OnSelect)
+				{
+					OnSelect(obj, e);
+				}
+				ExitScreen();
+			});
+			ok.LoadContent(this);
+			stack.AddItem(ok);
+			MenuEntries.AddItem(ok);
+		}
+
+		protected void AddCancelButton(StackLayout stack)
+		{
+			//Create the menu entry "Cancel"
+			var cancel = new MenuEntry("Cancel")
+			{
+				Style = DefaultStyles.Instance().MessageBoxStyle
+			};
+			cancel.Style.BackgroundImage = DefaultStyles.Instance().MenuEntryStyle.BackgroundImage;
+			cancel.OnSelect += ((obj, e) =>
+			{
+				if (null != OnCancel)
+				{
+					OnCancel(obj, e);
+				}
+				ExitScreen();
+			});
+			cancel.LoadContent(this);
+			stack.AddItem(cancel);
+			MenuEntries.AddItem(cancel);
+		}
+
+		public virtual void AddBackgroundImage(ILayout labelStack)
+		{
 			//Add the background image
 			var bkgImage = new BackgroundImage(DefaultStyles.Instance().MessageBoxStyle.BackgroundImage)
 			{
@@ -114,111 +155,14 @@ namespace MenuBuddy
 				Style = DefaultStyles.Instance().MessageBoxStyle,
 				Padding = new Vector2(64, 32),
 				Position = new Point(labelStack.Rect.Center.X, labelStack.Rect.Center.Y),
-                Size = new Vector2(labelStack.Rect.Width, labelStack.Rect.Height),
-                Horizontal = HorizontalAlignment.Center,
+				Size = new Vector2(labelStack.Rect.Width, labelStack.Rect.Height),
+				Horizontal = HorizontalAlignment.Center,
 				Vertical = VerticalAlignment.Center
 			};
-			AddItem(bkgImage);
-        }
+            AddItem(bkgImage);
+	}
 
-		protected virtual void AddButtons(StackLayout stack, bool includeUsageText)
-		{
-			AddOkButton(stack, includeUsageText);
-
-			AddCancelButton(stack, includeUsageText);
-		}
-
-		protected void AddOkButton(StackLayout stack, bool includeUsageText)
-		{
-			//create the strings to hold the menu text
-			var okText = new StringBuilder();
-			okText.Append("Ok");
-
-			if (includeUsageText)
-			{
-				//Put the correct button text in the message
-#if OUYA
-				okText.Append(": O button");
-#else
-				okText.Append(": A button");
-#endif
-
-				//Add the keyboard text if we have a keyboard
-#if KEYBOARD
-				okText.Append(", Space, Enter");
-#endif
-			}
-
-			//Create the menu entry for "OK"
-			var okEntry = new MenuEntry(okText.ToString())
-			{
-				Style = DefaultStyles.Instance().MessageBoxStyle
-			};
-			okEntry.Style.BackgroundImage = DefaultStyles.Instance().MenuEntryStyle.BackgroundImage;
-			okEntry.Selected += OnSelect;
-			okEntry.LoadContent(this);
-			stack.AddItem(okEntry);
-		}
-
-		protected void AddCancelButton(StackLayout stack, bool includeUsageText)
-		{
-			//create the strings to hold the menu text
-			var cancelText = new StringBuilder();
-			cancelText.Append("Cancel");
-
-			if (includeUsageText)
-			{
-				//Put the correct button text in the message
-#if OUYA
-				cancelText.Append(": A button");
-#else
-				cancelText.Append(": B button");
-#endif
-
-				//Add the keyboard text if we have a keyboard
-#if KEYBOARD
-				cancelText.Append(", Esc");
-#endif
-			}
-
-			//Create the menu entry "Cancel"
-			var cancel = new MenuEntry(cancelText.ToString())
-			{
-				Style = DefaultStyles.Instance().MessageBoxStyle
-			};
-			cancel.Style.BackgroundImage = DefaultStyles.Instance().MenuEntryStyle.BackgroundImage;
-			cancel.Selected += OnCancel;
-			cancel.LoadContent(this);
-			stack.AddItem(cancel);
-		}
-
-		#endregion
-
-		#region Handle Input
-
-		public override void OnSelect(object sender, PlayerIndexEventArgs e)
-		{
-			// Raise the accepted event, then exit the message box.
-			if (Accepted != null)
-			{
-				Accepted(sender, e);
-			}
-
-			ExitScreen();
-		}
-
-		public override void OnCancel(object sender, PlayerIndexEventArgs e)
-		{
-			// Raise the cancelled event, then exit the message box.
-			if (Cancelled != null)
-			{
-				Cancelled(this, new PlayerIndexEventArgs(e.PlayerIndex));
-			}
-			
-			base.OnCancel(sender, e);
-		}
-
-		#endregion
+		#endregion //Initialization
 
 		#region Draw
 
@@ -235,6 +179,11 @@ namespace MenuBuddy
 			ScreenManager.SpriteBatchEnd();
 
 			base.Draw(gameTime);
+		}
+
+		public void Selected(object obj, PlayerIndex player)
+		{
+			throw new NotImplementedException();
 		}
 
 		#endregion

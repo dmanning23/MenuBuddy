@@ -2,18 +2,23 @@ using GameTimer;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using MouseBuddy;
 
 namespace MenuBuddy
 {
 	/// <summary>
 	/// This is a list of items on a screen
 	/// </summary>
-	public abstract class Layout : IScreenItemContainer, IScreenItem, IScalable, IClickable
+	public abstract class Layout : ILayout
 	{
 		#region Fields
 
 		private HorizontalAlignment _horizontal;
 		private VerticalAlignment _vertical;
+
+		public event EventHandler<ClickEventArgs> OnClick;
+		public event EventHandler<HighlightEventArgs> OnHighlight;
 
 		#endregion //Fields
 
@@ -42,7 +47,7 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// all the items that are stacked
+		/// all the items that are in this layout
 		/// </summary>
 		public List<IScreenItem> Items { get; protected set; }
 
@@ -145,24 +150,28 @@ namespace MenuBuddy
 			}
 		}
 
-		public virtual void CheckHighlight(Vector2 position)
+		public virtual bool CheckHighlight(HighlightEventArgs highlight)
 		{
-			if (Rect.Contains(position))
+			var highlighted = false;
+
+			foreach (var item in Items)
 			{
-				foreach (var item in Items)
+				if (item.CheckHighlight(highlight))
 				{
-					item.CheckHighlight(position);
+					highlighted = true;
 				}
 			}
-		}
 
-		public virtual bool CheckClick(Vector2 position)
+			return highlighted;
+        }
+
+		public virtual bool CheckClick(ClickEventArgs click)
 		{
-			if (Rect.Contains(position))
+			if (Rect.Contains(click.Position))
 			{
 				foreach (var item in Items)
 				{
-					if (item.CheckClick(position))
+					if (item.CheckClick(click))
 					{
 						return true;
 					}

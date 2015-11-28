@@ -185,8 +185,9 @@ namespace MenuBuddy
 		/// <summary>
 		/// Default constructor
 		/// </summary>
-		public StyleSheet()
+		public StyleSheet(string name = "")
 		{
+			Name = name;
 			SelectedFont = null;
 			UnselectedFont = null;
 			SelectedTextColor = Color.Red;

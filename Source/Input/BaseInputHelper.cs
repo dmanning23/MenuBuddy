@@ -25,15 +25,14 @@ namespace MenuBuddy
 			InputState = new InputState();
 		}
 
-		public virtual void HandleInput(IScreen screen)
+		public override void Update(GameTime gameTime)
 		{
-			//check if this is the game screen
-			var game = screen as IGameScreen;
-			if (null != game)
-			{
-				game.HandleInput(InputState);
-			}
-		}
+			base.Update(gameTime);
+
+			InputState.Update();
+        }
+
+		public abstract void HandleInput(IScreen screen);
 
 		#endregion //Methods
 	}

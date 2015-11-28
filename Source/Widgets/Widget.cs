@@ -1,6 +1,7 @@
 using System;
 using GameTimer;
 using Microsoft.Xna.Framework;
+using MouseBuddy;
 
 namespace MenuBuddy
 {
@@ -23,11 +24,40 @@ namespace MenuBuddy
 
 		private Vector2 _padding;
 
+		public event EventHandler<HighlightEventArgs> OnHighlight;
+
+		public event EventHandler<ClickEventArgs> OnClick;
+
+		/// <summary>
+		/// whether or not this dude is highlighted
+		/// </summary>
+		private bool _highlight = false;
+
+		protected GameClock HighlightClock
+		{
+			get; set;
+		}
+
 		#endregion //Fields
 
 		#region Properties
 
-		public virtual bool Highlight { protected get; set; }
+		public virtual bool Highlight
+		{
+			protected get
+			{
+				return _highlight;
+			}
+			set
+			{
+				var prev = _highlight;
+				_highlight = value;
+				if (!prev && _highlight)
+				{
+					HighlightClock.Start();
+                }
+			}
+		}
 
 		/// <summary>
 		/// The area of this item
@@ -171,7 +201,8 @@ namespace MenuBuddy
 			_vertical = VerticalAlignment.Top;
 			_scale = 1.0f;
 			_padding = Vector2.Zero;
-		}
+			HighlightClock = new GameClock();
+        }
 
 		/// <summary>
 		/// Available load content method for child classes.
@@ -248,14 +279,38 @@ namespace MenuBuddy
 			return GetTransition(screen).Position(new Point(Position.X, Rect.Y), Style.Transition);
 		}
 
-		public void CheckHighlight(Vector2 position)
+		public virtual bool CheckHighlight(HighlightEventArgs highlight)
 		{
-			Highlight = Rect.Contains(position);
+			//get the previous value
+			var prev = Highlight;
+
+			//Check if this dude should be highlighted
+			Highlight = Rect.Contains(highlight.Position);
+
+			//Do we need to run the highlight event?
+			if (Highlight && 
+				!prev &&
+				null != OnHighlight)
+			{
+				OnHighlight(this, highlight);
+            }
+
+            return Highlight;
 		}
 
-		public virtual bool CheckClick(Vector2 position)
+		public virtual bool CheckClick(ClickEventArgs click)
 		{
-			//dont need to do anything here
+			//check if the widget was clicked
+			if (Rect.Contains(click.Position))
+			{
+				if (OnClick != null)
+				{
+					OnClick(this, click);
+				}
+
+				return true;
+			}
+
 			return false;
 		}
 

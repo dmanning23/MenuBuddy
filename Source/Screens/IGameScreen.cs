@@ -15,7 +15,5 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="input"></param>
 		void HandleInput(InputState input);
-
-		void Click(Vector2 pos);
 	}
 }

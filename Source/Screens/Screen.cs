@@ -255,7 +255,7 @@ namespace MenuBuddy
 		/// instantly kills the screen, this method respects the transition timings
 		/// and will give the screen a chance to gradually transition off.
 		/// </summary>
-		public void ExitScreen()
+		public virtual void ExitScreen()
 		{
 			if (Transition.OffTime == TimeSpan.Zero)
 			{

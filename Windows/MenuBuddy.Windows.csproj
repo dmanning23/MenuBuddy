@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -8,7 +8,7 @@
     <RootNamespace>MenuBuddy.Windows</RootNamespace>
     <AssemblyName>MenuBuddy.Windows</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Windows\</SolutionDir>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -104,14 +104,32 @@
     <Compile Include="..\Source\Input\ControllerInputHelper.cs">
       <Link>Input\ControllerInputHelper.cs</Link>
     </Compile>
-    <Compile Include="..\Source\Input\IIinputHelper.cs">
-      <Link>Input\IIinputHelper.cs</Link>
+    <Compile Include="..\Source\Input\HighlightEventArgs.cs">
+      <Link>Input\HighlightEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Input\IClickable.cs">
+      <Link>Input\IClickable.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Input\IHighlightable.cs">
+      <Link>Input\IHighlightable.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Input\IInputHelper.cs">
+      <Link>Input\IInputHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Input\ISelectable.cs">
+      <Link>Input\ISelectable.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Input\SelectedEventArgs.cs">
+      <Link>Input\SelectedEventArgs.cs</Link>
     </Compile>
     <Compile Include="..\Source\Input\TouchInputHelper.cs">
       <Link>Input\TouchInputHelper.cs</Link>
     </Compile>
     <Compile Include="..\Source\Layouts\AbsoluteLayout.cs">
       <Link>Layouts\AbsoluteLayout.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Layouts\ILayout.cs">
+      <Link>Layouts\ILayout.cs</Link>
     </Compile>
     <Compile Include="..\Source\Layouts\Layout.cs">
       <Link>Layouts\Layout.cs</Link>
@@ -151,9 +169,6 @@
     </Compile>
     <Compile Include="..\Source\Menus\MenuTitle.cs">
       <Link>Menus\MenuTitle.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\PlayerIndexEventArgs.cs">
-      <Link>PlayerIndexEventArgs.cs</Link>
     </Compile>
     <Compile Include="..\Source\ScreenManager\IScreenManager.cs">
       <Link>ScreenManager\IScreenManager.cs</Link>
@@ -256,9 +271,6 @@
     </Compile>
     <Compile Include="..\Source\Widgets\HorizontalAlignment.cs">
       <Link>Widgets\HorizontalAlignment.cs</Link>
-    </Compile>
-    <Compile Include="..\Source\Widgets\IClickable.cs">
-      <Link>Widgets\IClickable.cs</Link>
     </Compile>
     <Compile Include="..\Source\Widgets\Images\BackgroundImage.cs">
       <Link>Widgets\Images\BackgroundImage.cs</Link>

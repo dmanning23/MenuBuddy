@@ -41,6 +41,23 @@ namespace MenuBuddy
 
 		private SpriteBatch SpriteBatch { get; set; }
 
+		private List<ClickEventArgs> Clicks
+		{
+			get; set;
+		}
+
+		private List<HighlightEventArgs> Highlights
+		{
+			get; set;
+		}
+
+		List<DragEventArgs> Drags
+		{
+			get; set;
+		}
+
+		List<DropEventArgs> Drops { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -52,6 +69,11 @@ namespace MenuBuddy
 		public TouchInputHelper(Game game)
 			: base(game)
 		{
+			Clicks = new List<ClickEventArgs>();
+			Highlights = new List<HighlightEventArgs>();
+			Drags = new List<DragEventArgs>();
+			Drops = new List<DropEventArgs>();
+				 
 			//Find all the components we need
 			TouchManager = game.Services.GetService(typeof(ITouchManager)) as ITouchManager;
 			MouseManager = game.Services.GetService(typeof(IMouseManager)) as IMouseManager;
@@ -77,56 +99,112 @@ namespace MenuBuddy
 
 		#region Methods
 
-		public override void HandleInput(IScreen screen)
+		public override void Update(GameTime gameTime)
 		{
-			base.HandleInput(screen);
+			base.Update(gameTime);
 
-			var widgetScreen = screen as IWidgetScreen;
-			if (null != widgetScreen)
+			//clear out all the mouse clicks and highlights
+			Clicks.Clear();
+			Highlights.Clear();
+			Drags.Clear();
+			Drops.Clear();
+
+			//Check the mouse for stuff
+			if (null != MouseManager)
 			{
-				if (null != MouseManager)
+				//create the highlight event
+				Highlights.Add(new HighlightEventArgs()
 				{
-					//check if the mouse cursor in the widget
-					CheckHighlight(widgetScreen, MouseManager.MousePos);
+					Position = MouseManager.MousePos
+				});
 
-					//check if the player selected an item
-					if (MouseManager.LMouseClick)
-					{
-						CheckClick(widgetScreen, MouseManager.MousePos);
-					}
-				}
-
-				if (null != TouchManager)
+				//check for mouse events
+				foreach (var mouseEvent in MouseManager.MouseEvents)
 				{
-					//check if the player is holding down on the screen
-					foreach (var touch in TouchManager.Touches)
+					var click = mouseEvent as ClickEventArgs;
+					if (null != click)
 					{
-						CheckHighlight(widgetScreen, touch);
+						Clicks.Add(click);
+						continue;
 					}
 
-					//check if the player tapped on the screen
-					foreach (var tap in TouchManager.Taps)
+					var drag = mouseEvent as DragEventArgs;
+					if (null != drag)
 					{
-						CheckClick(widgetScreen, tap);
+						Drags.Add(drag);
+						continue;
+					}
+
+					var drop = mouseEvent as DropEventArgs;
+					if (null != drop)
+					{
+						Drops.Add(drop);
+						continue;
 					}
 				}
 			}
+
+			//check the touch stuff
+			if (null != TouchManager)
+			{
+				//check if the player is holding down on the screen
+				foreach (var touch in TouchManager.Touches)
+				{
+					Highlights.Add(new HighlightEventArgs()
+					{
+						Position = MouseManager.MousePos
+					});
+				}
+
+				//check if the player tapped on the screen
+				foreach (var tap in TouchManager.Taps)
+				{
+					Clicks.Add(new ClickEventArgs()
+					{
+						Position = MouseManager.MousePos,
+						Button = MouseButton.Left
+					});
+				}
+			}
+
+			//TODO: check for keydown events
 		}
 
-		private void CheckHighlight(IWidgetScreen screen, Vector2 point)
+		public override void HandleInput(IScreen screen)
 		{
-			screen.CheckHighlight(point);
-        }
-
-		private void CheckClick(IWidgetScreen screen, Vector2 point)
-		{
-			if (!screen.CheckClick(point))
+			//check highlights
+			var highlightScreen = screen as IHighlightable;
+			if (null != highlightScreen)
 			{
-				//if no buttons were clicked, send it to the game screen itself
-				var gameScreen = screen as IGameScreen;
-				if (null != gameScreen)
+				int i = 0;
+				while (i < Highlights.Count)
 				{
-					gameScreen.Click(point);
+					if (highlightScreen.CheckHighlight(Highlights[i]))
+					{
+						Highlights.RemoveAt(i);
+					}
+					else
+					{
+						i++;
+					}
+                }
+			}
+
+			//check clicks
+			var clickScreen = screen as IClickable;
+			if (null != clickScreen)
+			{
+				int i = 0;
+				while (i < Clicks.Count)
+				{
+					if (clickScreen.CheckClick(Clicks[i]))
+					{
+						Clicks.RemoveAt(i);
+					}
+					else
+					{
+						i++;
+					}
 				}
 			}
 		}

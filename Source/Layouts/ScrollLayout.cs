@@ -356,11 +356,11 @@ namespace MenuBuddy
 
 		}
 
-		public override void CheckHighlight(Vector2 position)
+		public override bool CheckHighlight(HighlightEventArgs highlight)
 		{
-			DrawScrollbars = Rect.Contains(position);
-            base.CheckHighlight(position);
-		}
+			DrawScrollbars = Rect.Contains(highlight.Position);
+			return base.CheckHighlight(highlight) || DrawScrollbars;
+        }
 
 		#endregion //Methods
 	}

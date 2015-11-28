@@ -1,5 +1,6 @@
-using GameTimer;
+using System;
 using Microsoft.Xna.Framework;
+using MouseBuddy;
 
 namespace MenuBuddy
 {
@@ -8,17 +9,13 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IClickable
 	{
-		/// <summary>
-		/// Check if an item in this container should be highlighted
-		/// </summary>
-		/// <param name="position">the location to check</param>
-		void CheckHighlight(Vector2 position);
+		event EventHandler<ClickEventArgs> OnClick;
 
 		/// <summary>
 		/// Check if something in this container is highlighted
 		/// </summary>
 		/// <param name="position">the position that was clicked</param>
 		/// <returns>bool: true if this item was clicked in, false if not</returns>
-		bool CheckClick(Vector2 position);
+		bool CheckClick(ClickEventArgs click);
 	}
 }
