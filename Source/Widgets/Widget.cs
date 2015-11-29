@@ -217,7 +217,10 @@ namespace MenuBuddy
 		/// </summary>
 		protected abstract void CalculateRect();
 
-		public abstract void Update(IScreen screen, GameClock gameTime);
+		public virtual void Update(IScreen screen, GameClock gameTime)
+		{
+			HighlightClock.Update(gameTime);
+		}
 
 		/// <summary>
 		/// Check if we should draw this widget.

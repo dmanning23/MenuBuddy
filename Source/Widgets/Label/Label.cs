@@ -47,18 +47,12 @@ namespace MenuBuddy
 			Text = text;
 		}
 
-		public override void Update(IScreen screen, GameClock gameTime)
-		{
-		}
-
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
 			if (!ShouldDraw(screen))
 			{
 				return;
 			}
-
-			HighlightClock.Update(gameTime);
 
 			//Get the font to use
 			var font = Highlight ? Style.SelectedFont : Style.UnselectedFont;

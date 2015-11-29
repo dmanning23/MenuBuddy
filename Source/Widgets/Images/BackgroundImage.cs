@@ -1,4 +1,5 @@
 using GameTimer;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace MenuBuddy
@@ -27,6 +28,11 @@ namespace MenuBuddy
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
 			//Do nothing when this item is asked to "draw"
+		}
+
+		protected override Rectangle DrawRect(Vector2 pos)
+		{
+			return new Rectangle((int)pos.X, (int)pos.Y, Rect.Width, Rect.Height);
 		}
 
 		#endregion //Methods

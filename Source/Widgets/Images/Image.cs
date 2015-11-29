@@ -2,6 +2,7 @@ using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MouseBuddy;
+using System;
 
 namespace MenuBuddy
 {
@@ -11,6 +12,9 @@ namespace MenuBuddy
 	public class Image : Widget, IImage
 	{
 		#region Fields
+
+		private const float _pulsateSize = 1.0f;
+		private const float _pulsateSpeed = 4.0f;
 
 		private Vector2 _size;
 		private bool _fillRect;
@@ -106,10 +110,6 @@ namespace MenuBuddy
 			Texture = texture;
 		}
 
-		public override void Update(IScreen screen, GameClock gameTime)
-		{
-		}
-
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
 			if (!ShouldDraw(screen))
@@ -122,9 +122,35 @@ namespace MenuBuddy
 
 			//Get the transition location
 			var pos = DrawPosition(screen);
+			Rectangle rect = DrawRect(pos);
 
 			//draw the item with all the correct parameters
-			screen.ScreenManager.SpriteBatch.Draw(Texture, new Rectangle((int)pos.X, (int)pos.Y, Rect.Width, Rect.Height), color);
+			screen.ScreenManager.SpriteBatch.Draw(Texture, rect, color);
+		}
+
+		protected virtual Rectangle DrawRect(Vector2 pos)
+		{
+			var rect = new Rectangle((int)pos.X, (int)pos.Y, Rect.Width, Rect.Height);
+
+			if (Highlight)
+			{
+				//multiply the time by the speed
+				float currentTime = HighlightClock.CurrentTime;
+				currentTime *= _pulsateSpeed;
+
+				//Pulsate the size of the text
+				float pulsate = _pulsateSize * (float)(Math.Sin(currentTime) + 1.0f);
+				float pulseScale = 1 + pulsate * 0.15f;
+
+				//adjust the y position so it pulsates straight out
+				Vector2 size = new Vector2(Rect.Width, Rect.Height);
+				Vector2 adjust = ((size * pulseScale) - size) / 2.0f;
+				pos -= adjust;
+				size *= pulseScale;
+				rect = new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
+			}
+
+			return rect;
 		}
 
 		protected override void CalculateRect()
