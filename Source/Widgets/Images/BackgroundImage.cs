@@ -17,7 +17,8 @@ namespace MenuBuddy
 		public BackgroundImage(Texture2D texture)
 			: base(texture)
 		{
-		}
+			PulsateOnHighlight = false;
+        }
 
 		public override void DrawBackground(IScreen screen, GameClock gameTime)
 		{
@@ -28,11 +29,6 @@ namespace MenuBuddy
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
 			//Do nothing when this item is asked to "draw"
-		}
-
-		protected override Rectangle DrawRect(Vector2 pos)
-		{
-			return new Rectangle((int)pos.X, (int)pos.Y, Rect.Width, Rect.Height);
 		}
 
 		#endregion //Methods

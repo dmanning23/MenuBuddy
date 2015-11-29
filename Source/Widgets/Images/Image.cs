@@ -90,6 +90,11 @@ namespace MenuBuddy
 			}
 		}
 
+		public bool PulsateOnHighlight
+		{
+			get; set;
+		}
+
 		#endregion //Properties
 
 		#region Methods
@@ -99,12 +104,13 @@ namespace MenuBuddy
 		/// </summary>
 		public Image()
 		{
+			PulsateOnHighlight = true;
 		}
 
 		/// <summary>
 		/// constructor!
 		/// </summary>
-		public Image(Texture2D texture)
+		public Image(Texture2D texture) : this()
 		{
 			FillRect = false;
 			Texture = texture;
@@ -128,11 +134,11 @@ namespace MenuBuddy
 			screen.ScreenManager.SpriteBatch.Draw(Texture, rect, color);
 		}
 
-		protected virtual Rectangle DrawRect(Vector2 pos)
+		private Rectangle DrawRect(Vector2 pos)
 		{
-			var rect = new Rectangle((int)pos.X, (int)pos.Y, Rect.Width, Rect.Height);
+			Rectangle rect;
 
-			if (Highlight)
+			if (Highlight && PulsateOnHighlight)
 			{
 				//multiply the time by the speed
 				float currentTime = HighlightClock.CurrentTime;
@@ -148,6 +154,10 @@ namespace MenuBuddy
 				pos -= adjust;
 				size *= pulseScale;
 				rect = new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
+			}
+			else
+			{
+				rect = new Rectangle((int)pos.X, (int)pos.Y, Rect.Width, Rect.Height);
 			}
 
 			return rect;
