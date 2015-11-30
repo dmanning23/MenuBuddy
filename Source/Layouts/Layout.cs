@@ -19,6 +19,7 @@ namespace MenuBuddy
 
 		public event EventHandler<ClickEventArgs> OnClick;
 		public event EventHandler<HighlightEventArgs> OnHighlight;
+		public event EventHandler<DragEventArgs> OnDrag;
 
 		#endregion //Fields
 
@@ -172,6 +173,23 @@ namespace MenuBuddy
 				foreach (var item in Items)
 				{
 					if (item.CheckClick(click))
+					{
+						return true;
+					}
+				}
+			}
+
+			//None of the items in this container were clicked
+			return false;
+		}
+
+		public virtual bool CheckDrag(DragEventArgs drag)
+		{
+			if (Rect.Contains(drag.Start))
+			{
+				foreach (var item in Items)
+				{
+					if (item.CheckDrag(drag))
 					{
 						return true;
 					}

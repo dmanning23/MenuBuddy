@@ -207,6 +207,24 @@ namespace MenuBuddy
 					}
 				}
 			}
+
+			//check drag operations
+			var dragScreen = screen as IDraggable;
+			if (null != dragScreen)
+			{
+				int i = 0;
+				while (i < Drags.Count)
+				{
+					if (dragScreen.CheckDrag(Drags[i]))
+					{
+						Drags.RemoveAt(i);
+					}
+					else
+					{
+						i++;
+					}
+				}
+			}
 		}
 
 		#endregion //Methods

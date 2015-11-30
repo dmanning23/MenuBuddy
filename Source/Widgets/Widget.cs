@@ -28,6 +28,8 @@ namespace MenuBuddy
 
 		public event EventHandler<ClickEventArgs> OnClick;
 
+		public event EventHandler<DragEventArgs> OnDrag;
+
 		/// <summary>
 		/// whether or not this dude is highlighted
 		/// </summary>
@@ -314,6 +316,11 @@ namespace MenuBuddy
 				return true;
 			}
 
+			return false;
+		}
+
+		public bool CheckDrag(DragEventArgs drag)
+		{
 			return false;
 		}
 

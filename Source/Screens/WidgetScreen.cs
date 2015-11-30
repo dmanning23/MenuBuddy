@@ -21,6 +21,7 @@ namespace MenuBuddy
 
 		public event EventHandler<ClickEventArgs> OnClick;
 		public event EventHandler<HighlightEventArgs> OnHighlight;
+		public event EventHandler<DragEventArgs> OnDrag;
 
 		#endregion
 
@@ -182,6 +183,15 @@ namespace MenuBuddy
 		public void ResetInputTimer()
 		{
 			TimeSinceInput.Start(_AttractModeTime);
+		}
+
+		public bool CheckDrag(DragEventArgs drag)
+		{
+			//restart the input timer thing
+			ResetInputTimer();
+
+			//check if they clicked in the layout
+			return Layout.CheckDrag(drag);
 		}
 
 		#endregion //Methods

@@ -110,6 +110,9 @@
     <Compile Include="..\Source\Input\IClickable.cs">
       <Link>Input\IClickable.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Input\IDraggable.cs">
+      <Link>Input\IDraggable.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Input\IHighlightable.cs">
       <Link>Input\IHighlightable.cs</Link>
     </Compile>

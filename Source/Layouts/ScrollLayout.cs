@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MouseBuddy;
 
 namespace MenuBuddy
 {
@@ -361,6 +363,18 @@ namespace MenuBuddy
 			DrawScrollbars = Rect.Contains(highlight.Position);
 			return base.CheckHighlight(highlight) || DrawScrollbars;
         }
+
+		public override bool CheckDrag(DragEventArgs drag)
+		{
+			var result = Rect.Contains(drag.Start);
+			if (result)
+			{
+				//add the delta to the scroll position
+				ScrollPosition = ScrollPosition + drag.Delta;
+			}
+
+			return result;
+		}
 
 		#endregion //Methods
 	}

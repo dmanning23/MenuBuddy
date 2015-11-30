@@ -7,7 +7,7 @@ namespace MenuBuddy
 	/// This is an item that can be added to a page.
 	/// Can be a label, stack panel, buttons, etc.
 	/// </summary>
-	public interface IScreenItem : IClickable, IHighlightable
+	public interface IScreenItem : IClickable, IHighlightable, IDraggable
 	{
 		/// <summary>
 		/// The screen realestate taken up by this item
