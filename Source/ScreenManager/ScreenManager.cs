@@ -250,13 +250,35 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void AddScreen(IScreen[] screens, PlayerIndex? controllingPlayer = null)
 		{
+#if !DEBUG
+			try
+			{
+#endif
 			foreach (var screen in screens)
 			{
 				if (screen != null)
 				{
-					AddScreen(screen, controllingPlayer);
+
+					screen.ControllingPlayer = controllingPlayer;
+					screen.ScreenManager = this;
+
+					// If we have a graphics device, tell the screen to load content.
+					if (Initialized)
+					{
+						screen.LoadContent();
+					}
+
 				}
 			}
+#if !DEBUG
+			}
+			catch (Exception ex)
+			{
+				ErrorScreen(ex);
+			}
+#endif
+
+			ScreenStack.Screens.AddRange(screens);
 		}
 
 		/// <summary>

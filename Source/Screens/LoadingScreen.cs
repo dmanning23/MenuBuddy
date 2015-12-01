@@ -204,13 +204,7 @@ namespace MenuBuddy
 		/// </summary>
 		void BackgroundWorkerThread()
 		{
-			foreach (var screen in ScreensToLoad)
-			{
-				if (screen != null)
-				{
-					ScreenManager.AddScreen(screen, ControllingPlayer);
-				}
-			}
+			ScreenManager.AddScreen(ScreensToLoad, ControllingPlayer);
 		}
 
 		#endregion //Background Thread
