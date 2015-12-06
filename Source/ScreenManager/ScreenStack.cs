@@ -134,13 +134,6 @@ namespace MenuBuddy
 					{
 						coveredByOtherScreen = true;
 					}
-
-					//If this is an active gamescreen, dont update any other screens
-					if (screen is IGameScreen &&
-					screen.TransitionState == TransitionState.Active)
-					{
-						break;
-					}
 				}
 			}
 		}
@@ -150,9 +143,6 @@ namespace MenuBuddy
 		/// </summary>
 		public void Draw(GameTime gameTime)
 		{
-			//make a list of screens to draw
-			ScreensToUpdate.Clear();
-
 			for (int i = 0; i < Screens.Count; i++)
 			{
 				var screen = Screens[i];
@@ -163,19 +153,7 @@ namespace MenuBuddy
 					continue;
 				}
 
-				//if this is a game screen, don't draw anything underneath it
-				if (screen is IGameScreen && screen.TransitionState == TransitionState.Active)
-				{
-					ScreensToUpdate.Clear();
-                }
-
-				ScreensToUpdate.Add(screen);
-            }
-
-			//draw all those screens
-			for (int i = 0; i < ScreensToUpdate.Count; i++)
-			{
-				ScreensToUpdate[i].Draw(gameTime);
+				screen.Draw(gameTime);
 			}
 
 			//draw the top screen
