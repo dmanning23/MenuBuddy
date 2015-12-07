@@ -63,8 +63,17 @@ namespace MenuBuddy
 		{
 			get
 			{
+				return HasFocus &&
+					!(CurrentlyCovered && CoveredByOtherScreens);
+			}
+		}
+
+		public bool HasFocus
+		{
+			get
+			{
 				return !OtherWindowHasFocus &&
-					!(CurrentlyCovered && CoveredByOtherScreens) &&
+					!CurrentlyCovered &&
 					   (Transition.State == TransitionState.TransitionOn ||
 						Transition.State == TransitionState.Active);
 			}
