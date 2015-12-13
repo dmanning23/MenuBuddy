@@ -42,7 +42,7 @@ namespace MenuBuddy.Tests
 		}
 
 		[Test]
-		public void DontUpdateUnderGameScreen()
+		public void UpdateUnderGameScreen()
 		{
 			var screens = new ScreenStack();
 
@@ -67,7 +67,7 @@ namespace MenuBuddy.Tests
 				It.IsAny<bool>()), Times.Once);
 			screen.Verify(x => x.Update(It.IsAny<GameTime>(),
 				It.IsAny<bool>(),
-				It.IsAny<bool>()), Times.Never);
+				It.IsAny<bool>()), Times.Once);
         }
 
 		[Test]
@@ -94,7 +94,7 @@ namespace MenuBuddy.Tests
 		}
 
 		[Test]
-		public void DontDrawUnderGameScreen()
+		public void DrawUnderGameScreen()
 		{
 			var screens = new ScreenStack();
 
@@ -113,7 +113,7 @@ namespace MenuBuddy.Tests
 			screens.Draw(new GameTime());
 
 			gamescreen.Verify(x => x.Draw(It.IsAny<GameTime>()), Times.Once);
-			screen.Verify(x => x.Draw(It.IsAny<GameTime>()), Times.Never);
+			screen.Verify(x => x.Draw(It.IsAny<GameTime>()), Times.Once);
 		}
 	}
 }

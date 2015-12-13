@@ -554,5 +554,76 @@ namespace MenuBuddy.Tests
 		}
 
 		#endregion //TwoItems_RightAlignment
+
+		#region Scale
+
+		[Test]
+		public void Label_Scale()
+		{
+			var label1 = new Label("butt")
+			{
+				Style = DefaultStyles.Instance().MainStyle,
+				Scale = 0.5f
+			};
+
+			Assert.AreEqual(.5f, label1.Scale);
+		}
+
+		[Test]
+		public void Label1Stack_Scale()
+		{
+			_stack = new StackLayout()
+			{
+				Alignment = StackAlignment.Right,
+				Horizontal = HorizontalAlignment.Left,
+				Vertical = VerticalAlignment.Bottom,
+				Position = new Point(10, 20)
+			};
+
+			var label1 = new Label("butt")
+			{
+				Style = DefaultStyles.Instance().MainStyle,
+				Scale = 0.5f
+			};
+			_stack.AddItem(label1);
+
+			label1.Scale = .5f;
+
+			Assert.AreEqual(.5f, label1.Scale);
+		}
+
+		[Test]
+		public void LabelStack_Scale()
+		{
+			_stack = new StackLayout()
+			{
+				Alignment = StackAlignment.Right,
+				Horizontal = HorizontalAlignment.Left,
+				Vertical = VerticalAlignment.Bottom,
+				Position = new Point(10, 20)
+			};
+
+			var label1 = new Label("butt")
+			{
+				Style = DefaultStyles.Instance().MainStyle,
+				Scale = 0.5f
+			};
+			_stack.AddItem(label1);
+
+			var label2 = new Label("nuts")
+			{
+				Style = DefaultStyles.Instance().MainStyle,
+				Scale = 0.25f
+			};
+			_stack.AddItem(label2);
+
+			label1.Scale = .5f;
+			label2.Scale = .25f;
+
+			Assert.AreEqual(.5f, label1.Scale);
+			Assert.AreEqual(.25f, label2.Scale);
+		}
+
+		#endregion //Scale
 	}
 }
