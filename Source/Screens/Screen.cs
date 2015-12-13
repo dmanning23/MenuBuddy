@@ -97,7 +97,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Gets or sets the name of this screen
 		/// </summary>
-		public string ScreenName { get; set; }
+		public virtual string ScreenName { get; set; }
 
 		/// <summary>
 		/// Event that gets called when the screen is exiting
@@ -243,7 +243,7 @@ namespace MenuBuddy
 		protected void FadeBackground()
 		{
 			//gray out the screens under this one
-			FadeBackground(Transition.Alpha * 2.0f / 3.0f);
+			FadeBackground(.66f);
 		}
 
 		/// <summary>
@@ -252,7 +252,7 @@ namespace MenuBuddy
 		protected void FadeBackground(float alpha)
 		{
 			//gray out the screens under this one
-			ScreenManager.DrawHelper.FadeBackground(alpha);
+			ScreenManager.DrawHelper.FadeBackground(Transition.Alpha * alpha);
 		}
 
 		#endregion

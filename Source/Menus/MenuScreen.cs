@@ -15,9 +15,9 @@ namespace MenuBuddy
 	{
 		#region Fields
 
-		private Point _menuTitleOffset;
+		private Point _menuTitlePosition;
 
-		private Point _menuEntryOffset;
+		private Point _menuEntryPosition;
 
 		#endregion
 
@@ -56,28 +56,44 @@ namespace MenuBuddy
 			}
 		}
 
-		protected Point MenuEntryOffset
+		protected Point MenuTitlePosition
 		{
-			get { return _menuEntryOffset; }
+			get { return _menuTitlePosition; }
 			set
 			{
-				_menuEntryOffset = value;
-				var prevPos = MenuEntries.Position;
-				MenuEntries.Position = new Point(prevPos.X + _menuEntryOffset.X,
-					prevPos.Y + _menuEntryOffset.Y);
+				_menuTitlePosition = value;
+				if (null != MenuTitle)
+				{
+					MenuTitle.Position = _menuTitlePosition;
+				}
 			}
 		}
 
-		protected Point MenuTitleOffset
+		protected Point MenuEntryPosition
 		{
-			get { return _menuTitleOffset; }
+			get { return _menuEntryPosition; }
 			set
 			{
-				_menuTitleOffset = value;
+				_menuEntryPosition = value;
+				MenuEntries.Position = _menuEntryPosition;
+			}
+		}
+
+		public override string ScreenName
+		{
+			get
+			{
+				return base.ScreenName;
+			}
+
+			set
+			{
+				base.ScreenName = value;
 				if (null != MenuTitle)
 				{
-					SetMenuTitlePosition();
+					MenuTitle.Text = base.ScreenName;
 				}
+
 			}
 		}
 
@@ -93,6 +109,9 @@ namespace MenuBuddy
 		{
 			CoverOtherScreens = true;
 			CoveredByOtherScreens = true;
+
+			_menuEntryPosition = new Point(Resolution.TitleSafeArea.Center.X, (int)(Resolution.TitleSafeArea.Center.Y * 0.8f));
+			_menuTitlePosition = new Point(Resolution.TitleSafeArea.Center.X, (int)(Resolution.TitleSafeArea.Center.Y * 0.4f));
 		}
 
 		public override void LoadContent()
@@ -104,30 +123,19 @@ namespace MenuBuddy
 			{
 				Alignment = StackAlignment.Top,
 				Horizontal = HorizontalAlignment.Center,
-				Layer = 1.0f
+				Layer = 1.0f,
+				Position = MenuEntryPosition
 			};
-			var pos = new Point(Resolution.TitleSafeArea.Center.X,
-						(int)(Resolution.TitleSafeArea.Center.Y * 0.8f));
-			MenuEntries.Position = pos + MenuEntryOffset;
 			AddItem(MenuEntries);
 
 			//Add the menu title
 			MenuTitle = new MenuTitle(ScreenName)
 			{
-				Layer = 2.0f
+				Layer = 2.0f,
+				Position = MenuTitlePosition
 			};
-			SetMenuTitlePosition();
 			MenuTitle.Horizontal = HorizontalAlignment.Center;
 			AddItem(MenuTitle);
-		}
-
-		private void SetMenuTitlePosition()
-		{
-			//Add the menu title
-			var menuTitleSize = MenuTitle.Style.SelectedFont.MeasureString(ScreenName);
-			var pos = new Point(Resolution.TitleSafeArea.Center.X,
-				Resolution.TitleSafeArea.Center.Y - (int)(menuTitleSize.Y * 1.75f));
-			MenuTitle.Position = pos + MenuTitleOffset;
 		}
 
 		protected void AddMenuEntry(IMenuEntry menuEntry)
