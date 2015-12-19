@@ -65,7 +65,7 @@ namespace MenuBuddy
 			};
 
 			//Split up the label text into lines
-			var lines = Message.Split('\n').Reverse().ToList();
+			var lines = Message.Split('\n').ToList();
 
 			//Add all the label text to the stack
 			foreach (var line in lines)
