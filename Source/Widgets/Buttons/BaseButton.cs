@@ -12,8 +12,6 @@ namespace MenuBuddy
 	{
 		#region Fields
 
-		
-
 		/// <summary>
 		/// whether or not to draw this item when inactive
 		/// </summary>
@@ -40,6 +38,19 @@ namespace MenuBuddy
 					_size = value;
 					CalculateRect();
 				}
+			}
+		}
+
+		public override float Scale
+		{
+			get
+			{
+				return base.Scale;
+			}
+			set
+			{
+				base.Scale = value;
+				Layout.Scale = value;
 			}
 		}
 

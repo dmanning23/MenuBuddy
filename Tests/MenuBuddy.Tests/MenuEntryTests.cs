@@ -77,6 +77,27 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(VerticalAlignment.Top, _entry.Label.Vertical);
 		}
 
+		[Test]
+		public void MenuEntryTests_Layout_Scale()
+		{
+			_entry.Scale = .5f;
+
+			Assert.AreEqual(384, _entry.Layout.Rect.Width);
+			Assert.AreEqual(20, _entry.Layout.Rect.Height);
+		}
+
+		[Test]
+		public void MenuEntryTests_Label_Scale()
+		{
+			_entry.Scale = .5f;
+
+			Assert.AreEqual(384, _entry.Rect.Width);
+			Assert.AreEqual(20, _entry.Rect.Height);
+
+			Assert.AreEqual(15f, _entry.Label.Rect.Width);
+			Assert.AreEqual(20f, _entry.Label.Rect.Height);
+		}
+
 		#endregion //Defaults
 	}
 }

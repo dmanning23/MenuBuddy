@@ -68,18 +68,6 @@ namespace MenuBuddy
 			}
 		}
 
-		public override float Scale
-		{
-			get
-			{
-				return base.Scale;
-			}
-			set
-			{
-				base.Scale = value;
-			}
-		}
-
 		public override Rectangle Rect
 		{
 			get

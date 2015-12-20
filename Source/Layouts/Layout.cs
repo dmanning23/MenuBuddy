@@ -21,6 +21,8 @@ namespace MenuBuddy
 		public event EventHandler<HighlightEventArgs> OnHighlight;
 		public event EventHandler<DragEventArgs> OnDrag;
 
+		private float _scale;
+
 		#endregion //Fields
 
 		#region Properties
@@ -100,7 +102,26 @@ namespace MenuBuddy
 
 		public virtual VerticalAlignment Vertical { get; set; }
 
-		public virtual float Scale { get; set; }
+		public virtual float Scale
+		{
+			get
+			{
+				return _scale;
+			}
+			set
+			{
+				//grab the scale
+				_scale = value;
+
+				//readd all the items
+				var items = Items;
+				Items = new List<IScreenItem>();
+				foreach (var item in items)
+				{
+					AddItem(item);
+				}
+			}
+		}
 
 		#endregion //Properties
 

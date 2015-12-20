@@ -60,27 +60,6 @@ namespace MenuBuddy
 			}
 		}
 
-		public override float Scale
-		{
-			get
-			{
-				return base.Scale;
-			}
-			set
-			{
-				//grab the scale
-				base.Scale = value;
-
-				//readd all the items
-				var items = Items;
-				Items = new List<IScreenItem>();
-				foreach (var item in items)
-				{
-					AddItem(item);
-				}
-			}
-		}
-
 		public override HorizontalAlignment Horizontal
 		{
 			get

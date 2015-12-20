@@ -120,6 +120,10 @@
       <Project>{65b5bb5d-0c69-4ddb-8de6-f6b91c41279d}</Project>
       <Name>FontBuddy.Windows</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\StateMachine\Windows\StateMachineBuddy.Windows.csproj">
+      <Project>{cd66eeb4-8381-41a8-abed-372dc31646ac}</Project>
+      <Name>StateMachineBuddy.Windows</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Windows\MenuBuddy.Windows.csproj">
       <Project>{e83f9eaa-eb6b-4801-8bef-c602d34ebfd3}</Project>
       <Name>MenuBuddy.Windows</Name>
