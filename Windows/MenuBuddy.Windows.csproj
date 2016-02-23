@@ -272,6 +272,18 @@
     <Compile Include="..\Source\Widgets\Buttons\RelativeLayoutButton.cs">
       <Link>Widgets\Buttons\RelativeLayoutButton.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Widgets\Dropdown\Dropdown.cs">
+      <Link>Widgets\Dropdown\Dropdown.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\Dropdown\DropdownItem.cs">
+      <Link>Widgets\Dropdown\DropdownItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\Dropdown\DropdownScreen.cs">
+      <Link>Widgets\Dropdown\DropdownScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\Dropdown\IDropdown.cs">
+      <Link>Widgets\Dropdown\IDropdown.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Widgets\HorizontalAlignment.cs">
       <Link>Widgets\HorizontalAlignment.cs</Link>
     </Compile>
@@ -302,11 +314,20 @@
     <Compile Include="..\Source\Widgets\Label\Label.cs">
       <Link>Widgets\Labels\Label.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Widgets\ScreenItemListDelegate.cs">
+      <Link>Widgets\ScreenItemListDelegate.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Widgets\Shim\IShim.cs">
       <Link>Widgets\Shim\IShim.cs</Link>
     </Compile>
     <Compile Include="..\Source\Widgets\Shim\Shim.cs">
       <Link>Widgets\Shim\Shim.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\Slider\ISlider.cs">
+      <Link>Widgets\Slider\ISlider.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\Slider\Slider.cs">
+      <Link>Widgets\Slider\Slider.cs</Link>
     </Compile>
     <Compile Include="..\Source\Widgets\VerticalAlignment.cs">
       <Link>Widgets\VerticalAlignment.cs</Link>

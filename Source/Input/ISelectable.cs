@@ -5,6 +5,7 @@ namespace MenuBuddy
 {
 	/// <summary>
 	/// This is an item that can be highlighted or clicked on.
+	/// It is only used for message boxes
 	/// </summary>
 	public interface ISelectable
 	{

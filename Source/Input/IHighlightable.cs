@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// This is an item that can be highlighted or clicked on.
+	/// This is an item that can be highlighted.
 	/// </summary>
 	public interface IHighlightable
 	{

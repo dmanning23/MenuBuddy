@@ -167,7 +167,7 @@ namespace MenuBuddy
 		/// User clicked somewhere in this screen.
 		/// </summary>
 		/// <param name="point"></param>
-		public bool CheckClick(ClickEventArgs click)
+		public virtual bool CheckClick(ClickEventArgs click)
 		{
 			//restart the input timer thing
 			ResetInputTimer();
