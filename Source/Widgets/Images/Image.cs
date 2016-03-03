@@ -79,7 +79,7 @@ namespace MenuBuddy
 			get
 			{
 				return _fillRect;
-            }
+			}
 			set
 			{
 				if (_fillRect != value)
@@ -97,7 +97,7 @@ namespace MenuBuddy
 
 		#endregion //Properties
 
-		#region Methods
+		#region Initialization
 
 		/// <summary>
 		/// only for unit testing
@@ -115,6 +115,27 @@ namespace MenuBuddy
 			FillRect = false;
 			Texture = texture;
 		}
+
+		public Image(Image inst) : base(inst)
+		{
+			_size = new Vector2(inst._size.X, inst._size.Y);
+			_fillRect = inst._fillRect;
+			_texture = inst._texture;
+			PulsateOnHighlight = inst.PulsateOnHighlight;
+		}
+
+		/// <summary>
+		/// Get a deep copy of this item
+		/// </summary>
+		/// <returns></returns>
+		public override IScreenItem DeepCopy()
+		{
+			return new Image(this);
+		}
+
+		#endregion //Initialization
+
+		#region Methods
 
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{

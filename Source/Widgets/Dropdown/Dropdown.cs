@@ -77,6 +77,9 @@ namespace MenuBuddy
 
 		public void SetSelectedDropdownItem(DropdownItem<T> selectedItem)
 		{
+			SelectedDropdownItem = selectedItem.DeepCopy() as DropdownItem<T>;
+			SelectedDropdownItem.Position = Position;
+
 			//clear out the current item
 			Layout.Items.Clear();
 

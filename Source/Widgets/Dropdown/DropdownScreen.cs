@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using MouseBuddy;
+using System;
 
 namespace MenuBuddy
 {
@@ -28,6 +29,8 @@ namespace MenuBuddy
 		/// <param name="widget"></param>
 		public DropdownScreen(IDropdown<T> widget) : base("Dropdown")
 		{
+			Transition.OnTime = new TimeSpan(0);
+			Transition.OffTime = new TimeSpan(0);
 			DropdownWidget = widget;
 			CoverOtherScreens = false;
 		}
@@ -49,17 +52,19 @@ namespace MenuBuddy
 			//Add all the items to the stack layout
 			foreach (var item in DropdownWidget.DropdownList)
 			{
-				stack.AddItem(item);
+				stack.AddItem(item.DeepCopy());
 			}
 
 			//create the scroll layout and add the stack
 			_layout = new ScrollLayout()
 			{
-				Horizontal = HorizontalAlignment.Right,
-				Vertical = VerticalAlignment.Bottom,
+				Horizontal = HorizontalAlignment.Left,
+				Vertical = VerticalAlignment.Top,
 				Size = new Vector2(DropdownWidget.Rect.Width, ResolutionBuddy.Resolution.ScreenArea.Bottom - DropdownWidget.Rect.Bottom)
 			};
-			_layout.Position = new Point(DropdownWidget.Rect.Right, DropdownWidget.Rect.Bottom);
+			_layout.Position = new Point(DropdownWidget.Rect.Left, DropdownWidget.Rect.Bottom);
+			_layout.AddItem(stack);
+			AddItem(_layout);
 		}
 
 		public override bool CheckClick(ClickEventArgs click)

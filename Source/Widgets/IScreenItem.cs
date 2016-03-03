@@ -46,6 +46,12 @@ namespace MenuBuddy
 		VerticalAlignment Vertical { get; set; }
 
 		/// <summary>
+		/// Get a deep copy of this item
+		/// </summary>
+		/// <returns></returns>
+		IScreenItem DeepCopy();
+
+		/// <summary>
 		/// Updates the screen item.
 		/// </summary>
 		void Update(IScreen screen, GameClock gameTime);

@@ -27,8 +27,25 @@ namespace MenuBuddy
 
 		public DropdownItem(T item, Dropdown<T> owner)
 		{
+			Style = DefaultStyles.Instance().MenuEntryStyle;
 			Item = item;
 			Owner = owner;
+		}
+
+		public DropdownItem(DropdownItem<T> inst) : base(inst)
+		{
+			Style = DefaultStyles.Instance().MenuEntryStyle;
+			Item = inst.Item;
+			Owner = inst.Owner;
+		}
+
+		/// <summary>
+		/// Get a deep copy of this item
+		/// </summary>
+		/// <returns></returns>
+		public override IScreenItem DeepCopy()
+		{
+			return new DropdownItem<T>(this);
 		}
 
 		#endregion //Methods

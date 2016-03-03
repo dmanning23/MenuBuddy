@@ -88,6 +88,16 @@ namespace MenuBuddy
 			_size = Vector2.Zero;
 		}
 
+		public RelativeLayout(RelativeLayout inst) : base(inst)
+		{
+			_size = inst.Size;
+		}
+
+		public override IScreenItem DeepCopy()
+		{
+			return new RelativeLayout(this);
+		}
+
 		/// <summary>
 		/// Set the position of the item as store it
 		/// </summary>

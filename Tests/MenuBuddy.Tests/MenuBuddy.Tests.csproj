@@ -92,6 +92,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CloneTests.cs" />
     <Compile Include="DropdownTests.cs" />
     <Compile Include="GameScreenTests.cs" />
     <Compile Include="ImageTests.cs" />

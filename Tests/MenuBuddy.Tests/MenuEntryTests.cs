@@ -87,6 +87,13 @@ namespace MenuBuddy.Tests
 		}
 
 		[Test]
+		public void MenuEntryTests_LabelScaled()
+		{
+			_entry.Scale = .5f;
+			Assert.AreEqual(.5f, _entry.Label.Scale);
+		}
+
+		[Test]
 		public void MenuEntryTests_Label_Scale()
 		{
 			_entry.Scale = .5f;
@@ -94,6 +101,7 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(384, _entry.Rect.Width);
 			Assert.AreEqual(20, _entry.Rect.Height);
 
+			Assert.AreEqual(.5f, _entry.Label.Scale);
 			Assert.AreEqual(15f, _entry.Label.Rect.Width);
 			Assert.AreEqual(20f, _entry.Label.Rect.Height);
 		}

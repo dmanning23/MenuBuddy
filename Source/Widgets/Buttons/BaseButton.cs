@@ -105,7 +105,7 @@ namespace MenuBuddy
 
 		#endregion //Properties
 
-		#region Methods
+		#region Initialization
 
 		/// <summary>
 		/// Constructs a new button with the specified text.
@@ -129,6 +129,21 @@ namespace MenuBuddy
 				Highlight = true;
 			});
 		}
+
+		/// <summary>
+		/// Constructs a new button with the specified text.
+		/// </summary>
+		protected BaseButton(BaseButton inst) : base(inst)
+		{
+			_drawWhenInactive = inst._drawWhenInactive;
+			_size = inst._size;
+			OnSelect = inst.OnSelect;
+			Description = inst.Description;
+		}
+
+		#endregion //Initialization
+
+		#region Methods
 
 		public void AddItem(IScreenItem item)
 		{

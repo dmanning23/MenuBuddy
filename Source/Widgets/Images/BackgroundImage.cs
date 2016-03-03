@@ -9,7 +9,7 @@ namespace MenuBuddy
 	/// </summary>
 	public class BackgroundImage : Image
 	{
-		#region Methods
+		#region Initialization
 
 		/// <summary>
 		/// constructor!
@@ -19,6 +19,14 @@ namespace MenuBuddy
 		{
 			PulsateOnHighlight = false;
         }
+
+		public BackgroundImage(BackgroundImage inst) : base(inst)
+		{
+		}
+
+		#endregion //Initialization
+
+		#region Methods
 
 		public override void DrawBackground(IScreen screen, GameClock gameTime)
 		{

@@ -138,13 +138,27 @@ namespace MenuBuddy
 
 		#endregion //Properties
 
-		#region Methods
+		#region Initialization
 
 		public StackLayout(StackAlignment alignment = StackAlignment.Top)
 		{
 			Alignment = alignment;
 			Horizontal = HorizontalAlignment.Center;
 		}
+
+		public StackLayout(StackLayout inst) : base(inst)
+		{
+			_alignment = inst._alignment;
+		}
+
+		public override IScreenItem DeepCopy()
+		{
+			return new StackLayout(this);
+		}
+
+		#endregion //Initialization
+
+		#region Methods
 
 		public override void AddItem(IScreenItem item)
 		{

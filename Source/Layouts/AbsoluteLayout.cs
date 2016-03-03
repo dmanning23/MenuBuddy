@@ -1,4 +1,5 @@
 
+using System;
 using Microsoft.Xna.Framework;
 
 namespace MenuBuddy
@@ -114,6 +115,21 @@ namespace MenuBuddy
 		public AbsoluteLayout()
 		{
 		}
+
+		public AbsoluteLayout(AbsoluteLayout inst) : base(inst)
+		{
+			_size = new Vector2(inst._size.X, inst._size.Y);
+			PreviousRect = inst.PreviousRect;
+		}
+
+		public override IScreenItem DeepCopy()
+		{
+			return new AbsoluteLayout(this);
+		}
+
+		#endregion //Methods
+
+		#region Methods
 
 		/// <summary>
 		/// Set the position of the item as store it

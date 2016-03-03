@@ -113,6 +113,10 @@ namespace MenuBuddy
 			{
 				return _minScroll;
 			}
+			set
+			{
+				_minScroll = value;
+			}
 		}
 
 		public Vector2 MaxScroll
@@ -120,6 +124,10 @@ namespace MenuBuddy
 			get
 			{
 				return _maxScroll;
+			}
+			set
+			{
+				_maxScroll = value;
 			}
 		}
 
@@ -150,7 +158,7 @@ namespace MenuBuddy
 
 		#endregion //Properties
 
-		#region Methods
+		#region Initialization
 
 		public ScrollLayout()
 		{
@@ -160,6 +168,29 @@ namespace MenuBuddy
 			UpdateScrollBars();
 			DrawScrollbars = false;
         }
+
+		public ScrollLayout(ScrollLayout inst) : base(inst)
+		{
+			_scrollPos = new Vector2(inst._scrollPos.X, inst._scrollPos.Y);
+			_renderTarget = inst._renderTarget;
+			Transition = inst.Transition;
+			_minScroll = new Vector2(inst._minScroll.X, inst._minScroll.Y);
+			_maxScroll = new Vector2(inst._maxScroll.X, inst._maxScroll.Y);
+			_verticalScrollBar = new Rectangle(inst._verticalScrollBar.Location, inst._verticalScrollBar.Size);
+			_horizScrollBar = new Rectangle(inst._horizScrollBar.Location, inst._horizScrollBar.Size);
+			DrawVerticalScrollBar = inst.DrawVerticalScrollBar;
+			DrawHorizontalScrollBar = inst.DrawHorizontalScrollBar;
+			DrawScrollbars = inst.DrawScrollbars;
+		}
+
+		public override IScreenItem DeepCopy()
+		{
+			return new ScrollLayout(this);
+		}
+
+		#endregion //Initialization
+
+		#region Methods
 
 		public override void AddItem(IScreenItem item)
 		{

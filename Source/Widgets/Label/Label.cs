@@ -36,7 +36,7 @@ namespace MenuBuddy
 
 		#endregion //Properties
 
-		#region Methods
+		#region Initialization
 
 		/// <summary>
 		/// constructor
@@ -46,6 +46,24 @@ namespace MenuBuddy
 		{
 			Text = text;
 		}
+
+		public Label(Label inst) : base(inst)
+		{
+			_text = inst._text;
+		}
+
+		/// <summary>
+		/// Get a deep copy of this item
+		/// </summary>
+		/// <returns></returns>
+		public override IScreenItem DeepCopy()
+		{
+			return new Label(this);
+		}
+
+		#endregion //Initialization
+
+		#region Methods
 
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{

@@ -191,7 +191,7 @@ namespace MenuBuddy
 
 		#endregion //Properties
 
-		#region Methods
+		#region Initialization
 
 		/// <summary>
 		/// constructor!
@@ -205,6 +205,33 @@ namespace MenuBuddy
 			_padding = Vector2.Zero;
 			HighlightClock = new GameClock();
         }
+
+		protected Widget(Widget inst)
+		{
+			_style = new StyleSheet(inst.Style);
+			_horizontal = inst._horizontal;
+			_vertical = inst._vertical;
+			_scale = inst._scale;
+			_padding = new Vector2(inst._padding.X, inst._padding.Y);
+			_drawWhenInactive = inst._drawWhenInactive;
+			_rect = new Rectangle(inst._rect.Location, inst._rect.Size);
+			_position = new Point(inst._position.X, inst._position.Y);
+			Layer = inst.Layer;
+			HighlightClock = new GameClock(inst.HighlightClock);
+			OnClick = inst.OnClick;
+			OnHighlight = inst.OnHighlight;
+			OnDrag = inst.OnDrag;
+		}
+
+		/// <summary>
+		/// Get a deep copy of this item
+		/// </summary>
+		/// <returns></returns>
+		public abstract IScreenItem DeepCopy();
+
+		#endregion //Initialization
+
+		#region Methods
 
 		/// <summary>
 		/// Available load content method for child classes.

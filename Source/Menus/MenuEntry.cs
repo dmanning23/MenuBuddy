@@ -100,6 +100,19 @@ namespace MenuBuddy
 			Vertical = VerticalAlignment.Top;
 		}
 
+		public MenuEntry(MenuEntry inst) : base(inst)
+		{
+			Label = new Label(inst.Label);
+			_text = inst._text;
+			Left = inst.Left;
+			Right = inst.Right;
+		}
+
+		public override IScreenItem DeepCopy()
+		{
+			return new MenuEntry(this);
+		}
+
 		public override void LoadContent(IScreen screen)
 		{
 			base.LoadContent(screen);
@@ -119,11 +132,15 @@ namespace MenuBuddy
 			AddItem(Label);
 		}
 
+		#endregion //Initialization
+
+		#region Methods
+
 		public override string ToString()
 		{
 			return Text;
 		}
 
-		#endregion
+		#endregion //Methods
 	}
 }

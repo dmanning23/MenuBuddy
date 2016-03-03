@@ -19,10 +19,28 @@ namespace MenuBuddy
 			Layout = new RelativeLayout();
 		}
 
+		public RelativeLayoutButton(RelativeLayoutButton inst) : base(inst)
+		{
+			Layout = new RelativeLayout(inst.Layout as RelativeLayout);
+		}
+
+		/// <summary>
+		/// Get a deep copy of this item
+		/// </summary>
+		/// <returns></returns>
+		public override IScreenItem DeepCopy()
+		{
+			return new RelativeLayoutButton(this);
+		}
+
 		public override void LoadContent(IScreen screen)
 		{
 			base.LoadContent(screen);
 		}
+
+		#endregion //Initialization
+
+		#region Methods
 
 		protected override void CalculateRect()
 		{

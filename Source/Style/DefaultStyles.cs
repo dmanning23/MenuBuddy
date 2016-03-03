@@ -37,6 +37,12 @@ namespace MenuBuddy
 				Name = "MainStyle",
 				Transition = TransitionType.SlideLeft
 			};
+
+			_instance.MenuEntryStyle = new StyleSheet(_instance.MainStyle)
+			{
+				HasOutline = true,
+				HasBackground = true
+			};
 		}
 
 		#endregion //Singleton

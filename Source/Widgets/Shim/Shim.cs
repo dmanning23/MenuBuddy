@@ -15,7 +15,7 @@ namespace MenuBuddy
 
 		public Vector2 Size
 		{
-			protected get
+			get
 			{
 				return _size;
 			}
@@ -31,7 +31,7 @@ namespace MenuBuddy
 
 		#endregion //Properties
 
-		#region Methods
+		#region Initialization
 
 		/// <summary>
 		/// constructor
@@ -40,6 +40,24 @@ namespace MenuBuddy
 		{
 			Style.HasOutline = false;
 		}
+
+		public Shim(Shim inst) : base(inst)
+		{
+			_size = inst._size;
+		}
+
+		/// <summary>
+		/// Get a deep copy of this item
+		/// </summary>
+		/// <returns></returns>
+		public override IScreenItem DeepCopy()
+		{
+			return new Shim(this);
+		}
+
+		#endregion //Initialization
+
+		#region Methods
 
 		public override void Update(IScreen screen, GameClock gameTime)
 		{

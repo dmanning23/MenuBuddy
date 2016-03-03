@@ -14,9 +14,6 @@ namespace MenuBuddy
 	{
 		#region Fields
 
-		private HorizontalAlignment _horizontal;
-		private VerticalAlignment _vertical;
-
 		public event EventHandler<ClickEventArgs> OnClick;
 		public event EventHandler<HighlightEventArgs> OnHighlight;
 		public event EventHandler<DragEventArgs> OnDrag;
@@ -125,13 +122,38 @@ namespace MenuBuddy
 
 		#endregion //Properties
 
-		#region Methods
+		#region Initialzation
 
 		protected Layout()
 		{
 			Items = new List<IScreenItem>();
 			Scale = 1.0f;
 		}
+
+		protected Layout(Layout inst) : this()
+		{
+			Position = new Point(inst.Position.X, inst.Position.Y);
+			Horizontal = inst.Horizontal;
+			Vertical = inst.Vertical;
+			OnClick = inst.OnClick;
+			OnHighlight = inst.OnHighlight;
+			OnDrag = inst.OnDrag;
+			_scale = inst._scale;
+			Layer = inst.Layer;
+
+			//copy all the items in the list
+			Items = new List<IScreenItem>();
+			foreach (var item in inst.Items)
+			{
+				Items.Add(item.DeepCopy());
+			}
+		}
+
+		public abstract IScreenItem DeepCopy();
+
+		#endregion //Initialzation
+
+		#region Methods
 
 		public abstract void AddItem(IScreenItem item);
 
