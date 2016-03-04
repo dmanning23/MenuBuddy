@@ -50,6 +50,8 @@ namespace MenuBuddy
 
 		public Dropdown()
 		{
+			Style = DefaultStyles.Instance().MenuEntryStyle;
+
 			DropdownList = new List<DropdownItem<T>>();
 			OnClick += CreateDropdownList;
 		}

@@ -46,7 +46,7 @@ namespace MenuBuddy
 			{
 				Alignment = StackAlignment.Top,
 				Horizontal = HorizontalAlignment.Left,
-				Vertical = VerticalAlignment.Top
+				Vertical = VerticalAlignment.Top,
 			};
 
 			//Add all the items to the stack layout
