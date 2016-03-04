@@ -77,14 +77,21 @@ namespace MenuBuddy
 
 		public void SetSelectedDropdownItem(DropdownItem<T> selectedItem)
 		{
-			SelectedDropdownItem = selectedItem.DeepCopy() as DropdownItem<T>;
-			SelectedDropdownItem.Position = Position;
+			if (selectedItem != SelectedDropdownItem)
+			{
+				//remove the old item
+				RemoveItem(SelectedDropdownItem);
 
-			//clear out the current item
-			Layout.Items.Clear();
+				//set the new selected item
+				SelectedDropdownItem = selectedItem.DeepCopy() as DropdownItem<T>;
+				SelectedDropdownItem.Position = Position;
 
-			//add the new item as the selected item
-			AddItem(selectedItem);
+				//clear out the current item
+				Layout.Items.Clear();
+
+				//add the new item as the selected item
+				AddItem(selectedItem);
+			}
 		}
 
 		#endregion //Methods

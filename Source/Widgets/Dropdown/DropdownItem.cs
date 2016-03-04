@@ -30,6 +30,11 @@ namespace MenuBuddy
 			Style = DefaultStyles.Instance().MenuEntryStyle;
 			Item = item;
 			Owner = owner;
+
+			OnClick += ((obj, e) =>
+			{
+				owner.SelectedItem = Item;
+			});
 		}
 
 		public DropdownItem(DropdownItem<T> inst) : base(inst)
