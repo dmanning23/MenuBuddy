@@ -110,6 +110,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelativeLayoutTests.cs" />
     <Compile Include="AbsoluteLayoutTests.cs" />
+    <Compile Include="SliderTests.cs" />
     <Compile Include="StackAlignments.cs" />
     <Compile Include="StackTests.cs" />
     <Compile Include="StyleItemTests.cs" />
