@@ -9,6 +9,7 @@ namespace MenuBuddy
 		#region Fields
 
 		private ScrollLayout _layout;
+		private StackLayout _stack;
 
 		#endregion //Fields
 
@@ -40,9 +41,10 @@ namespace MenuBuddy
 			base.LoadContent();
 
 			Style.Transition = TransitionType.None;
+			//Style.HasBackground = true;
 
 			//create the stack layout that will hold all the droplist items
-			var stack = new StackLayout()
+			_stack = new StackLayout()
 			{
 				Alignment = StackAlignment.Top,
 				Horizontal = HorizontalAlignment.Left,
@@ -52,7 +54,7 @@ namespace MenuBuddy
 			//Add all the items to the stack layout
 			foreach (var item in DropdownWidget.DropdownList)
 			{
-				stack.AddItem(item.DeepCopy());
+				_stack.AddItem(item.DeepCopy());
 			}
 
 			//create the scroll layout and add the stack
@@ -63,7 +65,7 @@ namespace MenuBuddy
 				Size = new Vector2(DropdownWidget.Rect.Width, ResolutionBuddy.Resolution.ScreenArea.Bottom - DropdownWidget.Rect.Bottom)
 			};
 			_layout.Position = new Point(DropdownWidget.Rect.Left, DropdownWidget.Rect.Bottom);
-			_layout.AddItem(stack);
+			_layout.AddItem(_stack);
 			AddItem(_layout);
 		}
 
@@ -74,6 +76,18 @@ namespace MenuBuddy
 
 			//check if the user clicked one of the items
 			return base.CheckClick(click);
+		}
+
+		public override void Draw(GameTime gameTime)
+		{
+			ScreenManager.SpriteBatchBegin();
+
+			//draw the background
+			ScreenManager.DrawHelper.DrawBackground(Transition, DropdownWidget.Style, Rectangle.Intersect(_stack.Rect, _layout.Rect));
+
+			ScreenManager.SpriteBatchEnd();
+
+			base.Draw(gameTime);
 		}
 
 		#endregion //Methods

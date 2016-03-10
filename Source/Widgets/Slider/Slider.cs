@@ -158,9 +158,13 @@ namespace MenuBuddy
 			//draw the slide rect
 			screen.ScreenManager.DrawHelper.DrawRect(screen.Transition, Style.Transition, screen.Style.SelectedBackgroundColor, slideRect);
 
-			//TODO: get the handle location
+			//get the location of the handle
+			var yLoc = Rect.Center.Y - (HandleSize.Y * .5f);
+			var xLoc = SolveSliderPos(Min, Max, HandlePosition, slideRect.Left, slideRect.Right) - (HandleSize.X * .5f);
 
-			//screen.ScreenManager.DrawHelper.DrawRect(screen.Transition, Style.Transition, screen.Style.SelectedTextColor, ScrollBar);
+			var handleRect = new Rectangle((int)xLoc, (int)yLoc, (int)HandleSize.X, (int)HandleSize.Y);
+
+			screen.ScreenManager.DrawHelper.DrawRect(screen.Transition, Style.Transition, screen.Style.SelectedTextColor, handleRect);
 		}
 
 		protected override void CalculateRect()

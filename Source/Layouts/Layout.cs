@@ -167,7 +167,7 @@ namespace MenuBuddy
 			return Items.Remove(item);
 		}
 
-		public void Update(IScreen screen, GameClock gameTime)
+		public virtual void Update(IScreen screen, GameClock gameTime)
 		{
 			//update all the items
 			for (int i = 0; i < Items.Count; i++)

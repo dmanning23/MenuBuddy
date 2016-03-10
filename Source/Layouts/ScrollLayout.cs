@@ -222,7 +222,14 @@ namespace MenuBuddy
 			}
 		}
 
-		private void DrawStuff(IScreen screen, GameClock gameTime, DrawStuffDelegate del)
+		public override void Update(IScreen screen, GameClock gameTime)
+		{
+			//set the scroll bars to "not drawn" at the beginning of every update... input methods will set it correctly.
+			DrawScrollbars = false;
+			base.Update(screen, gameTime);
+		}
+
+		private void DrawStuff(IScreen screen, GameClock gameTime, DrawStuffDelegate del, bool clear)
 		{
 			//grab the old stuff
 			var curPos = Position;
@@ -245,7 +252,10 @@ namespace MenuBuddy
 			//set the rendertarget
 			screenManager.GraphicsDevice.SetRenderTarget(_renderTarget);
 
-			screenManager.GraphicsDevice.Clear(screenManager.ClearColor);
+			if (clear)
+			{
+				screenManager.GraphicsDevice.Clear(Color.TransparentBlack);
+			}
 
 			//start a new draw loop
 			screenManager.SpriteBatchBegin(BlendState.AlphaBlend);
@@ -266,22 +276,22 @@ namespace MenuBuddy
 
 			//start a new loop
 			screenManager.SpriteBatchBegin();
-
-			//render the texture
-			var rect = CalculateRect();
-			screenManager.SpriteBatch.Draw(_renderTarget,
-				screen.Transition.Position(rect, Transition).ToVector2(),
-				Color.White);
 		}
 
 		public override void DrawBackground(IScreen screen, GameClock gameTime)
 		{
-			DrawStuff(screen, gameTime, base.DrawBackground);
+			DrawStuff(screen, gameTime, base.DrawBackground, true);
 		}
 
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
-			DrawStuff(screen, gameTime, base.Draw);
+			DrawStuff(screen, gameTime, base.Draw, false);
+
+			//render the texture
+			var rect = CalculateRect();
+			screen.ScreenManager.SpriteBatch.Draw(_renderTarget,
+				screen.Transition.Position(rect, Transition).ToVector2(),
+				Color.White);
 
 			//Draw the scroll bars if the mouse pointer or a touch is inside the layout
 			if (DrawScrollbars)
@@ -391,7 +401,11 @@ namespace MenuBuddy
 
 		public override bool CheckHighlight(HighlightEventArgs highlight)
 		{
-			DrawScrollbars = Rect.Contains(highlight.Position);
+			if (Rect.Contains(highlight.Position))
+			{
+				DrawScrollbars = true;
+			}
+
 			return base.CheckHighlight(highlight) || DrawScrollbars;
         }
 
@@ -402,6 +416,7 @@ namespace MenuBuddy
 			{
 				//add the delta to the scroll position
 				ScrollPosition = ScrollPosition + drag.Delta;
+				DrawScrollbars = true;
 			}
 
 			return result;

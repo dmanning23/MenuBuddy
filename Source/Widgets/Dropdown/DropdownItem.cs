@@ -27,7 +27,7 @@ namespace MenuBuddy
 
 		public DropdownItem(T item, Dropdown<T> owner)
 		{
-			Style = DefaultStyles.Instance().MenuEntryStyle;
+			//Style = DefaultStyles.Instance().MenuEntryStyle;
 			Item = item;
 			Owner = owner;
 
@@ -39,7 +39,7 @@ namespace MenuBuddy
 
 		public DropdownItem(DropdownItem<T> inst) : base(inst)
 		{
-			Style = DefaultStyles.Instance().MenuEntryStyle;
+			//Style = DefaultStyles.Instance().MenuEntryStyle;
 			Item = inst.Item;
 			Owner = inst.Owner;
 		}
