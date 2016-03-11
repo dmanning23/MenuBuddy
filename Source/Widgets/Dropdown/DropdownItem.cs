@@ -33,7 +33,7 @@ namespace MenuBuddy
 
 			OnClick += ((obj, e) =>
 			{
-				owner.SelectedItem = Item;
+				Owner.SelectedItem = Item;
 			});
 		}
 

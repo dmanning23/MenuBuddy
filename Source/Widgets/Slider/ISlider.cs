@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 
 namespace MenuBuddy
 {
-	public interface ISlider : IWidget, IDraggable
+	public interface ISlider : IWidget, IDraggable, IHighlightable
 	{
 		/// <summary>
 		/// the min value of teh slider

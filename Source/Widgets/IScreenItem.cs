@@ -7,7 +7,7 @@ namespace MenuBuddy
 	/// This is an item that can be added to a page.
 	/// Can be a label, stack panel, buttons, etc.
 	/// </summary>
-	public interface IScreenItem : IClickable, IHighlightable, IDraggable
+	public interface IScreenItem
 	{
 		/// <summary>
 		/// The screen realestate taken up by this item
@@ -25,10 +25,7 @@ namespace MenuBuddy
 		/// </summary>
 		float Layer { get; set; }
 
-		/// <summary>
-		/// Highlight or don't highlight this screen item
-		/// </summary>
-		bool Highlight { set; }
+		
 
 		/// <summary>
 		/// You can set this flag to prevent drawing this button when the screen is inactive.

@@ -41,7 +41,11 @@ namespace MenuBuddy
 			{
 				foreach (var item in Items)
 				{
-					item.Highlight = value;
+					var highlightable = item as IHighlightable;
+					if (null != highlightable)
+					{
+						highlightable.Highlight = value;
+					}
 				}
 			}
 		}
@@ -200,14 +204,15 @@ namespace MenuBuddy
 
 			foreach (var item in Items)
 			{
-				if (item.CheckHighlight(highlight))
+				var highlightable = item as IHighlightable;
+				if ((highlightable != null) && highlightable.CheckHighlight(highlight))
 				{
 					highlighted = true;
 				}
 			}
 
 			return highlighted;
-        }
+		}
 
 		public virtual bool CheckClick(ClickEventArgs click)
 		{
@@ -215,7 +220,8 @@ namespace MenuBuddy
 			{
 				foreach (var item in Items)
 				{
-					if (item.CheckClick(click))
+					var clickable = item as IClickable;
+					if ((clickable != null) && clickable.CheckClick(click))
 					{
 						return true;
 					}
@@ -232,7 +238,8 @@ namespace MenuBuddy
 			{
 				foreach (var item in Items)
 				{
-					if (item.CheckDrag(drag))
+					var draggable = item as IDraggable;
+					if ((draggable != null) && draggable.CheckDrag(drag))
 					{
 						return true;
 					}

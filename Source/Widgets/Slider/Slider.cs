@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using GameTimer;
+using MouseBuddy;
 
 namespace MenuBuddy
 {
@@ -26,6 +27,11 @@ namespace MenuBuddy
 		private float _handlePosition;
 
 		private Vector2 _handleSize;
+
+		private Rectangle _slideRect;
+		private Rectangle _handleRect;
+
+		public event EventHandler<DragEventArgs> OnDrag;
 
 		#endregion //Fields
 
@@ -94,6 +100,7 @@ namespace MenuBuddy
 				{
 					//set the scroll position
 					_handlePosition = value;
+					CalculateHandleRect();
 				}
 			}
 		}
@@ -106,7 +113,11 @@ namespace MenuBuddy
 			}
 			set
 			{
-				throw new NotImplementedException();
+				if (_handleSize != value)
+				{
+					_handleSize = value;
+					CalculateRect();
+				}
 			}
 		}
 
@@ -119,6 +130,8 @@ namespace MenuBuddy
 		/// </summary>
 		public Slider()
 		{
+			Style.HasBackground = false;
+			Style.HasOutline = true;
 		}
 
 		public Slider(Slider inst) : base(inst)
@@ -128,6 +141,9 @@ namespace MenuBuddy
 			_handlePosition = inst._handlePosition;
 			_handleSize = new Vector2(inst._handleSize.X, inst._handleSize.Y);
 			_size = new Vector2(inst._size.X, inst._size.Y);
+			_handleRect = new Rectangle(inst._handleRect.Location, inst._handleRect.Size);
+			_slideRect = new Rectangle(inst._slideRect.Location, inst._slideRect.Size);
+			OnDrag = inst.OnDrag;
 		}
 
 		/// <summary>
@@ -147,24 +163,18 @@ namespace MenuBuddy
 		{
 		}
 
-		public override void Draw(IScreen screen, GameClock gameTime)
+		public override void DrawBackground(IScreen screen, GameClock gameTime)
 		{
-			//get the slide rect
-			var slideRect = new Rectangle((int)(Rect.Left + (HandleSize.X / 2f)),
-				(int)(Rect.Center.Y - (HandleSize.Y / 6f)),
-				(int)(Rect.Width - HandleSize.X),
-				(int)(Rect.Height - (HandleSize.Y / 3f)));
+			base.DrawBackground(screen, gameTime);
 
 			//draw the slide rect
-			screen.ScreenManager.DrawHelper.DrawRect(screen.Transition, Style.Transition, screen.Style.SelectedBackgroundColor, slideRect);
+			screen.ScreenManager.DrawHelper.DrawRect(screen.Transition, Style.Transition, screen.Style.SelectedBackgroundColor, _slideRect);
+		}
 
-			//get the location of the handle
-			var yLoc = Rect.Center.Y - (HandleSize.Y * .5f);
-			var xLoc = SolveSliderPos(Min, Max, HandlePosition, slideRect.Left, slideRect.Right) - (HandleSize.X * .5f);
-
-			var handleRect = new Rectangle((int)xLoc, (int)yLoc, (int)HandleSize.X, (int)HandleSize.Y);
-
-			screen.ScreenManager.DrawHelper.DrawRect(screen.Transition, Style.Transition, screen.Style.SelectedTextColor, handleRect);
+		public override void Draw(IScreen screen, GameClock gameTime)
+		{
+			//draw the handle rect
+			screen.ScreenManager.DrawHelper.DrawRect(screen.Transition, Style.Transition, screen.Style.SelectedTextColor, _handleRect);
 		}
 
 		protected override void CalculateRect()
@@ -188,6 +198,24 @@ namespace MenuBuddy
 			}
 
 			_rect = new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
+
+			//update the handle rect after the rect has been changed
+			CalculateHandleRect();
+		}
+
+		private void CalculateHandleRect()
+		{
+			//get the slide rect
+			_slideRect = new Rectangle((int)(Rect.Left + (HandleSize.X * .5f)),
+				(int)(Rect.Center.Y - (HandleSize.Y * .25f)),
+				(int)(Rect.Width - HandleSize.X),
+				(int)(HandleSize.Y - (HandleSize.Y * .5f)));
+
+			//get the location of the handle
+			var yLoc = Rect.Center.Y - (HandleSize.Y * .5f);
+			var xLoc = SolveSliderPos(Min, Max, HandlePosition, _slideRect.Left, _slideRect.Right) - (HandleSize.X * .5f);
+
+			_handleRect = new Rectangle((int)xLoc, (int)yLoc, (int)HandleSize.X, (int)HandleSize.Y);
 		}
 
 		public float ConstrainSliderPos(float pos)
@@ -228,6 +256,24 @@ namespace MenuBuddy
 			var ratio1 = max1 - pos1;
 
 			return (((range2 * ratio1) / range1) - max2) * -1;
+		}
+
+		public bool CheckDrag(DragEventArgs drag)
+		{
+			var result = Rect.Contains(drag.Start);
+			if (result)
+			{
+				//convert back to slider coords and set the slider pos
+				HandlePosition = SolveSliderPos(_slideRect.Left, _slideRect.Right, drag.Current.X, Min, Max);
+
+				//fire off the event for any listeners
+				if (OnDrag != null)
+				{
+					OnDrag(this, drag);
+				}
+			}
+
+			return result;
 		}
 
 		#endregion //Methods

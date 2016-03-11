@@ -46,6 +46,14 @@ namespace MenuBuddy
 		/// <value>The time since input.</value>
 		public CountdownTimer TimeSinceInput { get; private set; }
 
+		public bool Highlight
+		{
+			set
+			{
+				//nothing to do here...
+			}
+		}
+
 		#endregion //Properties
 
 		#region Initialization

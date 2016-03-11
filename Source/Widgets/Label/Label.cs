@@ -42,7 +42,7 @@ namespace MenuBuddy
 		/// constructor
 		/// </summary>
 		/// <param name="text"></param>
-		public Label(string text)
+		public Label(string text = "")
 		{
 			Text = text;
 		}
@@ -129,11 +129,6 @@ namespace MenuBuddy
 				case HorizontalAlignment.Left: return Justify.Left;
 				default: return Justify.Right;
 			}
-		}
-
-		public override bool CheckClick(ClickEventArgs click)
-		{
-			return false;
 		}
 
 		#endregion //Methods

@@ -7,7 +7,7 @@ namespace MenuBuddy
 	/// Interface for the button object
 	/// This is a widget that can be selected
 	/// </summary>
-	public interface IButton : IWidget, IScreenItemContainer, ISelectable
+	public interface IButton : IWidget, IScreenItemContainer, ISelectable, IClickable
 	{
 		Vector2 Size { set; }
 

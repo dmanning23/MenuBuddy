@@ -21,6 +21,8 @@ namespace MenuBuddy
 
 		public event EventHandler<SelectedEventArgs> OnSelect;
 
+		public event EventHandler<ClickEventArgs> OnClick;
+
 		#endregion //Fields
 
 		#region Properties
@@ -139,6 +141,7 @@ namespace MenuBuddy
 			_size = inst._size;
 			OnSelect = inst.OnSelect;
 			Description = inst.Description;
+			OnClick = inst.OnClick;
 		}
 
 		#endregion //Initialization
@@ -200,6 +203,22 @@ namespace MenuBuddy
 			{
 				OnSelect(obj, new SelectedEventArgs(player));
 			}
+		}
+
+		public virtual bool CheckClick(ClickEventArgs click)
+		{
+			//check if the widget was clicked
+			if (Rect.Contains(click.Position))
+			{
+				if (OnClick != null)
+				{
+					OnClick(this, click);
+				}
+
+				return true;
+			}
+
+			return false;
 		}
 
 		#endregion //Methods

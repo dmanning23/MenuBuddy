@@ -26,10 +26,6 @@ namespace MenuBuddy
 
 		public event EventHandler<HighlightEventArgs> OnHighlight;
 
-		public event EventHandler<ClickEventArgs> OnClick;
-
-		public event EventHandler<DragEventArgs> OnDrag;
-
 		/// <summary>
 		/// whether or not this dude is highlighted
 		/// </summary>
@@ -218,9 +214,7 @@ namespace MenuBuddy
 			_position = new Point(inst._position.X, inst._position.Y);
 			Layer = inst.Layer;
 			HighlightClock = new GameClock(inst.HighlightClock);
-			OnClick = inst.OnClick;
 			OnHighlight = inst.OnHighlight;
-			OnDrag = inst.OnDrag;
 		}
 
 		/// <summary>
@@ -328,27 +322,6 @@ namespace MenuBuddy
             }
 
             return Highlight;
-		}
-
-		public virtual bool CheckClick(ClickEventArgs click)
-		{
-			//check if the widget was clicked
-			if (Rect.Contains(click.Position))
-			{
-				if (OnClick != null)
-				{
-					OnClick(this, click);
-				}
-
-				return true;
-			}
-
-			return false;
-		}
-
-		public bool CheckDrag(DragEventArgs drag)
-		{
-			return false;
 		}
 
 		#endregion //Methods

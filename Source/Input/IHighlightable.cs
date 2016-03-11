@@ -8,6 +8,11 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IHighlightable
 	{
+		/// <summary>
+		/// Highlight or don't highlight this screen item
+		/// </summary>
+		bool Highlight { set; }
+
 		event EventHandler<HighlightEventArgs> OnHighlight;
 
 		/// <summary>

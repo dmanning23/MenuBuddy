@@ -124,8 +124,8 @@ namespace MenuBuddy.Tests
 
 			_drop.SelectedItem = "catpants";
 
-			Assert.AreEqual(true, dropitem.Style.HasBackground);
-			Assert.AreEqual(true, dropitem.Style.HasOutline);
+			Assert.AreEqual(false, dropitem.Style.HasBackground);
+			Assert.AreEqual(false, dropitem.Style.HasOutline);
 		}
 
 		#endregion //AddItem
