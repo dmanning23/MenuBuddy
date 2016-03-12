@@ -128,8 +128,8 @@
     <Compile Include="..\Source\Input\TouchInputHelper.cs">
       <Link>Input\TouchInputHelper.cs</Link>
     </Compile>
-    <Compile Include="..\Source\Layouts\AbsoluteLayout.cs">
-      <Link>Layouts\AbsoluteLayout.cs</Link>
+    <Compile Include="..\Source\Layouts\Absolute\AbsoluteLayout.cs">
+      <Link>Layouts\Absolute\AbsoluteLayout.cs</Link>
     </Compile>
     <Compile Include="..\Source\Layouts\ILayout.cs">
       <Link>Layouts\ILayout.cs</Link>
@@ -137,17 +137,26 @@
     <Compile Include="..\Source\Layouts\Layout.cs">
       <Link>Layouts\Layout.cs</Link>
     </Compile>
-    <Compile Include="..\Source\Layouts\RelativeLayout.cs">
-      <Link>Layouts\RelativeLayout.cs</Link>
+    <Compile Include="..\Source\Layouts\Relative\RelativeLayout.cs">
+      <Link>Layouts\Relative\RelativeLayout.cs</Link>
     </Compile>
-    <Compile Include="..\Source\Layouts\ScrollLayout.cs">
-      <Link>Layouts\ScrollLayout.cs</Link>
+    <Compile Include="..\Source\Layouts\Scroll\ScrollLayout.cs">
+      <Link>Layouts\Scroll\ScrollLayout.cs</Link>
     </Compile>
-    <Compile Include="..\Source\Layouts\StackAlignment.cs">
-      <Link>Layouts\StackAlignment.cs</Link>
+    <Compile Include="..\Source\Layouts\Stack\StackAlignment.cs">
+      <Link>Layouts\Stack\StackAlignment.cs</Link>
     </Compile>
-    <Compile Include="..\Source\Layouts\StackLayout.cs">
-      <Link>Layouts\StackLayout.cs</Link>
+    <Compile Include="..\Source\Layouts\Stack\StackLayout.cs">
+      <Link>Layouts\Stack\StackLayout.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Layouts\Tree\ITree.cs">
+      <Link>Layouts\Tree\ITree.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Layouts\Tree\Tree.cs">
+      <Link>Layouts\Tree\Tree.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Layouts\Tree\TreeItem.cs">
+      <Link>Layouts\Tree\TreeItem.cs</Link>
     </Compile>
     <Compile Include="..\Source\Menus\ContinueMenuEntry.cs">
       <Link>Menus\ContinueMenuEntry.cs</Link>
@@ -375,6 +384,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
