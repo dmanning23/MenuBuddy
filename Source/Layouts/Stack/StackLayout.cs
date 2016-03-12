@@ -140,10 +140,17 @@ namespace MenuBuddy
 
 		#region Initialization
 
-		public StackLayout(StackAlignment alignment = StackAlignment.Top)
+		public StackLayout(StackAlignment alignment)
 		{
 			Alignment = alignment;
 			Horizontal = HorizontalAlignment.Center;
+		}
+
+		/// <summary>
+		/// Required to use this as a T argument in generic LayoutButton class
+		/// </summary>
+		public StackLayout() : this(StackAlignment.Top)
+		{
 		}
 
 		public StackLayout(StackLayout inst) : base(inst)

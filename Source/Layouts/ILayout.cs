@@ -7,5 +7,9 @@ namespace MenuBuddy
 	/// </summary>
 	public interface ILayout : IScreenItemContainer, IScreenItem, IScalable, IClickable, IHighlightable, IDraggable
 	{
+		List<IScreenItem> Items
+		{
+			get;
+		}
 	}
 }

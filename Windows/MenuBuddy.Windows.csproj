@@ -278,8 +278,14 @@
     <Compile Include="..\Source\Widgets\Buttons\IButton.cs">
       <Link>Widgets\Buttons\IButton.cs</Link>
     </Compile>
+    <Compile Include="..\Source\Widgets\Buttons\LayoutButton.cs">
+      <Link>Widgets\Buttons\LayoutButton.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Widgets\Buttons\RelativeLayoutButton.cs">
       <Link>Widgets\Buttons\RelativeLayoutButton.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Widgets\Buttons\StackLayoutButton.cs">
+      <Link>Widgets\Buttons\StackLayoutButton.cs</Link>
     </Compile>
     <Compile Include="..\Source\Widgets\Dropdown\Dropdown.cs">
       <Link>Widgets\Dropdown\Dropdown.cs</Link>

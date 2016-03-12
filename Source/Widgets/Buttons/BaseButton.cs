@@ -59,7 +59,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// The layout to add to this button
 		/// </summary>
-		public Layout Layout { get; protected set; }
+		public ILayout Layout { get; protected set; }
 
 		public override bool Highlight
 		{

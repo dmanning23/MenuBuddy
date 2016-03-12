@@ -5,21 +5,21 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a button thhat contains a relaitve layout
 	/// </summary>
-	public class RelativeLayoutButton : LayoutButton<RelativeLayout>
+	public class StackLayoutButton : LayoutButton<StackLayout>
 	{
 		#region Initialization
 
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public RelativeLayoutButton()
+		public StackLayoutButton()
 		{
-			Layout = new RelativeLayout();
+			Layout = new StackLayout();
 		}
 
-		public RelativeLayoutButton(RelativeLayoutButton inst) : base(inst)
+		public StackLayoutButton(StackLayoutButton inst) : base(inst)
 		{
-			Layout = new RelativeLayout(inst.Layout as RelativeLayout);
+			Layout = new StackLayout(inst.Layout as StackLayout);
 		}
 
 		/// <summary>
@@ -28,7 +28,7 @@ namespace MenuBuddy
 		/// <returns></returns>
 		public override IScreenItem DeepCopy()
 		{
-			return new RelativeLayoutButton(this);
+			return new StackLayoutButton(this);
 		}
 
 		#endregion //Initialization
@@ -58,7 +58,7 @@ namespace MenuBuddy
 			_rect = new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
 
 			//Set the position of the internal layout
-			var relLayout = Layout as RelativeLayout;
+			var relLayout = Layout as StackLayout;
 			if (null != relLayout)
 			{
 				var layoutSize = size - ((Padding * 2f) * Scale);
@@ -67,7 +67,6 @@ namespace MenuBuddy
 				relLayout.Vertical = VerticalAlignment.Top;
 				relLayout.Horizontal = HorizontalAlignment.Left;
 				relLayout.Position = layoutPos.ToPoint();
-				relLayout.Size = layoutSize;
 			}
 		}
 
