@@ -7,7 +7,7 @@ namespace MenuBuddy
 	/// This is a list of items that are stacked up
 	/// The position of a stack layout is the top center
 	/// </summary>
-	public class StackLayout : Layout
+	public class StackLayout : Layout, IStackLayout
 	{
 		#region Fields
 
@@ -204,6 +204,38 @@ namespace MenuBuddy
 			}
 
 			Sort();
+		}
+
+		/// <summary>
+		/// add an item after another item
+		/// </summary>
+		/// <param name="item"></param>
+		/// <param name="prevItem"></param>
+		public void InsertItem(IScreenItem item, IScreenItem prevItem)
+		{
+			//create a temp list to hold everything
+			var tempItems = new List<IScreenItem>();
+
+			//add all the items to the list
+			foreach (var currentItem in Items)
+			{
+				tempItems.Add(currentItem);
+
+				//check if this is the item to add after
+				if (currentItem == prevItem)
+				{
+					tempItems.Add(item);
+				}
+			}
+
+			//create a new layout list
+			Items = new List<IScreenItem>();
+
+			//add all the temp items to the layout list
+			foreach (var tempItem in tempItems)
+			{
+				AddItem(tempItem);
+			}
 		}
 
 		private void AddTop(IScreenItem item)

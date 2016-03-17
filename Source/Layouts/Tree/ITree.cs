@@ -1,9 +1,11 @@
-using System.Collections.Generic;
 
 namespace MenuBuddy
 {
-	public interface ITree<T> : ILayout
+	public interface ITree<T> : ILayout, IStackLayout
 	{
-		List<TreeItem<T>> Items { get; }
+		StackLayout Stack
+		{
+			get;
+		}
 	}
 }

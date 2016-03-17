@@ -154,7 +154,7 @@ namespace MenuBuddy
 			Layout.AddItem(item);
 
 			//If the item is a widget, load it's content too.
-			var widget = item as IWidget;
+			var widget = item as IHasContent;
 			if (null != widget)
 			{
 				widget.LoadContent(this);

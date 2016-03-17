@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 
 namespace MenuBuddy
@@ -5,8 +6,24 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a button thhat contains a relaitve layout
 	/// </summary>
-	public class StackLayoutButton : LayoutButton<StackLayout>
+	public class StackLayoutButton : LayoutButton<StackLayout>, IStackLayout
 	{
+		#region Properties
+
+		public StackAlignment Alignment
+		{
+			get
+			{
+				return (Layout as StackLayout).Alignment;
+			}
+			set
+			{
+				(Layout as StackLayout).Alignment = value;
+			}
+		}
+
+		#endregion //Properties
+
 		#region Initialization
 
 		/// <summary>
@@ -68,6 +85,11 @@ namespace MenuBuddy
 				relLayout.Horizontal = HorizontalAlignment.Left;
 				relLayout.Position = layoutPos.ToPoint();
 			}
+		}
+
+		public void InsertItem(IScreenItem item, IScreenItem prevItem)
+		{
+			(Layout as StackLayout).InsertItem(item, prevItem);
 		}
 
 		#endregion

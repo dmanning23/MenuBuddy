@@ -98,6 +98,9 @@
     <Compile Include="..\Source\Games\TouchGame.cs">
       <Link>Games\TouchGame.cs</Link>
     </Compile>
+    <Compile Include="..\Source\IHasContent.cs">
+      <Link>IHasContent.cs</Link>
+    </Compile>
     <Compile Include="..\Source\Input\BaseInputHelper.cs">
       <Link>Input\BaseInputHelper.cs</Link>
     </Compile>
@@ -142,6 +145,9 @@
     </Compile>
     <Compile Include="..\Source\Layouts\Scroll\ScrollLayout.cs">
       <Link>Layouts\Scroll\ScrollLayout.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Layouts\Stack\IStackLayout.cs">
+      <Link>Layouts\Stack\IStackLayout.cs</Link>
     </Compile>
     <Compile Include="..\Source\Layouts\Stack\StackAlignment.cs">
       <Link>Layouts\Stack\StackAlignment.cs</Link>

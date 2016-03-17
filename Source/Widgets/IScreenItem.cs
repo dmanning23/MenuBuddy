@@ -25,8 +25,6 @@ namespace MenuBuddy
 		/// </summary>
 		float Layer { get; set; }
 
-		
-
 		/// <summary>
 		/// You can set this flag to prevent drawing this button when the screen is inactive.
 		/// </summary>
