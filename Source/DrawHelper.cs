@@ -1,4 +1,4 @@
-using BasicPrimitiveBuddy;
+using PrimitiveBuddy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
@@ -18,7 +18,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// basic primitive for drawing the outline arounds touch buttons
 		/// </summary>
-		public XnaBasicPrimitive Prim { get; set; }
+		public Primitive Prim { get; set; }
 
 		#endregion //Properties
 
@@ -31,7 +31,7 @@ namespace MenuBuddy
 			SpriteBatch = spritebatch;
 
 			//init the basic primitive
-			Prim = new XnaBasicPrimitive(graphicsDevice, spritebatch);
+			Prim = new Primitive(graphicsDevice, spritebatch);
 			Prim.Thickness = 5.0f;
 			Prim.NumCircleSegments = 4;
 		}

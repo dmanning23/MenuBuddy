@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{422E5AEE-D257-4DFE-A90D-9338300DE3AF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MenuBuddy.DesktopGL</RootNamespace>
+    <AssemblyName>MenuBuddy.DesktopGL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FilenameBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FilenameBuddy.DesktopGL.1.0.1\lib\FilenameBuddy.DesktopGL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FontBuddyLib.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontBuddy.DesktopGL.1.0.11\lib\FontBuddyLib.DesktopGL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GameTimer.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GameTimer.DesktopGL.1.0.7\lib\GameTimer.DesktopGL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HadoukInput.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HadoukInput.DesktopGL.1.0.2\lib\HadoukInput.DesktopGL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MatrixExtensions.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MatrixExtensions.DesktopGL.1.0.4\lib\MatrixExtensions.DesktopGL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\MonoGame.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MouseBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MouseBuddy.DesktopGL.1.0.1\lib\MouseBuddy.DesktopGL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NVorbis, Version=0.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\NVorbis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\OpenTK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PrimitiveBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PrimitiveBuddy.DesktopGL.1.0.3\lib\PrimitiveBuddy.DesktopGL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RandomExtensions.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RandomExtensions.dmanning23.DesktopGL.1.0.1\lib\RandomExtensions.DesktopGL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ResolutionBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ResolutionBuddy.DesktopGL.1.0.4\lib\ResolutionBuddy.DesktopGL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StateMachineBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StateMachineBuddy.DesktopGL.1.0.1\lib\StateMachineBuddy.DesktopGL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TouchScreenBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TouchScreenBuddy.DesktopGL.1.0.3\lib\TouchScreenBuddy.DesktopGL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Vector2Extensions.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vector2Extensions.DesktopGL.1.0.4\lib\Vector2Extensions.DesktopGL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XmlBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XmlBuddy.DesktopGL.1.0.1\lib\XmlBuddy.DesktopGL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\Source\DrawHelper.cs">
+      <Link>DrawHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\IHasContent.cs">
+      <Link>IHasContent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Games\ControllerGame.cs">
+      <Link>Games\ControllerGame.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Games\DefaultGame.cs">
+      <Link>Games\DefaultGame.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Games\TouchGame.cs">
+      <Link>Games\TouchGame.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\BaseInputHelper.cs">
+      <Link>Input\BaseInputHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\ControllerInputHelper.cs">
+      <Link>Input\ControllerInputHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\HighlightEventArgs.cs">
+      <Link>Input\HighlightEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\IClickable.cs">
+      <Link>Input\IClickable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\IDraggable.cs">
+      <Link>Input\IDraggable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\IHighlightable.cs">
+      <Link>Input\IHighlightable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\IInputHelper.cs">
+      <Link>Input\IInputHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\ISelectable.cs">
+      <Link>Input\ISelectable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\SelectedEventArgs.cs">
+      <Link>Input\SelectedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\TouchInputHelper.cs">
+      <Link>Input\TouchInputHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Layouts\ILayout.cs">
+      <Link>Layouts\ILayout.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Layouts\Layout.cs">
+      <Link>Layouts\Layout.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Layouts\Absolute\AbsoluteLayout.cs">
+      <Link>Layouts\Absolute\AbsoluteLayout.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Layouts\Relative\RelativeLayout.cs">
+      <Link>Layouts\Relative\RelativeLayout.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Layouts\Scroll\ScrollLayout.cs">
+      <Link>Layouts\Scroll\ScrollLayout.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Layouts\Stack\IStackLayout.cs">
+      <Link>Layouts\Stack\IStackLayout.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Layouts\Stack\StackAlignment.cs">
+      <Link>Layouts\Stack\StackAlignment.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Layouts\Stack\StackLayout.cs">
+      <Link>Layouts\Stack\StackLayout.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Layouts\Tree\ITree.cs">
+      <Link>Layouts\Tree\ITree.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Layouts\Tree\Tree.cs">
+      <Link>Layouts\Tree\Tree.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Layouts\Tree\TreeItem.cs">
+      <Link>Layouts\Tree\TreeItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Menus\ContinueMenuEntry.cs">
+      <Link>Menus\ContinueMenuEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Menus\IMenuEntry.cs">
+      <Link>Menus\IMenuEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Menus\IMenuScreen.cs">
+      <Link>Menus\IMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Menus\MenuEntry.cs">
+      <Link>Menus\MenuEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Menus\MenuEntryBool.cs">
+      <Link>Menus\MenuEntryBool.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Menus\MenuEntryInt.cs">
+      <Link>Menus\MenuEntryInt.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Menus\MenuScreen.cs">
+      <Link>Menus\MenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Menus\MenuTitle.cs">
+      <Link>Menus\MenuTitle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\ScreenManager\IScreenManager.cs">
+      <Link>ScreenManager\IScreenManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\ScreenManager\ScreenManager.cs">
+      <Link>ScreenManager\ScreenManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\ScreenManager\ScreenStack.cs">
+      <Link>ScreenManager\ScreenStack.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\ScreenManager\ScreenStackDelegate.cs">
+      <Link>ScreenManager\ScreenStackDelegate.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Screens\ErrorScreen.cs">
+      <Link>Screens\ErrorScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Screens\IGameScreen.cs">
+      <Link>Screens\IGameScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Screens\IMainScreen.cs">
+      <Link>Screens\IMainScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Screens\IScreen.cs">
+      <Link>Screens\IScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Screens\IWidgetScreen.cs">
+      <Link>Screens\IWidgetScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Screens\LoadingScreen.cs">
+      <Link>Screens\LoadingScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Screens\MessageBoxScreen.cs">
+      <Link>Screens\MessageBoxScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Screens\OkScreen.cs">
+      <Link>Screens\OkScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Screens\Screen.cs">
+      <Link>Screens\Screen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Screens\WidgetScreen.cs">
+      <Link>Screens\WidgetScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Style\BoolStyleItem.cs">
+      <Link>Style\BoolStyleItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Style\ColorStyleItem.cs">
+      <Link>Style\ColorStyleItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Style\DefaultStyles.cs">
+      <Link>Style\DefaultStyles.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Style\FontStyleItem.cs">
+      <Link>Style\FontStyleItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Style\ImageStyleItem.cs">
+      <Link>Style\ImageStyleItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Style\SoundStyleItem.cs">
+      <Link>Style\SoundStyleItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Style\StyleItem.cs">
+      <Link>Style\StyleItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Style\StyleItemType.cs">
+      <Link>Style\StyleItemType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Style\StyleSheet.cs">
+      <Link>Style\StyleSheet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Style\TouchStyles.cs">
+      <Link>Style\TouchStyles.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Style\TransitionStyleItem.cs">
+      <Link>Style\TransitionStyleItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Transitions\PointTransition.cs">
+      <Link>Transitions\PointTransition.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Transitions\Transition.cs">
+      <Link>Transitions\Transition.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Transitions\TransitionState.cs">
+      <Link>Transitions\TransitionState.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Transitions\TransitionType.cs">
+      <Link>Transitions\TransitionType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\HorizontalAlignment.cs">
+      <Link>Widgets\HorizontalAlignment.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\IScalable.cs">
+      <Link>Widgets\IScalable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\IScreenItem.cs">
+      <Link>Widgets\IScreenItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\IScreenItemContainer.cs">
+      <Link>Widgets\IScreenItemContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\IWidget.cs">
+      <Link>Widgets\IWidget.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\ScreenItemListDelegate.cs">
+      <Link>Widgets\ScreenItemListDelegate.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\VerticalAlignment.cs">
+      <Link>Widgets\VerticalAlignment.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Widget.cs">
+      <Link>Widgets\Widget.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Buttons\BaseButton.cs">
+      <Link>Widgets\Buttons\BaseButton.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Buttons\CancelButton.cs">
+      <Link>Widgets\Buttons\CancelButton.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Buttons\IButton.cs">
+      <Link>Widgets\Buttons\IButton.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Buttons\LayoutButton.cs">
+      <Link>Widgets\Buttons\LayoutButton.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Buttons\RelativeLayoutButton.cs">
+      <Link>Widgets\Buttons\RelativeLayoutButton.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Buttons\StackLayoutButton.cs">
+      <Link>Widgets\Buttons\StackLayoutButton.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Dropdown\Dropdown.cs">
+      <Link>Widgets\Dropdown\Dropdown.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Dropdown\DropdownItem.cs">
+      <Link>Widgets\Dropdown\DropdownItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Dropdown\DropdownScreen.cs">
+      <Link>Widgets\Dropdown\DropdownScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Dropdown\IDropdown.cs">
+      <Link>Widgets\Dropdown\IDropdown.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Images\BackgroundImage.cs">
+      <Link>Widgets\Images\BackgroundImage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Images\IImage.cs">
+      <Link>Widgets\Images\IImage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Images\Image.cs">
+      <Link>Widgets\Images\Image.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Label\ILabel.cs">
+      <Link>Widgets\Label\ILabel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Label\Label.cs">
+      <Link>Widgets\Label\Label.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Shim\IShim.cs">
+      <Link>Widgets\Shim\IShim.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Shim\Shim.cs">
+      <Link>Widgets\Shim\Shim.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Slider\ISlider.cs">
+      <Link>Widgets\Slider\ISlider.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Slider\Slider.cs">
+      <Link>Widgets\Slider\Slider.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <None Include="..\..\Source\Content\AlphaGradient.png">
+      <Link>Content\AlphaGradient.png</Link>
+    </None>
+    <None Include="..\..\Source\Content\Cancel.png">
+      <Link>Content\Cancel.png</Link>
+    </None>
+    <None Include="..\..\Source\Content\gradient.png">
+      <Link>Content\gradient.png</Link>
+    </None>
+    <None Include="..\..\Source\Content\hourglass.png">
+      <Link>Content\hourglass.png</Link>
+    </None>
+    <None Include="..\..\Source\Content\MenuMove.wav">
+      <Link>Content\MenuMove.wav</Link>
+    </None>
+    <None Include="..\..\Source\Content\MenuSelect.wav">
+      <Link>Content\MenuSelect.wav</Link>
+    </None>
+    <None Include="MenuBuddy.DekstopGL.nuspec" />
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

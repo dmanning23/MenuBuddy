@@ -109,7 +109,9 @@ namespace MenuBuddy
 			// For Mobile devices, this logic will close the Game when the Back button is pressed
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
 			{
+#if !__IOS__
 				Exit();
+#endif
 			}
 
 			base.Update(gameTime);
@@ -131,6 +133,6 @@ namespace MenuBuddy
 			base.Draw(gameTime);
 		}
 
-		#endregion //Methods
+#endregion //Methods
 	}
 }

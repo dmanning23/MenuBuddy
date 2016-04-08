@@ -38,6 +38,8 @@ x64/
 .builds
 *.userprefs
 *.cachefile
+*.apk
+*.nupkg
 
 # Visual C++ cache files
 ipch/
