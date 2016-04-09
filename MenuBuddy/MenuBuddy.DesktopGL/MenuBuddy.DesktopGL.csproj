@@ -403,7 +403,7 @@
     <None Include="..\..\Source\Content\MenuSelect.wav">
       <Link>Content\MenuSelect.wav</Link>
     </None>
-    <None Include="MenuBuddy.DekstopGL.nuspec" />
+    <None Include="MenuBuddy.DesktopGL.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
 </Project>
