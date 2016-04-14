@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>MenuBuddy.Android</id>
-        <version>1.0.1</version>
+		<version>1.0.2</version>
         <title>MenuBuddy.Android</title>
         <authors>dmanning23</authors>
 		<owners>dmanning23</owners>
@@ -14,24 +14,24 @@
         <copyright>Copyright 2016</copyright>
         <tags>MonoGame Android</tags>
         <dependencies>
-			<dependency id="FilenameBuddy.Android" version="(1,)"/>
-			<dependency id="FontBuddy.Android" version="(1,)"/>
-			<dependency id="GameTimer.Android" version="(1,)"/>
-			<dependency id="HadoukInput.Android" version="(1,)"/>
-			<dependency id="MatrixExtensions.Android" version="(1,)"/>
-			<dependency id="MonoGame.Framework.Android" version="(3.5,)"/>
-			<dependency id="MouseBuddy.Android" version="(1,)"/>
-			<dependency id="PrimitiveBuddy.Android" version="(1,)"/>
-			<dependency id="RandomExtensions.dmanning23.Android" version="(1,)"/>
-			<dependency id="ResolutionBuddy.dmanning23.Android" version="(1,)"/>
-			<dependency id="StateMachineBuddy.dmanning23.Android" version="(1,)"/>
-			<dependency id="TouchScreenBuddy.dmanning23.Android" version="(1,)"/>
-			<dependency id="Vector2Extensions.Android" version="(1,)"/>
-			<dependency id="XmlBuddy.Android" version="(1,)"/>
+			<dependency id="FilenameBuddy.Android" version="1.0"/>
+			<dependency id="FontBuddy.Android" version="1.0"/>
+			<dependency id="GameTimer.Android" version="1.0"/>
+			<dependency id="HadoukInput.Android" version="1.0"/>
+			<dependency id="MatrixExtensions.Android" version="1.0"/>
+			<dependency id="MonoGame.Framework.Android" version="3.5"/>
+			<dependency id="MouseBuddy.Android" version="1.0"/>
+			<dependency id="PrimitiveBuddy.Android" version="1.0"/>
+			<dependency id="RandomExtensions.dmanning23.Android" version="1.0"/>
+			<dependency id="ResolutionBuddy.Android" version="1.0"/>
+			<dependency id="StateMachineBuddy.Android" version="1.0"/>
+			<dependency id="TouchScreenBuddy.Android" version="1.0"/>
+			<dependency id="Vector2Extensions.Android" version="1.0"/>
+			<dependency id="XmlBuddy.Android" version="1.0"/>
 		</dependencies>
     </metadata>
     <files>
-        <file src="Y:\Documents\Projects\MenuBuddy\MenuBuddy\MenuBuddy.Android\bin\Release\MenuBuddy.Android.pdb" target="lib\MenuBuddy.Android.pdb" />
-        <file src="Y:\Documents\Projects\MenuBuddy\MenuBuddy\MenuBuddy.Android\bin\Release\MenuBuddy.Android.dll" target="lib\MenuBuddy.Android.dll" />
+        <file src="bin\Release\MenuBuddy.Android.pdb" target="lib\MenuBuddy.Android.pdb" />
+        <file src="bin\Release\MenuBuddy.Android.dll" target="lib\MenuBuddy.Android.dll" />
     </files>
 </package>

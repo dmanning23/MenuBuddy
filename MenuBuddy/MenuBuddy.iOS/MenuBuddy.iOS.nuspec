@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>MenuBuddy.iOS</id>
-        <version>1.0.1</version>
+		<version>1.0.2</version>
         <title>MenuBuddy.iOS</title>
         <authors>dmanning23</authors>
 		<owners>dmanning23</owners>
@@ -14,24 +14,24 @@
         <copyright>Copyright 2016</copyright>
         <tags>MonoGame iOS</tags>
         <dependencies>
-			<dependency id="FilenameBuddy.iOS" version="(1,)"/>
-			<dependency id="FontBuddy.iOS" version="(1,)"/>
-			<dependency id="GameTimer.iOS" version="(1,)"/>
-			<dependency id="HadoukInput.iOS" version="(1,)"/>
-			<dependency id="MatrixExtensions.iOS" version="(1,)"/>
-			<dependency id="MonoGame.Framework.iOS" version="(3.5,)"/>
-			<dependency id="MouseBuddy.iOS" version="(1,)"/>
-			<dependency id="PrimitiveBuddy.iOS" version="(1,)"/>
-			<dependency id="RandomExtensions.dmanning23.iOS" version="(1,)"/>
-			<dependency id="ResolutionBuddy.dmanning23.iOS" version="(1,)"/>
-			<dependency id="StateMachineBuddy.dmanning23.iOS" version="(1,)"/>
-			<dependency id="TouchScreenBuddy.dmanning23.iOS" version="(1,)"/>
-			<dependency id="Vector2Extensions.iOS" version="(1,)"/>
-			<dependency id="XmlBuddy.iOS" version="(1,)"/>
+			<dependency id="FilenameBuddy.iOS" version="1.0"/>
+			<dependency id="FontBuddy.iOS" version="1.0"/>
+			<dependency id="GameTimer.iOS" version="1.0"/>
+			<dependency id="HadoukInput.iOS" version="1.0"/>
+			<dependency id="MatrixExtensions.iOS" version="1.0"/>
+			<dependency id="MonoGame.Framework.iOS" version="3.5"/>
+			<dependency id="MouseBuddy.iOS" version="1.0"/>
+			<dependency id="PrimitiveBuddy.iOS" version="1.0"/>
+			<dependency id="RandomExtensions.dmanning23.iOS" version="1.0"/>
+			<dependency id="ResolutionBuddy.iOS" version="1.0"/>
+			<dependency id="StateMachineBuddy.iOS" version="1.0"/>
+			<dependency id="TouchScreenBuddy.iOS" version="1.0"/>
+			<dependency id="Vector2Extensions.iOS" version="1.0"/>
+			<dependency id="XmlBuddy.iOS" version="1.0"/>
 		</dependencies>
     </metadata>
     <files>
-        <file src="Y:\Documents\Projects\MenuBuddy\MenuBuddy\MenuBuddy.iOS\bin\Release\MenuBuddy.iOS.pdb" target="lib\MenuBuddy.iOS.pdb" />
-        <file src="Y:\Documents\Projects\MenuBuddy\MenuBuddy\MenuBuddy.iOS\bin\Release\MenuBuddy.iOS.dll" target="lib\MenuBuddy.iOS.dll" />
+        <file src="bin\Release\MenuBuddy.iOS.pdb" target="lib\MenuBuddy.iOS.pdb" />
+        <file src="bin\Release\MenuBuddy.iOS.dll" target="lib\MenuBuddy.iOS.dll" />
     </files>
 </package>

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>MenuBuddy.DesktopGL</id>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
         <title>MenuBuddy.DesktopGL</title>
         <authors>dmanning23</authors>
 		<owners>dmanning23</owners>
@@ -14,24 +14,24 @@
         <copyright>Copyright 2016</copyright>
         <tags>MonoGame DesktopGL</tags>
         <dependencies>
-			<dependency id="FilenameBuddy.DesktopGL" version="(1,)"/>
-			<dependency id="FontBuddy.DesktopGL" version="(1,)"/>
-			<dependency id="GameTimer.DesktopGL" version="(1,)"/>
-			<dependency id="HadoukInput.DesktopGL" version="(1,)"/>
-			<dependency id="MatrixExtensions.DesktopGL" version="(1,)"/>
-			<dependency id="MonoGame.Framework.DesktopGL" version="(3.5,)"/>
-			<dependency id="MouseBuddy.DesktopGL" version="(1,)"/>
-			<dependency id="PrimitiveBuddy.DesktopGL" version="(1,)"/>
-			<dependency id="RandomExtensions.dmanning23.DesktopGL" version="(1,)"/>
-			<dependency id="ResolutionBuddy.dmanning23.DesktopGL" version="(1,)"/>
-			<dependency id="StateMachineBuddy.dmanning23.DesktopGL" version="(1,)"/>
-			<dependency id="TouchScreenBuddy.dmanning23.DesktopGL" version="(1,)"/>
-			<dependency id="Vector2Extensions.DesktopGL" version="(1,)"/>
-			<dependency id="XmlBuddy.DesktopGL" version="(1,)"/>
+			<dependency id="FilenameBuddy.DesktopGL" version="1.0"/>
+			<dependency id="FontBuddy.DesktopGL" version="1.0"/>
+			<dependency id="GameTimer.DesktopGL" version="1.0"/>
+			<dependency id="HadoukInput.DesktopGL" version="1.0"/>
+			<dependency id="MatrixExtensions.DesktopGL" version="1.0"/>
+			<dependency id="MonoGame.Framework.DesktopGL" version="3.5"/>
+			<dependency id="MouseBuddy.DesktopGL" version="1.0"/>
+			<dependency id="PrimitiveBuddy.DesktopGL" version="1.0"/>
+			<dependency id="RandomExtensions.dmanning23.DesktopGL" version="1.0"/>
+			<dependency id="ResolutionBuddy.DesktopGL" version="1.0"/>
+			<dependency id="StateMachineBuddy.DesktopGL" version="1.0"/>
+			<dependency id="TouchScreenBuddy.DesktopGL" version="1.0"/>
+			<dependency id="Vector2Extensions.DesktopGL" version="1.0"/>
+			<dependency id="XmlBuddy.DesktopGL" version="1.0"/>
 		</dependencies>
     </metadata>
     <files>
-        <file src="Y:\Documents\Projects\MenuBuddy\MenuBuddy\MenuBuddy.DesktopGL\bin\Release\MenuBuddy.DesktopGL.pdb" target="lib\MenuBuddy.DesktopGL.pdb" />
-        <file src="Y:\Documents\Projects\MenuBuddy\MenuBuddy\MenuBuddy.DesktopGL\bin\Release\MenuBuddy.DesktopGL.dll" target="lib\MenuBuddy.DesktopGL.dll" />
+        <file src="bin\Release\MenuBuddy.DesktopGL.pdb" target="lib\MenuBuddy.DesktopGL.pdb" />
+        <file src="bin\Release\MenuBuddy.DesktopGL.dll" target="lib\MenuBuddy.DesktopGL.dll" />
     </files>
 </package>
