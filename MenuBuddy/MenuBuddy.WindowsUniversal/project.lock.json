@@ -3,7 +3,7 @@
   "version": 2,
   "targets": {
     "UAP,Version=v10.0": {
-      "FilenameBuddy/1.0.1": {
+      "FilenameBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0"
@@ -2136,7 +2136,7 @@
           "lib/uap10.0/Vector2Extensions.WindowsUniversal.dll": {}
         }
       },
-      "XmlBuddy/1.0.1": {
+      "XmlBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "FilenameBuddy": "1.0.1",
@@ -2152,7 +2152,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
-      "FilenameBuddy/1.0.1": {
+      "FilenameBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0"
@@ -4151,7 +4151,7 @@
           "lib/uap10.0/Vector2Extensions.WindowsUniversal.dll": {}
         }
       },
-      "XmlBuddy/1.0.1": {
+      "XmlBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "FilenameBuddy": "1.0.1",
@@ -4167,7 +4167,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
-      "FilenameBuddy/1.0.1": {
+      "FilenameBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0"
@@ -6123,7 +6123,7 @@
           "lib/uap10.0/Vector2Extensions.WindowsUniversal.dll": {}
         }
       },
-      "XmlBuddy/1.0.1": {
+      "XmlBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "FilenameBuddy": "1.0.1",
@@ -6139,7 +6139,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
-      "FilenameBuddy/1.0.1": {
+      "FilenameBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0"
@@ -8147,7 +8147,7 @@
           "lib/uap10.0/Vector2Extensions.WindowsUniversal.dll": {}
         }
       },
-      "XmlBuddy/1.0.1": {
+      "XmlBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "FilenameBuddy": "1.0.1",
@@ -8163,7 +8163,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
-      "FilenameBuddy/1.0.1": {
+      "FilenameBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0"
@@ -10119,7 +10119,7 @@
           "lib/uap10.0/Vector2Extensions.WindowsUniversal.dll": {}
         }
       },
-      "XmlBuddy/1.0.1": {
+      "XmlBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "FilenameBuddy": "1.0.1",
@@ -10135,7 +10135,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
-      "FilenameBuddy/1.0.1": {
+      "FilenameBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0"
@@ -12143,7 +12143,7 @@
           "lib/uap10.0/Vector2Extensions.WindowsUniversal.dll": {}
         }
       },
-      "XmlBuddy/1.0.1": {
+      "XmlBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "FilenameBuddy": "1.0.1",
@@ -12159,7 +12159,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
-      "FilenameBuddy/1.0.1": {
+      "FilenameBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0"
@@ -14115,7 +14115,7 @@
           "lib/uap10.0/Vector2Extensions.WindowsUniversal.dll": {}
         }
       },
-      "XmlBuddy/1.0.1": {
+      "XmlBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "FilenameBuddy": "1.0.1",
@@ -14132,11 +14132,11 @@
     }
   },
   "libraries": {
-    "FilenameBuddy/1.0.1": {
-      "sha512": "LEq5NBMqVu2J83Onut9jjycZNrfk2VmztrAcboRfJsHuvYMprypG73d/ddMPvA/G3M4PK+hKSLWHMFIpFqC4iA==",
+    "FilenameBuddy/1.0.2": {
+      "sha512": "LIi0aT1JeQx0UveBSXk+hf2oLdH0b9y4GfM7kbO6uLJoGOpRQhxOCPFitDHc8ewFmdR2yX7fCnyq+tOLwd0Kdg==",
       "type": "package",
       "files": [
-        "FilenameBuddy.1.0.1.nupkg.sha512",
+        "FilenameBuddy.1.0.2.nupkg.sha512",
         "FilenameBuddy.nuspec",
         "lib/MonoAndroid10/FilenameBuddy.Android.dll",
         "lib/MonoAndroid10/FilenameBuddy.Android.pdb",
@@ -17674,11 +17674,11 @@
         "lib/uap10.0/Vector2Extensions.WindowsUniversal.pdb"
       ]
     },
-    "XmlBuddy/1.0.1": {
-      "sha512": "u25jTVFSgj3ouP3x+ogtFRZ7JIWKj8EK2KCqSDY3X0UShG0iZHvUrNWPSwYxKhevs/8IX/1OSickmfDHoWd4ig==",
+    "XmlBuddy/1.0.2": {
+      "sha512": "wFt6mFpJxFcqCyRmoG5PiSiSjZsQQlNmlVfCqMQ9K/VG7ShxZKmFzwvaf35avdJ4fgvhUFJU4tTF5ck4KCgw2Q==",
       "type": "package",
       "files": [
-        "XmlBuddy.1.0.1.nupkg.sha512",
+        "XmlBuddy.1.0.2.nupkg.sha512",
         "XmlBuddy.nuspec",
         "lib/MonoAndroid10/XmlBuddy.Android.dll",
         "lib/MonoAndroid10/XmlBuddy.Android.pdb",
@@ -17693,7 +17693,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "FilenameBuddy >= 1.0.1",
+      "FilenameBuddy >= 1.0.2",
       "FontBuddy >= 1.0.1",
       "GameTimer >= 1.0.1",
       "HadoukInput >= 1.0.0",
@@ -17707,7 +17707,7 @@
       "ResolutionBuddy >= 1.0.1",
       "TouchScreenBuddy >= 1.0.0",
       "Vector2Extensions >= 1.0.1",
-      "XmlBuddy >= 1.0.1"
+      "XmlBuddy >= 1.0.2"
     ],
     "UAP,Version=v10.0": []
   }

@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "FilenameBuddy": "1.0.1",
+    "FilenameBuddy": "1.0.2",
     "FontBuddy": "1.0.1",
     "GameTimer": "1.0.1",
     "HadoukInput": "1.0.0",
@@ -14,7 +14,7 @@
     "ResolutionBuddy": "1.0.1",
     "TouchScreenBuddy": "1.0.0",
     "Vector2Extensions": "1.0.1",
-    "XmlBuddy": "1.0.1"
+    "XmlBuddy": "1.0.2"
   },
   "frameworks": {
     "uap10.0": {}
