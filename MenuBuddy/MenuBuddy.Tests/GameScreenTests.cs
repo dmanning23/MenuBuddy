@@ -29,7 +29,7 @@ namespace MenuBuddy.Tests
 			screens.Screens.Add(gamescreen.Object);
 
 			var time = new GameTime();
-			var input = new Mock<IInputHelper>();
+			var input = new Mock<IInputHandler>();
 			input.Setup(x => x.HandleInput(It.IsAny<IGameScreen>())).Callback(() => { });
 			screens.Update(new GameTime(), input.Object, false);
 
@@ -58,7 +58,7 @@ namespace MenuBuddy.Tests
 			screens.Screens.Add(gamescreen.Object);
 
 			var time = new GameTime();
-			var input = new Mock<IInputHelper>();
+			var input = new Mock<IInputHandler>();
 			input.Setup(x => x.HandleInput(It.IsAny<IGameScreen > ())).Callback(() => { });
 			screens.Update(new GameTime(), input.Object, false);
 

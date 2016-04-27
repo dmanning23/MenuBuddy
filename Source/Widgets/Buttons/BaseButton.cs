@@ -1,7 +1,6 @@
+using InputHelper;
 using Microsoft.Xna.Framework;
-using MouseBuddy;
 using System;
-using System.Collections.Generic;
 
 namespace MenuBuddy
 {

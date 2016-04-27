@@ -17,7 +17,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// the input helper being used in this game
 		/// </summary>
-		IInputHelper Input { get; }
+		IInputHandler Input { get; }
 
 		/// <summary>
 		/// A default SpriteBatch shared by all the screens. 

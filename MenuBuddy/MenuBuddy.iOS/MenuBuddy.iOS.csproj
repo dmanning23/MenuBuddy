@@ -30,23 +30,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FilenameBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FilenameBuddy.iOS.1.0.1\lib\FilenameBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\FilenameBuddy.1.0.1\lib\Xamarin.iOS10\FilenameBuddy.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FontBuddyLib.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontBuddy.iOS.1.0.11\lib\FontBuddyLib.iOS.dll</HintPath>
+      <HintPath>..\packages\FontBuddy.1.0.1\lib\Xamarin.iOS10\FontBuddyLib.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="GameTimer.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GameTimer.iOS.1.0.7\lib\GameTimer.iOS.dll</HintPath>
+      <HintPath>..\packages\GameTimer.1.0.1\lib\Xamarin.iOS10\GameTimer.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="HadoukInput.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HadoukInput.iOS.1.0.2\lib\HadoukInput.iOS.dll</HintPath>
+      <HintPath>..\packages\HadoukInput.1.0.0\lib\Xamarin.iOS10\HadoukInput.iOS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InputHelper.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\InputHelper.1.0.1\lib\Xamarin.iOS10\InputHelper.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MatrixExtensions.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MatrixExtensions.iOS.1.0.4\lib\MatrixExtensions.iOS.dll</HintPath>
+      <HintPath>..\packages\MatrixExtensions.1.0.0\lib\Xamarin.iOS10\MatrixExtensions.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL">
@@ -54,39 +58,39 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MouseBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MouseBuddy.iOS.1.0.1\lib\MouseBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\MouseBuddy.1.0.0\lib\Xamarin.iOS10\MouseBuddy.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PrimitiveBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PrimitiveBuddy.iOS.1.0.3\lib\PrimitiveBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\PrimitiveBuddy.1.0.0\lib\Xamarin.iOS10\PrimitiveBuddy.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RandomExtensions.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RandomExtensions.dmanning23.iOS.1.0.1\lib\RandomExtensions.iOS.dll</HintPath>
+      <HintPath>..\packages\RandomExtensions.dmanning23.1.0.2\lib\Xamarin.iOS10\RandomExtensions.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ResolutionBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ResolutionBuddy.iOS.1.0.4\lib\ResolutionBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\ResolutionBuddy.1.0.1\lib\Xamarin.iOS10\ResolutionBuddy.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StateMachineBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StateMachineBuddy.iOS.1.0.1\lib\StateMachineBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\StateMachineBuddy.1.0.0\lib\Xamarin.iOS10\StateMachineBuddy.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="TouchScreenBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TouchScreenBuddy.iOS.1.0.3\lib\TouchScreenBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\TouchScreenBuddy.1.0.0\lib\Xamarin.iOS10\TouchScreenBuddy.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Vector2Extensions.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vector2Extensions.iOS.1.0.4\lib\Vector2Extensions.iOS.dll</HintPath>
+      <HintPath>..\packages\Vector2Extensions.1.0.1\lib\Xamarin.iOS10\Vector2Extensions.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.iOS" />
     <Reference Include="XmlBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XmlBuddy.iOS.1.0.1\lib\XmlBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\XmlBuddy.1.0.1\lib\Xamarin.iOS10\XmlBuddy.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -94,6 +98,18 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Source\Input\BaseInputHandler.cs">
+      <Link>Input\BaseInputHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\ControllerInputHandler.cs">
+      <Link>Input\ControllerInputHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\IInputHandler.cs">
+      <Link>Input\IInputHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\TouchInputHandler.cs">
+      <Link>Input\TouchInputHandler.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\..\Source\DrawHelper.cs">
       <Link>DrawHelper.cs</Link>
@@ -109,36 +125,6 @@
     </Compile>
     <Compile Include="..\..\Source\Games\TouchGame.cs">
       <Link>Games\TouchGame.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\BaseInputHelper.cs">
-      <Link>Input\BaseInputHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\ControllerInputHelper.cs">
-      <Link>Input\ControllerInputHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\HighlightEventArgs.cs">
-      <Link>Input\HighlightEventArgs.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\IClickable.cs">
-      <Link>Input\IClickable.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\IDraggable.cs">
-      <Link>Input\IDraggable.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\IHighlightable.cs">
-      <Link>Input\IHighlightable.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\IInputHelper.cs">
-      <Link>Input\IInputHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\ISelectable.cs">
-      <Link>Input\ISelectable.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\SelectedEventArgs.cs">
-      <Link>Input\SelectedEventArgs.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\TouchInputHelper.cs">
-      <Link>Input\TouchInputHelper.cs</Link>
     </Compile>
     <Compile Include="..\..\Source\Layouts\ILayout.cs">
       <Link>Layouts\ILayout.cs</Link>
@@ -388,7 +374,6 @@
     <None Include="..\..\Source\Content\MenuSelect.wav">
       <Link>Content\MenuSelect.wav</Link>
     </None>
-    <None Include="MenuBuddy.iOS.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
 </Project>

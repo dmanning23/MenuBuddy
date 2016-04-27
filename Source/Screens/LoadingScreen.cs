@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System;
+using System.ComponentModel;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -31,7 +33,7 @@ namespace MenuBuddy
 
 		private bool OtherScreensAreGone { get; set; }
 
-		Thread _backgroundThread;
+		BackgroundWorker _backgroundThread;
 
 		#endregion
 
@@ -143,21 +145,11 @@ namespace MenuBuddy
 				// session and draw the animation while we are loading.
 				if (_backgroundThread == null)
 				{
-					_backgroundThread = new Thread(BackgroundWorkerThread);
-					_backgroundThread.Start();
-				}
-
-				if (!_backgroundThread.IsAlive)
-				{
-					//clean up all the memory from those other screens
-					GC.Collect();
-
-					ScreenManager.RemoveScreen(this);
-
-					// Once the load has finished, we use ResetElapsedTime to tell
-					// the  game timing mechanism that we have just finished a very
-					// long frame, and that it should not try to catch up.
-					ScreenManager.Game.ResetElapsedTime();
+					_backgroundThread = new BackgroundWorker();
+					_backgroundThread.WorkerSupportsCancellation = true;
+					_backgroundThread.DoWork += new DoWorkEventHandler(BackgroundWorkerThread);
+					_backgroundThread.RunWorkerCompleted += new RunWorkerCompletedEventHandler(CleanUp);
+					_backgroundThread.RunWorkerAsync();
 				}
 			}
 		}
@@ -202,9 +194,22 @@ namespace MenuBuddy
 		/// Worker thread draws the loading animation and updates the network
 		/// session while the load is taking place.
 		/// </summary>
-		void BackgroundWorkerThread()
+		void BackgroundWorkerThread(object sender, DoWorkEventArgs e)
 		{
 			ScreenManager.AddScreen(ScreensToLoad, ControllingPlayer);
+		}
+
+		void CleanUp(object sender, RunWorkerCompletedEventArgs e)
+		{
+			//clean up all the memory from those other screens
+			GC.Collect();
+
+			ScreenManager.RemoveScreen(this);
+
+			// Once the load has finished, we use ResetElapsedTime to tell
+			// the  game timing mechanism that we have just finished a very
+			// long frame, and that it should not try to catch up.
+			ScreenManager.Game.ResetElapsedTime();
 		}
 
 		#endregion //Background Thread

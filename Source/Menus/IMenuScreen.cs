@@ -1,4 +1,5 @@
 using HadoukInput;
+using InputHelper;
 
 namespace MenuBuddy
 {

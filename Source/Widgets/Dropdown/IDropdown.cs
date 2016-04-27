@@ -1,3 +1,4 @@
+using InputHelper;
 using System.Collections.Generic;
 
 namespace MenuBuddy

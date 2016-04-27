@@ -1,5 +1,5 @@
+using InputHelper;
 using Microsoft.Xna.Framework;
-using System;
 
 namespace MenuBuddy
 {

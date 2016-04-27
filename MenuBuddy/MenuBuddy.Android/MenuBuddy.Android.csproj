@@ -34,23 +34,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FilenameBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FilenameBuddy.Android.1.0.1\lib\FilenameBuddy.Android.dll</HintPath>
+      <HintPath>..\packages\FilenameBuddy.1.0.1\lib\MonoAndroid10\FilenameBuddy.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FontBuddyLib.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontBuddy.Android.1.0.11\lib\FontBuddyLib.Android.dll</HintPath>
+      <HintPath>..\packages\FontBuddy.1.0.1\lib\MonoAndroid10\FontBuddyLib.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="GameTimer.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GameTimer.Android.1.0.7\lib\GameTimer.Android.dll</HintPath>
+      <HintPath>..\packages\GameTimer.1.0.1\lib\MonoAndroid10\GameTimer.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="HadoukInput.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HadoukInput.Android.1.0.2\lib\HadoukInput.Android.dll</HintPath>
+      <HintPath>..\packages\HadoukInput.1.0.0\lib\MonoAndroid10\HadoukInput.Android.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InputHelper.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\InputHelper.1.0.1\lib\MonoAndroid10\InputHelper.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MatrixExtensions.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MatrixExtensions.Android.1.0.4\lib\MatrixExtensions.Android.dll</HintPath>
+      <HintPath>..\packages\MatrixExtensions.1.0.0\lib\MonoAndroid10\MatrixExtensions.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Mono.Android" />
@@ -59,24 +63,24 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MouseBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MouseBuddy.Android.1.0.1\lib\MouseBuddy.Android.dll</HintPath>
+      <HintPath>..\packages\MouseBuddy.1.0.0\lib\MonoAndroid10\MouseBuddy.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="PrimitiveBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PrimitiveBuddy.Android.1.0.3\lib\PrimitiveBuddy.Android.dll</HintPath>
+      <HintPath>..\packages\PrimitiveBuddy.1.0.0\lib\MonoAndroid10\PrimitiveBuddy.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RandomExtensions.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RandomExtensions.dmanning23.Android.1.0.1\lib\RandomExtensions.Android.dll</HintPath>
+      <HintPath>..\packages\RandomExtensions.dmanning23.1.0.2\lib\MonoAndroid10\RandomExtensions.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ResolutionBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ResolutionBuddy.Android.1.0.4\lib\ResolutionBuddy.Android.dll</HintPath>
+      <HintPath>..\packages\ResolutionBuddy.1.0.1\lib\MonoAndroid10\ResolutionBuddy.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StateMachineBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StateMachineBuddy.Android.1.0.1\lib\StateMachineBuddy.Android.dll</HintPath>
+      <HintPath>..\packages\StateMachineBuddy.1.0.0\lib\MonoAndroid10\StateMachineBuddy.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -84,19 +88,31 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="TouchScreenBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TouchScreenBuddy.Android.1.0.3\lib\TouchScreenBuddy.Android.dll</HintPath>
+      <HintPath>..\packages\TouchScreenBuddy.1.0.0\lib\MonoAndroid10\TouchScreenBuddy.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Vector2Extensions.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vector2Extensions.Android.1.0.4\lib\Vector2Extensions.Android.dll</HintPath>
+      <HintPath>..\packages\Vector2Extensions.1.0.1\lib\MonoAndroid10\Vector2Extensions.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="XmlBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XmlBuddy.Android.1.0.1\lib\XmlBuddy.Android.dll</HintPath>
+      <HintPath>..\packages\XmlBuddy.1.0.1\lib\MonoAndroid10\XmlBuddy.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Source\Input\BaseInputHandler.cs">
+      <Link>Input\BaseInputHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\ControllerInputHandler.cs">
+      <Link>Input\ControllerInputHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\IInputHandler.cs">
+      <Link>Input\IInputHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\TouchInputHandler.cs">
+      <Link>Input\TouchInputHandler.cs</Link>
+    </Compile>
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\..\Source\DrawHelper.cs">
@@ -113,36 +129,6 @@
     </Compile>
     <Compile Include="..\..\Source\Games\TouchGame.cs">
       <Link>Games\TouchGame.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\BaseInputHelper.cs">
-      <Link>Input\BaseInputHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\ControllerInputHelper.cs">
-      <Link>Input\ControllerInputHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\HighlightEventArgs.cs">
-      <Link>Input\HighlightEventArgs.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\IClickable.cs">
-      <Link>Input\IClickable.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\IDraggable.cs">
-      <Link>Input\IDraggable.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\IHighlightable.cs">
-      <Link>Input\IHighlightable.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\IInputHelper.cs">
-      <Link>Input\IInputHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\ISelectable.cs">
-      <Link>Input\ISelectable.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\SelectedEventArgs.cs">
-      <Link>Input\SelectedEventArgs.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Input\TouchInputHelper.cs">
-      <Link>Input\TouchInputHelper.cs</Link>
     </Compile>
     <Compile Include="..\..\Source\Layouts\ILayout.cs">
       <Link>Layouts\ILayout.cs</Link>
@@ -371,7 +357,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="MenuBuddy.Android.nuspec" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="..\..\Source\Content\AlphaGradient.png">

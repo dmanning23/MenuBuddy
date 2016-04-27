@@ -1,5 +1,5 @@
-using GameTimer;
 using HadoukInput;
+using InputHelper;
 using Microsoft.Xna.Framework;
 using ResolutionBuddy;
 using System;

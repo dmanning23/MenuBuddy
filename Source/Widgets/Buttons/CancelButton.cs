@@ -1,6 +1,6 @@
+using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MouseBuddy;
 using ResolutionBuddy;
 
 namespace MenuBuddy

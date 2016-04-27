@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
 using GameTimer;
+using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MouseBuddy;
 
 namespace MenuBuddy
 {

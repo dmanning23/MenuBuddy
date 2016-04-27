@@ -26,7 +26,7 @@ namespace MenuBuddy
 		{
 			//add the input helper for menus
 			//var input = new TouchInputHelper(this);
-			var input = new ControllerInputHelper(this);
+			var input = new ControllerInputHandler(this);
 		}
 
 		#endregion //Methods

@@ -1,14 +1,5 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
-using MouseBuddy;
-using ResolutionBuddy;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using TouchScreenBuddy;
 
 namespace MenuBuddy
 {
@@ -95,7 +86,7 @@ namespace MenuBuddy
 			}
 		}
 
-		public void Update(GameTime gameTime, IInputHelper input, bool otherWindowHasFocus)
+		public void Update(GameTime gameTime, IInputHandler input, bool otherWindowHasFocus)
 		{
 			//Make a copy of the master screen list, to avoid confusion if the process of updating one screen adds or removes others.
 			ScreensToUpdate.Clear();

@@ -1,3 +1,4 @@
+using InputHelper;
 using Microsoft.Xna.Framework;
 
 namespace MenuBuddy

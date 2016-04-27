@@ -1,14 +1,23 @@
 using HadoukInput;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace MenuBuddy
 {
 	/// <summary>
 	/// This is an input helper that uses the hadoukinput to do keyboard/controller input
 	/// </summary>
-	public abstract class BaseInputHelper : DrawableGameComponent, IInputHelper
+	public abstract class BaseInputHandler : DrawableGameComponent, IInputHandler
 	{
 		#region Properties
+
+		/// <summary>
+		/// Get the mouse position in game coords
+		/// </summary>
+		public List<Vector2> CursorPos
+		{
+			get; private set;
+		}
 
 		/// <summary>
 		/// This object controls all the controller and keyboard stuff.
@@ -19,9 +28,10 @@ namespace MenuBuddy
 
 		#region Methods
 
-		protected BaseInputHelper(Game game)
+		protected BaseInputHandler(Game game)
 			: base(game)
 		{
+			CursorPos = new List<Vector2>();
 			InputState = new InputState();
 		}
 

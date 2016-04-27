@@ -1,14 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
-using MouseBuddy;
 using ResolutionBuddy;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using TouchScreenBuddy;
 
 namespace MenuBuddy
 {
@@ -32,7 +28,7 @@ namespace MenuBuddy
 		/// </summary>
 		private bool Initialized { get; set; }
 
-		public IInputHelper Input { get; private set; }
+		public IInputHandler Input { get; private set; }
 
 		public SpriteBatch SpriteBatch { get; private set; }
 
@@ -41,11 +37,6 @@ namespace MenuBuddy
 		public DrawHelper DrawHelper { get; private set; }
 
 		public ScreenStackDelegate MainMenuStack { get; set; }
-
-#if DEBUG
-		private IMouseManager MouseManager { get; set; }
-		private ITouchManager TouchManager { get; set; }
-#endif
 
 		#endregion //Properties
 
@@ -65,16 +56,11 @@ namespace MenuBuddy
 			ClearColor = new Color(0.0f, 0.1f, 0.2f);
 
 			//get the touch service
-			Input = game.Services.GetService(typeof(IInputHelper)) as IInputHelper;
+			Input = game.Services.GetService(typeof(IInputHandler)) as IInputHandler;
 			Debug.Assert(null != Input);
 
 			game.Components.Add(this);
 			game.Services.AddService(typeof(IScreenManager), this);
-
-#if DEBUG
-			MouseManager = game.Services.GetService(typeof(IMouseManager)) as IMouseManager;
-			TouchManager = game.Services.GetService(typeof(ITouchManager)) as ITouchManager;
-#endif
 
 			//When using render targets, don't clear the screen!!!
 			GraphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.PreserveContents;
@@ -148,39 +134,38 @@ namespace MenuBuddy
 			}
 #endif
 
-#if DEBUG
 			//draw a circle around the mouse cursor
-			if (null != MouseManager)
+			if (null != Input)
 			{
-				var mouse = Mouse.GetState();
-				var mousePos = new Vector2(mouse.X, mouse.Y);
-
-				SpriteBatch.Begin();
-
 				DrawHelper.Prim.NumCircleSegments = 4;
-				DrawHelper.Prim.Circle(mousePos, 6.0f, Color.Red);
 
-				SpriteBatch.End();
-			}
-
-			//draw a circle around each touch point
-			if (null != TouchManager)
-			{
 				SpriteBatch.Begin();
 
-				//go though the points that are being touched
-				TouchCollection touchCollection = TouchPanel.GetState();
-				foreach (var touch in touchCollection)
+				foreach (var pos in Input.CursorPos)
 				{
-					if ((touch.State == TouchLocationState.Pressed) || (touch.State == TouchLocationState.Moved))
-					{
-						DrawHelper.Prim.Circle(touch.Position, 40.0f, new Color(1.0f, 1.0f, 1.0f, 0.25f));
-					}
+					DrawHelper.Prim.Circle(pos, 6.0f, Color.Red);
 				}
 
 				SpriteBatch.End();
 			}
-#endif
+
+			////draw a circle around each touch point
+			//if (null != TouchManager)
+			//{
+			//	SpriteBatch.Begin();
+
+			//	//go though the points that are being touched
+			//	TouchCollection touchCollection = TouchPanel.GetState();
+			//	foreach (var touch in touchCollection)
+			//	{
+			//		if ((touch.State == TouchLocationState.Pressed) || (touch.State == TouchLocationState.Moved))
+			//		{
+			//			DrawHelper.Prim.Circle(touch.Position, 40.0f, new Color(1.0f, 1.0f, 1.0f, 0.25f));
+			//		}
+			//	}
+
+			//	SpriteBatch.End();
+			//}
 		}
 
 		/// <summary>

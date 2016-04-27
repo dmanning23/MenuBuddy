@@ -1,12 +1,8 @@
+using InputHelper;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System;
-using System.Text;
-using FontBuddyLib;
 using System.Linq;
-using MouseBuddy;
 
 namespace MenuBuddy
 {
