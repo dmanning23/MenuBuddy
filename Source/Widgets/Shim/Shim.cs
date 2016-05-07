@@ -38,7 +38,6 @@ namespace MenuBuddy
 		/// </summary>
 		public Shim()
 		{
-			Style.HasOutline = false;
 		}
 
 		public Shim(Shim inst) : base(inst)
@@ -60,6 +59,10 @@ namespace MenuBuddy
 		#region Methods
 
 		public override void Update(IScreen screen, GameClock gameTime)
+		{
+		}
+
+		public override void DrawBackground(IScreen screen, GameClock gameTime)
 		{
 		}
 

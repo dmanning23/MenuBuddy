@@ -85,7 +85,6 @@ namespace MenuBuddy
 			{
 				return base.ScreenName;
 			}
-
 			set
 			{
 				base.ScreenName = value;
@@ -93,7 +92,6 @@ namespace MenuBuddy
 				{
 					MenuTitle.Text = base.ScreenName;
 				}
-
 			}
 		}
 
@@ -150,7 +148,7 @@ namespace MenuBuddy
 		protected IMenuEntry AddContinueButton()
 		{
 			var continueButton = new ContinueMenuEntry();
-			continueButton.OnSelect += ((obj, e) => { ExitScreen(); });
+			continueButton.OnClick += ((obj, e) => { ExitScreen(); });
 			AddMenuEntry(continueButton);
 			return continueButton;
 		}
@@ -196,12 +194,18 @@ namespace MenuBuddy
 			{
 				if (null != SelectedEntry)
 				{
-					SelectedEntry.Selected(this, playerIndex);
+					SelectedEntry.Clicked(this, new ClickEventArgs
+					{
+						PlayerIndex = playerIndex
+					});
 				}
 			}
 			else if (input.IsMenuCancel(ControllingPlayer, out playerIndex))
 			{
-				Cancelled(this, new SelectedEventArgs(playerIndex));
+				Cancelled(this, new ClickEventArgs
+				{
+					PlayerIndex = playerIndex
+				});
 			}
 		}
 
@@ -319,12 +323,9 @@ namespace MenuBuddy
 		{
 			base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
-			if (!DefaultStyles.Instance().TouchStyle)
+			if (null != SelectedEntry)
 			{
-				if (null != SelectedEntry)
-				{
-					SelectedEntry.Highlight = IsActive;
-				}
+				SelectedEntry.IsHighlighted = IsActive;
 			}
 		}
 
@@ -341,7 +342,7 @@ namespace MenuBuddy
 			}
 		}
 
-		public virtual void Cancelled(object obj, SelectedEventArgs e)
+		public virtual void Cancelled(object obj, ClickEventArgs e)
 		{
 			ExitScreen();
 		}

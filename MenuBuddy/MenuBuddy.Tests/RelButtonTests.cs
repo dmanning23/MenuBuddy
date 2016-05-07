@@ -17,7 +17,7 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void Setup()
 		{
-			DefaultStyles.InitUnitTests();
+			StyleSheet.InitUnitTests();
 			_button = new RelativeLayoutButton();
 		}
 

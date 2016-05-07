@@ -48,79 +48,64 @@ namespace MenuBuddy
 		/// <summary>
 		/// Helper draws a translucent black sprite, used for fading specific areas
 		/// </summary>
-		public void DrawRect(Color color, Rectangle rect)
-		{
-			SpriteBatch.Draw(Prim.Texture, rect, color);
-		}
-
-		/// <summary>
-		/// Helper draws a translucent black sprite, used for fading specific areas
-		/// </summary>
 		public void BlackRect(float fAlpha, Rectangle rect)
 		{
 			DrawRect(new Color(0.0f, 0.0f, 0.0f, fAlpha), rect);
 		}
 
-		public void DrawOutline(Transition transition, StyleSheet style, Rectangle rect)
+		/// <summary>
+		/// Draw a solid colored rect at a specific location
+		/// </summary>
+		public void DrawRect(Color color, Rectangle rect)
 		{
-			if (style.HasOutline)
-			{
-				//get teh correct color
-				Color borderColor = style.SelectedOutlineColor;
-				borderColor.A = (byte)(255f * transition.Alpha);
-
-				//set the transition location
-				rect.Location = transition.Position(rect, style.Transition);
-
-				//draw the button outline
-				Prim.Rectangle(rect, borderColor);
-			}
-		}
-
-		public void DrawOutline(Transition transition, TransitionType transitionType, Color color, Rectangle rect)
-		{
-			//get teh correct color
-			color.A = (byte)(255f * transition.Alpha);
-
-			//set the transition location
-			rect.Location = transition.Position(rect, transitionType);
-
-			//draw the button outline
-			Prim.Rectangle(rect, color);
+			DrawRect(color, rect, Prim.Texture);
 		}
 
 		/// <summary>
-		/// Helper draws a translucent black sprite, used for fading specific areas
+		/// straight up draw a rect at a location with no transitioning
 		/// </summary>
-		public void DrawRect(Transition transition, TransitionType transitionType, Color color, Rectangle rect)
+		/// <param name="color"></param>
+		/// <param name="rect"></param>
+		/// <param name="tex"></param>
+		public void DrawRect(Color color, Rectangle rect, Texture2D tex)
+		{
+			SpriteBatch.Draw(tex, rect, color);
+		}
+
+		/// <summary>
+		/// Draw a 
+		/// </summary>
+		public void DrawRect(Color color, Rectangle rect, ScreenTransition screen, ITransitionObject transition)
 		{
 			//get the color for the background & border
-			color.A = (byte)(color.A * transition.Alpha);
+			color.A = (byte)(color.A * screen.Alpha);
 
 			//set the transition location
-			rect.Location = transition.Position(rect, transitionType);
+			rect.Location = transition.Position(screen, rect);
 
 			//draw the filled background
-			DrawRect(color, rect);
+			DrawRect(screen.AlphaColor(color), rect);
 		}
 
 		/// <summary>
 		/// Helper draws a translucent black sprite, used for fading specific areas
 		/// </summary>
-		public void DrawBackground(Transition transition, StyleSheet style, Rectangle rect)
+		public void DrawRect(Color color, Rectangle rect, ScreenTransition screen, ITransitionObject transition, Texture2D tex)
 		{
-			if (style.HasBackground)
-			{
-				//get the color for the background & border
-				Color backgroundColor = style.SelectedBackgroundColor;
-				backgroundColor.A = (byte)(backgroundColor.A * transition.Alpha);
+			//set the transition location
+			rect.Location = transition.Position(screen, rect);
 
-				//set the transition location
-				rect.Location = transition.Position(rect, style.Transition);
+			//draw the filled background
+			DrawRect(screen.AlphaColor(color), rect, tex);
+		}
 
-				//draw the filled background
-				SpriteBatch.Draw(style.BackgroundImage, rect, backgroundColor);
-			}
+		public void DrawOutline(Color color, Rectangle rect, ScreenTransition screen, ITransitionObject transition)
+		{
+			//set the transition location
+			rect.Location = transition.Position(screen, rect);
+
+			//draw the button outline
+			Prim.Rectangle(rect, screen.AlphaColor(color));
 		}
 
 		#endregion //Methods

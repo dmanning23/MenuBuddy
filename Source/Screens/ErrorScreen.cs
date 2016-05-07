@@ -57,7 +57,8 @@ namespace MenuBuddy
 			FadeBackground();
 
 			// Draw the message box text.
-			ScreenManager.SpriteBatch.DrawString(Style.SelectedFont.Font, _message, textPosition, Color.White, 0.0f, new Vector2(0.0f, 0.0f), 0.4f, SpriteEffects.None, 1.0f);
+			ScreenManager.SpriteBatch.DrawString(StyleSheet.Instance().SmallNeutralFont.Font,
+				_message, textPosition, Color.White, 0.0f, new Vector2(0.0f, 0.0f), 0.4f, SpriteEffects.None, 1.0f);
 
 			ScreenManager.SpriteBatchEnd();
 

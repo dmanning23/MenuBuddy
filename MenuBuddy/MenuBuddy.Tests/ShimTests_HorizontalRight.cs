@@ -17,7 +17,7 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void ShimTests_HorizontalRight_Setup()
 		{
-			DefaultStyles.InitUnitTests();
+			StyleSheet.InitUnitTests();
 			_shim = new Shim();
 			_shim.Horizontal = HorizontalAlignment.Right;
 		}

@@ -11,6 +11,6 @@ namespace MenuBuddy
 	{
 		void CheckInput(InputState input);
 
-		void Cancelled(object obj, SelectedEventArgs e);
-    }
+		void Cancelled(object obj, ClickEventArgs e);
+	}
 }

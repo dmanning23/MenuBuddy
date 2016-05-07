@@ -63,7 +63,7 @@ namespace MenuBuddy
 					}
 
 					UpdateScrollBars();
-                }
+				}
 			}
 		}
 
@@ -77,11 +77,11 @@ namespace MenuBuddy
 			{
 				//make sure to redo the rendertarget
 				_renderTarget = null;
-                base.Size = value;
+				base.Size = value;
 			}
 		}
 
-		public TransitionType Transition
+		public ITransitionObject Transition
 		{
 			get; set;
 		}
@@ -160,12 +160,12 @@ namespace MenuBuddy
 
 		public ScrollLayout()
 		{
-			Transition = TransitionType.SlideLeft;
+			Transition = new WipeTransitionObject(TransitionWipeType.SlideLeft);
 			DrawVerticalScrollBar = false;
 			DrawHorizontalScrollBar = false;
 			UpdateScrollBars();
 			DrawScrollbars = false;
-        }
+		}
 
 		public ScrollLayout(ScrollLayout inst) : base(inst)
 		{
@@ -179,6 +179,7 @@ namespace MenuBuddy
 			DrawVerticalScrollBar = inst.DrawVerticalScrollBar;
 			DrawHorizontalScrollBar = inst.DrawHorizontalScrollBar;
 			DrawScrollbars = inst.DrawScrollbars;
+			Transition = inst.Transition;
 		}
 
 		public override IScreenItem DeepCopy()
@@ -193,23 +194,23 @@ namespace MenuBuddy
 		public override void AddItem(IScreenItem item)
 		{
 			//Items in a scroll layout don't transition
-			var widget = item as Widget;
+			var widget = item as IWidget;
 			if (null != widget)
 			{
-				widget.Style.Transition = TransitionType.None;
+				widget.Transition = new WipeTransitionObject(TransitionWipeType.None);
 			}
 
 			base.AddItem(item);
 
 			UpdateMinMaxScroll();
 			UpdateScrollBars();
-        }
+		}
 
 		private void InitializeRenderTarget(IScreen screen)
 		{
 			if (null == _renderTarget)
 			{
-				_renderTarget = new RenderTarget2D(screen.ScreenManager.GraphicsDevice, 
+				_renderTarget = new RenderTarget2D(screen.ScreenManager.GraphicsDevice,
 					(int)Size.X,
 					(int)Size.Y,
 					false,
@@ -288,7 +289,7 @@ namespace MenuBuddy
 			//render the texture
 			var rect = CalculateRect();
 			screen.ScreenManager.SpriteBatch.Draw(_renderTarget,
-				screen.Transition.Position(rect, Transition).ToVector2(),
+				Transition.Position(screen.Transition, rect.Location),
 				Color.White);
 
 			//Draw the scroll bars if the mouse pointer or a touch is inside the layout
@@ -296,17 +297,15 @@ namespace MenuBuddy
 			{
 				if (DrawVerticalScrollBar)
 				{
-					screen.ScreenManager.DrawHelper.DrawRect(screen.Transition, Transition, screen.Style.SelectedBackgroundColor, VerticalScrollBar);
-					//screen.ScreenManager.DrawHelper.DrawOutline(screen.Transition, Transition, screen.Style.SelectedOutlineColor, VerticalScrollBar);
+					screen.ScreenManager.DrawHelper.DrawRect(StyleSheet.HighlightedBackgroundColor, VerticalScrollBar, screen.Transition, Transition);
 				}
 
 				if (DrawHorizontalScrollBar)
 				{
-					screen.ScreenManager.DrawHelper.DrawRect(screen.Transition, Transition, screen.Style.SelectedBackgroundColor, HorizontalScrollBar);
-					//screen.ScreenManager.DrawHelper.DrawOutline(screen.Transition, Transition, screen.Style.SelectedOutlineColor, HorizontalScrollBar);
+					screen.ScreenManager.DrawHelper.DrawRect(StyleSheet.HighlightedBackgroundColor, HorizontalScrollBar, screen.Transition, Transition);
 				}
 			}
-        }
+		}
 
 		public void UpdateMinMaxScroll()
 		{
@@ -318,7 +317,7 @@ namespace MenuBuddy
 
 			//set the min and max to be the diff between the two
 			_minScroll = new Vector2(total.Left - current.Left, total.Top - current.Top);
-			_maxScroll = new Vector2(total.Right- current.Right, total.Bottom - current.Bottom);
+			_maxScroll = new Vector2(total.Right - current.Right, total.Bottom - current.Bottom);
 		}
 
 		private Vector2 ConstrainScroll(Vector2 value)
@@ -405,7 +404,7 @@ namespace MenuBuddy
 			}
 
 			return base.CheckHighlight(highlight) || DrawScrollbars;
-        }
+		}
 
 		public override bool CheckDrag(DragEventArgs drag)
 		{

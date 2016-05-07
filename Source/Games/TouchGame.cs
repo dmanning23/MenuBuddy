@@ -13,18 +13,6 @@ namespace MenuBuddy
 		{
 		}
 
-		/// <summary>
-		/// Initialize the default styles to use for this game.
-		/// </summary>
-		protected override void InitStyles()
-		{
-			//uncomment this line if need to test widget placement
-			//gameStyle.HasOutline = true;
-
-			TouchStyles.Init(this);
-			var style = DefaultStyles.Instance();
-		}
-
 		protected override void InitInput()
 		{
 			//create the touch manager component

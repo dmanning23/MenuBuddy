@@ -27,12 +27,7 @@ namespace MenuBuddy
 
 		GameClock Time { get; }
 
-		/// <summary>
-		/// The default style of this screen.
-		/// </summary>
-		StyleSheet Style { get; }
-
-		Transition Transition { get; }
+		ScreenTransition Transition { get; }
 
 		TransitionState TransitionState { get; }
 
@@ -56,12 +51,6 @@ namespace MenuBuddy
 		#endregion
 
 		#region Initialization
-
-		/// <summary>
-		/// Set the style of this screen.
-		/// Called before loadcontent and cascades the style from teh screenmanager
-		/// </summary>
-		void SetStyle(StyleSheet styles);
 
 		/// <summary>
 		/// Load graphics content for the screen.

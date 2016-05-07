@@ -1,3 +1,4 @@
+using InputHelper;
 using Microsoft.Xna.Framework;
 using System;
 
@@ -37,6 +38,19 @@ namespace MenuBuddy
 			}
 		}
 
+		public FontSize FontSize
+		{
+			get
+			{
+				return Label.FontSize;
+			}
+
+			set
+			{
+				Label.FontSize = value;
+			}
+		}
+
 		#endregion //Properties
 
 		#region Events
@@ -59,10 +73,7 @@ namespace MenuBuddy
 			if (Left != null)
 			{
 				//play menu noise
-				if (!Style.IsQuiet && (null != Style.SelectionChangeSoundEffect))
-				{
-					Style.SelectionChangeSoundEffect.Play();
-				}
+				PlayHighlightSound(this, new HighlightEventArgs());
 
 				Left(this, new EventArgs());
 			}
@@ -76,10 +87,7 @@ namespace MenuBuddy
 			if (Right != null)
 			{
 				//play menu noise
-				if (!Style.IsQuiet && (null != Style.SelectionChangeSoundEffect))
-				{
-					Style.SelectionChangeSoundEffect.Play();
-				}
+				PlayHighlightSound(this, new HighlightEventArgs());
 
 				Right(this, new EventArgs());
 			}
@@ -94,8 +102,8 @@ namespace MenuBuddy
 		/// </summary>
 		public MenuEntry(string text)
 		{
-			Style = DefaultStyles.Instance().MenuEntryStyle;
-			Text = text;
+			Label = new Label(text);
+			_text = text;
 			Horizontal = HorizontalAlignment.Center;
 			Vertical = VerticalAlignment.Top;
 		}
@@ -120,7 +128,6 @@ namespace MenuBuddy
 			//Add the text label
 			Label = new Label(Text)
 			{
-				Style = this.Style,
                 Vertical = VerticalAlignment.Top,
 				Horizontal = HorizontalAlignment.Center
 			};

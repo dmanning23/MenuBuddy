@@ -109,7 +109,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Object used to aid in transitioning on and off
 		/// </summary>
-		public Transition Transition { get; set; }
+		public ScreenTransition Transition { get; set; }
 
 		public TransitionState TransitionState
 		{
@@ -142,15 +142,10 @@ namespace MenuBuddy
 			IsExiting = false;
 			ScreenName = screenName;
 
-			Transition = new Transition();
+			Transition = new ScreenTransition();
 
 			Time = new GameClock();
 			Time.Start();
-		}
-
-		public virtual void SetStyle(StyleSheet styles)
-		{
-			Style = new StyleSheet(styles);
 		}
 
 		/// <summary>
@@ -158,8 +153,6 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void LoadContent()
 		{
-			//set the style of teh screen
-			SetStyle(DefaultStyles.Instance().MainStyle);
 		}
 
 		/// <summary>

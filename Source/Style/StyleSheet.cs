@@ -2,241 +2,297 @@ using FontBuddyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace MenuBuddy
 {
 	public class StyleSheet
 	{
+		#region Singleton
+
+		protected static StyleSheet _instance;
+
+		public static StyleSheet Instance()
+		{
+			Debug.Assert(null != _instance);
+			return _instance;
+		}
+
+		public static void Init(Game game)
+		{
+			_instance = new StyleSheet(game);
+			_instance.Initialize();
+		}
+
+		public static void InitUnitTests()
+		{
+			_instance = new StyleSheet();
+		}
+
+		#endregion //Singleton
+
+		#region Default Options
+
+		/// <summary>
+		/// The resource to use as the large font (menu title)
+		/// </summary>
+		public static string LargeFontResource { get; set; }
+
+		/// <summary>
+		/// the resource to use as the medium font (widgets)
+		/// </summary>
+		public static string MediumFontResource { get; set; }
+
+		/// <summary>
+		/// the resource to use as the small font (message boxes)
+		/// </summary>
+		public static string SmallFontResource { get; set; }
+
+		public static Color NeutralTextColor { get; set; }
+
+		public static Color HighlightedTextColor { get; set; }
+
+		public static Color SelectedTextColor { get; set; }
+
+		public static Color NeutralOutlineColor { get; set; }
+
+		public static Color NeutralBackgroundColor { get; set; }
+
+		public static Color HighlightedOutlineColor { get; set; }
+
+		public static Color HighlightedBackgroundColor { get; set; }
+
+		public static Color TextShadowColor { get; set; }
+
+		public static string HighlightSoundResource { get; set; }
+
+		public static string SelectedSoundResource { get; set; }
+
+		public static string ButtonBackgroundImageResource { get; set; }
+
+		public static string MessageBoxBackgroundImageResource { get; set; }
+
+		public static string CancelButtonImageResource { get; set; }
+
+		public static string TreeExpandImageResource { get; set; }
+
+		public static string TreeCollapseImageResource { get; set; }
+
+		public static string LoadingScreenHourglassImageResource { get; set; }
+
+		public static bool HasOutline { get; set; }
+
+		public static TransitionWipeType Transition { get; set; }
+
+		#endregion //Default Options
+
 		#region Fields
 
-		//All teh style items in a style sheet
+		protected Game _game;
 
-		private FontStyleItem _selectedFontStyle;
-		private FontStyleItem _unselectedFontStyle;
-		private ColorStyleItem _selectedTextColorStyle;
-		private ColorStyleItem _unselectedTextColorStyle;
-		private ColorStyleItem _selectedShadowColorStyle;
-		private ColorStyleItem _unselectedShadowColorStyle;
-		private ColorStyleItem _selectedOutlineColorStyle;
-		private ColorStyleItem _unselectedOutlineColorStyle;
-		private ColorStyleItem _selectedBackgroundColorStyle;
-		private ColorStyleItem _unselectedBackgroundColorStyle;
-		private BoolStyleItem _hasOutlineStyle;
-		private BoolStyleItem _hasBackgroundStyle;
-		private BoolStyleItem _isQuietStyle;
-		private TransitionStyleItem _transitionStyle;
-		private SoundStyleItem _selectedSoundEffect;
-		private SoundStyleItem _selectionChangeSoundEffect;
-		private ImageStyleItem _texture;
+		private IFontBuddy _neutralLargeFont;
+
+		private IFontBuddy _neutralMediumFont;
+
+		private IFontBuddy _neutralSmallFont;
+
+		private IFontBuddy _highlightedLargeFont;
+
+		private IFontBuddy _highlightedMediumFont;
+
+		private IFontBuddy _highlightedSmallFont;
 
 		#endregion //Fields
 
 		#region Properties
 
-		public string Name { get; set; }
-
-		public IFontBuddy SelectedFont
+		public IFontBuddy LargeNeutralFont
 		{
-			get { return _selectedFontStyle.Style; }
+			get { return _neutralLargeFont; }
 			set
 			{
 				//set the font item
-				_selectedFontStyle = new FontStyleItem(StyleItemType.SelectedFont, value);
+				_neutralLargeFont = value;
 
 				//also set teh shadow color
-				var shadow = SelectedFont as ShadowTextBuddy;
+				var shadow = _neutralLargeFont as ShadowTextBuddy;
 				if (null != shadow)
 				{
-					shadow.ShadowColor = SelectedShadowColor;
+					shadow.ShadowColor = TextShadowColor;
 				}
 			}
 		}
 
-		public IFontBuddy UnselectedFont
+		public IFontBuddy MediumNeutralFont
 		{
-			get { return _unselectedFontStyle.Style; }
+			get { return _neutralMediumFont; }
 			set
 			{
-				_unselectedFontStyle = new FontStyleItem(StyleItemType.UnselectedFont, value);
-				var shadow = UnselectedFont as ShadowTextBuddy;
+				//set the font item
+				_neutralMediumFont = value;
+
+				//also set teh shadow color
+				var shadow = _neutralMediumFont as ShadowTextBuddy;
 				if (null != shadow)
 				{
-					shadow.ShadowColor = UnselectedShadowColor;
+					shadow.ShadowColor = TextShadowColor;
 				}
 			}
 		}
 
-		public Color SelectedTextColor
+		public IFontBuddy SmallNeutralFont
 		{
-			get { return _selectedTextColorStyle.Style; }
-			set { _selectedTextColorStyle = new ColorStyleItem(StyleItemType.SelectedTextColor, value); }
-		}
-
-		public Color UnselectedTextColor
-		{
-			get { return _unselectedTextColorStyle.Style; }
-			set { _unselectedTextColorStyle = new ColorStyleItem(StyleItemType.UnselectedTextColor, value); }
-		}
-
-		public Color SelectedShadowColor
-		{
-			get { return _selectedShadowColorStyle.Style; }
+			get { return _neutralSmallFont; }
 			set
 			{
-				//set teh shadow color
-				_selectedShadowColorStyle = new ColorStyleItem(StyleItemType.SelectedShadowColor, value);
+				//set the font item
+				_neutralSmallFont = value;
 
-				//tell the selected font to use that shadow color too
-				var shadow = SelectedFont as ShadowTextBuddy;
+				//also set teh shadow color
+				var shadow = _neutralSmallFont as ShadowTextBuddy;
 				if (null != shadow)
 				{
-					shadow.ShadowColor = SelectedShadowColor;
+					shadow.ShadowColor = TextShadowColor;
 				}
 			}
 		}
 
-		public Color UnselectedShadowColor
+		public IFontBuddy LargeHighlightedFont
 		{
-			get { return _unselectedShadowColorStyle.Style; }
+			get { return _highlightedLargeFont; }
 			set
 			{
-				//set the shadow color
-				_unselectedShadowColorStyle = new ColorStyleItem(StyleItemType.UnselectedShadowColor, value);
+				//set the font item
+				_highlightedLargeFont = value;
 
-				//also set it in the font item
-				var shadow = UnselectedFont as ShadowTextBuddy;
+				//also set teh shadow color
+				var shadow = _highlightedLargeFont as ShadowTextBuddy;
 				if (null != shadow)
 				{
-					shadow.ShadowColor = UnselectedShadowColor;
+					shadow.ShadowColor = TextShadowColor;
 				}
 			}
 		}
 
-		public Color SelectedOutlineColor
+		public IFontBuddy MediumHighlightedFont
 		{
-			get { return _selectedOutlineColorStyle.Style; }
-			set { _selectedOutlineColorStyle = new ColorStyleItem(StyleItemType.SelectedOutlineColor, value); }
+			get { return _highlightedMediumFont; }
+			set
+			{
+				//set the font item
+				_highlightedMediumFont = value;
+
+				//also set teh shadow color
+				var shadow = _highlightedMediumFont as ShadowTextBuddy;
+				if (null != shadow)
+				{
+					shadow.ShadowColor = TextShadowColor;
+				}
+			}
 		}
 
-		public Color UnselectedOutlineColor
+		public IFontBuddy SmallHighlightedFont
 		{
-			get { return _unselectedOutlineColorStyle.Style; }
-			set { _unselectedOutlineColorStyle = new ColorStyleItem(StyleItemType.UnselectedOutlineColor, value); }
-		}
+			get { return _highlightedSmallFont; }
+			set
+			{
+				//set the font item
+				_highlightedSmallFont = value;
 
-		public Color SelectedBackgroundColor
-		{
-			get { return _selectedBackgroundColorStyle.Style; }
-			set { _selectedBackgroundColorStyle = new ColorStyleItem(StyleItemType.SelectedBackgroundColor, value); }
-		}
-
-		public Color UnselectedBackgroundColor
-		{
-			get { return _unselectedBackgroundColorStyle.Style; }
-			set { _unselectedBackgroundColorStyle = new ColorStyleItem(StyleItemType.UnselectedBackgroundColor, value); }
-		}
-
-		public bool HasOutline
-		{
-			get { return _hasOutlineStyle.Style; }
-			set { _hasOutlineStyle = new BoolStyleItem(StyleItemType.HasOutline, value); }
-		}
-
-		public bool HasBackground
-		{
-			get { return _hasBackgroundStyle.Style; }
-			set { _hasBackgroundStyle = new BoolStyleItem(StyleItemType.HasBackground, value); }
-		}
-
-		public bool IsQuiet
-		{
-			get { return _isQuietStyle.Style; }
-			set { _isQuietStyle = new BoolStyleItem(StyleItemType.IsQuiet, value); }
-		}
-
-		public TransitionType Transition
-		{
-			get { return _transitionStyle.Style; }
-			set { _transitionStyle = new TransitionStyleItem(StyleItemType.Transition, value); }
-		}
-
-		public SoundEffect SelectedSoundEffect
-		{
-			get { return _selectedSoundEffect.Style; }
-			set { _selectedSoundEffect = new SoundStyleItem(StyleItemType.SelectedSoundEffect, value); }
-		}
-
-		public SoundEffect SelectionChangeSoundEffect
-		{
-			get { return _selectionChangeSoundEffect.Style; }
-			set { _selectionChangeSoundEffect = new SoundStyleItem(StyleItemType.SelectionChangeSoundEffect, value); }
-		}
-
-		public Texture2D BackgroundImage
-		{
-			get { return _texture.Style; }
-			set { _texture = new ImageStyleItem(StyleItemType.Texture, value); }
+				//also set teh shadow color
+				var shadow = _highlightedSmallFont as ShadowTextBuddy;
+				if (null != shadow)
+				{
+					shadow.ShadowColor = TextShadowColor;
+				}
+			}
 		}
 
 		#endregion //Properties
 
 		#region Methods
 
+		static StyleSheet()
+		{
+			LargeFontResource = @"Fonts\ArialBlack72";
+			MediumFontResource = @"Fonts\ArialBlack48";
+			SmallFontResource = @"Fonts\ArialBlack24";
+
+			NeutralTextColor = Color.White;
+			HighlightedTextColor = Color.White;
+			SelectedTextColor = Color.Red;
+			NeutralOutlineColor = new Color(0.8f, 0.8f, 0.8f, 0.5f);
+			NeutralBackgroundColor = new Color(0.0f, 0.0f, 0.2f, 0.5f);
+			HighlightedOutlineColor = new Color(0.8f, 0.8f, 0.8f, 0.7f);
+			HighlightedBackgroundColor = new Color(0.0f, 0.0f, 0.2f, 0.7f);
+			TextShadowColor = Color.Black;
+			HighlightSoundResource = @"MenuMove";
+			SelectedSoundResource = @"MenuSelect";
+			ButtonBackgroundImageResource = @"AlphaGradient";
+			MessageBoxBackgroundImageResource = @"gradient";
+			CancelButtonImageResource = @"Cancel";
+			TreeExpandImageResource = @"Expand";
+			TreeCollapseImageResource = @"Collapse";
+			LoadingScreenHourglassImageResource = @"hourglass";
+			HasOutline = true;
+			Transition = TransitionWipeType.SlideLeft;
+		}
+
 		/// <summary>
 		/// Default constructor
 		/// </summary>
-		public StyleSheet(string name = "")
+		public StyleSheet(Game game)
 		{
-			Name = name;
-			SelectedFont = null;
-			UnselectedFont = null;
-			SelectedTextColor = Color.Red;
-			UnselectedTextColor = Color.White;
-			SelectedShadowColor = Color.Black;
-			UnselectedShadowColor = Color.Black;
-			SelectedOutlineColor = Color.LightGray;
-			UnselectedOutlineColor = Color.LightGray;
-			SelectedBackgroundColor = new Color(0.0f, 0.0f, 0.2f);
-			UnselectedBackgroundColor = new Color(0.0f, 0.0f, 0.2f);
-			HasOutline = false;
-			HasBackground = false;
-			IsQuiet = false;
-			Transition = TransitionType.SlideLeft;
-			SelectedSoundEffect = null;
-			SelectionChangeSoundEffect = null;
-			BackgroundImage = null;
+			_game = game;
 		}
 
-		/// <summary>
-		/// Copy constructor: this is how styles sheets are cascaded
-		/// </summary>
-		/// <param name="styles"></param>
-		public StyleSheet(StyleSheet styles)
+		public StyleSheet()
 		{
-			//Shallow copy to all the parent style sheet
-			Name = styles.Name;
-			_selectedFontStyle = styles._selectedFontStyle;
-			_unselectedFontStyle = styles._unselectedFontStyle;
-			_selectedTextColorStyle = styles._selectedTextColorStyle;
-			_unselectedTextColorStyle = styles._unselectedTextColorStyle;
-			_selectedShadowColorStyle = styles._selectedShadowColorStyle;
-			_unselectedShadowColorStyle = styles._unselectedShadowColorStyle;
-			_selectedOutlineColorStyle = styles._selectedOutlineColorStyle;
-			_unselectedOutlineColorStyle = styles._unselectedOutlineColorStyle;
-			_selectedBackgroundColorStyle = styles._selectedBackgroundColorStyle;
-			_unselectedBackgroundColorStyle = styles._unselectedBackgroundColorStyle;
-			_hasOutlineStyle = styles._hasOutlineStyle;
-			_hasBackgroundStyle = styles._hasBackgroundStyle;
-			_isQuietStyle = styles._isQuietStyle;
-			_transitionStyle = styles._transitionStyle;
-			_selectedSoundEffect = styles._selectedSoundEffect;
-			_selectionChangeSoundEffect = styles._selectionChangeSoundEffect;
-			_texture = styles._texture;
 		}
 
-		public override string ToString()
+		protected void Initialize()
 		{
-			return Name;
+			//set up neutral fonts
+			LargeNeutralFont = new FontBuddy()
+			{
+				Font = _game.Content.Load<SpriteFont>(LargeFontResource)
+			};
+
+			MediumNeutralFont = new ShadowTextBuddy()
+			{
+				ShadowSize = 1.0f,
+				ShadowOffset = new Vector2(7.0f, 7.0f),
+				Font = _game.Content.Load<SpriteFont>(MediumFontResource)
+			};
+
+			SmallNeutralFont = new ShadowTextBuddy()
+			{
+				ShadowSize = 1.0f,
+				ShadowOffset = new Vector2(4.0f, 4.0f),
+				Font = _game.Content.Load<SpriteFont>(SmallFontResource),
+			};
+
+			//set up highlighted stuff
+			LargeHighlightedFont = new PulsateBuddy()
+			{
+				Font = _game.Content.Load<SpriteFont>(LargeFontResource)
+			};
+
+			MediumHighlightedFont = new PulsateBuddy()
+			{
+				ShadowSize = 1.0f,
+				ShadowOffset = new Vector2(7.0f, 7.0f),
+				Font = _game.Content.Load<SpriteFont>(MediumFontResource)
+			};
+
+			var pulsate = new PulsateBuddy()
+			{
+				ShadowSize = 1.0f,
+				ShadowOffset = new Vector2(4.0f, 4.0f),
+				Font = _game.Content.Load<SpriteFont>(SmallFontResource),
+			};
+			pulsate.PulsateSize *= 0.5f;
+			SmallHighlightedFont = pulsate;
 		}
 
 		#endregion //Methods

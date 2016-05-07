@@ -9,14 +9,15 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IWidget : IScreenItem, IScalable, IHighlightable, IHasContent
 	{
-		/// <summary>
-		/// The stylesheet of this item
-		/// </summary>
-		StyleSheet Style { get; }
+		bool HasBackground { get; }
+
+		bool HasOutline { get; }
 
 		/// <summary>
 		/// How many pixels worth of padding to add around this widget.
 		/// </summary>
 		Vector2 Padding { set; }
+
+		ITransitionObject Transition { get; set; }
 	}
 }

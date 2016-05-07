@@ -17,9 +17,7 @@ namespace MenuBuddy.Tests
 
 		private StackLayout _stack;
 
-		private Mock<IFontBuddy> _font;
 		private Mock<IScreen> _screen;
-		private ILabel _label;
 
 		#endregion //Fields
 
@@ -28,21 +26,23 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void LabelStack_Setup()
 		{
-			DefaultStyles.InitUnitTests();
+			StyleSheet.InitUnitTests();
 
 			_stack = new StackLayout();
 
-			var menuStyles = new StyleSheet();
-			DefaultStyles.Instance().MainStyle = menuStyles;
+			var font = new Mock<IFontBuddy>() { CallBase = true };
+			font.Setup(x => x.MeasureString(It.IsAny<string>()))
+				.Returns(new Vector2(70f, 80f));
+			StyleSheet.Instance().LargeHighlightedFont = font.Object;
+			StyleSheet.Instance().LargeNeutralFont = font.Object;
 
-			_font = new Mock<IFontBuddy>() { CallBase = true };
-			_font.Setup(x => x.MeasureString(It.IsAny<string>()))
+			font = new Mock<IFontBuddy>() { CallBase = true };
+			font.Setup(x => x.MeasureString(It.IsAny<string>()))
 				.Returns(new Vector2(30f, 40f));
-			menuStyles.SelectedFont = _font.Object;
+			StyleSheet.Instance().MediumHighlightedFont = font.Object;
+			StyleSheet.Instance().MediumNeutralFont = font.Object;
 
 			_screen = new Mock<IScreen>();
-
-			_label = new Label("test");
 		}
 
 		#endregion //Setup
@@ -89,7 +89,7 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label1);
 
@@ -118,7 +118,7 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label1);
 
@@ -149,13 +149,13 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label1);
 
 			var label2 = new Label("nuts")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label2);
 
@@ -184,13 +184,13 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label1);
 
 			var label2 = new Label("nuts")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label2);
 
@@ -217,13 +217,13 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label1);
 
 			var label2 = new Label("nuts")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label2);
 
@@ -254,13 +254,13 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label1);
 
 			var label2 = new Label("nuts")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label2);
 
@@ -289,13 +289,13 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label1);
 
 			var label2 = new Label("nuts")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label2);
 
@@ -322,13 +322,13 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label1);
 
 			var label2 = new Label("nuts")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label2);
 
@@ -359,13 +359,13 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label1);
 
 			var label2 = new Label("nuts")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label2);
 
@@ -395,13 +395,13 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label1);
 
 			var label2 = new Label("nuts")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label2);
 
@@ -428,13 +428,13 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label1);
 
 			var label2 = new Label("nuts")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label2);
 
@@ -465,13 +465,13 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label1);
 
 			var label2 = new Label("nuts")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label2);
 
@@ -500,13 +500,13 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label1);
 
 			var label2 = new Label("nuts")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label2);
 
@@ -533,13 +533,13 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label1);
 
 			var label2 = new Label("nuts")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium
 			};
 			_stack.AddItem(label2);
 
@@ -562,7 +562,7 @@ namespace MenuBuddy.Tests
 		{
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium,
 				Scale = 0.5f
 			};
 
@@ -582,7 +582,7 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium,
 				Scale = 0.5f
 			};
 			_stack.AddItem(label1);
@@ -605,14 +605,14 @@ namespace MenuBuddy.Tests
 
 			var label1 = new Label("butt")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium,
 				Scale = 0.5f
 			};
 			_stack.AddItem(label1);
 
 			var label2 = new Label("nuts")
 			{
-				Style = DefaultStyles.Instance().MainStyle,
+				FontSize = FontSize.Medium,
 				Scale = 0.25f
 			};
 			_stack.AddItem(label2);

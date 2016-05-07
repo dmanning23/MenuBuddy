@@ -9,5 +9,7 @@ namespace MenuBuddy
 		/// The text of this label
 		/// </summary>
 		string Text { get; set; }
+
+		FontSize FontSize { get; set; }
 	}
 }

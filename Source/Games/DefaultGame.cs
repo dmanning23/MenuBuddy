@@ -43,14 +43,6 @@ namespace MenuBuddy
 
 			DesiredScreenResolution = new Point(1280, 720);
 			FullScreen = false;
-
-			DefaultStyles.MenuTitleFontName = @"Fonts\ArialBlack72";
-			DefaultStyles.MenuEntryFontName = @"Fonts\ArialBlack48";
-			DefaultStyles.MessageBoxFontName = @"Fonts\ArialBlack24";
-			DefaultStyles.MenuSelectSoundName = @"MenuSelect";
-			DefaultStyles.MenuChangeSoundName = @"MenuMove";
-			DefaultStyles.MessageBoxBackground = @"gradient";
-			DefaultStyles.ButtonBackground = @"AlphaGradient";
 		}
 
 		/// <summary>
@@ -92,7 +84,10 @@ namespace MenuBuddy
 		/// <summary>
 		/// Initialize the default styles to use for this game.
 		/// </summary>
-		protected abstract void InitStyles();
+		protected virtual void InitStyles()
+		{
+			StyleSheet.Init(this);
+		}
 
 		/// <summary>
 		/// initialize the input to use for this game

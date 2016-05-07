@@ -25,21 +25,19 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void Setup()
 		{
-			DefaultStyles.InitUnitTests();
+			StyleSheet.InitUnitTests();
 
-			var mainstyle = new StyleSheet();
 			var font = new Mock<IFontBuddy>() { CallBase = true };
 			font.Setup(x => x.MeasureString(It.IsAny<string>()))
 				.Returns(new Vector2(70f, 80f));
-			mainstyle.SelectedFont = font.Object;
-			DefaultStyles.Instance().MainStyle = mainstyle;
+			StyleSheet.Instance().LargeHighlightedFont = font.Object;
+			StyleSheet.Instance().LargeNeutralFont = font.Object;
 
-			var menuStyles = new StyleSheet();
 			font = new Mock<IFontBuddy>() { CallBase = true };
 			font.Setup(x => x.MeasureString(It.IsAny<string>()))
 				.Returns(new Vector2(30f, 40f));
-			menuStyles.SelectedFont = font.Object;
-			DefaultStyles.Instance().MenuEntryStyle = menuStyles;
+			StyleSheet.Instance().MediumHighlightedFont = font.Object;
+			StyleSheet.Instance().MediumNeutralFont = font.Object;
 
 			_screen = new Mock<IScreen>();
 

@@ -24,14 +24,12 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void LabelTests_Setup()
 		{
-			DefaultStyles.InitUnitTests();
-			var menuStyles = new StyleSheet();
-			DefaultStyles.Instance().MainStyle = menuStyles;
+			StyleSheet.InitUnitTests();
 
 			_font = new Mock<IFontBuddy>() { CallBase = true };
 			_font.Setup(x => x.MeasureString(It.IsAny<string>()))
 				.Returns(new Vector2(30f, 40f));
-			menuStyles.SelectedFont = _font.Object;
+			StyleSheet.Instance().MediumNeutralFont = _font.Object;
 		}
 
 		#endregion //Setup
@@ -182,7 +180,7 @@ namespace MenuBuddy.Tests
 				Vertical = VerticalAlignment.Center,
 				Scale = 0.5f,
 				ScrollPosition = new Vector2(60, 70),
-				Transition = TransitionType.PopTop,
+				Transition = new WipeTransitionObject(TransitionWipeType.PopTop),
 				MaxScroll = new Vector2(80, 90),
 				MinScroll = new Vector2(100, 200),
 			};
@@ -196,7 +194,7 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(HorizontalAlignment.Center, clone.Horizontal);
 			Assert.AreEqual(VerticalAlignment.Center, clone.Vertical);
 			Assert.AreEqual(.5f, clone.Scale);
-			Assert.AreEqual(TransitionType.PopTop, clone.Transition);
+			Assert.AreEqual(TransitionWipeType.PopTop, (clone.Transition as WipeTransitionObject).WipeType);
 			Assert.AreEqual(100, clone.MinScroll.X);
 			Assert.AreEqual(200, clone.MinScroll.Y);
 			Assert.AreEqual(80, clone.MaxScroll.X);
@@ -214,7 +212,7 @@ namespace MenuBuddy.Tests
 				Vertical = VerticalAlignment.Center,
 				Scale = 0.5f,
 				ScrollPosition = new Vector2(60, 70),
-				Transition = TransitionType.PopTop,
+				Transition = new WipeTransitionObject(TransitionWipeType.PopTop),
 				MaxScroll = new Vector2(80, 90),
 				MinScroll = new Vector2(100, 200),
 			};
@@ -226,7 +224,7 @@ namespace MenuBuddy.Tests
 			layout.Horizontal = HorizontalAlignment.Left;
 			layout.Vertical = VerticalAlignment.Bottom;
 			layout.Scale = 2.5f;
-			layout.Transition = TransitionType.PopLeft;
+			layout.Transition = new WipeTransitionObject(TransitionWipeType.PopLeft);
 			layout.MinScroll = new Vector2(400, 500);
 			layout.MaxScroll = new Vector2(600, 700);
 
@@ -237,7 +235,7 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(HorizontalAlignment.Center, clone.Horizontal);
 			Assert.AreEqual(VerticalAlignment.Center, clone.Vertical);
 			Assert.AreEqual(.5f, clone.Scale);
-			Assert.AreEqual(TransitionType.PopTop, clone.Transition);
+			Assert.AreEqual(TransitionWipeType.PopTop, (clone.Transition as WipeTransitionObject).WipeType);
 			Assert.AreEqual(100, clone.MinScroll.X);
 			Assert.AreEqual(200, clone.MinScroll.Y);
 			Assert.AreEqual(80, clone.MaxScroll.X);
@@ -531,7 +529,7 @@ namespace MenuBuddy.Tests
 				Vertical = VerticalAlignment.Center,
 				Scale = 0.5f,
 				Layer = 1000,
-				Highlight = true,
+				IsHighlighted = true,
 				DrawWhenInactive = true,
 				Description = "catpants!"
 			};
@@ -576,7 +574,7 @@ namespace MenuBuddy.Tests
 				Vertical = VerticalAlignment.Center,
 				Scale = 0.5f,
 				Layer = 1000,
-				Highlight = true,
+				IsHighlighted = true,
 				DrawWhenInactive = true,
 				Description = "catpants!"
 			};
@@ -623,7 +621,7 @@ namespace MenuBuddy.Tests
 				Vertical = VerticalAlignment.Center,
 				Scale = 0.5f,
 				Layer = 1000,
-				Highlight = true,
+				IsHighlighted = true,
 				DrawWhenInactive = true,
 				Description = "catpants!"
 			};
@@ -669,7 +667,7 @@ namespace MenuBuddy.Tests
 				Vertical = VerticalAlignment.Center,
 				Scale = 0.5f,
 				Layer = 1000,
-				Highlight = true,
+				IsHighlighted = true,
 				DrawWhenInactive = true,
 				Description = "catpants!"
 			};

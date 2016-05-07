@@ -16,7 +16,7 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void Setup()
 		{
-			DefaultStyles.InitUnitTests();
+			StyleSheet.InitUnitTests();
 			_drop = new Dropdown<string>();
 		}
 
@@ -124,8 +124,8 @@ namespace MenuBuddy.Tests
 
 			_drop.SelectedItem = "catpants";
 
-			Assert.AreEqual(false, dropitem.Style.HasBackground);
-			Assert.AreEqual(false, dropitem.Style.HasOutline);
+			Assert.AreEqual(false, dropitem.HasBackground);
+			Assert.AreEqual(false, dropitem.HasOutline);
 		}
 
 		#endregion //AddItem

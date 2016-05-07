@@ -1,6 +1,7 @@
 using GameTimer;
 using InputHelper;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace MenuBuddy
@@ -40,7 +41,7 @@ namespace MenuBuddy
 
 		#region Properties
 
-		public virtual bool Highlight
+		public virtual bool IsHighlighted
 		{
 			protected get
 			{
@@ -53,7 +54,7 @@ namespace MenuBuddy
 				if (!prev && _highlight)
 				{
 					HighlightClock.Start();
-                }
+				}
 			}
 		}
 
@@ -84,22 +85,6 @@ namespace MenuBuddy
 					_position = value;
 					CalculateRect();
 				}
-			}
-		}
-
-		/// <summary>
-		/// The stylesheet of this item
-		/// </summary>
-		public StyleSheet Style
-		{
-			get
-			{
-				return _style;
-			}
-			set
-			{
-				_style = new StyleSheet(value);
-				CalculateRect();
 			}
 		}
 
@@ -185,6 +170,14 @@ namespace MenuBuddy
 			}
 		}
 
+		public bool HasBackground { get; set; }
+
+		public bool HasOutline { get; protected set; }
+
+		public ITransitionObject Transition { get; set; }
+
+		public Texture2D BackgroundImage { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -194,17 +187,16 @@ namespace MenuBuddy
 		/// </summary>
 		protected Widget()
 		{
-			_style = new StyleSheet(DefaultStyles.Instance().MainStyle);
 			_horizontal = HorizontalAlignment.Left;
 			_vertical = VerticalAlignment.Top;
 			_scale = 1.0f;
 			_padding = Vector2.Zero;
 			HighlightClock = new GameClock();
-        }
+			Transition = new WipeTransitionObject(StyleSheet.Transition);
+		}
 
 		protected Widget(Widget inst)
 		{
-			_style = new StyleSheet(inst.Style);
 			_horizontal = inst._horizontal;
 			_vertical = inst._vertical;
 			_scale = inst._scale;
@@ -215,6 +207,10 @@ namespace MenuBuddy
 			Layer = inst.Layer;
 			HighlightClock = new GameClock(inst.HighlightClock);
 			OnHighlight = inst.OnHighlight;
+			HasBackground = inst.HasBackground;
+			HasOutline = inst.HasOutline;
+			Transition = inst.Transition;
+			BackgroundImage = inst.BackgroundImage;
 		}
 
 		/// <summary>
@@ -233,6 +229,10 @@ namespace MenuBuddy
 		/// <param name="screen"></param>
 		public virtual void LoadContent(IScreen screen)
 		{
+			if (null != screen.ScreenManager)
+			{
+				BackgroundImage = screen.ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.ButtonBackgroundImageResource);
+			}
 		}
 
 		/// <summary>
@@ -268,60 +268,58 @@ namespace MenuBuddy
 			if (screen.IsActive)
 			{
 				//draw the rect!
-				screen.ScreenManager.DrawHelper.DrawBackground(screen.Transition, Style, Rect);
+				if (HasBackground)
+				{
+					screen.ScreenManager.DrawHelper.DrawRect(
+						IsHighlighted ? StyleSheet.HighlightedBackgroundColor : StyleSheet.NeutralBackgroundColor,
+						Rect, screen.Transition, Transition, BackgroundImage);
+				}
 
 				//draw the outline!
-				screen.ScreenManager.DrawHelper.DrawOutline(screen.Transition, Style, Rect);
+				if (HasOutline)
+				{
+					screen.ScreenManager.DrawHelper.DrawOutline(
+						IsHighlighted ? StyleSheet.HighlightedOutlineColor : StyleSheet.NeutralOutlineColor,
+						Rect, screen.Transition, Transition);
+				}
 			}
 		}
 
 		public abstract void Draw(IScreen screen, GameClock gameTime);
 
 		/// <summary>
-		/// Get the transition this dude will use.
-		/// Defaults to the screen transition object.
-		/// Can be overloaded by child classes to use special transition objects.
-		/// </summary>
-		/// <param name="screen"></param>
-		/// <returns></returns>
-		protected virtual Transition GetTransition(IScreen screen)
-		{
-			return screen.Transition;
-		}
-
-		/// <summary>
 		/// Get teh position to draw this widget
 		/// </summary>
 		/// <returns></returns>
-		protected Vector2 DrawPosition(IScreen screen)
+		protected Point DrawPosition(IScreen screen)
 		{
 			//take the transition position into account
-			return GetTransition(screen).Position(new Point(Rect.X, Rect.Y), Style.Transition);
+			return Transition.Position(screen.Transition, Rect);
 		}
 
-		protected Vector2 TextPosition(IScreen screen)
+		protected Point TextPosition(IScreen screen)
 		{
 			//get the draw position
-			return GetTransition(screen).Position(new Point(Position.X, Rect.Y), Style.Transition);
+			return Transition.Position(screen.Transition, Rect);
 		}
 
 		public virtual bool CheckHighlight(HighlightEventArgs highlight)
 		{
 			//get the previous value
-			var prev = Highlight;
+			var prev = IsHighlighted;
 
 			//Check if this dude should be highlighted
-			Highlight = Rect.Contains(highlight.Position);
+			IsHighlighted = Rect.Contains(highlight.Position);
 
 			//Do we need to run the highlight event?
-			if (Highlight && 
+			if (IsHighlighted &&
 				!prev &&
 				null != OnHighlight)
 			{
 				OnHighlight(this, highlight);
-            }
+			}
 
-            return Highlight;
+			return IsHighlighted;
 		}
 
 		#endregion //Methods

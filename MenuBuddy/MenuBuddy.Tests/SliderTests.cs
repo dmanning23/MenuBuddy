@@ -25,14 +25,13 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void LabelTests_Setup()
 		{
-			DefaultStyles.InitUnitTests();
-			var menuStyles = new StyleSheet();
-			DefaultStyles.Instance().MainStyle = menuStyles;
+			StyleSheet.InitUnitTests();
 
 			_font = new Mock<IFontBuddy>() { CallBase = true };
 			_font.Setup(x => x.MeasureString(It.IsAny<string>()))
 				.Returns(new Vector2(30f, 40f));
-			menuStyles.SelectedFont = _font.Object;
+			StyleSheet.Instance().MediumHighlightedFont = _font.Object;
+			StyleSheet.Instance().MediumNeutralFont = _font.Object;
 
 			_slider = new Slider();
 		}

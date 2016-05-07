@@ -53,6 +53,21 @@ namespace MenuBuddy
 			}
 		}
 
+		public bool IsClicked
+		{
+			get
+			{
+				return false;
+			}
+		}
+
+		public bool IsHighlighted
+		{
+			set
+			{
+			}
+		}
+
 		#endregion //Properties
 
 		#region Initialization
@@ -148,7 +163,7 @@ namespace MenuBuddy
 			return cancelButton;
 		}
 
-		public void AddItem(IScreenItem item)
+		public virtual void AddItem(IScreenItem item)
 		{
 			Layout.AddItem(item);
 

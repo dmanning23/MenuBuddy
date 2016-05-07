@@ -34,7 +34,7 @@ namespace MenuBuddy
 			}
 		}
 
-		public bool Highlight
+		public bool IsHighlighted
 		{
 			set 
 			{
@@ -43,7 +43,7 @@ namespace MenuBuddy
 					var highlightable = item as IHighlightable;
 					if (null != highlightable)
 					{
-						highlightable.Highlight = value;
+						highlightable.IsHighlighted = value;
 					}
 				}
 			}
@@ -120,6 +120,14 @@ namespace MenuBuddy
 				{
 					AddItem(item);
 				}
+			}
+		}
+
+		public bool IsClicked
+		{
+			get
+			{
+				return false;
 			}
 		}
 

@@ -52,9 +52,7 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void ImageTests_Setup()
 		{
-			DefaultStyles.InitUnitTests();
-			var menuStyles = new StyleSheet();
-			DefaultStyles.Instance().MainStyle = menuStyles;
+			StyleSheet.InitUnitTests();
 
 			_mockImage = new Mock<Image>() { CallBase = true };
 			_mockImage.Setup(x => x.Width).Returns(30);

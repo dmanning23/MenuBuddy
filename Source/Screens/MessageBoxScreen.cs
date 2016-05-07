@@ -1,5 +1,6 @@
 using InputHelper;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// A popup message box screen, used to display "are you sure?" confirmation messages.
 	/// </summary>
-	public class MessageBoxScreen : MenuScreen, ISelectable
+	public class MessageBoxScreen : MenuScreen, IClickable
 	{
 		#region Properties
 
@@ -18,9 +19,9 @@ namespace MenuBuddy
 		/// </summary>
 		public string Message { get; private set; }
 
-		public event EventHandler<SelectedEventArgs> OnSelect;
+		public event EventHandler<ClickEventArgs> OnSelect;
 
-		public event EventHandler<SelectedEventArgs> OnCancel;
+		public event EventHandler<ClickEventArgs> OnCancel;
 
 		#endregion //Properties
 
@@ -69,13 +70,10 @@ namespace MenuBuddy
 				//Set the label text
 				var label = new Label(line)
 				{
-					Style = DefaultStyles.Instance().MessageBoxStyle
+					FontSize = FontSize.Small
 				};
-				label.Style.SelectedFont = label.Style.UnselectedFont;
-				label.Style.HasOutline = false;
-				label.Style.HasBackground = false;
 				labelStack.AddItem(label);
-            }
+			}
 
 			//add a shim between the text and the buttons
 			labelStack.AddItem(new Shim() { Size = new Vector2(0, 16f) });
@@ -90,7 +88,7 @@ namespace MenuBuddy
 			AddItem(labelStack);
 
 			AddBackgroundImage(labelStack);
-        }
+		}
 
 		protected virtual void AddButtons(StackLayout stack)
 		{
@@ -104,10 +102,9 @@ namespace MenuBuddy
 			//Create the menu entry for "OK"
 			var ok = new MenuEntry("Ok")
 			{
-				Style = DefaultStyles.Instance().MessageBoxStyle
+				FontSize = FontSize.Small
 			};
-			ok.Style.BackgroundImage = DefaultStyles.Instance().MenuEntryStyle.BackgroundImage;
-			ok.OnSelect += ((obj, e) =>
+			ok.OnClick += ((obj, e) =>
 			{
 				if (null != OnSelect)
 				{
@@ -125,10 +122,9 @@ namespace MenuBuddy
 			//Create the menu entry "Cancel"
 			var cancel = new MenuEntry("Cancel")
 			{
-				Style = DefaultStyles.Instance().MessageBoxStyle
+				FontSize = FontSize.Small
 			};
-			cancel.Style.BackgroundImage = DefaultStyles.Instance().MenuEntryStyle.BackgroundImage;
-			cancel.OnSelect += ((obj, e) =>
+			cancel.OnClick += ((obj, e) =>
 			{
 				if (null != OnCancel)
 				{
@@ -144,19 +140,18 @@ namespace MenuBuddy
 		public virtual void AddBackgroundImage(ILayout labelStack)
 		{
 			//Add the background image
-			var bkgImage = new BackgroundImage(DefaultStyles.Instance().MessageBoxStyle.BackgroundImage)
+			var bkgImage = new BackgroundImage(ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.MessageBoxBackgroundImageResource))
 			{
 				Layer = -1.0f,
 				FillRect = true,
-				Style = DefaultStyles.Instance().MessageBoxStyle,
 				Padding = new Vector2(64, 32),
 				Position = new Point(labelStack.Rect.Center.X, labelStack.Rect.Center.Y),
 				Size = new Vector2(labelStack.Rect.Width, labelStack.Rect.Height),
 				Horizontal = HorizontalAlignment.Center,
 				Vertical = VerticalAlignment.Center
 			};
-            AddItem(bkgImage);
-	}
+			AddItem(bkgImage);
+		}
 
 		#endregion //Initialization
 

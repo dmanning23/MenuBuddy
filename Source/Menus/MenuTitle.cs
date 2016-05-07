@@ -16,7 +16,7 @@ namespace MenuBuddy
 		public MenuTitle(string text)
 			: base(text)
 		{
-			Style = DefaultStyles.Instance().MenuTitleStyle;
+			FontSize = FontSize.Large;
 		}
 
 		#endregion

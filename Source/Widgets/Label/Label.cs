@@ -11,6 +11,8 @@ namespace MenuBuddy
 
 		private string _text;
 
+		private FontSize _fontSize;
+
 		#endregion //Fields
 
 		#region Properties
@@ -34,6 +36,22 @@ namespace MenuBuddy
 			}
 		}
 
+		public FontSize FontSize
+		{
+			get
+			{
+				return _fontSize;
+			}
+			set
+			{
+				if (_fontSize != value)
+				{
+					_fontSize = value;
+					CalculateRect();
+				}
+			}
+		}
+
 		#endregion //Properties
 
 		#region Initialization
@@ -42,8 +60,9 @@ namespace MenuBuddy
 		/// constructor
 		/// </summary>
 		/// <param name="text"></param>
-		public Label(string text = "")
+		public Label(string text = "", FontSize fontSize = FontSize.Medium)
 		{
+			_fontSize = fontSize;
 			Text = text;
 		}
 
@@ -73,18 +92,10 @@ namespace MenuBuddy
 			}
 
 			//Get the font to use
-			var font = Highlight ? Style.SelectedFont : Style.UnselectedFont;
-
-			//get the shadow color
-			var shadow = font as ShadowTextBuddy;
-			if (null != shadow)
-			{
-				var shadowColor = Highlight ? Style.SelectedShadowColor : Style.UnselectedShadowColor;
-				shadow.ShadowColor = screen.Transition.AlphaColor(shadowColor);
-			}
+			var font = Font();
 
 			//get the color to use
-			var color = Highlight ? Style.SelectedTextColor : Style.UnselectedTextColor;
+			var color = IsHighlighted ? StyleSheet.HighlightedTextColor : StyleSheet.NeutralTextColor;
 			color = screen.Transition.AlphaColor(color);
 
 			//Write the text
@@ -100,7 +111,8 @@ namespace MenuBuddy
 		protected override void CalculateRect()
 		{
 			//get the size of the rect
-			var size = Style.SelectedFont.MeasureString(Text);
+			var font = Font();
+			var size = font.MeasureString(Text);
 			size = (size + (Padding * 2f)) * Scale;
 
 			//set the x component
@@ -128,6 +140,25 @@ namespace MenuBuddy
 				case HorizontalAlignment.Center: return Justify.Center;
 				case HorizontalAlignment.Left: return Justify.Left;
 				default: return Justify.Right;
+			}
+		}
+
+		private IFontBuddy Font()
+		{
+			switch (FontSize)
+			{
+				case FontSize.Large:
+					{
+						return IsHighlighted ? StyleSheet.Instance().LargeHighlightedFont : StyleSheet.Instance().LargeNeutralFont;
+					}
+				case FontSize.Medium:
+					{
+						return IsHighlighted ? StyleSheet.Instance().MediumHighlightedFont : StyleSheet.Instance().MediumNeutralFont;
+					}
+				default:
+					{
+						return IsHighlighted ? StyleSheet.Instance().SmallHighlightedFont : StyleSheet.Instance().SmallNeutralFont;
+					}
 			}
 		}
 

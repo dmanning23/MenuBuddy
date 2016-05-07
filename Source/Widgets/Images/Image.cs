@@ -149,7 +149,7 @@ namespace MenuBuddy
 
 			//Get the transition location
 			var pos = DrawPosition(screen);
-			Rectangle rect = DrawRect(pos);
+			Rectangle rect = DrawRect(pos.ToVector2());
 
 			//draw the item with all the correct parameters
 			screen.ScreenManager.SpriteBatch.Draw(Texture, rect, color);
@@ -159,7 +159,7 @@ namespace MenuBuddy
 		{
 			Rectangle rect;
 
-			if (Highlight && PulsateOnHighlight)
+			if (IsHighlighted && PulsateOnHighlight)
 			{
 				//multiply the time by the speed
 				float currentTime = HighlightClock.CurrentTime;

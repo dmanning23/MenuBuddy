@@ -24,36 +24,25 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void Setup()
 		{
-			DefaultStyles.InitUnitTests();
+			StyleSheet.InitUnitTests();
 
-			var mainstyle = new StyleSheet("main");
 			var font = new Mock<IFontBuddy>() { CallBase = true };
 			font.Setup(x => x.MeasureString(It.IsAny<string>()))
+				.Returns(new Vector2(120f, 1500f));
+			StyleSheet.Instance().LargeHighlightedFont = font.Object;
+			StyleSheet.Instance().LargeNeutralFont = font.Object;
+
+			font = new Mock<IFontBuddy>() { CallBase = true };
+			font.Setup(x => x.MeasureString(It.IsAny<string>()))
 				.Returns(new Vector2(70f, 80f));
-			mainstyle.SelectedFont = font.Object;
-			DefaultStyles.Instance().MainStyle = mainstyle;
+			StyleSheet.Instance().MediumHighlightedFont= font.Object;
+			StyleSheet.Instance().MediumNeutralFont = font.Object;
 
-			var menuStyles = new StyleSheet("MenuEntryStyle");
-            font = new Mock<IFontBuddy>() { CallBase = true };
+			font = new Mock<IFontBuddy>() { CallBase = true };
 			font.Setup(x => x.MeasureString(It.IsAny<string>()))
 				.Returns(new Vector2(30f, 40f));
-			menuStyles.SelectedFont = font.Object;
-			DefaultStyles.Instance().MenuEntryStyle = menuStyles;
-
-			menuStyles = new StyleSheet("MenuTitleStyle");
-            font = new Mock<IFontBuddy>() { CallBase = true };
-			font.Setup(x => x.MeasureString(It.IsAny<string>()))
-				.Returns(new Vector2(30f, 40f));
-			menuStyles.SelectedFont = font.Object;
-			DefaultStyles.Instance().MenuTitleStyle = menuStyles;
-
-			menuStyles = new StyleSheet("MessageBoxStyle");
-            font = new Mock<IFontBuddy>() { CallBase = true };
-			font.Setup(x => x.MeasureString(It.IsAny<string>()))
-				.Returns(new Vector2(30f, 40f));
-			menuStyles.SelectedFont = font.Object;
-			menuStyles.UnselectedFont = font.Object;
-			DefaultStyles.Instance().MessageBoxStyle = menuStyles;
+			StyleSheet.Instance().SmallHighlightedFont = font.Object;
+			StyleSheet.Instance().SmallNeutralFont = font.Object;
 
 			_screen = new Mock<MessageBoxScreen>("test", "catpants") { CallBase = true };
 			_screen.Setup(x => x.AddBackgroundImage(It.IsAny<ILayout>())).Callback(() => { });

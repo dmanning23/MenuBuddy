@@ -13,15 +13,6 @@ namespace MenuBuddy
 		{
 		}
 
-		/// <summary>
-		/// Initialize the default styles to use for this game.
-		/// </summary>
-		protected override void InitStyles()
-		{
-			DefaultStyles.Init(this);
-			var style = DefaultStyles.Instance();
-		}
-
 		protected override void InitInput()
 		{
 			//add the input helper for menus

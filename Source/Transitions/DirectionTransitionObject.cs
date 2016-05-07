@@ -1,20 +1,19 @@
 using Microsoft.Xna.Framework;
 using System;
-using System.Diagnostics;
 
 namespace MenuBuddy
 {
 	/// <summary>
 	/// This is a class that takes a start point and a direction and transitions to a final point
 	/// </summary>
-	public class PointTransition : Transition
+	public class DirectionTransitionObject : ITransitionObject
 	{
 		#region Properties
 
 		private Vector2 _direction = Vector2.Zero;
 
 		/// <summary>
-		/// unit vector direction this button is shooting out
+		/// unit vector direction this button is shooting from to the target position
 		/// </summary>
 		public Vector2 Direction
 		{
@@ -33,7 +32,7 @@ namespace MenuBuddy
 
 		#region Methods
 
-		public PointTransition(Vector2 dir)
+		public DirectionTransitionObject(Vector2 dir)
 		{
 			Direction = dir;
 		}
@@ -47,25 +46,32 @@ namespace MenuBuddy
 			return start + Direction;
 		}
 
-		#endregion //Methods
+		public Point Position(ScreenTransition screen, Rectangle rect)
+		{
+			var pos = Position(screen, rect.Location.ToVector2());
+			return pos.ToPoint();
+		}
 
-		#region Transition Positions
+		public Vector2 Position(ScreenTransition screen, Point pos)
+		{
+			return Position(screen, pos.ToVector2());
+		}
 
-		public override Vector2 Position(Vector2 pos, TransitionType transition)
+		public Vector2 Position(ScreenTransition screen, Vector2 pos)
 		{
 			//get the target point
 			var target = GetTargetPosition(pos);
 
-			if (TransitionPosition != 0.0f)
+			if (screen.TransitionPosition != 0.0f)
 			{
 				//get the transition offset
-				var transitionOffset = (float)Math.Pow(TransitionPosition, 2.0);
+				var transitionOffset = (float)Math.Pow(screen.TransitionPosition, 2.0);
 				return Vector2.Lerp(target, pos, transitionOffset);
 			}
 
 			return target;
 		}
 
-		#endregion //Transition Positions
+		#endregion //Methods
 	}
 }

@@ -20,6 +20,8 @@ namespace MenuBuddy
 		/// </summary>
 		public IDropdown<T> DropdownWidget { get; set; }
 
+		private ITransitionObject TransitionObject { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -30,6 +32,7 @@ namespace MenuBuddy
 		/// <param name="widget"></param>
 		public DropdownScreen(IDropdown<T> widget) : base("Dropdown")
 		{
+			TransitionObject = new WipeTransitionObject(TransitionWipeType.None);
 			Transition.OnTime = new TimeSpan(0);
 			Transition.OffTime = new TimeSpan(0);
 			DropdownWidget = widget;
@@ -40,7 +43,7 @@ namespace MenuBuddy
 		{
 			base.LoadContent();
 
-			Style.Transition = TransitionType.None;
+			//Style.Transition = TransitionType.None;
 			//Style.HasBackground = true;
 
 			//create the stack layout that will hold all the droplist items
@@ -69,6 +72,16 @@ namespace MenuBuddy
 			AddItem(_layout);
 		}
 
+		public override void AddItem(IScreenItem item)
+		{
+			var widget = item as IWidget;
+			if (null != widget)
+			{
+				widget.Transition = new WipeTransitionObject(TransitionWipeType.None);
+			}
+			base.AddItem(item);
+		}
+
 		public override bool CheckClick(ClickEventArgs click)
 		{
 			//Once the user clicks anywhere on this screen, it gets popped off
@@ -83,7 +96,11 @@ namespace MenuBuddy
 			ScreenManager.SpriteBatchBegin();
 
 			//draw the background
-			ScreenManager.DrawHelper.DrawBackground(Transition, DropdownWidget.Style, Rectangle.Intersect(_stack.Rect, _layout.Rect));
+			ScreenManager.DrawHelper.DrawRect(
+				StyleSheet.NeutralBackgroundColor,
+				Rectangle.Intersect(_stack.Rect, _layout.Rect),
+				this.Transition,
+				TransitionObject);
 
 			ScreenManager.SpriteBatchEnd();
 

@@ -42,15 +42,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="HadoukInput.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HadoukInput.1.0.0\lib\Xamarin.iOS10\HadoukInput.iOS.dll</HintPath>
+      <HintPath>..\packages\HadoukInput.1.0.2\lib\Xamarin.iOS10\HadoukInput.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="InputHelper.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\InputHelper.1.0.1\lib\Xamarin.iOS10\InputHelper.iOS.dll</HintPath>
+      <HintPath>..\packages\InputHelper.1.0.5\lib\Xamarin.iOS10\InputHelper.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MatrixExtensions.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MatrixExtensions.1.0.0\lib\Xamarin.iOS10\MatrixExtensions.iOS.dll</HintPath>
+      <HintPath>..\packages\MatrixExtensions.1.0.1\lib\Xamarin.iOS10\MatrixExtensions.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL">
@@ -58,7 +58,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MouseBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MouseBuddy.1.0.0\lib\Xamarin.iOS10\MouseBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\MouseBuddy.1.0.1\lib\Xamarin.iOS10\MouseBuddy.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PrimitiveBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -81,7 +81,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="TouchScreenBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TouchScreenBuddy.1.0.0\lib\Xamarin.iOS10\TouchScreenBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\TouchScreenBuddy.1.0.2\lib\Xamarin.iOS10\TouchScreenBuddy.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Vector2Extensions.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -109,6 +109,30 @@
     </Compile>
     <Compile Include="..\..\Source\Input\TouchInputHandler.cs">
       <Link>Input\TouchInputHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Transitions\DirectionTransitionObject.cs">
+      <Link>Transitions\DirectionTransitionObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Transitions\ITransitionObject.cs">
+      <Link>Transitions\ITransitionObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Transitions\PointTransitionObject.cs">
+      <Link>Transitions\PointTransitionObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Transitions\ScreenTransition.cs">
+      <Link>Transitions\ScreenTransition.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Transitions\TransitionState.cs">
+      <Link>Transitions\TransitionState.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Transitions\TransitionWipeType.cs">
+      <Link>Transitions\TransitionWipeType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Transitions\WipeTransitionObject.cs">
+      <Link>Transitions\WipeTransitionObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Label\FontSize.cs">
+      <Link>Widgets\Label\FontSize.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\..\Source\DrawHelper.cs">
@@ -225,50 +249,8 @@
     <Compile Include="..\..\Source\Screens\WidgetScreen.cs">
       <Link>Screens\WidgetScreen.cs</Link>
     </Compile>
-    <Compile Include="..\..\Source\Style\BoolStyleItem.cs">
-      <Link>Style\BoolStyleItem.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Style\ColorStyleItem.cs">
-      <Link>Style\ColorStyleItem.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Style\DefaultStyles.cs">
-      <Link>Style\DefaultStyles.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Style\FontStyleItem.cs">
-      <Link>Style\FontStyleItem.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Style\ImageStyleItem.cs">
-      <Link>Style\ImageStyleItem.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Style\SoundStyleItem.cs">
-      <Link>Style\SoundStyleItem.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Style\StyleItem.cs">
-      <Link>Style\StyleItem.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Style\StyleItemType.cs">
-      <Link>Style\StyleItemType.cs</Link>
-    </Compile>
     <Compile Include="..\..\Source\Style\StyleSheet.cs">
       <Link>Style\StyleSheet.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Style\TouchStyles.cs">
-      <Link>Style\TouchStyles.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Style\TransitionStyleItem.cs">
-      <Link>Style\TransitionStyleItem.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Transitions\PointTransition.cs">
-      <Link>Transitions\PointTransition.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Transitions\Transition.cs">
-      <Link>Transitions\Transition.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Transitions\TransitionState.cs">
-      <Link>Transitions\TransitionState.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Transitions\TransitionType.cs">
-      <Link>Transitions\TransitionType.cs</Link>
     </Compile>
     <Compile Include="..\..\Source\Widgets\HorizontalAlignment.cs">
       <Link>Widgets\HorizontalAlignment.cs</Link>

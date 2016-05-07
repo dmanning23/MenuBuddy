@@ -2,9 +2,9 @@
 namespace MenuBuddy
 {
 	/// <summary>
-	/// The different ways for screen items to transition on and off the screen
+	/// The different ways for transition objects to wipe on and off the screen
 	/// </summary>
-	public enum TransitionType
+	public enum TransitionWipeType
 	{
 		/// <summary>
 		/// in left, out left

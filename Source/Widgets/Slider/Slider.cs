@@ -130,8 +130,8 @@ namespace MenuBuddy
 		/// </summary>
 		public Slider()
 		{
-			Style.HasBackground = false;
-			Style.HasOutline = true;
+			HasBackground = false;
+			HasOutline = true;
 		}
 
 		public Slider(Slider inst) : base(inst)
@@ -168,13 +168,17 @@ namespace MenuBuddy
 			base.DrawBackground(screen, gameTime);
 
 			//draw the slide rect
-			screen.ScreenManager.DrawHelper.DrawRect(screen.Transition, Style.Transition, screen.Style.SelectedBackgroundColor, _slideRect);
+			screen.ScreenManager.DrawHelper.DrawRect(
+				IsHighlighted ? StyleSheet.HighlightedBackgroundColor : StyleSheet.NeutralBackgroundColor,
+				_slideRect, screen.Transition, Transition);
 		}
 
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
 			//draw the handle rect
-			screen.ScreenManager.DrawHelper.DrawRect(screen.Transition, Style.Transition, screen.Style.SelectedTextColor, _handleRect);
+			screen.ScreenManager.DrawHelper.DrawRect(
+				IsHighlighted ? StyleSheet.HighlightedTextColor : StyleSheet.NeutralTextColor,
+				_handleRect, screen.Transition, Transition);
 		}
 
 		protected override void CalculateRect()

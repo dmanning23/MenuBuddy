@@ -1,5 +1,7 @@
+using GameTimer;
 using InputHelper;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using System;
 
 namespace MenuBuddy
@@ -18,9 +20,11 @@ namespace MenuBuddy
 
 		private Vector2 _size;
 
-		public event EventHandler<SelectedEventArgs> OnSelect;
-
 		public event EventHandler<ClickEventArgs> OnClick;
+
+		private CountdownTimer _clickTimer;
+
+		private const float _clickCountdownTime = 0.3f;
 
 		#endregion //Fields
 
@@ -60,16 +64,16 @@ namespace MenuBuddy
 		/// </summary>
 		public ILayout Layout { get; protected set; }
 
-		public override bool Highlight
+		public override bool IsHighlighted
 		{
 			protected get
 			{
-				return base.Highlight;
+				return base.IsHighlighted;
 			}
 			set
 			{
-				base.Highlight = value;
-				Layout.Highlight = value;
+				base.IsHighlighted = value;
+				Layout.IsHighlighted = value;
 			}
 		}
 
@@ -82,7 +86,6 @@ namespace MenuBuddy
 			set
 			{
 				_drawWhenInactive = value;
-				Layout.Highlight = value;
 			}
 		}
 
@@ -104,6 +107,20 @@ namespace MenuBuddy
 		/// </summary>
 		public string Description { get; set; }
 
+		public bool IsQuiet { get; set; }
+
+		protected SoundEffect HighlightSoundEffect { get; set; }
+
+		protected SoundEffect SelectedSoundEffect { get; set; }
+
+		public bool IsClicked
+		{
+			get
+			{
+				return _clickTimer.HasTimeRemaining();
+			}
+		}
+
 		#endregion //Properties
 
 		#region Initialization
@@ -113,21 +130,21 @@ namespace MenuBuddy
 		/// </summary>
 		protected BaseButton()
 		{
-			//when this item is clicked, run the OnSelect event
-			OnClick += ((obj, e) =>
-			{
-				if (null != OnSelect)
-				{
-					Selected(obj, PlayerIndex.One);
-				}
-			});
+			IsQuiet = false;
+			_clickTimer = new CountdownTimer();
 
 			//by default, just play a sound when this item is selected
-			OnSelect += PlaySelectedSound;
+			OnClick += PlaySelectedSound;
+
+			OnClick += ((obj, e) =>
+			{
+				_clickTimer.Start(_clickCountdownTime);
+			});
+
 			OnHighlight += PlayHighlightSound;
 			OnHighlight += ((obj, e) =>
 			{
-				Highlight = true;
+				IsHighlighted = true;
 			});
 		}
 
@@ -138,9 +155,22 @@ namespace MenuBuddy
 		{
 			_drawWhenInactive = inst._drawWhenInactive;
 			_size = inst._size;
-			OnSelect = inst.OnSelect;
 			Description = inst.Description;
 			OnClick = inst.OnClick;
+			IsQuiet = inst.IsQuiet;
+			HighlightSoundEffect = inst.HighlightSoundEffect;
+			SelectedSoundEffect = inst.SelectedSoundEffect;
+			_clickTimer = inst._clickTimer;
+		}
+
+		public override void LoadContent(IScreen screen)
+		{
+			if (null != screen.ScreenManager)
+			{
+				HighlightSoundEffect = screen.ScreenManager.Game.Content.Load<SoundEffect>(StyleSheet.HighlightSoundResource);
+				SelectedSoundEffect = screen.ScreenManager.Game.Content.Load<SoundEffect>(StyleSheet.SelectedSoundResource);
+			}
+			base.LoadContent(screen);
 		}
 
 		#endregion //Initialization
@@ -162,6 +192,7 @@ namespace MenuBuddy
 
 		public override void Update(IScreen screen, GameTimer.GameClock gameTime)
 		{
+			_clickTimer.Update(gameTime);
 			Layout.Update(screen, gameTime);
 		}
 
@@ -178,29 +209,21 @@ namespace MenuBuddy
 		/// <summary>
 		/// Method for raising the Selected event.
 		/// </summary>
-		public void PlaySelectedSound(object obj, SelectedEventArgs e)
+		public void PlaySelectedSound(object obj, ClickEventArgs e)
 		{
 			//play the sound effect
-			if (!Style.IsQuiet && (null != Style.SelectedSoundEffect))
+			if (!IsQuiet && (null != SelectedSoundEffect))
 			{
-				Style.SelectedSoundEffect.Play();
+				SelectedSoundEffect.Play();
 			}
 		}
 
 		public void PlayHighlightSound(object obj, HighlightEventArgs e)
 		{
-			if (!Style.IsQuiet && (null != Style.SelectionChangeSoundEffect))
+			if (!IsQuiet && (null != HighlightSoundEffect))
 			{
 				//play menu noise
-				Style.SelectionChangeSoundEffect.Play();
-			}
-		}
-
-		public void Selected(object obj, PlayerIndex player)
-		{
-			if (null != OnSelect)
-			{
-				OnSelect(obj, new SelectedEventArgs(player));
+				HighlightSoundEffect.Play();
 			}
 		}
 
@@ -218,6 +241,11 @@ namespace MenuBuddy
 			}
 
 			return false;
+		}
+
+		public void Clicked(object obj, ClickEventArgs e)
+		{
+			OnClick(obj, e);
 		}
 
 		#endregion //Methods
