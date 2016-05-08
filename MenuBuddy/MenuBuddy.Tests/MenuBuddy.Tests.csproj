@@ -173,6 +173,7 @@
     <Compile Include="SliderTests.cs" />
     <Compile Include="StackAlignments.cs" />
     <Compile Include="StackTests.cs" />
+    <Compile Include="TransitionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

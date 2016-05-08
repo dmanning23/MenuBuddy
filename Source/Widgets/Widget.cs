@@ -273,17 +273,15 @@ namespace MenuBuddy
 				//draw the rect!
 				if (HasBackground)
 				{
-					screen.ScreenManager.DrawHelper.DrawRect(
-						IsHighlighted ? StyleSheet.HighlightedBackgroundColor : StyleSheet.NeutralBackgroundColor,
-						Rect, screen.Transition, Transition, BackgroundImage);
+					var color = IsHighlighted ? StyleSheet.HighlightedBackgroundColor : StyleSheet.NeutralBackgroundColor;
+					screen.ScreenManager.DrawHelper.DrawRect(color, Rect, screen.Transition, Transition, BackgroundImage);
 				}
 
 				//draw the outline!
 				if (HasOutline)
 				{
-					screen.ScreenManager.DrawHelper.DrawOutline(
-						IsHighlighted ? StyleSheet.HighlightedOutlineColor : StyleSheet.NeutralOutlineColor,
-						Rect, screen.Transition, Transition);
+					var color = IsHighlighted ? StyleSheet.HighlightedOutlineColor : StyleSheet.NeutralOutlineColor;
+					screen.ScreenManager.DrawHelper.DrawOutline(color, Rect, screen.Transition, Transition);
 				}
 			}
 		}

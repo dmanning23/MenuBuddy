@@ -74,8 +74,8 @@ namespace MenuBuddy
 			{
 				return !OtherWindowHasFocus &&
 					!CurrentlyCovered &&
-					   (Transition.State == TransitionState.TransitionOn ||
-						Transition.State == TransitionState.Active);
+					   (TransitionState == TransitionState.TransitionOn ||
+						TransitionState == TransitionState.Active);
 			}
 		}
 
@@ -259,7 +259,7 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void ExitScreen()
 		{
-			if (Transition.OffTime == TimeSpan.Zero)
+			if (Transition.OffTime == 0f)
 			{
 				// If the screen has a zero transition time, remove it immediately.
 				ScreenManager.RemoveScreen(this);

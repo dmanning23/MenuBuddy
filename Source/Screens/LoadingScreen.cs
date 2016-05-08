@@ -49,7 +49,7 @@ namespace MenuBuddy
 			LoadingIsSlow = loadingIsSlow;
 			ScreensToLoad = screensToLoad;
 
-			Transition.OnTime = TimeSpan.FromSeconds(0.5);
+			Transition.OnTime = 0.5f;
 		}
 
 		/// <summary>
@@ -164,7 +164,7 @@ namespace MenuBuddy
 			// method, rather than in Update, because it isn't enough just for the
 			// screens to be gone: in order for the transition to look good we must
 			// have actually drawn a frame without them before we perform the load.
-			if ((Transition.State == TransitionState.Active) &&
+			if ((TransitionState == TransitionState.Active) &&
 				(ScreenManager.GetScreens().Length == 1))
 			{
 				OtherScreensAreGone = true;

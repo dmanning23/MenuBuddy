@@ -39,8 +39,8 @@ namespace MenuBuddy
 
 			CoverOtherScreens = true;
 
-			Transition.OnTime = TimeSpan.FromSeconds(0.2);
-			Transition.OffTime = TimeSpan.FromSeconds(0.2);
+			Transition.OnTime = 0.2f;
+			Transition.OffTime = 0.2f;
 		}
 
 		/// <summary>

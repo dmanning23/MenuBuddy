@@ -1,3 +1,4 @@
+using GameTimer;
 using Microsoft.Xna.Framework;
 using System;
 
@@ -14,13 +15,13 @@ namespace MenuBuddy
 		/// Indicates how long the screen takes to
 		/// transition on when it is activated.
 		/// </summary>
-		public TimeSpan OnTime { get; set; }
+		public float OnTime { get; set; }
 
 		/// <summary>
 		/// Indicates how long the screen takes to
 		/// transition off when it is deactivated.
 		/// </summary>
-		public TimeSpan OffTime { get; set; }
+		public float OffTime { get; set; }
 
 		/// <summary>
 		/// Get the position delta to add to an item during screen transition.  
@@ -42,38 +43,49 @@ namespace MenuBuddy
 		/// </summary>
 		public TransitionState State { get; set; }
 
+		CountdownTimer _transitionTimer;
+
 		#endregion //Properties
 
 		#region Methods
 
 		public ScreenTransition()
 		{
-			OnTime = TimeSpan.FromSeconds(0.75);
-			OffTime = TimeSpan.FromSeconds(0.5);
+			OnTime = 0.75f;
+			OffTime = 0.5f;
+			_transitionTimer = new CountdownTimer();
 			TransitionPosition = 1.0f;
+			State = TransitionState.Hidden;
 		}
 
 		/// <summary>
 		/// Helper for updating the screen transition position.
 		/// </summary>
+		/// <param name="gameTime">the current game time</param>
+		/// <param name="transitionOn">whether this transtion is moving onto or off of the screen</param>
+		/// <returns>True if this transition is still ongoing, false if the transition has finished moving on/off</returns>
 		public bool Update(GameTime gameTime, bool transitionOn)
 		{
-			//are we transitioning on or off?
-			var time = transitionOn ? OnTime : OffTime;
-			var direction = transitionOn ? -1f : 1f;
-
-			// How much should we move by?
-			float transitionDelta = 1.0f;
-			if (time != TimeSpan.Zero)
+			//Will that transition flag change the state of the thing?
+			if (StateChange(transitionOn))
 			{
-				transitionDelta = (float)(gameTime.ElapsedGameTime.TotalMilliseconds /
-										  time.TotalMilliseconds);
+				//are we transitioning on or off?
+				var time = transitionOn ? OnTime : OffTime;
+
+				//Start the countdown timer
+				_transitionTimer.Start(time);
 			}
 
+			_transitionTimer.Update(gameTime);
+
 			// Update the transition position.
-			if (transitionDelta != 0.0f)
+			if (transitionOn)
 			{
-				TransitionPosition += transitionDelta * direction;
+				TransitionPosition = _transitionTimer.Lerp();
+			}
+			else
+			{
+				TransitionPosition = 1f - _transitionTimer.Lerp();
 			}
 
 			// Did we reach the end of the transition?
@@ -93,11 +105,29 @@ namespace MenuBuddy
 		/// </summary>
 		public Color AlphaColor(Color color)
 		{
-#if XNA
-			return new Color(color.R, color.G, color.B, Alpha);
-#else
-			return new Color(color, Alpha);
-#endif
+			var alpha = color.A / 255f;
+			return new Color(color, alpha * Alpha);
+		}
+
+		/// <summary>
+		/// Check whether not the state of this transition object should change
+		/// </summary>
+		/// <param name="transitionOn">whether the object should transition on or off</param>
+		/// <returns>True if the transitionOn flag should change the state</returns>
+		public bool StateChange(bool transitionOn)
+		{
+			if (transitionOn)
+			{
+				//if the current state is hidden or transitioning off and if we want to transition on
+				return ((State == TransitionState.Hidden) ||
+					(State == TransitionState.TransitionOff));
+			}
+			else
+			{
+				//if the current state is active or transitioning on and if we want to transition off
+				return ((State == TransitionState.Active) ||
+					(State == TransitionState.TransitionOn));
+			}
 		}
 
 		#endregion //Methods

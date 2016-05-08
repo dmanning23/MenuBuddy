@@ -102,6 +102,7 @@ namespace MenuBuddy
 		/// </summary>
 		public MenuEntry(string text)
 		{
+			HasBackground = true;
 			Label = new Label(text)
 			{
 				Horizontal = HorizontalAlignment.Center,

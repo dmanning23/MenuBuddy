@@ -33,8 +33,8 @@ namespace MenuBuddy
 		public DropdownScreen(IDropdown<T> widget) : base("Dropdown")
 		{
 			TransitionObject = new WipeTransitionObject(TransitionWipeType.None);
-			Transition.OnTime = new TimeSpan(0);
-			Transition.OffTime = new TimeSpan(0);
+			Transition.OnTime = 0f;
+			Transition.OffTime = 0f;
 			DropdownWidget = widget;
 			CoverOtherScreens = false;
 		}
