@@ -9,6 +9,11 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IWidget : IScreenItem, IScalable, IHighlightable, IHasContent
 	{
+		/// <summary>
+		/// Even though this is a IHighlightable object, sometimes you just don't want them to be highlighted.
+		/// </summary>
+		bool Highlightable { get; set; }
+
 		bool HasBackground { get; }
 
 		bool HasOutline { get; }

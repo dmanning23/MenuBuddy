@@ -24,7 +24,7 @@ namespace MenuBuddy
 
 		private CountdownTimer _clickTimer;
 
-		private const float _clickCountdownTime = 0.3f;
+		private const float _clickCountdownTime = 0.2f;
 
 		#endregion //Fields
 
@@ -119,6 +119,10 @@ namespace MenuBuddy
 			{
 				return _clickTimer.HasTimeRemaining();
 			}
+			set
+			{
+				Layout.IsClicked = value;
+			}
 		}
 
 		#endregion //Properties
@@ -194,6 +198,7 @@ namespace MenuBuddy
 		{
 			_clickTimer.Update(gameTime);
 			Layout.Update(screen, gameTime);
+			Layout.IsClicked = IsClicked;
 		}
 
 		public override void Draw(IScreen screen, GameTimer.GameClock gameTime)

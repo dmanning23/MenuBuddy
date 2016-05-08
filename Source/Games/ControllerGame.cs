@@ -1,5 +1,3 @@
-using MenuBuddy;
-
 namespace MenuBuddy
 {
 	/// <summary>
@@ -16,7 +14,6 @@ namespace MenuBuddy
 		protected override void InitInput()
 		{
 			//add the input helper for menus
-			//var input = new TouchInputHelper(this);
 			var input = new ControllerInputHandler(this);
 		}
 

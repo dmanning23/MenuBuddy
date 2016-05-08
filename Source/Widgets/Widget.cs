@@ -172,11 +172,13 @@ namespace MenuBuddy
 
 		public bool HasBackground { get; set; }
 
-		public bool HasOutline { get; protected set; }
+		public bool HasOutline { get; set; }
 
 		public ITransitionObject Transition { get; set; }
 
 		public Texture2D BackgroundImage { get; set; }
+
+		public bool Highlightable { get; set; }
 
 		#endregion //Properties
 
@@ -187,6 +189,7 @@ namespace MenuBuddy
 		/// </summary>
 		protected Widget()
 		{
+			Highlightable = true;
 			_horizontal = HorizontalAlignment.Left;
 			_vertical = VerticalAlignment.Top;
 			_scale = 1.0f;
@@ -297,26 +300,23 @@ namespace MenuBuddy
 			return Transition.Position(screen.Transition, Rect);
 		}
 
-		protected Point TextPosition(IScreen screen)
-		{
-			//get the draw position
-			return Transition.Position(screen.Transition, Rect);
-		}
-
 		public virtual bool CheckHighlight(HighlightEventArgs highlight)
 		{
-			//get the previous value
-			var prev = IsHighlighted;
-
-			//Check if this dude should be highlighted
-			IsHighlighted = Rect.Contains(highlight.Position);
-
-			//Do we need to run the highlight event?
-			if (IsHighlighted &&
-				!prev &&
-				null != OnHighlight)
+			if (Highlightable)
 			{
-				OnHighlight(this, highlight);
+				//get the previous value
+				var prev = IsHighlighted;
+
+				//Check if this dude should be highlighted
+				IsHighlighted = Rect.Contains(highlight.Position);
+
+				//Do we need to run the highlight event?
+				if (IsHighlighted &&
+					!prev &&
+					null != OnHighlight)
+				{
+					OnHighlight(this, highlight);
+				}
 			}
 
 			return IsHighlighted;

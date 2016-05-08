@@ -29,21 +29,5 @@ namespace MenuBuddy
 		}
 
 		#endregion //Initialization
-
-		#region Methods
-
-		public override void Update(IScreen screen, GameClock gameTime)
-		{
-			Debug.Assert(null != Layout);
-			Layout.Update(screen, gameTime);
-		}
-
-		public override void Draw(IScreen screen, GameClock gameTime)
-		{
-			Debug.Assert(null != Layout);
-			Layout.Draw(screen, gameTime);
-		}
-
-		#endregion //Methods
 	}
 }

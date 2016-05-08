@@ -50,7 +50,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="InputHelper.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\InputHelper.1.0.5\lib\MonoAndroid10\InputHelper.Android.dll</HintPath>
+      <HintPath>..\packages\InputHelper.1.0.6\lib\MonoAndroid10\InputHelper.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MatrixExtensions.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -101,6 +101,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Source\Games\MouseGame.cs">
+      <Link>Games\MouseGame.cs</Link>
+    </Compile>
     <Compile Include="..\..\Source\Input\BaseInputHandler.cs">
       <Link>Input\BaseInputHandler.cs</Link>
     </Compile>

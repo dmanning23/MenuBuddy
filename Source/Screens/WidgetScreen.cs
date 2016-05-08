@@ -59,6 +59,9 @@ namespace MenuBuddy
 			{
 				return false;
 			}
+			set
+			{
+			}
 		}
 
 		public bool IsHighlighted

@@ -102,7 +102,11 @@ namespace MenuBuddy
 		/// </summary>
 		public MenuEntry(string text)
 		{
-			Label = new Label(text);
+			Label = new Label(text)
+			{
+				Horizontal = HorizontalAlignment.Center,
+				Vertical = VerticalAlignment.Center,
+			};
 			_text = text;
 			Horizontal = HorizontalAlignment.Center;
 			Vertical = VerticalAlignment.Top;

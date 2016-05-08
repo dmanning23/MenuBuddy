@@ -49,6 +49,25 @@ namespace MenuBuddy
 			}
 		}
 
+		public bool IsClicked
+		{
+			get
+			{
+				return false;
+			}
+			set
+			{
+				foreach (var item in Items)
+				{
+					var clickable = item as IClickable;
+					if (null != clickable)
+					{
+						clickable.IsClicked = value;
+					}
+				}
+			}
+		}
+
 		/// <summary>
 		/// all the items that are in this layout
 		/// </summary>
@@ -120,14 +139,6 @@ namespace MenuBuddy
 				{
 					AddItem(item);
 				}
-			}
-		}
-
-		public bool IsClicked
-		{
-			get
-			{
-				return false;
 			}
 		}
 

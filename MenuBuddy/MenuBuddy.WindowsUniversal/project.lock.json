@@ -63,7 +63,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.5": {
+      "InputHelper/1.0.6": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -2212,7 +2212,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.5": {
+      "InputHelper/1.0.6": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -4227,7 +4227,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.5": {
+      "InputHelper/1.0.6": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -6199,7 +6199,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.5": {
+      "InputHelper/1.0.6": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -8223,7 +8223,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.5": {
+      "InputHelper/1.0.6": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -10195,7 +10195,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.5": {
+      "InputHelper/1.0.6": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -12219,7 +12219,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.5": {
+      "InputHelper/1.0.6": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -14196,11 +14196,11 @@
         "lib/uap10.0/HadoukInput.WindowsUniversal.pdb"
       ]
     },
-    "InputHelper/1.0.5": {
-      "sha512": "cXjmLhVExIyBsnaxbm1WH74+7qUkPcUeh+M3WWX4ssx5tskqGBeYYcsP6IFHdTBNvZKsUvcz1G/TvwFsoqEAhw==",
+    "InputHelper/1.0.6": {
+      "sha512": "1TS/JJyAfiOhjBx/kp01cxlqm2g6y1paR8YhPgInLZfvITyxdl4xVo1hR8TaaPtYd+AoPZgd5XniRKTr5QwvMQ==",
       "type": "package",
       "files": [
-        "InputHelper.1.0.5.nupkg.sha512",
+        "InputHelper.1.0.6.nupkg.sha512",
         "InputHelper.nuspec",
         "lib/MonoAndroid10/InputHelper.Android.dll",
         "lib/MonoAndroid10/InputHelper.Android.pdb",
@@ -17697,7 +17697,7 @@
       "FontBuddy >= 1.0.1",
       "GameTimer >= 1.0.1",
       "HadoukInput >= 1.0.2",
-      "InputHelper >= 1.0.5",
+      "InputHelper >= 1.0.6",
       "MatrixExtensions >= 1.0.1",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0",
       "MonoGame.Framework.WindowsUniversal >= 3.5.1.1679",

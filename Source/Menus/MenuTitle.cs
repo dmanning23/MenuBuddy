@@ -17,6 +17,8 @@ namespace MenuBuddy
 			: base(text)
 		{
 			FontSize = FontSize.Large;
+			Horizontal = HorizontalAlignment.Center;
+			Highlightable = false;
 		}
 
 		#endregion

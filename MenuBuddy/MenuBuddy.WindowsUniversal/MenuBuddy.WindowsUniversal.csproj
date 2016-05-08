@@ -113,6 +113,9 @@
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\Source\Games\MouseGame.cs">
+      <Link>Games\MouseGame.cs</Link>
+    </Compile>
     <Compile Include="..\..\Source\Input\BaseInputHandler.cs">
       <Link>Input\BaseInputHandler.cs</Link>
     </Compile>

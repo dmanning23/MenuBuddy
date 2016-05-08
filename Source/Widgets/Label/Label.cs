@@ -1,17 +1,21 @@
+using System;
 using FontBuddyLib;
 using GameTimer;
+using InputHelper;
 using Microsoft.Xna.Framework;
 using MouseBuddy;
 
 namespace MenuBuddy
 {
-	public class Label : Widget, ILabel
+	public class Label : Widget, ILabel, IClickable
 	{
 		#region Fields
 
 		private string _text;
 
 		private FontSize _fontSize;
+
+		public event EventHandler<ClickEventArgs> OnClick;
 
 		#endregion //Fields
 
@@ -52,6 +56,8 @@ namespace MenuBuddy
 			}
 		}
 
+		public bool IsClicked { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -84,6 +90,26 @@ namespace MenuBuddy
 
 		#region Methods
 
+		protected Vector2 TextPosition(IScreen screen)
+		{
+			//get the draw position
+			switch (Horizontal)
+			{
+				case HorizontalAlignment.Left:
+					{
+						return Transition.Position(screen.Transition, new Point(Rect.X, Rect.Y));
+					}
+				case HorizontalAlignment.Center:
+					{
+						return Transition.Position(screen.Transition, new Point(Rect.Center.X, Rect.Y));
+					}
+				default:
+					{
+						return Transition.Position(screen.Transition, new Point(Rect.Right, Rect.Y));
+					}
+			}
+		}
+
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
 			if (!ShouldDraw(screen))
@@ -103,7 +129,7 @@ namespace MenuBuddy
 				TextPosition(screen),
 				AlignmentToJustify(),
 				Scale,
-				color,
+				Color(),
 				screen.ScreenManager.SpriteBatch,
 				HighlightClock);
 		}
@@ -160,6 +186,27 @@ namespace MenuBuddy
 						return IsHighlighted ? StyleSheet.Instance().SmallHighlightedFont : StyleSheet.Instance().SmallNeutralFont;
 					}
 			}
+		}
+
+		private Color Color()
+		{
+			if (IsClicked)
+			{
+				return StyleSheet.SelectedTextColor;
+			}
+			else if (IsHighlighted)
+			{
+				return StyleSheet.HighlightedTextColor;
+			}
+			else
+			{
+				return StyleSheet.NeutralTextColor;
+			}
+		}
+
+		public bool CheckClick(ClickEventArgs click)
+		{
+			return false;
 		}
 
 		#endregion //Methods

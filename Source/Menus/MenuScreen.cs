@@ -132,7 +132,6 @@ namespace MenuBuddy
 				Layer = 2.0f,
 				Position = MenuTitlePosition
 			};
-			MenuTitle.Horizontal = HorizontalAlignment.Center;
 			AddItem(MenuTitle);
 		}
 
@@ -206,6 +205,11 @@ namespace MenuBuddy
 				{
 					PlayerIndex = playerIndex
 				});
+			}
+
+			if (null != SelectedEntry)
+			{
+				SelectedEntry.IsHighlighted = IsActive;
 			}
 		}
 
@@ -316,18 +320,13 @@ namespace MenuBuddy
 
 		#region Update and Draw
 
-		/// <summary>
-		/// Updates the menu.
-		/// </summary>
-		public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
-		{
-			base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
-
-			if (null != SelectedEntry)
-			{
-				SelectedEntry.IsHighlighted = IsActive;
-			}
-		}
+		///// <summary>
+		///// Updates the menu.
+		///// </summary>
+		//public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+		//{
+		//	base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+		//}
 
 		private void HighlightSeslectedItem()
 		{
