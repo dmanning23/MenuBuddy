@@ -43,6 +43,9 @@ namespace MenuBuddy
 
 			DesiredScreenResolution = new Point(1280, 720);
 			FullScreen = false;
+
+			//add the input helper for menus
+			InitInput();
 		}
 
 		/// <summary>
@@ -60,9 +63,6 @@ namespace MenuBuddy
 		protected override void Initialize()
 		{
 			Resolution.Init(Graphics);
-
-			//add the input helper for menus
-			InitInput();
 
 			InitStyles();
 
