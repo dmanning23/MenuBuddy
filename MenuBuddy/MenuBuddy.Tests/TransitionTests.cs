@@ -128,6 +128,31 @@ namespace MenuBuddy.Tests
 		}
 
 		[Test]
+		public void Alpha_NoneTransitionOff()
+		{
+			var transition = new ScreenTransition()
+			{
+				State = TransitionState.Active
+			};
+			transition.OnTime = 1f;
+			transition.OffTime = 1f;
+
+			transition.Update(new GameTime(), false);
+			Assert.AreEqual(1f, transition.Alpha);
+		}
+
+		[Test]
+		public void Alpha_NoneTransitionOn()
+		{
+			var transition = new ScreenTransition();
+			transition.OnTime = 1f;
+			transition.OffTime = 1f;
+
+			transition.Update(new GameTime(), true);
+			Assert.AreEqual(0f, transition.Alpha);
+		}
+
+		[Test]
 		public void AlphaColor_DoneTransitioning()
 		{
 			var transition = new ScreenTransition();
@@ -142,7 +167,10 @@ namespace MenuBuddy.Tests
 		[Test]
 		public void AlphaColor_TransitionOff()
 		{
-			var transition = new ScreenTransition();
+			var transition = new ScreenTransition()
+			{
+				State = TransitionState.Active
+			};
 			transition.OnTime = 0f;
 			transition.OffTime = 0f;
 
@@ -157,6 +185,33 @@ namespace MenuBuddy.Tests
 			var transition = new ScreenTransition();
 			transition.OnTime = 1f;
 			transition.OffTime = 0f;
+
+			transition.Update(new GameTime(), true);
+			var target = new Color(255, 255, 255, 0);
+			Assert.AreEqual(target, transition.AlphaColor(Color.White));
+		}
+
+		[Test]
+		public void AlphaColor_NoneTransitionOff()
+		{
+			var transition = new ScreenTransition()
+			{
+				State = TransitionState.Active
+			};
+			transition.OnTime = 1f;
+			transition.OffTime = 1f;
+
+			transition.Update(new GameTime(), false);
+			var target = new Color(255, 255, 255, 255);
+			Assert.AreEqual(target, transition.AlphaColor(Color.White));
+		}
+
+		[Test]
+		public void AlphaColor_NoneTransitionOn()
+		{
+			var transition = new ScreenTransition();
+			transition.OnTime = 1f;
+			transition.OffTime = 1f;
 
 			transition.Update(new GameTime(), true);
 			var target = new Color(255, 255, 255, 0);

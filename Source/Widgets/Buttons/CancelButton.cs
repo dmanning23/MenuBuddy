@@ -38,10 +38,11 @@ namespace MenuBuddy
 			HasBackground = false;
 			HasOutline = true;
 			var image = new Image(screen.ScreenManager.Game.Content.Load<Texture2D>(IconTextureName))
-            {
+			{
 				Vertical = VerticalAlignment.Center,
 				Horizontal = HorizontalAlignment.Center,
-				Scale = 2f
+				Scale = 2f,
+				Transition = new WipeTransitionObject(TransitionWipeType.PopRight)
 			};
 			AddItem(image);
 

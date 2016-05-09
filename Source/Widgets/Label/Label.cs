@@ -120,16 +120,18 @@ namespace MenuBuddy
 			//Get the font to use
 			var font = Font();
 
-			//get the color to use
-			var color = IsHighlighted ? StyleSheet.HighlightedTextColor : StyleSheet.NeutralTextColor;
-			color = screen.Transition.AlphaColor(color);
+			var shadow = font as ShadowTextBuddy;
+			if (null != shadow)
+			{
+				shadow.ShadowColor = screen.Transition.AlphaColor(StyleSheet.TextShadowColor);
+			}
 
 			//Write the text
 			font.Write(Text,
 				TextPosition(screen),
 				AlignmentToJustify(),
 				Scale,
-				Color(),
+				screen.Transition.AlphaColor(Color()),
 				screen.ScreenManager.SpriteBatch,
 				HighlightClock);
 		}

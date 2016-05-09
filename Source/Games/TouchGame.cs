@@ -18,10 +18,6 @@ namespace MenuBuddy
 			//create the touch manager component
 			var touches = new TouchComponent(this);
 
-#if MOUSE
-			var mouse = new MouseComponent(this);
-#endif
-
 			//add the input helper for menus
 			var input = new TouchInputHelper(this);
 			//var input = new ControllerInputHelper(this);

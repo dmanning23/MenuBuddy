@@ -59,7 +59,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MouseBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MouseBuddy.1.0.1\lib\net451\MouseBuddy.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\MouseBuddy.1.0.4\lib\net451\MouseBuddy.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NVorbis, Version=0.8.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -95,7 +95,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="TouchScreenBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TouchScreenBuddy.1.0.2\lib\net451\TouchScreenBuddy.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\TouchScreenBuddy.1.0.3\lib\net451\TouchScreenBuddy.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Vector2Extensions.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
