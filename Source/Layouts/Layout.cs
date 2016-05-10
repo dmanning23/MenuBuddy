@@ -132,12 +132,14 @@ namespace MenuBuddy
 				//grab the scale
 				_scale = value;
 
-				//readd all the items
-				var items = Items;
-				Items = new List<IScreenItem>();
-				foreach (var item in items)
+				//rescale all the child items
+				foreach (var item in Items)
 				{
-					AddItem(item);
+					var scalable = item as IScalable;
+					if (null != scalable)
+					{
+						scalable.Scale = value;
+					}
 				}
 			}
 		}
