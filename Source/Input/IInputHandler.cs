@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 
 namespace MenuBuddy
 {
@@ -8,14 +7,6 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IInputHandler : IUpdateable
 	{
-		/// <summary>
-		/// Get the mouse position in game coords
-		/// </summary>
-		List<Vector2> CursorPos
-		{
-			get;
-		}
-
 		/// <summary>
 		/// Handle teh input and pass it to the current top screen.
 		/// </summary>

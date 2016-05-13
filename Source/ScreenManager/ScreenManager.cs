@@ -133,39 +133,6 @@ namespace MenuBuddy
 				ErrorScreen(ex);
 			}
 #endif
-
-			//draw a circle around the mouse cursor
-			if (null != Input)
-			{
-				DrawHelper.Prim.NumCircleSegments = 4;
-
-				SpriteBatch.Begin();
-
-				foreach (var pos in Input.CursorPos)
-				{
-					DrawHelper.Prim.Circle(pos, 6.0f, Color.Red);
-				}
-
-				SpriteBatch.End();
-			}
-
-			////draw a circle around each touch point
-			//if (null != TouchManager)
-			//{
-			//	SpriteBatch.Begin();
-
-			//	//go though the points that are being touched
-			//	TouchCollection touchCollection = TouchPanel.GetState();
-			//	foreach (var touch in touchCollection)
-			//	{
-			//		if ((touch.State == TouchLocationState.Pressed) || (touch.State == TouchLocationState.Moved))
-			//		{
-			//			DrawHelper.Prim.Circle(touch.Position, 40.0f, new Color(1.0f, 1.0f, 1.0f, 0.25f));
-			//		}
-			//	}
-
-			//	SpriteBatch.End();
-			//}
 		}
 
 		/// <summary>

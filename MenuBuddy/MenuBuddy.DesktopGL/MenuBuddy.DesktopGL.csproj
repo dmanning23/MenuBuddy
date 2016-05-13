@@ -47,7 +47,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="InputHelper.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\InputHelper.1.0.11\lib\net451\InputHelper.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\InputHelper.1.0.14\lib\net451\InputHelper.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MatrixExtensions.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -59,7 +59,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MouseBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MouseBuddy.1.0.4\lib\net451\MouseBuddy.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\MouseBuddy.1.0.5\lib\net451\MouseBuddy.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NVorbis, Version=0.8.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -95,7 +95,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="TouchScreenBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TouchScreenBuddy.1.0.3\lib\net451\TouchScreenBuddy.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\TouchScreenBuddy.1.0.4\lib\net451\TouchScreenBuddy.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Vector2Extensions.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -119,6 +119,9 @@
     </Compile>
     <Compile Include="..\..\Source\Input\IInputHandler.cs">
       <Link>Input\IInputHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Input\MouseInputHandler.cs">
+      <Link>Input\MouseInputHandler.cs</Link>
     </Compile>
     <Compile Include="..\..\Source\Input\TouchInputHandler.cs">
       <Link>Input\TouchInputHandler.cs</Link>

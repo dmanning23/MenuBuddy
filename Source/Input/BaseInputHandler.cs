@@ -1,6 +1,5 @@
 using HadoukInput;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 
 namespace MenuBuddy
 {
@@ -10,14 +9,6 @@ namespace MenuBuddy
 	public abstract class BaseInputHandler : DrawableGameComponent, IInputHandler
 	{
 		#region Properties
-
-		/// <summary>
-		/// Get the mouse position in game coords
-		/// </summary>
-		public List<Vector2> CursorPos
-		{
-			get; private set;
-		}
 
 		/// <summary>
 		/// This object controls all the controller and keyboard stuff.
@@ -31,7 +22,6 @@ namespace MenuBuddy
 		protected BaseInputHandler(Game game)
 			: base(game)
 		{
-			CursorPos = new List<Vector2>();
 			InputState = new InputState();
 		}
 
@@ -40,7 +30,7 @@ namespace MenuBuddy
 			base.Update(gameTime);
 
 			InputState.Update();
-        }
+		}
 
 		public abstract void HandleInput(IScreen screen);
 

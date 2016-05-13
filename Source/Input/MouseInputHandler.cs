@@ -8,7 +8,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is an input helper that does mouse/touchscreen input
 	/// </summary>
-	public class TouchInputHelper : BaseInputHandler
+	public class MouseInputHelper : BaseInputHandler
 	{
 		#region Properties
 
@@ -28,7 +28,7 @@ namespace MenuBuddy
 		/// Constructor
 		/// </summary>
 		/// <param name="game"></param>
-		public TouchInputHelper(Game game)
+		public MouseInputHelper(Game game)
 			: base(game)
 		{
 			//Find all the components we need

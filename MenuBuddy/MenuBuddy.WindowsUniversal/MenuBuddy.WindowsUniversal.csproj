@@ -125,6 +125,9 @@
     <Compile Include="..\..\Source\Input\IInputHandler.cs">
       <Link>Input\IInputHandler.cs</Link>
     </Compile>
+    <Compile Include="..\..\Source\Input\MouseInputHandler.cs">
+      <Link>Input\MouseInputHandler.cs</Link>
+    </Compile>
     <Compile Include="..\..\Source\Input\TouchInputHandler.cs">
       <Link>Input\TouchInputHandler.cs</Link>
     </Compile>

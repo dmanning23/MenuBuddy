@@ -15,10 +15,10 @@ namespace MenuBuddy
 
 		protected override void InitInput()
 		{
-			var mouse = new MouseComponent(this);
+			var mouse = new MouseComponent(this, ResolutionBuddy.Resolution.ScreenToGameCoord);
 
 			//add the input helper for menus
-			var input = new TouchInputHelper(this);
+			var input = new MouseInputHelper(this);
 		}
 
 		#endregion //Methods

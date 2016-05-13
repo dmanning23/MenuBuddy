@@ -23,10 +23,10 @@ namespace MenuBuddy
 
 		#region Methods
 
-		public CancelButton(string iconTextureName = "Cancel", int iconSize = 96)
+		public CancelButton(string iconTextureName = "Cancel")
 		{
 			IconTextureName = iconTextureName;
-			IconSize = iconSize;
+			Scale = 3f;
 		}
 
 		public override void LoadContent(IScreen screen)
@@ -41,18 +41,18 @@ namespace MenuBuddy
 			{
 				Vertical = VerticalAlignment.Center,
 				Horizontal = HorizontalAlignment.Center,
-				Scale = 2f,
 				Transition = new WipeTransitionObject(TransitionWipeType.PopRight)
 			};
 			AddItem(image);
 
 			//set the size to the texture size
-			var size = new Vector2(image.Rect.Width, image.Rect.Height);
+			var size = new Vector2(image.Texture.Bounds.Width, image.Texture.Bounds.Height);
 			var relLayout = Layout as RelativeLayout;
 			relLayout.Size = size;
 			Size = size;
-			
-			Position = new Point(Resolution.TitleSafeArea.Right - (int)(1.5f * IconSize),
+
+			var imageRect = image.Rect;
+			Position = new Point(Resolution.TitleSafeArea.Right - (int)(1.5f * imageRect.Width),
 					Resolution.TitleSafeArea.Top);
 
 			DrawWhenInactive = false;
