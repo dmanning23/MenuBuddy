@@ -184,13 +184,15 @@ namespace MenuBuddy
 
 			if (IsExiting)
 			{
-				// If the screen is going away to die, it should transition off.
-				Transition.State = TransitionState.TransitionOff;
-
 				if (!Transition.Update(gameTime, false))
 				{
 					// When the transition finishes, remove the screen.
 					ScreenManager.RemoveScreen(this);
+				}
+				else
+				{
+					// If the screen is going away to die, it should transition off.
+					Transition.State = TransitionState.TransitionOff;
 				}
 			}
 			else if (CurrentlyCovered && CoveredByOtherScreens)
