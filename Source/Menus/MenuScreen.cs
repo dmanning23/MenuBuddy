@@ -19,6 +19,11 @@ namespace MenuBuddy
 
 		private Point _menuEntryPosition;
 
+		/// <summary>
+		/// The game type, as loaded from the screenmanager.game
+		/// </summary>
+		private GameType _gameType;
+
 		#endregion
 
 		#region Properties
@@ -36,7 +41,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Get the currently selected menu entry index, -1 if no entry selected
 		/// </summary>
-		public int SelectedIndex { get; protected set; }
+		public int SelectedIndex { get; private set; }
 
 		/// <summary>
 		/// Get the currently selected menu entry, null if no menu entry selected
@@ -45,7 +50,8 @@ namespace MenuBuddy
 		{
 			get
 			{
-				if ((SelectedIndex > -1) &&
+				if ((GameType.Controller == _gameType) &&
+					(SelectedIndex > -1) &&
 					(SelectedIndex < MenuEntries.Items.Count))
 				{
 					return MenuEntries.Items[SelectedIndex] as IMenuEntry;
@@ -115,6 +121,9 @@ namespace MenuBuddy
 		public override void LoadContent()
 		{
 			base.LoadContent();
+
+			var game = ScreenManager.Game as DefaultGame;
+			_gameType = null != game ? game.GameType : GameType.Controller;
 
 			//Create the stack layout for teh menu entries
 			MenuEntries = new StackLayout()

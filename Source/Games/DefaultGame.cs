@@ -31,11 +31,13 @@ namespace MenuBuddy
 		/// </summary>
 		protected bool FullScreen { get; set; }
 
+		public GameType GameType  { get; private set;}
+
 		#endregion //Properties
 
 		#region Methods
 
-		protected DefaultGame()
+		protected DefaultGame(GameType gameType)
 		{
 			Graphics = new GraphicsDeviceManager(this);
 			Graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft;
@@ -43,6 +45,7 @@ namespace MenuBuddy
 
 			DesiredScreenResolution = new Point(1280, 720);
 			FullScreen = false;
+			GameType = gameType;
 
 			//add the input helper for menus
 			InitInput();

@@ -9,7 +9,7 @@ namespace MenuBuddy
 	{
 		#region Methods
 
-		protected TouchGame()
+		protected TouchGame() : base(GameType.Touch)
 		{
 		}
 

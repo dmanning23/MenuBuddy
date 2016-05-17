@@ -68,6 +68,15 @@ namespace MenuBuddy
 			var highlightScreen = screen as IHighlightable;
 			if (null != highlightScreen)
 			{
+				//Usually there won't be a highlight in the touchinput
+				if (0 == InputHelper.Highlights.Count)
+				{
+					InputHelper.Highlights.Add(new HighlightEventArgs()
+					{
+						Position = new Vector2(float.NaN, float.NaN)
+					});
+				}
+
 				int i = 0;
 				while (i < InputHelper.Highlights.Count)
 				{

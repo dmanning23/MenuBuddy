@@ -9,7 +9,7 @@ namespace MenuBuddy
 	{
 		#region Methods
 
-		protected MouseGame()
+		protected MouseGame() : base(GameType.Mouse)
 		{
 		}
 

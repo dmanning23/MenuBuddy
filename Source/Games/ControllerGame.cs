@@ -7,7 +7,7 @@ namespace MenuBuddy
 	{
 		#region Methods
 
-		protected ControllerGame()
+		protected ControllerGame() : base(GameType.Controller)
 		{
 		}
 

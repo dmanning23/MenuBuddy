@@ -424,7 +424,7 @@
           "lib/uap10.0/RandomExtensions.WindowsUniversal.dll": {}
         }
       },
-      "ResolutionBuddy/1.0.1": {
+      "ResolutionBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "MatrixExtensions": "1.0.0",
@@ -2525,7 +2525,7 @@
           "lib/uap10.0/RandomExtensions.WindowsUniversal.dll": {}
         }
       },
-      "ResolutionBuddy/1.0.1": {
+      "ResolutionBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "MatrixExtensions": "1.0.0",
@@ -4541,7 +4541,7 @@
           "lib/uap10.0/RandomExtensions.WindowsUniversal.dll": {}
         }
       },
-      "ResolutionBuddy/1.0.1": {
+      "ResolutionBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "MatrixExtensions": "1.0.0",
@@ -6524,7 +6524,7 @@
           "lib/uap10.0/RandomExtensions.WindowsUniversal.dll": {}
         }
       },
-      "ResolutionBuddy/1.0.1": {
+      "ResolutionBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "MatrixExtensions": "1.0.0",
@@ -8543,7 +8543,7 @@
           "lib/uap10.0/RandomExtensions.WindowsUniversal.dll": {}
         }
       },
-      "ResolutionBuddy/1.0.1": {
+      "ResolutionBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "MatrixExtensions": "1.0.0",
@@ -10526,7 +10526,7 @@
           "lib/uap10.0/RandomExtensions.WindowsUniversal.dll": {}
         }
       },
-      "ResolutionBuddy/1.0.1": {
+      "ResolutionBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "MatrixExtensions": "1.0.0",
@@ -12545,7 +12545,7 @@
           "lib/uap10.0/RandomExtensions.WindowsUniversal.dll": {}
         }
       },
-      "ResolutionBuddy/1.0.1": {
+      "ResolutionBuddy/1.0.2": {
         "type": "package",
         "dependencies": {
           "MatrixExtensions": "1.0.0",
@@ -14901,11 +14901,11 @@
         "lib/uap10.0/RandomExtensions.WindowsUniversal.pdb"
       ]
     },
-    "ResolutionBuddy/1.0.1": {
-      "sha512": "GHSebG6nngfD9uGYkZobPcIGmeTJDoOprXlJ9yYiKjYW1p7ZTcJDrOt7Z/Kx4fn8EYSdebNiNC4WIV8X4CfAPA==",
+    "ResolutionBuddy/1.0.2": {
+      "sha512": "xyRgyyxMiCW8n5SwlH2PSa2BxGyD1X28P5fuw9lzMlrsacSuLoHu8hCrJEBT5w9+0YCJp9qSnRZVC9MKRXpATg==",
       "type": "package",
       "files": [
-        "ResolutionBuddy.1.0.1.nupkg.sha512",
+        "ResolutionBuddy.1.0.2.nupkg.sha512",
         "ResolutionBuddy.nuspec",
         "lib/MonoAndroid10/ResolutionBuddy.Android.dll",
         "lib/MonoAndroid10/ResolutionBuddy.Android.pdb",
@@ -17725,7 +17725,7 @@
       "MouseBuddy >= 1.0.5",
       "PrimitiveBuddy >= 1.0.0",
       "RandomExtensions.dmanning23 >= 1.0.2",
-      "ResolutionBuddy >= 1.0.1",
+      "ResolutionBuddy >= 1.0.2",
       "StateMachineBuddy >= 1.0.0",
       "TouchScreenBuddy >= 1.0.4",
       "Vector2Extensions >= 1.0.1",
