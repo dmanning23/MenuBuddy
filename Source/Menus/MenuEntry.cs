@@ -130,12 +130,7 @@ namespace MenuBuddy
 		{
 			base.LoadContent(screen);
 
-			//Add the text label
-			Label = new Label(Text)
-			{
-                Vertical = VerticalAlignment.Top,
-				Horizontal = HorizontalAlignment.Center
-			};
+			var label = CreateLabel();
 
 			//get the label rect
 			var labelRect = Label.Rect;
@@ -147,6 +142,19 @@ namespace MenuBuddy
 		#endregion //Initialization
 
 		#region Methods
+
+		/// <summary>
+		/// Create the text label for this menu item.
+		/// </summary>
+		/// <returns></returns>
+		protected virtual Label CreateLabel()
+		{
+			return new Label(Text)
+			{
+				Vertical = VerticalAlignment.Top,
+				Horizontal = HorizontalAlignment.Center
+			};
+		}
 
 		public override string ToString()
 		{

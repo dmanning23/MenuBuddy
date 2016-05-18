@@ -171,7 +171,7 @@ namespace MenuBuddy
 			}
 		}
 
-		private IFontBuddy Font()
+		protected virtual IFontBuddy Font()
 		{
 			switch (FontSize)
 			{
@@ -190,7 +190,7 @@ namespace MenuBuddy
 			}
 		}
 
-		private Color Color()
+		protected virtual Color Color()
 		{
 			if (IsClicked)
 			{
