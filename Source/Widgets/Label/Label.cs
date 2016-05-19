@@ -118,7 +118,7 @@ namespace MenuBuddy
 			}
 
 			//Get the font to use
-			var font = Font();
+			var font = GetFont();
 
 			var shadow = font as ShadowTextBuddy;
 			if (null != shadow)
@@ -131,7 +131,7 @@ namespace MenuBuddy
 				TextPosition(screen),
 				AlignmentToJustify(),
 				Scale,
-				screen.Transition.AlphaColor(Color()),
+				screen.Transition.AlphaColor(GetColor()),
 				screen.ScreenManager.SpriteBatch,
 				HighlightClock);
 		}
@@ -139,7 +139,7 @@ namespace MenuBuddy
 		protected override void CalculateRect()
 		{
 			//get the size of the rect
-			var font = Font();
+			var font = GetFont();
 			var size = font.MeasureString(Text);
 			size = (size + (Padding * 2f)) * Scale;
 
@@ -171,7 +171,7 @@ namespace MenuBuddy
 			}
 		}
 
-		protected virtual IFontBuddy Font()
+		protected virtual IFontBuddy GetFont()
 		{
 			switch (FontSize)
 			{
@@ -190,7 +190,7 @@ namespace MenuBuddy
 			}
 		}
 
-		protected virtual Color Color()
+		protected virtual Color GetColor()
 		{
 			if (IsClicked)
 			{
