@@ -64,7 +64,7 @@ namespace MenuBuddy
 			//}
 		}
 
-		public void LoadContent(IScreen screen)
+		public override void LoadContent(IScreen screen)
 		{
 			base.AddItem(Stack);
 		}

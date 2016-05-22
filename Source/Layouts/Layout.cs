@@ -175,6 +175,14 @@ namespace MenuBuddy
 
 		public abstract IScreenItem DeepCopy();
 
+		public virtual void LoadContent(IScreen screen)
+		{
+			for (int i = 0; i < Items.Count; i++)
+			{
+				Items[i].LoadContent(screen);
+			}
+		}
+
 		#endregion //Initialzation
 
 		#region Methods

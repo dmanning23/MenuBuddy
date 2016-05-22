@@ -7,7 +7,7 @@ namespace MenuBuddy
 	/// Interface for the widget object.
 	/// A widget is a screen item that is displayed on the page
 	/// </summary>
-	public interface IWidget : IScreenItem, IScalable, IHighlightable, IHasContent
+	public interface IWidget : IScreenItem, IScalable, IHighlightable
 	{
 		/// <summary>
 		/// Even though this is a IHighlightable object, sometimes you just don't want them to be highlighted.
