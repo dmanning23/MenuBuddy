@@ -174,6 +174,8 @@ namespace MenuBuddy
 				HighlightSoundEffect = screen.ScreenManager.Game.Content.Load<SoundEffect>(StyleSheet.HighlightSoundResource);
 				SelectedSoundEffect = screen.ScreenManager.Game.Content.Load<SoundEffect>(StyleSheet.SelectedSoundResource);
 			}
+
+			Layout.LoadContent(screen);
 			base.LoadContent(screen);
 		}
 

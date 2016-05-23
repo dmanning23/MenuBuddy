@@ -140,7 +140,7 @@ namespace MenuBuddy
 		{
 			//get the size of the rect
 			var font = GetFont();
-			var size = font.MeasureString(Text);
+			var size = !string.IsNullOrEmpty(Text) ? font.MeasureString(Text) : Vector2.Zero;
 			size = (size + (Padding * 2f)) * Scale;
 
 			//set the x component

@@ -20,7 +20,7 @@ namespace MenuBuddy
 
 		#region Properties
 
-		public Label Label { get; private set; }
+		public Label Label { get; protected set; }
 		
 		public string Text
 		{
@@ -44,7 +44,6 @@ namespace MenuBuddy
 			{
 				return Label.FontSize;
 			}
-
 			set
 			{
 				Label.FontSize = value;
@@ -103,22 +102,20 @@ namespace MenuBuddy
 		public MenuEntry(string text)
 		{
 			HasBackground = true;
-			Label = new Label(text)
-			{
-				Horizontal = HorizontalAlignment.Center,
-				Vertical = VerticalAlignment.Center,
-			};
 			_text = text;
 			Horizontal = HorizontalAlignment.Center;
 			Vertical = VerticalAlignment.Top;
+
+			Label = CreateLabel();
 		}
 
 		public MenuEntry(MenuEntry inst) : base(inst)
 		{
-			Label = new Label(inst.Label);
 			_text = inst._text;
 			Left = inst.Left;
 			Right = inst.Right;
+
+			Label = new Label(inst.Label);
 		}
 
 		public override IScreenItem DeepCopy()
@@ -128,15 +125,13 @@ namespace MenuBuddy
 
 		public override void LoadContent(IScreen screen)
 		{
-			base.LoadContent(screen);
-
-			var label = CreateLabel();
-
 			//get the label rect
 			var labelRect = Label.Rect;
 			Size = new Vector2(768f, labelRect.Size.Y);
 
 			AddItem(Label);
+
+			base.LoadContent(screen);
 		}
 
 		#endregion //Initialization
