@@ -125,6 +125,31 @@ namespace MenuBuddy
 			}
 		}
 
+		public override ITransitionObject Transition
+		{
+			get
+			{
+				return base.Transition;
+			}
+
+			set
+			{
+				base.Transition = value;
+
+				if (null != Layout)
+				{
+					for (int i = 0; i < Layout.Items.Count; i++)
+					{
+						var widget = Layout.Items[i] as IWidget;
+						if (null != widget)
+						{
+							widget.Transition = value;
+						}
+					}
+				}
+			}
+		}
+
 		#endregion //Properties
 
 		#region Initialization
@@ -187,6 +212,13 @@ namespace MenuBuddy
 		{
 			Layout.AddItem(item);
 			CalculateRect();
+
+			var widget = item as IWidget;
+			if (null != widget)
+			{
+				widget.Transition = Transition;
+			}
+
 		}
 
 		public bool RemoveItem(IScreenItem item)

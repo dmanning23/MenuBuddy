@@ -174,7 +174,7 @@ namespace MenuBuddy
 
 		public bool HasOutline { get; set; }
 
-		public ITransitionObject Transition { get; set; }
+		public virtual ITransitionObject Transition { get; set; }
 
 		public Texture2D BackgroundImage { get; set; }
 
