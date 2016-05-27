@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MouseBuddy;
 using System;
+using InputHelper;
 
 namespace MenuBuddy
 {
@@ -19,6 +20,8 @@ namespace MenuBuddy
 		private Vector2 _size;
 		private bool _fillRect;
 		private Texture2D _texture;
+
+		public event EventHandler<ClickEventArgs> OnClick;
 
 		#endregion //Fields
 
@@ -95,6 +98,8 @@ namespace MenuBuddy
 			get; set;
 		}
 
+		public bool IsClicked { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -159,7 +164,7 @@ namespace MenuBuddy
 		{
 			Rectangle rect;
 
-			if (IsHighlighted && PulsateOnHighlight)
+			if ((IsClicked || IsHighlighted) && PulsateOnHighlight)
 			{
 				//multiply the time by the speed
 				float currentTime = HighlightClock.CurrentTime;
@@ -167,7 +172,7 @@ namespace MenuBuddy
 
 				//Pulsate the size of the text
 				float pulsate = _pulsateSize * (float)(Math.Sin(currentTime) + 1.0f);
-				float pulseScale = 1 + pulsate * 0.15f;
+				float pulseScale = (IsClicked ? 1.2f : 1f) + pulsate * 0.15f;
 
 				//adjust the y position so it pulsates straight out
 				Vector2 size = new Vector2(Rect.Width, Rect.Height);
@@ -214,6 +219,11 @@ namespace MenuBuddy
 			}
 
 			_rect = new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
+		}
+
+		public bool CheckClick(ClickEventArgs click)
+		{
+			return false;
 		}
 
 		#endregion //Methods

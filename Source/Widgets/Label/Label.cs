@@ -7,7 +7,7 @@ using MouseBuddy;
 
 namespace MenuBuddy
 {
-	public class Label : Widget, ILabel, IClickable
+	public class Label : Widget, ILabel
 	{
 		#region Fields
 
@@ -120,10 +120,18 @@ namespace MenuBuddy
 			//Get the font to use
 			var font = GetFont();
 
+			//make sure the shadow color is correct
 			var shadow = font as ShadowTextBuddy;
 			if (null != shadow)
 			{
 				shadow.ShadowColor = screen.Transition.AlphaColor(StyleSheet.TextShadowColor);
+			}
+
+			//adjust the pulsate scale
+			var pulsate = font as PulsateBuddy;
+			if (null != pulsate)
+			{
+				pulsate.PulsateScale = IsClicked ? 1.2f : 1f;
 			}
 
 			//Write the text

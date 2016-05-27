@@ -1,3 +1,4 @@
+using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -6,7 +7,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// An image that is displayed onteh screen
 	/// </summary>
-	public interface IImage : IWidget
+	public interface IImage : IWidget, IClickable
 	{
 		/// <summary>
 		/// The image to display

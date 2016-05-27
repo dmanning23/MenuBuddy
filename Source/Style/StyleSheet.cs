@@ -220,7 +220,7 @@ namespace MenuBuddy
 
 			NeutralTextColor = Color.White;
 			HighlightedTextColor = Color.White;
-			SelectedTextColor = Color.Red;
+			SelectedTextColor = Color.Yellow;
 			NeutralOutlineColor = new Color(0.8f, 0.8f, 0.8f, 0.5f);
 			NeutralBackgroundColor = new Color(0.0f, 0.0f, 0.2f, 0.5f);
 			HighlightedOutlineColor = new Color(0.8f, 0.8f, 0.8f, 0.7f);
@@ -285,14 +285,12 @@ namespace MenuBuddy
 				Font = _game.Content.Load<SpriteFont>(MediumFontResource)
 			};
 
-			var pulsate = new PulsateBuddy()
+			SmallHighlightedFont = new PulsateBuddy()
 			{
 				ShadowSize = 1.0f,
 				ShadowOffset = new Vector2(4.0f, 4.0f),
 				Font = _game.Content.Load<SpriteFont>(SmallFontResource),
 			};
-			pulsate.PulsateSize *= 0.5f;
-			SmallHighlightedFont = pulsate;
 		}
 
 		#endregion //Methods
