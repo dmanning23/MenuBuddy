@@ -124,7 +124,7 @@ namespace MenuBuddy
 			var shadow = font as ShadowTextBuddy;
 			if (null != shadow)
 			{
-				shadow.ShadowColor = screen.Transition.AlphaColor(StyleSheet.TextShadowColor);
+				shadow.ShadowColor = screen.Transition.AlphaColor(GetShadowColor());
 			}
 
 			//adjust the pulsate scale
@@ -212,6 +212,11 @@ namespace MenuBuddy
 			{
 				return StyleSheet.NeutralTextColor;
 			}
+		}
+
+		protected virtual Color GetShadowColor()
+		{
+			return StyleSheet.TextShadowColor;
 		}
 
 		public bool CheckClick(ClickEventArgs click)
