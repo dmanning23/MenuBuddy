@@ -148,8 +148,7 @@ namespace MenuBuddy
 		{
 			//get the size of the rect
 			var font = GetFont();
-			var size = !string.IsNullOrEmpty(Text) ? font.MeasureString(Text) : Vector2.Zero;
-			size = (size + (Padding * 2f)) * Scale;
+			var size = (MeasureText(font) + (Padding * 2f)) * Scale;
 
 			//set the x component
 			Vector2 pos = Position.ToVector2();
@@ -222,6 +221,18 @@ namespace MenuBuddy
 		public bool CheckClick(ClickEventArgs click)
 		{
 			return false;
+		}
+
+		private Vector2 MeasureText(IFontBuddy font)
+		{
+			if (!string.IsNullOrEmpty(Text) && null != font)
+			{
+				return font.MeasureString(Text);
+			}
+			else
+			{
+				return Vector2.Zero;
+			}
 		}
 
 		#endregion //Methods
