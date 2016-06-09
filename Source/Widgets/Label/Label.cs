@@ -58,6 +58,21 @@ namespace MenuBuddy
 
 		public bool IsClicked { get; set; }
 
+		/// <summary>
+		/// If this is set, use it to draw this label
+		/// </summary>
+		public IFontBuddy Font { get; set; }
+
+		/// <summary>
+		/// If this is not null, use it as the shadow color.
+		/// </summary>
+		public Color? ShadowColor { get; set; }
+
+		/// <summary>
+		/// If this is not null, use it as the text color.
+		/// </summary>
+		public Color? TextColor { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -180,6 +195,11 @@ namespace MenuBuddy
 
 		protected virtual IFontBuddy GetFont()
 		{
+			if (null != Font)
+			{
+				return Font;
+			}
+
 			switch (FontSize)
 			{
 				case FontSize.Large:
@@ -199,7 +219,11 @@ namespace MenuBuddy
 
 		protected virtual Color GetColor()
 		{
-			if (IsClicked)
+			if (TextColor.HasValue)
+			{
+				return TextColor.Value;
+			}
+			else if (IsClicked)
 			{
 				return StyleSheet.SelectedTextColor;
 			}
@@ -215,7 +239,14 @@ namespace MenuBuddy
 
 		protected virtual Color GetShadowColor()
 		{
-			return StyleSheet.TextShadowColor;
+			if (ShadowColor.HasValue)
+			{
+				return ShadowColor.Value;
+			}
+			else
+			{
+				return StyleSheet.TextShadowColor;
+			}
 		}
 
 		public bool CheckClick(ClickEventArgs click)

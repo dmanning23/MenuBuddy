@@ -89,7 +89,8 @@ namespace MenuBuddy
 				{
 					Scale = 2f,
 					Horizontal = HorizontalAlignment.Left,
-					Vertical = VerticalAlignment.Center
+					Vertical = VerticalAlignment.Center,
+					Highlightable = false
 				};
 
 				Texture2D hourglassTex = null;
@@ -109,7 +110,8 @@ namespace MenuBuddy
 					{
 						Horizontal = HorizontalAlignment.Left,
 						Vertical = VerticalAlignment.Center,
-						Scale = 1.5f
+						Scale = 1.5f,
+						Highlightable = false
 					};
 					layout.AddItem(hourglass);
 
