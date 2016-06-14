@@ -109,9 +109,9 @@ namespace MenuBuddy
 
 		public bool IsQuiet { get; set; }
 
-		protected SoundEffect HighlightSoundEffect { get; set; }
+		protected SoundEffect HighlightedSoundEffect { get; set; }
 
-		protected SoundEffect SelectedSoundEffect { get; set; }
+		protected SoundEffect ClickedSoundEffect { get; set; }
 
 		public bool IsClicked
 		{
@@ -150,6 +150,10 @@ namespace MenuBuddy
 			}
 		}
 
+		public string HighlightedSound { get; set; }
+
+		public string ClickedSound { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -175,6 +179,9 @@ namespace MenuBuddy
 			{
 				IsHighlighted = true;
 			});
+
+			HighlightedSound = StyleSheet.HighlightedSoundResource;
+			ClickedSound = StyleSheet.ClickedSoundResource;
 		}
 
 		/// <summary>
@@ -187,8 +194,8 @@ namespace MenuBuddy
 			Description = inst.Description;
 			OnClick = inst.OnClick;
 			IsQuiet = inst.IsQuiet;
-			HighlightSoundEffect = inst.HighlightSoundEffect;
-			SelectedSoundEffect = inst.SelectedSoundEffect;
+			HighlightedSoundEffect = inst.HighlightedSoundEffect;
+			ClickedSoundEffect = inst.ClickedSoundEffect;
 			_clickTimer = inst._clickTimer;
 		}
 
@@ -196,8 +203,8 @@ namespace MenuBuddy
 		{
 			if (null != screen.ScreenManager)
 			{
-				HighlightSoundEffect = screen.ScreenManager.Game.Content.Load<SoundEffect>(StyleSheet.HighlightSoundResource);
-				SelectedSoundEffect = screen.ScreenManager.Game.Content.Load<SoundEffect>(StyleSheet.SelectedSoundResource);
+				HighlightedSoundEffect = screen.ScreenManager.Game.Content.Load<SoundEffect>(HighlightedSound);
+				ClickedSoundEffect = screen.ScreenManager.Game.Content.Load<SoundEffect>(ClickedSound);
 			}
 
 			Layout.LoadContent(screen);
@@ -251,18 +258,18 @@ namespace MenuBuddy
 		public void PlaySelectedSound(object obj, ClickEventArgs e)
 		{
 			//play the sound effect
-			if (!IsQuiet && (null != SelectedSoundEffect))
+			if (!IsQuiet && (null != ClickedSoundEffect))
 			{
-				SelectedSoundEffect.Play();
+				ClickedSoundEffect.Play();
 			}
 		}
 
 		public void PlayHighlightSound(object obj, HighlightEventArgs e)
 		{
-			if (!IsQuiet && (null != HighlightSoundEffect))
+			if (!IsQuiet && (null != HighlightedSoundEffect))
 			{
 				//play menu noise
-				HighlightSoundEffect.Play();
+				HighlightedSoundEffect.Play();
 			}
 		}
 

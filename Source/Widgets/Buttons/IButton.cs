@@ -18,6 +18,16 @@ namespace MenuBuddy
 		/// </summary>
 		string Description { get; }
 
+		/// <summary>
+		/// name of the sound effect to play when this thing is highlighted
+		/// </summary>
+		string HighlightedSound { set; }
+
+		/// <summary>
+		/// name of the sound effect to play when this thing is selected
+		/// </summary>
+		string ClickedSound { set; }
+
 		void Clicked(object obj, ClickEventArgs e);
 	}
 }

@@ -64,9 +64,9 @@ namespace MenuBuddy
 
 		public static Color TextShadowColor { get; set; }
 
-		public static string HighlightSoundResource { get; set; }
+		public static string HighlightedSoundResource { get; set; }
 
-		public static string SelectedSoundResource { get; set; }
+		public static string ClickedSoundResource { get; set; }
 
 		public static string ButtonBackgroundImageResource { get; set; }
 
@@ -226,8 +226,8 @@ namespace MenuBuddy
 			HighlightedOutlineColor = new Color(0.8f, 0.8f, 0.8f, 0.7f);
 			HighlightedBackgroundColor = new Color(0.0f, 0.0f, 0.2f, 0.7f);
 			TextShadowColor = Color.Black;
-			HighlightSoundResource = @"MenuMove";
-			SelectedSoundResource = @"MenuSelect";
+			HighlightedSoundResource = @"MenuMove";
+			ClickedSoundResource = @"MenuSelect";
 			ButtonBackgroundImageResource = @"AlphaGradient";
 			MessageBoxBackgroundImageResource = @"gradient";
 			CancelButtonImageResource = @"Cancel";
