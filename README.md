@@ -1,10 +1,16 @@
 MenuBuddy
 =========
 
-MenuBuddy is library for doing menus in XNA and MonoGame.
+MonoGame library for menus and game state management.
 
-Based on the famous NetworkStateManagement samples.
+Based on the famous NetworkStateManagement samples from the golden age of XNA.
 
-This library has been tested on Windows and Ouya.  Other platforms supported by XNA and MonoGame would be easy to implement.
+This library currently is available for MonoGame.DesktopGL, MonoGame.iOS, MonoGame.Android, and MonoGame.WindowsUniversal
 
-Note: This lib uses a couple of submodules, so make sure to run "git submodule init; git submodule update" after cloning.
+To use MenuBuddy in your project, install the Nuget package: 
+
+https://www.nuget.org/packages/MenuBuddy/
+
+For several examples of how to use MenuBuddy, a complete game with screens and all the various widgets can be used as a recipe:
+
+https://github.com/dmanning23/MenuBuddySample
