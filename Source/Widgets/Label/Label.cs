@@ -146,7 +146,7 @@ namespace MenuBuddy
 			var pulsate = font as PulsateBuddy;
 			if (null != pulsate)
 			{
-				pulsate.PulsateScale = IsClicked ? 1.2f : 1f;
+				pulsate.PulsateSize = IsClicked ? 1.2f : 1f;
 			}
 
 			//Write the text

@@ -15,7 +15,7 @@
           "lib/uap10.0/FilenameBuddy.WindowsUniversal.dll": {}
         }
       },
-      "FontBuddy/1.0.5": {
+      "FontBuddy/1.0.8": {
         "type": "package",
         "dependencies": {
           "GameTimer": "1.0.0",
@@ -2167,7 +2167,7 @@
           "lib/uap10.0/FilenameBuddy.WindowsUniversal.dll": {}
         }
       },
-      "FontBuddy/1.0.5": {
+      "FontBuddy/1.0.8": {
         "type": "package",
         "dependencies": {
           "GameTimer": "1.0.0",
@@ -4185,7 +4185,7 @@
           "lib/uap10.0/FilenameBuddy.WindowsUniversal.dll": {}
         }
       },
-      "FontBuddy/1.0.5": {
+      "FontBuddy/1.0.8": {
         "type": "package",
         "dependencies": {
           "GameTimer": "1.0.0",
@@ -6160,7 +6160,7 @@
           "lib/uap10.0/FilenameBuddy.WindowsUniversal.dll": {}
         }
       },
-      "FontBuddy/1.0.5": {
+      "FontBuddy/1.0.8": {
         "type": "package",
         "dependencies": {
           "GameTimer": "1.0.0",
@@ -8187,7 +8187,7 @@
           "lib/uap10.0/FilenameBuddy.WindowsUniversal.dll": {}
         }
       },
-      "FontBuddy/1.0.5": {
+      "FontBuddy/1.0.8": {
         "type": "package",
         "dependencies": {
           "GameTimer": "1.0.0",
@@ -10162,7 +10162,7 @@
           "lib/uap10.0/FilenameBuddy.WindowsUniversal.dll": {}
         }
       },
-      "FontBuddy/1.0.5": {
+      "FontBuddy/1.0.8": {
         "type": "package",
         "dependencies": {
           "GameTimer": "1.0.0",
@@ -12189,7 +12189,7 @@
           "lib/uap10.0/FilenameBuddy.WindowsUniversal.dll": {}
         }
       },
-      "FontBuddy/1.0.5": {
+      "FontBuddy/1.0.8": {
         "type": "package",
         "dependencies": {
           "GameTimer": "1.0.0",
@@ -14169,11 +14169,11 @@
         "lib/uap10.0/FilenameBuddy.WindowsUniversal.pdb"
       ]
     },
-    "FontBuddy/1.0.5": {
-      "sha512": "pJz0MItixuppcb69GkY5PSux2X+0OdJSajUzQnJozAVHDicUMEyiMjdazVuGQUX3SpXTwy4NPBviyNejN2XtYA==",
+    "FontBuddy/1.0.8": {
+      "sha512": "HM9ho1Lql/ATe4P97V1/r1VSRNECCRIisVGGfS5+PiCdPkknDG1pwYqnad65gIkXwYx+ucF1Qg7y5HTfNbE6OQ==",
       "type": "package",
       "files": [
-        "FontBuddy.1.0.5.nupkg.sha512",
+        "FontBuddy.1.0.8.nupkg.sha512",
         "FontBuddy.nuspec",
         "lib/MonoAndroid10/FontBuddyLib.Android.dll",
         "lib/MonoAndroid10/FontBuddyLib.Android.pdb",
@@ -17715,7 +17715,7 @@
   "projectFileDependencyGroups": {
     "": [
       "FilenameBuddy >= 1.0.2",
-      "FontBuddy >= 1.0.5",
+      "FontBuddy >= 1.0.8",
       "GameTimer >= 1.0.1",
       "HadoukInput >= 1.0.2",
       "InputHelper >= 1.0.15",

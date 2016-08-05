@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>MenuBuddy</id>
-		<version>1.0.25</version>
+		<version>1.0.26</version>
 		<title>MenuBuddy</title>
 		<authors>dmanning23</authors>
 		<owners>dmanning23</owners>
@@ -21,7 +21,7 @@
 				<dependency id="FilenameBuddy" version="1.0.1"/>
 				<dependency id="InputHelper" version="1.0.1"/>
 				<dependency id="StateMachineBuddy" version="1.0"/>
-				<dependency id="FontBuddy" version="1.0"/>
+				<dependency id="FontBuddy" version="1.0.8"/>
 				<dependency id="GameTimer" version="1.0"/>
 				<dependency id="HadoukInput" version="1.0"/>
 				<dependency id="MatrixExtensions" version="1.0"/>
@@ -40,7 +40,7 @@
 				<dependency id="FilenameBuddy" version="1.0.1"/>
 				<dependency id="InputHelper" version="1.0.1"/>
 				<dependency id="StateMachineBuddy" version="1.0"/>
-				<dependency id="FontBuddy" version="1.0"/>
+				<dependency id="FontBuddy" version="1.0.8"/>
 				<dependency id="GameTimer" version="1.0"/>
 				<dependency id="HadoukInput" version="1.0"/>
 				<dependency id="MatrixExtensions" version="1.0"/>
@@ -60,7 +60,7 @@
 				<dependency id="FilenameBuddy" version="1.0.1"/>
 				<dependency id="InputHelper" version="1.0.1"/>
 				<dependency id="StateMachineBuddy" version="1.0"/>
-				<dependency id="FontBuddy" version="1.0"/>
+				<dependency id="FontBuddy" version="1.0.8"/>
 				<dependency id="GameTimer" version="1.0"/>
 				<dependency id="HadoukInput" version="1.0"/>
 				<dependency id="MatrixExtensions" version="1.0"/>
@@ -78,7 +78,7 @@
 				<dependency id="FilenameBuddy" version="1.0.1"/>
 				<dependency id="InputHelper" version="1.0.1"/>
 				<dependency id="StateMachineBuddy" version="1.0"/>
-				<dependency id="FontBuddy" version="1.0"/>
+				<dependency id="FontBuddy" version="1.0.8"/>
 				<dependency id="GameTimer" version="1.0"/>
 				<dependency id="HadoukInput" version="1.0"/>
 				<dependency id="MatrixExtensions" version="1.0"/>

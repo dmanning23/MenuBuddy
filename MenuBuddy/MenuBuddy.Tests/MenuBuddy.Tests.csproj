@@ -75,7 +75,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="FontBuddyLib.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontBuddy.1.0.5\lib\net451\FontBuddyLib.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\FontBuddy.1.0.8\lib\net451\FontBuddyLib.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="GameTimer.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
