@@ -106,6 +106,5 @@ namespace MenuBuddy
 		}
 
 		#endregion //Methods
-
 	}
 }
