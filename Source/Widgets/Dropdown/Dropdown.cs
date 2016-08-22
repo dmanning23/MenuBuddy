@@ -72,7 +72,7 @@ namespace MenuBuddy
 			Screen.ScreenManager.AddScreen(droplist);
 		}
 
-		public void SetSelectedDropdownItem(DropdownItem<T> selectedItem)
+		private void SetSelectedDropdownItem(DropdownItem<T> selectedItem)
 		{
 			if (selectedItem != SelectedDropdownItem)
 			{
@@ -87,8 +87,17 @@ namespace MenuBuddy
 				Layout.Items.Clear();
 
 				//add the new item as the selected item
-				AddItem(selectedItem);
+				if (null != selectedItem)
+				{
+					AddItem(selectedItem);
+				}
 			}
+		}
+
+		public void Clear()
+		{
+			SetSelectedDropdownItem(null);
+			DropdownList.Clear();
 		}
 
 		#endregion //Methods
