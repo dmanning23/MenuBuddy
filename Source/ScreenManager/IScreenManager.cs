@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 
 namespace MenuBuddy
 {
@@ -101,6 +102,13 @@ namespace MenuBuddy
 		/// <param name="screenName"></param>
 		/// <returns></returns>
 		IScreen FindScreen(string screenName);
+
+		/// <summary>
+		/// Find all the screens of a certain type
+		/// </summary>
+		/// <param name="screenType"></param>
+		/// <returns></returns>
+		IEnumerable<IScreen> FindScreens<T>();
 
 		#endregion //Public Methods
 	}

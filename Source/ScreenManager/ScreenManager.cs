@@ -276,6 +276,8 @@ namespace MenuBuddy
 			}
 		}
 
+		
+
 		/// <summary>
 		/// This method pops up a recoverable error screen.
 		/// </summary>
@@ -290,6 +292,11 @@ namespace MenuBuddy
 		public IScreen FindScreen(string screenName)
 		{
 			return ScreenStack.Screens.Find(m => m.ScreenName == screenName);
+		}
+
+		public IEnumerable<IScreen> FindScreens<T>()
+		{
+			return ScreenStack.FindScreens<T>();
 		}
 
 		/// <summary>

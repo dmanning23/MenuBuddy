@@ -1,5 +1,7 @@
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MenuBuddy
 {
@@ -161,6 +163,11 @@ namespace MenuBuddy
 		{
 			Screens.Remove(screen);
 			ScreensToUpdate.Remove(screen);
+		}
+
+		public IEnumerable<IScreen> FindScreens<T>()
+		{
+			return Screens.Where(x => x is T);
 		}
 
 		#endregion //Methods

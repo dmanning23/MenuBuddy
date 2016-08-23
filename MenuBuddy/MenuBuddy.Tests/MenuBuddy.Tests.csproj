@@ -165,6 +165,7 @@
     <Compile Include="MessageBoxTests.cs" />
     <Compile Include="RelButtonTests.cs" />
     <Compile Include="LabelTests.cs" />
+    <Compile Include="ScreenManagerTests.cs" />
     <Compile Include="ScrollLayoutTests.cs" />
     <Compile Include="ShimTests_VerticalBottom.cs" />
     <Compile Include="ShimTests_VerticalCentered.cs" />
