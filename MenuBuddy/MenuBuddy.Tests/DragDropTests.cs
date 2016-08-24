@@ -52,7 +52,8 @@ namespace MenuBuddy.Tests
 
 			var e = new DragEventArgs
 			{
-				Start = new Vector2(20f, 40f)
+				Start = new Vector2(20f, 40f),
+				Current = new Vector2(50, 100)
 			};
 
 			Assert.IsTrue(_button.CheckDrag(e));

@@ -42,7 +42,7 @@ namespace MenuBuddy
 
 		public bool CheckDrag(DragEventArgs drag)
 		{
-			var result = Rect.Contains(drag.Start);
+			var result = Rect.Contains(drag.Current);
 			if (result)
 			{
 				//Move the button to the current drag position
