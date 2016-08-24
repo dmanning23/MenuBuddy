@@ -30,7 +30,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FilenameBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FilenameBuddy.1.0.2\lib\Xamarin.iOS10\FilenameBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\FilenameBuddy.1.0.3\lib\Xamarin.iOS10\FilenameBuddy.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FontBuddyLib.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -90,7 +90,7 @@
     </Reference>
     <Reference Include="Xamarin.iOS" />
     <Reference Include="XmlBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XmlBuddy.1.0.4\lib\Xamarin.iOS10\XmlBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\XmlBuddy.1.0.6\lib\Xamarin.iOS10\XmlBuddy.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -139,6 +139,9 @@
     </Compile>
     <Compile Include="..\..\Source\Transitions\WipeTransitionObject.cs">
       <Link>Transitions\WipeTransitionObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Buttons\DragDropButton.cs">
+      <Link>Widgets\Buttons\DragDropButton.cs</Link>
     </Compile>
     <Compile Include="..\..\Source\Widgets\Label\FontSize.cs">
       <Link>Widgets\Label\FontSize.cs</Link>

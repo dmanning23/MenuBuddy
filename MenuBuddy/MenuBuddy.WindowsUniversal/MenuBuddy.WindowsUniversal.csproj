@@ -155,6 +155,9 @@
     <Compile Include="..\..\Source\Transitions\WipeTransitionObject.cs">
       <Link>Transitions\WipeTransitionObject.cs</Link>
     </Compile>
+    <Compile Include="..\..\Source\Widgets\Buttons\DragDropButton.cs">
+      <Link>Widgets\Buttons\DragDropButton.cs</Link>
+    </Compile>
     <Compile Include="..\..\Source\Widgets\Label\FontSize.cs">
       <Link>Widgets\Label\FontSize.cs</Link>
     </Compile>

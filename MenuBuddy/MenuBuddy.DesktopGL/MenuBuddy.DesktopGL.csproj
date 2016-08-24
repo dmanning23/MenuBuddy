@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FilenameBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FilenameBuddy.1.0.2\lib\net452\FilenameBuddy.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\FilenameBuddy.1.0.3\lib\net452\FilenameBuddy.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FontBuddyLib.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -103,7 +103,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="XmlBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XmlBuddy.1.0.4\lib\net451\XmlBuddy.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\XmlBuddy.1.0.6\lib\net451\XmlBuddy.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -149,6 +149,9 @@
     </Compile>
     <Compile Include="..\..\Source\Transitions\WipeTransitionObject.cs">
       <Link>Transitions\WipeTransitionObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\Widgets\Buttons\DragDropButton.cs">
+      <Link>Widgets\Buttons\DragDropButton.cs</Link>
     </Compile>
     <Compile Include="..\..\Source\Widgets\Label\FontSize.cs">
       <Link>Widgets\Label\FontSize.cs</Link>
