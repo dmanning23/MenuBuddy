@@ -117,6 +117,24 @@ namespace MenuBuddy
 					}
 				}
 			}
+
+			//check drop operations
+			var dropScreen = screen as IDroppable;
+			if (null != dropScreen)
+			{
+				int i = 0;
+				while (i < InputHelper.Drops.Count)
+				{
+					if (dropScreen.CheckDrop(InputHelper.Drops[i]))
+					{
+						InputHelper.Drops.RemoveAt(i);
+					}
+					else
+					{
+						i++;
+					}
+				}
+			}
 		}
 
 		#endregion //Methods

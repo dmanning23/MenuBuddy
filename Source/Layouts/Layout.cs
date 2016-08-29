@@ -16,6 +16,7 @@ namespace MenuBuddy
 		public event EventHandler<ClickEventArgs> OnClick;
 		public event EventHandler<HighlightEventArgs> OnHighlight;
 		public event EventHandler<DragEventArgs> OnDrag;
+		public event EventHandler<DropEventArgs> OnDrop;
 
 		private float _scale;
 
@@ -268,6 +269,24 @@ namespace MenuBuddy
 				{
 					var draggable = item as IDraggable;
 					if ((draggable != null) && draggable.CheckDrag(drag))
+					{
+						return true;
+					}
+				}
+			}
+
+			//None of the items in this container were clicked
+			return false;
+		}
+
+		public bool CheckDrop(DropEventArgs drop)
+		{
+			if (Rect.Contains(drop.Drop))
+			{
+				foreach (var item in Items)
+				{
+					var droppable = item as IDroppable;
+					if ((droppable != null) && droppable.CheckDrop(drop))
 					{
 						return true;
 					}

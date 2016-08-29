@@ -1,4 +1,5 @@
 using InputHelper;
+using Microsoft.Xna.Framework;
 using System;
 
 namespace MenuBuddy
@@ -6,11 +7,14 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a button thhat contains a relaitve layout
 	/// </summary>
-	public class DragDropButton : RelativeLayoutButton, IDraggable
+	public class DragDropButton : RelativeLayoutButton, IDraggable, IDroppable
 	{
 		#region Properties
 
 		public event EventHandler<DragEventArgs> OnDrag;
+		public event EventHandler<DropEventArgs> OnDrop;
+
+		private bool CurrentlyDragging { get; set; }
 
 		#endregion //Properties
 
@@ -21,10 +25,12 @@ namespace MenuBuddy
 		/// </summary>
 		public DragDropButton()
 		{
+			CurrentlyDragging = false;
 		}
 
 		public DragDropButton(DragDropButton inst) : base(inst)
 		{
+			CurrentlyDragging = inst.CurrentlyDragging;
 		}
 
 		/// <summary>
@@ -42,20 +48,66 @@ namespace MenuBuddy
 
 		public bool CheckDrag(DragEventArgs drag)
 		{
-			var result = Rect.Contains(drag.Current);
-			if (result)
+			var result = false;
+			if (CurrentlyDragging)
 			{
-				//Move the button to the current drag position
-				Position = drag.Current.ToPoint();
+				result = true;
 
-				//fire off the event for any listeners
-				if (OnDrag != null)
+				//Set the position to the current drag position
+				DragOperation(drag);
+			}
+			else
+			{
+				//Check if the user has started a drag operation
+				result = Rect.Contains(drag.Current);
+				if (result)
 				{
-					OnDrag(this, drag);
+					if (!CurrentlyDragging)
+					{
+						//Set the start rectangle
+						CurrentlyDragging = true;
+					}
+
+					DragOperation(drag);
 				}
 			}
 
 			return result;
+		}
+
+		private void DragOperation(DragEventArgs drag)
+		{
+			//Move the button to the current drag position
+			Position = drag.Current.ToPoint();
+
+			//fire off the event for any listeners
+			if (OnDrag != null)
+			{
+				OnDrag(this, drag);
+			}
+		}
+
+		public bool CheckDrop(DropEventArgs drop)
+		{
+			//check if we are currently dragging
+			if (CurrentlyDragging)
+			{
+				//don't respond to anymore drop events
+				CurrentlyDragging = false;
+
+				//Move the button to the drop position
+				Position = drop.Drop.ToPoint();
+
+				//fire off the event for any listeners
+				if (OnDrop != null)
+				{
+					OnDrop(this, drop);
+				}
+
+				return true;
+			}
+
+			return false;
 		}
 
 		#endregion

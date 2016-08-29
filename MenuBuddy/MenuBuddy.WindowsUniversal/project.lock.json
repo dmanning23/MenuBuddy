@@ -63,7 +63,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.15": {
+      "InputHelper/1.0.16": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -379,7 +379,7 @@
           "lib/netcore/MonoGame.Framework.dll": {}
         }
       },
-      "MouseBuddy/1.0.6": {
+      "MouseBuddy/1.0.7": {
         "type": "package",
         "dependencies": {
           "FilenameBuddy": "1.0.1",
@@ -2104,7 +2104,7 @@
           }
         }
       },
-      "TouchScreenBuddy/1.0.5": {
+      "TouchScreenBuddy/1.0.6": {
         "type": "package",
         "dependencies": {
           "InputHelper": "1.0.0",
@@ -2215,7 +2215,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.15": {
+      "InputHelper/1.0.16": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -2480,7 +2480,7 @@
           "lib/netcore/MonoGame.Framework.dll": {}
         }
       },
-      "MouseBuddy/1.0.6": {
+      "MouseBuddy/1.0.7": {
         "type": "package",
         "dependencies": {
           "FilenameBuddy": "1.0.1",
@@ -4122,7 +4122,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "TouchScreenBuddy/1.0.5": {
+      "TouchScreenBuddy/1.0.6": {
         "type": "package",
         "dependencies": {
           "InputHelper": "1.0.0",
@@ -4233,7 +4233,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.15": {
+      "InputHelper/1.0.16": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -4496,7 +4496,7 @@
           "lib/netcore/MonoGame.Framework.dll": {}
         }
       },
-      "MouseBuddy/1.0.6": {
+      "MouseBuddy/1.0.7": {
         "type": "package",
         "dependencies": {
           "FilenameBuddy": "1.0.1",
@@ -6097,7 +6097,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "TouchScreenBuddy/1.0.5": {
+      "TouchScreenBuddy/1.0.6": {
         "type": "package",
         "dependencies": {
           "InputHelper": "1.0.0",
@@ -6208,7 +6208,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.15": {
+      "InputHelper/1.0.16": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -6479,7 +6479,7 @@
           "lib/netcore/MonoGame.Framework.dll": {}
         }
       },
-      "MouseBuddy/1.0.6": {
+      "MouseBuddy/1.0.7": {
         "type": "package",
         "dependencies": {
           "FilenameBuddy": "1.0.1",
@@ -8124,7 +8124,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "TouchScreenBuddy/1.0.5": {
+      "TouchScreenBuddy/1.0.6": {
         "type": "package",
         "dependencies": {
           "InputHelper": "1.0.0",
@@ -8235,7 +8235,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.15": {
+      "InputHelper/1.0.16": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -8498,7 +8498,7 @@
           "lib/netcore/MonoGame.Framework.dll": {}
         }
       },
-      "MouseBuddy/1.0.6": {
+      "MouseBuddy/1.0.7": {
         "type": "package",
         "dependencies": {
           "FilenameBuddy": "1.0.1",
@@ -10099,7 +10099,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "TouchScreenBuddy/1.0.5": {
+      "TouchScreenBuddy/1.0.6": {
         "type": "package",
         "dependencies": {
           "InputHelper": "1.0.0",
@@ -10210,7 +10210,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.15": {
+      "InputHelper/1.0.16": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -10481,7 +10481,7 @@
           "lib/netcore/MonoGame.Framework.dll": {}
         }
       },
-      "MouseBuddy/1.0.6": {
+      "MouseBuddy/1.0.7": {
         "type": "package",
         "dependencies": {
           "FilenameBuddy": "1.0.1",
@@ -12126,7 +12126,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "TouchScreenBuddy/1.0.5": {
+      "TouchScreenBuddy/1.0.6": {
         "type": "package",
         "dependencies": {
           "InputHelper": "1.0.0",
@@ -12237,7 +12237,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.15": {
+      "InputHelper/1.0.16": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -12500,7 +12500,7 @@
           "lib/netcore/MonoGame.Framework.dll": {}
         }
       },
-      "MouseBuddy/1.0.6": {
+      "MouseBuddy/1.0.7": {
         "type": "package",
         "dependencies": {
           "FilenameBuddy": "1.0.1",
@@ -14101,7 +14101,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "TouchScreenBuddy/1.0.5": {
+      "TouchScreenBuddy/1.0.6": {
         "type": "package",
         "dependencies": {
           "InputHelper": "1.0.0",
@@ -14217,11 +14217,11 @@
         "lib/uap10.0/HadoukInput.WindowsUniversal.pdb"
       ]
     },
-    "InputHelper/1.0.15": {
-      "sha512": "AaatgYluTp2tpm92Xs762uHg2PkXTSoUunBr+qprrv8eOmuJzS1HM0yQtwHCCAGd+fCWnjsmsKjsnTz82s/xTw==",
+    "InputHelper/1.0.16": {
+      "sha512": "xkMVgCvVS3jKi17gVf9Bh1jYGiXVFya9yvFvcPwVBvvMePitk+klVibNFB7NjZpX6lz7d+FQ0wtgnnM8puO9pg==",
       "type": "package",
       "files": [
-        "InputHelper.1.0.15.nupkg.sha512",
+        "InputHelper.1.0.16.nupkg.sha512",
         "InputHelper.nuspec",
         "lib/MonoAndroid10/InputHelper.Android.dll",
         "lib/MonoAndroid10/InputHelper.Android.pdb",
@@ -14853,11 +14853,11 @@
         "readme.txt"
       ]
     },
-    "MouseBuddy/1.0.6": {
-      "sha512": "Gmqj5zyvbkNv4lnqkwStkvOqAVpe2sZDHQ9u1weJVblymMhFdPQIXrDoNwOj4Eeb8feQMbtnOkuBcBo0P/72eg==",
+    "MouseBuddy/1.0.7": {
+      "sha512": "Gm6pD9lQqIzASJuyiOTdcxBAUL+yEtkrQAI+pbQHIeqcWnIZLkTchr8RHH5SqGggh88rgRsTglSjqu7uRvjxgw==",
       "type": "package",
       "files": [
-        "MouseBuddy.1.0.6.nupkg.sha512",
+        "MouseBuddy.1.0.7.nupkg.sha512",
         "MouseBuddy.nuspec",
         "lib/MonoAndroid10/MouseBuddy.Android.dll",
         "lib/MonoAndroid10/MouseBuddy.Android.pdb",
@@ -17663,11 +17663,11 @@
         "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll"
       ]
     },
-    "TouchScreenBuddy/1.0.5": {
-      "sha512": "9ksnlyEG7fIzDhdNr6/ldIFACUsNxCm9Kh8KR6XKvMmYwhLzVj3GcwpNU4A1X4hsn6KFBXovAiMOrrL7bW9SZw==",
+    "TouchScreenBuddy/1.0.6": {
+      "sha512": "LUhcetjg7w6Z+sBinpWYpF3wMZ+6fKiuIGPMyVb+ginjS9eDM8iJJ17qlNaSUrQx7J9TwJDEdp0UgSFs3bEo2w==",
       "type": "package",
       "files": [
-        "TouchScreenBuddy.1.0.5.nupkg.sha512",
+        "TouchScreenBuddy.1.0.6.nupkg.sha512",
         "TouchScreenBuddy.nuspec",
         "lib/MonoAndroid10/TouchScreenBuddy.Android.dll",
         "lib/MonoAndroid10/TouchScreenBuddy.Android.pdb",
@@ -17718,16 +17718,16 @@
       "FontBuddy >= 1.0.8",
       "GameTimer >= 1.0.1",
       "HadoukInput >= 1.0.2",
-      "InputHelper >= 1.0.15",
+      "InputHelper >= 1.0.16",
       "MatrixExtensions >= 1.0.1",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0",
       "MonoGame.Framework.WindowsUniversal >= 3.5.1.1679",
-      "MouseBuddy >= 1.0.6",
+      "MouseBuddy >= 1.0.7",
       "PrimitiveBuddy >= 1.0.0",
       "RandomExtensions.dmanning23 >= 1.0.2",
       "ResolutionBuddy >= 1.0.2",
       "StateMachineBuddy >= 1.0.0",
-      "TouchScreenBuddy >= 1.0.5",
+      "TouchScreenBuddy >= 1.0.6",
       "Vector2Extensions >= 1.0.1",
       "XmlBuddy >= 1.0.6"
     ],

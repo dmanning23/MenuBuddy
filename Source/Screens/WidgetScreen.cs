@@ -21,6 +21,7 @@ namespace MenuBuddy
 		public event EventHandler<ClickEventArgs> OnClick;
 		public event EventHandler<HighlightEventArgs> OnHighlight;
 		public event EventHandler<DragEventArgs> OnDrag;
+		public event EventHandler<DropEventArgs> OnDrop;
 
 		#endregion
 
@@ -217,6 +218,12 @@ namespace MenuBuddy
 
 			//check if they clicked in the layout
 			return Layout.CheckDrag(drag);
+		}
+
+		public bool CheckDrop(DropEventArgs drop)
+		{
+			//check if they clicked in the layout
+			return Layout.CheckDrop(drop);
 		}
 
 		#endregion //Methods

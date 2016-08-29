@@ -46,7 +46,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="InputHelper.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\InputHelper.1.0.15\lib\Xamarin.iOS10\InputHelper.iOS.dll</HintPath>
+      <HintPath>..\packages\InputHelper.1.0.16\lib\Xamarin.iOS10\InputHelper.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MatrixExtensions.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -58,7 +58,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MouseBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MouseBuddy.1.0.6\lib\Xamarin.iOS10\MouseBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\MouseBuddy.1.0.7\lib\Xamarin.iOS10\MouseBuddy.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PrimitiveBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -81,7 +81,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="TouchScreenBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TouchScreenBuddy.1.0.5\lib\Xamarin.iOS10\TouchScreenBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\TouchScreenBuddy.1.0.6\lib\Xamarin.iOS10\TouchScreenBuddy.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Vector2Extensions.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
