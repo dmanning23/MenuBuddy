@@ -59,7 +59,7 @@ namespace MenuBuddy
 			else
 			{
 				//Check if the user has started a drag operation
-				result = Rect.Contains(drag.Current);
+				result = Rect.Contains(drag.Start);
 				if (result)
 				{
 					if (!CurrentlyDragging)
