@@ -120,19 +120,14 @@ namespace MenuBuddy
 		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
-#if !DEBUG
 			try
 			{
-#endif
-			ScreenStack.Draw(gameTime);
-
-#if !DEBUG
+				ScreenStack.Draw(gameTime);
 			}
 			catch (Exception ex)
 			{
 				ErrorScreen(ex);
 			}
-#endif
 		}
 
 		/// <summary>
@@ -174,10 +169,8 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void AddScreen(IScreen screen, PlayerIndex? controllingPlayer = null)
 		{
-#if !DEBUG
 			try
 			{
-#endif
 				screen.ControllingPlayer = controllingPlayer;
 				screen.ScreenManager = this;
 
@@ -188,13 +181,11 @@ namespace MenuBuddy
 				}
 
 				ScreenStack.Screens.Add(screen);
-#if !DEBUG
 			}
 			catch (Exception ex)
 			{
 				ErrorScreen(ex);
 			}
-#endif
 		}
 
 		/// <summary>
@@ -202,33 +193,29 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void AddScreen(IScreen[] screens, PlayerIndex? controllingPlayer = null)
 		{
-#if !DEBUG
 			try
 			{
-#endif
-			foreach (var screen in screens)
-			{
-				if (screen != null)
+				foreach (var screen in screens)
 				{
-
-					screen.ControllingPlayer = controllingPlayer;
-					screen.ScreenManager = this;
-
-					// If we have a graphics device, tell the screen to load content.
-					if (Initialized)
+					if (screen != null)
 					{
-						screen.LoadContent();
-					}
 
+						screen.ControllingPlayer = controllingPlayer;
+						screen.ScreenManager = this;
+
+						// If we have a graphics device, tell the screen to load content.
+						if (Initialized)
+						{
+							screen.LoadContent();
+						}
+
+					}
 				}
-			}
-#if !DEBUG
 			}
 			catch (Exception ex)
 			{
 				ErrorScreen(ex);
 			}
-#endif
 
 			ScreenStack.Screens.AddRange(screens);
 		}
@@ -275,8 +262,6 @@ namespace MenuBuddy
 				curScreen.ResetInputTimer();
 			}
 		}
-
-		
 
 		/// <summary>
 		/// This method pops up a recoverable error screen.
