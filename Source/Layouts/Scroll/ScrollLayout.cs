@@ -154,6 +154,8 @@ namespace MenuBuddy
 			get; set;
 		}
 
+		public bool ShowScrollBars { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -165,6 +167,7 @@ namespace MenuBuddy
 			DrawHorizontalScrollBar = false;
 			UpdateScrollBars();
 			DrawScrollbars = false;
+			ShowScrollBars = true;
 		}
 
 		public ScrollLayout(ScrollLayout inst) : base(inst)
@@ -180,6 +183,7 @@ namespace MenuBuddy
 			DrawHorizontalScrollBar = inst.DrawHorizontalScrollBar;
 			DrawScrollbars = inst.DrawScrollbars;
 			Transition = inst.Transition;
+			ShowScrollBars = inst.ShowScrollBars;
 		}
 
 		public override IScreenItem DeepCopy()
@@ -293,7 +297,7 @@ namespace MenuBuddy
 				Color.White);
 
 			//Draw the scroll bars if the mouse pointer or a touch is inside the layout
-			if (DrawScrollbars)
+			if (ShowScrollBars && DrawScrollbars)
 			{
 				if (DrawVerticalScrollBar)
 				{

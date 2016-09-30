@@ -303,6 +303,12 @@ namespace MenuBuddy.Tests
 		}
 
 		[Test]
+		public void Scrollbar__defaultdraw_1()
+		{
+			Assert.AreEqual(true, _layout.ShowScrollBars);
+		}
+
+		[Test]
 		public void Scrollbar__defaultdraw()
 		{
 			Assert.AreEqual(false, _layout.DrawVerticalScrollBar);
