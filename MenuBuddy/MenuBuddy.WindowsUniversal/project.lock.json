@@ -63,7 +63,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.16": {
+      "InputHelper/1.0.17": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -424,7 +424,7 @@
           "lib/uap10.0/RandomExtensions.WindowsUniversal.dll": {}
         }
       },
-      "ResolutionBuddy/1.0.2": {
+      "ResolutionBuddy/1.0.3": {
         "type": "package",
         "dependencies": {
           "MatrixExtensions": "1.0.0",
@@ -2215,7 +2215,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.16": {
+      "InputHelper/1.0.17": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -2525,7 +2525,7 @@
           "lib/uap10.0/RandomExtensions.WindowsUniversal.dll": {}
         }
       },
-      "ResolutionBuddy/1.0.2": {
+      "ResolutionBuddy/1.0.3": {
         "type": "package",
         "dependencies": {
           "MatrixExtensions": "1.0.0",
@@ -4233,7 +4233,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.16": {
+      "InputHelper/1.0.17": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -4541,7 +4541,7 @@
           "lib/uap10.0/RandomExtensions.WindowsUniversal.dll": {}
         }
       },
-      "ResolutionBuddy/1.0.2": {
+      "ResolutionBuddy/1.0.3": {
         "type": "package",
         "dependencies": {
           "MatrixExtensions": "1.0.0",
@@ -6208,7 +6208,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.16": {
+      "InputHelper/1.0.17": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -6524,7 +6524,7 @@
           "lib/uap10.0/RandomExtensions.WindowsUniversal.dll": {}
         }
       },
-      "ResolutionBuddy/1.0.2": {
+      "ResolutionBuddy/1.0.3": {
         "type": "package",
         "dependencies": {
           "MatrixExtensions": "1.0.0",
@@ -8235,7 +8235,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.16": {
+      "InputHelper/1.0.17": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -8543,7 +8543,7 @@
           "lib/uap10.0/RandomExtensions.WindowsUniversal.dll": {}
         }
       },
-      "ResolutionBuddy/1.0.2": {
+      "ResolutionBuddy/1.0.3": {
         "type": "package",
         "dependencies": {
           "MatrixExtensions": "1.0.0",
@@ -10210,7 +10210,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.16": {
+      "InputHelper/1.0.17": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -10526,7 +10526,7 @@
           "lib/uap10.0/RandomExtensions.WindowsUniversal.dll": {}
         }
       },
-      "ResolutionBuddy/1.0.2": {
+      "ResolutionBuddy/1.0.3": {
         "type": "package",
         "dependencies": {
           "MatrixExtensions": "1.0.0",
@@ -12237,7 +12237,7 @@
           "lib/uap10.0/HadoukInput.WindowsUniversal.dll": {}
         }
       },
-      "InputHelper/1.0.16": {
+      "InputHelper/1.0.17": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
@@ -12545,7 +12545,7 @@
           "lib/uap10.0/RandomExtensions.WindowsUniversal.dll": {}
         }
       },
-      "ResolutionBuddy/1.0.2": {
+      "ResolutionBuddy/1.0.3": {
         "type": "package",
         "dependencies": {
           "MatrixExtensions": "1.0.0",
@@ -14186,7 +14186,7 @@
       ]
     },
     "GameTimer/1.0.1": {
-      "sha512": "6IhhpOqoe+JGY79fw0O8igx1RwAj3fZgCtpcwfaPMZdTkekUhPFkVZH3PKSyJuNGS5wNzqqr9ZrB/n52NfspQw==",
+      "sha512": "WrYJ7brNlAneO3L2eCd4ExsBNhcmEb2+NwLlTbhY1Eh8ivb0P2QiX1xnzzy4Ww24kXzYV+/EGla6g1ZMy9X2LA==",
       "type": "package",
       "files": [
         "GameTimer.1.0.1.nupkg.sha512",
@@ -14217,11 +14217,11 @@
         "lib/uap10.0/HadoukInput.WindowsUniversal.pdb"
       ]
     },
-    "InputHelper/1.0.16": {
-      "sha512": "xkMVgCvVS3jKi17gVf9Bh1jYGiXVFya9yvFvcPwVBvvMePitk+klVibNFB7NjZpX6lz7d+FQ0wtgnnM8puO9pg==",
+    "InputHelper/1.0.17": {
+      "sha512": "xRhqgSnYWUcU1BFM0s+JU+NZWLxnzmiNsb8Dj9i6K6TwZgT3xUSgJ88jFNfqIbmziYjeyIbeqnhRdgucoRcBWw==",
       "type": "package",
       "files": [
-        "InputHelper.1.0.16.nupkg.sha512",
+        "InputHelper.1.0.17.nupkg.sha512",
         "InputHelper.nuspec",
         "lib/MonoAndroid10/InputHelper.Android.dll",
         "lib/MonoAndroid10/InputHelper.Android.pdb",
@@ -14901,11 +14901,11 @@
         "lib/uap10.0/RandomExtensions.WindowsUniversal.pdb"
       ]
     },
-    "ResolutionBuddy/1.0.2": {
-      "sha512": "xyRgyyxMiCW8n5SwlH2PSa2BxGyD1X28P5fuw9lzMlrsacSuLoHu8hCrJEBT5w9+0YCJp9qSnRZVC9MKRXpATg==",
+    "ResolutionBuddy/1.0.3": {
+      "sha512": "IpeWsjYAGPzdxtcHLy1mwwX8bSxGNQmtDH2a1GDjZ3fmtgeuXO+ECsZNBG1z8IsdqhObCQemocjehJfg/PiCnQ==",
       "type": "package",
       "files": [
-        "ResolutionBuddy.1.0.2.nupkg.sha512",
+        "ResolutionBuddy.1.0.3.nupkg.sha512",
         "ResolutionBuddy.nuspec",
         "lib/MonoAndroid10/ResolutionBuddy.Android.dll",
         "lib/MonoAndroid10/ResolutionBuddy.Android.pdb",
@@ -17718,14 +17718,14 @@
       "FontBuddy >= 1.0.8",
       "GameTimer >= 1.0.1",
       "HadoukInput >= 1.0.2",
-      "InputHelper >= 1.0.16",
+      "InputHelper >= 1.0.17",
       "MatrixExtensions >= 1.0.1",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0",
       "MonoGame.Framework.WindowsUniversal >= 3.5.1.1679",
       "MouseBuddy >= 1.0.7",
       "PrimitiveBuddy >= 1.0.0",
       "RandomExtensions.dmanning23 >= 1.0.2",
-      "ResolutionBuddy >= 1.0.2",
+      "ResolutionBuddy >= 1.0.3",
       "StateMachineBuddy >= 1.0.0",
       "TouchScreenBuddy >= 1.0.6",
       "Vector2Extensions >= 1.0.1",

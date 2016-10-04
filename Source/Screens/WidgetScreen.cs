@@ -16,7 +16,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Ammount of time that passes before attract mode is activated
 		/// </summary>
-		private const float _AttractModeTime = 15.0f;
+		public float AttractModeTime { get; set; }
 
 		public event EventHandler<ClickEventArgs> OnClick;
 		public event EventHandler<HighlightEventArgs> OnHighlight;
@@ -86,6 +86,7 @@ namespace MenuBuddy
 
 			TimeSinceInput = new CountdownTimer();
 			ResetInputTimer();
+			AttractModeTime = 15f;
 		}
 
 		public override void LoadContent()
@@ -208,7 +209,7 @@ namespace MenuBuddy
 		/// </summary>
 		public void ResetInputTimer()
 		{
-			TimeSinceInput.Start(_AttractModeTime);
+			TimeSinceInput.Start(AttractModeTime);
 		}
 
 		public bool CheckDrag(DragEventArgs drag)
