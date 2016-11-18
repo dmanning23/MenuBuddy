@@ -5,20 +5,20 @@ using System.Collections.Generic;
 
 namespace MenuBuddy
 {
-	public class TreeItem<T> : StackLayout
+	public class TreeItem : StackLayout
 	{
 		#region Fields
 
 		/// <summary>
 		/// The tree control that owns this dude
 		/// </summary>
-		ITree<T> _tree;
+		ITree _tree;
 
 		/// <summary>
 		/// the tree item that this guy is underneath
 		/// null if it is a top level node
 		/// </summary>
-		TreeItem<T> _parent;
+		TreeItem _parent;
 
 		/// <summary>
 		/// how many tabs in this guy is
@@ -31,6 +31,13 @@ namespace MenuBuddy
 		}
 
 		bool _expanded;
+		public bool Expanded
+		{
+			get
+			{
+				return _expanded;
+			}
+		}
 
 		Texture2D _expandTexture;
 		Texture2D _collapseTexture;
@@ -48,7 +55,7 @@ namespace MenuBuddy
 			set;
 		}
 
-		public List<TreeItem<T>> ChildItems
+		public List<TreeItem> ChildItems
 		{
 			get; private set;
 		}
@@ -57,7 +64,7 @@ namespace MenuBuddy
 
 		#region Initialization
 
-		public TreeItem(ITree<T> tree, TreeItem<T> parent)
+		public TreeItem(ITree tree, TreeItem parent)
 		{
 			ItemButton = new RelativeLayoutButton();
 			Alignment = StackAlignment.Left;
@@ -66,11 +73,11 @@ namespace MenuBuddy
 			_tree = tree;
 			_parent = parent;
 			_indentation = (parent == null ? 0 : parent._indentation + 1);
-			ChildItems = new List<TreeItem<T>>();
+			ChildItems = new List<TreeItem>();
 			_expanded = false;
 		}
 
-		public TreeItem(TreeItem<T> inst) : base(inst)
+		public TreeItem(TreeItem inst) : base(inst)
 		{
 			ItemButton = new RelativeLayoutButton(inst.ItemButton);
 			_tree = inst._tree;
@@ -81,10 +88,10 @@ namespace MenuBuddy
 			_collapseTexture = inst._collapseTexture;
 			ExpandCollapseImage = new Image(inst.ExpandCollapseImage);
 
-			ChildItems = new List<TreeItem<T>>();
+			ChildItems = new List<TreeItem>();
 			foreach (var item in inst.ChildItems)
 			{
-				var treeItem = item.DeepCopy() as TreeItem<T>;
+				var treeItem = item.DeepCopy() as TreeItem;
 				if (null != treeItem)
 				{
 					ChildItems.Add(treeItem);
@@ -94,21 +101,23 @@ namespace MenuBuddy
 
 		public override IScreenItem DeepCopy()
 		{
-			return new TreeItem<T>(this);
+			return new TreeItem(this);
 		}
 
 		private void SetScreen(IScreen screen)
 		{
-			if (null == _expandTexture)
+			if (null != screen.ScreenManager)
 			{
-				_expandTexture = screen.ScreenManager.Game.Content.Load<Texture2D>("Expand");
-			}
+				if (null == _expandTexture)
+				{
+					_expandTexture = screen.ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.TreeExpandImageResource);
+				}
 
-			if (null == _collapseTexture)
-			{
-				_collapseTexture = screen.ScreenManager.Game.Content.Load<Texture2D>("Collapse");
+				if (null == _collapseTexture)
+				{
+					_collapseTexture = screen.ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.TreeCollapseImageResource);
+				}
 			}
-			
 		}
 
 		#endregion //Initialization

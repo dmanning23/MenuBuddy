@@ -3,7 +3,7 @@ using System;
 
 namespace MenuBuddy
 {
-	public class Tree<T> : ScrollLayout, ITree<T>, IHasContent
+	public class Tree : ScrollLayout, ITree, IHasContent
 	{
 		#region Fields
 
@@ -53,7 +53,7 @@ namespace MenuBuddy
 			Screen = screen;
 		}
 
-		public Tree(Tree<T> inst) : base(inst)
+		public Tree(Tree inst) : base(inst)
 		{
 			Stack = new StackLayout(inst.Stack);
 			Screen = inst.Screen;
@@ -71,13 +71,13 @@ namespace MenuBuddy
 
 		public override IScreenItem DeepCopy()
 		{
-			return new Tree<T>(this);
+			return new Tree(this);
 		}
 
 		public override void AddItem(IScreenItem item)
 		{
 			//Make sure the thing is in the tree
-			var treeItem = item as TreeItem<T>;
+			var treeItem = item as TreeItem;
 			if (null != treeItem)
 			{
 				treeItem.AddToTree(Screen);
@@ -90,7 +90,7 @@ namespace MenuBuddy
 		public void InsertItem(IScreenItem item, IScreenItem prevItem)
 		{
 			//Make sure the thing is in the tree
-			var treeItem = item as TreeItem<T>;
+			var treeItem = item as TreeItem;
 			if (null != treeItem)
 			{
 				treeItem.AddToTree(Screen);

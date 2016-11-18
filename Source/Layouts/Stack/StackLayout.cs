@@ -248,7 +248,6 @@ namespace MenuBuddy
 
 			//store the new item
 			Items.Add(item);
-			Sort();
 		}
 
 		private void AddBottom(IScreenItem item)

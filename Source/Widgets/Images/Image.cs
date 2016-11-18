@@ -31,7 +31,7 @@ namespace MenuBuddy
 		{
 			get
 			{
-				return Texture.Width;
+				return (null != Texture) ? Texture.Width : 0;
 			}
 		}
 
@@ -39,7 +39,7 @@ namespace MenuBuddy
 		{
 			get
 			{
-				return Texture.Height;
+				return (null != Texture) ? Texture.Height : 0;
 			}
 		}
 
@@ -47,7 +47,7 @@ namespace MenuBuddy
 		{
 			get
 			{
-				return Texture.Bounds;
+				return (null != Texture) ? Texture.Bounds : Rectangle.Empty;
 			}
 		}
 

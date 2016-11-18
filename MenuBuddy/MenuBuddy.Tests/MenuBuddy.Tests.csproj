@@ -180,6 +180,7 @@
     <Compile Include="StackAlignments.cs" />
     <Compile Include="StackTests.cs" />
     <Compile Include="TransitionTests.cs" />
+    <Compile Include="TreeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

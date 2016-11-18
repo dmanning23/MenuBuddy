@@ -1,7 +1,7 @@
 
 namespace MenuBuddy
 {
-	public interface ITree<T> : ILayout, IStackLayout
+	public interface ITree : ILayout, IStackLayout
 	{
 		StackLayout Stack
 		{
