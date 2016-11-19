@@ -53,8 +53,9 @@ namespace MenuBuddy
 				if (_scrollPos != value)
 				{
 					//set the scroll position
-					var delta = (_scrollPos - value).ToPoint();
-					_scrollPos = value;
+					var valuePoint = value.ToPoint();
+					var delta = _scrollPos.ToPoint() - valuePoint;
+					_scrollPos = valuePoint.ToVector2();
 
 					//update the position of all the items
 					foreach (var item in Items)
