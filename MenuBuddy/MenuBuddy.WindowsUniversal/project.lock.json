@@ -14186,7 +14186,7 @@
       ]
     },
     "GameTimer/1.0.1": {
-      "sha512": "WrYJ7brNlAneO3L2eCd4ExsBNhcmEb2+NwLlTbhY1Eh8ivb0P2QiX1xnzzy4Ww24kXzYV+/EGla6g1ZMy9X2LA==",
+      "sha512": "6IhhpOqoe+JGY79fw0O8igx1RwAj3fZgCtpcwfaPMZdTkekUhPFkVZH3PKSyJuNGS5wNzqqr9ZrB/n52NfspQw==",
       "type": "package",
       "files": [
         "GameTimer.1.0.1.nupkg.sha512",

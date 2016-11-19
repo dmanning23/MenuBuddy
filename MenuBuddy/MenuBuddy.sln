@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuBuddy.DesktopGL", "MenuBuddy.DesktopGL\MenuBuddy.DesktopGL.csproj", "{422E5AEE-D257-4DFE-A90D-9338300DE3AF}"
 EndProject
@@ -19,7 +19,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		MenuBuddy.nuspec = MenuBuddy.nuspec
 	EndProjectSection
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MenuBuddy.SharedProject", "MenuBuddy.SharedProject\MenuBuddy.SharedProject.shproj", "{0D2B86EA-9261-4F94-87A8-10EEEE72EC22}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MenuBuddy.SharedProject\MenuBuddy.SharedProject.projitems*{0d2b86ea-9261-4f94-87a8-10eeee72ec22}*SharedItemsImports = 13
+		MenuBuddy.SharedProject\MenuBuddy.SharedProject.projitems*{e48276b4-8b3d-4fa0-95a4-c9e4ce4d1d95}*SharedItemsImports = 4
+		MenuBuddy.SharedProject\MenuBuddy.SharedProject.projitems*{17331613-f159-4a42-9944-e6caff38526e}*SharedItemsImports = 4
+		MenuBuddy.SharedProject\MenuBuddy.SharedProject.projitems*{422e5aee-d257-4dfe-a90d-9338300de3af}*SharedItemsImports = 4
+		MenuBuddy.SharedProject\MenuBuddy.SharedProject.projitems*{de97136f-6234-414f-bc5b-ed80e96c1d61}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AppStore|Any CPU = AppStore|Any CPU
 		AppStore|ARM = AppStore|ARM

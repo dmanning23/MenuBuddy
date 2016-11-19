@@ -1,10 +1,17 @@
 using InputHelper;
+using System;
 using System.Collections.Generic;
 
 namespace MenuBuddy
 {
 	public class Dropdown<T> : RelativeLayoutButton, IDropdown<T>
 	{
+		#region Events
+
+		public event EventHandler<DropDownEventArgs<T>> OnSelectedItemChange;
+
+		#endregion //Events
+
 		#region Properties
 
 		/// <summary>
@@ -90,6 +97,12 @@ namespace MenuBuddy
 				if (null != selectedItem)
 				{
 					AddItem(selectedItem);
+				}
+
+				//fire off the selected event
+				if (null != OnSelectedItemChange)
+				{
+					OnSelectedItemChange(this, new DropDownEventArgs<T>(selectedItem.Item));
 				}
 			}
 		}
