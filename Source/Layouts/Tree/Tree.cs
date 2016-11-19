@@ -85,6 +85,9 @@ namespace MenuBuddy
 
 			//add to the stack control
 			Stack.AddItem(item);
+
+			UpdateMinMaxScroll();
+			UpdateScrollBars();
 		}
 
 		public void InsertItem(IScreenItem item, IScreenItem prevItem)
@@ -98,11 +101,22 @@ namespace MenuBuddy
 
 			//add to the stack control
 			Stack.InsertItem(item, prevItem);
+
+			UpdateMinMaxScroll();
+			UpdateScrollBars();
 		}
 
 		public override bool RemoveItem(IScreenItem item)
 		{
-			return Stack.RemoveItem(item);
+			var removed = Stack.RemoveItem(item);
+
+			if (removed)
+			{
+				UpdateMinMaxScroll();
+				UpdateScrollBars();
+			}
+
+			return removed;
 		}
 
 		#endregion //Methods

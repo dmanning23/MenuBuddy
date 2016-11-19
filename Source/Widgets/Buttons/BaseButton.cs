@@ -197,6 +197,9 @@ namespace MenuBuddy
 			HighlightedSoundEffect = inst.HighlightedSoundEffect;
 			ClickedSoundEffect = inst.ClickedSoundEffect;
 			_clickTimer = inst._clickTimer;
+
+			HighlightedSound = inst.HighlightedSound;
+			ClickedSound = inst.ClickedSound;
 		}
 
 		public override void LoadContent(IScreen screen)

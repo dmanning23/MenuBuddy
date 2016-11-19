@@ -349,7 +349,7 @@ namespace MenuBuddy
 			return value;
 		}
 
-		private void UpdateScrollBars()
+		protected void UpdateScrollBars()
 		{
 			//get the window size
 			var windowSize = Size;
@@ -397,7 +397,6 @@ namespace MenuBuddy
 				(int)(rect.Bottom - ScrollBarWidth),
 				(int)(scrollbarSize.X),
 				(int)(ScrollBarWidth));
-
 		}
 
 		public override bool CheckHighlight(HighlightEventArgs highlight)

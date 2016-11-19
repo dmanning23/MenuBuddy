@@ -191,6 +191,8 @@ namespace MenuBuddy
 
 			//add that final button
 			AddItem(ItemButton);
+
+			//Make sure the tree scroll layouts are updated
 		}
 
 		public void ToggleExpansion(object obj, ClickEventArgs e)

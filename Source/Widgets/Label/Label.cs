@@ -90,6 +90,7 @@ namespace MenuBuddy
 		public Label(Label inst) : base(inst)
 		{
 			_text = inst._text;
+			_fontSize = inst._fontSize;
 		}
 
 		/// <summary>
