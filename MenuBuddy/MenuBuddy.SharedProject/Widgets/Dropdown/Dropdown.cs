@@ -1,4 +1,6 @@
 using InputHelper;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
@@ -48,6 +50,11 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// the dropdown icon that is displayed at the right of the widget
+		/// </summary>
+		private Image DropImage { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -62,6 +69,16 @@ namespace MenuBuddy
 		{
 			Screen = screen;
 			base.LoadContent(screen);
+
+			DropImage = new Image()
+			{
+				Texture = Screen.ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.DropdownImageResource),
+				Size = new Vector2(Rect.Height, Rect.Height) * 0.75f,
+				Horizontal = HorizontalAlignment.Right,
+				Vertical = VerticalAlignment.Center,
+				FillRect = true,
+			};
+			AddItem(DropImage);
 		}
 
 		/// <summary>
@@ -97,6 +114,12 @@ namespace MenuBuddy
 				if (null != selectedItem)
 				{
 					AddItem(selectedItem);
+				}
+
+				//add the expansion button
+				if (null != DropImage)
+				{
+					AddItem(DropImage);
 				}
 
 				//fire off the selected event

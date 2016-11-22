@@ -78,6 +78,8 @@ namespace MenuBuddy
 
 		public static string TreeCollapseImageResource { get; set; }
 
+		public static string DropdownImageResource { get; set; }
+
 		public static string LoadingScreenHourglassImageResource { get; set; }
 
 		public static bool HasOutline { get; set; }
@@ -233,6 +235,7 @@ namespace MenuBuddy
 			CancelButtonImageResource = @"Cancel";
 			TreeExpandImageResource = @"Expand";
 			TreeCollapseImageResource = @"Collapse";
+			DropdownImageResource = @"Collapse";
 			LoadingScreenHourglassImageResource = @"hourglass";
 			HasOutline = true;
 			Transition = TransitionWipeType.SlideLeft;

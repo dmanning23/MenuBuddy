@@ -203,6 +203,8 @@ namespace MenuBuddy
 				break;
 			}
 
+			item.Layer = Items.Count;
+
 			Sort();
 		}
 

@@ -405,9 +405,10 @@ namespace MenuBuddy
 			if (Rect.Contains(highlight.Position))
 			{
 				DrawScrollbars = true;
+				base.CheckHighlight(highlight);
 			}
 
-			return base.CheckHighlight(highlight) || DrawScrollbars;
+			return DrawScrollbars;
 		}
 
 		public override bool CheckDrag(DragEventArgs drag)

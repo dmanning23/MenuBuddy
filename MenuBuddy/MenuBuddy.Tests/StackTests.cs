@@ -317,6 +317,31 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(VerticalAlignment.Top, shim1.Vertical);
 		}
 
+		[Test]
+		public void Stack_TwoItem_Layers()
+		{
+			_stack.Position = new Point(10, 20);
+			_stack.Alignment = StackAlignment.Top;
+			_stack.Horizontal = HorizontalAlignment.Left;
+			_stack.Vertical = VerticalAlignment.Bottom;
+
+			var shim1 = new Shim()
+			{
+				Position = new Point(100, 200),
+				Size = new Vector2(30, 40)
+			};
+			_stack.AddItem(shim1);
+			var shim2 = new Shim()
+			{
+				Position = new Point(100, 200),
+				Size = new Vector2(50, 60)
+			};
+			_stack.AddItem(shim2);
+			
+			Assert.AreEqual(1, shim1.Layer);
+			Assert.AreEqual(2, shim2.Layer);
+		}
+
 		#endregion //OneItem
 	}
 }
