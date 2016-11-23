@@ -5,20 +5,20 @@ using System.Collections.Generic;
 
 namespace MenuBuddy
 {
-	public class TreeItem : StackLayout
+	public class TreeItem<T> : StackLayout
 	{
 		#region Fields
 
 		/// <summary>
 		/// The tree control that owns this dude
 		/// </summary>
-		ITree _tree;
+		ITree<T> _tree;
 
 		/// <summary>
 		/// the tree item that this guy is underneath
 		/// null if it is a top level node
 		/// </summary>
-		TreeItem _parent;
+		TreeItem<T> _parent;
 
 		/// <summary>
 		/// how many tabs in this guy is
@@ -47,6 +47,14 @@ namespace MenuBuddy
 		#region Properties
 
 		/// <summary>
+		/// The item this dropdownitem is representing in the gui
+		/// </summary>
+		public T Item
+		{
+			get; set;
+		}
+
+		/// <summary>
 		/// the item this guy is managing
 		/// </summary>
 		private RelativeLayoutButton ItemButton
@@ -55,7 +63,7 @@ namespace MenuBuddy
 			set;
 		}
 
-		public List<TreeItem> ChildItems
+		public List<TreeItem<T>> ChildItems
 		{
 			get; private set;
 		}
@@ -64,21 +72,29 @@ namespace MenuBuddy
 
 		#region Initialization
 
-		public TreeItem(ITree tree, TreeItem parent)
+		public TreeItem(T item, ITree<T> tree, TreeItem<T> parent)
 		{
-			ItemButton = new RelativeLayoutButton();
+			Item = item;
+			
 			Alignment = StackAlignment.Left;
 			Horizontal = HorizontalAlignment.Left;
 			Vertical = VerticalAlignment.Center;
 			_tree = tree;
 			_parent = parent;
 			_indentation = (parent == null ? 0 : parent._indentation + 1);
-			ChildItems = new List<TreeItem>();
+			ChildItems = new List<TreeItem<T>>();
 			_expanded = false;
+
+			ItemButton = new RelativeLayoutButton();
+			ItemButton.OnClick += ((obj, e) =>
+			{
+				tree.SelectedTreeItem = this;
+			});
 		}
 
-		public TreeItem(TreeItem inst) : base(inst)
+		public TreeItem(TreeItem<T> inst) : base(inst)
 		{
+			Item = inst.Item;
 			ItemButton = new RelativeLayoutButton(inst.ItemButton);
 			_tree = inst._tree;
 			_parent = inst._parent;
@@ -88,10 +104,10 @@ namespace MenuBuddy
 			_collapseTexture = inst._collapseTexture;
 			ExpandCollapseImage = new Image(inst.ExpandCollapseImage);
 
-			ChildItems = new List<TreeItem>();
+			ChildItems = new List<TreeItem<T>>();
 			foreach (var item in inst.ChildItems)
 			{
-				var treeItem = item.DeepCopy() as TreeItem;
+				var treeItem = item.DeepCopy() as TreeItem<T>;
 				if (null != treeItem)
 				{
 					ChildItems.Add(treeItem);
@@ -101,7 +117,7 @@ namespace MenuBuddy
 
 		public override IScreenItem DeepCopy()
 		{
-			return new TreeItem(this);
+			return new TreeItem<T>(this);
 		}
 
 		private void SetScreen(IScreen screen)
@@ -128,6 +144,20 @@ namespace MenuBuddy
 		{
 			ItemButton.Size = new Vector2(item.Rect.Width, item.Rect.Height * .75f);
 			ItemButton.AddItem(item);
+		}
+
+		public override void AddItem(IScreenItem item)
+		{
+			var childItem = item as TreeItem<T>;
+			if (childItem != null)
+			{
+				//if this is child tree item, add it special
+				ChildItems.Add(childItem);
+			}
+			else
+			{
+				base.AddItem(item);
+			}
 		}
 
 		/// <summary>
@@ -191,8 +221,6 @@ namespace MenuBuddy
 
 			//add that final button
 			AddItem(ItemButton);
-
-			//Make sure the tree scroll layouts are updated
 		}
 
 		public void ToggleExpansion(object obj, ClickEventArgs e)

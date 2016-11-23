@@ -108,6 +108,12 @@ namespace MenuBuddy
 			Prim.Rectangle(rect, screen.AlphaColor(color));
 		}
 
+		public void DrawOutline(Color color, Rectangle rect)
+		{
+			//draw the button outline
+			Prim.Rectangle(rect, color);
+		}
+
 		#endregion //Methods
 	}
 }

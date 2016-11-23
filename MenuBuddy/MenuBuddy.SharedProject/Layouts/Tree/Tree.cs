@@ -3,8 +3,14 @@ using System;
 
 namespace MenuBuddy
 {
-	public class Tree : ScrollLayout, ITree, IHasContent
+	public class Tree<T> : ScrollLayout, ITree<T>, IHasContent
 	{
+		#region Events
+
+		public event EventHandler<SelectionChangeEventArgs<T>> OnSelectedItemChange;
+
+		#endregion //Events
+
 		#region Fields
 
 		/// <summary>
@@ -34,10 +40,35 @@ namespace MenuBuddy
 
 		#region Properties
 
-		//private List<TreeItem> TreeItems
-		//{
-		//	get; set;
-		//}
+		/// <summary>
+		/// The currently selected item
+		/// </summary>
+		private TreeItem<T> _selectedTreeItem;
+		public TreeItem<T> SelectedTreeItem
+		{
+			private get
+			{
+				return _selectedTreeItem;
+			}
+			set
+			{
+				_selectedTreeItem = value;
+
+				//fire off the selected event
+				if (null != OnSelectedItemChange)
+				{
+					OnSelectedItemChange(this, new SelectionChangeEventArgs<T>(_selectedTreeItem.Item));
+				}
+			}
+		}
+
+		public T SelectedItem
+		{
+			get
+			{
+				return SelectedTreeItem.Item;
+			}
+		}
 
 		#endregion //Properties
 
@@ -53,15 +84,11 @@ namespace MenuBuddy
 			Screen = screen;
 		}
 
-		public Tree(Tree inst) : base(inst)
+		public Tree(Tree<T> inst) : base(inst)
 		{
 			Stack = new StackLayout(inst.Stack);
 			Screen = inst.Screen;
-			//TreeItems = new List<TreeItem>();
-			//foreach (var item in inst.TreeItems)
-			//{
-			//	TreeItems.Add(item.DeepCopy() as TreeItem);
-			//}
+			SelectedTreeItem = inst.SelectedTreeItem;
 		}
 
 		public override void LoadContent(IScreen screen)
@@ -71,13 +98,13 @@ namespace MenuBuddy
 
 		public override IScreenItem DeepCopy()
 		{
-			return new Tree(this);
+			return new Tree<T>(this);
 		}
 
 		public override void AddItem(IScreenItem item)
 		{
 			//Make sure the thing is in the tree
-			var treeItem = item as TreeItem;
+			var treeItem = item as TreeItem<T>;
 			if (null != treeItem)
 			{
 				treeItem.AddToTree(Screen);
@@ -93,7 +120,7 @@ namespace MenuBuddy
 		public void InsertItem(IScreenItem item, IScreenItem prevItem)
 		{
 			//Make sure the thing is in the tree
-			var treeItem = item as TreeItem;
+			var treeItem = item as TreeItem<T>;
 			if (null != treeItem)
 			{
 				treeItem.AddToTree(Screen);

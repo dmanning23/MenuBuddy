@@ -145,6 +145,8 @@ namespace MenuBuddy
 			}
 		}
 
+		public bool HasOutline { get; set; }
+
 		#endregion //Properties
 
 		#region Initialzation
@@ -215,6 +217,12 @@ namespace MenuBuddy
 			for (int i = 0; i < Items.Count; i++)
 			{
 				Items[i].DrawBackground(screen, gameTime);
+			}
+
+			//draw the outline!
+			if (HasOutline && screen.TransitionState == TransitionState.Active)
+			{
+				screen.ScreenManager.DrawHelper.DrawOutline(StyleSheet.NeutralOutlineColor, Rect);
 			}
 		}
 

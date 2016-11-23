@@ -19,15 +19,14 @@ namespace MenuBuddy
 		/// <summary>
 		/// the dropdown control that owns this item
 		/// </summary>
-		private Dropdown<T> Owner { get; set; }
+		private IDropdown<T> Owner { get; set; }
 
 		#endregion //Properties
 
 		#region Methods
 
-		public DropdownItem(T item, Dropdown<T> owner)
+		public DropdownItem(T item, IDropdown<T> owner)
 		{
-			//Style = DefaultStyles.Instance().MenuEntryStyle;
 			Item = item;
 			Owner = owner;
 
@@ -39,7 +38,6 @@ namespace MenuBuddy
 
 		public DropdownItem(DropdownItem<T> inst) : base(inst)
 		{
-			//Style = DefaultStyles.Instance().MenuEntryStyle;
 			Item = inst.Item;
 			Owner = inst.Owner;
 		}

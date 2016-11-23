@@ -52,7 +52,7 @@ namespace MenuBuddy.Tests
 
 		#endregion //Default
 
-		#region AddItem
+		#region Tests
 
 		[Test]
 		public void DropdownTests_AddDropdownItem()
@@ -105,11 +105,7 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(HorizontalAlignment.Left, item.Horizontal);
 			Assert.AreEqual(VerticalAlignment.Top, item.Vertical);
 		}
-
-		#endregion //AddItem
-
-		#region AddItem
-
+		
 		[Test]
 		public void DropdownTests_Style()
 		{
@@ -127,7 +123,49 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(false, dropitem.HasBackground);
 			Assert.AreEqual(false, dropitem.HasOutline);
 		}
+		
+		[Test]
+		public void select_item()
+		{
+			_drop.Position = new Point(10, 20);
+			_drop.Size = new Vector2(30, 40);
 
-		#endregion //AddItem
+			_drop.DropdownList.Add(new DropdownItem<string>("catpants", _drop)
+			{
+				Vertical = VerticalAlignment.Top,
+				Horizontal = HorizontalAlignment.Left,
+				Size = new Vector2(30, 40)
+			});
+
+			_drop.SelectedItem = "catpants";
+
+			Assert.AreEqual("catpants", _drop.SelectedItem);
+		}
+
+		[Test]
+		public void select_item2()
+		{
+			_drop.Position = new Point(10, 20);
+			_drop.Size = new Vector2(30, 40);
+
+			_drop.DropdownList.Add(new DropdownItem<string>("catpants", _drop) {
+				Vertical = VerticalAlignment.Top,
+				Horizontal = HorizontalAlignment.Left,
+				Size = new Vector2(30, 40)
+			});
+
+			_drop.DropdownList.Add(new DropdownItem<string>("buttnuts", _drop)
+			{
+				Vertical = VerticalAlignment.Top,
+				Horizontal = HorizontalAlignment.Left,
+				Size = new Vector2(30, 40)
+			});
+
+			_drop.SelectedItem = "buttnuts";
+
+			Assert.AreEqual("buttnuts", _drop.SelectedItem);
+		}
+
+		#endregion //Tests
 	}
 }

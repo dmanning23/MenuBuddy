@@ -8,11 +8,11 @@ namespace MenuBuddy
 	/// Event arguments for when the selected item changes in a dropdown list
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-    public class DropDownEventArgs<T> : EventArgs
+    public class SelectionChangeEventArgs<T> : EventArgs
     {
 		public T SelectedItem { get; set; }
 
-		public DropDownEventArgs(T selectedItem)
+		public SelectionChangeEventArgs(T selectedItem)
 		{
 			SelectedItem = selectedItem;
 		}

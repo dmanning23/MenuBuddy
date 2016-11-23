@@ -14,15 +14,15 @@ namespace MenuBuddy.Tests
 	{
 		#region Fields
 
-		private Tree _tree;
+		private Tree<string> _tree;
 
 		#endregion //Fields
 
 		#region Setup
 
-		private TreeItem AddItem()
+		private TreeItem<string> AddItem()
 		{
-			var cat = new TreeItem(_tree, null);
+			var cat = new TreeItem<string>("test", _tree, null);
 			cat.SetButton(new Shim()
 			{
 				Position = new Point(0, 0),
@@ -34,9 +34,9 @@ namespace MenuBuddy.Tests
 			return cat;
 		}
 
-		private TreeItem AddSubItem(TreeItem item)
+		private TreeItem<string> AddSubItem(TreeItem<string> item)
 		{
-			var sub = new TreeItem(_tree, item);
+			var sub = new TreeItem<string>("test", _tree, item);
 			sub.SetButton(new Shim()
 			{
 				Position = new Point(0, 0),
@@ -52,7 +52,7 @@ namespace MenuBuddy.Tests
 		{
 			StyleSheet.InitUnitTests();
 			var screen = new WidgetScreen("Test");
-			_tree = new Tree(screen);
+			_tree = new Tree<string>(screen);
 			_tree.LoadContent(screen);
 		}
 

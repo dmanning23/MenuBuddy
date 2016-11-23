@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MenuBuddy
 {
@@ -10,7 +11,7 @@ namespace MenuBuddy
 	{
 		#region Events
 
-		public event EventHandler<DropDownEventArgs<T>> OnSelectedItemChange;
+		public event EventHandler<SelectionChangeEventArgs<T>> OnSelectedItemChange;
 
 		#endregion //Events
 
@@ -32,11 +33,6 @@ namespace MenuBuddy
 			get; set;
 		}
 
-		/// <summary>
-		/// When the dropdown button is clicked, this list of items is popped up in the dropdown list.
-		/// </summary>
-		public List<DropdownItem<T>> DropdownList { get; private set; }
-
 		public T SelectedItem
 		{
 			get
@@ -45,10 +41,19 @@ namespace MenuBuddy
 			}
 			set
 			{
-				var item = DropdownList.Find(x => x.Item.ToString() == value.ToString());
+				DropdownItem<T> item = null;
+				if (null != value)
+				{
+					item = DropdownList.First(x => x.Item.ToString() == value.ToString());
+				}
 				SetSelectedDropdownItem(item);
 			}
 		}
+
+		/// <summary>
+		/// When the dropdown button is clicked, this list of items is popped up in the dropdown list.
+		/// </summary>
+		public List<DropdownItem<T>> DropdownList { get; private set; }
 
 		/// <summary>
 		/// the dropdown icon that is displayed at the right of the widget
@@ -103,9 +108,12 @@ namespace MenuBuddy
 				//remove the old item
 				RemoveItem(SelectedDropdownItem);
 
-				//set the new selected item
-				SelectedDropdownItem = selectedItem.DeepCopy() as DropdownItem<T>;
-				SelectedDropdownItem.Position = Position;
+				if (null != selectedItem)
+				{
+					//set the new selected item
+					SelectedDropdownItem = selectedItem?.DeepCopy() as DropdownItem<T>;
+					SelectedDropdownItem.Position = Position;
+				}
 
 				//clear out the current item
 				Layout.Items.Clear();
@@ -125,7 +133,7 @@ namespace MenuBuddy
 				//fire off the selected event
 				if (null != OnSelectedItemChange)
 				{
-					OnSelectedItemChange(this, new DropDownEventArgs<T>(selectedItem.Item));
+					OnSelectedItemChange(this, new SelectionChangeEventArgs<T>(selectedItem.Item));
 				}
 			}
 		}
