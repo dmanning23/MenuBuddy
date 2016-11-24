@@ -37,6 +37,20 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
 		}
 
+		[Test]
+		public void Layout_HasOutline()
+		{
+			Assert.IsFalse(_stack.HasOutline);
+		}
+
+		[Test]
+		public void Layout_Copy_HasOutline()
+		{
+			_stack.HasOutline = true;
+			var stack = new StackLayout(_stack);
+			Assert.IsTrue(stack.HasOutline);
+		}
+
 		#endregion //Defaults
 
 		#region OneItem

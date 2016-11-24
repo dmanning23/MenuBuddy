@@ -155,6 +155,7 @@ namespace MenuBuddy
 		{
 			Items = new List<IScreenItem>();
 			Scale = 1.0f;
+			HasOutline = false;
 		}
 
 		protected Layout(Layout inst) : this()
@@ -167,6 +168,7 @@ namespace MenuBuddy
 			OnDrag = inst.OnDrag;
 			_scale = inst._scale;
 			Layer = inst.Layer;
+			HasOutline = inst.HasOutline;
 
 			//copy all the items in the list
 			Items = new List<IScreenItem>();
