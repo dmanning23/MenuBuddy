@@ -281,20 +281,19 @@ namespace MenuBuddy
 			//check if the widget was clicked
 			if (Rect.Contains(click.Position))
 			{
-				if (OnClick != null)
-				{
-					OnClick(this, click);
-				}
-
+				Clicked(this, click);
 				return true;
 			}
 
 			return false;
 		}
 
-		public void Clicked(object obj, ClickEventArgs e)
+		public virtual void Clicked(object obj, ClickEventArgs e)
 		{
-			OnClick(obj, e);
+			if (OnClick != null)
+			{
+				OnClick(obj, e);
+			}
 		}
 
 		#endregion //Methods

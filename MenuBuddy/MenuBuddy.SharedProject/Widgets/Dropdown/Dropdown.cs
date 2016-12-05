@@ -28,9 +28,23 @@ namespace MenuBuddy
 		/// <summary>
 		/// The currently selected item
 		/// </summary>
-		private DropdownItem<T> SelectedDropdownItem
+		private DropdownItem<T> _selectedDropdownItem;
+		public DropdownItem<T> SelectedDropdownItem
 		{
-			get; set;
+			get
+			{
+				return _selectedDropdownItem;
+			}
+			set
+			{
+				SetSelectedDropdownItem(value);
+
+				//fire off the selected event
+				if (null != _selectedDropdownItem && null != OnSelectedItemChange)
+				{
+					OnSelectedItemChange(this, new SelectionChangeEventArgs<T>(_selectedDropdownItem.Item));
+				}
+			}
 		}
 
 		public T SelectedItem
@@ -59,6 +73,17 @@ namespace MenuBuddy
 		/// the dropdown icon that is displayed at the right of the widget
 		/// </summary>
 		private Image DropImage { get; set; }
+
+		public int SelectedIndex
+		{
+			set
+			{
+				if (0 <= value && value < DropdownList.Count)
+				{
+					SelectedItem = DropdownList[value].Item;
+				}
+			}
+		}
 
 		#endregion //Properties
 
@@ -111,8 +136,8 @@ namespace MenuBuddy
 				if (null != selectedItem)
 				{
 					//set the new selected item
-					SelectedDropdownItem = selectedItem?.DeepCopy() as DropdownItem<T>;
-					SelectedDropdownItem.Position = Position;
+					_selectedDropdownItem = selectedItem?.DeepCopy() as DropdownItem<T>;
+					_selectedDropdownItem.Position = Position;
 				}
 
 				//clear out the current item
@@ -129,18 +154,12 @@ namespace MenuBuddy
 				{
 					AddItem(DropImage);
 				}
-
-				//fire off the selected event
-				if (null != OnSelectedItemChange)
-				{
-					OnSelectedItemChange(this, new SelectionChangeEventArgs<T>(selectedItem.Item));
-				}
 			}
 		}
 
 		public void Clear()
 		{
-			SetSelectedDropdownItem(null);
+			SelectedItem = default(T);
 			DropdownList.Clear();
 		}
 

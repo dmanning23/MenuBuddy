@@ -100,6 +100,8 @@ namespace MenuBuddy
 
 		public bool IsClicked { get; set; }
 
+		public Color FillColor { private get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -110,6 +112,7 @@ namespace MenuBuddy
 		public Image()
 		{
 			PulsateOnHighlight = true;
+			FillColor = Color.White;
 		}
 
 		/// <summary>
@@ -150,7 +153,7 @@ namespace MenuBuddy
 			}
 
 			//get the transition color
-			var color = screen.Transition.AlphaColor(Color.White);
+			var color = screen.Transition.AlphaColor(FillColor);
 
 			//Get the transition location
 			var pos = DrawPosition(screen);

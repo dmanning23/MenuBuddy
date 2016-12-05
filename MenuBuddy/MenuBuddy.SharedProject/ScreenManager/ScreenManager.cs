@@ -169,8 +169,10 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void AddScreen(IScreen screen, PlayerIndex? controllingPlayer = null)
 		{
+#if !DEBUG
 			try
 			{
+#endif
 				screen.ControllingPlayer = controllingPlayer;
 				screen.ScreenManager = this;
 
@@ -181,11 +183,13 @@ namespace MenuBuddy
 				}
 
 				ScreenStack.Screens.Add(screen);
+#if !DEBUG
 			}
 			catch (Exception ex)
 			{
 				ErrorScreen(ex);
 			}
+#endif
 		}
 
 		/// <summary>
@@ -294,6 +298,6 @@ namespace MenuBuddy
 			return ScreenStack.Screens.ToArray();
 		}
 
-		#endregion //Public Methods
+#endregion //Public Methods
 	}
 }

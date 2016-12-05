@@ -261,16 +261,8 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void ExitScreen()
 		{
-			if (Transition.OffTime == 0f)
-			{
-				// If the screen has a zero transition time, remove it immediately.
-				ScreenManager.RemoveScreen(this);
-			}
-			else
-			{
-				// Otherwise flag that it should transition off and then exit.
-				IsExiting = true;
-			}
+			//flag that it should transition off and then exit.
+			IsExiting = true;
 		}
 
 		public override string ToString()

@@ -26,5 +26,7 @@ namespace MenuBuddy
 		{
 			set;
 		}
+
+		Color FillColor { set; }
 	}
 }

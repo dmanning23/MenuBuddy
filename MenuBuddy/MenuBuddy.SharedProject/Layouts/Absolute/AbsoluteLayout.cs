@@ -110,7 +110,7 @@ namespace MenuBuddy
 
 		#endregion //Properties
 
-		#region Methods
+		#region Init
 
 		public AbsoluteLayout()
 		{
@@ -127,7 +127,7 @@ namespace MenuBuddy
 			return new AbsoluteLayout(this);
 		}
 
-		#endregion //Methods
+		#endregion //Init
 
 		#region Methods
 
