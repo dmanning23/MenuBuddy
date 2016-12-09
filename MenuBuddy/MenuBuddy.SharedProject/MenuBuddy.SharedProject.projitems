@@ -71,6 +71,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\IScreenItemContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\IWidget.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\ScreenItemListDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\Slider\BaseSlider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\Slider\IntSlider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\VerticalAlignment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\Widget.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\Buttons\BaseButton.cs" />

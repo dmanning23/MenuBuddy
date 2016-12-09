@@ -1,9 +1,10 @@
 using InputHelper;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace MenuBuddy
 {
-	public interface ISlider : IWidget, IDraggable, IHighlightable
+	public interface ISlider<T> : IWidget, IDraggable, IHighlightable
 	{
 		/// <summary>
 		/// the min value of teh slider
@@ -18,7 +19,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// the position of the handle of the slider
 		/// </summary>
-		float HandlePosition { get; set; }
+		T SliderPosition { get; set; }
 
 		/// <summary>
 		/// The size of this widget in pixels
@@ -35,5 +36,10 @@ namespace MenuBuddy
 		{
 			set;
 		}
+
+		/// <summary>
+		/// A list of hask marks to draw on the slider
+		/// </summary>
+		List<float> Marks { get; }
 	}
 }

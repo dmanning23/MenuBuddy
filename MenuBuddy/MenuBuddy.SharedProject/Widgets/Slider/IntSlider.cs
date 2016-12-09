@@ -1,14 +1,28 @@
+﻿
 namespace MenuBuddy
 {
-	public class Slider : BaseSlider<float>
-	{
+	public class IntSlider : BaseSlider<int>
+    {
 		#region Properties
 
-		public override float SliderPosition
+		protected override float HandlePosition
 		{
 			get
 			{
-				return HandlePosition;
+				return base.HandlePosition;
+			}
+
+			set
+			{
+				base.HandlePosition = (int)value;
+			}
+		}
+
+		public override int SliderPosition
+		{
+			get
+			{
+				return (int)HandlePosition;
 			}
 			set
 			{
@@ -23,11 +37,11 @@ namespace MenuBuddy
 		/// <summary>
 		/// constructor
 		/// </summary>
-		public Slider()
+		public IntSlider()
 		{
 		}
 
-		public Slider(Slider inst) : base(inst)
+		public IntSlider(IntSlider inst) : base(inst)
 		{
 		}
 
@@ -37,7 +51,7 @@ namespace MenuBuddy
 		/// <returns></returns>
 		public override IScreenItem DeepCopy()
 		{
-			return new Slider(this);
+			return new IntSlider(this);
 		}
 
 		#endregion //Methods
