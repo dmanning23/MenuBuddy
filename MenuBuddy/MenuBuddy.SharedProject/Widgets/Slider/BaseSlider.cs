@@ -37,6 +37,8 @@ namespace MenuBuddy
 
 		public List<float> Marks { get; set; }
 
+		public bool Enabled { get; set; }
+
 		#endregion //Fields
 
 		#region Properties
@@ -142,6 +144,7 @@ namespace MenuBuddy
 			HasBackground = false;
 			HasOutline = true;
 			Marks = new List<float>();
+			Enabled = true;
 		}
 
 		public BaseSlider(BaseSlider<T> inst) : base(inst)
@@ -192,10 +195,13 @@ namespace MenuBuddy
 
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
-			//draw the handle rect
-			screen.ScreenManager.DrawHelper.DrawRect(
-				IsHighlighted ? StyleSheet.HighlightedTextColor : StyleSheet.NeutralTextColor,
-				_handleRect, screen.Transition, Transition);
+			if (Enabled)
+			{
+				//draw the handle rect
+				screen.ScreenManager.DrawHelper.DrawRect(
+					IsHighlighted ? StyleSheet.HighlightedTextColor : StyleSheet.NeutralTextColor,
+					_handleRect, screen.Transition, Transition);
+			}
 		}
 
 		protected override void CalculateRect()
@@ -282,7 +288,7 @@ namespace MenuBuddy
 		public bool CheckDrag(DragEventArgs drag)
 		{
 			var result = Rect.Contains(drag.Start);
-			if (result)
+			if (result && Enabled)
 			{
 				//convert back to slider coords and set the slider pos
 				HandlePosition = SolveSliderPos(_slideRect.Left, _slideRect.Right, drag.Current.X, Min, Max);

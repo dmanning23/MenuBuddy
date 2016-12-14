@@ -212,7 +212,7 @@ namespace MenuBuddy
 			TimeSinceInput.Start(AttractModeTime);
 		}
 
-		public bool CheckDrag(DragEventArgs drag)
+		public virtual bool CheckDrag(DragEventArgs drag)
 		{
 			//restart the input timer thing
 			ResetInputTimer();
@@ -221,7 +221,7 @@ namespace MenuBuddy
 			return Layout.CheckDrag(drag);
 		}
 
-		public bool CheckDrop(DropEventArgs drop)
+		public virtual bool CheckDrop(DropEventArgs drop)
 		{
 			//check if they clicked in the layout
 			return Layout.CheckDrop(drop);

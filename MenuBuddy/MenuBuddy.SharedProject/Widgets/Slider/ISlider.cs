@@ -41,5 +41,7 @@ namespace MenuBuddy
 		/// A list of hask marks to draw on the slider
 		/// </summary>
 		List<float> Marks { get; }
+
+		bool Enabled { get; set; }
 	}
 }
