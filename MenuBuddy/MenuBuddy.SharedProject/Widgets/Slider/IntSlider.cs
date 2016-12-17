@@ -1,7 +1,7 @@
 ﻿
 namespace MenuBuddy
 {
-	public class IntSlider : BaseSlider<int>
+	public class IntSlider : BaseSlider<int>, ISlider<int>
     {
 		#region Properties
 

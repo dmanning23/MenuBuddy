@@ -1,4 +1,5 @@
 ﻿using FontBuddyLib;
+using MenuBuddy;
 using Microsoft.Xna.Framework;
 using Moq;
 using NUnit.Framework;
@@ -16,7 +17,7 @@ namespace MenuBuddy.Tests
 		#region Fields
 
 		private Mock<IFontBuddy> _font;
-		private ISlider _slider;
+		private Slider _slider;
 
 		#endregion //Fields
 
@@ -49,9 +50,9 @@ namespace MenuBuddy.Tests
 				Max = 5
 			};
 
-			_slider.HandlePosition = 0;
+			_slider.SliderPosition = 0;
 
-			Assert.AreEqual(1f, _slider.HandlePosition);
+			Assert.AreEqual(1f, _slider.SliderPosition);
 		}
 
 		[Test]
@@ -63,9 +64,9 @@ namespace MenuBuddy.Tests
 				Max = 5
 			};
 
-			_slider.HandlePosition = 10f;
+			_slider.SliderPosition = 10f;
 
-			Assert.AreEqual(5f, _slider.HandlePosition);
+			Assert.AreEqual(5f, _slider.SliderPosition);
 		}
 
 		[Test]
@@ -77,9 +78,9 @@ namespace MenuBuddy.Tests
 				Max = 5
 			};
 
-			_slider.HandlePosition = 3f;
+			_slider.SliderPosition = 3f;
 
-			Assert.AreEqual(3f, _slider.HandlePosition);
+			Assert.AreEqual(3f, _slider.SliderPosition);
 		}
 
 		[Test]

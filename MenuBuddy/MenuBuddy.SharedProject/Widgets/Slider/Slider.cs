@@ -1,6 +1,7 @@
+
 namespace MenuBuddy
 {
-	public class Slider : BaseSlider<float>
+	public class Slider : BaseSlider<float>, ISlider<float>
 	{
 		#region Properties
 
@@ -16,7 +17,7 @@ namespace MenuBuddy
 			}
 		}
 
-		#endregion //Properties
+		#endregion //PropertiesS
 
 		#region Methods
 
