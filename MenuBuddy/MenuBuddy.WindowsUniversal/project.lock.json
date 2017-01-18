@@ -1,5 +1,4 @@
 {
-  "locked": false,
   "version": 2,
   "targets": {
     "UAP,Version=v10.0": {
@@ -14186,8 +14185,9 @@
       ]
     },
     "GameTimer/1.0.1": {
-      "sha512": "6IhhpOqoe+JGY79fw0O8igx1RwAj3fZgCtpcwfaPMZdTkekUhPFkVZH3PKSyJuNGS5wNzqqr9ZrB/n52NfspQw==",
+      "sha512": "WrYJ7brNlAneO3L2eCd4ExsBNhcmEb2+NwLlTbhY1Eh8ivb0P2QiX1xnzzy4Ww24kXzYV+/EGla6g1ZMy9X2LA==",
       "type": "package",
+      "path": "gametimer/1.0.1",
       "files": [
         "GameTimer.1.0.1.nupkg.sha512",
         "GameTimer.nuspec",
@@ -17732,5 +17732,10 @@
       "XmlBuddy >= 1.0.6"
     ],
     "UAP,Version=v10.0": []
+  },
+  "tools": {},
+  "projectFileToolGroups": {},
+  "packageFolders": {
+    "C:\\Users\\dmann\\.nuget\\packages\\": {}
   }
 }

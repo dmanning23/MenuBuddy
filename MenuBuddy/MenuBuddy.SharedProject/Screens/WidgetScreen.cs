@@ -185,7 +185,7 @@ namespace MenuBuddy
 			return Layout.RemoveItem(item);
 		}
 
-		public bool CheckHighlight(HighlightEventArgs highlight)
+		public virtual bool CheckHighlight(HighlightEventArgs highlight)
 		{
 			return Layout.CheckHighlight(highlight);
 		}

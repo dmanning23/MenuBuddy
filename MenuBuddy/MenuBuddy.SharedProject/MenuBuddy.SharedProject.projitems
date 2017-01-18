@@ -70,6 +70,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\IScreenItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\IScreenItemContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\IWidget.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\NumEdit\INumEdit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\NumEdit\NumChangeEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\NumEdit\NumEdit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\NumEdit\NumPadScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\ScreenItemListDelegate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\Slider\BaseSlider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\Slider\IntSlider.cs" />
