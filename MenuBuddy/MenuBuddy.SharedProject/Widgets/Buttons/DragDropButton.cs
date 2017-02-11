@@ -7,7 +7,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a button thhat contains a relaitve layout
 	/// </summary>
-	public class DragDropButton : RelativeLayoutButton, IDraggable, IDroppable
+	public class DragDropButton : RelativeLayoutButton, IDraggable, IDroppable, IDisposable
 	{
 		#region Properties
 
@@ -109,6 +109,13 @@ namespace MenuBuddy
 
 			return false;
 		}
+
+		public override void Dispose()
+		{
+			base.Dispose();
+			OnDrag = null;
+			OnDrop = null;
+	}
 
 		#endregion
 	}

@@ -9,7 +9,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// A widget is a screen item that can be displayed
 	/// </summary>
-	public abstract class Widget : IWidget
+	public abstract class Widget : IWidget, IDisposable
 	{
 		#region Fields
 
@@ -318,6 +318,11 @@ namespace MenuBuddy
 			}
 
 			return IsHighlighted;
+		}
+
+		public virtual void Dispose()
+		{
+			OnHighlight = null;
 		}
 
 		#endregion //Methods

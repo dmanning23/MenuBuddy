@@ -11,7 +11,7 @@ namespace MenuBuddy
 	/// want to quit" message box, and the main game itself are all implemented
 	/// as screens.
 	/// </summary>
-	public abstract class Screen : IScreen
+	public abstract class Screen : IScreen, IDisposable
 	{
 		#region Properties
 
@@ -268,6 +268,11 @@ namespace MenuBuddy
 		public override string ToString()
 		{
 			return ScreenName;
+		}
+
+		public virtual void Dispose()
+		{
+			Exiting = null;
 		}
 
 		#endregion

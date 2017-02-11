@@ -3,7 +3,7 @@ using System;
 
 namespace MenuBuddy
 {
-	public class Tree<T> : ScrollLayout, ITree<T>, IHasContent
+	public class Tree<T> : ScrollLayout, ITree<T>, IHasContent, IDisposable
 	{
 		#region Events
 
@@ -133,6 +133,22 @@ namespace MenuBuddy
 			UpdateScrollBars();
 		}
 
+		public void InsertItemAfter(IScreenItem item, IScreenItem nextItem)
+		{
+			//Make sure the thing is in the tree
+			var treeItem = item as TreeItem<T>;
+			if (null != treeItem)
+			{
+				treeItem.AddToTree(Screen);
+			}
+
+			//add to the stack control
+			Stack.InsertItemAfter(item, nextItem);
+
+			UpdateMinMaxScroll();
+			UpdateScrollBars();
+		}
+
 		public override bool RemoveItem(IScreenItem item)
 		{
 			var removed = Stack.RemoveItem(item);
@@ -144,6 +160,12 @@ namespace MenuBuddy
 			}
 
 			return removed;
+		}
+
+		public override void Dispose()
+		{
+			base.Dispose();
+			OnSelectedItemChange = null;
 		}
 
 		#endregion //Methods

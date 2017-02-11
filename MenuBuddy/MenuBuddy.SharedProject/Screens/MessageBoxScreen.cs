@@ -10,7 +10,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// A popup message box screen, used to display "are you sure?" confirmation messages.
 	/// </summary>
-	public class MessageBoxScreen : MenuScreen, IClickable
+	public class MessageBoxScreen : MenuScreen, IClickable, IDisposable
 	{
 		#region Properties
 
@@ -25,7 +25,7 @@ namespace MenuBuddy
 
 		#endregion //Properties
 
-		#region Initialization
+		#region Methods
 
 		/// <summary>
 		/// Constructor lets the caller specify whether to include the standard
@@ -153,10 +153,6 @@ namespace MenuBuddy
 			AddItem(bkgImage);
 		}
 
-		#endregion //Initialization
-
-		#region Draw
-
 		/// <summary>
 		/// Draws the message box.
 		/// </summary>
@@ -177,6 +173,13 @@ namespace MenuBuddy
 			throw new NotImplementedException();
 		}
 
-		#endregion
+		public override void Dispose()
+		{
+			base.Dispose();
+			OnSelect = null;
+			OnCancel = null;
+	}
+
+		#endregion //Methods
 	}
 }

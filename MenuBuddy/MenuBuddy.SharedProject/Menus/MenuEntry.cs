@@ -10,7 +10,7 @@ namespace MenuBuddy
 	/// entries in different ways. This also provides an event that will be raised
 	/// when the menu entry is selected.
 	/// </summary>
-	public class MenuEntry : RelativeLayoutButton, ILabel, IMenuEntry
+	public class MenuEntry : RelativeLayoutButton, ILabel, IMenuEntry, IDisposable
 	{
 		#region Fields
 
@@ -21,7 +21,7 @@ namespace MenuBuddy
 		#region Properties
 
 		public Label Label { get; protected set; }
-		
+
 		public string Text
 		{
 			get
@@ -154,6 +154,13 @@ namespace MenuBuddy
 		public override string ToString()
 		{
 			return Text;
+		}
+
+		public override void Dispose()
+		{
+			base.Dispose();
+			Left = null;
+			Right = null;
 		}
 
 		#endregion //Methods

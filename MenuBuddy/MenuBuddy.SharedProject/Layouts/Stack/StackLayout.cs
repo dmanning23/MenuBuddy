@@ -240,6 +240,33 @@ namespace MenuBuddy
 			}
 		}
 
+		public void InsertItemAfter(IScreenItem item, IScreenItem nextItem)
+		{
+			//create a temp list to hold everything
+			var tempItems = new List<IScreenItem>();
+
+			//add all the items to the list
+			foreach (var currentItem in Items)
+			{
+				//check if this is the item to add after
+				if (currentItem == nextItem)
+				{
+					tempItems.Add(item);
+				}
+
+				tempItems.Add(currentItem);
+			}
+
+			//create a new layout list
+			Items = new List<IScreenItem>();
+
+			//add all the temp items to the layout list
+			foreach (var tempItem in tempItems)
+			{
+				AddItem(tempItem);
+			}
+		}
+
 		private void AddTop(IScreenItem item)
 		{
 			//get the current rect

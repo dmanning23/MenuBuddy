@@ -9,7 +9,7 @@ namespace MenuBuddy
 	/// When the widget is clicked, a numpad pops up where the user can edit the number.
 	/// Wehn the user edits the number with the 9pad, a special event is fired off.
 	/// </summary>
-	public class NumEdit : RelativeLayoutButton, INumEdit
+	public class NumEdit : RelativeLayoutButton, INumEdit, IDisposable
 	{
 		#region Fields
 
@@ -139,6 +139,12 @@ namespace MenuBuddy
 
 				PlaySelectedSound(this, new ClickEventArgs());
 			}
+		}
+
+		public override void Dispose()
+		{
+			base.Dispose();
+			OnNumberEdited = null;
 		}
 
 		#endregion //Methods

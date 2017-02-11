@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MenuBuddy
 {
-	public class Dropdown<T> : RelativeLayoutButton, IDropdown<T>
+	public class Dropdown<T> : RelativeLayoutButton, IDropdown<T>, IDisposable
 	{
 		#region Events
 
@@ -161,6 +161,12 @@ namespace MenuBuddy
 		{
 			SelectedItem = default(T);
 			DropdownList.Clear();
+		}
+
+		public override void Dispose()
+		{
+			base.Dispose();
+			OnSelectedItemChange = null;
 		}
 
 		#endregion //Methods

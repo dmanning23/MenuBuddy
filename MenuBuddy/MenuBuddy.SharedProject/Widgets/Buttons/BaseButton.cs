@@ -9,7 +9,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a button that can be clicked on
 	/// </summary>
-	public abstract class BaseButton : Widget, IButton
+	public abstract class BaseButton : Widget, IButton, IDisposable
 	{
 		#region Fields
 
@@ -294,6 +294,11 @@ namespace MenuBuddy
 			{
 				OnClick(obj, e);
 			}
+		}
+
+		public virtual void Dispose()
+		{
+			OnClick = null;
 		}
 
 		#endregion //Methods

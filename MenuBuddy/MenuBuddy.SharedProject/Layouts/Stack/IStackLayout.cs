@@ -5,5 +5,7 @@
 		StackAlignment Alignment { get; set; }
 
 		void InsertItem(IScreenItem item, IScreenItem prevItem);
+
+		void InsertItemAfter(IScreenItem item, IScreenItem nextItem);
 	}
 }

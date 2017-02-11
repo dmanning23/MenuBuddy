@@ -10,7 +10,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// An image that is displayed onteh screen
 	/// </summary>
-	public class Image : Widget, IImage
+	public class Image : Widget, IImage, IDisposable
 	{
 		#region Fields
 
@@ -227,6 +227,12 @@ namespace MenuBuddy
 		public bool CheckClick(ClickEventArgs click)
 		{
 			return false;
+		}
+
+		public override void Dispose()
+		{
+			base.Dispose();
+			OnClick = null;
 		}
 
 		#endregion //Methods

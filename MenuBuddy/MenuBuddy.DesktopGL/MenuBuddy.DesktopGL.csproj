@@ -43,7 +43,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="HadoukInput.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HadoukInput.1.0.2\lib\net451\HadoukInput.DesktopGL.dll</HintPath>
+      <HintPath>..\..\..\AnimationTool\packages\HadoukInput.1.0.3\lib\net451\HadoukInput.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="InputHelper.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -83,7 +83,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="StateMachineBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StateMachineBuddy.1.0.0\lib\net451\StateMachineBuddy.DesktopGL.dll</HintPath>
+      <HintPath>..\..\..\AnimationTool\packages\StateMachineBuddy.1.0.1\lib\net451\StateMachineBuddy.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -99,11 +99,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Vector2Extensions.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vector2Extensions.1.0.1\lib\net451\Vector2Extensions.DesktopGL.dll</HintPath>
+      <HintPath>..\..\..\AnimationTool\packages\Vector2Extensions.1.0.3\lib\net451\Vector2Extensions.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="XmlBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XmlBuddy.1.0.6\lib\net451\XmlBuddy.DesktopGL.dll</HintPath>
+      <HintPath>..\..\..\AnimationTool\packages\XmlBuddy.1.0.13\lib\net451\XmlBuddy.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

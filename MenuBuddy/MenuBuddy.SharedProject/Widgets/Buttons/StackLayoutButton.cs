@@ -92,6 +92,11 @@ namespace MenuBuddy
 			(Layout as StackLayout).InsertItem(item, prevItem);
 		}
 
+		public void InsertItemAfter(IScreenItem item, IScreenItem nextItem)
+		{
+			(Layout as StackLayout).InsertItemAfter(item, nextItem);
+		}
+
 		#endregion
 	}
 }

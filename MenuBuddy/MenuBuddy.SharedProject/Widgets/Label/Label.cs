@@ -7,7 +7,7 @@ using MouseBuddy;
 
 namespace MenuBuddy
 {
-	public class Label : Widget, ILabel
+	public class Label : Widget, ILabel, IDisposable
 	{
 		#region Fields
 
@@ -265,6 +265,12 @@ namespace MenuBuddy
 			{
 				return Vector2.Zero;
 			}
+		}
+
+		public override void Dispose()
+		{
+			base.Dispose();
+			OnClick = null;
 		}
 
 		#endregion //Methods

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace MenuBuddy
 {
-	public abstract class BaseSlider<T> : Widget, ISlider<T>
+	public abstract class BaseSlider<T> : Widget, ISlider<T>, IDisposable
 	{
 		#region Fields
 
@@ -300,6 +300,12 @@ namespace MenuBuddy
 			}
 
 			return result;
+		}
+
+		public override void Dispose()
+		{
+			base.Dispose();
+			OnDrag = null;
 		}
 
 		#endregion //Methods

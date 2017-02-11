@@ -9,7 +9,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a list of items on a screen
 	/// </summary>
-	public abstract class Layout : ILayout
+	public abstract class Layout : ILayout, IDisposable
 	{
 		#region Fields
 
@@ -305,6 +305,14 @@ namespace MenuBuddy
 
 			//None of the items in this container were clicked
 			return false;
+		}
+
+		public virtual void Dispose()
+		{
+			OnClick = null;
+			OnHighlight = null;
+			OnDrag = null;
+			OnDrop = null;
 		}
 
 		#endregion //Methods

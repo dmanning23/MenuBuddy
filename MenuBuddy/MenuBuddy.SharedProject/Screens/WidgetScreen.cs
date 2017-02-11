@@ -9,7 +9,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a screen that can display a bunch of widgets.
 	/// </summary>
-	public class WidgetScreen : Screen, IWidgetScreen
+	public class WidgetScreen : Screen, IWidgetScreen, IDisposable
 	{
 		#region Fields
 
@@ -225,6 +225,14 @@ namespace MenuBuddy
 		{
 			//check if they clicked in the layout
 			return Layout.CheckDrop(drop);
+		}
+
+		public override void Dispose()
+		{
+			OnClick = null;
+			OnHighlight = null;
+			OnDrag = null;
+			OnDrop = null;
 		}
 
 		#endregion //Methods
