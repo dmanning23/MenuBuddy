@@ -240,7 +240,7 @@ namespace MenuBuddy
 			}
 		}
 
-		public void InsertItemAfter(IScreenItem item, IScreenItem nextItem)
+		public void InsertItemBefore(IScreenItem item, IScreenItem nextItem)
 		{
 			//create a temp list to hold everything
 			var tempItems = new List<IScreenItem>();

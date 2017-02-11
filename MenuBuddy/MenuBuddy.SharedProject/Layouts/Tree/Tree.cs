@@ -133,7 +133,7 @@ namespace MenuBuddy
 			UpdateScrollBars();
 		}
 
-		public void InsertItemAfter(IScreenItem item, IScreenItem nextItem)
+		public void InsertItemBefore(IScreenItem item, IScreenItem nextItem)
 		{
 			//Make sure the thing is in the tree
 			var treeItem = item as TreeItem<T>;
@@ -143,7 +143,7 @@ namespace MenuBuddy
 			}
 
 			//add to the stack control
-			Stack.InsertItemAfter(item, nextItem);
+			Stack.InsertItemBefore(item, nextItem);
 
 			UpdateMinMaxScroll();
 			UpdateScrollBars();

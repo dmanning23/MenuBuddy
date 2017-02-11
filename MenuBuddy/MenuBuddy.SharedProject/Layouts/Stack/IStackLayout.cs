@@ -6,6 +6,6 @@
 
 		void InsertItem(IScreenItem item, IScreenItem prevItem);
 
-		void InsertItemAfter(IScreenItem item, IScreenItem nextItem);
+		void InsertItemBefore(IScreenItem item, IScreenItem nextItem);
 	}
 }
