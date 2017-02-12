@@ -50,6 +50,32 @@ namespace MenuBuddy
 			}
 		}
 
+		public Color? ShadowColor
+		{
+			get
+			{
+				return Label.ShadowColor;
+			}
+
+			set
+			{
+				Label.ShadowColor = value;
+			}
+		}
+
+		public Color? TextColor
+		{
+			get
+			{
+				return Label.TextColor;
+			}
+
+			set
+			{
+				Label.TextColor = value;
+			}
+		}
+
 		#endregion //Properties
 
 		#region Events

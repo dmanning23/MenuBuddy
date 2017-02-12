@@ -32,9 +32,9 @@ namespace MenuBuddy
 		/// </summary>
 		private bool _highlight = false;
 
-		protected GameClock HighlightClock
+		public GameClock HighlightClock
 		{
-			get; set;
+			get; protected set;
 		}
 
 		#endregion //Fields
@@ -200,13 +200,13 @@ namespace MenuBuddy
 
 		protected Widget(Widget inst)
 		{
-			_horizontal = inst._horizontal;
-			_vertical = inst._vertical;
-			_scale = inst._scale;
-			_padding = new Vector2(inst._padding.X, inst._padding.Y);
-			_drawWhenInactive = inst._drawWhenInactive;
-			_rect = new Rectangle(inst._rect.Location, inst._rect.Size);
-			_position = new Point(inst._position.X, inst._position.Y);
+			_horizontal = inst.Horizontal;
+			_vertical = inst.Vertical;
+			_scale = inst.Scale;
+			_padding = new Vector2(inst.Padding.X, inst.Padding.Y);
+			_drawWhenInactive = inst.DrawWhenInactive;
+			_rect = new Rectangle(inst.Rect.Location, inst.Rect.Size);
+			_position = new Point(inst.Position.X, inst.Position.Y);
 			Layer = inst.Layer;
 			HighlightClock = new GameClock(inst.HighlightClock);
 			OnHighlight = inst.OnHighlight;

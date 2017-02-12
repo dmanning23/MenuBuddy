@@ -1,4 +1,5 @@
 using InputHelper;
+using Microsoft.Xna.Framework;
 
 namespace MenuBuddy
 {
@@ -13,5 +14,9 @@ namespace MenuBuddy
 		string Text { get; set; }
 
 		FontSize FontSize { get; set; }
+
+		Color? ShadowColor { get; set; }
+
+		Color? TextColor { get; set; }
 	}
 }

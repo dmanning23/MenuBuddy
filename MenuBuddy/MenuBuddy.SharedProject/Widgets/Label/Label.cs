@@ -89,8 +89,10 @@ namespace MenuBuddy
 
 		public Label(Label inst) : base(inst)
 		{
-			_text = inst._text;
-			_fontSize = inst._fontSize;
+			_text = inst.Text;
+			_fontSize = inst.FontSize;
+			TextColor = inst.TextColor;
+			ShadowColor = inst.ShadowColor;
 		}
 
 		/// <summary>

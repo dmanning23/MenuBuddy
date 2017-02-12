@@ -296,8 +296,9 @@ namespace MenuBuddy
 			}
 		}
 
-		public virtual void Dispose()
+		public override void Dispose()
 		{
+			base.Dispose();
 			OnClick = null;
 		}
 

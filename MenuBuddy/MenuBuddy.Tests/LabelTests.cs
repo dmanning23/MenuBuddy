@@ -276,5 +276,41 @@ namespace MenuBuddy.Tests
 		}
 
 		#endregion //Rect, Padding, & Scale
+
+		#region Copy
+
+		[Test]
+		public void CopyText()
+		{
+			_label.Text = "buttnuts";
+			var copyLabel = new Label(_label as Label);
+			Assert.AreEqual("buttnuts", copyLabel.Text);
+		}
+
+		[Test]
+		public void CopyFontSize()
+		{
+			_label.FontSize = FontSize.Large;
+			var copyLabel = new Label(_label as Label);
+			Assert.AreEqual(FontSize.Large, copyLabel.FontSize);
+		}
+
+		[Test]
+		public void CopyTextColor()
+		{
+			_label.TextColor = Color.Pink;
+			var copyLabel = new Label(_label as Label);
+			Assert.AreEqual(Color.Pink, copyLabel.TextColor);
+		}
+
+		[Test]
+		public void CopyShadowColor()
+		{
+			_label.ShadowColor = Color.Pink;
+			var copyLabel = new Label(_label as Label);
+			Assert.AreEqual(Color.Pink, copyLabel.ShadowColor);
+		}
+
+		#endregion //Copy
 	}
 }
