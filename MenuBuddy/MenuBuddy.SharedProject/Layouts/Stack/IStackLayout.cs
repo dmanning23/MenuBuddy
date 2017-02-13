@@ -1,6 +1,6 @@
 ﻿namespace MenuBuddy
 {
-	public interface IStackLayout
+	public interface IStackLayout : IScreenItemContainer, IScreenItem
 	{
 		StackAlignment Alignment { get; set; }
 

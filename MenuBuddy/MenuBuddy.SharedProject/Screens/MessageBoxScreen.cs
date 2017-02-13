@@ -23,6 +23,8 @@ namespace MenuBuddy
 
 		public event EventHandler<ClickEventArgs> OnCancel;
 
+		protected IStackLayout ControlStack { get; private set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -61,6 +63,13 @@ namespace MenuBuddy
 				Alignment = StackAlignment.Top,
 			};
 
+			ControlStack = new StackLayout()
+			{
+				Horizontal = HorizontalAlignment.Center,
+				Vertical = VerticalAlignment.Center,
+				Alignment = StackAlignment.Top,
+			};
+
 			//Split up the label text into lines
 			var lines = Message.Split('\n').ToList();
 
@@ -72,11 +81,13 @@ namespace MenuBuddy
 				{
 					FontSize = FontSize.Small
 				};
-				labelStack.AddItem(label);
+				ControlStack.AddItem(label);
 			}
 
 			//add a shim between the text and the buttons
-			labelStack.AddItem(new Shim() { Size = new Vector2(0, 16f) });
+			ControlStack.AddItem(new Shim() { Size = new Vector2(0, 16f) });
+
+			labelStack.AddItem(ControlStack);
 
 			//Add the buttons
 			AddButtons(labelStack);
