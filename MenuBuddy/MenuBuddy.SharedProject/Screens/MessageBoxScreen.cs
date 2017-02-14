@@ -84,6 +84,8 @@ namespace MenuBuddy
 				ControlStack.AddItem(label);
 			}
 
+			AddAddtionalControls();
+
 			//add a shim between the text and the buttons
 			ControlStack.AddItem(new Shim() { Size = new Vector2(0, 16f) });
 
@@ -99,6 +101,13 @@ namespace MenuBuddy
 			AddItem(labelStack);
 
 			AddBackgroundImage(labelStack);
+		}
+
+		/// <summary>
+		/// Override this method to add any additional controls to the ControlStack
+		/// </summary>
+		protected virtual void AddAddtionalControls()
+		{
 		}
 
 		protected virtual void AddButtons(StackLayout stack)

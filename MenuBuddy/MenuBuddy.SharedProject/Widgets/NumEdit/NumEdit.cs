@@ -84,6 +84,8 @@ namespace MenuBuddy
 		/// </summary>
 		private Label NumLabel { get; set; }
 
+		private FontSize _fontSize;
+
 		/// <summary>
 		/// Event that gets fired when the user finishes changing the number from the numpad
 		/// </summary>
@@ -93,9 +95,10 @@ namespace MenuBuddy
 
 		#region Methods
 
-		public NumEdit()
+		public NumEdit(FontSize fontSize = FontSize.Medium)
 		{
 			OnClick += CreateNumPad;
+			_fontSize = fontSize;
 		}
 
 		public override void LoadContent(IScreen screen)
@@ -103,11 +106,10 @@ namespace MenuBuddy
 			Screen = screen;
 			base.LoadContent(screen);
 
-			NumLabel = new Label
+			NumLabel = new Label(Number.ToString(), _fontSize)
 			{
-				Horizontal = this.Horizontal,
+				Horizontal = HorizontalAlignment.Center,
 				Vertical = VerticalAlignment.Center,
-				Text = Number.ToString()
 			};
 			AddItem(NumLabel);
 		}

@@ -88,7 +88,7 @@ namespace MenuBuddy
 			{
 				Horizontal = HorizontalAlignment.Left,
 				Vertical = VerticalAlignment.Top,
-				Size = new Vector2(NumEditWidget.Rect.Width, ResolutionBuddy.Resolution.ScreenArea.Bottom - NumEditWidget.Rect.Bottom)
+				Size = new Vector2((48f * 3), ResolutionBuddy.Resolution.ScreenArea.Bottom - NumEditWidget.Rect.Bottom)
 			};
 			_layout.Position = new Point(NumEditWidget.Rect.Left, NumEditWidget.Rect.Bottom);
 			_layout.AddItem(_rows);
