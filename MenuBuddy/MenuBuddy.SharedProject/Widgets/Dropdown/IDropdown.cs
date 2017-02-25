@@ -14,9 +14,8 @@ namespace MenuBuddy
 
 		DropdownItem<T> SelectedDropdownItem { get; set; }
 
-		List<DropdownItem<T>> DropdownList
-		{
-			get;
-		}
+		List<DropdownItem<T>> DropdownItems { get; }
+
+		void AddDropdownItem(DropdownItem<T> dropdownItem);
 	}
 }

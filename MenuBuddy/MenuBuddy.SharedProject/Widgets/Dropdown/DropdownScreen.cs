@@ -55,7 +55,7 @@ namespace MenuBuddy
 			};
 
 			//Add all the items to the stack layout
-			foreach (var item in DropdownWidget.DropdownList)
+			foreach (var item in DropdownWidget.DropdownItems)
 			{
 				_stack.AddItem(item.DeepCopy());
 			}

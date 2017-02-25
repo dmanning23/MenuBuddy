@@ -64,7 +64,7 @@ namespace MenuBuddy.Tests
 			dropitem.Vertical = VerticalAlignment.Top;
 			dropitem.Horizontal = HorizontalAlignment.Left;
 			dropitem.Size = new Vector2(30, 40);
-			_drop.DropdownList.Add(dropitem);
+			_drop.AddDropdownItem(dropitem);
 
 			_drop.SelectedItem = "catpants";
 
@@ -95,7 +95,7 @@ namespace MenuBuddy.Tests
 			};
 			dropitem.AddItem(item);
 
-			_drop.DropdownList.Add(dropitem);
+			_drop.AddDropdownItem(dropitem);
 			_drop.SelectedItem = "catpants";
 
 			Assert.AreEqual(10, item.Rect.X);
@@ -116,7 +116,7 @@ namespace MenuBuddy.Tests
 			dropitem.Vertical = VerticalAlignment.Top;
 			dropitem.Horizontal = HorizontalAlignment.Left;
 			dropitem.Size = new Vector2(30, 40);
-			_drop.DropdownList.Add(dropitem);
+			_drop.AddDropdownItem(dropitem);
 
 			_drop.SelectedItem = "catpants";
 
@@ -130,7 +130,7 @@ namespace MenuBuddy.Tests
 			_drop.Position = new Point(10, 20);
 			_drop.Size = new Vector2(30, 40);
 
-			_drop.DropdownList.Add(new DropdownItem<string>("catpants", _drop)
+			_drop.AddDropdownItem(new DropdownItem<string>("catpants", _drop)
 			{
 				Vertical = VerticalAlignment.Top,
 				Horizontal = HorizontalAlignment.Left,
@@ -143,18 +143,34 @@ namespace MenuBuddy.Tests
 		}
 
 		[Test]
-		public void select_item2()
+		public void select_defaultitem()
 		{
 			_drop.Position = new Point(10, 20);
 			_drop.Size = new Vector2(30, 40);
 
-			_drop.DropdownList.Add(new DropdownItem<string>("catpants", _drop) {
+			_drop.AddDropdownItem(new DropdownItem<string>("catpants", _drop)
+			{
 				Vertical = VerticalAlignment.Top,
 				Horizontal = HorizontalAlignment.Left,
 				Size = new Vector2(30, 40)
 			});
 
-			_drop.DropdownList.Add(new DropdownItem<string>("buttnuts", _drop)
+			Assert.AreEqual("catpants", _drop.SelectedItem);
+		}
+
+		[Test]
+		public void select_item2()
+		{
+			_drop.Position = new Point(10, 20);
+			_drop.Size = new Vector2(30, 40);
+
+			_drop.AddDropdownItem(new DropdownItem<string>("catpants", _drop) {
+				Vertical = VerticalAlignment.Top,
+				Horizontal = HorizontalAlignment.Left,
+				Size = new Vector2(30, 40)
+			});
+
+			_drop.AddDropdownItem(new DropdownItem<string>("buttnuts", _drop)
 			{
 				Vertical = VerticalAlignment.Top,
 				Horizontal = HorizontalAlignment.Left,

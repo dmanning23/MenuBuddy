@@ -58,7 +58,7 @@ namespace MenuBuddy
 				DropdownItem<T> item = null;
 				if (null != value)
 				{
-					item = DropdownList.First(x => x.Item.ToString() == value.ToString());
+					item = DropdownItems.First(x => x.Item.ToString() == value.ToString());
 				}
 				SetSelectedDropdownItem(item);
 			}
@@ -67,7 +67,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// When the dropdown button is clicked, this list of items is popped up in the dropdown list.
 		/// </summary>
-		public List<DropdownItem<T>> DropdownList { get; private set; }
+		public List<DropdownItem<T>> DropdownItems { get; private set; }
 
 		/// <summary>
 		/// the dropdown icon that is displayed at the right of the widget
@@ -78,9 +78,9 @@ namespace MenuBuddy
 		{
 			set
 			{
-				if (0 <= value && value < DropdownList.Count)
+				if (0 <= value && value < DropdownItems.Count)
 				{
-					SelectedItem = DropdownList[value].Item;
+					SelectedItem = DropdownItems[value].Item;
 				}
 			}
 		}
@@ -91,7 +91,7 @@ namespace MenuBuddy
 
 		public Dropdown()
 		{
-			DropdownList = new List<DropdownItem<T>>();
+			DropdownItems = new List<DropdownItem<T>>();
 			OnClick += CreateDropdownList;
 		}
 
@@ -160,13 +160,22 @@ namespace MenuBuddy
 		public void Clear()
 		{
 			SelectedItem = default(T);
-			DropdownList.Clear();
+			DropdownItems.Clear();
 		}
 
 		public override void Dispose()
 		{
 			base.Dispose();
 			OnSelectedItemChange = null;
+		}
+
+		public void AddDropdownItem(DropdownItem<T> dropdownItem)
+		{
+			DropdownItems.Add(dropdownItem);
+			if (DropdownItems.Count == 1)
+			{
+				SelectedItem = dropdownItem.Item;
+			}
 		}
 
 		#endregion //Methods
