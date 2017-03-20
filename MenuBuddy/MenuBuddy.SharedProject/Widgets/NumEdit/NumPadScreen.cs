@@ -1,5 +1,6 @@
 ﻿using InputHelper;
 using Microsoft.Xna.Framework;
+using ResolutionBuddy;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -88,9 +89,16 @@ namespace MenuBuddy
 			{
 				Horizontal = HorizontalAlignment.Left,
 				Vertical = VerticalAlignment.Top,
-				Size = new Vector2((48f * 3), ResolutionBuddy.Resolution.ScreenArea.Bottom - NumEditWidget.Rect.Bottom)
+				Size = new Vector2((48f * 3), 32f * 5)
 			};
 			_layout.Position = new Point(NumEditWidget.Rect.Left, NumEditWidget.Rect.Bottom);
+
+			if (_layout.Rect.Bottom > Resolution.ScreenArea.Bottom)
+			{
+				_layout.Vertical = VerticalAlignment.Bottom;
+				_layout.Position = new Point(NumEditWidget.Rect.Left, NumEditWidget.Rect.Top);
+			};
+
 			_layout.AddItem(_rows);
 			AddItem(_layout);
 		}

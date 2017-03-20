@@ -58,7 +58,7 @@ namespace MenuBuddy
 				DropdownItem<T> item = null;
 				if (null != value)
 				{
-					item = DropdownItems.First(x => x.Item.ToString() == value.ToString());
+					item = DropdownItems.Find(x => x.Item.Equals(value));
 				}
 				SetSelectedDropdownItem(item);
 			}
