@@ -1,8 +1,6 @@
 using FontBuddyLib;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 
 namespace MenuBuddy
 {
@@ -14,7 +12,6 @@ namespace MenuBuddy
 
 		public static StyleSheet Instance()
 		{
-			Debug.Assert(null != _instance);
 			return _instance;
 		}
 

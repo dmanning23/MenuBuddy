@@ -77,6 +77,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\ScreenItemListDelegate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\Slider\BaseSlider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\Slider\IntSlider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\TextEdit\ITextEdit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\TextEdit\TextChangeEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\TextEdit\TextEdit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\TextEdit\TextEditScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\VerticalAlignment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\Widget.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\Buttons\BaseButton.cs" />

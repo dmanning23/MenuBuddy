@@ -1,7 +1,7 @@
 using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
+using System;
 
 namespace MenuBuddy
 {
@@ -35,7 +35,10 @@ namespace MenuBuddy
 			InputHelper = game.Services.GetService(typeof(IInputHelper)) as IInputHelper;
 
 			//make sure that stuff was init correctly
-			Debug.Assert(null != InputHelper);
+			if (null == InputHelper)
+			{
+				throw new Exception("Cannot initialize TouchInputHelper without first adding IInputHelper service");
+			}
 
 			//Register ourselves to implement the DI container service.
 			game.Components.Add(this);

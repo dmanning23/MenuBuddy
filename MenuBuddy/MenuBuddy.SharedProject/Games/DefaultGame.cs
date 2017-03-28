@@ -40,7 +40,7 @@ namespace MenuBuddy
 		protected DefaultGame(GameType gameType)
 		{
 			Graphics = new GraphicsDeviceManager(this);
-			Graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft;
+			Graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
 			Content.RootDirectory = "Content";
 
 			DesiredScreenResolution = new Point(1280, 720);

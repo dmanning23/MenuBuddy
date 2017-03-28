@@ -1,8 +1,7 @@
-using PrimitiveBuddy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using PrimitiveBuddy;
 using ResolutionBuddy;
-using System.Diagnostics;
 
 namespace MenuBuddy
 {
@@ -26,8 +25,6 @@ namespace MenuBuddy
 
 		public DrawHelper(GraphicsDevice graphicsDevice, SpriteBatch spritebatch)
 		{
-			Debug.Assert(null != spritebatch);
-
 			SpriteBatch = spritebatch;
 
 			//init the basic primitive
@@ -40,17 +37,17 @@ namespace MenuBuddy
 		/// Helper draws a translucent black fullscreen sprite, used for fading
 		/// screens in and out, and for darkening the background behind popups.
 		/// </summary>
-		public void FadeBackground(float fAlpha)
+		public void FadeBackground(float alpha)
 		{
-			BlackRect(fAlpha, Resolution.ScreenArea);
+			BlackRect(alpha, Resolution.ScreenArea);
 		}
 
 		/// <summary>
 		/// Helper draws a translucent black sprite, used for fading specific areas
 		/// </summary>
-		public void BlackRect(float fAlpha, Rectangle rect)
+		public void BlackRect(float alpha, Rectangle rect)
 		{
-			DrawRect(new Color(0.0f, 0.0f, 0.0f, fAlpha), rect);
+			DrawRect(new Color(0.0f, 0.0f, 0.0f, alpha), rect);
 		}
 
 		/// <summary>

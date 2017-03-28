@@ -57,7 +57,11 @@ namespace MenuBuddy
 
 			//get the touch service
 			Input = game.Services.GetService(typeof(IInputHandler)) as IInputHandler;
-			Debug.Assert(null != Input);
+
+			if (null == Input)
+			{
+				throw new Exception("Cannot initialize ScreenManager without first adding IInputHandler service");
+			}
 
 			game.Components.Add(this);
 			game.Services.AddService(typeof(IScreenManager), this);
@@ -103,16 +107,7 @@ namespace MenuBuddy
 
 		public override void Update(GameTime gameTime)
 		{
-			//try
-			//{
-
 			ScreenStack.Update(gameTime, Input, !Game.IsActive);
-
-			//}
-			//catch (Exception ex)
-			//{
-			//	ErrorScreen(ex);
-			//}
 		}
 
 		/// <summary>
@@ -169,27 +164,16 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void AddScreen(IScreen screen, PlayerIndex? controllingPlayer = null)
 		{
-#if !DEBUG
-			try
-			{
-#endif
-				screen.ControllingPlayer = controllingPlayer;
-				screen.ScreenManager = this;
+			screen.ControllingPlayer = controllingPlayer;
+			screen.ScreenManager = this;
 
-				// If we have a graphics device, tell the screen to load content.
-				if (Initialized)
-				{
-					screen.LoadContent();
-				}
-
-				ScreenStack.Screens.Add(screen);
-#if !DEBUG
-			}
-			catch (Exception ex)
+			// If we have a graphics device, tell the screen to load content.
+			if (Initialized)
 			{
-				ErrorScreen(ex);
+				screen.LoadContent();
 			}
-#endif
+
+			ScreenStack.Screens.Add(screen);
 		}
 
 		/// <summary>
