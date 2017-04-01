@@ -61,7 +61,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// The area of this item
 		/// </summary>
-		public Rectangle Rect
+		public virtual Rectangle Rect
 		{
 			get
 			{

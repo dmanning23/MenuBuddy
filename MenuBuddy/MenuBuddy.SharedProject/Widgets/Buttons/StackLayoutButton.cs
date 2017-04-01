@@ -85,6 +85,8 @@ namespace MenuBuddy
 				relLayout.Horizontal = HorizontalAlignment.Left;
 				relLayout.Position = layoutPos.ToPoint();
 			}
+
+			_rect = relLayout.Rect;
 		}
 
 		public void InsertItem(IScreenItem item, IScreenItem prevItem)

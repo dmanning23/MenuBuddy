@@ -65,6 +65,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Transitions\WipeTransitionObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\Checkbox\Checkbox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\Checkbox\ICheckbox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\Hamburger\Hamburger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\Hamburger\HamburgerItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\Hamburger\HamburgerMenuScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\Hamburger\IHamburger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\HorizontalAlignment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\IScalable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\IScreenItem.cs" />
