@@ -179,6 +179,7 @@
     <Compile Include="SliderTests.cs" />
     <Compile Include="StackAlignments.cs" />
     <Compile Include="StackTests.cs" />
+    <Compile Include="TextEditTests.cs" />
     <Compile Include="TransitionTests.cs" />
     <Compile Include="TreeTests.cs" />
   </ItemGroup>

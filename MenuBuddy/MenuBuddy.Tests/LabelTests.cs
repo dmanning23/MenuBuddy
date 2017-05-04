@@ -312,5 +312,37 @@ namespace MenuBuddy.Tests
 		}
 
 		#endregion //Copy
+
+		#region crappy labels
+
+		[Test]
+		public void Empty_Label()
+		{
+			_label = new Label("");
+		}
+
+		[Test]
+		public void nullstring_Label()
+		{
+			string test = null;
+			_label = new Label(test);
+		}
+
+		[Test]
+		public void Empty_Label_move()
+		{
+			_label = new Label("");
+			LabelTests_ChangePosition_CheckPosition();
+		}
+
+		[Test]
+		public void nullstring_Label_move()
+		{
+			string test = null;
+			_label = new Label(test);
+			LabelTests_ChangePosition_CheckPosition();
+		}
+
+		#endregion //crappy labels
 	}
 }

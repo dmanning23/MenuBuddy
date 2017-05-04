@@ -188,11 +188,6 @@ namespace MenuBuddy
 			base.Draw(gameTime);
 		}
 
-		public void Selected(object obj, PlayerIndex player)
-		{
-			throw new NotImplementedException();
-		}
-
 		public override void Dispose()
 		{
 			base.Dispose();

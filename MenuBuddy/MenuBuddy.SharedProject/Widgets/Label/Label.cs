@@ -89,6 +89,11 @@ namespace MenuBuddy
 
 		public Label(Label inst) : base(inst)
 		{
+			if (null == inst)
+			{
+				throw new ArgumentNullException("inst");
+			}
+
 			_text = inst.Text;
 			_fontSize = inst.FontSize;
 			TextColor = inst.TextColor;

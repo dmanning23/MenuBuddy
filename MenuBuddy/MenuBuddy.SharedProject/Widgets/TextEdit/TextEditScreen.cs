@@ -18,6 +18,8 @@ namespace MenuBuddy
 
 		private ITransitionObject TransitionObject { get; set; }
 
+		private string CorrectText { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -33,9 +35,17 @@ namespace MenuBuddy
 			Transition.OffTime = 0f;
 			TextWidget = widget;
 			CoverOtherScreens = false;
+			CorrectText = TextWidget.Text;
 
 			_current = Keyboard.GetState();
 			_prev = Keyboard.GetState();
+		}
+
+		public override void LoadContent()
+		{
+			base.LoadContent();
+
+			SetTextWidgetText(false);
 		}
 
 		public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
@@ -57,10 +67,11 @@ namespace MenuBuddy
 			//check for backspace
 			if (CheckKey(Keys.Back))
 			{
-				var prevText = TextWidget.Text;
+				var prevText = CorrectText;
 				if (!string.IsNullOrEmpty(prevText))
 				{
-					TextWidget.Text = prevText.Substring(0, prevText.Length - 1);
+					CorrectText = prevText.Substring(0, prevText.Length - 1);
+					SetTextWidgetText(false);
 				}
 			}
 
@@ -117,7 +128,8 @@ namespace MenuBuddy
 
 		protected void AppendText(string appendText)
 		{
-			TextWidget.Text = TextWidget.Text + appendText;
+			CorrectText = CorrectText + appendText;
+			SetTextWidgetText(false);
 		}
 
 		protected void CheckAndAppendText(Keys key, bool shift)
@@ -152,7 +164,7 @@ namespace MenuBuddy
 
 		public override void ExitScreen()
 		{
-			TextWidget.SetText(TextWidget.Text);
+			SetTextWidgetText(true);
 			base.ExitScreen();
 		}
 
@@ -211,6 +223,18 @@ namespace MenuBuddy
 					case Keys.OemQuotes: { return "\""; }
 					default: { return ""; }
 				}
+			}
+		}
+
+		private void SetTextWidgetText(bool exiting)
+		{
+			if (exiting)
+			{
+				TextWidget.SetText(CorrectText);
+			}
+			else
+			{
+				TextWidget.Text = CorrectText + "_";
 			}
 		}
 
