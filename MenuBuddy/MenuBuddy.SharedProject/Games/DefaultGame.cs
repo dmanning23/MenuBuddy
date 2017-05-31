@@ -60,11 +60,16 @@ namespace MenuBuddy
 
 			// Create the screen manager component.
 			ScreenManager = new ScreenManager(this, GetMainMenuScreenStack);
-			
+
+			base.Initialize();
+		}
+
+		protected override void LoadContent()
+		{
 			// Activate the first screens.
 			ScreenManager.AddScreen(GetMainMenuScreenStack(), null);
 
-			base.Initialize();
+			base.LoadContent();
 		}
 
 		/// <summary>

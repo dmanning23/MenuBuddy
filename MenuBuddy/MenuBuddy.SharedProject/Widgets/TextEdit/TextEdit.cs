@@ -95,7 +95,7 @@ namespace MenuBuddy
 
 		#region Methods
 
-		public TextEdit(string text = "", FontSize fontSize = FontSize.Medium)
+		public TextEdit(string text, FontSize fontSize = FontSize.Medium)
 		{
 			Init(text, fontSize);
 		}
