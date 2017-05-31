@@ -21,15 +21,7 @@ namespace MenuBuddy
 		/// </summary>
 		protected ScreenManager ScreenManager { get; private set; }
 
-		/// <summary>
-		/// The desired resolution of the game
-		/// </summary>
-		protected Point DesiredScreenResolution { get; set; }
-
-		/// <summary>
-		/// whether or not the game should be displayed in fullscreen
-		/// </summary>
-		protected bool FullScreen { get; set; }
+		public ResolutionComponent ResolutionComponent { get; set; }
 
 		public GameType GameType  { get; private set;}
 
@@ -43,8 +35,7 @@ namespace MenuBuddy
 			Graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
 			Content.RootDirectory = "Content";
 
-			DesiredScreenResolution = new Point(1280, 720);
-			FullScreen = false;
+			ResolutionComponent = new ResolutionComponent(this, Graphics, new Point(1280, 720), new Point(1280, 720), false, false);
 			GameType = gameType;
 
 			//add the input helper for menus
@@ -65,19 +56,11 @@ namespace MenuBuddy
 		/// </summary>
 		protected override void Initialize()
 		{
-			Resolution.Init(Graphics);
-
 			InitStyles();
 
 			// Create the screen manager component.
 			ScreenManager = new ScreenManager(this, GetMainMenuScreenStack);
-
-			//Change Virtual Resolution
-			Resolution.SetDesiredResolution(DesiredScreenResolution.X, DesiredScreenResolution.Y);
-
-			//set the desired resolution
-			Resolution.SetScreenResolution(DesiredScreenResolution.X, DesiredScreenResolution.Y, FullScreen);
-
+			
 			// Activate the first screens.
 			ScreenManager.AddScreen(GetMainMenuScreenStack(), null);
 
@@ -123,10 +106,7 @@ namespace MenuBuddy
 		{
 			// Clear to Black
 			Graphics.GraphicsDevice.Clear(ScreenManager.ClearColor);
-
-			// Calculate Proper Viewport according to Aspect Ratio
-			Resolution.ResetViewport();
-
+			
 			// The real drawing happens inside the screen manager component.
 			base.Draw(gameTime);
 		}

@@ -99,6 +99,9 @@ namespace MenuBuddy
 		protected override void UnloadContent()
 		{
 			ScreenStack.UnloadContent();
+
+			DrawHelper?.Dispose();
+			DrawHelper = null;
 		}
 
 		#endregion //Initialization

@@ -2,13 +2,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PrimitiveBuddy;
 using ResolutionBuddy;
+using System;
 
 namespace MenuBuddy
 {
 	/// <summary>
 	/// This dude just helps out with some of the drawing tasks needed for menu buddies.
 	/// </summary>
-	public class DrawHelper
+	public class DrawHelper : IDisposable
 	{
 		#region Properties
 
@@ -109,6 +110,12 @@ namespace MenuBuddy
 		{
 			//draw the button outline
 			Prim.Rectangle(rect, color);
+		}
+
+		public void Dispose()
+		{
+			Prim?.Dispose();
+			Prim = null;
 		}
 
 		#endregion //Methods
