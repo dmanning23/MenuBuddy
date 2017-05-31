@@ -1,5 +1,6 @@
 using InputHelper;
 using Microsoft.Xna.Framework;
+using ResolutionBuddy;
 using System;
 
 namespace MenuBuddy
@@ -153,7 +154,7 @@ namespace MenuBuddy
 		{
 			//get the label rect
 			var labelRect = Label.Rect;
-			Size = new Vector2(768f, labelRect.Size.Y);
+			Size = new Vector2(Resolution.ScreenArea.Width * 0.7f, labelRect.Size.Y);
 
 			AddItem(Label);
 
