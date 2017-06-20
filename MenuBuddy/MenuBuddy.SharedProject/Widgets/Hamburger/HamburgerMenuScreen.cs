@@ -95,6 +95,7 @@ namespace MenuBuddy
 				Horizontal = LeftRight ? HorizontalAlignment.Left : HorizontalAlignment.Right,
 				Transition = new WipeTransitionObject(TransitionWipeType.PopTop)
 			});
+			button.OnClick += (obj, e) => ExitScreen();
 			button.OnClick += (obj, e) => hamburgerItem.ClickEvent(obj, e);
 
 			stack.AddItem(button);

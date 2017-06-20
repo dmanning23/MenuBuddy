@@ -76,7 +76,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ResolutionBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ResolutionBuddy.1.0.7\lib\MonoAndroid10\ResolutionBuddy.Android.dll</HintPath>
+      <HintPath>..\packages\ResolutionBuddy.1.0.8\lib\MonoAndroid10\ResolutionBuddy.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StateMachineBuddy.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
