@@ -18,10 +18,12 @@ namespace MenuBuddy
 		/// </summary>
 		public float AttractModeTime { get; set; }
 
+#pragma warning disable 0414
 		public event EventHandler<ClickEventArgs> OnClick;
 		public event EventHandler<HighlightEventArgs> OnHighlight;
 		public event EventHandler<DragEventArgs> OnDrag;
 		public event EventHandler<DropEventArgs> OnDrop;
+#pragma warning restore 0414
 
 		#endregion
 

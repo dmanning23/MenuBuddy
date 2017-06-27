@@ -1,4 +1,5 @@
-﻿namespace MenuBuddy
+﻿
+namespace MenuBuddy
 {
 	public interface IStackLayout : IScreenItemContainer, IScreenItem
 	{

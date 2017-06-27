@@ -1,9 +1,8 @@
 using GameTimer;
+using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MouseBuddy;
 using System;
-using InputHelper;
 
 namespace MenuBuddy
 {
@@ -21,7 +20,9 @@ namespace MenuBuddy
 		private bool _fillRect;
 		private Texture2D _texture;
 
+#pragma warning disable 0414
 		public event EventHandler<ClickEventArgs> OnClick;
+#pragma warning restore 0414
 
 		#endregion //Fields
 

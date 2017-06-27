@@ -1,9 +1,8 @@
-using System;
 using FontBuddyLib;
 using GameTimer;
 using InputHelper;
 using Microsoft.Xna.Framework;
-using MouseBuddy;
+using System;
 
 namespace MenuBuddy
 {
@@ -15,7 +14,9 @@ namespace MenuBuddy
 
 		private FontSize _fontSize;
 
+#pragma warning disable 0414
 		public event EventHandler<ClickEventArgs> OnClick;
+#pragma warning restore 0414
 
 		#endregion //Fields
 

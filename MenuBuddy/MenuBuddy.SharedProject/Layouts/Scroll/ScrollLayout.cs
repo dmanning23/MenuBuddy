@@ -262,7 +262,8 @@ namespace MenuBuddy
 			}
 
 			//start a new draw loop
-			screenManager.SpriteBatchBegin(BlendState.AlphaBlend);
+			//screenManager.SpriteBatchBegin(BlendState.AlphaBlend);
+			screenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
 			//call the provided delegate to draw everything
 			del(screen, gameTime);
