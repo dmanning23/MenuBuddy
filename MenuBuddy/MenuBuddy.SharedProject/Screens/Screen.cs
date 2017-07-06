@@ -28,12 +28,12 @@ namespace MenuBuddy
 		/// <summary>
 		/// Whether or not screens underneath this one should tranisition off
 		/// </summary>
-		public bool CoverOtherScreens { get; set; }
+		public virtual bool CoverOtherScreens { get; set; }
 
 		/// <summary>
 		/// Whether or not this screen should transition off when covered by other screens
 		/// </summary>
-		public bool CoveredByOtherScreens { private get; set; }
+		public virtual bool CoveredByOtherScreens { get; set; }
 
 		/// <summary>
 		/// There are two possible reasons why a screen might be transitioning off. 
@@ -43,10 +43,10 @@ namespace MenuBuddy
 		/// if set, the screen will automatically remove itself as soon as the
 		/// transition finishes.
 		/// </summary>
-		public bool IsExiting
+		public virtual bool IsExiting
 		{
 			get { return _isExiting; }
-			protected internal set
+			protected set
 			{
 				bool fireEvent = !_isExiting && value;
 				_isExiting = value;
@@ -63,8 +63,9 @@ namespace MenuBuddy
 		{
 			get
 			{
-				return HasFocus &&
-					!(CurrentlyCovered && CoveredByOtherScreens);
+				return !OtherWindowHasFocus && //the window is not covered
+					(!CoveredByOtherScreens || !CurrentlyCovered) && //the screen is not covered or don't care
+					(TransitionState == TransitionState.TransitionOn || TransitionState == TransitionState.Active); //the transition is correct state
 			}
 		}
 
@@ -72,10 +73,9 @@ namespace MenuBuddy
 		{
 			get
 			{
-				return !OtherWindowHasFocus &&
-					!CurrentlyCovered &&
-					   (TransitionState == TransitionState.TransitionOn ||
-						TransitionState == TransitionState.Active);
+				return !OtherWindowHasFocus && //the window is not covered
+					!CurrentlyCovered && //the screen is not covered
+					(TransitionState == TransitionState.TransitionOn || TransitionState == TransitionState.Active); //the transition is correct state
 			}
 		}
 

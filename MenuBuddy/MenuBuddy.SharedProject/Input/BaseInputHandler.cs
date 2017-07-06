@@ -6,7 +6,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is an input helper that uses the hadoukinput to do keyboard/controller input
 	/// </summary>
-	public abstract class BaseInputHandler : DrawableGameComponent, IInputHandler
+	public abstract class BaseInputHandler : DrawableGameComponent, IInputHandler, IUpdateable
 	{
 		#region Properties
 

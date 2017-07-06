@@ -39,7 +39,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Whether or not this screen should transition off when covered by other screens
 		/// </summary>
-		bool CoveredByOtherScreens { set; }
+		bool CoveredByOtherScreens { get; set; }
 
 		PlayerIndex? ControllingPlayer { get; set; }
 
@@ -48,13 +48,15 @@ namespace MenuBuddy
 		/// </summary>
 		bool IsActive { get; }
 
+		bool IsExiting { get; }
+
 		#endregion
 
-		#region Initialization
+			#region Initialization
 
-		/// <summary>
-		/// Load graphics content for the screen.
-		/// </summary>
+			/// <summary>
+			/// Load graphics content for the screen.
+			/// </summary>
 		void LoadContent();
 
 		/// <summary>

@@ -7,6 +7,7 @@ using NUnit.Framework;
 using Moq;
 using FontBuddyLib;
 using Microsoft.Xna.Framework;
+using ResolutionBuddy;
 
 namespace MenuBuddy.Tests
 {
@@ -26,6 +27,10 @@ namespace MenuBuddy.Tests
 		public void Setup()
 		{
 			StyleSheet.InitUnitTests();
+
+			var resolution = new Mock<IResolution>();
+			resolution.Setup(x => x.ScreenArea).Returns(new Rectangle(0, 0, 1280, 720));
+			Resolution.Init(resolution.Object);
 
 			var font = new Mock<IFontBuddy>() { CallBase = true };
 			font.Setup(x => x.MeasureString(It.IsAny<string>()))

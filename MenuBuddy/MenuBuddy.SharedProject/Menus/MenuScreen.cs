@@ -122,7 +122,7 @@ namespace MenuBuddy
 		{
 			base.LoadContent();
 
-			var game = ScreenManager.Game as DefaultGame;
+			var game = ScreenManager?.Game as DefaultGame;
 			_gameType = null != game ? game.GameType : GameType.Controller;
 
 			//Create the stack layout for teh menu entries
