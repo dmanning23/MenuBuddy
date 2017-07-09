@@ -1,4 +1,5 @@
 ﻿using InputHelper;
+using Microsoft.Xna.Framework;
 using System;
 
 namespace MenuBuddy
@@ -84,7 +85,41 @@ namespace MenuBuddy
 		/// </summary>
 		private Label NumLabel { get; set; }
 
-		private FontSize _fontSize;
+		public FontSize FontSize
+		{
+			get
+			{
+				return NumLabel.FontSize;
+			}
+			set
+			{
+				NumLabel.FontSize = value;
+			}
+		}
+
+		public Color? ShadowColor
+		{
+			get
+			{
+				return NumLabel.ShadowColor;
+			}
+			set
+			{
+				NumLabel.ShadowColor = value;
+			}
+		}
+
+		public Color? TextColor
+		{
+			get
+			{
+				return NumLabel.TextColor;
+			}
+			set
+			{
+				NumLabel.TextColor = value;
+			}
+		}
 
 		/// <summary>
 		/// Event that gets fired when the user finishes changing the number from the numpad
@@ -95,23 +130,31 @@ namespace MenuBuddy
 
 		#region Methods
 
+		public NumEdit(float num, FontSize fontSize = FontSize.Medium)
+		{
+			Init(num, fontSize);
+		}
+
 		public NumEdit(FontSize fontSize = FontSize.Medium)
 		{
+			Init(0, fontSize);
+		}
+
+		private void Init(float num, FontSize fontSize)
+		{
 			OnClick += CreateNumPad;
-			_fontSize = fontSize;
+			NumLabel = new Label(num.ToString(), fontSize)
+			{
+				Horizontal = HorizontalAlignment.Center,
+				Vertical = VerticalAlignment.Center,
+			};
+			AddItem(NumLabel);
 		}
 
 		public override void LoadContent(IScreen screen)
 		{
 			Screen = screen;
 			base.LoadContent(screen);
-
-			NumLabel = new Label(Number.ToString(), _fontSize)
-			{
-				Horizontal = HorizontalAlignment.Center,
-				Vertical = VerticalAlignment.Center,
-			};
-			AddItem(NumLabel);
 		}
 
 		/// <summary>

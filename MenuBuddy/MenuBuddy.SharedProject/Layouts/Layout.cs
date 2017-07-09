@@ -3,6 +3,7 @@ using InputHelper;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MenuBuddy
 {
@@ -202,6 +203,24 @@ namespace MenuBuddy
 		public virtual bool RemoveItem(IScreenItem item)
 		{
 			return Items.Remove(item);
+		}
+
+		public bool RemoveItems<T>() where T:IScreenItem
+		{
+			//get a list of items
+			var items = Items.Where(x => x is T);
+
+			//remove all the items
+			var result = false;
+			foreach (var item in items)
+			{
+				if (RemoveItem(item))
+				{
+					result = true;
+				}
+			}
+
+			return result;
 		}
 
 		public virtual void Update(IScreen screen, GameClock gameTime)

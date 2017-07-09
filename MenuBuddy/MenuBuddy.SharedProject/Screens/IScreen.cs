@@ -1,6 +1,6 @@
 using GameTimer;
-using HadoukInput;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
 namespace MenuBuddy
 {
@@ -19,6 +19,8 @@ namespace MenuBuddy
 		/// Gets the manager that this screen belongs to.
 		/// </summary>
 		ScreenManager ScreenManager { get; set; }
+
+		ContentManager Content { get; }
 
 		/// <summary>
 		/// Gets or sets the name of this screen
@@ -52,11 +54,11 @@ namespace MenuBuddy
 
 		#endregion
 
-			#region Initialization
+		#region Initialization
 
-			/// <summary>
-			/// Load graphics content for the screen.
-			/// </summary>
+		/// <summary>
+		/// Load graphics content for the screen.
+		/// </summary>
 		void LoadContent();
 
 		/// <summary>

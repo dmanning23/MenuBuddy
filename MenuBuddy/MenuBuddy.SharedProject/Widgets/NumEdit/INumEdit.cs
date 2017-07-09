@@ -1,14 +1,12 @@
 ﻿using InputHelper;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MenuBuddy
 {
 	/// <summary>
 	/// The interface for a numedit control
 	/// </summary>
-    public interface INumEdit : IWidget, IClickable
+	public interface INumEdit : IWidget, IClickable, IEditBox
 	{
 		event EventHandler<NumChangeEventArgs> OnNumberEdited;
 

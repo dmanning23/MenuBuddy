@@ -1,5 +1,6 @@
 using GameTimer;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using System;
 
 namespace MenuBuddy
@@ -84,6 +85,8 @@ namespace MenuBuddy
 		/// </summary>
 		public ScreenManager ScreenManager { get; set; }
 
+		public ContentManager Content { get; private set; }
+
 		/// <summary>
 		/// Gets the index of the player who is currently controlling this screen,
 		/// or null if it is accepting input from any player. This is used to lock
@@ -153,6 +156,10 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void LoadContent()
 		{
+			if (null != ScreenManager)
+			{
+				Content = new ContentManager(ScreenManager.Game.Services, ScreenManager.Game.Content.RootDirectory);
+			}
 		}
 
 		/// <summary>
@@ -160,6 +167,8 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void UnloadContent()
 		{
+			Content?.Unload();
+			Content = null;
 		}
 
 		#endregion
@@ -273,6 +282,12 @@ namespace MenuBuddy
 		public virtual void Dispose()
 		{
 			Exiting = null;
+
+			//just double check that this is getting called
+			if (null != Content)
+			{
+				throw new Exception($"Error: UnloadContent was not called in \"{ScreenName}\"");
+			}
 		}
 
 		#endregion

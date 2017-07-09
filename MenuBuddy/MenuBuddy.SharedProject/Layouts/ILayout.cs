@@ -12,5 +12,7 @@ namespace MenuBuddy
 		{
 			get;
 		}
+
+		bool RemoveItems<T>() where T : IScreenItem;
 	}
 }

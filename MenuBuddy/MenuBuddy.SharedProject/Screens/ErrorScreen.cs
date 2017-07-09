@@ -58,7 +58,7 @@ namespace MenuBuddy
 
 			// Draw the message box text.
 			ScreenManager.SpriteBatch.DrawString(StyleSheet.Instance().SmallNeutralFont.Font,
-				_message, textPosition, Color.White, 0.0f, new Vector2(0.0f, 0.0f), 0.4f, SpriteEffects.None, 1.0f);
+				_message, textPosition, Color.White, 0.0f, new Vector2(0.0f, 0.0f), 0.6f, SpriteEffects.None, 1.0f);
 
 			ScreenManager.SpriteBatchEnd();
 

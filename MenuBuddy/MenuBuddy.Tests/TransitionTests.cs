@@ -482,6 +482,32 @@ namespace MenuBuddy.Tests
 			Assert.IsTrue(transition.StateChange(true));
 		}
 
+		[Test]
+		public void off_on_update()
+		{
+			var transition = new ScreenTransition()
+			{
+				State = TransitionState.TransitionOff
+			};
+			Assert.IsTrue(transition.Update(new GameTime(), true));
+		}
+
+		[Test]
+		public void StateEvent()
+		{
+			var transition = new ScreenTransition()
+			{
+				State = TransitionState.Hidden
+			};
+			bool stateChanged = false;
+			transition.OnStateChange += (obj, e) =>
+			{
+				stateChanged = true;
+			};
+			transition.Update(new GameTime(), true);
+			Assert.IsTrue(stateChanged);
+		}
+
 		#endregion //transition state
 	}
 }

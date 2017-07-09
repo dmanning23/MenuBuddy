@@ -254,6 +254,15 @@ namespace MenuBuddy
 			}
 		}
 
+		public void RemoveScreens<T>() where T:IScreen
+		{
+			var screens = ScreenStack.FindScreens<T>().ToList();
+			foreach (var screen in screens)
+			{
+				RemoveScreen(screen);
+			}
+		}
+
 		/// <summary>
 		/// This method pops up a recoverable error screen.
 		/// </summary>

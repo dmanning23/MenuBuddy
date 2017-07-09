@@ -7,7 +7,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a class to help transition items on/off the screen
 	/// </summary>
-	public class ScreenTransition
+	public class ScreenTransition : IDisposable
 	{
 		#region Properties
 
@@ -45,6 +45,8 @@ namespace MenuBuddy
 
 		CountdownTimer _transitionTimer;
 
+		public event EventHandler OnStateChange;
+
 		#endregion //Properties
 
 		#region Methods
@@ -74,6 +76,12 @@ namespace MenuBuddy
 
 				//Start the countdown timer
 				_transitionTimer.Start(time);
+
+				//fire off the event handler
+				if (OnStateChange != null)
+				{
+					OnStateChange(this, new EventArgs());
+				}
 			}
 
 			_transitionTimer.Update(gameTime);
@@ -128,6 +136,11 @@ namespace MenuBuddy
 				return ((State == TransitionState.Active) ||
 					(State == TransitionState.TransitionOn));
 			}
+		}
+
+		public void Dispose()
+		{
+			OnStateChange = null;
 		}
 
 		#endregion //Methods

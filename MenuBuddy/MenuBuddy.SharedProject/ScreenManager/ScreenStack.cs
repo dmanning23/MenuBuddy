@@ -65,8 +65,6 @@ namespace MenuBuddy
 		/// <param name="screen"></param>
 		private void LoadScreenContent(IScreen screen)
 		{
-			
-
 			//load the screen content
 			screen.LoadContent();
 		}

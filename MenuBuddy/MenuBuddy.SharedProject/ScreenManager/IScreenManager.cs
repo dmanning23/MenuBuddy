@@ -90,6 +90,8 @@ namespace MenuBuddy
 		/// </summary>
 		void RemoveScreen(IScreen screen);
 
+		void RemoveScreens<T>() where T:IScreen;
+
 		/// <summary>
 		/// This method pops up a recoverable error screen.
 		/// </summary>
