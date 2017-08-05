@@ -157,6 +157,8 @@ namespace MenuBuddy
 
 		public bool ShowScrollBars { get; set; }
 
+		private bool CurrentlyDragging { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -169,6 +171,7 @@ namespace MenuBuddy
 			UpdateScrollBars();
 			DrawScrollbars = false;
 			ShowScrollBars = true;
+			CurrentlyDragging = false;
 		}
 
 		public ScrollLayout(ScrollLayout inst) : base(inst)
@@ -185,6 +188,7 @@ namespace MenuBuddy
 			DrawScrollbars = inst.DrawScrollbars;
 			Transition = inst.Transition;
 			ShowScrollBars = inst.ShowScrollBars;
+			CurrentlyDragging = inst.CurrentlyDragging;
 		}
 
 		public override IScreenItem DeepCopy()
@@ -414,15 +418,59 @@ namespace MenuBuddy
 
 		public override bool CheckDrag(DragEventArgs drag)
 		{
-			var result = Rect.Contains(drag.Start);
-			if (result)
+			var result = false;
+			if (CurrentlyDragging)
 			{
-				//add the delta to the scroll position
-				ScrollPosition = ScrollPosition + drag.Delta;
-				DrawScrollbars = true;
+				result = true;
+
+				//Set the position to the current drag position
+				DragOperation(drag);
+			}
+			else
+			{
+				//Check if the user has started a drag operation
+				result = Rect.Contains(drag.Start);
+				if (result)
+				{
+					//check if any of the widgets inside want the drag
+					if (!base.CheckDrag(drag))
+					{
+						if (!CurrentlyDragging)
+						{
+							//Set the start rectangle
+							CurrentlyDragging = true;
+						}
+
+						DragOperation(drag);
+					}
+				}
 			}
 
 			return result;
+		}
+
+		private void DragOperation(DragEventArgs drag)
+		{
+			//else add the delta to the scroll position
+			ScrollPosition = ScrollPosition + drag.Delta;
+			DrawScrollbars = true;
+		}
+
+		public override bool CheckDrop(DropEventArgs drop)
+		{
+			//check if we are currently dragging
+			if (CurrentlyDragging)
+			{
+				//don't respond to anymore drop events
+				CurrentlyDragging = false;
+
+				return true;
+			}
+			else
+			{
+				//drop.Drop = drop.Drop;
+				return base.CheckDrop(drop);
+			}
 		}
 
 		#endregion //Methods

@@ -142,6 +142,7 @@ namespace MenuBuddy
 
 		private void Init(float num, FontSize fontSize)
 		{
+			_number = num;
 			OnClick += CreateNumPad;
 			NumLabel = new Label(num.ToString(), fontSize)
 			{

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace MenuBuddy
 {
-	public class Hamburger : RelativeLayoutButton, IHamburger
+	public class Hamburger : RelativeLayoutButton, IContextMenu
 	{
 		#region Properties
 
@@ -15,7 +15,7 @@ namespace MenuBuddy
 
 		protected bool LeftRight { get; set; }
 
-		private List<HamburgerItem> HamburgerItems { get; set; }
+		private List<ContextMenuItem> HamburgerItems { get; set; }
 
 		#endregion //Properties
 
@@ -23,7 +23,7 @@ namespace MenuBuddy
 
 		public Hamburger(Texture2D hamburgerIcon, bool leftRight, ScreenManager screenManager)
 		{
-			HamburgerItems = new List<HamburgerItem>();
+			HamburgerItems = new List<ContextMenuItem>();
 			LeftRight = leftRight;
 
 			//create the image for the icon
@@ -51,7 +51,7 @@ namespace MenuBuddy
 
 		public void AddItem(Texture2D icon, string iconText, ClickDelegate clickEvent)
 		{
-			HamburgerItems.Add(new HamburgerItem(icon, iconText, clickEvent));
+			HamburgerItems.Add(new ContextMenuItem(icon, iconText, clickEvent));
 		}
 
 		#endregion //Methods

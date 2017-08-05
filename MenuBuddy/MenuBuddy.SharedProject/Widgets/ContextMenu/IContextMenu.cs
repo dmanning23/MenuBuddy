@@ -10,7 +10,7 @@ namespace MenuBuddy
 	/// outward facing interface for a hambuger icon.
 	/// Clicking this icon brings up a sidebar menu.
 	/// </summary>
-	public interface IHamburger : IButton
+	public interface IContextMenu
 	{
 		void AddItem(Texture2D icon, string iconText, ClickDelegate clickEvent);
 	}

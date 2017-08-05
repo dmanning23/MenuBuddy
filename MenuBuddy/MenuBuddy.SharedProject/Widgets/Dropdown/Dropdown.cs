@@ -3,11 +3,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace MenuBuddy
 {
-	public class Dropdown<T> : RelativeLayoutButton, IDropdown<T>, IDisposable
+	public class Dropdown<T> : RelativeLayout, IDropdown<T>, IDisposable
 	{
 		#region Events
 
@@ -72,7 +71,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// the dropdown icon that is displayed at the right of the widget
 		/// </summary>
-		private Image DropImage { get; set; }
+		private RelativeLayoutButton DropButton { get; set; }
 
 		public int SelectedIndex
 		{
@@ -85,6 +84,25 @@ namespace MenuBuddy
 			}
 		}
 
+		private ITransitionObject _transition;
+		public virtual ITransitionObject Transition { get
+			{
+				return _transition;
+			}
+			set
+			{
+				_transition = value;
+				foreach (var item in Items)
+				{
+					var transitionableItem = item as ITransitionable;
+					if (null != transitionableItem)
+					{
+						transitionableItem.Transition = Transition;
+					}
+				}
+			}
+		}
+
 		#endregion //Properties
 
 		#region Methods
@@ -92,7 +110,7 @@ namespace MenuBuddy
 		public Dropdown()
 		{
 			DropdownItems = new List<DropdownItem<T>>();
-			OnClick += CreateDropdownList;
+			Transition = new WipeTransitionObject(StyleSheet.Transition);
 		}
 
 		public override void LoadContent(IScreen screen)
@@ -100,15 +118,29 @@ namespace MenuBuddy
 			Screen = screen;
 			base.LoadContent(screen);
 
-			DropImage = new Image()
+			DropButton = new RelativeLayoutButton()
+			{
+				Size = new Vector2(Rect.Height, Rect.Height),
+				Horizontal = HorizontalAlignment.Right,
+				Vertical = VerticalAlignment.Center,
+				Layer = 1,
+				Highlightable = true,
+				Transition = this.Transition
+			};
+			DropButton.OnClick += CreateDropdownList;
+
+			var dropImage = new Image()
 			{
 				Texture = Screen.ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.DropdownImageResource),
 				Size = new Vector2(Rect.Height, Rect.Height) * 0.75f,
 				Horizontal = HorizontalAlignment.Right,
 				Vertical = VerticalAlignment.Center,
 				FillRect = true,
+				Transition = this.Transition
 			};
-			AddItem(DropImage);
+			DropButton.AddItem(dropImage);
+
+			AddItem(DropButton);
 		}
 
 		/// <summary>
@@ -119,11 +151,14 @@ namespace MenuBuddy
 		/// <param name="e"></param>
 		public void CreateDropdownList(object obj, ClickEventArgs e)
 		{
-			//create the dropdown screen
-			var droplist = new DropdownScreen<T>(this);
+			if (e.Button == MouseButton.Left)
+			{
+				//create the dropdown screen
+				var droplist = new DropdownScreen<T>(this);
 
-			//add the screen over the current one
-			Screen.ScreenManager.AddScreen(droplist);
+				//add the screen over the current one
+				Screen.ScreenManager.AddScreen(droplist);
+			}
 		}
 
 		private void SetSelectedDropdownItem(DropdownItem<T> selectedItem)
@@ -141,7 +176,7 @@ namespace MenuBuddy
 				}
 
 				//clear out the current item
-				Layout.Items.Clear();
+				Items.Clear();
 
 				//add the new item as the selected item
 				if (null != selectedItem)
@@ -150,9 +185,10 @@ namespace MenuBuddy
 				}
 
 				//add the expansion button
-				if (null != DropImage)
+				if (null != DropButton)
 				{
-					AddItem(DropImage);
+					DropButton.Layer = SelectedDropdownItem.Layer - 100;
+					AddItem(DropButton);
 				}
 			}
 		}
@@ -171,6 +207,7 @@ namespace MenuBuddy
 
 		public void AddDropdownItem(DropdownItem<T> dropdownItem)
 		{
+			dropdownItem.Transition = Transition;
 			DropdownItems.Add(dropdownItem);
 			if (DropdownItems.Count == 1)
 			{

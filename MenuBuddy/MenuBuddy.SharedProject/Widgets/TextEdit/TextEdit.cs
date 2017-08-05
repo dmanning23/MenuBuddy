@@ -86,6 +86,40 @@ namespace MenuBuddy
 			}
 		}
 
+		public override HorizontalAlignment Horizontal
+		{
+			get
+			{
+				return base.Horizontal;
+			}
+
+			set
+			{
+				base.Horizontal = value;
+				if (null != TextLabel)
+				{
+					TextLabel.Horizontal = value;
+				}
+			}
+		}
+
+		public override VerticalAlignment Vertical
+		{
+			get
+			{
+				return base.Vertical;
+			}
+
+			set
+			{
+				base.Vertical = value;
+				if (null != TextLabel)
+				{
+					TextLabel.Vertical = value;
+				}
+			}
+		}
+
 		/// <summary>
 		/// Event that gets fired when the user finishes changing the number from the numpad
 		/// </summary>
@@ -110,8 +144,8 @@ namespace MenuBuddy
 			OnClick += CreateTextPad;
 			TextLabel = new Label(text, fontSize)
 			{
-				Horizontal = HorizontalAlignment.Center,
-				Vertical = VerticalAlignment.Center,
+				Horizontal = this.Horizontal,
+				Vertical = this.Vertical,
 			};
 			AddItem(TextLabel);
 		}

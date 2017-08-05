@@ -208,7 +208,7 @@ namespace MenuBuddy
 		public bool RemoveItems<T>() where T:IScreenItem
 		{
 			//get a list of items
-			var items = Items.Where(x => x is T);
+			var items = Items.Where(x => x is T).ToList();
 
 			//remove all the items
 			var result = false;
@@ -308,7 +308,7 @@ namespace MenuBuddy
 			return false;
 		}
 
-		public bool CheckDrop(DropEventArgs drop)
+		public virtual bool CheckDrop(DropEventArgs drop)
 		{
 			if (Rect.Contains(drop.Drop))
 			{

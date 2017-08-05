@@ -13,7 +13,7 @@ namespace MenuBuddy
 	{
 		#region Properties
 
-		private List<HamburgerItem> HamburgerItems { get; set; }
+		private List<ContextMenuItem> HamburgerItems { get; set; }
 
 		private Texture2D HamburgerIcon { get; set; }
 
@@ -23,7 +23,7 @@ namespace MenuBuddy
 
 		#region Methods
 
-		public HamburgerMenuScreen(Texture2D hamburgerIcon, List<HamburgerItem> hamburgerItems, bool leftRight) : base("HamburgerMenuScreen")
+		public HamburgerMenuScreen(Texture2D hamburgerIcon, List<ContextMenuItem> hamburgerItems, bool leftRight) : base("HamburgerMenuScreen")
 		{
 			HamburgerIcon = hamburgerIcon;
 			LeftRight = leftRight;
@@ -46,7 +46,7 @@ namespace MenuBuddy
 			};
 
 			//first add the menu item to dismiss the screen
-			CreateButton(new HamburgerItem(HamburgerIcon, "", ((obj, e) => { ExitScreen(); })), stack);
+			CreateButton(new ContextMenuItem(HamburgerIcon, "", ((obj, e) => { ExitScreen(); })), stack);
 
 			//add each menu item below this
 			foreach (var hamburgerItem in HamburgerItems)
@@ -68,7 +68,7 @@ namespace MenuBuddy
 			AddItem(scroll);
 		}
 
-		private void CreateButton(HamburgerItem hamburgerItem, StackLayout stack)
+		private void CreateButton(ContextMenuItem hamburgerItem, StackLayout stack)
 		{
 			var button = new StackLayoutButton()
 			{

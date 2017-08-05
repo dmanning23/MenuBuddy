@@ -172,7 +172,6 @@ namespace MenuBuddy
 			_expanded = false;
 
 			//get the size of the brick to add for tabs
-			//var tab = _expandTexture.Bounds.Size.ToVector2();
 			var tab = new Vector2(ItemButton.Rect.Height, ItemButton.Rect.Height) * .5f;
 
 			//Add a brick for each tab

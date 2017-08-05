@@ -79,7 +79,8 @@ namespace MenuBuddy
 				//Set the label text
 				var label = new Label(line)
 				{
-					FontSize = FontSize.Small
+					FontSize = FontSize.Small,
+					Highlightable = false
 				};
 				ControlStack.AddItem(label);
 			}

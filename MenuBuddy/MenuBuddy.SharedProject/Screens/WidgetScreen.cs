@@ -189,6 +189,11 @@ namespace MenuBuddy
 
 		public virtual bool CheckHighlight(HighlightEventArgs highlight)
 		{
+			if (!IsActive)
+			{
+				return false;
+			}
+
 			return Layout.CheckHighlight(highlight);
 		}
 
@@ -198,6 +203,11 @@ namespace MenuBuddy
 		/// <param name="point"></param>
 		public virtual bool CheckClick(ClickEventArgs click)
 		{
+			if (!IsActive)
+			{
+				return false;
+			}
+
 			//restart the input timer thing
 			ResetInputTimer();
 
@@ -216,6 +226,11 @@ namespace MenuBuddy
 
 		public virtual bool CheckDrag(DragEventArgs drag)
 		{
+			if (!IsActive)
+			{
+				return false;
+			}
+
 			//restart the input timer thing
 			ResetInputTimer();
 
@@ -225,6 +240,11 @@ namespace MenuBuddy
 
 		public virtual bool CheckDrop(DropEventArgs drop)
 		{
+			if (!IsActive)
+			{
+				return false;
+			}
+
 			//check if they clicked in the layout
 			return Layout.CheckDrop(drop);
 		}
