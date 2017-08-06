@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Moq;
 using NUnit.Framework;
+using ResolutionBuddy;
 
 namespace MenuBuddy.Tests
 {
@@ -16,8 +18,13 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void Setup()
 		{
+			var resolution = new Mock<IResolution>();
+			resolution.Setup(x => x.ScreenArea).Returns(new Rectangle(0, 0, 1280, 720));
+			Resolution.Init(resolution.Object);
+
 			StyleSheet.InitUnitTests();
-			_drop = new Dropdown<string>();
+			var screen = new WidgetScreen("test screen");
+			_drop = new Dropdown<string>(screen);
 		}
 
 		#endregion //Setup

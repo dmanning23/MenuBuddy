@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Moq;
 using NUnit.Framework;
+using ResolutionBuddy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,10 @@ namespace MenuBuddy.Tests
 		public void LabelTests_Setup()
 		{
 			StyleSheet.InitUnitTests();
+
+			var resolution = new Mock<IResolution>();
+			resolution.Setup(x => x.ScreenArea).Returns(new Rectangle(0, 0, 1280, 720));
+			Resolution.Init(resolution.Object);
 
 			_font = new Mock<IFontBuddy>() { CallBase = true };
 			_font.Setup(x => x.MeasureString(It.IsAny<string>()))
@@ -180,7 +185,7 @@ namespace MenuBuddy.Tests
 				Vertical = VerticalAlignment.Center,
 				Scale = 0.5f,
 				ScrollPosition = new Vector2(60, 70),
-				Transition = new WipeTransitionObject(TransitionWipeType.PopTop),
+				TransitionObject = new WipeTransitionObject(TransitionWipeType.PopTop),
 				MaxScroll = new Vector2(80, 90),
 				MinScroll = new Vector2(100, 200),
 			};
@@ -194,7 +199,7 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(HorizontalAlignment.Center, clone.Horizontal);
 			Assert.AreEqual(VerticalAlignment.Center, clone.Vertical);
 			Assert.AreEqual(.5f, clone.Scale);
-			Assert.AreEqual(TransitionWipeType.PopTop, (clone.Transition as WipeTransitionObject).WipeType);
+			Assert.AreEqual(TransitionWipeType.PopTop, (clone.TransitionObject as WipeTransitionObject).WipeType);
 			Assert.AreEqual(100, clone.MinScroll.X);
 			Assert.AreEqual(200, clone.MinScroll.Y);
 			Assert.AreEqual(80, clone.MaxScroll.X);
@@ -212,7 +217,7 @@ namespace MenuBuddy.Tests
 				Vertical = VerticalAlignment.Center,
 				Scale = 0.5f,
 				ScrollPosition = new Vector2(60, 70),
-				Transition = new WipeTransitionObject(TransitionWipeType.PopTop),
+				TransitionObject = new WipeTransitionObject(TransitionWipeType.PopTop),
 				MaxScroll = new Vector2(80, 90),
 				MinScroll = new Vector2(100, 200),
 			};
@@ -224,7 +229,7 @@ namespace MenuBuddy.Tests
 			layout.Horizontal = HorizontalAlignment.Left;
 			layout.Vertical = VerticalAlignment.Bottom;
 			layout.Scale = 2.5f;
-			layout.Transition = new WipeTransitionObject(TransitionWipeType.PopLeft);
+			layout.TransitionObject = new WipeTransitionObject(TransitionWipeType.PopLeft);
 			layout.MinScroll = new Vector2(400, 500);
 			layout.MaxScroll = new Vector2(600, 700);
 
@@ -235,7 +240,7 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(HorizontalAlignment.Center, clone.Horizontal);
 			Assert.AreEqual(VerticalAlignment.Center, clone.Vertical);
 			Assert.AreEqual(.5f, clone.Scale);
-			Assert.AreEqual(TransitionWipeType.PopTop, (clone.Transition as WipeTransitionObject).WipeType);
+			Assert.AreEqual(TransitionWipeType.PopTop, (clone.TransitionObject as WipeTransitionObject).WipeType);
 			Assert.AreEqual(100, clone.MinScroll.X);
 			Assert.AreEqual(200, clone.MinScroll.Y);
 			Assert.AreEqual(80, clone.MaxScroll.X);
@@ -719,7 +724,8 @@ namespace MenuBuddy.Tests
 		[Test]
 		public void CloneDropdownItem()
 		{
-			var drop = new Dropdown<string>();
+			var screen = new WidgetScreen("test screen");
+			var drop = new Dropdown<string>(screen);
 			drop.Vertical = VerticalAlignment.Center;
 			drop.Horizontal = HorizontalAlignment.Center;
 			drop.Size = new Vector2(350, 128);
