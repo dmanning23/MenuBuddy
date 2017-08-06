@@ -43,7 +43,7 @@ namespace MenuBuddy
 
 		public virtual bool IsHighlighted
 		{
-			protected get
+			get
 			{
 				return _highlight;
 			}
@@ -174,11 +174,11 @@ namespace MenuBuddy
 
 		public bool HasOutline { get; set; }
 
-		public virtual ITransitionObject Transition { get; set; }
-
-		public Texture2D BackgroundImage { get; set; }
+		public virtual ITransitionObject TransitionObject { get; set; }
 
 		public bool Highlightable { get; set; }
+
+		protected Background Background { get; set; }
 
 		#endregion //Properties
 
@@ -195,7 +195,8 @@ namespace MenuBuddy
 			_scale = 1.0f;
 			_padding = Vector2.Zero;
 			HighlightClock = new GameClock();
-			Transition = new WipeTransitionObject(StyleSheet.Transition);
+			TransitionObject = new WipeTransitionObject(StyleSheet.Transition);
+			Background = new Background();
 		}
 
 		protected Widget(Widget inst)
@@ -212,8 +213,8 @@ namespace MenuBuddy
 			OnHighlight = inst.OnHighlight;
 			HasBackground = inst.HasBackground;
 			HasOutline = inst.HasOutline;
-			Transition = inst.Transition;
-			BackgroundImage = inst.BackgroundImage;
+			TransitionObject = inst.TransitionObject;
+			Background = inst.Background;
 		}
 
 		/// <summary>
@@ -232,10 +233,7 @@ namespace MenuBuddy
 		/// <param name="screen"></param>
 		public virtual void LoadContent(IScreen screen)
 		{
-			if (null != screen.ScreenManager)
-			{
-				BackgroundImage = screen.ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.ButtonBackgroundImageResource);
-			}
+			Background.LoadContent(screen);
 		}
 
 		/// <summary>
@@ -270,19 +268,7 @@ namespace MenuBuddy
 			//darw the background rectangle if in touch mode
 			if (screen.IsActive)
 			{
-				//draw the rect!
-				if (HasBackground)
-				{
-					var color = IsHighlighted ? StyleSheet.HighlightedBackgroundColor : StyleSheet.NeutralBackgroundColor;
-					screen.ScreenManager.DrawHelper.DrawRect(color, Rect, screen.Transition, Transition, BackgroundImage);
-				}
-
-				//draw the outline!
-				if (HasOutline)
-				{
-					var color = IsHighlighted ? StyleSheet.HighlightedOutlineColor : StyleSheet.NeutralOutlineColor;
-					screen.ScreenManager.DrawHelper.DrawOutline(color, Rect, screen.Transition, Transition);
-				}
+				Background.Draw(this, screen);
 			}
 		}
 
@@ -295,7 +281,7 @@ namespace MenuBuddy
 		protected Point DrawPosition(IScreen screen)
 		{
 			//take the transition position into account
-			return Transition.Position(screen.Transition, Rect);
+			return TransitionObject.Position(screen.Transition, Rect);
 		}
 
 		public virtual bool CheckHighlight(HighlightEventArgs highlight)

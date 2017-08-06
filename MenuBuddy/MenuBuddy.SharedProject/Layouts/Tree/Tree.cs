@@ -1,4 +1,5 @@
 using System;
+using GameTimer;
 
 namespace MenuBuddy
 {
@@ -17,7 +18,7 @@ namespace MenuBuddy
 		/// </summary>
 		public StackLayout Stack { get; private set; }
 
-		private IScreen Screen
+		protected IScreen Screen
 		{
 			get; set;
 		}
@@ -69,6 +70,30 @@ namespace MenuBuddy
 			}
 		}
 
+		public bool HasBackground { get; set; }
+
+		protected Background Background { get; set; }
+		
+		public override ITransitionObject TransitionObject
+		{
+			get
+			{
+				return base.TransitionObject;
+			}
+			set
+			{
+				base.TransitionObject = value;
+				foreach (var item in Items)
+				{
+					var transitionableItem = item as ITransitionable;
+					if (null != transitionableItem)
+					{
+						transitionableItem.TransitionObject = TransitionObject;
+					}
+				}
+			}
+		}
+
 		#endregion //Properties
 
 		#region Methods
@@ -81,6 +106,7 @@ namespace MenuBuddy
 				Alignment = StackAlignment.Top
 			};
 			Screen = screen;
+			Background = new Background();
 		}
 
 		public Tree(Tree<T> inst) : base(inst)
@@ -88,11 +114,16 @@ namespace MenuBuddy
 			Stack = new StackLayout(inst.Stack);
 			Screen = inst.Screen;
 			SelectedTreeItem = inst.SelectedTreeItem;
+			Background = inst.Background;
 		}
 
 		public override void LoadContent(IScreen screen)
 		{
+			base.LoadContent(screen);
+
 			base.AddItem(Stack);
+
+			Background.LoadContent(screen);
 		}
 
 		public override IScreenItem DeepCopy()
@@ -100,7 +131,7 @@ namespace MenuBuddy
 			return new Tree<T>(this);
 		}
 
-		public override void AddItem(IScreenItem item)
+		protected void PrepareAdd(IScreenItem item)
 		{
 			//Make sure the thing is in the tree
 			var treeItem = item as TreeItem<T>;
@@ -108,6 +139,17 @@ namespace MenuBuddy
 			{
 				treeItem.AddToTree(Screen);
 			}
+
+			var transitionable = item as ITransitionable;
+			if (null != transitionable)
+			{
+				transitionable.TransitionObject = this.TransitionObject;
+			}
+		}
+
+		public override void AddItem(IScreenItem item)
+		{
+			PrepareAdd(item);
 
 			//add to the stack control
 			Stack.AddItem(item);
@@ -118,12 +160,7 @@ namespace MenuBuddy
 
 		public void InsertItem(IScreenItem item, IScreenItem prevItem)
 		{
-			//Make sure the thing is in the tree
-			var treeItem = item as TreeItem<T>;
-			if (null != treeItem)
-			{
-				treeItem.AddToTree(Screen);
-			}
+			PrepareAdd(item);
 
 			//add to the stack control
 			Stack.InsertItem(item, prevItem);
@@ -134,12 +171,7 @@ namespace MenuBuddy
 
 		public void InsertItemBefore(IScreenItem item, IScreenItem nextItem)
 		{
-			//Make sure the thing is in the tree
-			var treeItem = item as TreeItem<T>;
-			if (null != treeItem)
-			{
-				treeItem.AddToTree(Screen);
-			}
+			PrepareAdd(item);
 
 			//add to the stack control
 			Stack.InsertItemBefore(item, nextItem);
@@ -165,6 +197,13 @@ namespace MenuBuddy
 		{
 			base.Dispose();
 			OnSelectedItemChange = null;
+		}
+
+		public override void DrawBackground(IScreen screen, GameClock gameTime)
+		{
+			Background.Draw(this, screen);
+
+			base.DrawBackground(screen, gameTime);
 		}
 
 		#endregion //Methods

@@ -66,7 +66,7 @@ namespace MenuBuddy
 
 		public override bool IsHighlighted
 		{
-			protected get
+			get
 			{
 				return base.IsHighlighted;
 			}
@@ -125,16 +125,16 @@ namespace MenuBuddy
 			}
 		}
 
-		public override ITransitionObject Transition
+		public override ITransitionObject TransitionObject
 		{
 			get
 			{
-				return base.Transition;
+				return base.TransitionObject;
 			}
 
 			set
 			{
-				base.Transition = value;
+				base.TransitionObject = value;
 
 				if (null != Layout)
 				{
@@ -143,7 +143,7 @@ namespace MenuBuddy
 						var widget = Layout.Items[i] as IWidget;
 						if (null != widget)
 						{
-							widget.Transition = value;
+							widget.TransitionObject = value;
 						}
 					}
 				}
@@ -226,7 +226,7 @@ namespace MenuBuddy
 			var widget = item as IWidget;
 			if (null != widget)
 			{
-				widget.Transition = Transition;
+				widget.TransitionObject = TransitionObject;
 			}
 
 		}

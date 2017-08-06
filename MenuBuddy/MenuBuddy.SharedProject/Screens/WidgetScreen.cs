@@ -48,13 +48,7 @@ namespace MenuBuddy
 		/// <value>The time since input.</value>
 		public CountdownTimer TimeSinceInput { get; private set; }
 
-		public bool Highlight
-		{
-			set
-			{
-				//nothing to do here...
-			}
-		}
+		public bool Highlight { protected get; set; }
 
 		public bool IsClicked
 		{
@@ -67,12 +61,7 @@ namespace MenuBuddy
 			}
 		}
 
-		public bool IsHighlighted
-		{
-			set
-			{
-			}
-		}
+		public bool IsHighlighted { get; set; }
 
 		#endregion //Properties
 

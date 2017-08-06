@@ -47,7 +47,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="InputHelper.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\InputHelper.1.0.17\lib\net451\InputHelper.DesktopGL.dll</HintPath>
+      <HintPath>..\..\..\AnimationTool\packages\InputHelper.1.0.19\lib\net451\InputHelper.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MatrixExtensions.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

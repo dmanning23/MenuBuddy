@@ -36,10 +36,16 @@ namespace MenuBuddy
 			}
 		}
 
+		private bool _isHighlighted;
 		public bool IsHighlighted
 		{
+			get
+			{
+				return _isHighlighted;
+			}
 			set 
 			{
+				_isHighlighted = value;
 				foreach (var item in Items)
 				{
 					var highlightable = item as IHighlightable;

@@ -179,7 +179,7 @@ namespace MenuBuddy
 			//draw the slide rect
 			screen.ScreenManager.DrawHelper.DrawRect(
 				IsHighlighted ? StyleSheet.HighlightedBackgroundColor : StyleSheet.NeutralBackgroundColor,
-				_slideRect, screen.Transition, Transition);
+				_slideRect, screen.Transition, TransitionObject);
 
 			//draw the marks on the background
 			foreach (var mark in Marks)
@@ -199,7 +199,7 @@ namespace MenuBuddy
 				//draw the handle rect
 				screen.ScreenManager.DrawHelper.DrawRect(
 					IsHighlighted ? StyleSheet.HighlightedTextColor : StyleSheet.NeutralTextColor,
-					_handleRect, screen.Transition, Transition);
+					_handleRect, screen.Transition, TransitionObject);
 			}
 		}
 

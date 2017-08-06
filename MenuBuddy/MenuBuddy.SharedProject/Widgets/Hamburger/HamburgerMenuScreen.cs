@@ -60,7 +60,7 @@ namespace MenuBuddy
 				Position = new Point(LeftRight ? Resolution.ScreenArea.Left : Resolution.ScreenArea.Right, Resolution.TitleSafeArea.Top),
 				Horizontal = LeftRight ? HorizontalAlignment.Left : HorizontalAlignment.Right,
 				Vertical = VerticalAlignment.Top,
-				Transition  = new WipeTransitionObject(TransitionWipeType.PopTop),
+				TransitionObject = new WipeTransitionObject(TransitionWipeType.PopTop),
 				Size = new Vector2(Resolution.TitleSafeArea.Left + stack.Rect.Width, 
 					Math.Min(stack.Rect.Height, (Resolution.ScreenArea.Bottom - Resolution.TitleSafeArea.Top)))
 			};
@@ -74,7 +74,7 @@ namespace MenuBuddy
 			{
 				Vertical = VerticalAlignment.Center,
 				Horizontal = LeftRight ? HorizontalAlignment.Left : HorizontalAlignment.Right,
-				Transition = new WipeTransitionObject(TransitionWipeType.PopTop),
+				TransitionObject = new WipeTransitionObject(TransitionWipeType.PopTop),
 				Alignment = LeftRight ? StackAlignment.Left : StackAlignment.Right,
 			};
 			button.AddItem(new Image(hamburgerItem.Icon)
@@ -83,7 +83,7 @@ namespace MenuBuddy
 				Vertical = VerticalAlignment.Center,
 				Horizontal = LeftRight ? HorizontalAlignment.Left : HorizontalAlignment.Right,
 				FillRect = true,
-				Transition = new WipeTransitionObject(TransitionWipeType.PopTop)
+				TransitionObject = new WipeTransitionObject(TransitionWipeType.PopTop)
 			});
 			button.AddItem(new Shim()
 			 {
@@ -93,7 +93,7 @@ namespace MenuBuddy
 			{
 				Vertical = VerticalAlignment.Top,
 				Horizontal = LeftRight ? HorizontalAlignment.Left : HorizontalAlignment.Right,
-				Transition = new WipeTransitionObject(TransitionWipeType.PopTop)
+				TransitionObject = new WipeTransitionObject(TransitionWipeType.PopTop)
 			});
 			button.OnClick += (obj, e) => ExitScreen();
 			button.OnClick += (obj, e) => hamburgerItem.ClickEvent(obj, e);

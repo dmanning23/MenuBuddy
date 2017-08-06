@@ -10,11 +10,6 @@ namespace MenuBuddy
 		#region Fields
 
 		/// <summary>
-		/// The tree control that owns this dude
-		/// </summary>
-		ITree<T> _tree;
-
-		/// <summary>
 		/// the tree item that this guy is underneath
 		/// null if it is a top level node
 		/// </summary>
@@ -57,7 +52,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// the item this guy is managing
 		/// </summary>
-		private RelativeLayoutButton ItemButton
+		protected RelativeLayoutButton ItemButton
 		{
 			get;
 			set;
@@ -67,6 +62,11 @@ namespace MenuBuddy
 		{
 			get; private set;
 		}
+
+		/// <summary>
+		/// The tree control that owns this dude
+		/// </summary>
+		protected ITree<T> Tree { get; set; }
 
 		#endregion //Properties
 
@@ -79,7 +79,7 @@ namespace MenuBuddy
 			Alignment = StackAlignment.Left;
 			Horizontal = HorizontalAlignment.Left;
 			Vertical = VerticalAlignment.Center;
-			_tree = tree;
+			Tree = tree;
 			_parent = parent;
 			_indentation = (parent == null ? 0 : parent._indentation + 1);
 			ChildItems = new List<TreeItem<T>>();
@@ -96,7 +96,7 @@ namespace MenuBuddy
 		{
 			Item = inst.Item;
 			ItemButton = new RelativeLayoutButton(inst.ItemButton);
-			_tree = inst._tree;
+			Tree = inst.Tree;
 			_parent = inst._parent;
 			_indentation = inst._indentation;
 			_expanded = inst._expanded;
@@ -247,7 +247,7 @@ namespace MenuBuddy
 			for (int i = ChildItems.Count - 1; i >= 0; i--)
 			{
 				//Add this whole thing to the main control
-				_tree.InsertItem(ChildItems[i], this);
+				Tree.InsertItem(ChildItems[i], this);
 			}
 
 			//swap out the image of the expand/collapse button
@@ -268,7 +268,7 @@ namespace MenuBuddy
 			foreach (var item in ChildItems)
 			{
 				item.Collapse(obj, e);
-				_tree.RemoveItem(item);
+				Tree.RemoveItem(item);
 			}
 
 			//swap out the image of the expand/collapse button

@@ -33,14 +33,14 @@ namespace MenuBuddy
 				Vertical = VerticalAlignment.Top,
 				Horizontal = HorizontalAlignment.Center,
 				FillRect = true,
-				Transition = new WipeTransitionObject(TransitionWipeType.PopTop)
+				TransitionObject = new WipeTransitionObject(TransitionWipeType.PopTop)
 			};
 
 			//set the hamburger button properties
 			Size = new Vector2(64f, 64f);
 			Vertical = VerticalAlignment.Top;
 			Horizontal = LeftRight ? HorizontalAlignment.Left : HorizontalAlignment.Right;
-			Transition = new WipeTransitionObject(TransitionWipeType.PopTop);
+			TransitionObject = new WipeTransitionObject(TransitionWipeType.PopTop);
 			Position = new Point(LeftRight ?  Resolution.TitleSafeArea.Left : Resolution.TitleSafeArea.Right, Resolution.TitleSafeArea.Top);
 			AddItem(HamburgerImage);
 			OnClick += (obj, e) =>

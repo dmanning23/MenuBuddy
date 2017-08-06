@@ -34,14 +34,14 @@ namespace MenuBuddy
 			base.LoadContent(screen);
 
 			//load the icon
-			Transition = new WipeTransitionObject(TransitionWipeType.PopRight);
+			TransitionObject = new WipeTransitionObject(TransitionWipeType.PopRight);
 			HasBackground = false;
 			HasOutline = true;
 			var image = new Image(screen.ScreenManager.Game.Content.Load<Texture2D>(IconTextureName))
 			{
 				Vertical = VerticalAlignment.Center,
 				Horizontal = HorizontalAlignment.Center,
-				Transition = new WipeTransitionObject(TransitionWipeType.PopRight)
+				TransitionObject = new WipeTransitionObject(TransitionWipeType.PopRight)
 			};
 			AddItem(image);
 

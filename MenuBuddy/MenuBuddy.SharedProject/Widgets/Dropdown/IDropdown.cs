@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MenuBuddy
 {
-	public interface IDropdown<T> : ILayout, IClickable, ITransitionable
+	public interface IDropdown<T> : ILayout, IClickable, ITransitionable, IBackgroundable
 	{
 		event EventHandler<SelectionChangeEventArgs<T>> OnSelectedItemChange;
 

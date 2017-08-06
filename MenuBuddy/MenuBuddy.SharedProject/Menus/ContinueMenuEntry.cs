@@ -8,7 +8,7 @@ namespace MenuBuddy
 	{
 		public ContinueMenuEntry() : base("Continue")
 		{
-			Transition = new WipeTransitionObject(TransitionWipeType.PopBottom);
+			TransitionObject = new WipeTransitionObject(TransitionWipeType.PopBottom);
 		}
 	}
 }

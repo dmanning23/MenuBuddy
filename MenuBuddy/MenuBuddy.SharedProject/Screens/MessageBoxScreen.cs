@@ -111,6 +111,15 @@ namespace MenuBuddy
 		{
 		}
 
+		/// <summary>
+		/// Override with method to validate any data that has been entered before exiting the screen.
+		/// </summary>
+		/// <returns></returns>
+		protected virtual bool Validate()
+		{
+			return true;
+		}
+
 		protected virtual void AddButtons(StackLayout stack)
 		{
 			AddOkButton(stack);
@@ -127,11 +136,15 @@ namespace MenuBuddy
 			};
 			ok.OnClick += ((obj, e) =>
 			{
-				if (null != OnSelect)
+				if (Validate())
 				{
-					OnSelect(obj, e);
+					if (null != OnSelect)
+					{
+						OnSelect(obj, e);
+					}
+
+					ExitScreen();
 				}
-				ExitScreen();
 			});
 			ok.LoadContent(this);
 			stack.AddItem(ok);

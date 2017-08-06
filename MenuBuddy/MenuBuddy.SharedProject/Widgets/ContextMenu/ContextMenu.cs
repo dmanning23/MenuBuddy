@@ -74,7 +74,7 @@ namespace MenuBuddy
 					var transitionable = item as ITransitionable;
 					if (null != transitionable)
 					{
-						transitionable.Transition = new WipeTransitionObject(TransitionWipeType.PopBottom);
+						transitionable.TransitionObject = new WipeTransitionObject(TransitionWipeType.PopBottom);
 					}
 				}
 			}
@@ -85,7 +85,7 @@ namespace MenuBuddy
 				Position = _clickPos.ToPoint(),
 				Horizontal = horiz,
 				Vertical = vert,
-				Transition = new WipeTransitionObject(vert == VerticalAlignment.Top ? TransitionWipeType.PopTop : TransitionWipeType.PopBottom),
+				TransitionObject = new WipeTransitionObject(vert == VerticalAlignment.Top ? TransitionWipeType.PopTop : TransitionWipeType.PopBottom),
 				Size = new Vector2(_stack.Rect.Width, _stack.Rect.Height)
 			};
 			_layout.AddItem(_stack);
@@ -101,7 +101,7 @@ namespace MenuBuddy
 			{
 				Vertical = VerticalAlignment.Center,
 				Horizontal = HorizontalAlignment.Left,
-				Transition = new WipeTransitionObject(TransitionWipeType.PopTop),
+				TransitionObject = new WipeTransitionObject(TransitionWipeType.PopTop),
 				Alignment = StackAlignment.Left,
 			};
 
@@ -113,7 +113,7 @@ namespace MenuBuddy
 					Vertical = VerticalAlignment.Center,
 					Horizontal = HorizontalAlignment.Left,
 					FillRect = true,
-					Transition = new WipeTransitionObject(TransitionWipeType.PopTop)
+					TransitionObject = new WipeTransitionObject(TransitionWipeType.PopTop)
 				});
 			}
 			else
@@ -123,7 +123,7 @@ namespace MenuBuddy
 					Size = new Vector2(24f, 24f),
 					Vertical = VerticalAlignment.Center,
 					Horizontal = HorizontalAlignment.Left,
-					Transition = new WipeTransitionObject(TransitionWipeType.PopTop)
+					TransitionObject = new WipeTransitionObject(TransitionWipeType.PopTop)
 				});
 			}
 
@@ -136,8 +136,14 @@ namespace MenuBuddy
 			{
 				Vertical = VerticalAlignment.Center,
 				Horizontal = HorizontalAlignment.Left,
-				Transition = new WipeTransitionObject(TransitionWipeType.PopTop)
+				TransitionObject = new WipeTransitionObject(TransitionWipeType.PopTop)
 			});
+
+			button.AddItem(new Shim()
+			{
+				Size = new Vector2(24f, 24f),
+			});
+			
 			button.OnClick += (obj, e) => ExitScreen();
 			button.OnClick += (obj, e) => hamburgerItem.ClickEvent(obj, e);
 

@@ -121,15 +121,15 @@ namespace MenuBuddy
 			{
 				case HorizontalAlignment.Left:
 					{
-						return Transition.Position(screen.Transition, new Point(Rect.X, Rect.Y));
+						return TransitionObject.Position(screen.Transition, new Point(Rect.X, Rect.Y));
 					}
 				case HorizontalAlignment.Center:
 					{
-						return Transition.Position(screen.Transition, new Point(Rect.Center.X, Rect.Y));
+						return TransitionObject.Position(screen.Transition, new Point(Rect.Center.X, Rect.Y));
 					}
 				default:
 					{
-						return Transition.Position(screen.Transition, new Point(Rect.Right, Rect.Y));
+						return TransitionObject.Position(screen.Transition, new Point(Rect.Right, Rect.Y));
 					}
 			}
 		}

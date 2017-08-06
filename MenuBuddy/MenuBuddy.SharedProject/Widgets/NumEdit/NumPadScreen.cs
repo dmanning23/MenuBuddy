@@ -108,7 +108,7 @@ namespace MenuBuddy
 			var widget = item as IWidget;
 			if (null != widget)
 			{
-				widget.Transition = new WipeTransitionObject(TransitionWipeType.None);
+				widget.TransitionObject = new WipeTransitionObject(TransitionWipeType.None);
 			}
 			base.AddItem(item);
 		}

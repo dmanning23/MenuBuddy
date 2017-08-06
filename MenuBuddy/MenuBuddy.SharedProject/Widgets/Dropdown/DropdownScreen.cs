@@ -43,9 +43,6 @@ namespace MenuBuddy
 		{
 			base.LoadContent();
 
-			//Style.Transition = TransitionType.None;
-			//Style.HasBackground = true;
-
 			//create the stack layout that will hold all the droplist items
 			_stack = new StackLayout()
 			{
@@ -77,7 +74,7 @@ namespace MenuBuddy
 			var widget = item as IWidget;
 			if (null != widget)
 			{
-				widget.Transition = new WipeTransitionObject(TransitionWipeType.None);
+				widget.TransitionObject = new WipeTransitionObject(TransitionWipeType.None);
 			}
 			base.AddItem(item);
 		}

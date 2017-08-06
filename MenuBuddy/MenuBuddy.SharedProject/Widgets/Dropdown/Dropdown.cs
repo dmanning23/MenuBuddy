@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using GameTimer;
 
 namespace MenuBuddy
 {
@@ -84,48 +85,54 @@ namespace MenuBuddy
 			}
 		}
 
-		private ITransitionObject _transition;
-		public virtual ITransitionObject Transition { get
+		private ITransitionObject _transitionObject;
+		public virtual ITransitionObject TransitionObject
+		{
+			get
 			{
-				return _transition;
+				return _transitionObject;
 			}
 			set
 			{
-				_transition = value;
+				_transitionObject = value;
 				foreach (var item in Items)
 				{
 					var transitionableItem = item as ITransitionable;
 					if (null != transitionableItem)
 					{
-						transitionableItem.Transition = Transition;
+						transitionableItem.TransitionObject = TransitionObject;
 					}
 				}
 			}
 		}
 
+		public bool HasBackground { get; set; }
+
+		protected Background Background { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
 
-		public Dropdown()
+		public Dropdown(IScreen screen)
 		{
+			Screen = screen;
 			DropdownItems = new List<DropdownItem<T>>();
-			Transition = new WipeTransitionObject(StyleSheet.Transition);
+			TransitionObject = new WipeTransitionObject(StyleSheet.Transition);
+			Background = new Background();
 		}
 
 		public override void LoadContent(IScreen screen)
 		{
-			Screen = screen;
-			base.LoadContent(screen);
+			Background.LoadContent(screen);
 
 			DropButton = new RelativeLayoutButton()
 			{
 				Size = new Vector2(Rect.Height, Rect.Height),
 				Horizontal = HorizontalAlignment.Right,
 				Vertical = VerticalAlignment.Center,
-				Layer = 1,
 				Highlightable = true,
-				Transition = this.Transition
+				TransitionObject = this.TransitionObject,
 			};
 			DropButton.OnClick += CreateDropdownList;
 
@@ -136,11 +143,12 @@ namespace MenuBuddy
 				Horizontal = HorizontalAlignment.Right,
 				Vertical = VerticalAlignment.Center,
 				FillRect = true,
-				Transition = this.Transition
+				TransitionObject = this.TransitionObject,
 			};
 			DropButton.AddItem(dropImage);
-
 			AddItem(DropButton);
+
+			base.LoadContent(screen);
 		}
 
 		/// <summary>
@@ -207,12 +215,19 @@ namespace MenuBuddy
 
 		public void AddDropdownItem(DropdownItem<T> dropdownItem)
 		{
-			dropdownItem.Transition = Transition;
+			dropdownItem.TransitionObject = TransitionObject;
 			DropdownItems.Add(dropdownItem);
 			if (DropdownItems.Count == 1)
 			{
 				SelectedItem = dropdownItem.Item;
 			}
+		}
+
+		public override void DrawBackground(IScreen screen, GameClock gameTime)
+		{
+			Background.Draw(this, screen);
+
+			base.DrawBackground(screen, gameTime);
 		}
 
 		#endregion //Methods

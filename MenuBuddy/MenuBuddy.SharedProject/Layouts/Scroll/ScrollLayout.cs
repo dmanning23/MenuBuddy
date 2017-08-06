@@ -1,3 +1,4 @@
+using System;
 using GameTimer;
 using InputHelper;
 using Microsoft.Xna.Framework;
@@ -8,7 +9,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a abs layout that is in a window with scroll bars
 	/// </summary>
-	public class ScrollLayout : AbsoluteLayout
+	public class ScrollLayout : AbsoluteLayout, ITransitionable
 	{
 		#region Delegates
 
@@ -80,11 +81,6 @@ namespace MenuBuddy
 				_renderTarget = null;
 				base.Size = value;
 			}
-		}
-
-		public ITransitionObject Transition
-		{
-			get; set;
 		}
 
 		/// <summary>
@@ -159,13 +155,15 @@ namespace MenuBuddy
 
 		private bool CurrentlyDragging { get; set; }
 
+		public virtual ITransitionObject TransitionObject { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
 
 		public ScrollLayout()
 		{
-			Transition = new WipeTransitionObject(TransitionWipeType.SlideLeft);
+			TransitionObject = new WipeTransitionObject(StyleSheet.Transition);
 			DrawVerticalScrollBar = false;
 			DrawHorizontalScrollBar = false;
 			UpdateScrollBars();
@@ -178,7 +176,7 @@ namespace MenuBuddy
 		{
 			_scrollPos = new Vector2(inst._scrollPos.X, inst._scrollPos.Y);
 			_renderTarget = inst._renderTarget;
-			Transition = inst.Transition;
+			TransitionObject = inst.TransitionObject;
 			_minScroll = new Vector2(inst._minScroll.X, inst._minScroll.Y);
 			_maxScroll = new Vector2(inst._maxScroll.X, inst._maxScroll.Y);
 			_verticalScrollBar = new Rectangle(inst._verticalScrollBar.Location, inst._verticalScrollBar.Size);
@@ -186,7 +184,7 @@ namespace MenuBuddy
 			DrawVerticalScrollBar = inst.DrawVerticalScrollBar;
 			DrawHorizontalScrollBar = inst.DrawHorizontalScrollBar;
 			DrawScrollbars = inst.DrawScrollbars;
-			Transition = inst.Transition;
+			TransitionObject = inst.TransitionObject;
 			ShowScrollBars = inst.ShowScrollBars;
 			CurrentlyDragging = inst.CurrentlyDragging;
 		}
@@ -206,7 +204,7 @@ namespace MenuBuddy
 			var widget = item as IWidget;
 			if (null != widget)
 			{
-				widget.Transition = new WipeTransitionObject(TransitionWipeType.None);
+				widget.TransitionObject = new WipeTransitionObject(TransitionWipeType.None);
 			}
 
 			base.AddItem(item);
@@ -299,7 +297,7 @@ namespace MenuBuddy
 			//render the texture
 			var rect = CalculateRect();
 			screen.ScreenManager.SpriteBatch.Draw(_renderTarget,
-				Transition.Position(screen.Transition, rect.Location),
+				TransitionObject.Position(screen.Transition, rect.Location),
 				Color.White);
 
 			//Draw the scroll bars if the mouse pointer or a touch is inside the layout
@@ -307,12 +305,12 @@ namespace MenuBuddy
 			{
 				if (DrawVerticalScrollBar)
 				{
-					screen.ScreenManager.DrawHelper.DrawRect(StyleSheet.HighlightedBackgroundColor, VerticalScrollBar, screen.Transition, Transition);
+					screen.ScreenManager.DrawHelper.DrawRect(StyleSheet.HighlightedBackgroundColor, VerticalScrollBar, screen.Transition, TransitionObject);
 				}
 
 				if (DrawHorizontalScrollBar)
 				{
-					screen.ScreenManager.DrawHelper.DrawRect(StyleSheet.HighlightedBackgroundColor, HorizontalScrollBar, screen.Transition, Transition);
+					screen.ScreenManager.DrawHelper.DrawRect(StyleSheet.HighlightedBackgroundColor, HorizontalScrollBar, screen.Transition, TransitionObject);
 				}
 			}
 		}

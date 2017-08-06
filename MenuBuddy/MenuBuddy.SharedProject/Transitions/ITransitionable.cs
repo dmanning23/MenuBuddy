@@ -3,6 +3,6 @@ namespace MenuBuddy
 {
 	public interface ITransitionable
 	{
-		ITransitionObject Transition { get; set; }
+		ITransitionObject TransitionObject { get; set; }
 	}
 }
