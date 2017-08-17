@@ -21,6 +21,7 @@ namespace MenuBuddy
 		private Texture2D _texture;
 
 #pragma warning disable 0414
+		public bool Clickable { get; set; }
 		public event EventHandler<ClickEventArgs> OnClick;
 #pragma warning restore 0414
 
@@ -114,6 +115,7 @@ namespace MenuBuddy
 		{
 			PulsateOnHighlight = true;
 			FillColor = Color.White;
+			Clickable = true;
 		}
 
 		/// <summary>
@@ -127,6 +129,7 @@ namespace MenuBuddy
 
 		public Image(Image inst) : base(inst)
 		{
+			Clickable = inst.Clickable;
 			_size = new Vector2(inst._size.X, inst._size.Y);
 			_fillRect = inst._fillRect;
 			_texture = inst._texture;
@@ -148,7 +151,7 @@ namespace MenuBuddy
 
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
-			if (!ShouldDraw(screen))
+			if (!ShouldDraw(screen) || null == Texture)
 			{
 				return;
 			}

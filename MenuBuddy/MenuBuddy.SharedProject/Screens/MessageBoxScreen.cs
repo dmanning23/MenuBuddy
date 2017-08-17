@@ -129,12 +129,24 @@ namespace MenuBuddy
 
 		protected void AddOkButton(StackLayout stack)
 		{
-			//Create the menu entry for "OK"
-			var ok = new MenuEntry("Ok")
+			var label = new Label("Ok")
 			{
-				FontSize = FontSize.Small
+				FontSize = FontSize.Small,
+				Horizontal = HorizontalAlignment.Center,
+				Vertical = VerticalAlignment.Center
 			};
-			ok.OnClick += ((obj, e) =>
+
+			//Create the menu entry for "OK"
+			var button = new RelativeLayoutButton()
+			{
+				HasBackground = true,
+				Horizontal = HorizontalAlignment.Center,
+				Vertical = VerticalAlignment.Top,
+				Size = new Vector2(Resolution.ScreenArea.Width * 0.7f, label.Rect.Height * 2f)
+			};
+			button.AddItem(label);
+
+			button.OnClick += ((obj, e) =>
 			{
 				if (Validate())
 				{
@@ -146,19 +158,32 @@ namespace MenuBuddy
 					ExitScreen();
 				}
 			});
-			ok.LoadContent(this);
-			stack.AddItem(ok);
-			MenuEntries.AddItem(ok);
+			button.LoadContent(this);
+			stack.AddItem(button);
+			MenuEntries.AddItem(button);
 		}
 
 		protected void AddCancelButton(StackLayout stack)
 		{
 			//Create the menu entry "Cancel"
-			var cancel = new MenuEntry("Cancel")
+			var label = new Label("Cancel")
 			{
-				FontSize = FontSize.Small
+				FontSize = FontSize.Small,
+				Horizontal = HorizontalAlignment.Center,
+				Vertical = VerticalAlignment.Center
 			};
-			cancel.OnClick += ((obj, e) =>
+
+			//Create the menu entry for "OK"
+			var button = new RelativeLayoutButton()
+			{
+				HasBackground = true,
+				Horizontal = HorizontalAlignment.Center,
+				Vertical = VerticalAlignment.Top,
+				Size = new Vector2(Resolution.ScreenArea.Width * 0.7f, label.Rect.Height * 2f)
+			};
+			button.AddItem(label);
+
+			button.OnClick += ((obj, e) =>
 			{
 				if (null != OnCancel)
 				{
@@ -166,9 +191,9 @@ namespace MenuBuddy
 				}
 				ExitScreen();
 			});
-			cancel.LoadContent(this);
-			stack.AddItem(cancel);
-			MenuEntries.AddItem(cancel);
+			button.LoadContent(this);
+			stack.AddItem(button);
+			MenuEntries.AddItem(button);
 		}
 
 		public virtual void AddBackgroundImage(ILayout labelStack)

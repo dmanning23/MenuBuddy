@@ -324,8 +324,12 @@ namespace MenuBuddy
 			var current = Rect;
 
 			//set the min and max to be the diff between the two
-			_minScroll = new Vector2(total.Left - current.Left, total.Top - current.Top);
-			_maxScroll = new Vector2(total.Right - current.Right, total.Bottom - current.Bottom);
+			var leftDelta = total.Left - current.Left + ScrollPosition.X;
+			var rightDelta = total.Right - current.Right + ScrollPosition.X;
+			var topDelta = total.Top - current.Top + ScrollPosition.Y;
+			var bottomDelta = total.Bottom - current.Bottom + ScrollPosition.Y;
+			_minScroll = new Vector2(leftDelta, topDelta);
+			_maxScroll = new Vector2(rightDelta, bottomDelta);
 		}
 
 		private Vector2 ConstrainScroll(Vector2 value)

@@ -71,6 +71,18 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
+		/// Helper draws a translucent black sprite, used for fading specific areas
+		/// </summary>
+		public void DrawRect(Color color, Rectangle rect, ScreenTransition screen, ITransitionObject transition, Texture2D tex)
+		{
+			//set the transition location
+			rect.Location = transition.Position(screen, rect);
+
+			//draw the filled background
+			DrawRect(screen.AlphaColor(color), rect, tex);
+		}
+
+		/// <summary>
 		/// Draw a 
 		/// </summary>
 		public void DrawRect(Color color, Rectangle rect, ScreenTransition screen, ITransitionObject transition)
@@ -85,30 +97,19 @@ namespace MenuBuddy
 			DrawRect(screen.AlphaColor(color), rect);
 		}
 
-		/// <summary>
-		/// Helper draws a translucent black sprite, used for fading specific areas
-		/// </summary>
-		public void DrawRect(Color color, Rectangle rect, ScreenTransition screen, ITransitionObject transition, Texture2D tex)
-		{
-			//set the transition location
-			rect.Location = transition.Position(screen, rect);
-
-			//draw the filled background
-			DrawRect(screen.AlphaColor(color), rect, tex);
-		}
-
-		public void DrawOutline(Color color, Rectangle rect, ScreenTransition screen, ITransitionObject transition)
+		public void DrawOutline(Color color, Rectangle rect, ScreenTransition screen, ITransitionObject transition, float lineWidth = 5f)
 		{
 			//set the transition location
 			rect.Location = transition.Position(screen, rect);
 
 			//draw the button outline
-			Prim.Rectangle(rect, screen.AlphaColor(color));
+			DrawOutline(screen.AlphaColor(color), rect, lineWidth);
 		}
 
-		public void DrawOutline(Color color, Rectangle rect)
+		public void DrawOutline(Color color, Rectangle rect, float lineWidth = 5f)
 		{
 			//draw the button outline
+			Prim.Thickness = lineWidth;
 			Prim.Rectangle(rect, color);
 		}
 

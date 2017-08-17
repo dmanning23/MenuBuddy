@@ -6,7 +6,7 @@ namespace MenuBuddy
 	{
 		event EventHandler<SelectionChangeEventArgs<T>> OnSelectedItemChange;
 
-		T SelectedItem { get; }
+		T SelectedItem { get; set; }
 
 		TreeItem<T> SelectedTreeItem { set; }
 

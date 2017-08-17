@@ -32,6 +32,10 @@ namespace MenuBuddy
 			{
 				return _expanded;
 			}
+			private set
+			{
+				_expanded = value;
+			}
 		}
 
 		Texture2D _expandTexture;
@@ -83,7 +87,7 @@ namespace MenuBuddy
 			_parent = parent;
 			_indentation = (parent == null ? 0 : parent._indentation + 1);
 			ChildItems = new List<TreeItem<T>>();
-			_expanded = false;
+			Expanded = false;
 
 			ItemButton = new RelativeLayoutButton();
 			ItemButton.OnClick += ((obj, e) =>
@@ -99,7 +103,7 @@ namespace MenuBuddy
 			Tree = inst.Tree;
 			_parent = inst._parent;
 			_indentation = inst._indentation;
-			_expanded = inst._expanded;
+			Expanded = inst.Expanded;
 			_expandTexture = inst._expandTexture;
 			_collapseTexture = inst._collapseTexture;
 			ExpandCollapseImage = new Image(inst.ExpandCollapseImage);
@@ -169,7 +173,7 @@ namespace MenuBuddy
 
 			SetScreen(screen);
 
-			_expanded = false;
+			Expanded = false;
 
 			//get the size of the brick to add for tabs
 			var tab = new Vector2(ItemButton.Rect.Height, ItemButton.Rect.Height) * .5f;
@@ -225,7 +229,7 @@ namespace MenuBuddy
 		public void ToggleExpansion(object obj, ClickEventArgs e)
 		{
 			//call the correct method to expand/collapse the list
-			if (_expanded)
+			if (Expanded)
 			{
 				Collapse(obj, e);
 			}
@@ -233,9 +237,6 @@ namespace MenuBuddy
 			{
 				Expand(obj, e);
 			}
-
-			//toggle that flag
-			_expanded = !_expanded;
 		}
 
 		/// <summary>
@@ -243,18 +244,28 @@ namespace MenuBuddy
 		/// </summary>
 		private void Expand(object obj, ClickEventArgs e)
 		{
-			//add all thechild items in reverse order
-			for (int i = ChildItems.Count - 1; i >= 0; i--)
+			Expand();
+		}
+
+		public void Expand()
+		{
+			if (!Expanded)
 			{
-				//Add this whole thing to the main control
-				Tree.InsertItem(ChildItems[i], this);
+				//add all thechild items in reverse order
+				for (int i = ChildItems.Count - 1; i >= 0; i--)
+				{
+					//Add this whole thing to the main control
+					Tree.InsertItem(ChildItems[i], this);
+				}
+
+				//swap out the image of the expand/collapse button
+				if (null != ExpandCollapseImage)
+				{
+					ExpandCollapseImage.Texture = _collapseTexture;
+				}
 			}
 
-			//swap out the image of the expand/collapse button
-			if (null != ExpandCollapseImage)
-			{
-				ExpandCollapseImage.Texture = _collapseTexture;
-			}
+			Expanded = true;
 		}
 
 		/// <summary>
@@ -264,18 +275,77 @@ namespace MenuBuddy
 		/// <param name="e"></param>
 		private void Collapse(object obj, ClickEventArgs e)
 		{
-			//recurse into child items to remove everything under this guy from the tree
-			foreach (var item in ChildItems)
+			if (Expanded)
 			{
-				item.Collapse(obj, e);
-				Tree.RemoveItem(item);
+				//recurse into child items to remove everything under this guy from the tree
+				foreach (var item in ChildItems)
+				{
+					item.Collapse(obj, e);
+					Tree.RemoveItem(item);
+				}
+
+				//swap out the image of the expand/collapse button
+				if (null != ExpandCollapseImage)
+				{
+					ExpandCollapseImage.Texture = _expandTexture;
+				}
 			}
 
-			//swap out the image of the expand/collapse button
-			if (null != ExpandCollapseImage)
+			Expanded = false;
+		}
+
+		protected void ExpandTree()
+		{
+			if (null != _parent)
 			{
-				ExpandCollapseImage.Texture = _expandTexture;
+				_parent.ExpandTree();
 			}
+
+			Expand();
+		}
+
+		public bool DisplayItem(T item)
+		{
+			//check if this is the magic item
+			if (item.ToString() == this.Item.ToString())
+			{
+				ExpandTree();
+				return true;
+			}
+
+			//check if any child items contain the item
+			foreach (var childItem in ChildItems)
+			{
+				if (childItem.DisplayItem(item))
+				{
+					return true;
+				}
+			}
+
+			//this isn't it, and none of the child items are it
+			return false;
+		}
+
+		public TreeItem<T> FindItem(T item)
+		{
+			//check if this is the magic item
+			if (item.ToString() == this.Item.ToString())
+			{
+				return this;
+			}
+
+			//check if any child items contain the item
+			foreach (var childItem in ChildItems)
+			{
+				var result = childItem.FindItem(item);
+				if (null != result)
+				{
+					return result;
+				}
+			}
+
+			//this isn't it, and none of the child items are it
+			return null;
 		}
 
 		#endregion //Methods

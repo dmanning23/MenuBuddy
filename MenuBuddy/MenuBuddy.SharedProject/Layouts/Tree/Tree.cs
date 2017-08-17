@@ -1,5 +1,6 @@
 using System;
 using GameTimer;
+using System.Linq;
 
 namespace MenuBuddy
 {
@@ -46,7 +47,7 @@ namespace MenuBuddy
 		private TreeItem<T> _selectedTreeItem;
 		public TreeItem<T> SelectedTreeItem
 		{
-			private get
+			get
 			{
 				return _selectedTreeItem;
 			}
@@ -67,6 +68,22 @@ namespace MenuBuddy
 			get
 			{
 				return SelectedTreeItem.Item;
+			}
+			set
+			{
+				//get all the current tree items
+				var treeItems = Stack.Items.OfType<TreeItem<T>>().ToList();
+
+				//Go through the tree items and expand them if they contain the desired item
+				foreach (var treeItem in treeItems)
+				{
+					var result = treeItem.FindItem(value);
+					if (null != result)
+					{
+						SelectedTreeItem = result;
+						return;
+					}
+				}
 			}
 		}
 
@@ -204,6 +221,23 @@ namespace MenuBuddy
 			Background.Draw(this, screen);
 
 			base.DrawBackground(screen, gameTime);
+		}
+
+		public bool DisplayItem(T item)
+		{
+			//get all the current tree items
+			var treeItems = Stack.Items.OfType<TreeItem<T>>().ToList();
+
+			//Go through the tree items and expand them if they contain the desired item
+			foreach (var treeItem in treeItems)
+			{
+				if (treeItem.DisplayItem(item))
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		#endregion //Methods

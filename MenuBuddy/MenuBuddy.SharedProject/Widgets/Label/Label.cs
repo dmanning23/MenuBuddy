@@ -22,6 +22,8 @@ namespace MenuBuddy
 
 		#region Properties
 
+		public bool Clickable { get; set; }
+
 		/// <summary>
 		/// The text of this label
 		/// </summary>
@@ -86,6 +88,7 @@ namespace MenuBuddy
 		{
 			_fontSize = fontSize;
 			Text = text;
+			Clickable = true;
 		}
 
 		public Label(Label inst) : base(inst)
@@ -95,6 +98,7 @@ namespace MenuBuddy
 				throw new ArgumentNullException("inst");
 			}
 
+			Clickable = inst.Clickable;
 			_text = inst.Text;
 			_fontSize = inst.FontSize;
 			TextColor = inst.TextColor;

@@ -20,9 +20,9 @@ namespace MenuBuddy
 		/// <summary>
 		/// the screen that holds this guy
 		/// </summary>
-		private IScreen Screen
+		protected IScreen Screen
 		{
-			get; set;
+			get; private set;
 		}
 
 		/// <summary>
@@ -228,6 +228,18 @@ namespace MenuBuddy
 			Background.Draw(this, screen);
 
 			base.DrawBackground(screen, gameTime);
+		}
+
+		public override bool CheckClick(ClickEventArgs click)
+		{
+			var result = base.CheckClick(click);
+			if (!result && Clickable && Rect.Contains(click.Position))
+			{
+				Clicked(this, click);
+				return true;
+			}
+
+			return result;
 		}
 
 		#endregion //Methods

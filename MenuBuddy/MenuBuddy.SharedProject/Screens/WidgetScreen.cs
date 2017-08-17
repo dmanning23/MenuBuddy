@@ -13,6 +13,10 @@ namespace MenuBuddy
 	{
 		#region Fields
 
+		public bool Highlightable { get; set; }
+
+		public bool Clickable { get; set; }
+
 		/// <summary>
 		/// Ammount of time that passes before attract mode is activated
 		/// </summary>
@@ -70,6 +74,8 @@ namespace MenuBuddy
 		public WidgetScreen(string name)
 			: base(name)
 		{
+			Highlightable = true;
+			Clickable = true;
 			Layout = new AbsoluteLayout()
 			{
 				Size = new Vector2(Resolution.ScreenArea.Width, Resolution.ScreenArea.Height)
@@ -178,7 +184,7 @@ namespace MenuBuddy
 
 		public virtual bool CheckHighlight(HighlightEventArgs highlight)
 		{
-			if (!IsActive)
+			if (!IsActive || !Highlightable)
 			{
 				return false;
 			}
@@ -192,7 +198,7 @@ namespace MenuBuddy
 		/// <param name="point"></param>
 		public virtual bool CheckClick(ClickEventArgs click)
 		{
-			if (!IsActive)
+			if (!IsActive || !Clickable)
 			{
 				return false;
 			}

@@ -10,11 +10,6 @@ namespace MenuBuddy
 	public interface IWidget : IScreenItem, IScalable, IHighlightable, ITransitionable, IBackgroundable
 	{
 		/// <summary>
-		/// Even though this is a IHighlightable object, sometimes you just don't want them to be highlighted.
-		/// </summary>
-		bool Highlightable { get; set; }
-
-		/// <summary>
 		/// How many pixels worth of padding to add around this widget.
 		/// </summary>
 		Vector2 Padding { set; }

@@ -2,7 +2,7 @@
 
 namespace MenuBuddy
 {
-	internal class ContextMenuItem
+	public class ContextMenuItem
 	{
 		public Texture2D Icon { get; set; }
 		public string IconText { get; set; }

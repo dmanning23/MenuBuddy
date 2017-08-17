@@ -25,6 +25,10 @@ namespace MenuBuddy
 
 		#region Properties
 
+		public bool Highlightable { get; set; }
+
+		public bool Clickable { get; set; }
+
 		public bool DrawWhenInactive
 		{
 			set
@@ -68,7 +72,7 @@ namespace MenuBuddy
 				foreach (var item in Items)
 				{
 					var clickable = item as IClickable;
-					if (null != clickable)
+					if (null != clickable && clickable.Clickable)
 					{
 						clickable.IsClicked = value;
 					}
@@ -160,6 +164,8 @@ namespace MenuBuddy
 
 		protected Layout()
 		{
+			Highlightable = true;
+			Clickable = true;
 			Items = new List<IScreenItem>();
 			Scale = 1.0f;
 			HasOutline = false;
@@ -167,6 +173,8 @@ namespace MenuBuddy
 
 		protected Layout(Layout inst) : this()
 		{
+			Highlightable = inst.Highlightable;
+			Clickable = inst.Clickable;
 			Position = new Point(inst.Position.X, inst.Position.Y);
 			Horizontal = inst.Horizontal;
 			Vertical = inst.Vertical;
@@ -266,12 +274,15 @@ namespace MenuBuddy
 		{
 			var highlighted = false;
 
-			foreach (var item in Items)
+			if (Highlightable)
 			{
-				var highlightable = item as IHighlightable;
-				if ((highlightable != null) && highlightable.CheckHighlight(highlight))
+				foreach (var item in Items)
 				{
-					highlighted = true;
+					var highlightable = item as IHighlightable;
+					if ((highlightable != null) && highlightable.CheckHighlight(highlight))
+					{
+						highlighted = true;
+					}
 				}
 			}
 
@@ -280,7 +291,7 @@ namespace MenuBuddy
 
 		public virtual bool CheckClick(ClickEventArgs click)
 		{
-			if (Rect.Contains(click.Position))
+			if (Rect.Contains(click.Position) && Clickable)
 			{
 				foreach (var item in Items)
 				{
@@ -294,6 +305,14 @@ namespace MenuBuddy
 
 			//None of the items in this container were clicked
 			return false;
+		}
+
+		protected virtual void Clicked(object obj, ClickEventArgs e)
+		{
+			if (OnClick != null)
+			{
+				OnClick(obj, e);
+			}
 		}
 
 		public virtual bool CheckDrag(DragEventArgs drag)

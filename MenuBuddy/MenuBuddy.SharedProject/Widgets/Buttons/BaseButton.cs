@@ -30,6 +30,8 @@ namespace MenuBuddy
 
 		#region Properties
 
+		public bool Clickable { get; set; }
+
 		public Vector2 Size
 		{
 			protected get
@@ -163,6 +165,7 @@ namespace MenuBuddy
 		/// </summary>
 		protected BaseButton()
 		{
+			Clickable = true;
 			IsQuiet = false;
 			_clickTimer = new CountdownTimer();
 
@@ -189,6 +192,7 @@ namespace MenuBuddy
 		/// </summary>
 		protected BaseButton(BaseButton inst) : base(inst)
 		{
+			Clickable = true;
 			_drawWhenInactive = inst._drawWhenInactive;
 			_size = inst._size;
 			Description = inst.Description;
@@ -279,7 +283,7 @@ namespace MenuBuddy
 		public virtual bool CheckClick(ClickEventArgs click)
 		{
 			//check if the widget was clicked
-			if (Rect.Contains(click.Position))
+			if (Rect.Contains(click.Position) && Clickable)
 			{
 				Clicked(this, click);
 				return true;

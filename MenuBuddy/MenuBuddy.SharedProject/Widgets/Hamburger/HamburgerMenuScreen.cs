@@ -79,7 +79,7 @@ namespace MenuBuddy
 			};
 			button.AddItem(new Image(hamburgerItem.Icon)
 			{
-				Size = new Vector2(64f, 64f),
+				Size = new Vector2(32f, 32f),
 				Vertical = VerticalAlignment.Center,
 				Horizontal = LeftRight ? HorizontalAlignment.Left : HorizontalAlignment.Right,
 				FillRect = true,
