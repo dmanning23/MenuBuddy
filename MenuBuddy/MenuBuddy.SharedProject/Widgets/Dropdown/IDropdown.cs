@@ -12,10 +12,10 @@ namespace MenuBuddy
 
 		T SelectedItem { get; set; }
 
-		DropdownItem<T> SelectedDropdownItem { get; set; }
+		IDropdownItem<T> SelectedDropdownItem { get; set; }
 
-		List<DropdownItem<T>> DropdownItems { get; }
+		List<IDropdownItem<T>> DropdownItems { get; }
 
-		void AddDropdownItem(DropdownItem<T> dropdownItem);
+		void AddDropdownItem(IDropdownItem<T> dropdownItem);
 	}
 }

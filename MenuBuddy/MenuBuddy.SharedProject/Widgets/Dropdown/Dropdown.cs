@@ -28,8 +28,8 @@ namespace MenuBuddy
 		/// <summary>
 		/// The currently selected item
 		/// </summary>
-		private DropdownItem<T> _selectedDropdownItem;
-		public DropdownItem<T> SelectedDropdownItem
+		private IDropdownItem<T> _selectedDropdownItem;
+		public IDropdownItem<T> SelectedDropdownItem
 		{
 			get
 			{
@@ -55,7 +55,7 @@ namespace MenuBuddy
 			}
 			set
 			{
-				DropdownItem<T> item = null;
+				IDropdownItem<T> item = null;
 				if (null != value)
 				{
 					item = DropdownItems.Find(x => x.Item.Equals(value));
@@ -67,7 +67,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// When the dropdown button is clicked, this list of items is popped up in the dropdown list.
 		/// </summary>
-		public List<DropdownItem<T>> DropdownItems { get; private set; }
+		public List<IDropdownItem<T>> DropdownItems { get; private set; }
 
 		/// <summary>
 		/// the dropdown icon that is displayed at the right of the widget
@@ -117,7 +117,7 @@ namespace MenuBuddy
 		public Dropdown(IScreen screen)
 		{
 			Screen = screen;
-			DropdownItems = new List<DropdownItem<T>>();
+			DropdownItems = new List<IDropdownItem<T>>();
 			TransitionObject = new WipeTransitionObject(StyleSheet.Transition);
 			Background = new Background();
 		}
@@ -169,7 +169,7 @@ namespace MenuBuddy
 			}
 		}
 
-		private void SetSelectedDropdownItem(DropdownItem<T> selectedItem)
+		private void SetSelectedDropdownItem(IDropdownItem<T> selectedItem)
 		{
 			if (selectedItem != SelectedDropdownItem)
 			{
@@ -179,7 +179,7 @@ namespace MenuBuddy
 				if (null != selectedItem)
 				{
 					//set the new selected item
-					_selectedDropdownItem = selectedItem?.DeepCopy() as DropdownItem<T>;
+					_selectedDropdownItem = selectedItem?.DeepCopy() as IDropdownItem<T>;
 					_selectedDropdownItem.Position = Position;
 				}
 
@@ -213,7 +213,7 @@ namespace MenuBuddy
 			OnSelectedItemChange = null;
 		}
 
-		public void AddDropdownItem(DropdownItem<T> dropdownItem)
+		public void AddDropdownItem(IDropdownItem<T> dropdownItem)
 		{
 			dropdownItem.TransitionObject = TransitionObject;
 			DropdownItems.Add(dropdownItem);

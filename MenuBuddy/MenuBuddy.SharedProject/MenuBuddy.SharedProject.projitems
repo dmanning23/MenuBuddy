@@ -71,6 +71,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\ContextMenu\ContextMenu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\ContextMenu\ContextMenuItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\ContextMenu\IContextMenu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\Dropdown\IDropdownItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\Hamburger\Hamburger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\Hamburger\HamburgerMenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\HorizontalAlignment.cs" />

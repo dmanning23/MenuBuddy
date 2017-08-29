@@ -4,7 +4,7 @@ namespace MenuBuddy
 	/// A single item in the dropdown list.
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public class DropdownItem<T> : RelativeLayoutButton
+	public class DropdownItem<T> : RelativeLayoutButton, IDropdownItem<T>
 	{
 		#region Properties
 

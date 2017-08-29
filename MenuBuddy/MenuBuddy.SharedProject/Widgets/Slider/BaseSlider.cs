@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace MenuBuddy
 {
-	public abstract class BaseSlider<T> : Widget, ISlider<T>, IDisposable
+	public abstract class BaseSlider<T> : Widget, ISlider<T>, IDisposable, IClickable
 	{
 		#region Fields
 
@@ -33,6 +33,7 @@ namespace MenuBuddy
 		private Rectangle _handleRect;
 
 		public event EventHandler<DragEventArgs> OnDrag;
+		public event EventHandler<ClickEventArgs> OnClick;
 
 		public List<float> Marks { get; set; }
 
@@ -131,6 +132,10 @@ namespace MenuBuddy
 			}
 		}
 
+		public bool Clickable { get; set; }
+
+		public bool IsClicked { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -144,6 +149,7 @@ namespace MenuBuddy
 			HasOutline = true;
 			Marks = new List<float>();
 			Enabled = true;
+			Clickable = true;
 		}
 
 		public BaseSlider(BaseSlider<T> inst) : base(inst)
@@ -154,6 +160,8 @@ namespace MenuBuddy
 				Marks.Add(mark);
 			}
 
+			Clickable = inst.Clickable;
+			IsClicked = inst.IsClicked;
 			_min = inst._min;
 			_max = inst._max;
 			_handlePosition = inst._handlePosition;
@@ -162,6 +170,7 @@ namespace MenuBuddy
 			_handleRect = new Rectangle(inst._handleRect.Location, inst._handleRect.Size);
 			_slideRect = new Rectangle(inst._slideRect.Location, inst._slideRect.Size);
 			OnDrag = inst.OnDrag;
+			OnClick = inst.OnClick;
 		}
 
 		#endregion //Initialization
@@ -290,7 +299,7 @@ namespace MenuBuddy
 			if (result && Enabled)
 			{
 				//convert back to slider coords and set the slider pos
-				HandlePosition = SolveSliderPos(_slideRect.Left, _slideRect.Right, drag.Current.X, Min, Max);
+				UpdateHandlePosition(drag.Current);
 
 				//fire off the event for any listeners
 				if (OnDrag != null)
@@ -302,10 +311,35 @@ namespace MenuBuddy
 			return result;
 		}
 
+		public void UpdateHandlePosition(Vector2 pos)
+		{
+			//convert back to slider coords and set the slider pos
+			HandlePosition = SolveSliderPos(_slideRect.Left, _slideRect.Right, pos.X, Min, Max);
+		}
+
 		public override void Dispose()
 		{
 			base.Dispose();
 			OnDrag = null;
+			OnClick = null;
+		}
+
+		public bool CheckClick(ClickEventArgs click)
+		{
+			//check if the widget was clicked
+			if (Rect.Contains(click.Position) && Clickable)
+			{
+				UpdateHandlePosition(click.Position);
+
+				if (OnClick != null)
+				{
+					OnClick(this, click);
+				}
+
+				return true;
+			}
+
+			return false;
 		}
 
 		#endregion //Methods
