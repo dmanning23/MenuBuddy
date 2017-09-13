@@ -31,6 +31,8 @@ namespace MenuBuddy
 
 			CoverOtherScreens = false;
 			CoveredByOtherScreens = false;
+			Transition.OnTime = 0.2f;
+			Transition.OffTime = 0.2f;
 		}
 
 		public void AddItem(Texture2D icon, string iconText, ClickDelegate clickEvent)

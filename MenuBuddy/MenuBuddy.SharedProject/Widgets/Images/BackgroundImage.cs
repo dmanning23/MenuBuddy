@@ -18,7 +18,7 @@ namespace MenuBuddy
 			: base(texture)
 		{
 			PulsateOnHighlight = false;
-        }
+		}
 
 		public BackgroundImage(BackgroundImage inst) : base(inst)
 		{
