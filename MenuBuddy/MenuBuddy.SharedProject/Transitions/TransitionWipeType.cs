@@ -37,6 +37,16 @@ namespace MenuBuddy
 		SlideRight,
 
 		/// <summary>
+		/// in top, out bottom
+		/// </summary>
+		SlideTop,
+
+		/// <summary>
+		/// in bottom, out top
+		/// </summary>
+		SlideBottom,
+
+		/// <summary>
 		/// This item doesn't transition at all.
 		/// </summary>
 		None

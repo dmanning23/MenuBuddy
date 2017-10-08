@@ -100,6 +100,11 @@ namespace MenuBuddy
 			get; set;
 		}
 
+		public bool AlwaysPulsate
+		{
+			get; set;
+		}
+
 		public bool IsClicked { get; set; }
 
 		public Color FillColor { private get; set; }
@@ -116,6 +121,7 @@ namespace MenuBuddy
 			PulsateOnHighlight = true;
 			FillColor = Color.White;
 			Clickable = true;
+			AlwaysPulsate = false;
 		}
 
 		/// <summary>
@@ -134,6 +140,7 @@ namespace MenuBuddy
 			_fillRect = inst._fillRect;
 			_texture = inst._texture;
 			PulsateOnHighlight = inst.PulsateOnHighlight;
+			AlwaysPulsate = inst.AlwaysPulsate;
 		}
 
 		/// <summary>
@@ -171,7 +178,7 @@ namespace MenuBuddy
 		{
 			Rectangle rect;
 
-			if ((IsClicked || IsHighlighted) && PulsateOnHighlight)
+			if (((IsClicked || IsHighlighted) && PulsateOnHighlight) || AlwaysPulsate)
 			{
 				//multiply the time by the speed
 				float currentTime = HighlightClock.CurrentTime;
@@ -208,7 +215,7 @@ namespace MenuBuddy
 			{
 				size = new Vector2(Width, Height);
 			}
-			size = (size + (Padding * 2f)) * Scale;
+			size = size * Scale;
 
 			//set the x component
 			Vector2 pos = Position.ToVector2();

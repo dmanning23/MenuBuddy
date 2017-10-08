@@ -17,7 +17,7 @@ namespace MenuBuddy
 		protected override void AddButtons(StackLayout stack)
 		{
 			//just an ok button on this screen
-			AddOkButton(stack);
+			stack.AddItem(AddMessageBoxOkButton());
 		}
 	}
 }

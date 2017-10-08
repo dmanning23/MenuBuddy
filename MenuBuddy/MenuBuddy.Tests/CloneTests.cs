@@ -263,7 +263,6 @@ namespace MenuBuddy.Tests
 				Scale = 0.5f,
 				DrawWhenInactive = false,
 				Layer = 1000,
-				Padding = new Vector2(100, 200)
 			};
 
 			var clone = layout.DeepCopy() as Shim;
@@ -277,8 +276,6 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(.5f, clone.Scale);
 			Assert.AreEqual(false, clone.DrawWhenInactive);
 			Assert.AreEqual(1000, clone.Layer);
-			Assert.AreEqual(100, clone.Padding.X);
-			Assert.AreEqual(200, clone.Padding.Y);
 		}
 
 		[Test]
@@ -306,7 +303,6 @@ namespace MenuBuddy.Tests
 				Scale = 0.5f,
 				DrawWhenInactive = false,
 				Layer = 1000,
-				Padding = new Vector2(100, 200)
 			};
 
 			var clone = layout.DeepCopy() as Shim;
@@ -318,7 +314,6 @@ namespace MenuBuddy.Tests
 			layout.Scale = 2.5f;
 			layout.DrawWhenInactive = true;
 			layout.Layer = 2000;
-			layout.Padding = new Vector2(300, 400);
 
 			Assert.AreEqual(20, clone.Size.X);
 			Assert.AreEqual(30, clone.Size.Y);
@@ -329,8 +324,6 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(.5f, clone.Scale);
 			Assert.AreEqual(false, clone.DrawWhenInactive);
 			Assert.AreEqual(1000, clone.Layer);
-			Assert.AreEqual(100, clone.Padding.X);
-			Assert.AreEqual(200, clone.Padding.Y);
 		}
 
 		#endregion //Shim
@@ -358,7 +351,6 @@ namespace MenuBuddy.Tests
 				Scale = 0.5f,
 				DrawWhenInactive = false,
 				Layer = 1000,
-				Padding = new Vector2(100, 200)
 			};
 
 			layout.AddItem(original);
@@ -372,8 +364,6 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(.5f, original.Scale);
 			Assert.AreEqual(false, original.DrawWhenInactive);
 			Assert.AreEqual(1000, original.Layer);
-			Assert.AreEqual(100, original.Padding.X);
-			Assert.AreEqual(200, original.Padding.Y);
 		}
 
 		[Test]
@@ -397,7 +387,6 @@ namespace MenuBuddy.Tests
 				Scale = 0.5f,
 				DrawWhenInactive = false,
 				Layer = 1000,
-				Padding = new Vector2(100, 200)
 			};
 
 			layout.AddItem(original);
@@ -427,7 +416,6 @@ namespace MenuBuddy.Tests
 				Scale = 0.5f,
 				DrawWhenInactive = false,
 				Layer = 1000,
-				Padding = new Vector2(100, 200)
 			};
 
 			layout.AddItem(original);
@@ -457,7 +445,6 @@ namespace MenuBuddy.Tests
 				Scale = 0.5f,
 				DrawWhenInactive = false,
 				Layer = 1000,
-				Padding = new Vector2(100, 200)
 			};
 
 			layout.AddItem(original);
@@ -488,7 +475,6 @@ namespace MenuBuddy.Tests
 				Scale = 0.5f,
 				DrawWhenInactive = false,
 				Layer = 1000,
-				Padding = new Vector2(100, 200)
 			};
 
 			layout.AddItem(original);
@@ -502,7 +488,6 @@ namespace MenuBuddy.Tests
 			original.Scale = 2.5f;
 			original.DrawWhenInactive = true;
 			original.Layer = 2000;
-			original.Padding = new Vector2(300, 400);
 
 			var copiedShim = clone.Items[0] as Shim;
 
@@ -515,8 +500,6 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(.5f, copiedShim.Scale);
 			Assert.AreEqual(false, copiedShim.DrawWhenInactive);
 			Assert.AreEqual(1000, copiedShim.Layer);
-			Assert.AreEqual(100, copiedShim.Padding.X);
-			Assert.AreEqual(200, copiedShim.Padding.Y);
 		}
 
 		#endregion //Add a thing
@@ -548,7 +531,6 @@ namespace MenuBuddy.Tests
 				Scale = 0.5f,
 				DrawWhenInactive = false,
 				Layer = 1000,
-				Padding = new Vector2(100, 200)
 			};
 
 			button.AddItem(original);
@@ -564,8 +546,6 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(.5f, copiedShim.Scale);
 			Assert.AreEqual(false, copiedShim.DrawWhenInactive);
 			Assert.AreEqual(1000, copiedShim.Layer);
-			Assert.AreEqual(100, copiedShim.Padding.X);
-			Assert.AreEqual(200, copiedShim.Padding.Y);
 		}
 
 		[Test]
@@ -593,7 +573,6 @@ namespace MenuBuddy.Tests
 				Scale = 0.5f,
 				DrawWhenInactive = false,
 				Layer = 1000,
-				Padding = new Vector2(100, 200)
 			};
 
 			button.AddItem(original);
@@ -611,8 +590,6 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(.5f, copiedShim.Scale);
 			Assert.AreEqual(false, copiedShim.DrawWhenInactive);
 			Assert.AreEqual(1000, copiedShim.Layer);
-			Assert.AreEqual(100, copiedShim.Padding.X);
-			Assert.AreEqual(200, copiedShim.Padding.Y);
 		}
 
 		[Test]
@@ -640,7 +617,6 @@ namespace MenuBuddy.Tests
 				Scale = 0.5f,
 				DrawWhenInactive = false,
 				Layer = 1000,
-				Padding = new Vector2(100, 200)
 			};
 
 			button.AddItem(original);
@@ -657,8 +633,6 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(.5f, original.Scale);
 			Assert.AreEqual(false, original.DrawWhenInactive);
 			Assert.AreEqual(1000, original.Layer);
-			Assert.AreEqual(100, original.Padding.X);
-			Assert.AreEqual(200, original.Padding.Y);
 		}
 
 		[Test]
@@ -686,7 +660,6 @@ namespace MenuBuddy.Tests
 				Scale = 0.5f,
 				DrawWhenInactive = false,
 				Layer = 1000,
-				Padding = new Vector2(100, 200)
 			};
 
 			button.AddItem(original);
@@ -700,7 +673,6 @@ namespace MenuBuddy.Tests
 			original.Scale = 2.5f;
 			original.DrawWhenInactive = true;
 			original.Layer = 2000;
-			original.Padding = new Vector2(300, 400);
 
 			var copiedShim = clone.Layout.Items[0] as Shim;
 
@@ -713,8 +685,6 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(.5f, copiedShim.Scale);
 			Assert.AreEqual(false, copiedShim.DrawWhenInactive);
 			Assert.AreEqual(1000, copiedShim.Layer);
-			Assert.AreEqual(100, copiedShim.Padding.X);
-			Assert.AreEqual(200, copiedShim.Padding.Y);
 		}
 
 		#endregion //button

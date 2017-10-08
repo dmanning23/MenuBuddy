@@ -10,7 +10,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// A popup message box screen, used to display "are you sure?" confirmation messages.
 	/// </summary>
-	public class MessageBoxScreen : MenuScreen, IClickable, IDisposable
+	public class MessageBoxScreen : WidgetScreen, IClickable, IDisposable
 	{
 		#region Properties
 
@@ -24,6 +24,10 @@ namespace MenuBuddy
 		public event EventHandler<ClickEventArgs> OnCancel;
 
 		protected IStackLayout ControlStack { get; private set; }
+
+		public string OkText { get; set; }
+
+		public string CancelText { get; set; }
 
 		#endregion //Properties
 
@@ -43,6 +47,9 @@ namespace MenuBuddy
 
 			Transition.OnTime = 0.2f;
 			Transition.OffTime = 0.2f;
+			OkText = "Ok";
+			CancelText = "Cancel";
+			Modal = true;
 		}
 
 		/// <summary>
@@ -76,19 +83,25 @@ namespace MenuBuddy
 			//Add all the label text to the stack
 			foreach (var line in lines)
 			{
-				//Set the label text
-				var label = new Label(line)
+				//split the line into lines that will actuall fit on the screen
+				var splitLines = StyleSheet.Instance().SmallNeutralFont.BreakTextIntoList(line, Resolution.TitleSafeArea.Width - 64);
+				foreach (var splitLine in splitLines)
 				{
-					FontSize = FontSize.Small,
-					Highlightable = false
-				};
-				ControlStack.AddItem(label);
+					//Set the label text
+					var label = new Label(splitLine)
+					{
+						FontSize = FontSize.Small,
+						Highlightable = false,
+						TextColor = StyleSheet.MessageBoxTextColor,
+					};
+					ControlStack.AddItem(label);
+				}
 			}
 
 			AddAddtionalControls();
 
 			//add a shim between the text and the buttons
-			ControlStack.AddItem(new Shim() { Size = new Vector2(0, 16f) });
+			ControlStack.AddItem(new Shim() { Size = new Vector2(0, 32f) });
 
 			labelStack.AddItem(ControlStack);
 
@@ -97,7 +110,7 @@ namespace MenuBuddy
 
 			//Set the position of the labelstack
 			labelStack.Position = new Point(Resolution.TitleSafeArea.Center.X,
-				Resolution.TitleSafeArea.Center.Y - (labelStack.Rect.Height / 2));
+				Resolution.TitleSafeArea.Center.Y - (int)(labelStack.Rect.Height * .75f));
 
 			AddItem(labelStack);
 
@@ -122,29 +135,28 @@ namespace MenuBuddy
 
 		protected virtual void AddButtons(StackLayout stack)
 		{
-			AddOkButton(stack);
-
-			AddCancelButton(stack);
-		}
-
-		protected void AddOkButton(StackLayout stack)
-		{
-			var label = new Label("Ok")
+			var buttonLayout = new RelativeLayout()
 			{
-				FontSize = FontSize.Small,
-				Horizontal = HorizontalAlignment.Center,
-				Vertical = VerticalAlignment.Center
-			};
-
-			//Create the menu entry for "OK"
-			var button = new RelativeLayoutButton()
-			{
-				HasBackground = true,
 				Horizontal = HorizontalAlignment.Center,
 				Vertical = VerticalAlignment.Top,
-				Size = new Vector2(Resolution.ScreenArea.Width * 0.7f, label.Rect.Height * 2f)
+				Size = new Vector2( Resolution.TitleSafeArea.Width * 0.8f, 64f)
 			};
-			button.AddItem(label);
+
+			var okButton = AddMessageBoxOkButton();
+			okButton.Horizontal = HorizontalAlignment.Left;
+			buttonLayout.AddItem(okButton);
+
+			var cancelButton = AddMessageBoxCancelButton();
+			cancelButton.Horizontal = HorizontalAlignment.Right;
+			buttonLayout.AddItem(cancelButton);
+
+			stack.AddItem(buttonLayout);
+			stack.AddItem(new Shim(0, 16));
+		}
+
+		protected IButton AddMessageBoxOkButton()
+		{
+			var button = CreateButton(true);
 
 			button.OnClick += ((obj, e) =>
 			{
@@ -158,31 +170,13 @@ namespace MenuBuddy
 					ExitScreen();
 				}
 			});
-			button.LoadContent(this);
-			stack.AddItem(button);
-			MenuEntries.AddItem(button);
+
+			return button;
 		}
 
-		protected void AddCancelButton(StackLayout stack)
+		protected IButton AddMessageBoxCancelButton()
 		{
-			//Create the menu entry "Cancel"
-			var label = new Label("Cancel")
-			{
-				FontSize = FontSize.Small,
-				Horizontal = HorizontalAlignment.Center,
-				Vertical = VerticalAlignment.Center
-			};
-
-			//Create the menu entry for "OK"
-			var button = new RelativeLayoutButton()
-			{
-				HasBackground = true,
-				Horizontal = HorizontalAlignment.Center,
-				Vertical = VerticalAlignment.Top,
-				Size = new Vector2(Resolution.ScreenArea.Width * 0.7f, label.Rect.Height * 2f)
-			};
-			button.AddItem(label);
-
+			var button = CreateButton(false);
 			button.OnClick += ((obj, e) =>
 			{
 				if (null != OnCancel)
@@ -191,21 +185,65 @@ namespace MenuBuddy
 				}
 				ExitScreen();
 			});
+
+			return button;
+		}
+
+		private IButton CreateButton(bool okButton)
+		{
+			//Create the menu entry "Cancel"
+			var label = new Label(okButton ? OkText : CancelText)
+			{
+				FontSize = FontSize.Small,
+				Horizontal = HorizontalAlignment.Center,
+				Vertical = VerticalAlignment.Center,
+				Layer = 1,
+			};
+
+			//check if there is a background image for this button
+			var backgrounImage = okButton ? StyleSheet.MessageBoxOkImageResource : StyleSheet.MessageBoxCancelImageResource;
+			var hasBackgroundImage = !string.IsNullOrEmpty(backgrounImage);
+
+			//Create the menu entry for "OK"
+			var button = new RelativeLayoutButton()
+			{
+				HasBackground = !hasBackgroundImage,
+				Horizontal = HorizontalAlignment.Center,
+				Vertical = VerticalAlignment.Top,
+				Size = new Vector2(Resolution.TitleSafeArea.Width * 0.4f - 16, label.Rect.Height * 2f)
+			};
+			button.AddItem(label);
+
+			if (hasBackgroundImage)
+			{
+				button.AddItem(new Image(Content.Load<Texture2D>(backgrounImage))
+				{
+					Horizontal = HorizontalAlignment.Center,
+					Vertical = VerticalAlignment.Center,
+					Size = button.Rect.Size.ToVector2(),
+					Highlightable = false,
+					PulsateOnHighlight = false,
+					FillRect = true,
+					Layer = 0
+				});
+			}
+
 			button.LoadContent(this);
-			stack.AddItem(button);
-			MenuEntries.AddItem(button);
+			return button;
 		}
 
 		public virtual void AddBackgroundImage(ILayout labelStack)
 		{
+			//get the background image dimensions
+			var width = Math.Min(Resolution.TitleSafeArea.Width, labelStack.Rect.Width + 128);
+			var height = Math.Min(Resolution.TitleSafeArea.Height, labelStack.Rect.Height + 200);
+
 			//Add the background image
 			var bkgImage = new BackgroundImage(ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.MessageBoxBackgroundImageResource))
 			{
-				Layer = -1.0f,
 				FillRect = true,
-				Padding = new Vector2(64, 32),
 				Position = new Point(labelStack.Rect.Center.X, labelStack.Rect.Center.Y),
-				Size = new Vector2(labelStack.Rect.Width, labelStack.Rect.Height),
+				Size = new Vector2(width, height),
 				Horizontal = HorizontalAlignment.Center,
 				Vertical = VerticalAlignment.Center
 			};
@@ -232,7 +270,7 @@ namespace MenuBuddy
 			base.Dispose();
 			OnSelect = null;
 			OnCancel = null;
-	}
+		}
 
 		#endregion //Methods
 	}

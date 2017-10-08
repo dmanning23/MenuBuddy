@@ -8,7 +8,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is an input helper that does mouse/touchscreen input
 	/// </summary>
-	public class MouseInputHelper : BaseInputHandler
+	public class MouseInputHandler : BaseInputHandler
 	{
 		#region Properties
 
@@ -30,7 +30,7 @@ namespace MenuBuddy
 		/// Constructor
 		/// </summary>
 		/// <param name="game"></param>
-		public MouseInputHelper(Game game)
+		public MouseInputHandler(Game game)
 			: base(game)
 		{
 			//Find all the components we need
@@ -42,11 +42,13 @@ namespace MenuBuddy
 				throw new Exception("Cannot initialize TouchInputHelper without first adding IInputHelper service");
 			}
 
-			InputChecker = new MouseScreenInputChecker(InputHelper);
+			InputChecker = new MouseScreenInputChecker(InputHelper, this);
 
 			//Register ourselves to implement the DI container service.
 			game.Components.Add(this);
 			game.Services.AddService(typeof(IInputHandler), this);
+
+			InputState.CheckControllers = false;
 		}
 
 		/// <summary>
@@ -73,6 +75,8 @@ namespace MenuBuddy
 		{
 			InputChecker.HandleInput(screen);
 		}
+
+		
 
 		#endregion //Methods
 	}

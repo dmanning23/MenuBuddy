@@ -14,6 +14,8 @@ namespace MenuBuddy
 
 		private FontSize _fontSize;
 
+		private IFontBuddy _font;
+
 #pragma warning disable 0414
 		public event EventHandler<ClickEventArgs> OnClick;
 #pragma warning restore 0414
@@ -64,7 +66,21 @@ namespace MenuBuddy
 		/// <summary>
 		/// If this is set, use it to draw this label
 		/// </summary>
-		public IFontBuddy Font { get; set; }
+		public IFontBuddy Font
+		{
+			get
+			{
+				if (null == _font)
+				{
+					_font = GetFont();
+				}
+				return _font;
+			}
+			set
+			{
+				_font = value;
+			}
+		}
 
 		/// <summary>
 		/// If this is not null, use it as the shadow color.
@@ -157,7 +173,7 @@ namespace MenuBuddy
 
 			//adjust the pulsate scale
 			var pulsate = font as PulsateBuddy;
-			if (null != pulsate)
+			if (Highlightable && null != pulsate)
 			{
 				pulsate.PulsateSize = IsClicked ? 1.2f : 1f;
 			}
@@ -176,7 +192,7 @@ namespace MenuBuddy
 		{
 			//get the size of the rect
 			var font = GetFont();
-			var size = (MeasureText(font) + (Padding * 2f)) * Scale;
+			var size = MeasureText(font) * Scale;
 
 			//set the x component
 			Vector2 pos = Position.ToVector2();
@@ -208,9 +224,9 @@ namespace MenuBuddy
 
 		protected virtual IFontBuddy GetFont()
 		{
-			if (null != Font)
+			if (null != _font)
 			{
-				return Font;
+				return _font;
 			}
 
 			switch (FontSize)
@@ -277,6 +293,11 @@ namespace MenuBuddy
 			{
 				return Vector2.Zero;
 			}
+		}
+
+		public void ScaleToFit(int rowWidth)
+		{
+			Scale = Font.ScaleToFit(Text, rowWidth);
 		}
 
 		public override void Dispose()

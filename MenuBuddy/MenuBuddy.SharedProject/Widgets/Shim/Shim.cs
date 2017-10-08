@@ -1,5 +1,6 @@
 using GameTimer;
 using Microsoft.Xna.Framework;
+using Vector2Extensions;
 
 namespace MenuBuddy
 {
@@ -40,6 +41,11 @@ namespace MenuBuddy
 		{
 		}
 
+		public Shim(float x, float y)
+		{
+			Size = new Vector2(x, y);
+		}
+
 		public Shim(Shim inst) : base(inst)
 		{
 			_size = inst._size;
@@ -73,7 +79,7 @@ namespace MenuBuddy
 		protected override void CalculateRect()
 		{
 			//get the size of the rect
-			var size = (Size + (Padding * 2f)) * Scale;
+			var size = Size * Scale;
 
 			//set the x component
 			Vector2 pos = Position.ToVector2();

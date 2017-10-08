@@ -7,5 +7,9 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IWidgetScreen : IScreen, IScreenItemContainer, IClickable, IHighlightable, IDraggable, IDroppable
 	{
+		/// <summary>
+		/// Modal screens will eat all input so no screens underneath can get accidently clicked
+		/// </summary>
+		bool Modal { get; set; }
 	}
 }

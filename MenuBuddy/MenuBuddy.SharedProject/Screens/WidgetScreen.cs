@@ -67,6 +67,8 @@ namespace MenuBuddy
 
 		public bool IsHighlighted { get; set; }
 
+		public bool Modal { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -84,6 +86,7 @@ namespace MenuBuddy
 			TimeSinceInput = new CountdownTimer();
 			ResetInputTimer();
 			AttractModeTime = 15f;
+			Modal = false;
 		}
 
 		public override void LoadContent()
@@ -189,7 +192,7 @@ namespace MenuBuddy
 				return false;
 			}
 
-			return Layout.CheckHighlight(highlight);
+			return Layout.CheckHighlight(highlight) || Modal;
 		}
 
 		/// <summary>
@@ -207,7 +210,7 @@ namespace MenuBuddy
 			ResetInputTimer();
 
 			//check if they clicked in the layout
-			return Layout.CheckClick(click);
+			return Layout.CheckClick(click) || Modal;
 		}
 
 		/// <summary>
@@ -230,7 +233,7 @@ namespace MenuBuddy
 			ResetInputTimer();
 
 			//check if they clicked in the layout
-			return Layout.CheckDrag(drag);
+			return Layout.CheckDrag(drag) || Modal;
 		}
 
 		public virtual bool CheckDrop(DropEventArgs drop)
@@ -241,7 +244,7 @@ namespace MenuBuddy
 			}
 
 			//check if they clicked in the layout
-			return Layout.CheckDrop(drop);
+			return Layout.CheckDrop(drop) || Modal;
 		}
 
 		public override void Dispose()

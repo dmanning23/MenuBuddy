@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Vector2Extensions;
 
 namespace MenuBuddy
 {
@@ -61,13 +62,11 @@ namespace MenuBuddy
 			var relLayout = Layout as RelativeLayout;
 			if (null != relLayout)
 			{
-				var layoutSize = size - ((Padding * 2f) * Scale);
-				var layoutPos = pos + (Padding * Scale);
 				relLayout.Scale = Scale;
 				relLayout.Vertical = VerticalAlignment.Top;
 				relLayout.Horizontal = HorizontalAlignment.Left;
-				relLayout.Position = layoutPos.ToPoint();
-				relLayout.Size = layoutSize;
+				relLayout.Position = pos.ToPoint();
+				relLayout.Size = size;
 			}
 		}
 

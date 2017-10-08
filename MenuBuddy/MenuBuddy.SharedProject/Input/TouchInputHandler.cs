@@ -31,6 +31,8 @@ namespace MenuBuddy
 		public TouchInputHelper(Game game)
 			: base(game)
 		{
+			InputState.CheckControllers = false;
+
 			//Find all the components we need
 			InputHelper = game.Services.GetService(typeof(IInputHelper)) as IInputHelper;
 
@@ -103,6 +105,7 @@ namespace MenuBuddy
 				{
 					if (clickScreen.CheckClick(InputHelper.Clicks[i]))
 					{
+						ClickHandled(this, InputHelper.Clicks[i]);
 						InputHelper.Clicks.RemoveAt(i);
 					}
 					else

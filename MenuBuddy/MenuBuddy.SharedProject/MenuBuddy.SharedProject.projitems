@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Layouts\ILayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Layouts\Layout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Layouts\Absolute\AbsoluteLayout.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Layouts\Padded\PaddedLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Layouts\Relative\RelativeLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Layouts\Scroll\ScrollLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Layouts\Stack\IStackLayout.cs" />

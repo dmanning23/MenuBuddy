@@ -45,6 +45,8 @@ namespace MenuBuddy
 				case TransitionWipeType.PopBottom: { return PopBottomTransition(screen, pos); }
 				case TransitionWipeType.SlideLeft: { return SlideLeftTransition(screen, pos); }
 				case TransitionWipeType.SlideRight: { return SlideRightTransition(screen, pos); }
+				case TransitionWipeType.SlideTop: { return SlideTopTransition(screen, pos); }
+				case TransitionWipeType.SlideBottom: { return SlideBottomTransition(screen, pos); }
 				default:
 					{
 						//None transition type
@@ -223,6 +225,58 @@ namespace MenuBuddy
 				else
 				{
 					pos.X -= transitionOffset * 512;
+				}
+			}
+
+			return pos;
+		}
+
+		/// <summary>
+		/// Slide in from the left, slide out the left
+		/// </summary>
+		/// <param name="pos"></param>
+		/// <returns></returns>
+		private Vector2 SlideTopTransition(ScreenTransition screen, Vector2 pos)
+		{
+			if (screen.TransitionPosition != 0.0f)
+			{
+				// Make the menu slide into place during transitions, using a
+				// power curve to make things look more interesting (this makes
+				// the movement slow down as it nears the end).
+				var transitionOffset = (float)Math.Pow(screen.TransitionPosition, 2.0);
+				if (screen.State == TransitionState.TransitionOn)
+				{
+					pos.Y -= transitionOffset * 256;
+				}
+				else
+				{
+					pos.Y += transitionOffset * 512;
+				}
+			}
+
+			return pos;
+		}
+
+		/// <summary>
+		/// Slide in from the left, slide out the left
+		/// </summary>
+		/// <param name="pos"></param>
+		/// <returns></returns>
+		private Vector2 SlideBottomTransition(ScreenTransition screen, Vector2 pos)
+		{
+			if (screen.TransitionPosition != 0.0f)
+			{
+				// Make the menu slide into place during transitions, using a
+				// power curve to make things look more interesting (this makes
+				// the movement slow down as it nears the end).
+				var transitionOffset = (float)Math.Pow(screen.TransitionPosition, 2.0);
+				if (screen.State == TransitionState.TransitionOn)
+				{
+					pos.Y += transitionOffset * 256;
+				}
+				else
+				{
+					pos.Y -= transitionOffset * 512;
 				}
 			}
 

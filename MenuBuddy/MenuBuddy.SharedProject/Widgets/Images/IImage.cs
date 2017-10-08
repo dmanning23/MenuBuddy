@@ -28,5 +28,7 @@ namespace MenuBuddy
 		}
 
 		Color FillColor { set; }
+
+		bool AlwaysPulsate { get; set; }
 	}
 }

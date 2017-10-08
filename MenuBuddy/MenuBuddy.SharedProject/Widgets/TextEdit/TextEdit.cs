@@ -191,6 +191,11 @@ namespace MenuBuddy
 			OnTextEdited = null;
 		}
 
+		public void ScaleToFit(int rowWidth)
+		{
+			TextLabel.ScaleToFit(rowWidth);
+		}
+
 		#endregion //Methods
 	}
 }

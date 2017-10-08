@@ -23,7 +23,15 @@ namespace MenuBuddy
 
 		public ResolutionComponent ResolutionComponent { get; set; }
 
-		public GameType GameType  { get; private set;}
+		public GameType GameType { get; private set; }
+
+		protected Point VirtualResolution { get; set; }
+
+		protected Point ScreenResolution { get; set; }
+
+		protected bool Fullscreen { get; set; }
+
+		protected bool Letterbox { get; set; }
 
 		#endregion //Properties
 
@@ -35,7 +43,11 @@ namespace MenuBuddy
 			Graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
 			Content.RootDirectory = "Content";
 
-			ResolutionComponent = new ResolutionComponent(this, Graphics, new Point(1280, 720), new Point(1280, 720), false, false);
+			VirtualResolution = new Point(1280, 720);
+			ScreenResolution = new Point(1280, 720);
+			Fullscreen = false;
+			Letterbox = false;
+
 			GameType = gameType;
 
 			//add the input helper for menus
@@ -56,6 +68,7 @@ namespace MenuBuddy
 		/// </summary>
 		protected override void Initialize()
 		{
+			ResolutionComponent = new ResolutionComponent(this, Graphics, VirtualResolution, ScreenResolution, Fullscreen, Letterbox);
 			InitStyles();
 
 			// Create the screen manager component.
@@ -111,11 +124,11 @@ namespace MenuBuddy
 		{
 			// Clear to Black
 			Graphics.GraphicsDevice.Clear(ScreenManager.ClearColor);
-			
+
 			// The real drawing happens inside the screen manager component.
 			base.Draw(gameTime);
 		}
 
-#endregion //Methods
+		#endregion //Methods
 	}
 }

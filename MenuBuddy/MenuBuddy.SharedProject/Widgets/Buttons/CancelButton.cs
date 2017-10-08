@@ -19,14 +19,15 @@ namespace MenuBuddy
 
 		private string IconTextureName { get; set; }
 
+		public Image CancelIcon { get; private set; }
+
 		#endregion //Properties
 
 		#region Methods
 
-		public CancelButton(string iconTextureName = "Cancel")
+		public CancelButton(string iconTextureName = "")
 		{
-			IconTextureName = iconTextureName;
-			Scale = 3f;
+			IconTextureName = !string.IsNullOrEmpty(iconTextureName) ? iconTextureName : StyleSheet.CancelButtonImageResource;
 		}
 
 		public override void LoadContent(IScreen screen)
@@ -36,33 +37,33 @@ namespace MenuBuddy
 			//load the icon
 			TransitionObject = new WipeTransitionObject(TransitionWipeType.PopRight);
 			HasBackground = false;
-			HasOutline = true;
-			var image = new Image(screen.ScreenManager.Game.Content.Load<Texture2D>(IconTextureName))
+			HasOutline = StyleSheet.CancelButtonHasOutline;
+			Horizontal = HorizontalAlignment.Right;
+			Vertical = VerticalAlignment.Top;
+			DrawWhenInactive = false;
+
+			CancelIcon = new Image(screen.ScreenManager.Game.Content.Load<Texture2D>(IconTextureName))
 			{
-				Vertical = VerticalAlignment.Center,
-				Horizontal = HorizontalAlignment.Center,
-				TransitionObject = new WipeTransitionObject(TransitionWipeType.PopRight)
+				Vertical = VerticalAlignment.Top,
+				Horizontal = HorizontalAlignment.Right,
+				TransitionObject = new WipeTransitionObject(TransitionWipeType.PopRight),
 			};
-			AddItem(image);
+			AddItem(CancelIcon);
 
 			//set the size to the texture size
-			var size = new Vector2(image.Texture.Bounds.Width, image.Texture.Bounds.Height);
+			var size = new Vector2(CancelIcon.Texture.Bounds.Width, CancelIcon.Texture.Bounds.Height);
 			var relLayout = Layout as RelativeLayout;
 			relLayout.Size = size;
 			Size = size;
 
-			var imageRect = image.Rect;
-			Position = new Point(Resolution.TitleSafeArea.Right - (int)(1.5f * imageRect.Width),
-					Resolution.TitleSafeArea.Top);
-
-			DrawWhenInactive = false;
+			Position = new Point(Resolution.TitleSafeArea.Right, Resolution.TitleSafeArea.Top) + StyleSheet.CancelButtonOffset;
 
 			//Exit the screen when this button is selected
-			OnClick += ((object obj, ClickEventArgs e) => 
+			OnClick += ((object obj, ClickEventArgs e) =>
 			{
 				screen.ExitScreen();
 			});
-        }
+		}
 
 		#endregion //Methods
 	}

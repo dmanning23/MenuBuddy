@@ -69,7 +69,19 @@ namespace MenuBuddy
 
 		public static string MessageBoxBackgroundImageResource { get; set; }
 
+		public static string MessageBoxOkImageResource { get; set; }
+
+		public static string MessageBoxCancelImageResource { get; set; }
+
+		public static Color MessageBoxTextColor { get; set; }
+
+		public static bool SmallFontHasShadow { get;set;}
+
 		public static string CancelButtonImageResource { get; set; }
+
+		public static bool CancelButtonHasOutline { get; set; }
+
+		public static Point CancelButtonOffset { get; set; }
 
 		public static string TreeExpandImageResource { get; set; }
 
@@ -222,6 +234,7 @@ namespace MenuBuddy
 			SmallFontResource = @"Fonts\ArialBlack24";
 
 			NeutralTextColor = Color.White;
+			MessageBoxTextColor = Color.White;
 			HighlightedTextColor = Color.White;
 			SelectedTextColor = Color.Yellow;
 			NeutralOutlineColor = new Color(0.8f, 0.8f, 0.8f, 0.5f);
@@ -234,6 +247,8 @@ namespace MenuBuddy
 			ButtonBackgroundImageResource = @"AlphaGradient";
 			MessageBoxBackgroundImageResource = @"gradient";
 			CancelButtonImageResource = @"Cancel";
+			CancelButtonHasOutline = true;
+			CancelButtonOffset = new Point(-64, 0);
 			TreeExpandImageResource = @"Expand";
 			TreeCollapseImageResource = @"Collapse";
 			DropdownImageResource = @"Collapse";
@@ -271,12 +286,22 @@ namespace MenuBuddy
 				Font = _game.Content.Load<SpriteFont>(MediumFontResource)
 			};
 
-			SmallNeutralFont = new ShadowTextBuddy()
+			if (SmallFontHasShadow)
 			{
-				ShadowSize = 1.0f,
-				ShadowOffset = new Vector2(4.0f, 4.0f),
-				Font = _game.Content.Load<SpriteFont>(SmallFontResource),
-			};
+				SmallNeutralFont = new ShadowTextBuddy()
+				{
+					ShadowSize = 1.0f,
+					ShadowOffset = new Vector2(3.0f, 4.0f),
+					Font = _game.Content.Load<SpriteFont>(SmallFontResource),
+				};
+			}
+			else
+			{
+				SmallNeutralFont = new FontBuddy()
+				{
+					Font = _game.Content.Load<SpriteFont>(SmallFontResource),
+				};
+			}
 
 			//set up highlighted stuff
 			LargeHighlightedFont = new PulsateBuddy()
@@ -294,7 +319,7 @@ namespace MenuBuddy
 			SmallHighlightedFont = new PulsateBuddy()
 			{
 				ShadowSize = 1.0f,
-				ShadowOffset = new Vector2(4.0f, 4.0f),
+				ShadowOffset = new Vector2(3.0f, 4.0f),
 				Font = _game.Content.Load<SpriteFont>(SmallFontResource),
 			};
 		}

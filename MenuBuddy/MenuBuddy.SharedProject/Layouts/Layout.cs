@@ -143,16 +143,6 @@ namespace MenuBuddy
 			{
 				//grab the scale
 				_scale = value;
-
-				//rescale all the child items
-				foreach (var item in Items)
-				{
-					var scalable = item as IScalable;
-					if (null != scalable)
-					{
-						scalable.Scale = value;
-					}
-				}
 			}
 		}
 
@@ -276,9 +266,9 @@ namespace MenuBuddy
 
 			if (Highlightable)
 			{
-				foreach (var item in Items)
+				for (int i = Items.Count - 1; i >= 0; i--)
 				{
-					var highlightable = item as IHighlightable;
+					var highlightable = Items[i] as IHighlightable;
 					if ((highlightable != null) && highlightable.CheckHighlight(highlight))
 					{
 						highlighted = true;
@@ -293,9 +283,9 @@ namespace MenuBuddy
 		{
 			if (Rect.Contains(click.Position) && Clickable)
 			{
-				foreach (var item in Items)
+				for (int i = Items.Count - 1; i >= 0; i--)
 				{
-					var clickable = item as IClickable;
+					var clickable = Items[i] as IClickable;
 					if ((clickable != null) && clickable.CheckClick(click))
 					{
 						return true;
@@ -319,9 +309,9 @@ namespace MenuBuddy
 		{
 			if (Rect.Contains(drag.Start))
 			{
-				foreach (var item in Items)
+				for (int i = Items.Count - 1; i >= 0; i--)
 				{
-					var draggable = item as IDraggable;
+					var draggable = Items[i] as IDraggable;
 					if ((draggable != null) && draggable.CheckDrag(drag))
 					{
 						return true;
@@ -337,9 +327,9 @@ namespace MenuBuddy
 		{
 			if (Rect.Contains(drop.Drop))
 			{
-				foreach (var item in Items)
+				for (int i = Items.Count - 1; i >= 0; i--)
 				{
-					var droppable = item as IDroppable;
+					var droppable = Items[i] as IDroppable;
 					if ((droppable != null) && droppable.CheckDrop(drop))
 					{
 						return true;

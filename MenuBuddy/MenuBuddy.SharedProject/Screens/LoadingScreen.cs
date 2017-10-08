@@ -1,11 +1,8 @@
-using FontBuddyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System;
 using System.ComponentModel;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -74,14 +71,14 @@ namespace MenuBuddy
 		public override void LoadContent()
 		{
 			base.LoadContent();
-			
+
 			//Add the loading message
 			if (LoadingIsSlow)
 			{
 				var layout = new StackLayout
 				{
 					Alignment = StackAlignment.Left,
-					
+
 				};
 
 				//create the message widget
@@ -116,8 +113,7 @@ namespace MenuBuddy
 					layout.AddItem(hourglass);
 
 					//create the shim to place between the widgets
-					var shim = new Shim();
-					shim.Padding = new Vector2(16f, 0);
+					var shim = new Shim(32, 0);
 					layout.AddItem(shim);
 				}
 

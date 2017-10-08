@@ -1,4 +1,5 @@
-﻿using InputHelper;
+﻿using System;
+using InputHelper;
 
 namespace MenuBuddy
 {
@@ -14,7 +15,9 @@ namespace MenuBuddy
 		/// warning: this dude might be null if the compoent isnt in this game
 		/// </summary>
 		public IInputHelper InputHelper { get; private set; }
-		
+
+		private MouseInputHandler MouseInputHandler { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -23,11 +26,14 @@ namespace MenuBuddy
 		/// Constructor
 		/// </summary>
 		/// <param name="game"></param>
-		public MouseScreenInputChecker(IInputHelper inputHelper)
+		public MouseScreenInputChecker(IInputHelper inputHelper, MouseInputHandler mouseInputHandler = null)
 		{
 			//Find all the components we need
 			InputHelper = inputHelper;
+			MouseInputHandler = mouseInputHandler;
 		}
+
+		public event EventHandler<ClickEventArgs> OnClickHandled;
 
 		#endregion //Initialization
 
@@ -62,6 +68,10 @@ namespace MenuBuddy
 				{
 					if (clickScreen.CheckClick(InputHelper.Clicks[i]))
 					{
+						if (null != MouseInputHandler)
+						{
+							MouseInputHandler.ClickHandled(this, InputHelper.Clicks[i]);
+						}
 						InputHelper.Clicks.RemoveAt(i);
 					}
 					else

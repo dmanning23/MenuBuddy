@@ -106,33 +106,13 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(VerticalAlignment.Top, _button.Layout.Vertical);
 		}
 
-		[Test]
-		public void RelButtonTests_LayoutPadding()
-		{
-			_button.Position = new Point(10, 20);
-			_button.Size = new Vector2(30f, 40f);
-			_button.Padding = new Vector2(1f, 2f);
-			Assert.AreEqual(10, _button.Rect.X);
-			Assert.AreEqual(20, _button.Rect.Y);
-			Assert.AreEqual(30f, _button.Rect.Width);
-			Assert.AreEqual(40f, _button.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _button.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _button.Vertical);
-
-			Assert.AreEqual(11, _button.Layout.Rect.X);
-			Assert.AreEqual(22, _button.Layout.Rect.Y);
-			Assert.AreEqual(28f, _button.Layout.Rect.Width);
-			Assert.AreEqual(36f, _button.Layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _button.Layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _button.Layout.Vertical);
-		}
+		
 
 		[Test]
 		public void RelButtonTests_LayoutScale()
 		{
 			_button.Position = new Point(10, 20);
 			_button.Size = new Vector2(30f, 40f);
-			_button.Padding = new Vector2(1f, 2f);
 			_button.Scale = 2f;
 			Assert.AreEqual(10, _button.Rect.X);
 			Assert.AreEqual(20, _button.Rect.Y);
@@ -141,10 +121,10 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual(HorizontalAlignment.Left, _button.Horizontal);
 			Assert.AreEqual(VerticalAlignment.Top, _button.Vertical);
 
-			Assert.AreEqual(12, _button.Layout.Rect.X);
-			Assert.AreEqual(24, _button.Layout.Rect.Y);
-			Assert.AreEqual(56f, _button.Layout.Rect.Width);
-			Assert.AreEqual(72f, _button.Layout.Rect.Height);
+			Assert.AreEqual(10, _button.Layout.Rect.X);
+			Assert.AreEqual(20, _button.Layout.Rect.Y);
+			Assert.AreEqual(60f, _button.Layout.Rect.Width);
+			Assert.AreEqual(80f, _button.Layout.Rect.Height);
 			Assert.AreEqual(HorizontalAlignment.Left, _button.Layout.Horizontal);
 			Assert.AreEqual(VerticalAlignment.Top, _button.Layout.Vertical);
 		}

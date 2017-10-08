@@ -35,11 +35,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="FontBuddyLib.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontBuddy.1.0.11\lib\net451\FontBuddyLib.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\FontBuddy.1.0.18\lib\net451\FontBuddyLib.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="GameTimer.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GameTimer.1.0.1\lib\net452\GameTimer.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\GameTimer.1.0.2\lib\net452\GameTimer.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="HadoukInput.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -99,7 +99,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Vector2Extensions.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vector2Extensions.1.0.6\lib\net451\Vector2Extensions.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\Vector2Extensions.1.0.8\lib\net451\Vector2Extensions.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="XmlBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

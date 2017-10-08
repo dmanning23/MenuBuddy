@@ -215,7 +215,7 @@ namespace MenuBuddy
 		protected override void CalculateRect()
 		{
 			//get the size of the rect
-			var size = (Size + (Padding * 2f)) * Scale;
+			var size = Size * Scale;
 
 			//set the x component
 			Vector2 pos = Position.ToVector2();

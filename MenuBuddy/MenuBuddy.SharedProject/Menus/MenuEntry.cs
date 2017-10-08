@@ -190,6 +190,11 @@ namespace MenuBuddy
 			Right = null;
 		}
 
+		public void ScaleToFit(int rowWidth)
+		{
+			Label.ScaleToFit(rowWidth);
+		}
+
 		#endregion //Methods
 	}
 }

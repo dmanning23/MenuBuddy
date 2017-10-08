@@ -18,7 +18,7 @@ namespace MenuBuddy
 			var mouse = new MouseComponent(this, ResolutionBuddy.Resolution.ScreenToGameCoord);
 
 			//add the input helper for menus
-			var input = new MouseInputHelper(this);
+			var input = new MouseInputHandler(this);
 		}
 
 		#endregion //Methods

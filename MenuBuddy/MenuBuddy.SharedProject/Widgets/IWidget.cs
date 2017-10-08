@@ -9,9 +9,5 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IWidget : IScreenItem, IScalable, IHighlightable, ITransitionable, IBackgroundable
 	{
-		/// <summary>
-		/// How many pixels worth of padding to add around this widget.
-		/// </summary>
-		Vector2 Padding { set; }
 	}
 }

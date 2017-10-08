@@ -10,7 +10,7 @@ namespace MenuBuddy
 	{
 		#region Fields
 
-		private Vector2 _size;
+		protected Vector2 _size;
 
 		/// <summary>
 		/// Whenever the rect changes on this layout, the old rect is stored here so can get a delta.
@@ -33,7 +33,7 @@ namespace MenuBuddy
 			set
 			{
 				SetPrevRect();
-                _size = value;
+				_size = value;
 				UpdateItems();
 			}
 		}
@@ -147,7 +147,7 @@ namespace MenuBuddy
 			PreviousRect = CalculateRect();
 		}
 
-		protected Rectangle CalculateRect()
+		protected virtual Rectangle CalculateRect()
 		{
 			var pos = Position;
 
@@ -166,7 +166,7 @@ namespace MenuBuddy
 			return new Rectangle(pos.X, pos.Y, (int)Size.X, (int)Size.Y);
 		}
 
-		private void UpdateItems()
+		protected virtual void UpdateItems()
 		{
 			//Grab the rect for this layout
 			var rect = CalculateRect();
@@ -182,7 +182,7 @@ namespace MenuBuddy
 		/// Set the position of a widget to be relative to this layout
 		/// </summary>
 		/// <param name="item"></param>
-		private void UpdateItemPosition(IScreenItem item, Rectangle rect)
+		protected virtual void UpdateItemPosition(IScreenItem item, Rectangle rect)
 		{
 			//Get the delta position
 			var delta = PreviousRect.Location - rect.Location;

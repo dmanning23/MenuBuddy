@@ -1,4 +1,6 @@
+using InputHelper;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace MenuBuddy
 {
@@ -13,5 +15,7 @@ namespace MenuBuddy
 		/// <param name="screen"></param>
 		/// <returns></returns>
 		void HandleInput(IScreen screen);
+
+		event EventHandler<ClickEventArgs> OnClickHandled;
 	}
 }

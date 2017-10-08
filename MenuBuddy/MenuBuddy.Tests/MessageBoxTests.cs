@@ -63,17 +63,17 @@ namespace MenuBuddy.Tests
 		{
 		}
 
-		[Test]
-		public void Selected_Index()
-		{
-			Assert.AreEqual(0, _screen.Object.SelectedIndex);
-		}
+		//[Test]
+		//public void Selected_Index()
+		//{
+		//	Assert.AreEqual(0, _screen.Object.SelectedIndex);
+		//}
 
-		[Test]
-		public void Selected_Button()
-		{
-			Assert.NotNull(_screen.Object.SelectedEntry);
-		}
+		//[Test]
+		//public void Selected_Button()
+		//{
+		//	Assert.NotNull(_screen.Object.SelectedEntry);
+		//}
 
 		#endregion //Tests
 	}

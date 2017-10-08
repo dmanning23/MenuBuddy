@@ -1,3 +1,4 @@
+using FontBuddyLib;
 using InputHelper;
 using Microsoft.Xna.Framework;
 
@@ -18,5 +19,7 @@ namespace MenuBuddy
 		Color? ShadowColor { get; set; }
 
 		Color? TextColor { get; set; }
+
+		void ScaleToFit(int rowWidth);
 	}
 }

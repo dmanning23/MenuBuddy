@@ -172,13 +172,6 @@ namespace MenuBuddy
 			item.Horizontal = Horizontal;
 			item.Vertical = Vertical;
 
-			//Check if it is a scalable item
-			var scalable = item as IScalable;
-			if (null != scalable)
-			{
-				scalable.Scale = Scale;
-			}
-
 			switch (Alignment)
 			{
 				case StackAlignment.Top:

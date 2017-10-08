@@ -122,58 +122,6 @@ namespace MenuBuddy.Tests
 
 		#endregion //Rect & Position 
 
-		#region Padding
-
-		[Test]
-		public void ImageTests_SetRectThenPadding()
-		{
-			_image.Position = new Point(10, 20);
-			_image.Padding = new Vector2(10, 5);
-
-			Assert.AreEqual(10, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(50, _image.Rect.Width);
-			Assert.AreEqual(50, _image.Rect.Height);
-		}
-
-		[Test]
-		public void ImageTests_SetPaddingThenRect()
-		{
-			_image.Padding = new Vector2(10, 5);
-			_image.Position = new Point(10, 20);
-
-			Assert.AreEqual(10, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(50, _image.Rect.Width);
-			Assert.AreEqual(50, _image.Rect.Height);
-		}
-
-		[Test]
-		public void ImageTests_SetPositionThenPadding()
-		{
-			_image.Position = new Point(10, 20);
-			_image.Padding = new Vector2(10, 5);
-
-			Assert.AreEqual(10, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(50, _image.Rect.Width);
-			Assert.AreEqual(50, _image.Rect.Height);
-		}
-
-		[Test]
-		public void ImageTests_SetPaddingThenPosition()
-		{
-			_image.Padding = new Vector2(30, 50);
-			_image.Position = new Point(10, 20);
-
-			Assert.AreEqual(10, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(90, _image.Rect.Width);
-			Assert.AreEqual(140, _image.Rect.Height);
-		}
-
-		#endregion //Padding
-
 		#region Scale
 
 		[Test]
@@ -226,85 +174,7 @@ namespace MenuBuddy.Tests
 
 		#endregion //Scale
 
-		#region Rect, Padding, & Scale
-
-		[Test]
-		public void ImageTests_SetRectThenPaddingThenScale()
-		{
-			_image.Position = new Point(10, 20);
-			_image.Padding = new Vector2(10, 20);
-			_image.Scale = 2f;
-
-			Assert.AreEqual(10, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(100, _image.Rect.Width);
-			Assert.AreEqual(160, _image.Rect.Height);
-		}
-
-		[Test]
-		public void ImageTests_SetRectThenScaleThenPadding()
-		{
-			_image.Position = new Point(10, 20);
-			_image.Scale = 2f;
-			_image.Padding = new Vector2(10, 20);
-
-			Assert.AreEqual(10, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(100, _image.Rect.Width);
-			Assert.AreEqual(160, _image.Rect.Height);
-		}
-
-		[Test]
-		public void ImageTests_SetPaddingThenRectThenScale()
-		{
-			_image.Padding = new Vector2(10, 20);
-			_image.Position = new Point(10, 20);
-			_image.Scale = 2f;
-
-			Assert.AreEqual(10, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(100, _image.Rect.Width);
-			Assert.AreEqual(160, _image.Rect.Height);
-		}
-
-		[Test]
-		public void ImageTests_SetPaddingThenScaleThenRect()
-		{
-			_image.Padding = new Vector2(10, 20);
-			_image.Scale = 2f;
-			_image.Position = new Point(10, 20);
-
-			Assert.AreEqual(10, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(100, _image.Rect.Width);
-			Assert.AreEqual(160, _image.Rect.Height);
-		}
-
-		[Test]
-		public void ImageTests_SetScaleThenPaddingThenRect()
-		{
-			_image.Scale = 2f;
-			_image.Padding = new Vector2(10, 20);
-			_image.Position = new Point(10, 20);
-
-			Assert.AreEqual(10, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(100, _image.Rect.Width);
-			Assert.AreEqual(160, _image.Rect.Height);
-		}
-
-		[Test]
-		public void ImageTests_SetScaleThenRectThenPadding()
-		{
-			_image.Scale = 2f;
-			_image.Position = new Point(10, 20);
-			_image.Padding = new Vector2(10, 20);
-
-			Assert.AreEqual(10, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(100, _image.Rect.Width);
-			Assert.AreEqual(160, _image.Rect.Height);
-		}
+		#region Rect & Scale
 
 		[Test]
 		public void ShimTests_HorizontalCentered_SetRectThenPadding()
@@ -313,12 +183,11 @@ namespace MenuBuddy.Tests
 			_image.FillRect = true;
 			_image.Position = new Point(10, 20);
 			_image.Size = new Vector2(30, 40);
-			_image.Padding = new Vector2(10, 50);
 
-			Assert.AreEqual(-15, _image.Rect.X);
+			Assert.AreEqual(-5, _image.Rect.X);
 			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(50, _image.Rect.Width);
-			Assert.AreEqual(140, _image.Rect.Height);
+			Assert.AreEqual(30, _image.Rect.Width);
+			Assert.AreEqual(40, _image.Rect.Height);
 		}
 
 		#endregion //Rect, Padding, & Scale

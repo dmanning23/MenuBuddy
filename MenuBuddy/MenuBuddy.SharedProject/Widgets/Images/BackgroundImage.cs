@@ -17,7 +17,9 @@ namespace MenuBuddy
 		public BackgroundImage(Texture2D texture)
 			: base(texture)
 		{
+			Layer = -1.0f;
 			PulsateOnHighlight = false;
+			HasBackground = true;
 		}
 
 		public BackgroundImage(BackgroundImage inst) : base(inst)

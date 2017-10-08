@@ -154,22 +154,6 @@ namespace MenuBuddy
 			}
 		}
 
-		public virtual Vector2 Padding
-		{
-			get
-			{
-				return _padding;
-			}
-			set
-			{
-				if (_padding != value)
-				{
-					_padding = value;
-					CalculateRect();
-				}
-			}
-		}
-
 		public bool HasBackground { get; set; }
 
 		public bool HasOutline { get; set; }
@@ -204,7 +188,6 @@ namespace MenuBuddy
 			_horizontal = inst.Horizontal;
 			_vertical = inst.Vertical;
 			_scale = inst.Scale;
-			_padding = new Vector2(inst.Padding.X, inst.Padding.Y);
 			_drawWhenInactive = inst.DrawWhenInactive;
 			_rect = new Rectangle(inst.Rect.Location, inst.Rect.Size);
 			_position = new Point(inst.Position.X, inst.Position.Y);

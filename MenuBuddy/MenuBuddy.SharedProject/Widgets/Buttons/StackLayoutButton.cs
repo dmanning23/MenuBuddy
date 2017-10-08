@@ -78,12 +78,10 @@ namespace MenuBuddy
 			var relLayout = Layout as StackLayout;
 			if (null != relLayout)
 			{
-				var layoutSize = size - ((Padding * 2f) * Scale);
-				var layoutPos = pos + (Padding * Scale);
 				relLayout.Scale = Scale;
 				relLayout.Vertical = VerticalAlignment.Top;
 				relLayout.Horizontal = HorizontalAlignment.Left;
-				relLayout.Position = layoutPos.ToPoint();
+				relLayout.Position = pos.ToPoint();
 			}
 
 			_rect = relLayout.Rect;
