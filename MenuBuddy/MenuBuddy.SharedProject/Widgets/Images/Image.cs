@@ -118,7 +118,7 @@ namespace MenuBuddy
 		/// </summary>
 		public Image()
 		{
-			PulsateOnHighlight = true;
+			PulsateOnHighlight = false;
 			FillColor = Color.White;
 			Clickable = true;
 			AlwaysPulsate = false;

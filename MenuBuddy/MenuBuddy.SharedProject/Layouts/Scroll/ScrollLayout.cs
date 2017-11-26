@@ -3,6 +3,7 @@ using GameTimer;
 using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ResolutionBuddy;
 
 namespace MenuBuddy
 {
@@ -264,7 +265,6 @@ namespace MenuBuddy
 			}
 
 			//start a new draw loop
-			//screenManager.SpriteBatchBegin(BlendState.AlphaBlend);
 			screenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
 
 			//call the provided delegate to draw everything
@@ -280,6 +280,8 @@ namespace MenuBuddy
 
 			//set the render target back
 			screenManager.GraphicsDevice.SetRenderTarget(null);
+
+			Resolution.ResetViewport();
 
 			//start a new loop
 			screenManager.SpriteBatchBegin();

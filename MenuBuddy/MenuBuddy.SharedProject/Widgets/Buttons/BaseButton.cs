@@ -119,7 +119,7 @@ namespace MenuBuddy
 		{
 			get
 			{
-				return _clickTimer.HasTimeRemaining();
+				return _clickTimer.HasTimeRemaining;
 			}
 			set
 			{

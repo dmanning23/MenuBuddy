@@ -195,6 +195,11 @@ namespace MenuBuddy
 			Label.ScaleToFit(rowWidth);
 		}
 
+		public void ShrinkToFit(int rowWidth)
+		{
+			Label.ShrinkToFit(rowWidth);
+		}
+
 		#endregion //Methods
 	}
 }

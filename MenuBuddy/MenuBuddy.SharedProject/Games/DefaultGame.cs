@@ -14,7 +14,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// The graphics device used by this game
 		/// </summary>
-		protected GraphicsDeviceManager Graphics { get; private set; }
+		public GraphicsDeviceManager Graphics { get; private set; }
 
 		/// <summary>
 		/// The screenmanager used by this game

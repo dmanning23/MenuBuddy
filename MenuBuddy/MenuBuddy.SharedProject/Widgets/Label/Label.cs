@@ -300,6 +300,11 @@ namespace MenuBuddy
 			Scale = Font.ScaleToFit(Text, rowWidth);
 		}
 
+		public void ShrinkToFit(int rowWidth)
+		{
+			Scale = Font.ShrinkToFit(Text, rowWidth);
+		}
+
 		public override void Dispose()
 		{
 			base.Dispose();

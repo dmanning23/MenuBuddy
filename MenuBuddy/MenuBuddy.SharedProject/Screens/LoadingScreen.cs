@@ -75,20 +75,24 @@ namespace MenuBuddy
 			//Add the loading message
 			if (LoadingIsSlow)
 			{
-				var layout = new StackLayout
+				var layout = new RelativeLayout
 				{
-					Alignment = StackAlignment.Left,
-
+					Horizontal = HorizontalAlignment.Center,
+					Vertical = VerticalAlignment.Center,
+					Position = Resolution.TitleSafeArea.Center,
 				};
 
 				//create the message widget
-				var msg = new Label("Loading...")
+				var width = 0f;
+				var msg = new PaddedLayout(0, 0, 24, 0, new Label("Loading...")
 				{
-					Scale = 2f,
-					Horizontal = HorizontalAlignment.Left,
-					Vertical = VerticalAlignment.Center,
 					Highlightable = false
+				})
+				{
+					Horizontal = HorizontalAlignment.Right,
+					Vertical = VerticalAlignment.Center,
 				};
+				width += msg.Rect.Width;
 
 				Texture2D hourglassTex = null;
 				try
@@ -108,20 +112,18 @@ namespace MenuBuddy
 						Horizontal = HorizontalAlignment.Left,
 						Vertical = VerticalAlignment.Center,
 						Scale = 1.5f,
-						Highlightable = false
+						Highlightable = false,
 					};
 					layout.AddItem(hourglass);
+					width += hourglass.Rect.Width;
 
-					//create the shim to place between the widgets
-					var shim = new Shim(32, 0);
-					layout.AddItem(shim);
+					//add a little shim in between the widgets
+					width += 32f;
 				}
 
 				layout.AddItem(msg);
+				layout.Size = new Vector2(width, 64f);
 				AddItem(layout);
-
-				layout.Position = new Point(Resolution.TitleSafeArea.Center.X - layout.Rect.Width / 2,
-						Resolution.TitleSafeArea.Center.Y);
 			}
 		}
 
