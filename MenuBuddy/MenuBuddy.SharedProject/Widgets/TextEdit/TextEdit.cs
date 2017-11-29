@@ -10,7 +10,7 @@ namespace MenuBuddy
 	/// When the widget is clicked, the user can edit the text using the keyboard.
 	/// After the user finishes editing the text, a special event is fired off.
 	/// </summary>
-	public class TextEdit : RelativeLayoutButton, ITextEdit, IDisposable, ILabel
+	public class TextEdit : RelativeLayoutButton, ITextEdit, IDisposable
 	{
 		#region Properties
 

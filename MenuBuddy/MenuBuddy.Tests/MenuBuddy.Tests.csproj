@@ -127,7 +127,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ResolutionBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ResolutionBuddy.1.0.9\lib\net451\ResolutionBuddy.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\ResolutionBuddy.1.0.11\lib\net451\ResolutionBuddy.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Shouldly, Version=2.8.3.0, Culture=neutral, PublicKeyToken=6042cbcb05cbc941, processorArchitecture=MSIL">

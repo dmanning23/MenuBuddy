@@ -8,11 +8,9 @@ namespace MenuBuddy
 	/// <summary>
 	/// The interface for a textedit control
 	/// </summary>
-    public interface ITextEdit : IWidget, IClickable, IEditBox
+    public interface ITextEdit : IWidget, IClickable, IEditBox, ILabel
 	{
 		event EventHandler<TextChangedEventArgs> OnTextEdited;
-
-		string Text { get; set; }
 
 		void SetText(string text);
 	}
