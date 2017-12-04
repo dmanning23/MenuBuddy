@@ -359,7 +359,7 @@ namespace MenuBuddy
 			return value;
 		}
 
-		protected void UpdateScrollBars()
+		public void UpdateScrollBars()
 		{
 			//get the window size
 			var windowSize = Size;

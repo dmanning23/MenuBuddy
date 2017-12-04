@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using InputHelper;
 using Microsoft.Xna.Framework;
 
 namespace MenuBuddy
@@ -22,6 +24,14 @@ namespace MenuBuddy
 			}
 		}
 
+		public List<IScreenItem> Items
+		{
+			get
+			{
+				return (Layout as StackLayout).Items;
+			}
+		}
+
 		#endregion //Properties
 
 		#region Initialization
@@ -38,6 +48,9 @@ namespace MenuBuddy
 		{
 			Layout = new StackLayout(inst.Layout as StackLayout);
 		}
+
+		public event EventHandler<DragEventArgs> OnDrag;
+		public event EventHandler<DropEventArgs> OnDrop;
 
 		/// <summary>
 		/// Get a deep copy of this item
@@ -95,6 +108,21 @@ namespace MenuBuddy
 		public void InsertItemBefore(IScreenItem item, IScreenItem nextItem)
 		{
 			(Layout as StackLayout).InsertItemBefore(item, nextItem);
+		}
+
+		public bool RemoveItems<T>() where T : IScreenItem
+		{
+			return (Layout as StackLayout).RemoveItems<T>();
+		}
+
+		public bool CheckDrag(DragEventArgs drag)
+		{
+			return (Layout as StackLayout).CheckDrag(drag);
+		}
+
+		public bool CheckDrop(DropEventArgs drop)
+		{
+			return (Layout as StackLayout).CheckDrop(drop);
 		}
 
 		#endregion
