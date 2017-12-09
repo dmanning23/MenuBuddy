@@ -1,9 +1,10 @@
+using GameTimer;
 using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using GameTimer;
+using System.Linq;
 
 namespace MenuBuddy
 {
@@ -51,14 +52,14 @@ namespace MenuBuddy
 		{
 			get
 			{
-				return SelectedDropdownItem.Item;
+				return (null != SelectedDropdownItem) ? SelectedDropdownItem.Item : default(T);
 			}
 			set
 			{
 				IDropdownItem<T> item = null;
 				if (null != value)
 				{
-					item = DropdownItems.Find(x => x.Item.Equals(value));
+					item = DropdownItems.Where(x => x.Item != null).ToList().Find(x => x.Item.Equals(value));
 				}
 				SetSelectedDropdownItem(item);
 			}
@@ -182,6 +183,11 @@ namespace MenuBuddy
 					_selectedDropdownItem = selectedItem?.DeepCopy() as IDropdownItem<T>;
 					_selectedDropdownItem.Position = Position;
 				}
+				else
+				{
+					//set the selected item to null
+					_selectedDropdownItem = null;
+				}
 
 				//clear out the current item
 				Items.Clear();
@@ -195,7 +201,10 @@ namespace MenuBuddy
 				//add the expansion button
 				if (null != DropButton)
 				{
-					DropButton.Layer = SelectedDropdownItem.Layer - 100;
+					if (null != SelectedDropdownItem)
+					{
+						DropButton.Layer = SelectedDropdownItem.Layer - 100;
+					}
 					AddItem(DropButton);
 				}
 			}
@@ -215,12 +224,12 @@ namespace MenuBuddy
 
 		public void AddDropdownItem(IDropdownItem<T> dropdownItem)
 		{
+			if (null == dropdownItem)
+			{
+				throw new ArgumentNullException("dropdownItem");
+			}
 			dropdownItem.TransitionObject = TransitionObject;
 			DropdownItems.Add(dropdownItem);
-			if (DropdownItems.Count == 1)
-			{
-				SelectedItem = dropdownItem.Item;
-			}
 		}
 
 		public override void DrawBackground(IScreen screen, GameClock gameTime)

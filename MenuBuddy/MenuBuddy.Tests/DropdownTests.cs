@@ -162,7 +162,7 @@ namespace MenuBuddy.Tests
 				Size = new Vector2(30, 40)
 			});
 
-			Assert.AreEqual("catpants", _drop.SelectedItem);
+			Assert.IsTrue(string.IsNullOrEmpty(_drop.SelectedItem));
 		}
 
 		[Test]
@@ -187,6 +187,56 @@ namespace MenuBuddy.Tests
 			_drop.SelectedItem = "buttnuts";
 
 			Assert.AreEqual("buttnuts", _drop.SelectedItem);
+		}
+
+		[Test]
+		public void select_null()
+		{
+			_drop.Position = new Point(10, 20);
+			_drop.Size = new Vector2(30, 40);
+
+			_drop.AddDropdownItem(new DropdownItem<string>("catpants", _drop)
+			{
+				Vertical = VerticalAlignment.Top,
+				Horizontal = HorizontalAlignment.Left,
+				Size = new Vector2(30, 40)
+			});
+
+			_drop.AddDropdownItem(new DropdownItem<string>("buttnuts", _drop)
+			{
+				Vertical = VerticalAlignment.Top,
+				Horizontal = HorizontalAlignment.Left,
+				Size = new Vector2(30, 40)
+			});
+
+			_drop.SelectedItem = null;
+
+			Assert.IsTrue(string.IsNullOrEmpty(_drop.SelectedItem));
+		}
+
+		[Test]
+		public void add_null()
+		{
+			_drop.Position = new Point(10, 20);
+			_drop.Size = new Vector2(30, 40);
+
+			_drop.AddDropdownItem(new DropdownItem<string>("catpants", _drop)
+			{
+				Vertical = VerticalAlignment.Top,
+				Horizontal = HorizontalAlignment.Left,
+				Size = new Vector2(30, 40)
+			});
+
+			_drop.AddDropdownItem(new DropdownItem<string>(null, _drop)
+			{
+				Vertical = VerticalAlignment.Top,
+				Horizontal = HorizontalAlignment.Left,
+				Size = new Vector2(30, 40)
+			});
+
+			_drop.SelectedItem = null;
+
+			Assert.IsTrue(string.IsNullOrEmpty(_drop.SelectedItem));
 		}
 
 		#endregion //Tests

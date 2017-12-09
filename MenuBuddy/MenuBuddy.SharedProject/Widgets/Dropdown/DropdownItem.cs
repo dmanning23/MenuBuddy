@@ -29,6 +29,7 @@ namespace MenuBuddy
 		{
 			Item = item;
 			Owner = owner;
+			Clickable = false;
 
 			OnClick += ((obj, e) =>
 			{

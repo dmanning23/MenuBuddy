@@ -71,7 +71,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="FilenameBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FilenameBuddy.1.0.7\lib\net452\FilenameBuddy.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\FilenameBuddy.1.0.9\lib\net452\FilenameBuddy.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FontBuddyLib.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -163,6 +163,7 @@
   <ItemGroup>
     <Compile Include="CloneTests.cs" />
     <Compile Include="DragDropTests.cs" />
+    <Compile Include="DropdownTestsTarget.cs" />
     <Compile Include="DropdownTests.cs" />
     <Compile Include="GameScreenTests.cs" />
     <Compile Include="ImageTests.cs" />
