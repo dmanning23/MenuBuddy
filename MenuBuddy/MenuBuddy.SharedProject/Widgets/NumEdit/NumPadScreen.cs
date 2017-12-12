@@ -13,6 +13,8 @@ namespace MenuBuddy
 
 		private ScrollLayout _layout;
 		private StackLayout _rows;
+		private bool AllowDecimal { get; set; }
+		private bool AllowNegative { get; set; }
 
 		#endregion //Fields
 
@@ -33,13 +35,15 @@ namespace MenuBuddy
 		/// Constructor
 		/// </summary>
 		/// <param name="widget"></param>
-		public NumPadScreen(INumEdit widget) : base("NumPad")
+		public NumPadScreen(INumEdit widget, bool allowDecimal = true, bool allowNegative = true) : base("NumPad")
 		{
 			TransitionObject = new WipeTransitionObject(TransitionWipeType.None);
 			Transition.OnTime = 0f;
 			Transition.OffTime = 0f;
 			NumEditWidget = widget;
 			CoverOtherScreens = false;
+			AllowDecimal = allowDecimal;
+			AllowNegative = allowNegative;
 		}
 
 		public override void LoadContent()
@@ -75,9 +79,23 @@ namespace MenuBuddy
 			_rows.AddItem(thirdRow);
 
 			var fourthRow = GetRow();
-			fourthRow.AddItem(new NumPadButton(".", NumEditWidget));
+			if (AllowDecimal)
+			{
+				fourthRow.AddItem(new NumPadButton(".", NumEditWidget));
+			}
+			else
+			{
+				fourthRow.AddItem(new Shim(48f, 32f));
+			}
 			fourthRow.AddItem(new NumPadButton("0", NumEditWidget));
-			fourthRow.AddItem(new NumPadButton("-", NumEditWidget));
+			if (AllowNegative)
+			{
+				fourthRow.AddItem(new NumPadButton("-", NumEditWidget));
+			}
+			else
+			{
+				fourthRow.AddItem(new Shim(48f, 32f));
+			}
 			_rows.AddItem(fourthRow);
 
 			var fifthhRow = GetRow();

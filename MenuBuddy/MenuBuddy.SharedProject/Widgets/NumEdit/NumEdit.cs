@@ -40,14 +40,8 @@ namespace MenuBuddy
 			{
 				return _number;
 			}
-
 			set
 			{
-				if (_number == value)
-				{
-					return;
-				}
-
 				_number = value;
 				if (null != NumLabel)
 				{
@@ -126,22 +120,21 @@ namespace MenuBuddy
 		/// </summary>
 		public event EventHandler<NumChangeEventArgs> OnNumberEdited;
 
+		public float Min { get; set; }
+		public float Max { get; set; }
+		public bool AllowDecimal { get; set; }
+		public bool AllowNegative { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
 
 		public NumEdit(float num, FontSize fontSize = FontSize.Medium)
 		{
-			Init(num, fontSize);
-		}
-
-		public NumEdit(FontSize fontSize = FontSize.Medium)
-		{
-			Init(0, fontSize);
-		}
-
-		private void Init(float num, FontSize fontSize)
-		{
+			Min = float.MinValue;
+			Max = float.MaxValue;
+			AllowDecimal = true;
+			AllowNegative = true;
 			_number = num;
 			OnClick += CreateNumPad;
 			NumLabel = new Label(num.ToString(), fontSize)
@@ -150,6 +143,10 @@ namespace MenuBuddy
 				Vertical = VerticalAlignment.Center,
 			};
 			AddItem(NumLabel);
+		}
+
+		public NumEdit(FontSize fontSize = FontSize.Medium) : this(0, fontSize)
+		{
 		}
 
 		public override void LoadContent(IScreen screen)
@@ -167,7 +164,7 @@ namespace MenuBuddy
 		public void CreateNumPad(object obj, ClickEventArgs e)
 		{
 			//create the dropdown screen
-			var numpad = new NumPadScreen(this);
+			var numpad = new NumPadScreen(this, AllowDecimal, AllowNegative);
 
 			//add the screen over the current one
 			Screen.ScreenManager.AddScreen(numpad);
@@ -175,7 +172,8 @@ namespace MenuBuddy
 
 		public void SetNumber(float num)
 		{
-			if (Number != num)
+			if (Number != num &&
+				(Min <= num && num <= Max))
 			{
 				Number = num;
 				if (null != OnNumberEdited)
@@ -184,6 +182,11 @@ namespace MenuBuddy
 				}
 
 				PlaySelectedSound(this, new ClickEventArgs());
+			}
+			else
+			{
+				//you can't set it to the provided number.
+				Number = Number;
 			}
 		}
 
