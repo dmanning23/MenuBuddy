@@ -2,15 +2,15 @@
   "dependencies": {
     "FilenameBuddy": "1.0.9",
     "FontBuddy": "1.0.21",
-    "GameTimer": "1.0.4",
+    "GameTimer": "1.0.5",
     "HadoukInput": "1.0.6",
     "InputHelper": "1.0.20",
     "MatrixExtensions": "1.0.2",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "MonoGame.Framework.WindowsUniversal": "3.5.1.1679",
+    "MonoGame.Framework.WindowsUniversal": "3.6.0.1625",
     "MouseBuddy": "1.0.8",
     "PrimitiveBuddy": "1.0.3",
-    "RandomExtensions.dmanning23": "1.0.3",
+    "RandomExtensions.dmanning23": "1.0.4",
     "ResolutionBuddy": "1.0.11",
     "StateMachineBuddy": "1.0.7",
     "TouchScreenBuddy": "1.0.6",
@@ -18,7 +18,7 @@
     "XmlBuddy": "1.0.16"
   },
   "frameworks": {
-    "uap10.0": {}
+    "uap10.0.10586": {}
   },
   "runtimes": {
     "win10-arm": {},

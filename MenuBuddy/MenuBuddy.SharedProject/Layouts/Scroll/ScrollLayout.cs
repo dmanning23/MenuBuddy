@@ -226,6 +226,8 @@ namespace MenuBuddy
 					screen.ScreenManager.GraphicsDevice.PresentationParameters.DepthStencilFormat,
 					0,
 					RenderTargetUsage.PreserveContents);
+
+				screen.ScreenManager.GraphicsDevice.PresentationParameters.RenderTargetUsage = RenderTargetUsage.PreserveContents;
 			}
 		}
 
@@ -261,11 +263,11 @@ namespace MenuBuddy
 
 			if (clear)
 			{
-				screenManager.GraphicsDevice.Clear(Color.TransparentBlack);
+				screenManager.GraphicsDevice.Clear(Color.Transparent);
 			}
 
 			//start a new draw loop
-			screenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
+			screenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
 			//call the provided delegate to draw everything
 			del(screen, gameTime);

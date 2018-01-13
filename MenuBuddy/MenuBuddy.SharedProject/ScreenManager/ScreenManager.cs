@@ -56,7 +56,7 @@ namespace MenuBuddy
 			ClearColor = new Color(0.0f, 0.1f, 0.2f);
 
 			//get the touch service
-			Input = game.Services.GetService(typeof(IInputHandler)) as IInputHandler;
+			Input = game.Services.GetService<IInputHandler>();
 
 			if (null == Input)
 			{
