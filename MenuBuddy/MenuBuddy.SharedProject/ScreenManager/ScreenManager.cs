@@ -272,9 +272,9 @@ namespace MenuBuddy
 			return ScreenStack.Screens.Find(m => m.ScreenName == screenName);
 		}
 
-		public IEnumerable<IScreen> FindScreens<T>()
+		public List<T> FindScreens<T>() where T : IScreen
 		{
-			return ScreenStack.FindScreens<T>();
+			return ScreenStack.FindScreens<T>().ToList();
 		}
 
 		/// <summary>

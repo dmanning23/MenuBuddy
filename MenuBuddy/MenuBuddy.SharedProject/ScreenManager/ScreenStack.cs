@@ -163,9 +163,9 @@ namespace MenuBuddy
 			ScreensToUpdate.Remove(screen);
 		}
 
-		public IEnumerable<IScreen> FindScreens<T>()
+		public IEnumerable<T> FindScreens<T>()
 		{
-			return Screens.Where(x => x is T);
+			return Screens.OfType<T>();
 		}
 
 		#endregion //Methods

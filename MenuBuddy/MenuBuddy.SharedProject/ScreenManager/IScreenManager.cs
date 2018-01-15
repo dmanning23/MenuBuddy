@@ -110,7 +110,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="screenType"></param>
 		/// <returns></returns>
-		IEnumerable<IScreen> FindScreens<T>();
+		List<T> FindScreens<T>() where T : IScreen;
 
 		#endregion //Public Methods
 	}

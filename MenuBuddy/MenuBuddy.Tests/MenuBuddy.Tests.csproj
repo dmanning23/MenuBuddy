@@ -124,8 +124,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="StateMachineBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StateMachineBuddy.1.0.7\lib\net451\StateMachineBuddy.DesktopGL.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\StateMachineBuddy.1.0.9\lib\net451\StateMachineBuddy.DesktopGL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

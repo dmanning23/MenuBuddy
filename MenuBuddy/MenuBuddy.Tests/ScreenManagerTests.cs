@@ -13,6 +13,7 @@ namespace MenuBuddy.Tests
 	{
 		interface ITest
 		{
+			string ScreenName { get; }
 		}
 
 		class Screen1 : Screen, ITest
