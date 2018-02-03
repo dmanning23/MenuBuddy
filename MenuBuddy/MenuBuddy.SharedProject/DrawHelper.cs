@@ -73,7 +73,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Helper draws a translucent black sprite, used for fading specific areas
 		/// </summary>
-		public void DrawRect(Color color, Rectangle rect, ScreenTransition screen, ITransitionObject transition, Texture2D tex)
+		public void DrawRect(Color color, Rectangle rect, IScreenTransition screen, ITransitionObject transition, Texture2D tex)
 		{
 			//set the transition location
 			rect.Location = transition.Position(screen, rect);
@@ -85,7 +85,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Draw a 
 		/// </summary>
-		public void DrawRect(Color color, Rectangle rect, ScreenTransition screen, ITransitionObject transition)
+		public void DrawRect(Color color, Rectangle rect, IScreenTransition screen, ITransitionObject transition)
 		{
 			//get the color for the background & border
 			color.A = (byte)(color.A * screen.Alpha);
@@ -97,7 +97,7 @@ namespace MenuBuddy
 			DrawRect(screen.AlphaColor(color), rect);
 		}
 
-		public void DrawOutline(Color color, Rectangle rect, ScreenTransition screen, ITransitionObject transition, float lineWidth = 5f)
+		public void DrawOutline(Color color, Rectangle rect, IScreenTransition screen, ITransitionObject transition, float lineWidth = 5f)
 		{
 			//set the transition location
 			rect.Location = transition.Position(screen, rect);

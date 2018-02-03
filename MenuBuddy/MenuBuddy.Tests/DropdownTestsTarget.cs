@@ -29,7 +29,6 @@ namespace MenuBuddy.Tests
 			resolution.Setup(x => x.ScreenArea).Returns(new Rectangle(0, 0, 1280, 720));
 			Resolution.Init(resolution.Object);
 
-			StyleSheet.InitUnitTests();
 			var screen = new WidgetScreen("test screen");
 			_drop = new Dropdown<TestDropdownTarget>(screen);
 		}

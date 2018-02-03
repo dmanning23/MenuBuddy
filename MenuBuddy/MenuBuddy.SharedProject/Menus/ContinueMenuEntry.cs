@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework.Content;
 
 namespace MenuBuddy
 {
@@ -6,7 +7,7 @@ namespace MenuBuddy
 	/// </summary>
 	public class ContinueMenuEntry : MenuEntry
 	{
-		public ContinueMenuEntry() : base("Continue")
+		public ContinueMenuEntry(ContentManager content) : base("Continue", content)
 		{
 			TransitionObject = new WipeTransitionObject(TransitionWipeType.PopBottom);
 		}

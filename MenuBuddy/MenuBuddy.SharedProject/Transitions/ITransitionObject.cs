@@ -7,10 +7,10 @@ namespace MenuBuddy
 	/// </summary>
 	public interface ITransitionObject
 	{
-		Point Position(ScreenTransition screen, Rectangle rect);
+		Point Position(IScreenTransition screen, Rectangle rect);
 
-		Vector2 Position(ScreenTransition screen, Point pos);
+		Vector2 Position(IScreenTransition screen, Point pos);
 
-		Vector2 Position(ScreenTransition screen, Vector2 pos);
+		Vector2 Position(IScreenTransition screen, Vector2 pos);
 	}
 }

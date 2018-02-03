@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace MenuBuddy
@@ -188,7 +187,6 @@ namespace MenuBuddy
 			{
 				if (screen != null)
 				{
-
 					screen.ControllingPlayer = controllingPlayer;
 					screen.ScreenManager = this;
 
@@ -197,7 +195,6 @@ namespace MenuBuddy
 					{
 						screen.LoadContent();
 					}
-
 				}
 			}
 

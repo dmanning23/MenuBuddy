@@ -139,7 +139,7 @@ namespace MenuBuddy
 
 			var dropImage = new Image()
 			{
-				Texture = Screen.ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.DropdownImageResource),
+				Texture = Screen.Content.Load<Texture2D>(StyleSheet.DropdownImageResource),
 				Size = new Vector2(Rect.Height, Rect.Height) * 0.75f,
 				Horizontal = HorizontalAlignment.Right,
 				Vertical = VerticalAlignment.Center,

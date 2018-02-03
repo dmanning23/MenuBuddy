@@ -1,6 +1,5 @@
 using GameTimer;
 using Microsoft.Xna.Framework;
-using Vector2Extensions;
 
 namespace MenuBuddy
 {
@@ -65,10 +64,6 @@ namespace MenuBuddy
 		#region Methods
 
 		public override void Update(IScreen screen, GameClock gameTime)
-		{
-		}
-
-		public override void DrawBackground(IScreen screen, GameClock gameTime)
 		{
 		}
 

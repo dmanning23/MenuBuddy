@@ -22,7 +22,6 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void Setup()
 		{
-			StyleSheet.InitUnitTests();
 			_stack = new StackLayout();
 		}
 

@@ -24,24 +24,24 @@ namespace MenuBuddy
 			StartPosition = startPosition;
 		}
 
-		public Point Position(ScreenTransition screen, Rectangle rect)
+		public Point Position(IScreenTransition screen, Rectangle rect)
 		{
 			var pos = Position(screen, rect.Location.ToVector2());
 			return pos.ToPoint();
 		}
 
-		public Vector2 Position(ScreenTransition screen, Point pos)
+		public Vector2 Position(IScreenTransition screen, Point pos)
 		{
 			return Position(screen, pos.ToVector2());
 		}
 
-		public Vector2 Position(ScreenTransition screen, Vector2 pos)
+		public Vector2 Position(IScreenTransition screen, Vector2 pos)
 		{
 			if (screen.TransitionPosition != 0.0f)
 			{
 				//get the transition offset
 				var transitionOffset = (float)Math.Pow(screen.TransitionPosition, 2.0);
-				return Vector2.Lerp(StartPosition, pos, transitionOffset);
+				return Vector2.Lerp(pos, StartPosition, transitionOffset);
 			}
 
 			//just return the end position if no transition stuff.

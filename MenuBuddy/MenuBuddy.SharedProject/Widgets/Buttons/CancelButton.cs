@@ -42,7 +42,7 @@ namespace MenuBuddy
 			Vertical = VerticalAlignment.Top;
 			DrawWhenInactive = false;
 
-			CancelIcon = new Image(screen.ScreenManager.Game.Content.Load<Texture2D>(IconTextureName))
+			CancelIcon = new Image(screen.Content.Load<Texture2D>(IconTextureName))
 			{
 				Vertical = VerticalAlignment.Top,
 				Horizontal = HorizontalAlignment.Right,

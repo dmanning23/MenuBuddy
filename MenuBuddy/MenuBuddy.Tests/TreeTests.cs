@@ -50,7 +50,6 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void Setup()
 		{
-			StyleSheet.InitUnitTests();
 			var screen = new WidgetScreen("Test");
 			_tree = new Tree<string>(screen);
 			_tree.LoadContent(screen);

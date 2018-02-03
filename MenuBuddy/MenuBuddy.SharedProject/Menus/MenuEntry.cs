@@ -1,5 +1,7 @@
+using FontBuddyLib;
 using InputHelper;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using ResolutionBuddy;
 using System;
 
@@ -45,10 +47,6 @@ namespace MenuBuddy
 			{
 				return Label.FontSize;
 			}
-			set
-			{
-				Label.FontSize = value;
-			}
 		}
 
 		public Color? ShadowColor
@@ -74,6 +72,19 @@ namespace MenuBuddy
 			set
 			{
 				Label.TextColor = value;
+			}
+		}
+
+		public override float Scale
+		{
+			get
+			{
+				return base.Scale;
+			}
+			set
+			{
+				base.Scale = value;
+				Label.Scale = Scale;
 			}
 		}
 
@@ -126,14 +137,33 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public MenuEntry(string text)
+		public MenuEntry(string text, ContentManager content)
 		{
-			HasBackground = true;
 			_text = text;
 			Horizontal = HorizontalAlignment.Center;
 			Vertical = VerticalAlignment.Top;
 
-			Label = CreateLabel();
+			Label = new Label(Text, content)
+			{
+				Vertical = VerticalAlignment.Top,
+				Horizontal = HorizontalAlignment.Center
+			};
+		}
+
+		/// <summary>
+		/// Constructs a new menu entry with the specified text.
+		/// </summary>
+		public MenuEntry(string text, IFontBuddy font, IFontBuddy highlightedFont = null)
+		{
+			_text = text;
+			Horizontal = HorizontalAlignment.Center;
+			Vertical = VerticalAlignment.Top;
+
+			Label = new Label(Text, font, highlightedFont)
+			{
+				Vertical = VerticalAlignment.Top,
+				Horizontal = HorizontalAlignment.Center
+			};
 		}
 
 		public MenuEntry(MenuEntry inst) : base(inst)
@@ -154,8 +184,15 @@ namespace MenuBuddy
 		{
 			//get the label rect
 			var labelRect = Label.Rect;
-			Size = new Vector2(Resolution.ScreenArea.Width * 0.7f, labelRect.Size.Y);
+			Size = new Vector2(Resolution.ScreenArea.Width * 0.7f, labelRect.Size.Y * 1.15f);
 
+			AddItem(new Shim(this.Size.X, labelRect.Size.Y)
+			{
+				Horizontal = HorizontalAlignment.Center,
+				Vertical = VerticalAlignment.Center,
+				HasBackground = true,
+			});
+			
 			AddItem(Label);
 
 			base.LoadContent(screen);
@@ -164,19 +201,6 @@ namespace MenuBuddy
 		#endregion //Initialization
 
 		#region Methods
-
-		/// <summary>
-		/// Create the text label for this menu item.
-		/// </summary>
-		/// <returns></returns>
-		protected virtual Label CreateLabel()
-		{
-			return new Label(Text)
-			{
-				Vertical = VerticalAlignment.Top,
-				Horizontal = HorizontalAlignment.Center
-			};
-		}
 
 		public override string ToString()
 		{

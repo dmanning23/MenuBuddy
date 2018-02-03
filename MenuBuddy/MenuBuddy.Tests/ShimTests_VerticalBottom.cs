@@ -17,7 +17,6 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void Shim_Setup()
 		{
-			StyleSheet.InitUnitTests();
 			_shim = new Shim();
 			_shim.Vertical = VerticalAlignment.Bottom;
 		}

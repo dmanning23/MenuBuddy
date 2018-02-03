@@ -23,7 +23,6 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void Setup()
 		{
-			StyleSheet.InitUnitTests();
 			_shim = new Shim(10, 20);
 		}
 

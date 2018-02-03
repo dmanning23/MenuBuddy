@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using ResolutionBuddy;
 
@@ -33,6 +34,19 @@ namespace MenuBuddy
 
 		protected bool Letterbox { get; set; }
 
+		public new ContentManager Content
+		{
+			get
+			{
+				throw new System.Exception("Don't use the Game.Content ContentManager!");
+			}
+			set
+			{
+			}
+		}
+
+		public string ContentRootDirectory { get; protected set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -41,7 +55,7 @@ namespace MenuBuddy
 		{
 			Graphics = new GraphicsDeviceManager(this);
 			Graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
-			Content.RootDirectory = "Content";
+			ContentRootDirectory = "Content";
 
 			VirtualResolution = new Point(1280, 720);
 			ScreenResolution = new Point(1280, 720);
@@ -90,7 +104,6 @@ namespace MenuBuddy
 		/// </summary>
 		protected virtual void InitStyles()
 		{
-			StyleSheet.Init(this);
 		}
 
 		/// <summary>

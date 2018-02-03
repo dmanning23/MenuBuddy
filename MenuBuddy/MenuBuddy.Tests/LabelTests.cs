@@ -21,16 +21,13 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void LabelTests_Setup()
 		{
-			StyleSheet.InitUnitTests();
-
 			_font = new Mock<IFontBuddy>() { CallBase = true };
 			_font.Setup(x => x.MeasureString(It.IsAny<string>()))
 				.Returns(new Vector2(30f, 40f));
-			StyleSheet.Instance().MediumNeutralFont = _font.Object;
 
 			_screen = new Mock<IScreen>();
 
-			_label = new Label("test");
+			_label = new Label("test", _font.Object);
 		}
 
 		#endregion //Setup
@@ -153,13 +150,13 @@ namespace MenuBuddy.Tests
 			Assert.AreEqual("buttnuts", copyLabel.Text);
 		}
 
-		[Test]
-		public void CopyFontSize()
-		{
-			_label.FontSize = FontSize.Large;
-			var copyLabel = new Label(_label as Label);
-			Assert.AreEqual(FontSize.Large, copyLabel.FontSize);
-		}
+		//[Test]
+		//public void CopyFontSize()
+		//{
+		//	_label.FontSize = FontSize.Large;
+		//	var copyLabel = new Label(_label as Label);
+		//	Assert.AreEqual(FontSize.Large, copyLabel.FontSize);
+		//}
 
 		[Test]
 		public void CopyTextColor()
@@ -184,20 +181,20 @@ namespace MenuBuddy.Tests
 		[Test]
 		public void Empty_Label()
 		{
-			_label = new Label("");
+			_label = new Label("", _font.Object);
 		}
 
 		[Test]
 		public void nullstring_Label()
 		{
 			string test = null;
-			_label = new Label(test);
+			_label = new Label(test, _font.Object);
 		}
 
 		[Test]
 		public void Empty_Label_move()
 		{
-			_label = new Label("");
+			_label = new Label("", _font.Object);
 			LabelTests_ChangePosition_CheckPosition();
 		}
 
@@ -205,7 +202,7 @@ namespace MenuBuddy.Tests
 		public void nullstring_Label_move()
 		{
 			string test = null;
-			_label = new Label(test);
+			_label = new Label(test, _font.Object);
 			LabelTests_ChangePosition_CheckPosition();
 		}
 

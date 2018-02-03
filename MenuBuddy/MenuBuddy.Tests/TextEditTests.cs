@@ -15,9 +15,9 @@ namespace MenuBuddy
 	{
 		#region Fields
 
-		private Mock<IFontBuddy> _font;
 		private Mock<IScreen> _screen;
 		private ITextEdit _text;
+		private IFontBuddy _font;
 
 		#endregion //Fields
 
@@ -26,16 +26,14 @@ namespace MenuBuddy
 		[SetUp]
 		public void LabelTests_Setup()
 		{
-			StyleSheet.InitUnitTests();
-
-			_font = new Mock<IFontBuddy>() { CallBase = true };
-			_font.Setup(x => x.MeasureString(It.IsAny<string>()))
+			var font = new Mock<IFontBuddy>() { CallBase = true };
+			font.Setup(x => x.MeasureString(It.IsAny<string>()))
 				.Returns(new Vector2(30f, 40f));
-			StyleSheet.Instance().MediumNeutralFont = _font.Object;
+			_font = font.Object;
 
 			_screen = new Mock<IScreen>();
 
-			_text = new TextEdit("test");
+			_text = new TextEdit("test", _font);
 		}
 
 		#endregion //Setup
@@ -58,20 +56,20 @@ namespace MenuBuddy
 		[Test]
 		public void Empty_Label()
 		{
-			_text = new TextEdit("");
+			_text = new TextEdit("", _font);
 		}
 
 		[Test]
 		public void nullstring_Label()
 		{
 			string test = null;
-			_text = new TextEdit(test);
+			_text = new TextEdit(test, _font);
 		}
 
 		[Test]
 		public void Empty_Label_move()
 		{
-			_text = new TextEdit("");
+			_text = new TextEdit("", _font);
 			LabelTests_ChangePosition_CheckPosition();
 		}
 
@@ -79,7 +77,7 @@ namespace MenuBuddy
 		public void nullstring_Label_move()
 		{
 			string test = null;
-			_text = new TextEdit(test);
+			_text = new TextEdit(test, _font);
 			LabelTests_ChangePosition_CheckPosition();
 		}
 

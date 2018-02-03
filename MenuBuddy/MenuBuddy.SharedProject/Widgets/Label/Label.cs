@@ -2,6 +2,8 @@ using FontBuddyLib;
 using GameTimer;
 using InputHelper;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace MenuBuddy
@@ -13,8 +15,6 @@ namespace MenuBuddy
 		private string _text;
 
 		private FontSize _fontSize;
-
-		private IFontBuddy _font;
 
 #pragma warning disable 0414
 		public event EventHandler<ClickEventArgs> OnClick;
@@ -51,7 +51,7 @@ namespace MenuBuddy
 			{
 				return _fontSize;
 			}
-			set
+			private set
 			{
 				if (_fontSize != value)
 				{
@@ -66,21 +66,12 @@ namespace MenuBuddy
 		/// <summary>
 		/// If this is set, use it to draw this label
 		/// </summary>
-		public IFontBuddy Font
-		{
-			get
-			{
-				if (null == _font)
-				{
-					_font = GetFont();
-				}
-				return _font;
-			}
-			set
-			{
-				_font = value;
-			}
-		}
+		public IFontBuddy Font { get; set; }
+
+		/// <summary>
+		/// If this is set, use it to draw this label
+		/// </summary>
+		public IFontBuddy HighlightedFont { get; set; }
 
 		/// <summary>
 		/// If this is not null, use it as the shadow color.
@@ -100,11 +91,27 @@ namespace MenuBuddy
 		/// constructor
 		/// </summary>
 		/// <param name="text"></param>
-		public Label(string text = "", FontSize fontSize = FontSize.Medium)
+		public Label(string text, ContentManager content, FontSize fontSize = FontSize.Medium)
 		{
 			_fontSize = fontSize;
 			Text = text;
 			Clickable = true;
+
+			//load the fonts from the stylesheet
+			InitializeFonts(content);
+			CalculateRect();
+		}
+
+		public Label(string text, IFontBuddy font, IFontBuddy highlightedFont = null)
+		{
+			_fontSize = FontSize.Medium;
+			Text = text;
+			Clickable = true;
+
+			//hold onto the provided fonts
+			Font = font;
+			HighlightedFont = highlightedFont;
+			CalculateRect();
 		}
 
 		public Label(Label inst) : base(inst)
@@ -114,6 +121,8 @@ namespace MenuBuddy
 				throw new ArgumentNullException("inst");
 			}
 
+			Font = inst.Font;
+			HighlightedFont = inst.HighlightedFont;
 			Clickable = inst.Clickable;
 			_text = inst.Text;
 			_fontSize = inst.FontSize;
@@ -128,6 +137,68 @@ namespace MenuBuddy
 		public override IScreenItem DeepCopy()
 		{
 			return new Label(this);
+		}
+
+		protected void InitializeFonts(ContentManager content)
+		{
+			switch (FontSize)
+			{
+				case FontSize.Large:
+					{
+						Font = new FontBuddy()
+						{
+							Font = content.Load<SpriteFont>(StyleSheet.LargeFontResource)
+						};
+						HighlightedFont = new PulsateBuddy()
+						{
+							Font = content.Load<SpriteFont>(StyleSheet.LargeFontResource)
+						};
+					}
+					break;
+				case FontSize.Medium:
+					{
+						Font = new ShadowTextBuddy()
+						{
+							ShadowSize = 1.0f,
+							ShadowOffset = new Vector2(7.0f, 7.0f),
+							Font = content.Load<SpriteFont>(StyleSheet.MediumFontResource)
+						};
+						HighlightedFont = new PulsateBuddy()
+						{
+							ShadowSize = 1.0f,
+							ShadowOffset = new Vector2(7.0f, 7.0f),
+							Font = content.Load<SpriteFont>(StyleSheet.MediumFontResource)
+						};
+					}
+					break;
+				default:
+					{
+						if (StyleSheet.SmallFontHasShadow)
+						{
+							Font = new ShadowTextBuddy()
+							{
+								ShadowSize = 1.0f,
+								ShadowOffset = new Vector2(3.0f, 4.0f),
+								Font = content.Load<SpriteFont>(StyleSheet.SmallFontResource),
+							};
+						}
+						else
+						{
+							Font = new FontBuddy()
+							{
+								Font = content.Load<SpriteFont>(StyleSheet.SmallFontResource),
+							};
+						}
+
+						HighlightedFont = new PulsateBuddy()
+						{
+							ShadowSize = 1.0f,
+							ShadowOffset = new Vector2(3.0f, 4.0f),
+							Font = content.Load<SpriteFont>(StyleSheet.SmallFontResource),
+						};
+					}
+					break;
+			}
 		}
 
 		#endregion //Initialization
@@ -224,25 +295,13 @@ namespace MenuBuddy
 
 		protected virtual IFontBuddy GetFont()
 		{
-			if (null != _font)
+			if (!IsHighlighted || null == HighlightedFont)
 			{
-				return _font;
+				return Font;
 			}
-
-			switch (FontSize)
+			else
 			{
-				case FontSize.Large:
-					{
-						return IsHighlighted ? StyleSheet.Instance().LargeHighlightedFont : StyleSheet.Instance().LargeNeutralFont;
-					}
-				case FontSize.Medium:
-					{
-						return IsHighlighted ? StyleSheet.Instance().MediumHighlightedFont : StyleSheet.Instance().MediumNeutralFont;
-					}
-				default:
-					{
-						return IsHighlighted ? StyleSheet.Instance().SmallHighlightedFont : StyleSheet.Instance().SmallNeutralFont;
-					}
+				return HighlightedFont;
 			}
 		}
 

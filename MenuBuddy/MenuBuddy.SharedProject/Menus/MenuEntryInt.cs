@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework.Content;
 using System;
 
 namespace MenuBuddy
@@ -41,8 +42,8 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public MenuEntryInt(string text, int startValue)
-			: base(text)
+		public MenuEntryInt(string text, int startValue, ContentManager content)
+			: base(text, content)
 		{
 			LabelText = text;
 			Value = startValue;

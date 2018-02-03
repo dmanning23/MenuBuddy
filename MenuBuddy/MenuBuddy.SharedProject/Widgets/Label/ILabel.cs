@@ -14,7 +14,7 @@ namespace MenuBuddy
 		/// </summary>
 		string Text { get; set; }
 
-		FontSize FontSize { get; set; }
+		FontSize FontSize { get; }
 
 		Color? ShadowColor { get; set; }
 

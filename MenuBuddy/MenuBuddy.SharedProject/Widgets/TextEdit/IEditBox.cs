@@ -7,7 +7,7 @@ namespace MenuBuddy
 {
     public interface IEditBox
     {
-		FontSize FontSize { get; set; }
+		FontSize FontSize { get; }
 
 		Color? ShadowColor { get; set; }
 

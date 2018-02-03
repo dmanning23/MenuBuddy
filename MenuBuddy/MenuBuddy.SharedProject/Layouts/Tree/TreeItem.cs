@@ -130,12 +130,12 @@ namespace MenuBuddy
 			{
 				if (null == _expandTexture)
 				{
-					_expandTexture = screen.ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.TreeExpandImageResource);
+					_expandTexture = screen.Content.Load<Texture2D>(StyleSheet.TreeExpandImageResource);
 				}
 
 				if (null == _collapseTexture)
 				{
-					_collapseTexture = screen.ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.TreeCollapseImageResource);
+					_collapseTexture = screen.Content.Load<Texture2D>(StyleSheet.TreeCollapseImageResource);
 				}
 			}
 		}

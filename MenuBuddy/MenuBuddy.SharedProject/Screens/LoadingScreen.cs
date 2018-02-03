@@ -84,7 +84,7 @@ namespace MenuBuddy
 
 				//create the message widget
 				var width = 0f;
-				var msg = new PaddedLayout(0, 0, 24, 0, new Label("Loading...")
+				var msg = new PaddedLayout(0, 0, 24, 0, new Label("Loading...", Content)
 				{
 					Highlightable = false
 				})
@@ -141,6 +141,7 @@ namespace MenuBuddy
 			// If all the previous screens have finished transitioning off, it is time to actually perform the load.
 			if (OtherScreensAreGone)
 			{
+#if !DESKTOP
 				// Start up the background thread, which will update the network
 				// session and draw the animation while we are loading.
 				if (_backgroundThread == null)
@@ -151,6 +152,12 @@ namespace MenuBuddy
 					_backgroundThread.RunWorkerCompleted += new RunWorkerCompletedEventHandler(CleanUp);
 					_backgroundThread.RunWorkerAsync();
 				}
+#else
+				//desktop doenst load content in the background!
+				BackgroundWorkerThread(this, new DoWorkEventArgs(this));
+				CleanUp(this, new RunWorkerCompletedEventArgs(this, null, false));
+				OtherScreensAreGone = false;
+#endif
 			}
 		}
 

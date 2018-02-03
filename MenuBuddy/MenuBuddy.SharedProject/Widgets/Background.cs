@@ -17,7 +17,7 @@ namespace MenuBuddy
 		{
 			if (null != screen.ScreenManager)
 			{
-				BackgroundImage = screen.ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.ButtonBackgroundImageResource);
+				BackgroundImage = screen.Content.Load<Texture2D>(StyleSheet.ButtonBackgroundImageResource);
 			}
 		}
 

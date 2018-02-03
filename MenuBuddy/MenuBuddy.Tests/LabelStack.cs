@@ -19,6 +19,9 @@ namespace MenuBuddy.Tests
 
 		private Mock<IScreen> _screen;
 
+		private IFontBuddy _largeFont;
+		private IFontBuddy _mediumFont;
+
 		#endregion //Fields
 
 		#region Setup
@@ -26,21 +29,17 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void LabelStack_Setup()
 		{
-			StyleSheet.InitUnitTests();
-
 			_stack = new StackLayout();
 
 			var font = new Mock<IFontBuddy>() { CallBase = true };
 			font.Setup(x => x.MeasureString(It.IsAny<string>()))
 				.Returns(new Vector2(70f, 80f));
-			StyleSheet.Instance().LargeHighlightedFont = font.Object;
-			StyleSheet.Instance().LargeNeutralFont = font.Object;
+			_largeFont = font.Object;
 
 			font = new Mock<IFontBuddy>() { CallBase = true };
 			font.Setup(x => x.MeasureString(It.IsAny<string>()))
 				.Returns(new Vector2(30f, 40f));
-			StyleSheet.Instance().MediumHighlightedFont = font.Object;
-			StyleSheet.Instance().MediumNeutralFont = font.Object;
+			_mediumFont = font.Object;
 
 			_screen = new Mock<IScreen>();
 		}
@@ -87,10 +86,7 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
 			Assert.AreEqual(10f, _stack.Position.X);
@@ -116,10 +112,7 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
 			Assert.AreEqual(10f, label1.Position.X);
@@ -147,16 +140,10 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
-			var label2 = new Label("nuts")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
 			Assert.AreEqual(10f, _stack.Position.X);
@@ -182,16 +169,10 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
-			var label2 = new Label("nuts")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
 			Assert.AreEqual(10f, label1.Position.X);
@@ -215,16 +196,10 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
-			var label2 = new Label("nuts")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
 			Assert.AreEqual(10f, label2.Position.X);
@@ -252,16 +227,10 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
-			var label2 = new Label("nuts")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
 			Assert.AreEqual(10f, _stack.Position.X);
@@ -287,16 +256,10 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
-			var label2 = new Label("nuts")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
 			Assert.AreEqual(10f, label1.Position.X);
@@ -320,16 +283,10 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
-			var label2 = new Label("nuts")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
 			Assert.AreEqual(10f, label2.Position.X);
@@ -357,16 +314,10 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
-			var label2 = new Label("nuts")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
 			Assert.AreEqual(10f, _stack.Position.X);
@@ -393,16 +344,10 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
-			var label2 = new Label("nuts")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
 			Assert.AreEqual(10f, label1.Position.X);
@@ -426,16 +371,10 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
-			var label2 = new Label("nuts")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
 			Assert.AreEqual(40f, label2.Position.X);
@@ -463,16 +402,10 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
-			var label2 = new Label("nuts")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
 			Assert.AreEqual(10f, _stack.Position.X);
@@ -498,16 +431,10 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
-			var label2 = new Label("nuts")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
 			Assert.AreEqual(10f, label1.Position.X);
@@ -531,16 +458,10 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
-			var label2 = new Label("nuts")
-			{
-				FontSize = FontSize.Medium
-			};
+			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
 			Assert.AreEqual(-20f, label2.Position.X);
@@ -560,9 +481,8 @@ namespace MenuBuddy.Tests
 		[Test]
 		public void Label_Scale()
 		{
-			var label1 = new Label("butt")
+			var label1 = new Label("butt", _mediumFont)
 			{
-				FontSize = FontSize.Medium,
 				Scale = 0.5f
 			};
 
@@ -580,9 +500,8 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
+			var label1 = new Label("butt", _mediumFont)
 			{
-				FontSize = FontSize.Medium,
 				Scale = 0.5f
 			};
 			_stack.AddItem(label1);
@@ -603,16 +522,14 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			var label1 = new Label("butt")
+			var label1 = new Label("butt", _mediumFont)
 			{
-				FontSize = FontSize.Medium,
 				Scale = 0.5f
 			};
 			_stack.AddItem(label1);
 
-			var label2 = new Label("nuts")
+			var label2 = new Label("nuts", _mediumFont)
 			{
-				FontSize = FontSize.Medium,
 				Scale = 0.25f
 			};
 			_stack.AddItem(label2);

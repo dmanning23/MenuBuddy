@@ -25,8 +25,6 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void LabelTests_Setup()
 		{
-			StyleSheet.InitUnitTests();
-
 			var resolution = new Mock<IResolution>();
 			resolution.Setup(x => x.ScreenArea).Returns(new Rectangle(0, 0, 1280, 720));
 			Resolution.Init(resolution.Object);
@@ -34,7 +32,6 @@ namespace MenuBuddy.Tests
 			_font = new Mock<IFontBuddy>() { CallBase = true };
 			_font.Setup(x => x.MeasureString(It.IsAny<string>()))
 				.Returns(new Vector2(30f, 40f));
-			StyleSheet.Instance().MediumNeutralFont = _font.Object;
 		}
 
 		#endregion //Setup
@@ -706,7 +703,7 @@ namespace MenuBuddy.Tests
 				Size = new Vector2(350, 128)
 			};
 
-			var label = new Label("catpants")
+			var label = new Label("catpants", _font.Object)
 			{
 				Vertical = VerticalAlignment.Center,
 				Horizontal = HorizontalAlignment.Center

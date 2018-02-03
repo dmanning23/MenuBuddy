@@ -1,6 +1,8 @@
 ﻿using InputHelper;
 using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using FontBuddyLib;
 
 namespace MenuBuddy
 {
@@ -55,10 +57,6 @@ namespace MenuBuddy
 			get
 			{
 				return TextLabel.FontSize;
-			}
-			set
-			{
-				TextLabel.FontSize = value;
 			}
 		}
 
@@ -129,20 +127,21 @@ namespace MenuBuddy
 
 		#region Methods
 
-		public TextEdit(string text, FontSize fontSize = FontSize.Medium)
-		{
-			Init(text, fontSize);
-		}
-
-		public TextEdit(FontSize fontSize = FontSize.Medium)
-		{
-			Init("", fontSize);
-		}
-
-		private void Init(string text, FontSize fontSize)
+		public TextEdit(string text, ContentManager content, FontSize fontSize = FontSize.Medium)
 		{
 			OnClick += CreateTextPad;
-			TextLabel = new Label(text, fontSize)
+			TextLabel = new Label(text, content, fontSize)
+			{
+				Horizontal = this.Horizontal,
+				Vertical = this.Vertical,
+			};
+			AddItem(TextLabel);
+		}
+
+		public TextEdit(string text, IFontBuddy font, IFontBuddy highlightedFont = null)
+		{
+			OnClick += CreateTextPad;
+			TextLabel = new Label(text, font, highlightedFont)
 			{
 				Horizontal = this.Horizontal,
 				Vertical = this.Vertical,

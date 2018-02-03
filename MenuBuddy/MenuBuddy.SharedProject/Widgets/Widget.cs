@@ -15,7 +15,6 @@ namespace MenuBuddy
 
 		private HorizontalAlignment _horizontal;
 		private VerticalAlignment _vertical;
-		private StyleSheet _style;
 		private bool _drawWhenInactive = true;
 		protected Rectangle _rect;
 
@@ -261,7 +260,7 @@ namespace MenuBuddy
 		/// Get teh position to draw this widget
 		/// </summary>
 		/// <returns></returns>
-		protected Point DrawPosition(IScreen screen)
+		protected virtual Point DrawPosition(IScreen screen)
 		{
 			//take the transition position into account
 			return TransitionObject.Position(screen.Transition, Rect);

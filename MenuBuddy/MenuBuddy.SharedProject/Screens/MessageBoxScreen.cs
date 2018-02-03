@@ -1,3 +1,4 @@
+using FontBuddyLib;
 using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -84,13 +85,14 @@ namespace MenuBuddy
 			foreach (var line in lines)
 			{
 				//split the line into lines that will actuall fit on the screen
-				var splitLines = StyleSheet.Instance().SmallNeutralFont.BreakTextIntoList(line, Resolution.TitleSafeArea.Width - 64);
+				var tempFont = new FontBuddy();
+				tempFont.LoadContent(Content, StyleSheet.SmallFontResource);
+				var splitLines = tempFont.BreakTextIntoList(line, Resolution.TitleSafeArea.Width - 64);
 				foreach (var splitLine in splitLines)
 				{
 					//Set the label text
-					var label = new Label(splitLine)
+					var label = new Label(splitLine, Content, FontSize.Small)
 					{
-						FontSize = FontSize.Small,
 						Highlightable = false,
 						TextColor = StyleSheet.MessageBoxTextColor,
 					};
@@ -192,9 +194,8 @@ namespace MenuBuddy
 		private IButton CreateButton(bool okButton)
 		{
 			//Create the menu entry "Cancel"
-			var label = new Label(okButton ? OkText : CancelText)
+			var label = new Label(okButton ? OkText : CancelText, Content, FontSize.Small)
 			{
-				FontSize = FontSize.Small,
 				Horizontal = HorizontalAlignment.Center,
 				Vertical = VerticalAlignment.Center,
 				Layer = 1,
@@ -239,7 +240,7 @@ namespace MenuBuddy
 			var height = Math.Min(Resolution.TitleSafeArea.Height, labelStack.Rect.Height + 200);
 
 			//Add the background image
-			var bkgImage = new BackgroundImage(ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.MessageBoxBackgroundImageResource))
+			var bkgImage = new BackgroundImage(Content.Load<Texture2D>(StyleSheet.MessageBoxBackgroundImageResource))
 			{
 				FillRect = true,
 				Position = new Point(labelStack.Rect.Center.X, labelStack.Rect.Center.Y),

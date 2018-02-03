@@ -18,6 +18,7 @@ namespace MenuBuddy.Tests
 
 		private Mock<IScreen> _screen;
 		private MenuEntry _entry;
+		private IFontBuddy _font;
 
 		#endregion //Fields
 
@@ -26,27 +27,18 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void Setup()
 		{
-			StyleSheet.InitUnitTests();
-
 			var resolution = new Mock<IResolution>();
 			resolution.Setup(x => x.ScreenArea).Returns(new Rectangle(0, 0, 1280, 720));
 			Resolution.Init(resolution.Object);
 
 			var font = new Mock<IFontBuddy>() { CallBase = true };
 			font.Setup(x => x.MeasureString(It.IsAny<string>()))
-				.Returns(new Vector2(70f, 80f));
-			StyleSheet.Instance().LargeHighlightedFont = font.Object;
-			StyleSheet.Instance().LargeNeutralFont = font.Object;
-
-			font = new Mock<IFontBuddy>() { CallBase = true };
-			font.Setup(x => x.MeasureString(It.IsAny<string>()))
 				.Returns(new Vector2(30f, 40f));
-			StyleSheet.Instance().MediumHighlightedFont = font.Object;
-			StyleSheet.Instance().MediumNeutralFont = font.Object;
+			_font = font.Object;
 
 			_screen = new Mock<IScreen>();
 
-			_entry = new MenuEntry("test");
+			_entry = new MenuEntry("test", _font);
 			_entry.LoadContent(_screen.Object);
 		}
 

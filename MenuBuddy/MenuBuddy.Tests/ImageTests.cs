@@ -52,8 +52,6 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void ImageTests_Setup()
 		{
-			StyleSheet.InitUnitTests();
-
 			_mockImage = new Mock<Image>() { CallBase = true };
 			_mockImage.Setup(x => x.Width).Returns(30);
 			_mockImage.Setup(x => x.Height).Returns(40);

@@ -4,31 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MenuBuddy
 {
-	public class StyleSheet
+	public abstract class StyleSheet
 	{
-		#region Singleton
-
-		protected static StyleSheet _instance;
-
-		public static StyleSheet Instance()
-		{
-			return _instance;
-		}
-
-		public static void Init(Game game)
-		{
-			_instance = new StyleSheet(game);
-			_instance.Initialize();
-		}
-
-		public static void InitUnitTests()
-		{
-			_instance = new StyleSheet();
-		}
-
-		#endregion //Singleton
-
-		#region Default Options
+		#region Options
 
 		/// <summary>
 		/// The resource to use as the large font (menu title)
@@ -99,131 +77,7 @@ namespace MenuBuddy
 
 		public static TransitionWipeType Transition { get; set; }
 
-		#endregion //Default Options
-
-		#region Fields
-
-		protected Game _game;
-
-		private IFontBuddy _neutralLargeFont;
-
-		private IFontBuddy _neutralMediumFont;
-
-		private IFontBuddy _neutralSmallFont;
-
-		private IFontBuddy _highlightedLargeFont;
-
-		private IFontBuddy _highlightedMediumFont;
-
-		private IFontBuddy _highlightedSmallFont;
-
-		#endregion //Fields
-
-		#region Properties
-
-		public IFontBuddy LargeNeutralFont
-		{
-			get { return _neutralLargeFont; }
-			set
-			{
-				//set the font item
-				_neutralLargeFont = value;
-
-				//also set teh shadow color
-				var shadow = _neutralLargeFont as ShadowTextBuddy;
-				if (null != shadow)
-				{
-					shadow.ShadowColor = TextShadowColor;
-				}
-			}
-		}
-
-		public IFontBuddy MediumNeutralFont
-		{
-			get { return _neutralMediumFont; }
-			set
-			{
-				//set the font item
-				_neutralMediumFont = value;
-
-				//also set teh shadow color
-				var shadow = _neutralMediumFont as ShadowTextBuddy;
-				if (null != shadow)
-				{
-					shadow.ShadowColor = TextShadowColor;
-				}
-			}
-		}
-
-		public IFontBuddy SmallNeutralFont
-		{
-			get { return _neutralSmallFont; }
-			set
-			{
-				//set the font item
-				_neutralSmallFont = value;
-
-				//also set teh shadow color
-				var shadow = _neutralSmallFont as ShadowTextBuddy;
-				if (null != shadow)
-				{
-					shadow.ShadowColor = TextShadowColor;
-				}
-			}
-		}
-
-		public IFontBuddy LargeHighlightedFont
-		{
-			get { return _highlightedLargeFont; }
-			set
-			{
-				//set the font item
-				_highlightedLargeFont = value;
-
-				//also set teh shadow color
-				var shadow = _highlightedLargeFont as ShadowTextBuddy;
-				if (null != shadow)
-				{
-					shadow.ShadowColor = TextShadowColor;
-				}
-			}
-		}
-
-		public IFontBuddy MediumHighlightedFont
-		{
-			get { return _highlightedMediumFont; }
-			set
-			{
-				//set the font item
-				_highlightedMediumFont = value;
-
-				//also set teh shadow color
-				var shadow = _highlightedMediumFont as ShadowTextBuddy;
-				if (null != shadow)
-				{
-					shadow.ShadowColor = TextShadowColor;
-				}
-			}
-		}
-
-		public IFontBuddy SmallHighlightedFont
-		{
-			get { return _highlightedSmallFont; }
-			set
-			{
-				//set the font item
-				_highlightedSmallFont = value;
-
-				//also set teh shadow color
-				var shadow = _highlightedSmallFont as ShadowTextBuddy;
-				if (null != shadow)
-				{
-					shadow.ShadowColor = TextShadowColor;
-				}
-			}
-		}
-
-		#endregion //Properties
+		#endregion //Options
 
 		#region Methods
 
@@ -257,71 +111,6 @@ namespace MenuBuddy
 			LoadingScreenHourglassImageResource = @"hourglass";
 			HasOutline = true;
 			Transition = TransitionWipeType.SlideLeft;
-		}
-
-		/// <summary>
-		/// Default constructor
-		/// </summary>
-		public StyleSheet(Game game)
-		{
-			_game = game;
-		}
-
-		public StyleSheet()
-		{
-		}
-
-		protected void Initialize()
-		{
-			//set up neutral fonts
-			LargeNeutralFont = new FontBuddy()
-			{
-				Font = _game.Content.Load<SpriteFont>(LargeFontResource)
-			};
-
-			MediumNeutralFont = new ShadowTextBuddy()
-			{
-				ShadowSize = 1.0f,
-				ShadowOffset = new Vector2(7.0f, 7.0f),
-				Font = _game.Content.Load<SpriteFont>(MediumFontResource)
-			};
-
-			if (SmallFontHasShadow)
-			{
-				SmallNeutralFont = new ShadowTextBuddy()
-				{
-					ShadowSize = 1.0f,
-					ShadowOffset = new Vector2(3.0f, 4.0f),
-					Font = _game.Content.Load<SpriteFont>(SmallFontResource),
-				};
-			}
-			else
-			{
-				SmallNeutralFont = new FontBuddy()
-				{
-					Font = _game.Content.Load<SpriteFont>(SmallFontResource),
-				};
-			}
-
-			//set up highlighted stuff
-			LargeHighlightedFont = new PulsateBuddy()
-			{
-				Font = _game.Content.Load<SpriteFont>(LargeFontResource)
-			};
-
-			MediumHighlightedFont = new PulsateBuddy()
-			{
-				ShadowSize = 1.0f,
-				ShadowOffset = new Vector2(7.0f, 7.0f),
-				Font = _game.Content.Load<SpriteFont>(MediumFontResource)
-			};
-
-			SmallHighlightedFont = new PulsateBuddy()
-			{
-				ShadowSize = 1.0f,
-				ShadowOffset = new Vector2(3.0f, 4.0f),
-				Font = _game.Content.Load<SpriteFont>(SmallFontResource),
-			};
 		}
 
 		#endregion //Methods

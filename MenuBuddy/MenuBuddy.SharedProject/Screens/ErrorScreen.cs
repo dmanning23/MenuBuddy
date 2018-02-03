@@ -1,3 +1,4 @@
+using FontBuddyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
@@ -14,6 +15,8 @@ namespace MenuBuddy
 
 		private string _message;
 
+		private SpriteFont _font;
+
 		#endregion //Fields
 
 		#region Methods
@@ -24,7 +27,7 @@ namespace MenuBuddy
 		public ErrorScreen(Exception exception) : base("Error Screen")
 		{
 			_message = GetErrorMessage(exception);
-        }
+		}
 
 		/// <summary>
 		/// Converts a network exception into a user friendly error message.
@@ -41,6 +44,7 @@ namespace MenuBuddy
 		public override void LoadContent()
 		{
 			AddCancelButton();
+			_font = Content.Load<SpriteFont>(StyleSheet.SmallFontResource);
 		}
 
 		/// <summary>
@@ -57,13 +61,12 @@ namespace MenuBuddy
 			FadeBackground();
 
 			// Draw the message box text.
-			ScreenManager.SpriteBatch.DrawString(StyleSheet.Instance().SmallNeutralFont.Font,
-				_message, textPosition, Color.White, 0.0f, new Vector2(0.0f, 0.0f), 0.6f, SpriteEffects.None, 1.0f);
+			ScreenManager.SpriteBatch.DrawString(_font, _message, textPosition, Color.White, 0.0f, new Vector2(0.0f, 0.0f), 0.6f, SpriteEffects.None, 1.0f);
 
 			ScreenManager.SpriteBatchEnd();
 
 			base.Draw(gameTime);
-        }
+		}
 
 		#endregion //Methods
 	}

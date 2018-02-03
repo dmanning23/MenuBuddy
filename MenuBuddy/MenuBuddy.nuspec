@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>MenuBuddy</id>
-		<version>1.0.94</version>
+		<version>1.0.108</version>
 		<title>MenuBuddy</title>
 		<authors>dmanning23</authors>
 		<owners>dmanning23</owners>
@@ -74,7 +74,7 @@
 			</group>
 
 			<group targetFramework="net451">
-				<dependency id="MonoGame.Framework.DesktopGL" version="3.5"/>
+				<dependency id="MonoGame.Framework.WindowsDX" version="3.5"/>
 				<dependency id="FilenameBuddy" version="1.0.1"/>
 				<dependency id="InputHelper" version="1.0.1"/>
 				<dependency id="StateMachineBuddy" version="1.0"/>
@@ -107,9 +107,9 @@
 		<file src="MenuBuddy.WindowsUniversal\bin\Release\MenuBuddy.WindowsUniversal.pdb" target="lib\uap10.0\MenuBuddy.WindowsUniversal.pdb" />
 		<file src="MenuBuddy.WindowsUniversal\bin\Release\MenuBuddy.WindowsUniversal.dll" target="lib\uap10.0\MenuBuddy.WindowsUniversal.dll" />
 
-		<!--DesktopGL-->
-		<file src="MenuBuddy.DesktopGL\bin\Release\MenuBuddy.DesktopGL.pdb" target="lib\net451\MenuBuddy.DesktopGL.pdb" />
-		<file src="MenuBuddy.DesktopGL\bin\Release\MenuBuddy.DesktopGL.dll" target="lib\net451\MenuBuddy.DesktopGL.dll" />
+		<!--WindowsDX-->
+		<file src="MenuBuddy.WindowsDX\bin\Release\MenuBuddy.WindowsDX.pdb" target="lib\net451\MenuBuddy.WindowsDX.pdb" />
+		<file src="MenuBuddy.WindowsDX\bin\Release\MenuBuddy.WindowsDX.dll" target="lib\net451\MenuBuddy.WindowsDX.dll" />
 
 	</files>
 </package>

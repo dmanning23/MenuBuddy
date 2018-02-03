@@ -59,6 +59,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SelectionChangeEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Style\StyleSheet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transitions\DirectionTransitionObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transitions\IScreenTransition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transitions\ITransitionable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transitions\ITransitionObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transitions\PointTransitionObject.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\Hamburger\HamburgerMenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\HorizontalAlignment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\IBackgroundable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\Images\BouncyImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\IScalable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\IScreenItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\IScreenItemContainer.cs" />

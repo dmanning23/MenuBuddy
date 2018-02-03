@@ -24,18 +24,18 @@ namespace MenuBuddy
 			WipeType = wipe;
 		}
 
-		public Point Position(ScreenTransition screen, Rectangle rect)
+		public Point Position(IScreenTransition screen, Rectangle rect)
 		{
 			var pos = Position(screen, rect.Location.ToVector2());
 			return pos.ToPoint();
 		}
 
-		public Vector2 Position(ScreenTransition screen, Point pos)
+		public Vector2 Position(IScreenTransition screen, Point pos)
 		{
 			return Position(screen, pos.ToVector2());
 		}
 
-		public Vector2 Position(ScreenTransition screen, Vector2 pos)
+		public Vector2 Position(IScreenTransition screen, Vector2 pos)
 		{
 			switch (WipeType)
 			{
@@ -55,22 +55,22 @@ namespace MenuBuddy
 			}
 		}
 
-		private Vector2 PopLeftTransition(ScreenTransition screen, float x, float y)
+		private Vector2 PopLeftTransition(IScreenTransition screen, float x, float y)
 		{
 			return PopLeftTransition(screen, new Vector2(x, y));
 		}
 
-		private Vector2 PopRightTransition(ScreenTransition screen, float x, float y)
+		private Vector2 PopRightTransition(IScreenTransition screen, float x, float y)
 		{
 			return PopRightTransition(screen, new Vector2(x, y));
 		}
 
-		private Vector2 PopTopTransition(ScreenTransition screen, float x, float y)
+		private Vector2 PopTopTransition(IScreenTransition screen, float x, float y)
 		{
 			return PopTopTransition(screen, new Vector2(x, y));
 		}
 
-		private Vector2 PopBottomTransition(ScreenTransition screen, float x, float y)
+		private Vector2 PopBottomTransition(IScreenTransition screen, float x, float y)
 		{
 			return PopBottomTransition(screen, new Vector2(x, y));
 		}
@@ -80,7 +80,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 PopLeftTransition(ScreenTransition screen, Vector2 pos)
+		private Vector2 PopLeftTransition(IScreenTransition screen, Vector2 pos)
 		{
 			if (screen.TransitionPosition != 0.0f)
 			{
@@ -106,7 +106,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 PopRightTransition(ScreenTransition screen, Vector2 pos)
+		private Vector2 PopRightTransition(IScreenTransition screen, Vector2 pos)
 		{
 			if (screen.TransitionPosition != 0.0f)
 			{
@@ -132,7 +132,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 PopTopTransition(ScreenTransition screen, Vector2 pos)
+		private Vector2 PopTopTransition(IScreenTransition screen, Vector2 pos)
 		{
 			if (screen.TransitionPosition != 0.0f)
 			{
@@ -158,7 +158,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 PopBottomTransition(ScreenTransition screen, Vector2 pos)
+		private Vector2 PopBottomTransition(IScreenTransition screen, Vector2 pos)
 		{
 			if (screen.TransitionPosition != 0.0f)
 			{
@@ -184,7 +184,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 SlideLeftTransition(ScreenTransition screen, Vector2 pos)
+		private Vector2 SlideLeftTransition(IScreenTransition screen, Vector2 pos)
 		{
 			if (screen.TransitionPosition != 0.0f)
 			{
@@ -210,7 +210,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 SlideRightTransition(ScreenTransition screen, Vector2 pos)
+		private Vector2 SlideRightTransition(IScreenTransition screen, Vector2 pos)
 		{
 			if (screen.TransitionPosition != 0.0f)
 			{
@@ -236,7 +236,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 SlideTopTransition(ScreenTransition screen, Vector2 pos)
+		private Vector2 SlideTopTransition(IScreenTransition screen, Vector2 pos)
 		{
 			if (screen.TransitionPosition != 0.0f)
 			{
@@ -262,7 +262,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 SlideBottomTransition(ScreenTransition screen, Vector2 pos)
+		private Vector2 SlideBottomTransition(IScreenTransition screen, Vector2 pos)
 		{
 			if (screen.TransitionPosition != 0.0f)
 			{

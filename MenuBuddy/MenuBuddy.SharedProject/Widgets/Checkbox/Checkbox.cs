@@ -41,8 +41,8 @@ namespace MenuBuddy
 			base.LoadContent(screen);
 
 			//Load the images
-			CheckedTexture = screen.ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.CheckedImageResource);
-			UncheckedTexture = screen.ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.UncheckedImageResource);
+			CheckedTexture = screen.Content.Load<Texture2D>(StyleSheet.CheckedImageResource);
+			UncheckedTexture = screen.Content.Load<Texture2D>(StyleSheet.UncheckedImageResource);
 
 			//add the image
 			CheckedImage = new Image(IsChecked ? CheckedTexture : UncheckedTexture)

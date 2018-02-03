@@ -136,7 +136,7 @@ namespace MenuBuddy
 			AddItem(MenuEntries);
 
 			//Add the menu title
-			MenuTitle = new MenuTitle(ScreenName)
+			MenuTitle = new MenuTitle(ScreenName, Content)
 			{
 				Layer = 2.0f,
 				Position = MenuTitlePosition
@@ -155,7 +155,7 @@ namespace MenuBuddy
 		/// </summary>
 		protected IMenuEntry AddContinueButton()
 		{
-			var continueButton = new ContinueMenuEntry();
+			var continueButton = new ContinueMenuEntry(Content);
 			continueButton.OnClick += ((obj, e) => { ExitScreen(); });
 			AddMenuEntry(continueButton);
 			return continueButton;

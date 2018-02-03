@@ -17,7 +17,6 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void Setup()
 		{
-			StyleSheet.InitUnitTests();
 			_layout = new AbsoluteLayout();
 		}
 

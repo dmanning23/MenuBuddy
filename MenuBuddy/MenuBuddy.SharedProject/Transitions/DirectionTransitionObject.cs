@@ -46,18 +46,18 @@ namespace MenuBuddy
 			return start + Direction;
 		}
 
-		public Point Position(ScreenTransition screen, Rectangle rect)
+		public Point Position(IScreenTransition screen, Rectangle rect)
 		{
 			var pos = Position(screen, rect.Location.ToVector2());
 			return pos.ToPoint();
 		}
 
-		public Vector2 Position(ScreenTransition screen, Point pos)
+		public Vector2 Position(IScreenTransition screen, Point pos)
 		{
 			return Position(screen, pos.ToVector2());
 		}
 
-		public Vector2 Position(ScreenTransition screen, Vector2 pos)
+		public Vector2 Position(IScreenTransition screen, Vector2 pos)
 		{
 			//get the target point
 			var target = GetTargetPosition(pos);

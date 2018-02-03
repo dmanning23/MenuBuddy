@@ -134,7 +134,7 @@ namespace MenuBuddy
 				Size = new Vector2(8f, 8f)
 			});
 
-			button.AddItem(new Label(hamburgerItem.IconText, FontSize.Small)
+			button.AddItem(new Label(hamburgerItem.IconText, Content, FontSize.Small)
 			{
 				Vertical = VerticalAlignment.Center,
 				Horizontal = HorizontalAlignment.Left,

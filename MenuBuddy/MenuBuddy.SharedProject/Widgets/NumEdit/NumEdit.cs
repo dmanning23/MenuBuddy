@@ -1,5 +1,6 @@
 ﻿using InputHelper;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using System;
 
 namespace MenuBuddy
@@ -85,10 +86,6 @@ namespace MenuBuddy
 			{
 				return NumLabel.FontSize;
 			}
-			set
-			{
-				NumLabel.FontSize = value;
-			}
 		}
 
 		public Color? ShadowColor
@@ -129,7 +126,7 @@ namespace MenuBuddy
 
 		#region Methods
 
-		public NumEdit(float num, FontSize fontSize = FontSize.Medium)
+		public NumEdit(float num, ContentManager content, FontSize fontSize = FontSize.Medium)
 		{
 			Min = float.MinValue;
 			Max = float.MaxValue;
@@ -137,7 +134,7 @@ namespace MenuBuddy
 			AllowNegative = true;
 			_number = num;
 			OnClick += CreateNumPad;
-			NumLabel = new Label(num.ToString(), fontSize)
+			NumLabel = new Label(num.ToString(), content, fontSize)
 			{
 				Horizontal = HorizontalAlignment.Center,
 				Vertical = VerticalAlignment.Center,
@@ -145,7 +142,7 @@ namespace MenuBuddy
 			AddItem(NumLabel);
 		}
 
-		public NumEdit(FontSize fontSize = FontSize.Medium) : this(0, fontSize)
+		public NumEdit(ContentManager content, FontSize fontSize = FontSize.Medium) : this(0, content, fontSize)
 		{
 		}
 

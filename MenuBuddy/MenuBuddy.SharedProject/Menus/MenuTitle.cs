@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
 namespace MenuBuddy
 {
@@ -13,10 +14,9 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs a new menu entry with the specified text.
 		/// </summary>
-		public MenuTitle(string text)
-			: base(text)
+		public MenuTitle(string text, ContentManager content)
+			: base(text, content, FontSize.Large)
 		{
-			FontSize = FontSize.Large;
 			Horizontal = HorizontalAlignment.Center;
 			Highlightable = false;
 		}

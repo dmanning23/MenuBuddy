@@ -7,7 +7,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a class to help transition items on/off the screen
 	/// </summary>
-	public class ScreenTransition : IDisposable
+	public class ScreenTransition : IScreenTransition, IDisposable
 	{
 		#region Properties
 
@@ -89,11 +89,11 @@ namespace MenuBuddy
 			// Update the transition position.
 			if (transitionOn)
 			{
-				TransitionPosition = _transitionTimer.Lerp();
+				TransitionPosition = _transitionTimer.Lerp;
 			}
 			else
 			{
-				TransitionPosition = 1f - _transitionTimer.Lerp();
+				TransitionPosition = 1f - _transitionTimer.Lerp;
 			}
 
 			// Did we reach the end of the transition?

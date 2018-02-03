@@ -209,7 +209,7 @@ namespace MenuBuddy
 				Horizontal = HorizontalAlignment.Left;
 				Vertical = VerticalAlignment.Top;
 
-				AddItem(new Label(Num, FontSize.Small)
+				AddItem(new Label(Num, screen.Content, FontSize.Small)
 				{
 					Horizontal = HorizontalAlignment.Center,
 					Vertical = VerticalAlignment.Center

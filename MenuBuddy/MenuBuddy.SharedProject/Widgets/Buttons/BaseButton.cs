@@ -210,8 +210,8 @@ namespace MenuBuddy
 		{
 			if (null != screen.ScreenManager)
 			{
-				HighlightedSoundEffect = screen.ScreenManager.Game.Content.Load<SoundEffect>(HighlightedSound);
-				ClickedSoundEffect = screen.ScreenManager.Game.Content.Load<SoundEffect>(ClickedSound);
+				HighlightedSoundEffect = screen.Content.Load<SoundEffect>(HighlightedSound);
+				ClickedSoundEffect = screen.Content.Load<SoundEffect>(ClickedSound);
 			}
 
 			Layout.LoadContent(screen);
@@ -247,6 +247,13 @@ namespace MenuBuddy
 			_clickTimer.Update(gameTime);
 			Layout.Update(screen, gameTime);
 			Layout.IsClicked = IsClicked;
+		}
+
+		public override void DrawBackground(IScreen screen, GameClock gameTime)
+		{
+			base.DrawBackground(screen, gameTime);
+
+			Layout.DrawBackground(screen, gameTime);
 		}
 
 		public override void Draw(IScreen screen, GameTimer.GameClock gameTime)

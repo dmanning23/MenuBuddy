@@ -17,7 +17,6 @@ namespace MenuBuddy.Tests
 		[SetUp]
 		public void ShimTests_Setup()
 		{
-			StyleSheet.InitUnitTests();
 			_shim = new Shim();
 		}
 

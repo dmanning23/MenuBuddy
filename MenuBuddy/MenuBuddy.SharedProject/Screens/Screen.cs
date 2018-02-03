@@ -112,7 +112,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Object used to aid in transitioning on and off
 		/// </summary>
-		public ScreenTransition Transition { get; set; }
+		public IScreenTransition Transition { get; set; }
 
 		public TransitionState TransitionState
 		{
@@ -158,7 +158,8 @@ namespace MenuBuddy
 		{
 			if (null != ScreenManager)
 			{
-				Content = new ContentManager(ScreenManager.Game.Services, ScreenManager.Game.Content.RootDirectory);
+				var defaultGame = ScreenManager.Game as DefaultGame;
+				Content = new ContentManager(defaultGame.Services, defaultGame.ContentRootDirectory);
 			}
 		}
 

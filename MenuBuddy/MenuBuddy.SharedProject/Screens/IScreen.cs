@@ -29,7 +29,7 @@ namespace MenuBuddy
 
 		GameClock Time { get; }
 
-		ScreenTransition Transition { get; }
+		IScreenTransition Transition { get; }
 
 		TransitionState TransitionState { get; }
 
