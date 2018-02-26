@@ -210,8 +210,15 @@ namespace MenuBuddy
 		{
 			if (null != screen.ScreenManager)
 			{
-				HighlightedSoundEffect = screen.Content.Load<SoundEffect>(HighlightedSound);
-				ClickedSoundEffect = screen.Content.Load<SoundEffect>(ClickedSound);
+				if (!string.IsNullOrEmpty(HighlightedSound))
+				{
+					HighlightedSoundEffect = screen.Content.Load<SoundEffect>(HighlightedSound);
+				}
+
+				if (!string.IsNullOrEmpty(ClickedSound))
+				{
+					ClickedSoundEffect = screen.Content.Load<SoundEffect>(ClickedSound);
+				}
 			}
 
 			Layout.LoadContent(screen);

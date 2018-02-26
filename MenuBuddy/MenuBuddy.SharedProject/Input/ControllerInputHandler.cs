@@ -17,23 +17,6 @@ namespace MenuBuddy
 			game.Services.AddService(typeof(IInputHandler), this);
 		}
 
-		public override void HandleInput(IScreen screen)
-		{
-			//check if this is the game screen
-			var game = screen as IGameScreen;
-			if (null != game)
-			{
-				game.HandleInput(InputState);
-			}
-
-			//check if is a menu screen
-			var menu = screen as IMenuScreen;
-			if (null != menu)
-			{
-				menu.CheckInput(InputState);
-			}
-		}
-
 		#endregion //Methods
 	}
 }

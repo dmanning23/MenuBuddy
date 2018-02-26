@@ -1,5 +1,5 @@
-﻿using System;
-using InputHelper;
+﻿using InputHelper;
+using System;
 
 namespace MenuBuddy
 {

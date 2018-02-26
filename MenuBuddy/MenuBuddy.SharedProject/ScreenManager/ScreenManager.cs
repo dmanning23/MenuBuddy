@@ -284,6 +284,11 @@ namespace MenuBuddy
 			return ScreenStack.Screens.ToArray();
 		}
 
+		public void PopToScreen<T>() where T : class, IScreen
+		{
+			ScreenStack.PopToScreen<T>();
+		}
+
 #endregion //Public Methods
 	}
 }

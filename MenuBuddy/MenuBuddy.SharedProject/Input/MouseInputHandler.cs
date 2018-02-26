@@ -64,19 +64,12 @@ namespace MenuBuddy
 
 		#region Methods
 
-		public override void Update(GameTime gameTime)
-		{
-			base.Update(gameTime);
-
-			//TODO: check for keydown events
-		}
-
 		public override void HandleInput(IScreen screen)
 		{
+			base.HandleInput(screen);
+
 			InputChecker.HandleInput(screen);
 		}
-
-		
 
 		#endregion //Methods
 	}

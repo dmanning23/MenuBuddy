@@ -1,7 +1,7 @@
-using System;
 using HadoukInput;
 using InputHelper;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace MenuBuddy
 {
@@ -36,7 +36,22 @@ namespace MenuBuddy
 			InputState.Update();
 		}
 
-		public abstract void HandleInput(IScreen screen);
+		public virtual void HandleInput(IScreen screen)
+		{
+			//check if this is the game screen
+			var game = screen as IGameScreen;
+			if (null != game)
+			{
+				game.HandleInput(InputState);
+			}
+
+			//check if is a menu screen
+			var menu = screen as IMenuScreen;
+			if (null != menu)
+			{
+				menu.CheckInput(InputState);
+			}
+		}
 
 		protected override void Dispose(bool disposing)
 		{

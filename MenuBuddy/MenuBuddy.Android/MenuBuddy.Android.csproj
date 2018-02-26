@@ -43,7 +43,7 @@
       <HintPath>..\packages\GameTimer.1.0.8\lib\MonoAndroid10\GameTimer.Android.dll</HintPath>
     </Reference>
     <Reference Include="HadoukInput.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HadoukInput.1.0.10\lib\MonoAndroid10\HadoukInput.Android.dll</HintPath>
+      <HintPath>..\packages\HadoukInput.1.0.11\lib\MonoAndroid10\HadoukInput.Android.dll</HintPath>
     </Reference>
     <Reference Include="InputHelper.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\InputHelper.1.0.21\lib\MonoAndroid10\InputHelper.Android.dll</HintPath>

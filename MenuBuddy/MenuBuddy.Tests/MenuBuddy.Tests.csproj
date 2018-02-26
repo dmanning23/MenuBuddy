@@ -81,7 +81,7 @@
       <HintPath>..\packages\GameTimer.1.0.8\lib\net452\GameTimer.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="HadoukInput.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HadoukInput.1.0.10\lib\net451\HadoukInput.WindowsDX.dll</HintPath>
+      <HintPath>..\packages\HadoukInput.1.0.11\lib\net451\HadoukInput.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="InputHelper.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\InputHelper.1.0.21\lib\net451\InputHelper.WindowsDX.dll</HintPath>
@@ -94,7 +94,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Moq, Version=4.8.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.8.1\lib\net45\Moq.dll</HintPath>
+      <HintPath>..\packages\Moq.4.8.2\lib\net45\Moq.dll</HintPath>
     </Reference>
     <Reference Include="MouseBuddy.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MouseBuddy.1.0.9\lib\net451\MouseBuddy.WindowsDX.dll</HintPath>

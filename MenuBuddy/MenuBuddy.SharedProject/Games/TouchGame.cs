@@ -22,6 +22,14 @@ namespace MenuBuddy
 			var input = new TouchInputHelper(this);
 		}
 
+		protected override void InitStyles()
+		{
+			base.InitStyles();
+
+			//don't make a highlight sound
+			StyleSheet.HighlightedSoundResource = null;
+		}
+
 		#endregion //Methods
 	}
 }
