@@ -6,7 +6,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a class that takes a start postion and transitions to the final position
 	/// </summary>
-	public class PointTransitionObject : ITransitionObject
+	public class PointTransitionObject : BaseTransitionObject
 	{
 		#region Properties
 
@@ -19,28 +19,29 @@ namespace MenuBuddy
 
 		#region Methods
 
-		public PointTransitionObject(Vector2 startPosition)
+		public PointTransitionObject(Vector2 startPosition, IScreenTransition screenTransition = null) :
+			base(screenTransition)
 		{
 			StartPosition = startPosition;
 		}
 
-		public Point Position(IScreenTransition screen, Rectangle rect)
+		public override Point Position(Rectangle rect)
 		{
-			var pos = Position(screen, rect.Location.ToVector2());
+			var pos = Position(rect.Location.ToVector2());
 			return pos.ToPoint();
 		}
 
-		public Vector2 Position(IScreenTransition screen, Point pos)
+		public override Vector2 Position(Point pos)
 		{
-			return Position(screen, pos.ToVector2());
+			return Position(pos.ToVector2());
 		}
 
-		public Vector2 Position(IScreenTransition screen, Vector2 pos)
+		public override Vector2 Position(Vector2 pos)
 		{
-			if (screen.TransitionPosition != 0.0f)
+			if (ScreenTransition.TransitionPosition != 0.0f)
 			{
 				//get the transition offset
-				var transitionOffset = (float)Math.Pow(screen.TransitionPosition, 2.0);
+				var transitionOffset = (float)Math.Pow(ScreenTransition.TransitionPosition, 2.0);
 				return Vector2.Lerp(pos, StartPosition, transitionOffset);
 			}
 

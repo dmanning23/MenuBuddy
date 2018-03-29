@@ -216,6 +216,7 @@ namespace MenuBuddy
 		public virtual void LoadContent(IScreen screen)
 		{
 			Background.LoadContent(screen);
+			TransitionObject.LoadContent(screen);
 		}
 
 		/// <summary>
@@ -260,10 +261,10 @@ namespace MenuBuddy
 		/// Get teh position to draw this widget
 		/// </summary>
 		/// <returns></returns>
-		protected virtual Point DrawPosition(IScreen screen)
+		protected virtual Point DrawPosition()
 		{
 			//take the transition position into account
-			return TransitionObject.Position(screen.Transition, Rect);
+			return TransitionObject.Position(Rect);
 		}
 
 		public virtual bool CheckHighlight(HighlightEventArgs highlight)

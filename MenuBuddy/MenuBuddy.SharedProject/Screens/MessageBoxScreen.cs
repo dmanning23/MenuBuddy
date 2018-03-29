@@ -1,6 +1,7 @@
 using FontBuddyLib;
 using InputHelper;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System;
@@ -38,8 +39,8 @@ namespace MenuBuddy
 		/// Constructor lets the caller specify whether to include the standard
 		/// "A=ok, B=cancel" usage text prompt.
 		/// </summary>
-		public MessageBoxScreen(string message, string menuTitle = "") :
-			base(menuTitle)
+		public MessageBoxScreen(string message, string menuTitle = "", ContentManager content = null) :
+			base(menuTitle, content)
 		{
 			//grab the message
 			Message = message;

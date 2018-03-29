@@ -30,7 +30,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FilenameBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FilenameBuddy.1.0.11\lib\Xamarin.iOS10\FilenameBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\FilenameBuddy.1.0.12\lib\Xamarin.iOS10\FilenameBuddy.iOS.dll</HintPath>
     </Reference>
     <Reference Include="FontBuddyLib.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FontBuddy.1.0.22\lib\Xamarin.iOS10\FontBuddyLib.iOS.dll</HintPath>
@@ -39,7 +39,7 @@
       <HintPath>..\packages\GameTimer.1.0.8\lib\Xamarin.iOS10\GameTimer.iOS.dll</HintPath>
     </Reference>
     <Reference Include="HadoukInput.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HadoukInput.1.0.11\lib\Xamarin.iOS10\HadoukInput.iOS.dll</HintPath>
+      <HintPath>..\packages\HadoukInput.1.0.12\lib\Xamarin.iOS10\HadoukInput.iOS.dll</HintPath>
     </Reference>
     <Reference Include="InputHelper.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\InputHelper.1.0.21\lib\Xamarin.iOS10\InputHelper.iOS.dll</HintPath>
@@ -63,7 +63,7 @@
       <HintPath>..\packages\ResolutionBuddy.1.0.16\lib\Xamarin.iOS10\ResolutionBuddy.iOS.dll</HintPath>
     </Reference>
     <Reference Include="StateMachineBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StateMachineBuddy.1.0.11\lib\Xamarin.iOS10\StateMachineBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\StateMachineBuddy.1.0.12\lib\Xamarin.iOS10\StateMachineBuddy.iOS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -72,7 +72,7 @@
       <HintPath>..\packages\TouchScreenBuddy.1.0.7\lib\Xamarin.iOS10\TouchScreenBuddy.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Vector2Extensions.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vector2Extensions.1.0.9\lib\Xamarin.iOS10\Vector2Extensions.iOS.dll</HintPath>
+      <HintPath>..\packages\Vector2Extensions.1.0.11\lib\Xamarin.iOS10\Vector2Extensions.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.iOS" />
     <Reference Include="XmlBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

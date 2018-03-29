@@ -85,6 +85,8 @@ namespace MenuBuddy
 		/// </summary>
 		public ScreenManager ScreenManager { get; set; }
 
+		private bool OwnsContent { get; set; }
+
 		public ContentManager Content { get; private set; }
 
 		/// <summary>
@@ -135,8 +137,10 @@ namespace MenuBuddy
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MenuBuddy.GameScreen"/> class.
 		/// </summary>
-		protected Screen(string screenName = "")
+		protected Screen(string screenName = "", ContentManager content = null)
 		{
+			OwnsContent = content == null;
+			Content = content;
 			CoverOtherScreens = false;
 			CoveredByOtherScreens = false;
 			CurrentlyCovered = false;
@@ -156,7 +160,7 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void LoadContent()
 		{
-			if (null != ScreenManager)
+			if (null != ScreenManager && null == Content)
 			{
 				var defaultGame = ScreenManager.Game as DefaultGame;
 				Content = new ContentManager(defaultGame.Services, defaultGame.ContentRootDirectory);
@@ -168,7 +172,10 @@ namespace MenuBuddy
 		/// </summary>
 		public virtual void UnloadContent()
 		{
-			Content?.Unload();
+			if (OwnsContent)
+			{
+				Content?.Unload();
+			}
 			Content = null;
 		}
 

@@ -1,6 +1,7 @@
 using HadoukInput;
 using InputHelper;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using ResolutionBuddy;
 using System;
 using System.Linq;
@@ -108,8 +109,8 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		protected MenuScreen(string menuTitle = "")
-			: base(menuTitle)
+		protected MenuScreen(string menuTitle = "", ContentManager content = null)
+			: base(menuTitle, content)
 		{
 			CoverOtherScreens = true;
 			CoveredByOtherScreens = true;

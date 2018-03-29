@@ -58,6 +58,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Screens\WidgetScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SelectionChangeEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Style\StyleSheet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transitions\BaseTransitionObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transitions\DirectionTransitionObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transitions\IScreenTransition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transitions\ITransitionable.cs" />

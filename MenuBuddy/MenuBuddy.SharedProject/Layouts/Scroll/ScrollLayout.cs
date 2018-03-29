@@ -195,6 +195,13 @@ namespace MenuBuddy
 			return new ScrollLayout(this);
 		}
 
+		public override void LoadContent(IScreen screen)
+		{
+			base.LoadContent(screen);
+
+			TransitionObject.LoadContent(screen);
+		}
+
 		#endregion //Initialization
 
 		#region Methods
@@ -301,7 +308,7 @@ namespace MenuBuddy
 			//render the texture
 			var rect = CalculateRect();
 			screen.ScreenManager.SpriteBatch.Draw(_renderTarget,
-				TransitionObject.Position(screen.Transition, rect.Location),
+				TransitionObject.Position(rect.Location),
 				Color.White);
 
 			//Draw the scroll bars if the mouse pointer or a touch is inside the layout
@@ -309,12 +316,12 @@ namespace MenuBuddy
 			{
 				if (DrawVerticalScrollBar)
 				{
-					screen.ScreenManager.DrawHelper.DrawRect(StyleSheet.HighlightedBackgroundColor, VerticalScrollBar, screen.Transition, TransitionObject);
+					screen.ScreenManager.DrawHelper.DrawRect(StyleSheet.HighlightedBackgroundColor, VerticalScrollBar, TransitionObject);
 				}
 
 				if (DrawHorizontalScrollBar)
 				{
-					screen.ScreenManager.DrawHelper.DrawRect(StyleSheet.HighlightedBackgroundColor, HorizontalScrollBar, screen.Transition, TransitionObject);
+					screen.ScreenManager.DrawHelper.DrawRect(StyleSheet.HighlightedBackgroundColor, HorizontalScrollBar, TransitionObject);
 				}
 			}
 		}

@@ -1,6 +1,7 @@
 using GameTimer;
 using InputHelper;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using ResolutionBuddy;
 using System;
 
@@ -73,8 +74,8 @@ namespace MenuBuddy
 
 		#region Initialization
 
-		public WidgetScreen(string name)
-			: base(name)
+		public WidgetScreen(string name, ContentManager content = null)
+			: base(name, content)
 		{
 			Highlightable = true;
 			Clickable = true;
@@ -177,6 +178,13 @@ namespace MenuBuddy
 			if (null != widget)
 			{
 				widget.LoadContent(this);
+			}
+
+			//if the item is transitionable, set its screentransition
+			var transitionable = item as ITransitionable;
+			if (null != transitionable && null == transitionable.TransitionObject.ScreenTransition)
+			{
+				transitionable.TransitionObject.ScreenTransition = Transition;
 			}
 		}
 

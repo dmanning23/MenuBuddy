@@ -34,7 +34,7 @@ namespace MenuBuddy
 			var transitionable = item as ITransitionable;
 			if (null != transitionable)
 			{
-				screen.ScreenManager.DrawHelper.DrawRect(color, item.Rect, screen.Transition, transitionable.TransitionObject, BackgroundImage);
+				screen.ScreenManager.DrawHelper.DrawRect(color, item.Rect, transitionable.TransitionObject, BackgroundImage);
 			}
 			else
 			{
@@ -55,7 +55,7 @@ namespace MenuBuddy
 			var transitionable = item as ITransitionable;
 			if (null != transitionable)
 			{
-				screen.ScreenManager.DrawHelper.DrawOutline(color, item.Rect, screen.Transition, transitionable.TransitionObject);
+				screen.ScreenManager.DrawHelper.DrawOutline(color, item.Rect, transitionable.TransitionObject);
 			}
 			else
 			{

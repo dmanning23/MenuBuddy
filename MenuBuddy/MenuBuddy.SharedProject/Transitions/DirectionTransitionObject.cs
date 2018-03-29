@@ -6,7 +6,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// This is a class that takes a start point and a direction and transitions to a final point
 	/// </summary>
-	public class DirectionTransitionObject : ITransitionObject
+	public class DirectionTransitionObject : BaseTransitionObject
 	{
 		#region Properties
 
@@ -32,7 +32,8 @@ namespace MenuBuddy
 
 		#region Methods
 
-		public DirectionTransitionObject(Vector2 dir)
+		public DirectionTransitionObject(Vector2 dir, IScreenTransition screenTransition = null) :
+			base(screenTransition)
 		{
 			Direction = dir;
 		}
@@ -46,26 +47,26 @@ namespace MenuBuddy
 			return start + Direction;
 		}
 
-		public Point Position(IScreenTransition screen, Rectangle rect)
+		public override Point Position(Rectangle rect)
 		{
-			var pos = Position(screen, rect.Location.ToVector2());
+			var pos = Position(rect.Location.ToVector2());
 			return pos.ToPoint();
 		}
 
-		public Vector2 Position(IScreenTransition screen, Point pos)
+		public override Vector2 Position(Point pos)
 		{
-			return Position(screen, pos.ToVector2());
+			return Position(pos.ToVector2());
 		}
 
-		public Vector2 Position(IScreenTransition screen, Vector2 pos)
+		public override Vector2 Position(Vector2 pos)
 		{
 			//get the target point
 			var target = GetTargetPosition(pos);
 
-			if (screen.TransitionPosition != 0.0f)
+			if (ScreenTransition.TransitionPosition != 0.0f)
 			{
 				//get the transition offset
-				var transitionOffset = (float)Math.Pow(screen.TransitionPosition, 2.0);
+				var transitionOffset = (float)Math.Pow(ScreenTransition.TransitionPosition, 2.0);
 				return Vector2.Lerp(target, pos, transitionOffset);
 			}
 

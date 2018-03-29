@@ -188,7 +188,7 @@ namespace MenuBuddy
 			//draw the slide rect
 			screen.ScreenManager.DrawHelper.DrawRect(
 				IsHighlighted ? StyleSheet.HighlightedBackgroundColor : StyleSheet.NeutralBackgroundColor,
-				_slideRect, screen.Transition, TransitionObject);
+				_slideRect, TransitionObject);
 
 			//draw the marks on the background
 			foreach (var mark in Marks)
@@ -208,7 +208,7 @@ namespace MenuBuddy
 				//draw the handle rect
 				screen.ScreenManager.DrawHelper.DrawRect(
 					IsHighlighted ? StyleSheet.HighlightedTextColor : StyleSheet.NeutralTextColor,
-					_handleRect, screen.Transition, TransitionObject);
+					_handleRect, TransitionObject);
 			}
 		}
 

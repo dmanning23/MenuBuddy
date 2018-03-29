@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework.Content;
 
 namespace MenuBuddy
 {
@@ -9,8 +10,8 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public OkScreen(string message)
-			: base(message)
+		public OkScreen(string message, ContentManager content = null)
+			: base(message, "", content)
 		{
 		}
 

@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FilenameBuddy.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FilenameBuddy.1.0.11\lib\net452\FilenameBuddy.WindowsDX.dll</HintPath>
+      <HintPath>..\packages\FilenameBuddy.1.0.12\lib\net452\FilenameBuddy.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="FontBuddyLib.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FontBuddy.1.0.22\lib\net451\FontBuddyLib.WindowsDX.dll</HintPath>
@@ -40,7 +40,7 @@
       <HintPath>..\packages\GameTimer.1.0.8\lib\net452\GameTimer.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="HadoukInput.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HadoukInput.1.0.11\lib\net451\HadoukInput.WindowsDX.dll</HintPath>
+      <HintPath>..\packages\HadoukInput.1.0.12\lib\net451\HadoukInput.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="InputHelper.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\InputHelper.1.0.21\lib\net451\InputHelper.WindowsDX.dll</HintPath>
@@ -65,7 +65,7 @@
       <HintPath>..\packages\ResolutionBuddy.1.0.16\lib\net451\ResolutionBuddy.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="StateMachineBuddy.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StateMachineBuddy.1.0.11\lib\net451\StateMachineBuddy.WindowsDX.dll</HintPath>
+      <HintPath>..\packages\StateMachineBuddy.1.0.12\lib\net451\StateMachineBuddy.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -79,7 +79,7 @@
       <HintPath>..\packages\TouchScreenBuddy.1.0.7\lib\net451\TouchScreenBuddy.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="Vector2Extensions.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vector2Extensions.1.0.9\lib\net451\Vector2Extensions.WindowsDX.dll</HintPath>
+      <HintPath>..\packages\Vector2Extensions.1.0.11\lib\net451\Vector2Extensions.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="XmlBuddy.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\XmlBuddy.1.0.20\lib\net451\XmlBuddy.WindowsDX.dll</HintPath>

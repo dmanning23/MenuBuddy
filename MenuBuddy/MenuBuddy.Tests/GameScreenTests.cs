@@ -132,13 +132,13 @@ namespace MenuBuddy.Tests
 			var screens = new ScreenStack();
 
 			//create the screen that will be on the bottom
-			var bottomScreen = new Mock<WidgetScreen>("bottomScreen") { CallBase = true };
+			var bottomScreen = new Mock<WidgetScreen>("bottomScreen", null) { CallBase = true };
 			bottomScreen.Setup(x => x.CoveredByOtherScreens).Returns(false);
 			bottomScreen.Setup(x => x.CoverOtherScreens).Returns(false);
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
 
 			//create the screen that will cover it
-			var menuScreen = new Mock<WidgetScreen>("menuScreen") { CallBase = true };
+			var menuScreen = new Mock<WidgetScreen>("menuScreen", null) { CallBase = true };
 			menuScreen.Setup(x => x.CoveredByOtherScreens).Returns(true);
 			menuScreen.Setup(x => x.CoverOtherScreens).Returns(true);
 			menuScreen.Setup(x => x.IsExiting).Returns(false);
@@ -167,13 +167,13 @@ namespace MenuBuddy.Tests
 			var screens = new ScreenStack();
 
 			//create the screen that will be on the bottom
-			var bottomScreen = new Mock<WidgetScreen>("bottomScreen") { CallBase = true };
+			var bottomScreen = new Mock<WidgetScreen>("bottomScreen", null) { CallBase = true };
 			bottomScreen.Setup(x => x.CoveredByOtherScreens).Returns(false);
 			bottomScreen.Setup(x => x.CoverOtherScreens).Returns(false);
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
 
 			//create the screen that will cover it
-			var menuScreen = new Mock<WidgetScreen>("menuScreen") { CallBase = true };
+			var menuScreen = new Mock<WidgetScreen>("menuScreen", null) { CallBase = true };
 			menuScreen.Setup(x => x.CoveredByOtherScreens).Returns(true);
 			menuScreen.Setup(x => x.CoverOtherScreens).Returns(true);
 			menuScreen.Setup(x => x.IsExiting).Returns(false);
@@ -202,13 +202,13 @@ namespace MenuBuddy.Tests
 			var screens = new ScreenStack();
 
 			//create the screen that will be on the bottom
-			var bottomScreen = new Mock<WidgetScreen>("bottomScreen") { CallBase = true };
+			var bottomScreen = new Mock<WidgetScreen>("bottomScreen", null) { CallBase = true };
 			bottomScreen.Setup(x => x.CoveredByOtherScreens).Returns(true);
 			bottomScreen.Setup(x => x.CoverOtherScreens).Returns(false);
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
 
 			//create the screen that will cover it
-			var menuScreen = new Mock<WidgetScreen>("menuScreen") { CallBase = true };
+			var menuScreen = new Mock<WidgetScreen>("menuScreen", null) { CallBase = true };
 			menuScreen.Setup(x => x.CoveredByOtherScreens).Returns(true);
 			menuScreen.Setup(x => x.CoverOtherScreens).Returns(true);
 			menuScreen.Setup(x => x.IsExiting).Returns(false);
@@ -237,13 +237,13 @@ namespace MenuBuddy.Tests
 			var screens = new ScreenStack();
 
 			//create the screen that will be on the bottom
-			var bottomScreen = new Mock<WidgetScreen>("bottomScreen") { CallBase = true };
+			var bottomScreen = new Mock<WidgetScreen>("bottomScreen", null) { CallBase = true };
 			bottomScreen.Setup(x => x.CoveredByOtherScreens).Returns(false);
 			bottomScreen.Setup(x => x.CoverOtherScreens).Returns(false);
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
 
 			//create the screen that will cover it
-			var menuScreen = new Mock<WidgetScreen>("menuScreen") { CallBase = true };
+			var menuScreen = new Mock<WidgetScreen>("menuScreen", null) { CallBase = true };
 			menuScreen.Setup(x => x.CoveredByOtherScreens).Returns(true);
 			menuScreen.Setup(x => x.CoverOtherScreens).Returns(true);
 			menuScreen.Setup(x => x.IsExiting).Returns(false);
@@ -270,7 +270,7 @@ namespace MenuBuddy.Tests
 		public void HasFocus_OtherWindowHasFocus()
 		{
 			//create the screen that will be on the bottom
-			var bottomScreen = new Mock<Screen>("bottomScreen") { CallBase = true };
+			var bottomScreen = new Mock<Screen>("bottomScreen", null) { CallBase = true };
 			bottomScreen.Setup(x => x.CoveredByOtherScreens).Returns(true);
 			bottomScreen.Setup(x => x.CoverOtherScreens).Returns(false);
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
@@ -283,7 +283,7 @@ namespace MenuBuddy.Tests
 		public void HasFocus_OtherScreenOnTop()
 		{
 			//create the screen that will be on the bottom
-			var bottomScreen = new Mock<Screen>("bottomScreen") { CallBase = true };
+			var bottomScreen = new Mock<Screen>("bottomScreen", null) { CallBase = true };
 			bottomScreen.Setup(x => x.CoveredByOtherScreens).Returns(true);
 			bottomScreen.Setup(x => x.CoverOtherScreens).Returns(false);
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
@@ -296,7 +296,7 @@ namespace MenuBuddy.Tests
 		public void HasFocus_OnTop()
 		{
 			//create the screen that will be on the bottom
-			var bottomScreen = new Mock<Screen>("bottomScreen") { CallBase = true };
+			var bottomScreen = new Mock<Screen>("bottomScreen", null) { CallBase = true };
 			bottomScreen.Setup(x => x.CoveredByOtherScreens).Returns(true);
 			bottomScreen.Setup(x => x.CoverOtherScreens).Returns(false);
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
@@ -309,7 +309,7 @@ namespace MenuBuddy.Tests
 		public void IsActive_OtherWindowHasFocus()
 		{
 			//create the screen that will be on the bottom
-			var bottomScreen = new Mock<Screen>("bottomScreen") { CallBase = true };
+			var bottomScreen = new Mock<Screen>("bottomScreen", null) { CallBase = true };
 			bottomScreen.Setup(x => x.CoveredByOtherScreens).Returns(true);
 			bottomScreen.Setup(x => x.CoverOtherScreens).Returns(false);
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
@@ -322,7 +322,7 @@ namespace MenuBuddy.Tests
 		public void IsActive_OtherScreenOnTop()
 		{
 			//create the screen that will be on the bottom
-			var bottomScreen = new Mock<Screen>("bottomScreen") { CallBase = true };
+			var bottomScreen = new Mock<Screen>("bottomScreen", null) { CallBase = true };
 			bottomScreen.Setup(x => x.CoveredByOtherScreens).Returns(true);
 			bottomScreen.Setup(x => x.CoverOtherScreens).Returns(false);
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
@@ -335,7 +335,7 @@ namespace MenuBuddy.Tests
 		public void IsActive_DontCareAboutOtherScreenOnTop()
 		{
 			//create the screen that will be on the bottom
-			var bottomScreen = new Mock<Screen>("bottomScreen") { CallBase = true };
+			var bottomScreen = new Mock<Screen>("bottomScreen", null) { CallBase = true };
 			bottomScreen.Setup(x => x.CoveredByOtherScreens).Returns(false);
 			bottomScreen.Setup(x => x.CoverOtherScreens).Returns(false);
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
@@ -348,7 +348,7 @@ namespace MenuBuddy.Tests
 		public void IsActive_OnTop()
 		{
 			//create the screen that will be on the bottom
-			var bottomScreen = new Mock<Screen>("bottomScreen") { CallBase = true };
+			var bottomScreen = new Mock<Screen>("bottomScreen", null) { CallBase = true };
 			bottomScreen.Setup(x => x.CoveredByOtherScreens).Returns(true);
 			bottomScreen.Setup(x => x.CoverOtherScreens).Returns(false);
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);

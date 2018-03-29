@@ -176,7 +176,6 @@ namespace MenuBuddy
 			ScreenManager.DrawHelper.DrawRect(
 				StyleSheet.NeutralBackgroundColor,
 				Rectangle.Intersect(_stack.Rect, _layout.Rect),
-				Transition,
 				TransitionObject);
 
 			ScreenManager.SpriteBatchEnd();
