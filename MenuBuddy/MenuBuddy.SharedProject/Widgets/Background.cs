@@ -21,6 +21,10 @@ namespace MenuBuddy
 			}
 		}
 
+		public virtual void UnloadContent()
+		{
+		}
+
 		protected void DrawBackground(IBackgroundable item, IScreen screen)
 		{
 			var color = StyleSheet.NeutralBackgroundColor;

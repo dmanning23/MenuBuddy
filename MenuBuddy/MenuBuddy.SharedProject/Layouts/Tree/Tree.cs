@@ -143,6 +143,12 @@ namespace MenuBuddy
 			Background.LoadContent(screen);
 		}
 
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+			Background.UnloadContent();
+		}
+
 		public override IScreenItem DeepCopy()
 		{
 			return new Tree<T>(this);

@@ -96,6 +96,12 @@ namespace MenuBuddy
 			ResetInputTimer();
 		}
 
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+			Layout.UnloadContent();
+		}
+
 		#endregion Initialization
 
 		#region Update & Draw
@@ -182,9 +188,9 @@ namespace MenuBuddy
 
 			//if the item is transitionable, set its screentransition
 			var transitionable = item as ITransitionable;
-			if (null != transitionable && null == transitionable.TransitionObject.ScreenTransition)
+			if (null != transitionable)
 			{
-				transitionable.TransitionObject.ScreenTransition = Transition;
+				transitionable.TransitionObject.LoadContent(this);
 			}
 		}
 

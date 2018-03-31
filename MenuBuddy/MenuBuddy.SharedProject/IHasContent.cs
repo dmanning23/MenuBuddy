@@ -12,5 +12,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="screen"></param>
 		void LoadContent(IScreen screen);
+
+		void UnloadContent();
 	}
 }

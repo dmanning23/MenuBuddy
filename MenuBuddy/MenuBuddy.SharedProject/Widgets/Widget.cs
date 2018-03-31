@@ -219,6 +219,10 @@ namespace MenuBuddy
 			TransitionObject.LoadContent(screen);
 		}
 
+		public virtual void UnloadContent()
+		{
+		}
+
 		/// <summary>
 		/// Recalculate the rect of this widget
 		/// </summary>
