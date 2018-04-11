@@ -94,7 +94,10 @@ namespace MenuBuddy
 			AddItem(_layout);
 
 			//set the transition object for this layout so the background will follow correctly
-			TransitionObject = new WipeTransitionObject(vert == VerticalAlignment.Top ? TransitionWipeType.PopTop : TransitionWipeType.PopBottom);
+			TransitionObject = new WipeTransitionObject(vert == VerticalAlignment.Top ? TransitionWipeType.PopTop : TransitionWipeType.PopBottom)
+			{
+				ScreenTransition = Transition
+			};
 		}
 
 		private void CreateButton(ContextMenuItem hamburgerItem, StackLayout stack)

@@ -139,6 +139,7 @@ namespace MenuBuddy
 			base.LoadContent(screen);
 
 			base.AddItem(Stack);
+			Stack.LoadContent(screen);
 
 			Background.LoadContent(screen);
 		}

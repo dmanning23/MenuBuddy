@@ -148,6 +148,25 @@ namespace MenuBuddy
 
 		public bool HasOutline { get; set; }
 
+		public virtual ITransitionObject TransitionObject
+		{
+			get
+			{
+				return null;
+			}
+			set
+			{
+				foreach (var item in Items)
+				{
+					var transitionableItem = item as ITransitionable;
+					if (null != transitionableItem)
+					{
+						transitionableItem.TransitionObject = value;
+					}
+				}
+			}
+		}
+
 		#endregion //Properties
 
 		#region Initialzation

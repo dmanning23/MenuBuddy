@@ -32,7 +32,10 @@ namespace MenuBuddy
 		/// <param name="widget"></param>
 		public DropdownScreen(IDropdown<T> widget) : base("Dropdown")
 		{
-			TransitionObject = new WipeTransitionObject(TransitionWipeType.None);
+			TransitionObject = new WipeTransitionObject(TransitionWipeType.None)
+			{
+				ScreenTransition = Transition
+			};
 			Transition.OnTime = 0f;
 			Transition.OffTime = 0f;
 			DropdownWidget = widget;
@@ -71,7 +74,7 @@ namespace MenuBuddy
 
 		public override void AddItem(IScreenItem item)
 		{
-			var widget = item as IWidget;
+			var widget = item as ITransitionable;
 			if (null != widget)
 			{
 				widget.TransitionObject = new WipeTransitionObject(TransitionWipeType.None);

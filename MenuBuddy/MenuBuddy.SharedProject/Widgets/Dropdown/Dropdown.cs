@@ -87,7 +87,7 @@ namespace MenuBuddy
 		}
 
 		private ITransitionObject _transitionObject;
-		public virtual ITransitionObject TransitionObject
+		public override ITransitionObject TransitionObject
 		{
 			get
 			{
@@ -95,15 +95,8 @@ namespace MenuBuddy
 			}
 			set
 			{
+				base.TransitionObject = value;
 				_transitionObject = value;
-				foreach (var item in Items)
-				{
-					var transitionableItem = item as ITransitionable;
-					if (null != transitionableItem)
-					{
-						transitionableItem.TransitionObject = TransitionObject;
-					}
-				}
 			}
 		}
 
@@ -119,7 +112,7 @@ namespace MenuBuddy
 		{
 			Screen = screen;
 			DropdownItems = new List<IDropdownItem<T>>();
-			TransitionObject = new WipeTransitionObject(StyleSheet.Transition);
+			TransitionObject = new WipeTransitionObject(StyleSheet.DefaultTransition);
 			Background = new Background();
 		}
 
@@ -148,6 +141,11 @@ namespace MenuBuddy
 			};
 			DropButton.AddItem(dropImage);
 			AddItem(DropButton);
+
+			for (int i = 0; i < DropdownItems.Count; i++)
+			{
+				DropdownItems[i].LoadContent(screen);
+			}
 
 			base.LoadContent(screen);
 		}

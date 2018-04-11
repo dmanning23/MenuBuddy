@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace MenuBuddy
 {
-	public class TreeItem<T> : StackLayout
+	public class TreeItem<T> : StackLayout, ITransitionable
 	{
 		#region Fields
 
@@ -71,6 +71,19 @@ namespace MenuBuddy
 		/// The tree control that owns this dude
 		/// </summary>
 		protected ITree<T> Tree { get; set; }
+
+		public override ITransitionObject TransitionObject
+		{
+			get
+			{
+				return ItemButton.TransitionObject;
+			}
+			set
+			{
+				base.TransitionObject = value;
+				ItemButton.TransitionObject = value;
+			}
+		}
 
 		#endregion //Properties
 

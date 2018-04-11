@@ -188,7 +188,7 @@ namespace MenuBuddy
 
 			//if the item is transitionable, set its screentransition
 			var transitionable = item as ITransitionable;
-			if (null != transitionable)
+			if (null != transitionable && null != transitionable.TransitionObject)
 			{
 				transitionable.TransitionObject.LoadContent(this);
 			}

@@ -178,7 +178,7 @@ namespace MenuBuddy
 			_scale = 1.0f;
 			_padding = Vector2.Zero;
 			HighlightClock = new GameClock();
-			TransitionObject = new WipeTransitionObject(StyleSheet.Transition);
+			TransitionObject = new WipeTransitionObject(StyleSheet.DefaultTransition);
 			Background = new Background();
 		}
 

@@ -75,7 +75,7 @@ namespace MenuBuddy
 
 		public static bool HasOutline { get; set; }
 
-		public static TransitionWipeType Transition { get; set; }
+		public static TransitionWipeType DefaultTransition { get; set; }
 
 		#endregion //Options
 
@@ -110,7 +110,7 @@ namespace MenuBuddy
 			UncheckedImageResource = @"Unchecked";
 			LoadingScreenHourglassImageResource = @"hourglass";
 			HasOutline = true;
-			Transition = TransitionWipeType.SlideLeft;
+			DefaultTransition = TransitionWipeType.SlideLeft;
 		}
 
 		#endregion //Methods

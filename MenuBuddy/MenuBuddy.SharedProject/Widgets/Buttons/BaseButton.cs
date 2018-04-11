@@ -26,6 +26,8 @@ namespace MenuBuddy
 
 		private const float _clickCountdownTime = 0.2f;
 
+		private ILayout _layout;
+
 		#endregion //Fields
 
 		#region Properties
@@ -64,7 +66,18 @@ namespace MenuBuddy
 		/// <summary>
 		/// The layout to add to this button
 		/// </summary>
-		public ILayout Layout { get; protected set; }
+		public ILayout Layout
+		{
+			get
+			{
+				return _layout;
+			}
+			protected set
+			{
+				_layout = value;
+				_layout.TransitionObject = TransitionObject;
+			}
+		}
 
 		public override bool IsHighlighted
 		{
@@ -140,14 +153,7 @@ namespace MenuBuddy
 
 				if (null != Layout)
 				{
-					for (int i = 0; i < Layout.Items.Count; i++)
-					{
-						var widget = Layout.Items[i] as IWidget;
-						if (null != widget)
-						{
-							widget.TransitionObject = value;
-						}
-					}
+					Layout.TransitionObject = value;
 				}
 			}
 		}
@@ -234,7 +240,7 @@ namespace MenuBuddy
 			Layout.AddItem(item);
 			CalculateRect();
 
-			var widget = item as IWidget;
+			var widget = item as ITransitionable;
 			if (null != widget)
 			{
 				widget.TransitionObject = TransitionObject;

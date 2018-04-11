@@ -156,7 +156,7 @@ namespace MenuBuddy
 
 		private bool CurrentlyDragging { get; set; }
 
-		public virtual ITransitionObject TransitionObject { get; set; }
+		public override ITransitionObject TransitionObject { get; set; }
 
 		#endregion //Properties
 
@@ -164,7 +164,7 @@ namespace MenuBuddy
 
 		public ScrollLayout()
 		{
-			TransitionObject = new WipeTransitionObject(StyleSheet.Transition);
+			TransitionObject = new WipeTransitionObject(StyleSheet.DefaultTransition);
 			DrawVerticalScrollBar = false;
 			DrawHorizontalScrollBar = false;
 			UpdateScrollBars();
@@ -209,7 +209,7 @@ namespace MenuBuddy
 		public override void AddItem(IScreenItem item)
 		{
 			//Items in a scroll layout don't transition
-			var widget = item as IWidget;
+			var widget = item as ITransitionable;
 			if (null != widget)
 			{
 				widget.TransitionObject = new WipeTransitionObject(TransitionWipeType.None);
@@ -247,53 +247,60 @@ namespace MenuBuddy
 
 		private void DrawStuff(IScreen screen, GameClock gameTime, DrawStuffDelegate del, bool clear)
 		{
-			//grab the old stuff
-			var curPos = Position;
-			var curHor = Horizontal;
-			var curVert = Vertical;
-			Position = Point.Zero;
-			Horizontal = HorizontalAlignment.Left;
-			Vertical = VerticalAlignment.Top;
-
-			var screenManager = screen.ScreenManager;
-
-			//initialize the render target if necessary
-			InitializeRenderTarget(screen);
-
-			//end the current draw loop
-			screenManager.SpriteBatchEnd();
-
-			var curRenderTarget = screenManager.GraphicsDevice.GetRenderTargets();
-
-			//set the rendertarget
-			screenManager.GraphicsDevice.SetRenderTarget(_renderTarget);
-
-			if (clear)
+			try
 			{
-				screenManager.GraphicsDevice.Clear(Color.Transparent);
+				//grab the old stuff
+				var curPos = Position;
+				var curHor = Horizontal;
+				var curVert = Vertical;
+				Position = Point.Zero;
+				Horizontal = HorizontalAlignment.Left;
+				Vertical = VerticalAlignment.Top;
+
+				var screenManager = screen.ScreenManager;
+
+				//initialize the render target if necessary
+				InitializeRenderTarget(screen);
+
+				//end the current draw loop
+				screenManager.SpriteBatchEnd();
+
+				var curRenderTarget = screenManager.GraphicsDevice.GetRenderTargets();
+
+				//set the rendertarget
+				screenManager.GraphicsDevice.SetRenderTarget(_renderTarget);
+
+				if (clear)
+				{
+					screenManager.GraphicsDevice.Clear(Color.Transparent);
+				}
+
+				//start a new draw loop
+				screenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+
+				//call the provided delegate to draw everything
+				del(screen, gameTime);
+
+				//end the loop
+				screenManager.SpriteBatchEnd();
+
+				//set the position back
+				Position = curPos;
+				Vertical = curVert;
+				Horizontal = curHor;
+
+				//set the render target back
+				screenManager.GraphicsDevice.SetRenderTarget(null);
+
+				Resolution.ResetViewport();
+
+				//start a new loop
+				screenManager.SpriteBatchBegin();
 			}
-
-			//start a new draw loop
-			screenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
-
-			//call the provided delegate to draw everything
-			del(screen, gameTime);
-
-			//end the loop
-			screenManager.SpriteBatchEnd();
-
-			//set the position back
-			Position = curPos;
-			Vertical = curVert;
-			Horizontal = curHor;
-
-			//set the render target back
-			screenManager.GraphicsDevice.SetRenderTarget(null);
-
-			Resolution.ResetViewport();
-
-			//start a new loop
-			screenManager.SpriteBatchBegin();
+			catch (Exception ex)
+			{
+				throw ex;
+			}
 		}
 
 		public override void DrawBackground(IScreen screen, GameClock gameTime)

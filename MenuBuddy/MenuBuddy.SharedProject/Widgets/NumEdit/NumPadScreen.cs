@@ -123,7 +123,7 @@ namespace MenuBuddy
 
 		public override void AddItem(IScreenItem item)
 		{
-			var widget = item as IWidget;
+			var widget = item as ITransitionable;
 			if (null != widget)
 			{
 				widget.TransitionObject = new WipeTransitionObject(TransitionWipeType.None);
