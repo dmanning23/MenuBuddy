@@ -1,7 +1,6 @@
 using GameTimer;
 using InputHelper;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace MenuBuddy
@@ -216,7 +215,6 @@ namespace MenuBuddy
 		public virtual void LoadContent(IScreen screen)
 		{
 			Background.LoadContent(screen);
-			TransitionObject.LoadContent(screen);
 		}
 
 		public virtual void UnloadContent()
@@ -265,10 +263,10 @@ namespace MenuBuddy
 		/// Get teh position to draw this widget
 		/// </summary>
 		/// <returns></returns>
-		protected virtual Point DrawPosition()
+		protected virtual Point DrawPosition(IScreen screen)
 		{
 			//take the transition position into account
-			return TransitionObject.Position(Rect);
+			return TransitionObject.Position(screen, Rect);
 		}
 
 		public virtual bool CheckHighlight(HighlightEventArgs highlight)

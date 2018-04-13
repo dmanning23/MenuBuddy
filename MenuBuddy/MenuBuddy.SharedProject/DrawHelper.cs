@@ -73,37 +73,40 @@ namespace MenuBuddy
 		/// <summary>
 		/// Helper draws a translucent black sprite, used for fading specific areas
 		/// </summary>
-		public void DrawRect(Color color, Rectangle rect, ITransitionObject transition, Texture2D tex)
+		public void DrawRect(IScreen screen, Color color, Rectangle rect, ITransitionObject transition, Texture2D tex)
 		{
 			//set the transition location
-			rect.Location = transition.Position(rect);
+			rect.Location = transition.Position(screen, rect);
 
 			//draw the filled background
-			DrawRect(transition.ScreenTransition.AlphaColor(color), rect, tex);
+			var screenTransition = transition.GetScreenTransition(screen);
+			DrawRect(screenTransition.AlphaColor(color), rect, tex);
 		}
 
 		/// <summary>
 		/// Draw a 
 		/// </summary>
-		public void DrawRect(Color color, Rectangle rect, ITransitionObject transition)
+		public void DrawRect(IScreen screen, Color color, Rectangle rect, ITransitionObject transition)
 		{
 			//get the color for the background & border
-			color.A = (byte)(color.A * transition.ScreenTransition.Alpha);
+			var screenTransition = transition.GetScreenTransition(screen);
+			color.A = (byte)(color.A * screenTransition.Alpha);
 
 			//set the transition location
-			rect.Location = transition.Position(rect);
+			rect.Location = transition.Position(screen, rect);
 
 			//draw the filled background
-			DrawRect(transition.ScreenTransition.AlphaColor(color), rect);
+			DrawRect(screenTransition.AlphaColor(color), rect);
 		}
 
-		public void DrawOutline(Color color, Rectangle rect, ITransitionObject transition, float lineWidth = 5f)
+		public void DrawOutline(IScreen screen, Color color, Rectangle rect, ITransitionObject transition, float lineWidth = 5f)
 		{
 			//set the transition location
-			rect.Location = transition.Position(rect);
+			rect.Location = transition.Position(screen, rect);
 
 			//draw the button outline
-			DrawOutline(transition.ScreenTransition.AlphaColor(color), rect, lineWidth);
+			var screenTransition = transition.GetScreenTransition(screen);
+			DrawOutline(screenTransition.AlphaColor(color), rect, lineWidth);
 		}
 
 		public void DrawOutline(Color color, Rectangle rect, float lineWidth = 5f)

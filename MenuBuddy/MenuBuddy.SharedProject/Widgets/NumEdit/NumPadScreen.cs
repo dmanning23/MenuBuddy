@@ -168,7 +168,7 @@ namespace MenuBuddy
 			ScreenManager.SpriteBatchBegin();
 
 			//draw the background
-			ScreenManager.DrawHelper.DrawRect(
+			ScreenManager.DrawHelper.DrawRect(this,
 				StyleSheet.NeutralBackgroundColor,
 				Rectangle.Intersect(_rows.Rect, _layout.Rect),
 				TransitionObject);

@@ -212,15 +212,15 @@ namespace MenuBuddy
 			{
 				case HorizontalAlignment.Left:
 					{
-						return TransitionObject.Position(new Point(Rect.X, Rect.Y));
+						return TransitionObject.Position(screen, new Point(Rect.X, Rect.Y));
 					}
 				case HorizontalAlignment.Center:
 					{
-						return TransitionObject.Position(new Point(Rect.Center.X, Rect.Y));
+						return TransitionObject.Position(screen, new Point(Rect.Center.X, Rect.Y));
 					}
 				default:
 					{
-						return TransitionObject.Position(new Point(Rect.Right, Rect.Y));
+						return TransitionObject.Position(screen, new Point(Rect.Right, Rect.Y));
 					}
 			}
 		}
@@ -235,11 +235,14 @@ namespace MenuBuddy
 			//Get the font to use
 			var font = GetFont();
 
+			var screenTransition = TransitionObject.GetScreenTransition(screen);
+
 			//make sure the shadow color is correct
 			var shadow = font as ShadowTextBuddy;
 			if (null != shadow)
 			{
-				shadow.ShadowColor = TransitionObject.ScreenTransition.AlphaColor(GetShadowColor());
+				
+				shadow.ShadowColor = screenTransition.AlphaColor(GetShadowColor());
 			}
 
 			//adjust the pulsate scale
@@ -254,7 +257,7 @@ namespace MenuBuddy
 				TextPosition(screen),
 				AlignmentToJustify(),
 				Scale,
-				TransitionObject.ScreenTransition.AlphaColor(GetColor()),
+				screenTransition.AlphaColor(GetColor()),
 				screen.ScreenManager.SpriteBatch,
 				HighlightClock);
 		}

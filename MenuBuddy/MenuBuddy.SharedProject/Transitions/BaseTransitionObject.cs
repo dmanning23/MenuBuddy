@@ -17,19 +17,16 @@ namespace MenuBuddy
 			ScreenTransition = screenTransition;
 		}
 
-		public void LoadContent(IScreen screen)
+		public IScreenTransition GetScreenTransition(IScreen screen)
 		{
-			if (null == ScreenTransition)
-			{
-				ScreenTransition = screen.Transition;
-			}
+			return ScreenTransition ?? screen.Transition;
 		}
 
-		public abstract Point Position(Rectangle rect);
+		public abstract Point Position(IScreen screen, Rectangle rect);
 
-		public abstract Vector2 Position(Point pos);
+		public abstract Vector2 Position(IScreen screen, Point pos);
 
-		public abstract Vector2 Position(Vector2 pos);
+		public abstract Vector2 Position(IScreen screen, Vector2 pos);
 
 		#endregion //Methods
 	}

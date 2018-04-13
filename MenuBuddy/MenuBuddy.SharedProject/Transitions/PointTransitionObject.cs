@@ -25,23 +25,25 @@ namespace MenuBuddy
 			StartPosition = startPosition;
 		}
 
-		public override Point Position(Rectangle rect)
+		public override Point Position(IScreen screen, Rectangle rect)
 		{
-			var pos = Position(rect.Location.ToVector2());
+			var pos = Position(screen, rect.Location.ToVector2());
 			return pos.ToPoint();
 		}
 
-		public override Vector2 Position(Point pos)
+		public override Vector2 Position(IScreen screen, Point pos)
 		{
-			return Position(pos.ToVector2());
+			return Position(screen, pos.ToVector2());
 		}
 
-		public override Vector2 Position(Vector2 pos)
+		public override Vector2 Position(IScreen screen, Vector2 pos)
 		{
-			if (ScreenTransition.TransitionPosition != 0.0f)
+			var screenTransition = GetScreenTransition(screen);
+
+			if (screenTransition.TransitionPosition != 0.0f)
 			{
 				//get the transition offset
-				var transitionOffset = (float)Math.Pow(ScreenTransition.TransitionPosition, 2.0);
+				var transitionOffset = (float)Math.Pow(screenTransition.TransitionPosition, 2.0);
 				return Vector2.Lerp(pos, StartPosition, transitionOffset);
 			}
 

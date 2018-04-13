@@ -25,29 +25,30 @@ namespace MenuBuddy
 			WipeType = wipe;
 		}
 
-		public override Point Position(Rectangle rect)
+		public override Point Position(IScreen screen, Rectangle rect)
 		{
-			var pos = Position(rect.Location.ToVector2());
+			var pos = Position(screen, rect.Location.ToVector2());
 			return pos.ToPoint();
 		}
 
-		public override Vector2 Position(Point pos)
+		public override Vector2 Position(IScreen screen, Point pos)
 		{
-			return Position(pos.ToVector2());
+			return Position(screen, pos.ToVector2());
 		}
 
-		public override Vector2 Position(Vector2 pos)
+		public override Vector2 Position(IScreen screen, Vector2 pos)
 		{
+			var screenTransition = GetScreenTransition(screen);
 			switch (WipeType)
 			{
-				case TransitionWipeType.PopLeft: { return PopLeftTransition(pos); }
-				case TransitionWipeType.PopRight: { return PopRightTransition(pos); }
-				case TransitionWipeType.PopTop: { return PopTopTransition(pos); }
-				case TransitionWipeType.PopBottom: { return PopBottomTransition(pos); }
-				case TransitionWipeType.SlideLeft: { return SlideLeftTransition(pos); }
-				case TransitionWipeType.SlideRight: { return SlideRightTransition(pos); }
-				case TransitionWipeType.SlideTop: { return SlideTopTransition(pos); }
-				case TransitionWipeType.SlideBottom: { return SlideBottomTransition(pos); }
+				case TransitionWipeType.PopLeft: { return PopLeftTransition(screenTransition, pos); }
+				case TransitionWipeType.PopRight: { return PopRightTransition(screenTransition, pos); }
+				case TransitionWipeType.PopTop: { return PopTopTransition(screenTransition, pos); }
+				case TransitionWipeType.PopBottom: { return PopBottomTransition(screenTransition, pos); }
+				case TransitionWipeType.SlideLeft: { return SlideLeftTransition(screenTransition, pos); }
+				case TransitionWipeType.SlideRight: { return SlideRightTransition(screenTransition, pos); }
+				case TransitionWipeType.SlideTop: { return SlideTopTransition(screenTransition, pos); }
+				case TransitionWipeType.SlideBottom: { return SlideBottomTransition(screenTransition, pos); }
 				default:
 					{
 						//None transition type
@@ -56,24 +57,25 @@ namespace MenuBuddy
 			}
 		}
 
-		private Vector2 PopLeftTransition(float x, float y)
+		private Vector2 PopLeftTransition(IScreenTransition screenTransition, float x, float y)
 		{
-			return PopLeftTransition(new Vector2(x, y));
+			return PopLeftTransition(screenTransition, new Vector2(x, y));
 		}
 
-		private Vector2 PopRightTransition(float x, float y)
+		private Vector2 PopRightTransition(IScreenTransition screenTransition, float x, float y)
 		{
-			return PopRightTransition(new Vector2(x, y));
+			return PopRightTransition(screenTransition, new Vector2(x, y));
 		}
 
-		private Vector2 PopTopTransition(float x, float y)
+		private Vector2 PopTopTransition(IScreenTransition screenTransition, float x, float y)
 		{
-			return PopTopTransition(new Vector2(x, y));
+			return PopTopTransition(screenTransition, new Vector2(x, y));
 		}
 
-		private Vector2 PopBottomTransition(float x, float y)
+		private Vector2 PopBottomTransition(IScreenTransition screenTransition, float x, float y)
 		{
-			return PopBottomTransition(new Vector2(x, y));
+
+			return PopBottomTransition(screenTransition, new Vector2(x, y));
 		}
 
 		/// <summary>
@@ -81,15 +83,15 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 PopLeftTransition(Vector2 pos)
+		private Vector2 PopLeftTransition(IScreenTransition screenTransition, Vector2 pos)
 		{
-			if (ScreenTransition.TransitionPosition != 0.0f)
+			if (screenTransition.TransitionPosition != 0.0f)
 			{
 				// Make the menu slide into place during transitions, using a
 				// power curve to make things look more interesting (this makes
 				// the movement slow down as it nears the end).
-				var transitionOffset = (float)Math.Pow(ScreenTransition.TransitionPosition, 2.0);
-				if (ScreenTransition.State == TransitionState.TransitionOn)
+				var transitionOffset = (float)Math.Pow(screenTransition.TransitionPosition, 2.0);
+				if (screenTransition.State == TransitionState.TransitionOn)
 				{
 					pos.X -= transitionOffset * 256;
 				}
@@ -107,15 +109,15 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 PopRightTransition(Vector2 pos)
+		private Vector2 PopRightTransition(IScreenTransition screenTransition, Vector2 pos)
 		{
-			if (ScreenTransition.TransitionPosition != 0.0f)
+			if (screenTransition.TransitionPosition != 0.0f)
 			{
 				// Make the menu slide into place during transitions, using a
 				// power curve to make things look more interesting (this makes
 				// the movement slow down as it nears the end).
-				var transitionOffset = (float)Math.Pow(ScreenTransition.TransitionPosition, 2.0);
-				if (ScreenTransition.State == TransitionState.TransitionOn)
+				var transitionOffset = (float)Math.Pow(screenTransition.TransitionPosition, 2.0);
+				if (screenTransition.State == TransitionState.TransitionOn)
 				{
 					pos.X += transitionOffset * 256;
 				}
@@ -133,15 +135,15 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 PopTopTransition(Vector2 pos)
+		private Vector2 PopTopTransition(IScreenTransition screenTransition, Vector2 pos)
 		{
-			if (ScreenTransition.TransitionPosition != 0.0f)
+			if (screenTransition.TransitionPosition != 0.0f)
 			{
 				// Make the menu slide into place during transitions, using a
 				// power curve to make things look more interesting (this makes
 				// the movement slow down as it nears the end).
-				var transitionOffset = (float)Math.Pow(ScreenTransition.TransitionPosition, 2.0);
-				if (ScreenTransition.State == TransitionState.TransitionOn)
+				var transitionOffset = (float)Math.Pow(screenTransition.TransitionPosition, 2.0);
+				if (screenTransition.State == TransitionState.TransitionOn)
 				{
 					pos.Y -= transitionOffset * 256;
 				}
@@ -159,15 +161,15 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 PopBottomTransition(Vector2 pos)
+		private Vector2 PopBottomTransition(IScreenTransition screenTransition, Vector2 pos)
 		{
-			if (ScreenTransition.TransitionPosition != 0.0f)
+			if (screenTransition.TransitionPosition != 0.0f)
 			{
 				// Make the menu slide into place during transitions, using a
 				// power curve to make things look more interesting (this makes
 				// the movement slow down as it nears the end).
-				var transitionOffset = (float)Math.Pow(ScreenTransition.TransitionPosition, 2.0);
-				if (ScreenTransition.State == TransitionState.TransitionOn)
+				var transitionOffset = (float)Math.Pow(screenTransition.TransitionPosition, 2.0);
+				if (screenTransition.State == TransitionState.TransitionOn)
 				{
 					pos.Y += transitionOffset * 256;
 				}
@@ -185,15 +187,15 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 SlideLeftTransition(Vector2 pos)
+		private Vector2 SlideLeftTransition(IScreenTransition screenTransition, Vector2 pos)
 		{
-			if (ScreenTransition.TransitionPosition != 0.0f)
+			if (screenTransition.TransitionPosition != 0.0f)
 			{
 				// Make the menu slide into place during transitions, using a
 				// power curve to make things look more interesting (this makes
 				// the movement slow down as it nears the end).
-				var transitionOffset = (float)Math.Pow(ScreenTransition.TransitionPosition, 2.0);
-				if (ScreenTransition.State == TransitionState.TransitionOn)
+				var transitionOffset = (float)Math.Pow(screenTransition.TransitionPosition, 2.0);
+				if (screenTransition.State == TransitionState.TransitionOn)
 				{
 					pos.X -= transitionOffset * 256;
 				}
@@ -211,15 +213,15 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 SlideRightTransition(Vector2 pos)
+		private Vector2 SlideRightTransition(IScreenTransition screenTransition, Vector2 pos)
 		{
-			if (ScreenTransition.TransitionPosition != 0.0f)
+			if (screenTransition.TransitionPosition != 0.0f)
 			{
 				// Make the menu slide into place during transitions, using a
 				// power curve to make things look more interesting (this makes
 				// the movement slow down as it nears the end).
-				var transitionOffset = (float)Math.Pow(ScreenTransition.TransitionPosition, 2.0);
-				if (ScreenTransition.State == TransitionState.TransitionOn)
+				var transitionOffset = (float)Math.Pow(screenTransition.TransitionPosition, 2.0);
+				if (screenTransition.State == TransitionState.TransitionOn)
 				{
 					pos.X += transitionOffset * 256;
 				}
@@ -237,15 +239,15 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 SlideTopTransition(Vector2 pos)
+		private Vector2 SlideTopTransition(IScreenTransition screenTransition, Vector2 pos)
 		{
-			if (ScreenTransition.TransitionPosition != 0.0f)
+			if (screenTransition.TransitionPosition != 0.0f)
 			{
 				// Make the menu slide into place during transitions, using a
 				// power curve to make things look more interesting (this makes
 				// the movement slow down as it nears the end).
-				var transitionOffset = (float)Math.Pow(ScreenTransition.TransitionPosition, 2.0);
-				if (ScreenTransition.State == TransitionState.TransitionOn)
+				var transitionOffset = (float)Math.Pow(screenTransition.TransitionPosition, 2.0);
+				if (screenTransition.State == TransitionState.TransitionOn)
 				{
 					pos.Y -= transitionOffset * 256;
 				}
@@ -263,15 +265,15 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <returns></returns>
-		private Vector2 SlideBottomTransition(Vector2 pos)
+		private Vector2 SlideBottomTransition(IScreenTransition screenTransition, Vector2 pos)
 		{
-			if (ScreenTransition.TransitionPosition != 0.0f)
+			if (screenTransition.TransitionPosition != 0.0f)
 			{
 				// Make the menu slide into place during transitions, using a
 				// power curve to make things look more interesting (this makes
 				// the movement slow down as it nears the end).
-				var transitionOffset = (float)Math.Pow(ScreenTransition.TransitionPosition, 2.0);
-				if (ScreenTransition.State == TransitionState.TransitionOn)
+				var transitionOffset = (float)Math.Pow(screenTransition.TransitionPosition, 2.0);
+				if (screenTransition.State == TransitionState.TransitionOn)
 				{
 					pos.Y += transitionOffset * 256;
 				}

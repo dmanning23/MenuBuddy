@@ -164,10 +164,11 @@ namespace MenuBuddy
 			}
 
 			//get the transition color
-			var color = TransitionObject.ScreenTransition.AlphaColor(FillColor);
+			var screenTransition = TransitionObject.GetScreenTransition(screen);
+			var color = screenTransition.AlphaColor(FillColor);
 
 			//Get the transition location
-			var pos = DrawPosition();
+			var pos = DrawPosition(screen);
 			Rectangle rect = DrawRect(pos.ToVector2());
 
 			//draw the item with all the correct parameters

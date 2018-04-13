@@ -185,13 +185,6 @@ namespace MenuBuddy
 			{
 				widget.LoadContent(this);
 			}
-
-			//if the item is transitionable, set its screentransition
-			var transitionable = item as ITransitionable;
-			if (null != transitionable && null != transitionable.TransitionObject)
-			{
-				transitionable.TransitionObject.LoadContent(this);
-			}
 		}
 
 		public bool RemoveItem(IScreenItem item)

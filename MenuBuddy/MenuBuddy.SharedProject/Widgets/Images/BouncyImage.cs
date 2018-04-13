@@ -31,9 +31,9 @@ namespace MenuBuddy
 			BounceSpeed = 4f;
 		}
 
-		protected override Point DrawPosition()
+		protected override Point DrawPosition(IScreen screen)
 		{
-			var position = base.DrawPosition().ToVector2();
+			var position = base.DrawPosition(screen).ToVector2();
 
 			//multiply the time by the speed
 			var currentTime = HighlightClock.CurrentTime * BounceSpeed;

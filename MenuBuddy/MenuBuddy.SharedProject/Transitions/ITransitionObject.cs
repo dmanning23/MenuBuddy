@@ -7,14 +7,14 @@ namespace MenuBuddy
 	/// </summary>
 	public interface ITransitionObject
 	{
-		IScreenTransition ScreenTransition { get; set; }
+		IScreenTransition ScreenTransition { set; }
 
-		void LoadContent(IScreen screen);
+		IScreenTransition GetScreenTransition(IScreen screen);
 
-		Point Position(Rectangle rect);
+		Point Position(IScreen screen, Rectangle rect);
 
-		Vector2 Position(Point pos);
+		Vector2 Position(IScreen screen, Point pos);
 
-		Vector2 Position(Vector2 pos);
+		Vector2 Position(IScreen screen, Vector2 pos);
 	}
 }

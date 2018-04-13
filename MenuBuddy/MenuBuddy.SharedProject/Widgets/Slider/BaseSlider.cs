@@ -186,7 +186,7 @@ namespace MenuBuddy
 			base.DrawBackground(screen, gameTime);
 
 			//draw the slide rect
-			screen.ScreenManager.DrawHelper.DrawRect(
+			screen.ScreenManager.DrawHelper.DrawRect(screen,
 				IsHighlighted ? StyleSheet.HighlightedBackgroundColor : StyleSheet.NeutralBackgroundColor,
 				_slideRect, TransitionObject);
 
@@ -206,7 +206,7 @@ namespace MenuBuddy
 			if (Enabled)
 			{
 				//draw the handle rect
-				screen.ScreenManager.DrawHelper.DrawRect(
+				screen.ScreenManager.DrawHelper.DrawRect(screen,
 					IsHighlighted ? StyleSheet.HighlightedTextColor : StyleSheet.NeutralTextColor,
 					_handleRect, TransitionObject);
 			}
