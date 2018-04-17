@@ -40,15 +40,18 @@ namespace MenuBuddy
 		{
 			var screenTransition = GetScreenTransition(screen);
 
+			//just return the end position if no transition stuff.
+			Vector2 result = pos;
 			if (screenTransition.TransitionPosition != 0.0f)
 			{
 				//get the transition offset
 				var transitionOffset = (float)Math.Pow(screenTransition.TransitionPosition, 2.0);
-				return Vector2.Lerp(pos, StartPosition, transitionOffset);
+				result = Vector2.Lerp(pos, StartPosition, transitionOffset);
 			}
 
-			//just return the end position if no transition stuff.
-			return pos;
+			LeftOrRight = result.X < pos.X;
+			
+			return result;
 		}
 
 		#endregion //Methods

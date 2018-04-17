@@ -36,6 +36,7 @@ namespace MenuBuddy
 			base(screenTransition)
 		{
 			Direction = dir;
+			LeftOrRight = dir.X < 0;
 		}
 
 		/// <summary>

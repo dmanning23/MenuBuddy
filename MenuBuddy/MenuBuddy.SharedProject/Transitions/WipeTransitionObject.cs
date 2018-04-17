@@ -23,6 +23,7 @@ namespace MenuBuddy
 			base(screenTransition)
 		{
 			WipeType = wipe;
+			LeftOrRight = wipe == TransitionWipeType.PopLeft || wipe == TransitionWipeType.SlideLeft;
 		}
 
 		public override Point Position(IScreen screen, Rectangle rect)

@@ -77,6 +77,8 @@ namespace MenuBuddy
 		/// </summary>
 		void Update(GameTime gameTime, bool otherWindowHasFocus, bool covered);
 
+		bool UpdateTransition(IScreenTransition screenTransition, GameClock gameTime);
+
 		/// <summary>
 		/// This is called when the screen should draw itself.
 		/// </summary>

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameTimer;
+using Microsoft.Xna.Framework;
 using System;
 
 namespace MenuBuddy
@@ -19,6 +20,6 @@ namespace MenuBuddy
 
 		Color AlphaColor(Color color);
 
-		bool Update(GameTime gameTime, bool transitionOn);
+		bool Update(GameClock gameTime, bool transitionOn);
 	}
 }

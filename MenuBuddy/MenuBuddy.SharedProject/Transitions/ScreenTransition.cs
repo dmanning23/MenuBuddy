@@ -66,7 +66,7 @@ namespace MenuBuddy
 		/// <param name="gameTime">the current game time</param>
 		/// <param name="transitionOn">whether this transtion is moving onto or off of the screen</param>
 		/// <returns>True if this transition is still ongoing, false if the transition has finished moving on/off</returns>
-		public bool Update(GameTime gameTime, bool transitionOn)
+		public bool Update(GameClock gameTime, bool transitionOn)
 		{
 			//Will that transition flag change the state of the thing?
 			if (StateChange(transitionOn))

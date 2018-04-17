@@ -7,6 +7,11 @@ namespace MenuBuddy
 	/// </summary>
 	public interface ITransitionObject
 	{
+		/// <summary>
+		/// Whether the transition object is transitioning to the left or to the right
+		/// </summary>
+		bool LeftOrRight { get; }
+
 		IScreenTransition ScreenTransition { set; }
 
 		IScreenTransition GetScreenTransition(IScreen screen);

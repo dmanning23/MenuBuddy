@@ -8,6 +8,11 @@ namespace MenuBuddy
 
 		public IScreenTransition ScreenTransition { get; set; }
 
+		/// <summary>
+		/// Whether the transition object is transitioning to the left or to the right
+		/// </summary>
+		public bool LeftOrRight { get; protected set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -15,6 +20,7 @@ namespace MenuBuddy
 		public BaseTransitionObject(IScreenTransition screenTransition)
 		{
 			ScreenTransition = screenTransition;
+			LeftOrRight = false;
 		}
 
 		public IScreenTransition GetScreenTransition(IScreen screen)

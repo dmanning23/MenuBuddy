@@ -199,47 +199,60 @@ namespace MenuBuddy
 
 			Time.Update(gameTime);
 
+			var transitionResult = UpdateTransition(Transition, Time);
+
 			if (IsExiting)
 			{
-				if (!Transition.Update(gameTime, false))
+				if (!transitionResult)
 				{
 					// When the transition finishes, remove the screen.
 					ScreenManager.RemoveScreen(this);
 				}
-				else
-				{
-					// If the screen is going away to die, it should transition off.
-					Transition.State = TransitionState.TransitionOff;
-				}
+			}
+		}
+
+		public bool UpdateTransition(IScreenTransition screenTransition, GameClock gameTime)
+		{
+			var transitionResult = false;
+
+			if (IsExiting)
+			{
+				// If the screen is going away to die, it should transition off.
+				transitionResult = screenTransition.Update(gameTime, false);
+				screenTransition.State = TransitionState.TransitionOff;
 			}
 			else if (CurrentlyCovered && CoveredByOtherScreens)
 			{
 				// If the screen is covered by another, it should transition off.
-				if (Transition.Update(gameTime, false))
+				transitionResult = screenTransition.Update(gameTime, false);
+				if (transitionResult)
 				{
 					// Still busy transitioning.
-					Transition.State = TransitionState.TransitionOff;
+					screenTransition.State = TransitionState.TransitionOff;
 				}
 				else
 				{
 					// Transition finished!
-					Transition.State = TransitionState.Hidden;
+					screenTransition.State = TransitionState.Hidden;
 				}
 			}
 			else
 			{
 				// Otherwise the screen should transition on and become active.
-				if (Transition.Update(gameTime, true))
+				transitionResult = screenTransition.Update(gameTime, true);
+				if (transitionResult)
 				{
 					// Still busy transitioning.
-					Transition.State = TransitionState.TransitionOn;
+					screenTransition.State = TransitionState.TransitionOn;
 				}
 				else
 				{
 					// Transition finished!
-					Transition.State = TransitionState.Active;
+					screenTransition.State = TransitionState.Active;
 				}
 			}
+
+			return transitionResult;
 		}
 
 		/// <summary>

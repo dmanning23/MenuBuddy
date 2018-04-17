@@ -63,6 +63,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Transitions\IScreenTransition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transitions\ITransitionable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transitions\ITransitionObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transitions\PathTransitionObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transitions\PointTransitionObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transitions\ScreenTransition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transitions\TransitionState.cs" />
