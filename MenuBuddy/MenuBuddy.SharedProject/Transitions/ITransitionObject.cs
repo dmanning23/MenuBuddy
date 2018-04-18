@@ -12,6 +12,10 @@ namespace MenuBuddy
 		/// </summary>
 		bool LeftOrRight { get; }
 
+		bool Done(IScreen screen);
+
+		float OnTime(IScreen screen);
+
 		IScreenTransition ScreenTransition { set; }
 
 		IScreenTransition GetScreenTransition(IScreen screen);

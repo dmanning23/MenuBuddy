@@ -28,6 +28,16 @@ namespace MenuBuddy
 			return ScreenTransition ?? screen.Transition;
 		}
 
+		public bool Done(IScreen screen)
+		{
+			return GetScreenTransition(screen).State == TransitionState.Active;
+		}
+
+		public float OnTime(IScreen screen)
+		{
+			return GetScreenTransition(screen).OnTime;
+		}
+
 		public abstract Point Position(IScreen screen, Rectangle rect);
 
 		public abstract Vector2 Position(IScreen screen, Point pos);
