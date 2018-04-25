@@ -130,6 +130,16 @@ namespace MenuBuddy
 		/// </summary>
 		public StyleSheet Style { get; private set; }
 
+		/// <summary>
+		/// Set the layer of a screen to change it's location in the ScreenStack
+		/// </summary>
+		public int Layer { get; set; }
+
+		/// <summary>
+		/// Used by the ScreenStack to sort screens. Don't touch!
+		/// </summary>
+		public int SubLayer { get; set; }
+
 		#endregion
 
 		#region Initialization
@@ -153,6 +163,7 @@ namespace MenuBuddy
 
 			Time = new GameClock();
 			Time.Start();
+			Layer = int.MinValue;
 		}
 
 		/// <summary>

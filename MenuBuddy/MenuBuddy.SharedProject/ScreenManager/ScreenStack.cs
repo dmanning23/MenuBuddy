@@ -21,13 +21,15 @@ namespace MenuBuddy
 		/// The list of screens that are currently in the game.
 		/// </summary>
 		/// <value>The screens.</value>
-		public List<IScreen> Screens { get; private set; }
+		private List<IScreen> Screens { get; set; }
 
 		/// <summary>
 		/// This is a special screen that you always want to stay on top of all teh other screens.
 		/// Useful for something like an Insert Coin screen
 		/// </summary>
 		public IScreen TopScreen { get; set; }
+
+		private int _layerIndex;
 
 		#endregion //Properties
 
@@ -38,6 +40,7 @@ namespace MenuBuddy
 		/// </summary>
 		public ScreenStack()
 		{
+			_layerIndex = 0;
 			ScreensToUpdate = new List<IScreen>();
 			Screens = new List<IScreen>();
 		}
@@ -152,6 +155,43 @@ namespace MenuBuddy
 			{
 				TopScreen.Draw(gameTime);
 			}
+		}
+
+		private void SortScreens()
+		{
+			Screens.Sort((x, y) =>
+			{
+				var firstCompare = x.Layer.CompareTo(y.Layer);
+				return firstCompare != 0 ? firstCompare : x.SubLayer.CompareTo(y.SubLayer);
+			});
+		}
+
+		public void AddScreen(IScreen screen)
+		{
+			//set the screenstack layer
+			screen.SubLayer = _layerIndex++;
+			Screens.Add(screen);
+			SortScreens();
+		}
+
+		public void AddScreen(IScreen[] screens)
+		{
+			foreach (var screen in screens)
+			{
+				screen.SubLayer = _layerIndex++;
+			}
+			Screens.AddRange(screens);
+			SortScreens();
+		}
+
+		public IScreen[] GetScreens()
+		{
+			return Screens.ToArray();
+		}
+
+		public IScreen FindScreen(string screenName)
+		{
+			return Screens.Find(m => m.ScreenName == screenName);
 		}
 
 		/// <summary>

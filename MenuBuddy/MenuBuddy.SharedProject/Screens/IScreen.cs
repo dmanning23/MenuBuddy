@@ -52,6 +52,16 @@ namespace MenuBuddy
 
 		bool IsExiting { get; }
 
+		/// <summary>
+		/// Set the layer of a screen to change it's location in the ScreenStack
+		/// </summary>
+		int Layer { get; set; }
+
+		/// <summary>
+		/// Used by the ScreenStack to sort screens. Don't touch!
+		/// </summary>
+		int SubLayer { get; set; }
+
 		#endregion
 
 		#region Initialization

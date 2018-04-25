@@ -175,7 +175,7 @@ namespace MenuBuddy
 				screen.LoadContent();
 			}
 
-			ScreenStack.Screens.Add(screen);
+			ScreenStack.AddScreen(screen);
 		}
 
 		/// <summary>
@@ -198,7 +198,7 @@ namespace MenuBuddy
 				}
 			}
 
-			ScreenStack.Screens.AddRange(screens);
+			ScreenStack.AddScreen(screens);
 		}
 
 		/// <summary>
@@ -237,7 +237,7 @@ namespace MenuBuddy
 			ScreenStack.RemoveScreen(screen);
 
 			//reset the times of all the rest of teh screens
-			var widgetScreens = ScreenStack.Screens.OfType<WidgetScreen>();
+			var widgetScreens = ScreenStack.FindScreens<WidgetScreen>();
 			foreach (var curScreen in widgetScreens)
 			{
 				curScreen.ResetInputTimer();
@@ -266,7 +266,7 @@ namespace MenuBuddy
 
 		public IScreen FindScreen(string screenName)
 		{
-			return ScreenStack.Screens.Find(m => m.ScreenName == screenName);
+			return ScreenStack.FindScreen(screenName);
 		}
 
 		public List<T> FindScreens<T>() where T : IScreen
@@ -281,7 +281,7 @@ namespace MenuBuddy
 		/// </summary>
 		public IScreen[] GetScreens()
 		{
-			return ScreenStack.Screens.ToArray();
+			return ScreenStack.GetScreens();
 		}
 
 		public void PopToScreen<T>() where T : class, IScreen

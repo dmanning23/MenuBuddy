@@ -35,8 +35,8 @@ namespace MenuBuddy.Tests
 			gamescreen.Setup(x => x.CoverOtherScreens).Returns(false);
 			gamescreen.Setup(x => x.IsActive).Returns(true);
 
-			screens.Screens.Add(screen.Object);
-			screens.Screens.Add(gamescreen.Object);
+			screens.AddScreen(screen.Object);
+			screens.AddScreen(gamescreen.Object);
 
 			var time = new GameTime();
 			var input = new Mock<IInputHandler>();
@@ -64,8 +64,8 @@ namespace MenuBuddy.Tests
 			gamescreen.Setup(x => x.CoverOtherScreens).Returns(false);
 			gamescreen.Setup(x => x.IsActive).Returns(true);
 
-			screens.Screens.Add(screen.Object);
-			screens.Screens.Add(gamescreen.Object);
+			screens.AddScreen(screen.Object);
+			screens.AddScreen(gamescreen.Object);
 
 			var time = new GameTime();
 			var input = new Mock<IInputHandler>();
@@ -93,8 +93,8 @@ namespace MenuBuddy.Tests
 			gamescreen.Setup(x => x.CoverOtherScreens).Returns(false);
 			gamescreen.Setup(x => x.IsActive).Returns(true);
 
-			screens.Screens.Add(screen.Object);
-			screens.Screens.Add(gamescreen.Object);
+			screens.AddScreen(screen.Object);
+			screens.AddScreen(gamescreen.Object);
 
 			var time = new GameTime();
 			screens.Draw(new GameTime());
@@ -116,8 +116,8 @@ namespace MenuBuddy.Tests
 			gamescreen.Setup(x => x.CoverOtherScreens).Returns(false);
 			gamescreen.Setup(x => x.IsActive).Returns(true);
 
-			screens.Screens.Add(screen.Object);
-			screens.Screens.Add(gamescreen.Object);
+			screens.AddScreen(screen.Object);
+			screens.AddScreen(gamescreen.Object);
 
 			var time = new GameTime();
 			screens.Draw(new GameTime());
@@ -145,8 +145,8 @@ namespace MenuBuddy.Tests
 			menuScreen.Setup(x => x.CheckClick(It.IsAny<ClickEventArgs>())).Returns(false);
 
 			//add to the screen manager
-			screens.Screens.Add(bottomScreen.Object);
-			screens.Screens.Add(menuScreen.Object);
+			screens.AddScreen(bottomScreen.Object);
+			screens.AddScreen(menuScreen.Object);
 
 			//create the fake mouse handler
 			var mouseClicks = new List<ClickEventArgs>() { new ClickEventArgs(Vector2.Zero, MouseButton.Left, null) };
@@ -180,8 +180,8 @@ namespace MenuBuddy.Tests
 			menuScreen.Setup(x => x.CheckClick(It.IsAny<ClickEventArgs>())).Returns(false);
 
 			//add to the screen manager
-			screens.Screens.Add(bottomScreen.Object);
-			screens.Screens.Add(menuScreen.Object);
+			screens.AddScreen(bottomScreen.Object);
+			screens.AddScreen(menuScreen.Object);
 
 			//create the fake mouse handler
 			var mouseClicks = new List<ClickEventArgs>() { new ClickEventArgs(Vector2.Zero, MouseButton.Left, null) };
@@ -215,8 +215,8 @@ namespace MenuBuddy.Tests
 			menuScreen.Setup(x => x.CheckClick(It.IsAny<ClickEventArgs>())).Returns(false);
 
 			//add to the screen manager
-			screens.Screens.Add(bottomScreen.Object);
-			screens.Screens.Add(menuScreen.Object);
+			screens.AddScreen(bottomScreen.Object);
+			screens.AddScreen(menuScreen.Object);
 
 			//create the fake mouse handler
 			var mouseClicks = new List<ClickEventArgs>() { new ClickEventArgs(Vector2.Zero, MouseButton.Left, null) };
@@ -250,8 +250,8 @@ namespace MenuBuddy.Tests
 			menuScreen.Setup(x => x.CheckClick(It.IsAny<ClickEventArgs>())).Returns(false);
 
 			//add to the screen manager
-			screens.Screens.Add(bottomScreen.Object);
-			screens.Screens.Add(menuScreen.Object);
+			screens.AddScreen(bottomScreen.Object);
+			screens.AddScreen(menuScreen.Object);
 
 			//create the fake mouse handler
 			var mouseClicks = new List<ClickEventArgs>() { new ClickEventArgs(Vector2.Zero, MouseButton.Left, null) };
