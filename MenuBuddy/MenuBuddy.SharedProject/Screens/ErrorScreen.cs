@@ -43,6 +43,8 @@ namespace MenuBuddy
 		/// </summary>
 		public override void LoadContent()
 		{
+			base.LoadContent();
+
 			AddCancelButton();
 			_font = Content.Load<SpriteFont>(StyleSheet.SmallFontResource);
 		}
