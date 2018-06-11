@@ -364,7 +364,10 @@ namespace MenuBuddy
 
 		public void ShrinkToFit(int rowWidth)
 		{
-			Scale = Font.ShrinkToFit(Text, rowWidth);
+			if (Font.NeedsToShrink(Text, Scale, rowWidth))
+			{
+				Scale = Font.ShrinkToFit(Text, rowWidth);
+			}
 		}
 
 		public override void Dispose()
