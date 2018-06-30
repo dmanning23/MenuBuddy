@@ -71,17 +71,7 @@ namespace MenuBuddy
 			//Will that transition flag change the state of the thing?
 			if (StateChange(transitionOn))
 			{
-				//are we transitioning on or off?
-				var time = transitionOn ? OnTime : OffTime;
-
-				//Start the countdown timer
-				_transitionTimer.Start(time);
-
-				//fire off the event handler
-				if (OnStateChange != null)
-				{
-					OnStateChange(this, new EventArgs());
-				}
+				Restart(transitionOn);
 			}
 
 			_transitionTimer.Update(gameTime);
@@ -106,6 +96,21 @@ namespace MenuBuddy
 
 			// Otherwise we are still busy transitioning.
 			return true;
+		}
+
+		public void Restart(bool transitionOn)
+		{
+			//are we transitioning on or off?
+			var time = transitionOn ? OnTime : OffTime;
+
+			//Start the countdown timer
+			_transitionTimer.Start(time);
+
+			//fire off the event handler
+			if (OnStateChange != null)
+			{
+				OnStateChange(this, new EventArgs());
+			}
 		}
 
 		/// <summary>

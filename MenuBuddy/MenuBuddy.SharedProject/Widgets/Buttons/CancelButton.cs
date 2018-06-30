@@ -15,7 +15,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// The size of the icon to draw
 		/// </summary>
-		private int IconSize { get; set; }
+		public int? IconSize { get; set; }
 
 		private string IconTextureName { get; set; }
 
@@ -51,7 +51,18 @@ namespace MenuBuddy
 			AddItem(CancelIcon);
 
 			//set the size to the texture size
-			var size = new Vector2(CancelIcon.Texture.Bounds.Width, CancelIcon.Texture.Bounds.Height);
+			Vector2 size = Vector2.Zero;
+			if (IconSize.HasValue)
+			{
+				size = new Vector2(IconSize.Value);
+				CancelIcon.FillRect = true;
+				CancelIcon.Size = size;
+			}
+			else
+			{
+				size = new Vector2(CancelIcon.Texture.Bounds.Width, CancelIcon.Texture.Bounds.Height);
+			}
+
 			var relLayout = Layout as RelativeLayout;
 			relLayout.Size = size;
 			Size = size;

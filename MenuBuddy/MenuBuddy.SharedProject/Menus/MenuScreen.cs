@@ -142,6 +142,7 @@ namespace MenuBuddy
 				Layer = 2.0f,
 				Position = MenuTitlePosition
 			};
+			MenuTitle.ShrinkToFit(Resolution.TitleSafeArea.Width);
 			AddItem(MenuTitle);
 		}
 

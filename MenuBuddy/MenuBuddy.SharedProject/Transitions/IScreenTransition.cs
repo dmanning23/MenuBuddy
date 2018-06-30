@@ -20,6 +20,8 @@ namespace MenuBuddy
 
 		Color AlphaColor(Color color);
 
+		void Restart(bool transitionOn);
+
 		bool Update(GameClock gameTime, bool transitionOn);
 	}
 }

@@ -28,14 +28,17 @@ namespace MenuBuddy
 			}
 		}
 
+		public float Distance { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
 
-		public DirectionTransitionObject(Vector2 dir, IScreenTransition screenTransition = null) :
+		public DirectionTransitionObject(Vector2 dir, float distance, IScreenTransition screenTransition = null) :
 			base(screenTransition)
 		{
 			Direction = dir;
+			Distance = distance;
 			LeftOrRight = dir.X < 0;
 		}
 
@@ -45,7 +48,7 @@ namespace MenuBuddy
 		private Vector2 GetTargetPosition(Vector2 start)
 		{
 			//set teh target position
-			return start + Direction;
+			return start + (Direction * Distance);
 		}
 
 		public override Point Position(IScreen screen, Rectangle rect)
@@ -70,10 +73,10 @@ namespace MenuBuddy
 			{
 				//get the transition offset
 				var transitionOffset = (float)Math.Pow(screenTransition.TransitionPosition, 2.0);
-				return Vector2.Lerp(target, pos, transitionOffset);
+				return Vector2.Lerp(pos, target, transitionOffset);
 			}
 
-			return target;
+			return pos;
 		}
 
 		#endregion //Methods
