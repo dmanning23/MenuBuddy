@@ -465,7 +465,11 @@ namespace MenuBuddy
 		private void DragOperation(DragEventArgs drag)
 		{
 			//else add the delta to the scroll position
+#if ANDROID || __IOS
+			ScrollPosition = ScrollPosition - (drag.Delta * 0.125f);
+#else
 			ScrollPosition = ScrollPosition + drag.Delta;
+#endif
 			DrawScrollbars = true;
 		}
 
@@ -486,6 +490,6 @@ namespace MenuBuddy
 			}
 		}
 
-		#endregion //Methods
+#endregion //Methods
 	}
 }

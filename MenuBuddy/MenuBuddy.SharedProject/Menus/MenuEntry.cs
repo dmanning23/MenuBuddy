@@ -145,7 +145,7 @@ namespace MenuBuddy
 
 			Label = new Label(Text, content)
 			{
-				Vertical = VerticalAlignment.Top,
+				Vertical = VerticalAlignment.Center,
 				Horizontal = HorizontalAlignment.Center
 			};
 		}
@@ -161,7 +161,7 @@ namespace MenuBuddy
 
 			Label = new Label(Text, font, highlightedFont)
 			{
-				Vertical = VerticalAlignment.Top,
+				Vertical = VerticalAlignment.Center,
 				Horizontal = HorizontalAlignment.Center
 			};
 		}
@@ -182,11 +182,11 @@ namespace MenuBuddy
 
 		public override void LoadContent(IScreen screen)
 		{
-			//get the label rect
-			var labelRect = Label.Rect;
-			Size = new Vector2(Resolution.ScreenArea.Width * 0.7f, labelRect.Size.Y * 1.15f);
+			//get the label height from the font being used
+			var labelHeight = Label.Font.Font.LineSpacing;
+			Size = new Vector2(Resolution.ScreenArea.Width * 0.7f, labelHeight * 1.15f);
 
-			AddItem(new Shim(this.Size.X, labelRect.Size.Y)
+			AddItem(new Shim(Size.X, labelHeight)
 			{
 				Horizontal = HorizontalAlignment.Center,
 				Vertical = VerticalAlignment.Center,
