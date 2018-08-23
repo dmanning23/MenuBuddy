@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ResolutionBuddy;
 
@@ -53,7 +54,10 @@ namespace MenuBuddy
 
 		protected DefaultGame(GameType gameType)
 		{
-			Graphics = new GraphicsDeviceManager(this);
+			Graphics = new GraphicsDeviceManager(this)
+			{
+				GraphicsProfile = GraphicsProfile.HiDef
+			};
 			Graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
 			ContentRootDirectory = "Content";
 
