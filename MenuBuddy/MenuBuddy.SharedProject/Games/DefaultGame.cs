@@ -1,3 +1,4 @@
+using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,6 +13,8 @@ namespace MenuBuddy
 	public abstract class DefaultGame : Game
 	{
 		#region Properties
+
+		public IInputHelper InputHelper { get; protected set; }
 
 		/// <summary>
 		/// The graphics device used by this game

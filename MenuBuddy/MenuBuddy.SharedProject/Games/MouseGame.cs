@@ -15,7 +15,7 @@ namespace MenuBuddy
 
 		protected override void InitInput()
 		{
-			var mouse = new MouseComponent(this, ResolutionBuddy.Resolution.ScreenToGameCoord);
+			InputHelper = new MouseComponent(this, ResolutionBuddy.Resolution.ScreenToGameCoord);
 
 			//add the input helper for menus
 			var input = new MouseInputHandler(this);

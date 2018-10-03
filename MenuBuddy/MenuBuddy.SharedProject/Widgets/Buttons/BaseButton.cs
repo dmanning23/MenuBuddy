@@ -24,7 +24,7 @@ namespace MenuBuddy
 
 		private CountdownTimer _clickTimer;
 
-		private const float _clickCountdownTime = 0.2f;
+		public float ClickTimeDelta { get; set; } = 0.2f;
 
 		private ILayout _layout;
 
@@ -180,7 +180,7 @@ namespace MenuBuddy
 
 			OnClick += ((obj, e) =>
 			{
-				_clickTimer.Start(_clickCountdownTime);
+				_clickTimer.Start(ClickTimeDelta);
 			});
 
 			OnHighlight += PlayHighlightSound;

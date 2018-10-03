@@ -77,6 +77,8 @@ namespace MenuBuddy
 
 		public static TransitionWipeType DefaultTransition { get; set; }
 
+		public static int? CancelButtonSize { get; set; }
+
 		#endregion //Options
 
 		#region Methods
@@ -111,7 +113,9 @@ namespace MenuBuddy
 			LoadingScreenHourglassImageResource = @"hourglass";
 			HasOutline = true;
 			DefaultTransition = TransitionWipeType.SlideLeft;
-		}
+
+			CancelButtonSize = null;
+	}
 
 		#endregion //Methods
 	}

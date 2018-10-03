@@ -17,6 +17,8 @@ namespace MenuBuddy
 	{
 		#region Properties
 
+		public DefaultGame DefaultGame => Game as DefaultGame;
+
 		public ScreenStack ScreenStack
 		{
 			get; set;

@@ -16,7 +16,7 @@ namespace MenuBuddy
 		protected override void InitInput()
 		{
 			//create the touch manager component
-			var touches = new TouchComponent(this, ResolutionBuddy.Resolution.ScreenToGameCoord);
+			InputHelper = new TouchComponent(this, ResolutionBuddy.Resolution.ScreenToGameCoord);
 
 			//add the input helper for menus
 			var input = new TouchInputHelper(this);

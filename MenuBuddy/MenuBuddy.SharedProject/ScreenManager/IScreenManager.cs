@@ -15,6 +15,8 @@ namespace MenuBuddy
 	{
 		#region Properties
 
+		DefaultGame DefaultGame { get; }
+
 		/// <summary>
 		/// the input helper being used in this game
 		/// </summary>

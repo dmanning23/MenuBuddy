@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Games\MouseGame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Games\TouchGame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\BaseInputHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\ControllerInputHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\ControllerInputHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\IInputHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\MouseInputHandler.cs" />

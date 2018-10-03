@@ -110,7 +110,7 @@ namespace MenuBuddy
 			if (Left != null)
 			{
 				//play menu noise
-				PlayHighlightSound(this, new HighlightEventArgs());
+				PlayHighlightSound(this, new HighlightEventArgs(null));
 
 				Left(this, new EventArgs());
 			}
@@ -124,7 +124,7 @@ namespace MenuBuddy
 			if (Right != null)
 			{
 				//play menu noise
-				PlayHighlightSound(this, new HighlightEventArgs());
+				PlayHighlightSound(this, new HighlightEventArgs(null));
 
 				Right(this, new EventArgs());
 			}

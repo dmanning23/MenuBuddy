@@ -12,11 +12,6 @@ namespace MenuBuddy
 	{
 		#region Properties
 
-		/// <summary>
-		/// The size of the icon to draw
-		/// </summary>
-		public int? IconSize { get; set; }
-
 		private string IconTextureName { get; set; }
 
 		public Image CancelIcon { get; private set; }
@@ -52,9 +47,9 @@ namespace MenuBuddy
 
 			//set the size to the texture size
 			Vector2 size = Vector2.Zero;
-			if (IconSize.HasValue)
+			if (StyleSheet.CancelButtonSize.HasValue)
 			{
-				size = new Vector2(IconSize.Value);
+				size = new Vector2(StyleSheet.CancelButtonSize.Value);
 				CancelIcon.FillRect = true;
 				CancelIcon.Size = size;
 			}

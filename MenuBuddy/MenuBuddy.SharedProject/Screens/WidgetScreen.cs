@@ -165,12 +165,9 @@ namespace MenuBuddy
 		/// <summary>
 		/// This method adds a continue button to the menu and attachs it to OnCancel
 		/// </summary>
-		protected CancelButton AddCancelButton(int? iconSize = null)
+		protected CancelButton AddCancelButton()
 		{
-			var cancelButton = new CancelButton()
-			{
-				IconSize = iconSize
-			};
+			var cancelButton = new CancelButton();
 			cancelButton.OnClick += ((obj, e) => {
 				ExitScreen();
 			});

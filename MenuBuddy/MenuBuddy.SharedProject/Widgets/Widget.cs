@@ -277,14 +277,23 @@ namespace MenuBuddy
 				var prev = IsHighlighted;
 
 				//Check if this dude should be highlighted
-				IsHighlighted = Rect.Contains(highlight.Position);
+				var currentHighlight = Rect.Contains(highlight.Position);
 
-				//Do we need to run the highlight event?
-				if (IsHighlighted &&
-					!prev &&
-					null != OnHighlight)
+				if (!prev && currentHighlight)
 				{
-					OnHighlight(this, highlight);
+					//This is a new highlight
+					IsHighlighted = true;
+
+					//Do we need to run the highlight event?
+					if (null != OnHighlight)
+					{
+						OnHighlight(this, highlight);
+					}
+				}
+				else if (prev && !currentHighlight)
+				{
+					//Check if this thing is still highlighted
+					IsHighlighted = highlight.InputHelper.Highlights.Exists(x => Rect.Contains(x.Position));
 				}
 			}
 

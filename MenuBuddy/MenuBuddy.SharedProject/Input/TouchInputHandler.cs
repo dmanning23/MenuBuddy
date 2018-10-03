@@ -62,6 +62,8 @@ namespace MenuBuddy
 
 		public override void HandleInput(IScreen screen)
 		{
+			base.HandleInput(screen);
+
 			//check highlights
 			var highlightScreen = screen as IHighlightable;
 			if (null != highlightScreen)
@@ -69,24 +71,26 @@ namespace MenuBuddy
 				//Usually there won't be a highlight in the touchinput
 				if (0 == InputHelper.Highlights.Count)
 				{
-					InputHelper.Highlights.Add(new HighlightEventArgs()
-					{
-						Position = new Vector2(float.NaN, float.NaN)
-					});
+					InputHelper.Highlights.Add(new HighlightEventArgs(new Vector2(float.NaN, float.NaN), InputHelper));
 				}
 
-				int i = 0;
-				while (i < InputHelper.Highlights.Count)
+				for (var i = 0; i < InputHelper.Highlights.Count; i++)
 				{
-					if (highlightScreen.CheckHighlight(InputHelper.Highlights[i]))
-					{
-						InputHelper.Highlights.RemoveAt(i);
-					}
-					else
-					{
-						i++;
-					}
+					highlightScreen.CheckHighlight(InputHelper.Highlights[i]);
 				}
+
+				//int i = 0;
+				//while (i < InputHelper.Highlights.Count)
+				//{
+				//	if (highlightScreen.CheckHighlight(InputHelper.Highlights[i]))
+				//	{
+				//		InputHelper.Highlights.RemoveAt(i);
+				//	}
+				//	else
+				//	{
+				//		i++;
+				//	}
+				//}
 			}
 
 			//check clicks

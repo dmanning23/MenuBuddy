@@ -345,10 +345,8 @@ namespace MenuBuddy
 			var entries = MenuEntries.Items.OfType<IMenuEntry>().ToList();
 			for (int i = 0; i < entries.Count; i++)
 			{
-				entries[i].CheckHighlight(new HighlightEventArgs()
-				{
-					Position = SelectedEntry.Position.ToVector2()
-				});
+				entries[i].CheckHighlight(
+					new HighlightEventArgs(SelectedEntry.Position.ToVector2(), ScreenManager.DefaultGame.InputHelper));
 			}
 		}
 
