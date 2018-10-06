@@ -255,8 +255,9 @@ namespace MenuBuddy
 			return result;
 		}
 
-		public override void Update(IScreen screen, GameTimer.GameClock gameTime)
+		public override void Update(IScreen screen, GameClock gameTime)
 		{
+			base.Update(screen, gameTime);
 			_clickTimer.Update(gameTime);
 			Layout.Update(screen, gameTime);
 			Layout.IsClicked = IsClicked;
@@ -269,7 +270,7 @@ namespace MenuBuddy
 			Layout.DrawBackground(screen, gameTime);
 		}
 
-		public override void Draw(IScreen screen, GameTimer.GameClock gameTime)
+		public override void Draw(IScreen screen, GameClock gameTime)
 		{
 			Layout.Draw(screen, gameTime);
 		}

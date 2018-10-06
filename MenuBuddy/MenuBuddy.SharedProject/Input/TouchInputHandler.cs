@@ -78,19 +78,6 @@ namespace MenuBuddy
 				{
 					highlightScreen.CheckHighlight(InputHelper.Highlights[i]);
 				}
-
-				//int i = 0;
-				//while (i < InputHelper.Highlights.Count)
-				//{
-				//	if (highlightScreen.CheckHighlight(InputHelper.Highlights[i]))
-				//	{
-				//		InputHelper.Highlights.RemoveAt(i);
-				//	}
-				//	else
-				//	{
-				//		i++;
-				//	}
-				//}
 			}
 
 			//check clicks

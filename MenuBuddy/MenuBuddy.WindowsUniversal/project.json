@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
     "FilenameBuddy": "1.0.12",
-    "FontBuddy": "1.0.30",
+    "FontBuddy": "1.0.32",
     "GameTimer": "1.0.8",
     "HadoukInput": "1.0.12",
     "InputHelper": "1.0.25",
@@ -13,7 +13,7 @@
     "RandomExtensions.dmanning23": "1.0.6",
     "ResolutionBuddy": "1.0.17",
     "StateMachineBuddy": "1.0.12",
-    "TouchScreenBuddy": "1.0.11",
+    "TouchScreenBuddy": "1.0.12",
     "Vector2Extensions": "1.0.13",
     "XmlBuddy": "1.0.20"
   },

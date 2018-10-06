@@ -30,14 +30,14 @@ namespace MenuBuddy
 		/// </summary>
 		private bool _highlight = false;
 
+		#endregion //Fields
+
+		#region Properties
+
 		public GameClock HighlightClock
 		{
 			get; protected set;
 		}
-
-		#endregion //Fields
-
-		#region Properties
 
 		public virtual bool IsHighlighted
 		{
@@ -162,6 +162,16 @@ namespace MenuBuddy
 
 		protected Background Background { get; set; }
 
+		private bool _prevTapHeld;
+
+		public bool WasTapped { get; private set; }
+
+		public bool IsTapHeld { get; private set; }
+
+		public bool IsTappable { get; set; }
+
+		protected IInputHelper InputHelper { get; set; }
+
 		#endregion //Properties
 
 		#region Initialization
@@ -179,6 +189,8 @@ namespace MenuBuddy
 			HighlightClock = new GameClock();
 			TransitionObject = new WipeTransitionObject(StyleSheet.DefaultTransition);
 			Background = new Background();
+			IsTappable = false;
+			_prevTapHeld = false;
 		}
 
 		protected Widget(Widget inst)
@@ -196,6 +208,7 @@ namespace MenuBuddy
 			HasOutline = inst.HasOutline;
 			TransitionObject = inst.TransitionObject;
 			Background = inst.Background;
+			IsTappable = inst.IsTappable;
 		}
 
 		/// <summary>
@@ -215,6 +228,8 @@ namespace MenuBuddy
 		public virtual void LoadContent(IScreen screen)
 		{
 			Background.LoadContent(screen);
+
+			InputHelper = screen.ScreenManager.Game.Services.GetService<IInputHelper>();
 		}
 
 		public virtual void UnloadContent()
@@ -229,6 +244,13 @@ namespace MenuBuddy
 		public virtual void Update(IScreen screen, GameClock gameTime)
 		{
 			HighlightClock.Update(gameTime);
+
+			if (IsTappable)
+			{
+				IsTapHeld = InputHelper.Highlights.Exists(x => Rect.Contains(x.Position));
+				WasTapped = !_prevTapHeld && IsTapHeld;
+				_prevTapHeld = IsTapHeld;
+			}
 		}
 
 		/// <summary>

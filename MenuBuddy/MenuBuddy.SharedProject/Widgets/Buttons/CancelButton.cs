@@ -16,6 +16,8 @@ namespace MenuBuddy
 
 		public Image CancelIcon { get; private set; }
 
+		private int? CustomSize;
+
 		#endregion //Properties
 
 		#region Methods
@@ -23,6 +25,11 @@ namespace MenuBuddy
 		public CancelButton(string iconTextureName = "")
 		{
 			IconTextureName = !string.IsNullOrEmpty(iconTextureName) ? iconTextureName : StyleSheet.CancelButtonImageResource;
+		}
+
+		public CancelButton(int? customSize) : this()
+		{
+			CustomSize = customSize;
 		}
 
 		public override void LoadContent(IScreen screen)
@@ -47,7 +54,13 @@ namespace MenuBuddy
 
 			//set the size to the texture size
 			Vector2 size = Vector2.Zero;
-			if (StyleSheet.CancelButtonSize.HasValue)
+			if (CustomSize.HasValue)
+			{
+				size = new Vector2(CustomSize.Value);
+				CancelIcon.FillRect = true;
+				CancelIcon.Size = size;
+			}
+			else if (StyleSheet.CancelButtonSize.HasValue)
 			{
 				size = new Vector2(StyleSheet.CancelButtonSize.Value);
 				CancelIcon.FillRect = true;

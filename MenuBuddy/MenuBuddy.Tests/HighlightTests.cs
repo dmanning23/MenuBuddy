@@ -1,4 +1,5 @@
-﻿using InputHelper;
+﻿using GameTimer;
+using InputHelper;
 using Microsoft.Xna.Framework;
 using Moq;
 using NUnit.Framework;
@@ -12,6 +13,14 @@ using TouchScreenBuddy;
 
 namespace MenuBuddy.Tests
 {
+	public class TestRelativeLayoutButton : RelativeLayoutButton
+	{
+		public void SetInputHelper(IInputHelper helper)
+		{
+			InputHelper = helper;
+		}
+	}
+
 	[TestFixture]
 	public class HighlightTests
 	{
@@ -20,8 +29,8 @@ namespace MenuBuddy.Tests
 		private List<HighlightEventArgs> _highlights;
 		private IInputHelper _input;
 		private AbsoluteLayout _layout;
-		private RelativeLayoutButton _button1;
-		private RelativeLayoutButton _button2;
+		private TestRelativeLayoutButton _button1;
+		private TestRelativeLayoutButton _button2;
 
 		#endregion //Fields
 
@@ -43,22 +52,24 @@ namespace MenuBuddy.Tests
 				Position = new Point(0,0),
 			};
 
-			_button1 = new RelativeLayoutButton()
+			_button1 = new TestRelativeLayoutButton()
 			{
 				Horizontal = HorizontalAlignment.Left,
 				Vertical = VerticalAlignment.Top,
 				Size = new Vector2(20, 10),
 				Position = new Point(0, 0),
 			};
+			_button1.SetInputHelper(_input);
 			_layout.AddItem(_button1);
 
-			_button2 = new RelativeLayoutButton()
+			_button2 = new TestRelativeLayoutButton()
 			{
 				Horizontal = HorizontalAlignment.Left,
 				Vertical = VerticalAlignment.Top,
 				Size = new Vector2(20, 10),
 				Position = new Point(20, 0),
 			};
+			_button2.SetInputHelper(_input);
 			_layout.AddItem(_button2);
 		}
 
@@ -109,6 +120,52 @@ namespace MenuBuddy.Tests
 
 			_button1.IsHighlighted.ShouldBe(false);
 			_button2.IsHighlighted.ShouldBe(true);
+		}
+
+		[Test]
+		public void Button1_NotTapped()
+		{
+			_button1.IsTappable = true;
+
+			_button1.Update(null, new GameClock());
+
+			_button1.WasTapped.ShouldBe(false);
+		}
+
+		[Test]
+		public void Button1_WasTapped()
+		{
+			_button1.IsTappable = true;
+
+			var highlight1 = new HighlightEventArgs(new Vector2(10, 5), _input);
+			_input.Highlights.Add(highlight1);
+
+			_button1.Update(null, new GameClock());
+
+			_button1.WasTapped.ShouldBe(true);
+		}
+
+		[Test]
+		public void Button1_NotHeld()
+		{
+			_button1.IsTappable = true;
+
+			_button1.Update(null, new GameClock());
+
+			_button1.IsTapHeld.ShouldBe(false);
+		}
+
+		[Test]
+		public void Button1_IsHeld()
+		{
+			_button1.IsTappable = true;
+
+			var highlight1 = new HighlightEventArgs(new Vector2(10, 5), _input);
+			_input.Highlights.Add(highlight1);
+
+			_button1.Update(null, new GameClock());
+
+			_button1.IsTapHeld.ShouldBe(true);
 		}
 
 		#endregion Tests
