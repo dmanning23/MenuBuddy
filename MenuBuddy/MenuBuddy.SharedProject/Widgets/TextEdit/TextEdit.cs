@@ -90,7 +90,6 @@ namespace MenuBuddy
 			{
 				return base.Horizontal;
 			}
-
 			set
 			{
 				base.Horizontal = value;
@@ -107,13 +106,27 @@ namespace MenuBuddy
 			{
 				return base.Vertical;
 			}
-
 			set
 			{
 				base.Vertical = value;
 				if (null != TextLabel)
 				{
 					TextLabel.Vertical = value;
+				}
+			}
+		}
+
+		public IFontBuddy Font
+		{
+			get
+			{
+				return TextLabel.Font;
+			}
+			set
+			{
+				if (null != TextLabel)
+				{
+					TextLabel.Font = value;
 				}
 			}
 		}

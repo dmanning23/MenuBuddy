@@ -168,9 +168,6 @@ namespace MenuBuddy
 		protected CancelButton AddCancelButton(int? customSize = null)
 		{
 			var cancelButton = new CancelButton(customSize);
-			cancelButton.OnClick += ((obj, e) => {
-				ExitScreen();
-			});
 			AddItem(cancelButton);
 			return cancelButton;
 		}

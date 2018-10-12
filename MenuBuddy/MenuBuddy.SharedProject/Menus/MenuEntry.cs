@@ -55,7 +55,6 @@ namespace MenuBuddy
 			{
 				return Label.ShadowColor;
 			}
-
 			set
 			{
 				Label.ShadowColor = value;
@@ -68,10 +67,21 @@ namespace MenuBuddy
 			{
 				return Label.TextColor;
 			}
-
 			set
 			{
 				Label.TextColor = value;
+			}
+		}
+
+		public IFontBuddy Font
+		{
+			get
+			{
+				return Label.Font;
+			}
+			set
+			{
+				Label.Font = value;
 			}
 		}
 
@@ -192,7 +202,7 @@ namespace MenuBuddy
 				Vertical = VerticalAlignment.Center,
 				HasBackground = true,
 			});
-			
+
 			AddItem(Label);
 
 			base.LoadContent(screen);

@@ -1,5 +1,4 @@
 using InputHelper;
-using Microsoft.Xna.Framework;
 
 namespace MenuBuddy
 {
@@ -12,5 +11,5 @@ namespace MenuBuddy
 		bool IsTappable { get; }
 		bool WasTapped { get; }
 		bool IsTapHeld { get; }
-}
+	}
 }
