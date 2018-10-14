@@ -97,7 +97,7 @@ namespace MenuBuddy
 				Texture2D hourglassTex = null;
 				try
 				{
-					hourglassTex = ScreenManager.Game.Content.Load<Texture2D>(StyleSheet.LoadingScreenHourglassImageResource);
+					hourglassTex = Content.Load<Texture2D>(StyleSheet.LoadingScreenHourglassImageResource);
 				}
 				catch (Exception)
 				{
