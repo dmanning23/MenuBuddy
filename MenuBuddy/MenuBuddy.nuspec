@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>MenuBuddy</id>
-		<version>1.0.165</version>
+		<version>2.0.0</version>
 		<title>MenuBuddy</title>
 		<authors>dmanning23</authors>
 		<owners>dmanning23</owners>
@@ -12,83 +12,83 @@
 		<description>MonoGame library for menus and game state management</description>
 		<releaseNotes />
 		<copyright>Copyright 2016</copyright>
-		<tags>pcl, windows phone, winphone, android, ios, windows universal, monogame</tags>
+		<tags>android, ios, windows universal, monogame, xamarin</tags>
 		<dependencies>
 
 			<!--Xamarin.Android-->
 			<group targetFramework="MonoAndroid10">
-				<dependency id="MonoGame.Framework.Android" version="3.6"/>
-				<dependency id="FilenameBuddy" version="1.0"/>
-				<dependency id="InputHelper" version="1.0.1"/>
-				<dependency id="StateMachineBuddy" version="1.0"/>
-				<dependency id="FontBuddy" version="1.0.8"/>
-				<dependency id="GameTimer" version="1.0"/>
-				<dependency id="HadoukInput" version="1.0"/>
-				<dependency id="MatrixExtensions" version="1.0"/>
-				<dependency id="MouseBuddy" version="1.0"/>
-				<dependency id="PrimitiveBuddy" version="1.0"/>
-				<dependency id="RandomExtensions.dmanning23" version="1.0"/>
-				<dependency id="ResolutionBuddy" version="1.0"/>
-				<dependency id="TouchScreenBuddy" version="1.0"/>
-				<dependency id="Vector2Extensions" version="1.0.1"/>
-				<dependency id="XmlBuddy" version="1.0"/>
+				<dependency id="MonoGame.Framework.Android" version="3.7"/>
+				<dependency id="FilenameBuddy" version="2.0"/>
+				<dependency id="InputHelper" version="2.0"/>
+				<dependency id="StateMachineBuddy" version="2.0"/>
+				<dependency id="FontBuddy" version="2.0"/>
+				<dependency id="GameTimer" version="2.0"/>
+				<dependency id="HadoukInput" version="2.0"/>
+				<dependency id="MatrixExtensions" version="2.0"/>
+				<dependency id="MouseBuddy" version="2.0"/>
+				<dependency id="PrimitiveBuddy" version="2.0"/>
+				<dependency id="RandomExtensions.dmanning23" version="2.0"/>
+				<dependency id="ResolutionBuddy" version="2.0"/>
+				<dependency id="TouchScreenBuddy" version="2.0"/>
+				<dependency id="Vector2Extensions" version="2.0"/>
+				<dependency id="XmlBuddy" version="2.0"/>
 			</group>
 
 			<!--Xamarin.iOS Unified-->
 			<group targetFramework="Xamarin.iOS10">
-				<dependency id="MonoGame.Framework.iOS" version="3.6"/>
-				<dependency id="FilenameBuddy" version="1.0"/>
-				<dependency id="InputHelper" version="1.0.1"/>
-				<dependency id="StateMachineBuddy" version="1.0"/>
-				<dependency id="FontBuddy" version="1.0.8"/>
-				<dependency id="GameTimer" version="1.0"/>
-				<dependency id="HadoukInput" version="1.0"/>
-				<dependency id="MatrixExtensions" version="1.0"/>
-				<dependency id="MouseBuddy" version="1.0"/>
-				<dependency id="PrimitiveBuddy" version="1.0"/>
-				<dependency id="RandomExtensions.dmanning23" version="1.0"/>
-				<dependency id="ResolutionBuddy" version="1.0"/>
-				<dependency id="TouchScreenBuddy" version="1.0"/>
-				<dependency id="Vector2Extensions" version="1.0.1"/>
-				<dependency id="XmlBuddy" version="1.0"/>
+				<dependency id="MonoGame.Framework.iOS" version="3.7"/>
+				<dependency id="FilenameBuddy" version="2.0"/>
+				<dependency id="InputHelper" version="2.0"/>
+				<dependency id="StateMachineBuddy" version="2.0"/>
+				<dependency id="FontBuddy" version="2.0"/>
+				<dependency id="GameTimer" version="2.0"/>
+				<dependency id="HadoukInput" version="2.0"/>
+				<dependency id="MatrixExtensions" version="2.0"/>
+				<dependency id="MouseBuddy" version="2.0"/>
+				<dependency id="PrimitiveBuddy" version="2.0"/>
+				<dependency id="RandomExtensions.dmanning23" version="2.0"/>
+				<dependency id="ResolutionBuddy" version="2.0"/>
+				<dependency id="TouchScreenBuddy" version="2.0"/>
+				<dependency id="Vector2Extensions" version="2.0"/>
+				<dependency id="XmlBuddy" version="2.0"/>
 			</group>
 
 			<!--Win Universal-->
 			<group targetFramework="uap10.0">
-				<dependency id="MonoGame.Framework.WindowsUniversal" version="3.6"/>
-				<dependency id="Microsoft.NETCore.UniversalWindowsPlatform" version="5.1"/>
-				<dependency id="FilenameBuddy" version="1.0"/>
-				<dependency id="InputHelper" version="1.0.1"/>
-				<dependency id="StateMachineBuddy" version="1.0"/>
-				<dependency id="FontBuddy" version="1.0.8"/>
-				<dependency id="GameTimer" version="1.0"/>
-				<dependency id="HadoukInput" version="1.0"/>
-				<dependency id="MatrixExtensions" version="1.0"/>
-				<dependency id="MouseBuddy" version="1.0"/>
-				<dependency id="PrimitiveBuddy" version="1.0"/>
-				<dependency id="RandomExtensions.dmanning23" version="1.0"/>
-				<dependency id="ResolutionBuddy" version="1.0"/>
-				<dependency id="TouchScreenBuddy" version="1.0"/>
-				<dependency id="Vector2Extensions" version="1.0.1"/>
-				<dependency id="XmlBuddy" version="1.0"/>
+				<dependency id="MonoGame.Framework.WindowsUniversal" version="3.7"/>
+				<dependency id="Microsoft.NETCore.UniversalWindowsPlatform" version="6.1"/>
+				<dependency id="FilenameBuddy" version="2.0"/>
+				<dependency id="InputHelper" version="2.0"/>
+				<dependency id="StateMachineBuddy" version="2.0"/>
+				<dependency id="FontBuddy" version="2.0"/>
+				<dependency id="GameTimer" version="2.0"/>
+				<dependency id="HadoukInput" version="2.0"/>
+				<dependency id="MatrixExtensions" version="2.0"/>
+				<dependency id="MouseBuddy" version="2.0"/>
+				<dependency id="PrimitiveBuddy" version="2.0"/>
+				<dependency id="RandomExtensions.dmanning23" version="2.0"/>
+				<dependency id="ResolutionBuddy" version="2.0"/>
+				<dependency id="TouchScreenBuddy" version="2.0"/>
+				<dependency id="Vector2Extensions" version="2.0"/>
+				<dependency id="XmlBuddy" version="2.0"/>
 			</group>
 
 			<group targetFramework="net451">
-				<dependency id="MonoGame.Framework.WindowsDX" version="3.6"/>
-				<dependency id="FilenameBuddy" version="1.0"/>
-				<dependency id="InputHelper" version="1.0.1"/>
-				<dependency id="StateMachineBuddy" version="1.0"/>
-				<dependency id="FontBuddy" version="1.0.8"/>
-				<dependency id="GameTimer" version="1.0"/>
-				<dependency id="HadoukInput" version="1.0"/>
-				<dependency id="MatrixExtensions" version="1.0"/>
-				<dependency id="MouseBuddy" version="1.0"/>
-				<dependency id="PrimitiveBuddy" version="1.0"/>
-				<dependency id="RandomExtensions.dmanning23" version="1.0"/>
-				<dependency id="ResolutionBuddy" version="1.0"/>
-				<dependency id="TouchScreenBuddy" version="1.0"/>
-				<dependency id="Vector2Extensions" version="1.0.1"/>
-				<dependency id="XmlBuddy" version="1.0"/>
+				<dependency id="MonoGame.Framework.WindowsDX" version="3.7"/>
+				<dependency id="FilenameBuddy" version="2.0"/>
+				<dependency id="InputHelper" version="2.0"/>
+				<dependency id="StateMachineBuddy" version="2.0"/>
+				<dependency id="FontBuddy" version="2.0"/>
+				<dependency id="GameTimer" version="2.0"/>
+				<dependency id="HadoukInput" version="2.0"/>
+				<dependency id="MatrixExtensions" version="2.0"/>
+				<dependency id="MouseBuddy" version="2.0"/>
+				<dependency id="PrimitiveBuddy" version="2.0"/>
+				<dependency id="RandomExtensions.dmanning23" version="2.0"/>
+				<dependency id="ResolutionBuddy" version="2.0"/>
+				<dependency id="TouchScreenBuddy" version="2.0"/>
+				<dependency id="Vector2Extensions" version="2.0"/>
+				<dependency id="XmlBuddy" version="2.0"/>
 			</group>
 
 		</dependencies>
