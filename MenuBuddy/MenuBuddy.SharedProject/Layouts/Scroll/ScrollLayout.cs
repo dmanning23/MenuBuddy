@@ -158,6 +158,8 @@ namespace MenuBuddy
 
 		public override ITransitionObject TransitionObject { get; set; }
 
+		private RenderTargetBinding[] prevRenderTargets;
+
 		#endregion //Properties
 
 		#region Initialization
@@ -261,6 +263,7 @@ namespace MenuBuddy
 				var curRenderTarget = screenManager.GraphicsDevice.GetRenderTargets();
 
 				//set the rendertarget
+				prevRenderTargets = screenManager.GraphicsDevice.GetRenderTargets();
 				screenManager.GraphicsDevice.SetRenderTarget(_renderTarget);
 
 				if (clear)
@@ -283,7 +286,7 @@ namespace MenuBuddy
 				Horizontal = curHor;
 
 				//set the render target back
-				screenManager.GraphicsDevice.SetRenderTarget(null);
+				screenManager.GraphicsDevice.SetRenderTargets(prevRenderTargets);
 
 				Resolution.ResetViewport();
 
@@ -466,7 +469,7 @@ namespace MenuBuddy
 		{
 			//else add the delta to the scroll position
 #if ANDROID || __IOS
-			ScrollPosition = ScrollPosition - (drag.Delta * 0.125f);
+			ScrollPosition = ScrollPosition - (drag.Delta * 0.5f);
 #else
 			ScrollPosition = ScrollPosition + drag.Delta;
 #endif
@@ -490,6 +493,6 @@ namespace MenuBuddy
 			}
 		}
 
-#endregion //Methods
+		#endregion //Methods
 	}
 }

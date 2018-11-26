@@ -50,6 +50,8 @@ namespace MenuBuddy
 		/// </summary>
 		bool IsActive { get; }
 
+		bool HasFocus { get; }
+
 		bool IsExiting { get; }
 
 		/// <summary>

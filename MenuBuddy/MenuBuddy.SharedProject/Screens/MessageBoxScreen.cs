@@ -31,6 +31,10 @@ namespace MenuBuddy
 
 		public string CancelText { get; set; }
 
+		public bool HasBackground { get; set; }
+
+		public bool ExitOnOk { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
@@ -42,9 +46,12 @@ namespace MenuBuddy
 		public MessageBoxScreen(string message, string menuTitle = "", ContentManager content = null) :
 			base(menuTitle, content)
 		{
+			ExitOnOk = true;
+
 			//grab the message
 			Message = message;
 
+			HasBackground = true;
 			CoverOtherScreens = true;
 
 			Transition.OnTime = 0.2f;
@@ -63,6 +70,14 @@ namespace MenuBuddy
 		public override void LoadContent()
 		{
 			base.LoadContent();
+
+			var screenLayout = new RelativeLayout()
+			{
+				Size = new Vector2(Resolution.ScreenArea.Width, Resolution.ScreenArea.Height),
+				Position = new Point(0),
+				Horizontal = HorizontalAlignment.Left, 
+				Vertical = VerticalAlignment.Top,
+			};
 
 			//Create the stack for the label text
 			var labelStack = new StackLayout()
@@ -112,12 +127,22 @@ namespace MenuBuddy
 			AddButtons(labelStack);
 
 			//Set the position of the labelstack
-			labelStack.Position = new Point(Resolution.TitleSafeArea.Center.X,
-				Resolution.TitleSafeArea.Center.Y - (int)(labelStack.Rect.Height * .75f));
+			labelStack.Position = new Point(labelStack.Rect.Width / 2, 0);
+			var absScreenLayout = new AbsoluteLayout()
+			{
+				Horizontal = HorizontalAlignment.Center,
+				Vertical = VerticalAlignment.Center,
+				Size = new Vector2(labelStack.Rect.Width, labelStack.Rect.Height),
+			};
+			absScreenLayout.AddItem(labelStack);
 
-			AddItem(labelStack);
+			screenLayout.AddItem(absScreenLayout);
+			AddItem(screenLayout);
 
-			AddBackgroundImage(labelStack);
+			if (HasBackground)
+			{
+				AddBackgroundImage(labelStack);
+			}
 		}
 
 		/// <summary>
@@ -170,7 +195,10 @@ namespace MenuBuddy
 						OnSelect(obj, e);
 					}
 
-					ExitScreen();
+					if (ExitOnOk)
+					{
+						ExitScreen();
+					}
 				}
 			});
 
