@@ -24,6 +24,7 @@ namespace MenuBuddy
 
 		public CancelButton(string iconTextureName = "")
 		{
+			ClickedSound = StyleSheet.CancelButtonSoundResource;
 			IconTextureName = !string.IsNullOrEmpty(iconTextureName) ? iconTextureName : StyleSheet.CancelButtonImageResource;
 		}
 

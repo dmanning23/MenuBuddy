@@ -57,6 +57,8 @@ namespace MenuBuddy
 
 		public static string CancelButtonImageResource { get; set; }
 
+		public static string CancelButtonSoundResource { get; set; }
+
 		public static bool CancelButtonHasOutline { get; set; }
 
 		public static Point CancelButtonOffset { get; set; }
@@ -105,6 +107,7 @@ namespace MenuBuddy
 			CancelButtonImageResource = @"Cancel";
 			CancelButtonHasOutline = true;
 			CancelButtonOffset = new Point(-64, 0);
+			CancelButtonSoundResource = ClickedSoundResource;
 			TreeExpandImageResource = @"Expand";
 			TreeCollapseImageResource = @"Collapse";
 			DropdownImageResource = @"Collapse";

@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System;
@@ -32,19 +33,21 @@ namespace MenuBuddy
 
 		BackgroundWorker _backgroundThread;
 
+		private string LoadSoundEffect { get; set; }
+
 		#endregion
 
 		#region Initialization
 
 		/// <summary>
-		/// The constructor is private: loading screens should
-		/// be activated via the static Load method instead.
+		/// The constructor is private: loading screens should be activated via the static Load method instead.
 		/// </summary>
-		private LoadingScreen(bool loadingIsSlow, IScreen[] screensToLoad)
+		private LoadingScreen(bool loadingIsSlow, string loadSoundEffect, IScreen[] screensToLoad)
 			: base("Loading")
 		{
 			LoadingIsSlow = loadingIsSlow;
 			ScreensToLoad = screensToLoad;
+			LoadSoundEffect = loadSoundEffect;
 
 			Transition.OnTime = 0.5f;
 		}
@@ -52,9 +55,15 @@ namespace MenuBuddy
 		/// <summary>
 		/// Activates the loading screen.
 		/// </summary>
+		/// <param name="screenManager">The screenmanager.</param>
+		/// <param name="loadingIsSlow">If true, the loading screen will be displayed, otherwise will just pop up screensToLoad</param>
+		/// <param name="controllingPlayer">The player that loaded the screen. Just pass null!!!</param>
+		/// <param name="loadSoundEffect">Play the transition sound here instead of in the screen that initiated the load.</param>
+		/// <param name="screensToLoad">Params list of all the screens we want to load.</param>
 		public static void Load(ScreenManager screenManager,
 								bool loadingIsSlow,
 								PlayerIndex? controllingPlayer,
+								string loadSoundEffect,
 								params IScreen[] screensToLoad)
 		{
 			// Tell all the current screens to transition off.
@@ -64,7 +73,7 @@ namespace MenuBuddy
 			}
 
 			// Create and activate the loading screen.
-			var loadingScreen = new LoadingScreen(loadingIsSlow, screensToLoad);
+			var loadingScreen = new LoadingScreen(loadingIsSlow, loadSoundEffect, screensToLoad);
 			screenManager.AddScreen(loadingScreen, controllingPlayer);
 		}
 
@@ -124,6 +133,13 @@ namespace MenuBuddy
 				layout.AddItem(msg);
 				layout.Size = new Vector2(width, 64f);
 				AddItem(layout);
+			}
+
+			//play the "loading" sound effect
+			if (!string.IsNullOrEmpty(LoadSoundEffect))
+			{
+				var sound = Content.Load<SoundEffect>(LoadSoundEffect);
+				sound.Play();
 			}
 		}
 
