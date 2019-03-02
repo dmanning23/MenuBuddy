@@ -22,6 +22,8 @@ namespace MenuBuddy
 
 		Color? TextColor { get; set; }
 
+		bool IsPassword { get; set; }
+
 		void ScaleToFit(int rowWidth);
 
 		void ShrinkToFit(int rowWidth);

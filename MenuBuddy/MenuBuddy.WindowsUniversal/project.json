@@ -1,9 +1,9 @@
 ﻿{
   "dependencies": {
-    "FilenameBuddy": "2.0.0",
+    "FilenameBuddy": "2.0.1",
     "FontBuddy": "2.0.0",
     "GameTimer": "2.0.0",
-    "HadoukInput": "2.0.0",
+    "HadoukInput": "2.0.18",
     "InputHelper": "2.0.0",
     "MatrixExtensions": "2.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "6.1.9",
@@ -12,7 +12,7 @@
     "PrimitiveBuddy": "2.0.0",
     "RandomExtensions.dmanning23": "2.0.0",
     "ResolutionBuddy": "2.0.1",
-    "StateMachineBuddy": "2.0.0",
+    "StateMachineBuddy": "2.0.17",
     "TouchScreenBuddy": "2.0.0",
     "Vector2Extensions": "2.0.0",
     "XmlBuddy": "2.0.1"

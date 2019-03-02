@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Text;
 
 namespace MenuBuddy
 {
@@ -13,6 +14,8 @@ namespace MenuBuddy
 		#region Fields
 
 		private string _text;
+		private string _renderedText;
+		private bool _isPassword;
 
 		private FontSize _fontSize;
 
@@ -40,6 +43,7 @@ namespace MenuBuddy
 				if (_text != value)
 				{
 					_text = value;
+					SetRenderText();
 					CalculateRect();
 				}
 			}
@@ -82,6 +86,23 @@ namespace MenuBuddy
 		/// If this is not null, use it as the text color.
 		/// </summary>
 		public Color? TextColor { get; set; }
+
+		public bool IsPassword
+		{
+			get
+			{
+				return _isPassword;
+			}
+			set
+			{
+				if (_isPassword != value)
+				{
+					_isPassword = value;
+					SetRenderText();
+					CalculateRect();
+				}
+			}
+		}
 
 		#endregion //Properties
 
@@ -241,7 +262,6 @@ namespace MenuBuddy
 			var shadow = font as ShadowTextBuddy;
 			if (null != shadow)
 			{
-				
 				shadow.ShadowColor = screenTransition.AlphaColor(GetShadowColor());
 			}
 
@@ -253,7 +273,7 @@ namespace MenuBuddy
 			}
 
 			//Write the text
-			font.Write(Text,
+			font.Write(_renderedText,
 				TextPosition(screen),
 				AlignmentToJustify(),
 				Scale,
@@ -284,6 +304,20 @@ namespace MenuBuddy
 			}
 
 			_rect = new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
+		}
+
+		protected void SetRenderText()
+		{
+			if (!IsPassword)
+			{
+				_renderedText = _text;
+			}
+			else
+			{
+				var textBuilder = new StringBuilder();
+				textBuilder.Append('*', _text.Length);
+				_renderedText = textBuilder.ToString();
+			}
 		}
 
 		private Justify AlignmentToJustify()
@@ -347,9 +381,9 @@ namespace MenuBuddy
 
 		private Vector2 MeasureText(IFontBuddy font)
 		{
-			if (!string.IsNullOrEmpty(Text) && null != font)
+			if (!string.IsNullOrEmpty(_renderedText) && null != font)
 			{
-				return font.MeasureString(Text);
+				return font.MeasureString(_renderedText);
 			}
 			else
 			{

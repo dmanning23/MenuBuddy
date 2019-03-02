@@ -96,8 +96,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\TextEdit\IEditBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\TextEdit\ITextEdit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\TextEdit\TextChangeEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\TextEdit\BaseTextEdit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\TextEdit\TextEdit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\TextEdit\TextEditScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Widgets\TextEdit\TextEditWithDialog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\VerticalAlignment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\Widget.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Widgets\Buttons\BaseButton.cs" />

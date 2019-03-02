@@ -41,6 +41,21 @@ namespace MenuBuddy
 			}
 		}
 
+		public bool IsPassword
+		{
+			get
+			{
+				return null != Label ? Label.IsPassword : false;
+			}
+			set
+			{
+				if (null != Label)
+				{
+					Label.IsPassword = value;
+				}
+			}
+		}
+
 		public FontSize FontSize
 		{
 			get

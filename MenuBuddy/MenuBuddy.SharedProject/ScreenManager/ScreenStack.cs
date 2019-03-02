@@ -116,7 +116,7 @@ namespace MenuBuddy
 				ScreensToUpdate.RemoveAt(ScreensToUpdate.Count - 1);
 
 				// Update the screen.
-				screen.Update(gameTime, otherWindowHasFocus, coveredByOtherScreen);
+				screen.Update(gameTime, otherWindowHasFocus, otherWindowHasFocus || coveredByOtherScreen);
 
 				//If the screen is active, let it check the input
 				if (screen.IsActive)
