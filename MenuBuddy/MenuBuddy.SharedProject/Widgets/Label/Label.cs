@@ -315,7 +315,7 @@ namespace MenuBuddy
 			else
 			{
 				var textBuilder = new StringBuilder();
-				textBuilder.Append('*', _text.Length);
+				textBuilder.Append('*', _text?.Length ?? 0);
 				_renderedText = textBuilder.ToString();
 			}
 		}

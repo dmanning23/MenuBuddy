@@ -116,7 +116,14 @@ namespace MenuBuddy
 				}
 			}
 
-			AddAddtionalControls();
+			try
+			{
+				AddAddtionalControls();
+			}
+			catch (Exception ex)
+			{
+				ScreenManager.AddScreen(new ErrorScreen(ex));
+			}
 
 			//add a shim between the text and the buttons
 			ControlStack.AddItem(new Shim() { Size = new Vector2(0, 32f) });
