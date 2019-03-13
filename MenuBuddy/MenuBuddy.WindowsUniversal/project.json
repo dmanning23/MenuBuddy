@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
     "FilenameBuddy": "2.0.1",
-    "FontBuddy": "2.0.0",
+    "FontBuddy": "2.0.4",
     "GameTimer": "2.0.0",
     "HadoukInput": "2.0.18",
     "InputHelper": "2.0.0",
