@@ -146,6 +146,7 @@ namespace MenuBuddy
 			HighlightedFont = inst.HighlightedFont;
 			Clickable = inst.Clickable;
 			_text = inst.Text;
+			_renderedText = inst._renderedText;
 			_fontSize = inst.FontSize;
 			TextColor = inst.TextColor;
 			ShadowColor = inst.ShadowColor;
