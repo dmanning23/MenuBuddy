@@ -35,6 +35,8 @@ namespace MenuBuddy
 
 		private string LoadSoundEffect { get; set; }
 
+		public string Font { get; set; }
+
 		#endregion
 
 		#region Initialization
@@ -62,7 +64,22 @@ namespace MenuBuddy
 		/// <param name="screensToLoad">Params list of all the screens we want to load.</param>
 		public static void Load(ScreenManager screenManager,
 								bool loadingIsSlow,
-								PlayerIndex? controllingPlayer,
+								params IScreen[] screensToLoad)
+		{
+			// Tell all the current screens to transition off.
+			foreach (var screen in screenManager.GetScreens())
+			{
+				screen.ExitScreen();
+			}
+
+			// Create and activate the loading screen.
+			var loadingScreen = new LoadingScreen(loadingIsSlow, null, screensToLoad);
+			screenManager.AddScreen(loadingScreen, null);
+		}
+
+		public static void Load(ScreenManager screenManager,
+								bool loadingIsSlow,
+								PlayerIndex controllingPlayer,
 								string loadSoundEffect,
 								params IScreen[] screensToLoad)
 		{
@@ -75,6 +92,42 @@ namespace MenuBuddy
 			// Create and activate the loading screen.
 			var loadingScreen = new LoadingScreen(loadingIsSlow, loadSoundEffect, screensToLoad);
 			screenManager.AddScreen(loadingScreen, controllingPlayer);
+		}
+
+		public static void Load(ScreenManager screenManager,
+								bool loadingIsSlow,
+								string loadSoundEffect,
+								params IScreen[] screensToLoad)
+		{
+			// Tell all the current screens to transition off.
+			foreach (var screen in screenManager.GetScreens())
+			{
+				screen.ExitScreen();
+			}
+
+			// Create and activate the loading screen.
+			var loadingScreen = new LoadingScreen(loadingIsSlow, loadSoundEffect, screensToLoad);
+			screenManager.AddScreen(loadingScreen, null);
+		}
+
+		public static void Load(ScreenManager screenManager,
+								bool loadingIsSlow,
+								string loadSoundEffect,
+								string fontResource,
+								params IScreen[] screensToLoad)
+		{
+			// Tell all the current screens to transition off.
+			foreach (var screen in screenManager.GetScreens())
+			{
+				screen.ExitScreen();
+			}
+
+			// Create and activate the loading screen.
+			var loadingScreen = new LoadingScreen(loadingIsSlow, loadSoundEffect, screensToLoad)
+			{
+				Font = fontResource,
+			};
+			screenManager.AddScreen(loadingScreen, null);
 		}
 
 		public override void LoadContent()
@@ -93,7 +146,7 @@ namespace MenuBuddy
 
 				//create the message widget
 				var width = 0f;
-				var msg = new PaddedLayout(0, 0, 24, 0, new Label("Loading...", Content)
+				var msg = new PaddedLayout(0, 0, 24, 0, new Label("Loading...", Content, FontSize.Medium, Font)
 				{
 					Highlightable = false
 				})

@@ -112,14 +112,14 @@ namespace MenuBuddy
 		/// constructor
 		/// </summary>
 		/// <param name="text"></param>
-		public Label(string text, ContentManager content, FontSize fontSize = FontSize.Medium)
+		public Label(string text, ContentManager content, FontSize fontSize = FontSize.Medium, string fontResource = null)
 		{
 			_fontSize = fontSize;
 			Text = text;
 			Clickable = true;
 
 			//load the fonts from the stylesheet
-			InitializeFonts(content);
+			InitializeFonts(content, fontResource);
 			CalculateRect();
 		}
 
@@ -161,19 +161,41 @@ namespace MenuBuddy
 			return new Label(this);
 		}
 
-		protected void InitializeFonts(ContentManager content)
+		protected void InitializeFonts(ContentManager content, string fontResource)
 		{
+			if (string.IsNullOrEmpty(fontResource))
+			{
+				switch (FontSize)
+				{
+					case FontSize.Large:
+						{
+							fontResource = StyleSheet.LargeFontResource;
+						}
+						break;
+					case FontSize.Medium:
+						{
+							fontResource = StyleSheet.MediumFontResource;
+						}
+						break;
+					case FontSize.Small:
+						{
+							fontResource = StyleSheet.SmallFontResource;
+						}
+						break;
+				}
+			}
+
 			switch (FontSize)
 			{
 				case FontSize.Large:
 					{
 						Font = new FontBuddy()
 						{
-							Font = content.Load<SpriteFont>(StyleSheet.LargeFontResource)
+							Font = content.Load<SpriteFont>(fontResource)
 						};
 						HighlightedFont = new PulsateBuddy()
 						{
-							Font = content.Load<SpriteFont>(StyleSheet.LargeFontResource)
+							Font = content.Load<SpriteFont>(fontResource)
 						};
 					}
 					break;
@@ -183,13 +205,13 @@ namespace MenuBuddy
 						{
 							ShadowSize = 1.0f,
 							ShadowOffset = new Vector2(7.0f, 7.0f),
-							Font = content.Load<SpriteFont>(StyleSheet.MediumFontResource)
+							Font = content.Load<SpriteFont>(fontResource)
 						};
 						HighlightedFont = new PulsateBuddy()
 						{
 							ShadowSize = 1.0f,
 							ShadowOffset = new Vector2(7.0f, 7.0f),
-							Font = content.Load<SpriteFont>(StyleSheet.MediumFontResource)
+							Font = content.Load<SpriteFont>(fontResource)
 						};
 					}
 					break;
@@ -201,14 +223,14 @@ namespace MenuBuddy
 							{
 								ShadowSize = 1.0f,
 								ShadowOffset = new Vector2(3.0f, 4.0f),
-								Font = content.Load<SpriteFont>(StyleSheet.SmallFontResource),
+								Font = content.Load<SpriteFont>(fontResource),
 							};
 						}
 						else
 						{
 							Font = new FontBuddy()
 							{
-								Font = content.Load<SpriteFont>(StyleSheet.SmallFontResource),
+								Font = content.Load<SpriteFont>(fontResource),
 							};
 						}
 
@@ -216,7 +238,7 @@ namespace MenuBuddy
 						{
 							ShadowSize = 1.0f,
 							ShadowOffset = new Vector2(3.0f, 4.0f),
-							Font = content.Load<SpriteFont>(StyleSheet.SmallFontResource),
+							Font = content.Load<SpriteFont>(fontResource),
 						};
 					}
 					break;
