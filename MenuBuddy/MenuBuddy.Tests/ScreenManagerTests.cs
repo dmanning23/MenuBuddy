@@ -143,6 +143,33 @@ namespace MenuBuddy.Tests
 		}
 
 		[Test]
+		public void SortedByLayer_EmptyLayer()
+		{
+			//create teh screenstack
+			var screenStack = new ScreenStack();
+
+			//add three test screens
+			var screen1 = new Screen1()
+			{
+				Layer = 3
+			};
+			screenStack.AddScreen(screen1);
+			var screen2 = new Screen2()
+			{
+				Layer = 2
+			};
+			screenStack.AddScreen(screen2);
+			var screen3 = new Screen3();
+			screenStack.AddScreen(screen3);
+
+			var screens = screenStack.GetScreens();
+			
+			screens[0].ShouldBeOfType(typeof(Screen2));
+			screens[1].ShouldBeOfType(typeof(Screen1));
+			screens[2].ShouldBeOfType(typeof(Screen3));
+		}
+
+		[Test]
 		public void SortedBySublayer()
 		{
 			//create teh screenstack

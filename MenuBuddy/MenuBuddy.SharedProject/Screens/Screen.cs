@@ -163,7 +163,8 @@ namespace MenuBuddy
 
 			Time = new GameClock();
 			Time.Start();
-			Layer = int.MinValue;
+
+			Layer = int.MaxValue;
 		}
 
 		/// <summary>
