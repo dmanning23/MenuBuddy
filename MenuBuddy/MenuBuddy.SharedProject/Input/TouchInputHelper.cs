@@ -18,8 +18,6 @@ namespace MenuBuddy
 		/// </summary>
 		public IInputHelper InputHelper { get; private set; }
 
-		private SpriteBatch SpriteBatch { get; set; }
-
 		#endregion //Properties
 
 		#region Initialization
@@ -47,15 +45,6 @@ namespace MenuBuddy
 			game.Services.AddService(typeof(IInputHandler), this);
 		}
 
-		/// <summary>
-		/// Load your graphics content.
-		/// </summary>
-		protected override void LoadContent()
-		{
-			base.LoadContent();
-			SpriteBatch = new SpriteBatch(GraphicsDevice);
-		}
-
 		#endregion //Initialization
 
 		#region Methods
@@ -64,9 +53,12 @@ namespace MenuBuddy
 		{
 			base.HandleInput(screen);
 
+			//whether or not there is an ongoing pinch op
+			var hasPinch = InputHelper.Pinches.Count > 0;
+
 			//check highlights
 			var highlightScreen = screen as IHighlightable;
-			if (null != highlightScreen)
+			if (null != highlightScreen && !hasPinch)
 			{
 				//Usually there won't be a highlight in the touchinput
 				if (0 == InputHelper.Highlights.Count)
@@ -101,7 +93,7 @@ namespace MenuBuddy
 
 			//check drag operations
 			var dragScreen = screen as IDraggable;
-			if (null != dragScreen)
+			if (null != dragScreen && !hasPinch)
 			{
 				int i = 0;
 				while (i < InputHelper.Drags.Count)
@@ -119,7 +111,7 @@ namespace MenuBuddy
 
 			//check drop operations
 			var dropScreen = screen as IDroppable;
-			if (null != dropScreen)
+			if (null != dropScreen && !hasPinch)
 			{
 				int i = 0;
 				while (i < InputHelper.Drops.Count)
@@ -127,6 +119,42 @@ namespace MenuBuddy
 					if (dropScreen.CheckDrop(InputHelper.Drops[i]))
 					{
 						InputHelper.Drops.RemoveAt(i);
+					}
+					else
+					{
+						i++;
+					}
+				}
+			}
+
+			//check pinch operations
+			var pinchScreen = screen as IPinchable;
+			if (null != pinchScreen)
+			{
+				int i = 0;
+				while (i < InputHelper.Pinches.Count)
+				{
+					if (pinchScreen.CheckPinch(InputHelper.Pinches[i]))
+					{
+						InputHelper.Pinches.RemoveAt(i);
+					}
+					else
+					{
+						i++;
+					}
+				}
+			}
+
+			//check flick operations
+			var flickScreen = screen as IFlickable;
+			if (null != flickScreen && !hasPinch)
+			{
+				int i = 0;
+				while (i < InputHelper.Flicks.Count)
+				{
+					if (flickScreen.CheckFlick(InputHelper.Flicks[i]))
+					{
+						InputHelper.Flicks.RemoveAt(i);
 					}
 					else
 					{

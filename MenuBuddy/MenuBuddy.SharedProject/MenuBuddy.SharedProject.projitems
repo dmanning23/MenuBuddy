@@ -22,7 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Input\IInputHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\MouseInputHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\MouseScreenInputChecker.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Input\TouchInputHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\TouchInputHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Layouts\ILayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Layouts\Layout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Layouts\Absolute\AbsoluteLayout.cs" />

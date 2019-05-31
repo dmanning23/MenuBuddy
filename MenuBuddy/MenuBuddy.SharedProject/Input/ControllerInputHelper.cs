@@ -13,12 +13,18 @@ namespace MenuBuddy
 
 		public List<DropEventArgs> Drops { get; set; }
 
+		public List<FlickEventArgs> Flicks { get; set; }
+
+		public List<PinchEventArgs> Pinches { get; set; }
+
 		public ControllerInputHelper()
 		{
 			Clicks = new List<ClickEventArgs>();
 			Highlights = new List<HighlightEventArgs>();
 			Drags = new List<DragEventArgs>();
 			Drops = new List<DropEventArgs>();
+			Flicks = new List<FlickEventArgs>();
+			Pinches = new List<PinchEventArgs>();
 		}
 	}
 }
