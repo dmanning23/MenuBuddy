@@ -197,5 +197,25 @@ namespace MenuBuddy.Tests
 			screens[1].ShouldBeOfType(typeof(Screen3));
 			screens[2].ShouldBeOfType(typeof(Screen1));
 		}
+
+		[Test]
+		public void SortedBySublayer_AllEmpty()
+		{
+			//create teh screenstack
+			var screenStack = new ScreenStack();
+
+			//add three test screens
+			var screen1 = new Screen1();
+			screenStack.AddScreen(screen1);
+			var screen2 = new Screen2();
+			screenStack.AddScreen(screen2);
+			var screen3 = new Screen3();
+			screenStack.AddScreen(screen3);
+
+			var screens = screenStack.GetScreens();
+			screens[0].ShouldBeOfType(typeof(Screen1));
+			screens[1].ShouldBeOfType(typeof(Screen2));
+			screens[2].ShouldBeOfType(typeof(Screen3));
+		}
 	}
 }

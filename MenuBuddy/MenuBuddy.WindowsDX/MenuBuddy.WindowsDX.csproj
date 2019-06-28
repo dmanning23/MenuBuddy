@@ -45,7 +45,7 @@
       <HintPath>..\packages\HadoukInput.2.0.21\lib\net451\HadoukInput.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="InputHelper.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\InputHelper.2.0.4\lib\net451\InputHelper.WindowsDX.dll</HintPath>
+      <HintPath>..\packages\InputHelper.2.0.6\lib\net451\InputHelper.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="MatrixExtensions.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MatrixExtensions.2.0.0\lib\net451\MatrixExtensions.WindowsDX.dll</HintPath>
@@ -54,7 +54,7 @@
       <HintPath>..\packages\MonoGame.Framework.WindowsDX.3.7.1.189\lib\net45\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="MouseBuddy.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MouseBuddy.2.0.1\lib\net451\MouseBuddy.WindowsDX.dll</HintPath>
+      <HintPath>..\packages\MouseBuddy.2.0.2\lib\net451\MouseBuddy.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="PrimitiveBuddy.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\PrimitiveBuddy.2.0.0\lib\net451\PrimitiveBuddy.WindowsDX.dll</HintPath>
@@ -93,7 +93,7 @@
       <HintPath>..\packages\SharpDX.XInput.4.2.0\lib\net45\SharpDX.XInput.dll</HintPath>
     </Reference>
     <Reference Include="StateMachineBuddy.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StateMachineBuddy.2.0.18\lib\net451\StateMachineBuddy.WindowsDX.dll</HintPath>
+      <HintPath>..\packages\StateMachineBuddy.2.0.19\lib\net451\StateMachineBuddy.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -107,7 +107,7 @@
       <HintPath>..\packages\TouchScreenBuddy.2.0.6\lib\net451\TouchScreenBuddy.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="Vector2Extensions.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vector2Extensions.2.0.1\lib\net451\Vector2Extensions.WindowsDX.dll</HintPath>
+      <HintPath>..\packages\Vector2Extensions.2.0.2\lib\net451\Vector2Extensions.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="XmlBuddy.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\XmlBuddy.2.0.1\lib\net451\XmlBuddy.WindowsDX.dll</HintPath>
