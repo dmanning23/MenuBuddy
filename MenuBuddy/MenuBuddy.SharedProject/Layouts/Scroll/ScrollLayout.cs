@@ -260,10 +260,9 @@ namespace MenuBuddy
 				//end the current draw loop
 				screenManager.SpriteBatchEnd();
 
-				var curRenderTarget = screenManager.GraphicsDevice.GetRenderTargets();
-
 				//set the rendertarget
 				prevRenderTargets = screenManager.GraphicsDevice.GetRenderTargets();
+
 				screenManager.GraphicsDevice.SetRenderTarget(_renderTarget);
 
 				if (clear)

@@ -27,7 +27,7 @@ namespace MenuBuddy.Tests
 
 		class Screen3 : Screen
 		{
-			public Screen3() : base("Third")
+			public Screen3(string name = "Third") : base(name)
 			{
 			}
 		}
@@ -216,6 +216,63 @@ namespace MenuBuddy.Tests
 			screens[0].ShouldBeOfType(typeof(Screen1));
 			screens[1].ShouldBeOfType(typeof(Screen2));
 			screens[2].ShouldBeOfType(typeof(Screen3));
+		}
+
+		[Test]
+		public void StackAdd()
+		{
+			//create teh screenstack
+			var screenStack = new ScreenStack();
+
+			//add three test screens
+			var screen1 = new Screen1();
+			var screen2 = new Screen2();
+			var screen3 = new Screen3();
+			screenStack.AddScreen(new IScreen[] { screen1, screen2, screen3 });
+
+			var screens = screenStack.GetScreens();
+			screens[0].ShouldBeOfType(typeof(Screen1));
+			screens[1].ShouldBeOfType(typeof(Screen2));
+			screens[2].ShouldBeOfType(typeof(Screen3));
+		}
+
+		[Test]
+		public void StackAdd_SubLayers()
+		{
+			//create teh screenstack
+			var screenStack = new ScreenStack();
+
+			//add three test screens
+			var screen1 = new Screen1();
+			var screen2 = new Screen2();
+			var screen3 = new Screen3();
+			screenStack.AddScreen(new IScreen[] { screen1, screen2, screen3 });
+
+			var screens = screenStack.GetScreens();
+			screen1.SubLayer.ShouldBe(0);
+			screen2.SubLayer.ShouldBe(1);
+			screen3.SubLayer.ShouldBe(2);
+		}
+
+		[Test]
+		public void StackAdd_1()
+		{
+			//create teh screenstack
+			var screenStack = new ScreenStack();
+
+			//add three test screens
+			var screen1 = new Screen1();
+			var screen2 = new Screen2();
+			var screen3 = new Screen3();
+			var screen4 = new Screen3("Fourth") { Layer = -100 };
+			screenStack.AddScreen(new IScreen[] { screen1, screen2, screen3, screen4 });
+
+			var screens = screenStack.GetScreens();
+			screens[0].ShouldBeOfType(typeof(Screen3));
+			screens[0].ScreenName.ShouldBe("Fourth");
+			screens[1].ShouldBeOfType(typeof(Screen1));
+			screens[2].ShouldBeOfType(typeof(Screen2));
+			screens[3].ShouldBeOfType(typeof(Screen3));
 		}
 	}
 }
