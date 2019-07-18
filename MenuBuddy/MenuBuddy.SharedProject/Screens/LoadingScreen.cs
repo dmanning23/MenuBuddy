@@ -25,11 +25,7 @@ namespace MenuBuddy
 	{
 		#region Fields
 
-		private bool LoadingIsSlow { get; set; }
-
 		private IScreen[] ScreensToLoad { get; set; }
-
-		private bool OtherScreensAreGone { get; set; }
 
 		BackgroundWorker _backgroundThread;
 
@@ -44,12 +40,14 @@ namespace MenuBuddy
 		/// <summary>
 		/// The constructor is private: loading screens should be activated via the static Load method instead.
 		/// </summary>
-		private LoadingScreen(bool loadingIsSlow, string loadSoundEffect, IScreen[] screensToLoad)
+		private LoadingScreen(string loadSoundEffect, IScreen[] screensToLoad)
 			: base("Loading")
 		{
-			LoadingIsSlow = loadingIsSlow;
 			ScreensToLoad = screensToLoad;
 			LoadSoundEffect = loadSoundEffect;
+
+			CoveredByOtherScreens = false;
+			CoverOtherScreens = true;
 
 			Transition.OnTime = 0.5f;
 		}
@@ -63,67 +61,39 @@ namespace MenuBuddy
 		/// <param name="loadSoundEffect">Play the transition sound here instead of in the screen that initiated the load.</param>
 		/// <param name="screensToLoad">Params list of all the screens we want to load.</param>
 		public static void Load(ScreenManager screenManager,
-								bool loadingIsSlow,
 								params IScreen[] screensToLoad)
 		{
-			// Tell all the current screens to transition off.
-			foreach (var screen in screenManager.GetScreens())
-			{
-				screen.ExitScreen();
-			}
-
 			// Create and activate the loading screen.
-			var loadingScreen = new LoadingScreen(loadingIsSlow, null, screensToLoad);
+			var loadingScreen = new LoadingScreen(null, screensToLoad);
 			screenManager.AddScreen(loadingScreen, null);
 		}
 
 		public static void Load(ScreenManager screenManager,
-								bool loadingIsSlow,
 								PlayerIndex controllingPlayer,
 								string loadSoundEffect,
 								params IScreen[] screensToLoad)
 		{
-			// Tell all the current screens to transition off.
-			foreach (var screen in screenManager.GetScreens())
-			{
-				screen.ExitScreen();
-			}
-
 			// Create and activate the loading screen.
-			var loadingScreen = new LoadingScreen(loadingIsSlow, loadSoundEffect, screensToLoad);
+			var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad);
 			screenManager.AddScreen(loadingScreen, controllingPlayer);
 		}
 
 		public static void Load(ScreenManager screenManager,
-								bool loadingIsSlow,
 								string loadSoundEffect,
 								params IScreen[] screensToLoad)
 		{
-			// Tell all the current screens to transition off.
-			foreach (var screen in screenManager.GetScreens())
-			{
-				screen.ExitScreen();
-			}
-
 			// Create and activate the loading screen.
-			var loadingScreen = new LoadingScreen(loadingIsSlow, loadSoundEffect, screensToLoad);
+			var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad);
 			screenManager.AddScreen(loadingScreen, null);
 		}
 
 		public static void Load(ScreenManager screenManager,
-								bool loadingIsSlow,
 								string loadSoundEffect,
 								string fontResource,
 								params IScreen[] screensToLoad)
 		{
-			// Tell all the current screens to transition off.
-			foreach (var screen in screenManager.GetScreens())
-			{
-				screen.ExitScreen();
-			}
-
 			// Create and activate the loading screen.
-			var loadingScreen = new LoadingScreen(loadingIsSlow, loadSoundEffect, screensToLoad)
+			var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad)
 			{
 				Font = fontResource,
 			};
@@ -134,59 +104,55 @@ namespace MenuBuddy
 		{
 			base.LoadContent();
 
-			//Add the loading message
-			if (LoadingIsSlow)
+			var layout = new RelativeLayout
 			{
-				var layout = new RelativeLayout
-				{
-					Horizontal = HorizontalAlignment.Center,
-					Vertical = VerticalAlignment.Center,
-					Position = Resolution.TitleSafeArea.Center,
-				};
+				Horizontal = HorizontalAlignment.Center,
+				Vertical = VerticalAlignment.Center,
+				Position = Resolution.TitleSafeArea.Center,
+			};
 
-				//create the message widget
-				var width = 0f;
-				var msg = new PaddedLayout(0, 0, 24, 0, new Label("Loading...", Content, FontSize.Medium, Font)
-				{
-					Highlightable = false
-				})
-				{
-					Horizontal = HorizontalAlignment.Right,
-					Vertical = VerticalAlignment.Center,
-				};
-				width += msg.Rect.Width;
+			//create the message widget
+			var width = 0f;
+			var msg = new PaddedLayout(0, 0, 24, 0, new Label("Loading...", Content, FontSize.Medium, Font)
+			{
+				Highlightable = false
+			})
+			{
+				Horizontal = HorizontalAlignment.Right,
+				Vertical = VerticalAlignment.Center,
+			};
+			width += msg.Rect.Width;
 
-				Texture2D hourglassTex = null;
-				try
-				{
-					hourglassTex = Content.Load<Texture2D>(StyleSheet.LoadingScreenHourglassImageResource);
-				}
-				catch (Exception)
-				{
-					//No hourglass texture :P
-				}
-
-				if (null != hourglassTex)
-				{
-					//create the hourglass widget
-					var hourglass = new Image(hourglassTex)
-					{
-						Horizontal = HorizontalAlignment.Left,
-						Vertical = VerticalAlignment.Center,
-						Scale = 1.5f,
-						Highlightable = false,
-					};
-					layout.AddItem(hourglass);
-					width += hourglass.Rect.Width;
-
-					//add a little shim in between the widgets
-					width += 32f;
-				}
-
-				layout.AddItem(msg);
-				layout.Size = new Vector2(width, 64f);
-				AddItem(layout);
+			Texture2D hourglassTex = null;
+			try
+			{
+				hourglassTex = Content.Load<Texture2D>(StyleSheet.LoadingScreenHourglassImageResource);
 			}
+			catch (Exception)
+			{
+				//No hourglass texture :P
+			}
+
+			if (null != hourglassTex)
+			{
+				//create the hourglass widget
+				var hourglass = new Image(hourglassTex)
+				{
+					Horizontal = HorizontalAlignment.Left,
+					Vertical = VerticalAlignment.Center,
+					Scale = 1.5f,
+					Highlightable = false,
+				};
+				layout.AddItem(hourglass);
+				width += hourglass.Rect.Width;
+
+				//add a little shim in between the widgets
+				width += 32f;
+			}
+
+			layout.AddItem(msg);
+			layout.Size = new Vector2(width, 64f);
+			AddItem(layout);
 
 			//play the "loading" sound effect
 			if (!string.IsNullOrEmpty(LoadSoundEffect))
@@ -194,6 +160,13 @@ namespace MenuBuddy
 				var sound = Content.Load<SoundEffect>(LoadSoundEffect);
 				sound.Play();
 			}
+
+			// Start up the background thread, which will update the network session and draw the animation while we are loading.
+			_backgroundThread = new BackgroundWorker();
+			_backgroundThread.WorkerSupportsCancellation = true;
+			_backgroundThread.DoWork += new DoWorkEventHandler(BackgroundWorkerThread);
+			_backgroundThread.RunWorkerCompleted += new RunWorkerCompletedEventHandler(CleanUp);
+			_backgroundThread.RunWorkerAsync();
 		}
 
 		#endregion //Initialization
@@ -201,65 +174,21 @@ namespace MenuBuddy
 		#region Update and Draw
 
 		/// <summary>
-		/// Updates the loading screen.
-		/// </summary>
-		public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
-		{
-			base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
-
-			// If all the previous screens have finished transitioning off, it is time to actually perform the load.
-			if (OtherScreensAreGone)
-			{
-#if !DESKTOP
-				// Start up the background thread, which will update the network
-				// session and draw the animation while we are loading.
-				if (_backgroundThread == null)
-				{
-					_backgroundThread = new BackgroundWorker();
-					_backgroundThread.WorkerSupportsCancellation = true;
-					_backgroundThread.DoWork += new DoWorkEventHandler(BackgroundWorkerThread);
-					_backgroundThread.RunWorkerCompleted += new RunWorkerCompletedEventHandler(CleanUp);
-					_backgroundThread.RunWorkerAsync();
-				}
-#else
-				//desktop doenst load content in the background!
-				BackgroundWorkerThread(this, new DoWorkEventArgs(this));
-				CleanUp(this, new RunWorkerCompletedEventArgs(this, null, false));
-				OtherScreensAreGone = false;
-#endif
-			}
-		}
-
-		/// <summary>
 		/// Draws the loading screen.
 		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
-			// If we are the only active screen, that means all the previous screens
-			// must have finished transitioning off. We check for this in the Draw
-			// method, rather than in Update, because it isn't enough just for the
-			// screens to be gone: in order for the transition to look good we must
-			// have actually drawn a frame without them before we perform the load.
-			if ((TransitionState == TransitionState.Active) &&
-				(ScreenManager.GetScreens().Length == 1))
-			{
-				OtherScreensAreGone = true;
-			}
-
 			// The gameplay screen takes a while to load, so we display a loading
 			// message while that is going on, but the menus load very quickly, and
 			// it would look silly if we flashed this up for just a fraction of a
 			// second while returning from the game to the menus. This parameter
 			// tells us how long the loading is going to take, so we know whether
 			// to bother drawing the message.
-			if (LoadingIsSlow)
-			{
-				ScreenManager.SpriteBatchBegin();
-				FadeBackground();
-				ScreenManager.SpriteBatchEnd();
+			ScreenManager.SpriteBatchBegin();
+			FadeBackground();
+			ScreenManager.SpriteBatchEnd();
 
-				base.Draw(gameTime);
-			}
+			base.Draw(gameTime);
 		}
 
 		#endregion //Update and Draw
@@ -280,7 +209,7 @@ namespace MenuBuddy
 			//clean up all the memory from those other screens
 			GC.Collect();
 
-			ScreenManager.RemoveScreen(this);
+			ExitScreen();
 
 			// Once the load has finished, we use ResetElapsedTime to tell
 			// the  game timing mechanism that we have just finished a very

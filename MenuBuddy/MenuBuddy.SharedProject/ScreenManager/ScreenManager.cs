@@ -246,7 +246,7 @@ namespace MenuBuddy
 			}
 		}
 
-		public void RemoveScreens<T>() where T:IScreen
+		public void RemoveScreens<T>() where T : IScreen
 		{
 			var screens = ScreenStack.FindScreens<T>().ToList();
 			foreach (var screen in screens)
@@ -263,7 +263,8 @@ namespace MenuBuddy
 		{
 			var screens = new List<IScreen>(MainMenuStack());
 			screens.Add(new ErrorScreen(ex));
-			LoadingScreen.Load(this, true, null, string.Empty, screens.ToArray());
+			ClearScreens();
+			LoadingScreen.Load(this, null, string.Empty, screens.ToArray());
 		}
 
 		public IScreen FindScreen(string screenName)
@@ -291,6 +292,18 @@ namespace MenuBuddy
 			ScreenStack.PopToScreen<T>();
 		}
 
-#endregion //Public Methods
-	}
+		/// <summary>
+		/// Clear the entire screenstack
+		/// </summary>
+		public void ClearScreens()
+		{
+			// Tell all the current screens to transition off.
+			foreach (var screen in GetScreens())
+			{
+				screen.ExitScreen();
+			}
+		}
+
+			#endregion //Public Methods
+		}
 }

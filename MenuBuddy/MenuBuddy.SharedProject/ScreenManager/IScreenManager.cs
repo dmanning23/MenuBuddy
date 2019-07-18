@@ -114,6 +114,11 @@ namespace MenuBuddy
 		/// <returns></returns>
 		List<T> FindScreens<T>() where T : IScreen;
 
+		/// <summary>
+		/// Clear the entire screenstack
+		/// </summary>
+		void ClearScreens();
+
 		#endregion //Public Methods
 	}
 }
