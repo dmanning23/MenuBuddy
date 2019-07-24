@@ -323,6 +323,11 @@ namespace MenuBuddy
 			}
 		}
 
+		public virtual bool OnBackButton()
+		{
+			return false;
+		}
+
 		#endregion
 	}
 }

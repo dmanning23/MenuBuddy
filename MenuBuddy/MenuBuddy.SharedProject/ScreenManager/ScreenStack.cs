@@ -228,6 +228,40 @@ namespace MenuBuddy
 			}
 		}
 
+		public void BringToTop<T>() where T : IScreen
+		{
+			IScreen screen = null;
+			for (int i = Screens.Count - 1; i >= 0; i--)
+			{
+				if (Screens[i] is T)
+				{
+					screen = Screens[i];
+					Screens.RemoveAt(i);
+					break;
+				}
+			}
+
+			if (null != screen)
+			{
+				Screens.Add(screen);
+			}
+		}
+
+		public bool OnBackButton()
+		{
+			//start at the top of the screen stack and see if anyone wants to "go back"
+			for (var i = Screens.Count - 1; i >= 0; i--)
+			{
+				if (Screens[i].OnBackButton())
+				{
+					return true;
+				}
+			}
+
+			//Nobody wanted to handle the back button.
+			return false;
+		}
+
 		#endregion //Methods
 	}
 }

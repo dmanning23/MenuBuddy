@@ -114,10 +114,18 @@ namespace MenuBuddy
 		/// <returns></returns>
 		List<T> FindScreens<T>() where T : IScreen;
 
+		void BringToTop<T>() where T : IScreen;
+
 		/// <summary>
 		/// Clear the entire screenstack
 		/// </summary>
 		void ClearScreens();
+
+		/// <summary>
+		/// Called when the user hits the "back" button on Android or escape key on win
+		/// </summary>
+		/// <returns>True if any screen wants to handle the back button, false to send the app to the background</returns>
+		bool OnBackButton();
 
 		#endregion //Public Methods
 	}

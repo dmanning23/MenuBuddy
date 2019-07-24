@@ -66,7 +66,7 @@ namespace MenuBuddy
 
 		#endregion
 
-		#region Initialization
+		#region Methods
 
 		/// <summary>
 		/// Load graphics content for the screen.
@@ -77,10 +77,6 @@ namespace MenuBuddy
 		/// Unload content for the screen.
 		/// </summary>
 		void UnloadContent();
-
-		#endregion
-
-		#region Update and Draw
 
 		/// <summary>
 		/// Allows the screen to run logic, such as updating the transition position.
@@ -103,6 +99,12 @@ namespace MenuBuddy
 		/// </summary>
 		void ExitScreen();
 
-		#endregion
+		/// <summary>
+		/// Check if this screen wants to handle the back button
+		/// </summary>
+		/// <returns>True if this screen handled the back button, false if it doesn't want it</returns>
+		bool OnBackButton();
+
+		#endregion //Methods
 	}
 }

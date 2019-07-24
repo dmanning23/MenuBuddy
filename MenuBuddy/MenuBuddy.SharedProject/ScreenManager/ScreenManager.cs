@@ -292,6 +292,11 @@ namespace MenuBuddy
 			ScreenStack.PopToScreen<T>();
 		}
 
+		public void BringToTop<T>() where T : IScreen
+		{
+			ScreenStack.BringToTop<T>();
+		}
+
 		/// <summary>
 		/// Clear the entire screenstack
 		/// </summary>
@@ -304,6 +309,11 @@ namespace MenuBuddy
 			}
 		}
 
-			#endregion //Public Methods
+		public bool OnBackButton()
+		{
+			return ScreenStack.OnBackButton();
 		}
+
+		#endregion //Public Methods
+	}
 }

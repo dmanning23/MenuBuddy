@@ -15,27 +15,25 @@ namespace MenuBuddy
 
 		private string _message;
 
+		private Exception _error;
+
 		private SpriteFont _font;
 
 		#endregion //Fields
 
 		#region Methods
 
-		/// <summary>
-		/// Constructs an error message box from the specified exception.
-		/// </summary>
-		public ErrorScreen(Exception exception) : base("Error Screen")
+		public ErrorScreen(string error) : base("Error Screen")
 		{
-			_message = GetErrorMessage(exception);
+			_message = error;
 		}
 
 		/// <summary>
-		/// Converts a network exception into a user friendly error message.
+		/// Constructs an error message box from the specified exception.
 		/// </summary>
-		private static string GetErrorMessage(Exception exception)
+		public ErrorScreen(Exception exception) : this(exception.Message)
 		{
-			// Otherwise just a generic error message.
-			return "An unknown error occurred:\n" + exception.ToString();
+			_error = exception;
 		}
 
 		/// <summary>
@@ -44,6 +42,9 @@ namespace MenuBuddy
 		public override void LoadContent()
 		{
 			base.LoadContent();
+
+			//Pop up a message box with the error message
+			ScreenManager.AddScreen(new OkScreen(_message));
 
 			AddCancelButton();
 			_font = Content.Load<SpriteFont>(StyleSheet.SmallFontResource);
@@ -63,7 +64,7 @@ namespace MenuBuddy
 			FadeBackground();
 
 			// Draw the message box text.
-			ScreenManager.SpriteBatch.DrawString(_font, _message, textPosition, Color.White, 0.0f, new Vector2(0.0f, 0.0f), 0.6f, SpriteEffects.None, 1.0f);
+			ScreenManager.SpriteBatch.DrawString(_font, _error.ToString(), textPosition, Color.White, 0.0f, new Vector2(0.0f, 0.0f), 0.6f, SpriteEffects.None, 1.0f);
 
 			ScreenManager.SpriteBatchEnd();
 
