@@ -4,6 +4,7 @@ using ResolutionBuddy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -91,7 +92,7 @@ namespace MenuBuddy
 
 			DrawHelper = new DrawHelper(GraphicsDevice, SpriteBatch);
 
-			ScreenStack.LoadContent();
+			Task.Run(() => ScreenStack.LoadContent()).ConfigureAwait(false);
 		}
 
 		/// <summary>
@@ -166,7 +167,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Adds a new screen to the screen manager.
 		/// </summary>
-		public virtual void AddScreen(IScreen screen, PlayerIndex? controllingPlayer = null)
+		public virtual async Task AddScreen(IScreen screen, PlayerIndex? controllingPlayer = null)
 		{
 			screen.ControllingPlayer = controllingPlayer;
 			screen.ScreenManager = this;
@@ -174,7 +175,7 @@ namespace MenuBuddy
 			// If we have a graphics device, tell the screen to load content.
 			if (Initialized)
 			{
-				screen.LoadContent();
+				await screen.LoadContent();
 			}
 
 			ScreenStack.AddScreen(screen);
@@ -183,7 +184,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Adds a new screen to the screen manager.
 		/// </summary>
-		public virtual void AddScreen(IScreen[] screens, PlayerIndex? controllingPlayer = null)
+		public virtual async Task AddScreen(IScreen[] screens, PlayerIndex? controllingPlayer = null)
 		{
 			foreach (var screen in screens)
 			{
@@ -195,7 +196,7 @@ namespace MenuBuddy
 					// If we have a graphics device, tell the screen to load content.
 					if (Initialized)
 					{
-						screen.LoadContent();
+						await screen.LoadContent();
 					}
 				}
 			}
@@ -208,7 +209,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="screen"></param>
 		/// <param name="controllingPlayer"></param>
-		public virtual void SetTopScreen(IScreen screen, PlayerIndex? controllingPlayer)
+		public virtual async Task SetTopScreen(IScreen screen, PlayerIndex? controllingPlayer)
 		{
 			screen.ControllingPlayer = controllingPlayer;
 			screen.ScreenManager = this;
@@ -216,7 +217,7 @@ namespace MenuBuddy
 			// If we have a graphics device, tell the screen to load content.
 			if (Initialized)
 			{
-				screen.LoadContent();
+				await screen.LoadContent();
 			}
 
 			ScreenStack.TopScreen = screen;

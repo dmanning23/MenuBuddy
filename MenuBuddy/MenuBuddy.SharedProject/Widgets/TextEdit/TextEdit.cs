@@ -30,13 +30,13 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <param name="e"></param>
-		public void CreateTextPad(object obj, ClickEventArgs e)
+		public async void CreateTextPad(object obj, ClickEventArgs e)
 		{
 			//create the dropdown screen
 			var numpad = new TextEditScreen(this);
 
 			//add the screen over the current one
-			Screen.ScreenManager.AddScreen(numpad);
+			await Screen.ScreenManager.AddScreen(numpad);
 		}
 
 		#endregion //Methods

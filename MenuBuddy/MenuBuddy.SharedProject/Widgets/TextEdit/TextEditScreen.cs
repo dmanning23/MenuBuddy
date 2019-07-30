@@ -1,6 +1,7 @@
 ﻿using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -41,9 +42,9 @@ namespace MenuBuddy
 			_prev = Keyboard.GetState();
 		}
 
-		public override void LoadContent()
+		public override async Task LoadContent()
 		{
-			base.LoadContent();
+			await base.LoadContent();
 
 			SetTextWidgetText(false);
 		}

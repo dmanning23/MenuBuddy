@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -60,34 +61,34 @@ namespace MenuBuddy
 		/// <param name="controllingPlayer">The player that loaded the screen. Just pass null!!!</param>
 		/// <param name="loadSoundEffect">Play the transition sound here instead of in the screen that initiated the load.</param>
 		/// <param name="screensToLoad">Params list of all the screens we want to load.</param>
-		public static void Load(ScreenManager screenManager,
+		public static Task Load(ScreenManager screenManager,
 								params IScreen[] screensToLoad)
 		{
 			// Create and activate the loading screen.
 			var loadingScreen = new LoadingScreen(null, screensToLoad);
-			screenManager.AddScreen(loadingScreen, null);
+			return screenManager.AddScreen(loadingScreen, null);
 		}
 
-		public static void Load(ScreenManager screenManager,
+		public static Task Load(ScreenManager screenManager,
 								PlayerIndex controllingPlayer,
 								string loadSoundEffect,
 								params IScreen[] screensToLoad)
 		{
 			// Create and activate the loading screen.
 			var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad);
-			screenManager.AddScreen(loadingScreen, controllingPlayer);
+			return screenManager.AddScreen(loadingScreen, controllingPlayer);
 		}
 
-		public static void Load(ScreenManager screenManager,
+		public static Task Load(ScreenManager screenManager,
 								string loadSoundEffect,
 								params IScreen[] screensToLoad)
 		{
 			// Create and activate the loading screen.
 			var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad);
-			screenManager.AddScreen(loadingScreen, null);
+			return screenManager.AddScreen(loadingScreen, null);
 		}
 
-		public static void Load(ScreenManager screenManager,
+		public static Task Load(ScreenManager screenManager,
 								string loadSoundEffect,
 								string fontResource,
 								params IScreen[] screensToLoad)
@@ -97,12 +98,12 @@ namespace MenuBuddy
 			{
 				Font = fontResource,
 			};
-			screenManager.AddScreen(loadingScreen, null);
+			return screenManager.AddScreen(loadingScreen, null);
 		}
 
-		public override void LoadContent()
+		public override async Task LoadContent()
 		{
-			base.LoadContent();
+			await base.LoadContent();
 
 			var layout = new RelativeLayout
 			{
@@ -201,7 +202,7 @@ namespace MenuBuddy
 		/// </summary>
 		void BackgroundWorkerThread(object sender, DoWorkEventArgs e)
 		{
-			ScreenManager.AddScreen(ScreensToLoad, ControllingPlayer);
+			ScreenManager.AddScreen(ScreensToLoad, ControllingPlayer).Wait();
 		}
 
 		void CleanUp(object sender, RunWorkerCompletedEventArgs e)

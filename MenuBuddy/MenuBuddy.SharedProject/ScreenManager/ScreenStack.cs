@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -48,17 +49,17 @@ namespace MenuBuddy
 		/// <summary>
 		/// Load your graphics content.
 		/// </summary>
-		public void LoadContent()
+		public async Task LoadContent()
 		{
 			// Tell each of the screens to load their content.
 			foreach (var screen in Screens)
 			{
-				LoadScreenContent(screen);
+				await LoadScreenContent(screen);
 			}
 
 			if (null != TopScreen)
 			{
-				TopScreen.LoadContent();
+				await TopScreen.LoadContent();
 			}
 		}
 
@@ -66,10 +67,10 @@ namespace MenuBuddy
 		/// Setup the style and content of a screen
 		/// </summary>
 		/// <param name="screen"></param>
-		private void LoadScreenContent(IScreen screen)
+		private async Task LoadScreenContent(IScreen screen)
 		{
 			//load the screen content
-			screen.LoadContent();
+			await screen.LoadContent();
 		}
 
 		/// <summary>

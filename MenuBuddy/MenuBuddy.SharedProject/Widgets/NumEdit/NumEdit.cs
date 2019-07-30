@@ -158,13 +158,13 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <param name="e"></param>
-		public void CreateNumPad(object obj, ClickEventArgs e)
+		public async void CreateNumPad(object obj, ClickEventArgs e)
 		{
 			//create the dropdown screen
 			var numpad = new NumPadScreen(this, AllowDecimal, AllowNegative);
 
 			//add the screen over the current one
-			Screen.ScreenManager.AddScreen(numpad);
+			await Screen.ScreenManager.AddScreen(numpad);
 		}
 
 		public void SetNumber(float num)

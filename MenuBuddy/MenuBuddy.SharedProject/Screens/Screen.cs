@@ -2,6 +2,7 @@ using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using System;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -140,6 +141,8 @@ namespace MenuBuddy
 		/// </summary>
 		public int SubLayer { get; set; }
 
+		public bool FinishedLoading { get; protected set; }
+
 		#endregion
 
 		#region Initialization
@@ -165,18 +168,22 @@ namespace MenuBuddy
 			Time.Start();
 
 			Layer = int.MaxValue;
+
+			FinishedLoading = true;
 		}
 
 		/// <summary>
 		/// Load graphics content for the screen.
 		/// </summary>
-		public virtual void LoadContent()
+		public virtual Task LoadContent()
 		{
 			if (null != ScreenManager && null == Content)
 			{
 				var defaultGame = ScreenManager.Game as DefaultGame;
 				Content = new ContentManager(defaultGame.Services, defaultGame.ContentRootDirectory);
 			}
+
+			return Task.CompletedTask;
 		}
 
 		/// <summary>

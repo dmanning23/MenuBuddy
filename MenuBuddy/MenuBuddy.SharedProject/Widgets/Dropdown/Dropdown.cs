@@ -156,7 +156,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <param name="e"></param>
-		public void CreateDropdownList(object obj, ClickEventArgs e)
+		public async void CreateDropdownList(object obj, ClickEventArgs e)
 		{
 			if (e.Button == MouseButton.Left)
 			{
@@ -164,7 +164,7 @@ namespace MenuBuddy
 				var droplist = new DropdownScreen<T>(this);
 
 				//add the screen over the current one
-				Screen.ScreenManager.AddScreen(droplist);
+				await Screen.ScreenManager.AddScreen(droplist);
 			}
 		}
 

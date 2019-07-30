@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -70,19 +71,19 @@ namespace MenuBuddy
 		/// <summary>
 		/// Adds a new screen to the screen manager.
 		/// </summary>
-		void AddScreen(IScreen screen, PlayerIndex? controllingPlayer = null);
+		Task AddScreen(IScreen screen, PlayerIndex? controllingPlayer = null);
 
 		/// <summary>
 		/// Adds a new screen to the screen manager.
 		/// </summary>
-		void AddScreen(IScreen[] screens, PlayerIndex? controllingPlayer = null);
+		Task AddScreen(IScreen[] screens, PlayerIndex? controllingPlayer = null);
 
 		/// <summary>
 		/// Set the top screen
 		/// </summary>
 		/// <param name="screen"></param>
 		/// <param name="controllingPlayer"></param>
-		void SetTopScreen(IScreen screen, PlayerIndex? controllingPlayer);
+		Task SetTopScreen(IScreen screen, PlayerIndex? controllingPlayer);
 
 		/// <summary>
 		/// Removes a screen from the screen manager. You should normally

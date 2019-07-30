@@ -43,9 +43,9 @@ namespace MenuBuddy
 			TransitionObject = new WipeTransitionObject(TransitionWipeType.PopTop);
 			Position = new Point(LeftRight ?  Resolution.TitleSafeArea.Left : Resolution.TitleSafeArea.Right, Resolution.TitleSafeArea.Top);
 			AddItem(HamburgerImage);
-			OnClick += (obj, e) =>
+			OnClick += async (obj, e) =>
 			{
-				screenManager.AddScreen(new HamburgerMenuScreen(HamburgerImage.Texture, HamburgerItems, LeftRight));
+				await screenManager.AddScreen(new HamburgerMenuScreen(HamburgerImage.Texture, HamburgerItems, LeftRight));
 			};
 		}
 

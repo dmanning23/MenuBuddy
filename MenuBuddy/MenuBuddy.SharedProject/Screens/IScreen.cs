@@ -1,6 +1,7 @@
 using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -71,7 +72,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Load graphics content for the screen.
 		/// </summary>
-		void LoadContent();
+		Task LoadContent();
 
 		/// <summary>
 		/// Unload content for the screen.

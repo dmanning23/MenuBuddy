@@ -4,6 +4,7 @@ using ResolutionBuddy;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -46,9 +47,9 @@ namespace MenuBuddy
 			AllowNegative = allowNegative;
 		}
 
-		public override void LoadContent()
+		public override async Task LoadContent()
 		{
-			base.LoadContent();
+			await base.LoadContent();
 
 			//create the stack layout that will hold all the droplist items
 			_rows = new StackLayout()

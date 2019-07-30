@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using ResolutionBuddy;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -119,9 +120,9 @@ namespace MenuBuddy
 			_menuTitlePosition = new Point(Resolution.TitleSafeArea.Center.X, (int)(Resolution.TitleSafeArea.Center.Y * 0.4f));
 		}
 
-		public override void LoadContent()
+		public override async Task LoadContent()
 		{
-			base.LoadContent();
+			await base.LoadContent();
 
 			var game = ScreenManager?.Game as DefaultGame;
 			_gameType = null != game ? game.GameType : GameType.Controller;

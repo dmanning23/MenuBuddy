@@ -1,6 +1,7 @@
 using InputHelper;
 using Microsoft.Xna.Framework;
 using System;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -42,9 +43,9 @@ namespace MenuBuddy
 			CoverOtherScreens = false;
 		}
 
-		public override void LoadContent()
+		public override async Task LoadContent()
 		{
-			base.LoadContent();
+			await base.LoadContent();
 
 			//create the stack layout that will hold all the droplist items
 			_stack = new StackLayout()

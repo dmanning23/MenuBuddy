@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -67,9 +68,9 @@ namespace MenuBuddy
 		/// Whenever a subsequent MessageBoxScreen tries to load this same content,
 		/// it will just get back another reference to the already loaded data.
 		/// </summary>
-		public override void LoadContent()
+		public override async Task LoadContent()
 		{
-			base.LoadContent();
+			await base.LoadContent();
 
 			var screenLayout = new RelativeLayout()
 			{
@@ -118,11 +119,11 @@ namespace MenuBuddy
 
 			try
 			{
-				AddAddtionalControls();
+				await AddAdditionalControls();
 			}
 			catch (Exception ex)
 			{
-				ScreenManager.AddScreen(new ErrorScreen(ex));
+				await ScreenManager.AddScreen(new ErrorScreen(ex));
 			}
 
 			//add a shim between the text and the buttons
@@ -155,8 +156,9 @@ namespace MenuBuddy
 		/// <summary>
 		/// Override this method to add any additional controls to the ControlStack
 		/// </summary>
-		protected virtual void AddAddtionalControls()
+		protected virtual Task AddAdditionalControls()
 		{
+			return Task.CompletedTask;
 		}
 
 		/// <summary>

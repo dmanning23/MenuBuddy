@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -39,12 +40,12 @@ namespace MenuBuddy
 		/// <summary>
 		/// Dont load any content for this screen, because a lot of the time the missing content will be the gradient texture.
 		/// </summary>
-		public override void LoadContent()
+		public override async Task LoadContent()
 		{
-			base.LoadContent();
+			await base.LoadContent();
 
 			//Pop up a message box with the error message
-			ScreenManager.AddScreen(new OkScreen(_message));
+			await ScreenManager.AddScreen(new OkScreen(_message));
 
 			AddCancelButton();
 			_font = Content.Load<SpriteFont>(StyleSheet.SmallFontResource);

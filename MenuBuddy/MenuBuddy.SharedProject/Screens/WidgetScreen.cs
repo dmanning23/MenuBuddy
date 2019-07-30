@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using ResolutionBuddy;
 using System;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -90,9 +91,9 @@ namespace MenuBuddy
 			Modal = false;
 		}
 
-		public override void LoadContent()
+		public override async Task LoadContent()
 		{
-			base.LoadContent();
+			await base.LoadContent();
 			ResetInputTimer();
 		}
 

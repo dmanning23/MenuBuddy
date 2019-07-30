@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -33,9 +34,9 @@ namespace MenuBuddy
 			CoveredByOtherScreens = false;
 		}
 
-		public override void LoadContent()
+		public override async Task LoadContent()
 		{
-			base.LoadContent();
+			await base.LoadContent();
 
 			var stack = new StackLayout()
 			{
