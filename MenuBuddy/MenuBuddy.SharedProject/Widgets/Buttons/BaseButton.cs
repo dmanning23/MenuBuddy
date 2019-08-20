@@ -3,6 +3,7 @@ using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using System;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -212,7 +213,7 @@ namespace MenuBuddy
 			ClickedSound = inst.ClickedSound;
 		}
 
-		public override void LoadContent(IScreen screen)
+		public override async Task LoadContent(IScreen screen)
 		{
 			if (null != screen.ScreenManager)
 			{
@@ -227,8 +228,8 @@ namespace MenuBuddy
 				}
 			}
 
-			Layout.LoadContent(screen);
-			base.LoadContent(screen);
+			await Layout.LoadContent(screen);
+			await base.LoadContent(screen);
 		}
 
 		#endregion //Initialization

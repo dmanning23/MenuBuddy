@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FilenameBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FilenameBuddy.2.0.5\lib\Xamarin.iOS10\FilenameBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\FilenameBuddy.2.0.6\lib\Xamarin.iOS10\FilenameBuddy.iOS.dll</HintPath>
     </Reference>
     <Reference Include="FontBuddyLib.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FontBuddy.2.0.5\lib\Xamarin.iOS10\FontBuddyLib.iOS.dll</HintPath>

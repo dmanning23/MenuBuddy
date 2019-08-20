@@ -1,6 +1,7 @@
 using System;
 using GameTimer;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -134,14 +135,14 @@ namespace MenuBuddy
 			Background = inst.Background;
 		}
 
-		public override void LoadContent(IScreen screen)
+		public override async Task LoadContent(IScreen screen)
 		{
-			base.LoadContent(screen);
+			await base.LoadContent(screen);
 
 			base.AddItem(Stack);
-			Stack.LoadContent(screen);
+			await Stack.LoadContent(screen);
 
-			Background.LoadContent(screen);
+			await Background.LoadContent(screen);
 		}
 
 		public override void UnloadContent()

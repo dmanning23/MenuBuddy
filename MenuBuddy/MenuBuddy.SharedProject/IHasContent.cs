@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -11,7 +12,7 @@ namespace MenuBuddy
 		/// Available load content method for child classes.
 		/// </summary>
 		/// <param name="screen"></param>
-		void LoadContent(IScreen screen);
+		Task LoadContent(IScreen screen);
 
 		void UnloadContent();
 	}

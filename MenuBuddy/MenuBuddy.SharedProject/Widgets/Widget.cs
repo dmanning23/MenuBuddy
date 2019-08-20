@@ -2,6 +2,7 @@ using GameTimer;
 using InputHelper;
 using Microsoft.Xna.Framework;
 using System;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -225,9 +226,9 @@ namespace MenuBuddy
 		/// Available load content method for child classes.
 		/// </summary>
 		/// <param name="screen"></param>
-		public virtual void LoadContent(IScreen screen)
+		public virtual async Task LoadContent(IScreen screen)
 		{
-			Background.LoadContent(screen);
+			await Background.LoadContent(screen);
 
 			InputHelper = screen.ScreenManager.Game.Services.GetService<IInputHelper>();
 		}

@@ -1,5 +1,6 @@
 ﻿using InputHelper;
 using Microsoft.Xna.Framework.Graphics;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -36,9 +37,9 @@ namespace MenuBuddy
 			IsChecked = isChecked;
 		}
 
-		public override void LoadContent(IScreen screen)
+		public override async Task LoadContent(IScreen screen)
 		{
-			base.LoadContent(screen);
+			await base.LoadContent(screen);
 
 			//Load the images
 			CheckedTexture = screen.Content.Load<Texture2D>(StyleSheet.CheckedImageResource);

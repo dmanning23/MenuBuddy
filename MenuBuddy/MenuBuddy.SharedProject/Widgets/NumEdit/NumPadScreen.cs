@@ -201,9 +201,9 @@ namespace MenuBuddy
 				IsQuiet = true;
 			}
 
-			public override void LoadContent(IScreen screen)
+			public override async Task LoadContent(IScreen screen)
 			{
-				base.LoadContent(screen);
+				await base.LoadContent(screen);
 
 				Size = new Vector2(48f, 32f);
 				Horizontal = HorizontalAlignment.Left;

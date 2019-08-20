@@ -2,6 +2,7 @@ using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -33,9 +34,9 @@ namespace MenuBuddy
 			CustomSize = customSize;
 		}
 
-		public override void LoadContent(IScreen screen)
+		public override async Task LoadContent(IScreen screen)
 		{
-			base.LoadContent(screen);
+			await base.LoadContent(screen);
 
 			//load the icon
 			TransitionObject = new WipeTransitionObject(TransitionWipeType.PopRight);

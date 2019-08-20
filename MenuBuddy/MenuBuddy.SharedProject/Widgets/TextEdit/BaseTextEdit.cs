@@ -1,8 +1,9 @@
-﻿using InputHelper;
-using System;
+﻿using FontBuddyLib;
+using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using FontBuddyLib;
+using System;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -175,10 +176,10 @@ namespace MenuBuddy
 			AddItem(TextLabel);
 		}
 
-		public override void LoadContent(IScreen screen)
+		public override async Task LoadContent(IScreen screen)
 		{
 			Screen = screen;
-			base.LoadContent(screen);
+			await base.LoadContent(screen);
 		}
 
 		public void SetText(string text)

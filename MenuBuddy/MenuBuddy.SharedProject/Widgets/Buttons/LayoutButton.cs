@@ -1,6 +1,7 @@
 using GameTimer;
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -23,9 +24,9 @@ namespace MenuBuddy
 		{
 		}
 
-		public override void LoadContent(IScreen screen)
+		public override async Task LoadContent(IScreen screen)
 		{
-			base.LoadContent(screen);
+			await base.LoadContent(screen);
 		}
 
 		#endregion //Initialization

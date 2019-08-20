@@ -1,5 +1,6 @@
 ﻿using InputHelper;
 using Microsoft.Xna.Framework.Graphics;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -13,12 +14,14 @@ namespace MenuBuddy
 
 		#region Methods
 
-		public void LoadContent(IScreen screen)
+		public Task LoadContent(IScreen screen)
 		{
 			if (null != screen.ScreenManager)
 			{
 				BackgroundImage = screen.Content.Load<Texture2D>(StyleSheet.ButtonBackgroundImageResource);
 			}
+
+			return Task.CompletedTask;
 		}
 
 		public virtual void UnloadContent()

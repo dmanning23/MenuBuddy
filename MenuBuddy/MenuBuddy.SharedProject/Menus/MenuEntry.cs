@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using ResolutionBuddy;
 using System;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -205,7 +206,7 @@ namespace MenuBuddy
 			return new MenuEntry(this);
 		}
 
-		public override void LoadContent(IScreen screen)
+		public override async Task LoadContent(IScreen screen)
 		{
 			//get the label height from the font being used
 			var labelHeight = Label.Font.Font.LineSpacing;
@@ -220,7 +221,7 @@ namespace MenuBuddy
 
 			AddItem(Label);
 
-			base.LoadContent(screen);
+			await base.LoadContent(screen);
 		}
 
 		#endregion //Initialization

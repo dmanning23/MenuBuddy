@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -204,11 +205,11 @@ namespace MenuBuddy
 
 		public abstract IScreenItem DeepCopy();
 
-		public virtual void LoadContent(IScreen screen)
+		public virtual async Task LoadContent(IScreen screen)
 		{
 			for (int i = 0; i < Items.Count; i++)
 			{
-				Items[i].LoadContent(screen);
+				await Items[i].LoadContent(screen);
 			}
 		}
 

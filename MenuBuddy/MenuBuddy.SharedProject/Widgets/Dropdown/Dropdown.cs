@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -116,9 +117,9 @@ namespace MenuBuddy
 			Background = new Background();
 		}
 
-		public override void LoadContent(IScreen screen)
+		public override async Task LoadContent(IScreen screen)
 		{
-			Background.LoadContent(screen);
+			await Background.LoadContent(screen);
 
 			DropButton = new RelativeLayoutButton()
 			{
@@ -144,10 +145,10 @@ namespace MenuBuddy
 
 			for (int i = 0; i < DropdownItems.Count; i++)
 			{
-				DropdownItems[i].LoadContent(screen);
+				await DropdownItems[i].LoadContent(screen);
 			}
 
-			base.LoadContent(screen);
+			await base.LoadContent(screen);
 		}
 
 		/// <summary>
