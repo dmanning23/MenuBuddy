@@ -260,12 +260,12 @@ namespace MenuBuddy
 		/// This method pops up a recoverable error screen.
 		/// </summary>
 		/// <param name="ex">the exception that occureed</param>
-		public void ErrorScreen(Exception ex)
+		public async Task ErrorScreen(Exception ex)
 		{
 			var screens = new List<IScreen>(MainMenuStack());
 			screens.Add(new ErrorScreen(ex));
 			ClearScreens();
-			LoadingScreen.Load(this, null, string.Empty, screens.ToArray());
+			await LoadingScreen.Load(this, null, string.Empty, screens.ToArray());
 		}
 
 		public IScreen FindScreen(string screenName)

@@ -99,7 +99,7 @@ namespace MenuBuddy
 		/// This method pops up a recoverable error screen.
 		/// </summary>
 		/// <param name="ex">the exception that occureed</param>
-		void ErrorScreen(Exception ex);
+		Task ErrorScreen(Exception ex);
 
 		/// <summary>
 		/// Find a screen by name.
