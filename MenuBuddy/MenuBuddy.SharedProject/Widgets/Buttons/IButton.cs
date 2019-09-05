@@ -9,7 +9,7 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IButton : IWidget, IScreenItemContainer, IClickable
 	{
-		bool IsQuiet { get; }
+		bool IsQuiet { get; set; }
 
 		Vector2 Size { set; }
 
