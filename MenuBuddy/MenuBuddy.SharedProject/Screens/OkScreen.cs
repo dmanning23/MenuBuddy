@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework.Content;
+using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -15,10 +16,10 @@ namespace MenuBuddy
 		{
 		}
 
-		protected override void AddButtons(StackLayout stack)
+		protected override async Task AddButtons(StackLayout stack)
 		{
 			//just an ok button on this screen
-			stack.AddItem(AddMessageBoxOkButton());
+			stack.AddItem(await AddMessageBoxOkButton());
 		}
 	}
 }

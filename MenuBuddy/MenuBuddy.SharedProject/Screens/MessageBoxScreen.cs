@@ -132,7 +132,7 @@ namespace MenuBuddy
 			labelStack.AddItem(ControlStack);
 
 			//Add the buttons
-			AddButtons(labelStack);
+			await AddButtons(labelStack);
 
 			//Set the position of the labelstack
 			labelStack.Position = new Point(labelStack.Rect.Width / 2, 0);
@@ -170,7 +170,7 @@ namespace MenuBuddy
 			return true;
 		}
 
-		protected virtual void AddButtons(StackLayout stack)
+		protected virtual async Task AddButtons(StackLayout stack)
 		{
 			var buttonLayout = new RelativeLayout()
 			{
@@ -179,11 +179,11 @@ namespace MenuBuddy
 				Size = new Vector2( Resolution.TitleSafeArea.Width * 0.8f, 64f)
 			};
 
-			var okButton = AddMessageBoxOkButton();
+			var okButton = await AddMessageBoxOkButton();
 			okButton.Horizontal = HorizontalAlignment.Left;
 			buttonLayout.AddItem(okButton);
 
-			var cancelButton = AddMessageBoxCancelButton();
+			var cancelButton = await AddMessageBoxCancelButton();
 			cancelButton.Horizontal = HorizontalAlignment.Right;
 			buttonLayout.AddItem(cancelButton);
 
@@ -191,9 +191,9 @@ namespace MenuBuddy
 			stack.AddItem(new Shim(0, 16));
 		}
 
-		protected IButton AddMessageBoxOkButton()
+		protected async Task<IButton> AddMessageBoxOkButton()
 		{
-			var button = CreateButton(true);
+			var button = await CreateButton(true);
 
 			button.OnClick += ((obj, e) =>
 			{
@@ -214,9 +214,9 @@ namespace MenuBuddy
 			return button;
 		}
 
-		protected IButton AddMessageBoxCancelButton()
+		protected async Task<IButton> AddMessageBoxCancelButton()
 		{
-			var button = CreateButton(false);
+			var button = await CreateButton(false);
 			button.OnClick += ((obj, e) =>
 			{
 				if (null != OnCancel)
@@ -229,7 +229,7 @@ namespace MenuBuddy
 			return button;
 		}
 
-		private IButton CreateButton(bool okButton)
+		private async Task<IButton> CreateButton(bool okButton)
 		{
 			//Create the menu entry "Cancel"
 			var label = new Label(okButton ? OkText : CancelText, Content, FontSize.Small)
@@ -267,7 +267,7 @@ namespace MenuBuddy
 				});
 			}
 
-			button.LoadContent(this);
+			await button.LoadContent(this);
 			return button;
 		}
 

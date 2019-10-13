@@ -75,6 +75,8 @@ namespace MenuBuddy
 
 		public static string LoadingScreenHourglassImageResource { get; set; }
 
+		public static string FadeBackgroundImageResource { get; set; }
+
 		public static bool HasOutline { get; set; }
 
 		public static TransitionWipeType DefaultTransition { get; set; }
@@ -114,6 +116,7 @@ namespace MenuBuddy
 			CheckedImageResource = @"Checked";
 			UncheckedImageResource = @"Unchecked";
 			LoadingScreenHourglassImageResource = @"hourglass";
+			FadeBackgroundImageResource = string.Empty;
 			HasOutline = true;
 			DefaultTransition = TransitionWipeType.SlideLeft;
 

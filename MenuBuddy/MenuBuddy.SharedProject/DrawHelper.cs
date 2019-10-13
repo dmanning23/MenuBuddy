@@ -20,18 +20,25 @@ namespace MenuBuddy
 		/// </summary>
 		public Primitive Prim { get; set; }
 
+		public Texture2D FadeBackgroundImage { get; set; }
+
 		#endregion //Properties
 
 		#region Methods
 
-		public DrawHelper(GraphicsDevice graphicsDevice, SpriteBatch spritebatch)
+		public DrawHelper(ScreenManager screenManager)
 		{
-			SpriteBatch = spritebatch;
+			SpriteBatch = screenManager.SpriteBatch;
 
 			//init the basic primitive
-			Prim = new Primitive(graphicsDevice, spritebatch);
+			Prim = new Primitive(screenManager.GraphicsDevice, screenManager.SpriteBatch);
 			Prim.Thickness = 5.0f;
 			Prim.NumCircleSegments = 4;
+
+			if (!string.IsNullOrEmpty(StyleSheet.FadeBackgroundImageResource))
+			{
+				FadeBackgroundImage = screenManager.Game.Content.Load<Texture2D>(StyleSheet.FadeBackgroundImageResource);
+			}
 		}
 
 		/// <summary>
@@ -40,7 +47,14 @@ namespace MenuBuddy
 		/// </summary>
 		public void FadeBackground(float alpha)
 		{
-			BlackRect(alpha, Resolution.ScreenArea);
+			if (null == FadeBackgroundImage)
+			{
+				BlackRect(alpha, Resolution.ScreenArea);
+			}
+			else
+			{
+				DrawRect(new Color(0.0f, 0.0f, 0.0f, alpha), Resolution.ScreenArea, FadeBackgroundImage);
+			}
 		}
 
 		/// <summary>

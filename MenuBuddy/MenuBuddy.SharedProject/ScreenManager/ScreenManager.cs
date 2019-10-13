@@ -90,7 +90,7 @@ namespace MenuBuddy
 		{
 			SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-			DrawHelper = new DrawHelper(GraphicsDevice, SpriteBatch);
+			DrawHelper = new DrawHelper(this);
 
 			Task.Run(() => ScreenStack.LoadContent()).ConfigureAwait(false);
 		}
