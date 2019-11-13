@@ -168,27 +168,33 @@ namespace MenuBuddy
 
 		#region Handle Input
 
-		public void CheckInput(InputState input)
+		public void CheckInput(IInputState input)
 		{
+			var inputState = input as InputState;
+			if (null == inputState)
+			{
+				return;
+			}
+
 			//Check all the input
-			if (input.IsMenuUp(ControllingPlayer))
+			if (inputState.IsMenuUp(ControllingPlayer))
 			{
 				// Move to the previous menu entry
 				MenuUp();
 			}
-			else if (input.IsMenuDown(ControllingPlayer))
+			else if (inputState.IsMenuDown(ControllingPlayer))
 			{
 				// Move to the next menu entry
 				MenuDown();
 			}
 
 			//checkl the left/right messages
-			if (input.IsMenuLeft(ControllingPlayer))
+			if (inputState.IsMenuLeft(ControllingPlayer))
 			{
 				//send a left message to the current menu entry
 				MenuLeft();
 			}
-			else if (input.IsMenuRight(ControllingPlayer))
+			else if (inputState.IsMenuRight(ControllingPlayer))
 			{
 				//send a right message to the current menu entry
 				MenuRight();
@@ -201,7 +207,7 @@ namespace MenuBuddy
 			// OnSelectEntry and OnCancel, so they can tell which player triggered them.
 			PlayerIndex playerIndex;
 
-			if (input.IsMenuSelect(ControllingPlayer, out playerIndex))
+			if (inputState.IsMenuSelect(ControllingPlayer, out playerIndex))
 			{
 				if (null != SelectedEntry)
 				{
@@ -211,7 +217,7 @@ namespace MenuBuddy
 					});
 				}
 			}
-			else if (input.IsMenuCancel(ControllingPlayer, out playerIndex))
+			else if (inputState.IsMenuCancel(ControllingPlayer, out playerIndex))
 			{
 				Cancelled(this, new ClickEventArgs
 				{

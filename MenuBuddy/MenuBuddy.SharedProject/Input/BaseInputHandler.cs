@@ -15,7 +15,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// This object controls all the controller and keyboard stuff.
 		/// </summary>
-		public InputState InputState { get; private set; }
+		public IInputState InputState { get; private set; }
 
 		public event EventHandler<ClickEventArgs> OnClickHandled;
 

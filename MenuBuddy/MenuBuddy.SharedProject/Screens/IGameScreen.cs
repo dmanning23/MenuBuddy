@@ -14,6 +14,6 @@ namespace MenuBuddy
 		/// Do the input logic for the main game.
 		/// </summary>
 		/// <param name="input"></param>
-		void HandleInput(InputState input);
+		void HandleInput(IInputState input);
 	}
 }

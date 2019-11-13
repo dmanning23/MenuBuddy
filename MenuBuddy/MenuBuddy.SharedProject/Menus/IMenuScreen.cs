@@ -9,7 +9,7 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IMenuScreen : IWidgetScreen
 	{
-		void CheckInput(InputState input);
+		void CheckInput(IInputState input);
 
 		void Cancelled(object obj, ClickEventArgs e);
 	}
