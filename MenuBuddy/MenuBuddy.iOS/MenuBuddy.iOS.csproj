@@ -35,13 +35,13 @@
       <HintPath>..\packages\FilenameBuddy.2.0.8\lib\Xamarin.iOS10\FilenameBuddy.iOS.dll</HintPath>
     </Reference>
     <Reference Include="FontBuddyLib.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FontBuddy.2.0.6\lib\Xamarin.iOS10\FontBuddyLib.iOS.dll</HintPath>
+      <HintPath>..\packages\FontBuddy.2.0.15\lib\Xamarin.iOS10\FontBuddyLib.iOS.dll</HintPath>
     </Reference>
     <Reference Include="GameTimer.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GameTimer.2.0.0\lib\Xamarin.iOS10\GameTimer.iOS.dll</HintPath>
     </Reference>
     <Reference Include="HadoukInput.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HadoukInput.2.0.26\lib\Xamarin.iOS10\HadoukInput.iOS.dll</HintPath>
+      <HintPath>..\packages\HadoukInput.2.0.27\lib\Xamarin.iOS10\HadoukInput.iOS.dll</HintPath>
     </Reference>
     <Reference Include="InputHelper.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\InputHelper.2.0.6\lib\Xamarin.iOS10\InputHelper.iOS.dll</HintPath>
@@ -63,6 +63,9 @@
     </Reference>
     <Reference Include="ResolutionBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ResolutionBuddy.2.0.1\lib\Xamarin.iOS10\ResolutionBuddy.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="SpriteFontPlus, Version=0.7.0.22, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpriteFontPlus.MonoGame.0.7.0.22\lib\netstandard2.0\SpriteFontPlus.dll</HintPath>
     </Reference>
     <Reference Include="StateMachineBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StateMachineBuddy.2.0.19\lib\Xamarin.iOS10\StateMachineBuddy.iOS.dll</HintPath>

@@ -114,11 +114,9 @@ namespace MenuBuddy
 
 			//create the message widget
 			var width = 0f;
-			var msg = new PaddedLayout(0, 0, 24, 0, new Label("Loading...", Content, FontSize.Medium, Font)
+			var msg = new Label("Loading...", Content, FontSize.Medium, Font)
 			{
-				Highlightable = false
-			})
-			{
+				Highlightable = false,
 				Horizontal = HorizontalAlignment.Right,
 				Vertical = VerticalAlignment.Center,
 			};

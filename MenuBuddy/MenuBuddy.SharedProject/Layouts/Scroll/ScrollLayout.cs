@@ -294,7 +294,7 @@ namespace MenuBuddy
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				throw;
 			}
 		}
 

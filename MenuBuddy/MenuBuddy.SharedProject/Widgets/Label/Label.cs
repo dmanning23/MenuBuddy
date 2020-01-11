@@ -112,14 +112,28 @@ namespace MenuBuddy
 		/// constructor
 		/// </summary>
 		/// <param name="text"></param>
-		public Label(string text, ContentManager content, FontSize fontSize = FontSize.Medium, string fontResource = null)
+		public Label(string text, ContentManager content, FontSize fontSize = FontSize.Medium, string fontResource = null, bool? useFontPlus = null, int? fontPlusSize = null)
 		{
 			_fontSize = fontSize;
 			Text = text;
 			Clickable = true;
 
-			//load the fonts from the stylesheet
-			InitializeFonts(content, fontResource);
+			//If there is no value for the font plus flag, grab it from the stylesheet
+			if (!useFontPlus.HasValue)
+			{
+				useFontPlus = StyleSheet.UseFontPlus;
+			}
+
+			if (!useFontPlus.Value)
+			{
+				//load the fonts from the stylesheet
+				InitializeFonts(content, fontResource);
+			}
+			else
+			{
+				InitializeFontPlus(content, fontResource, fontPlusSize);
+			}
+
 			CalculateRect();
 		}
 
@@ -161,7 +175,116 @@ namespace MenuBuddy
 			return new Label(this);
 		}
 
-		protected void InitializeFonts(ContentManager content, string fontResource)
+		protected virtual void InitializeFonts(ContentManager content, string fontResource)
+		{
+			fontResource = GetFontResource(fontResource);
+
+			switch (FontSize)
+			{
+				case FontSize.Large:
+					{
+						Font = new FontBuddy();
+						HighlightedFont = new PulsateBuddy();
+					}
+					break;
+				case FontSize.Medium:
+					{
+						Font = new ShadowTextBuddy()
+						{
+							ShadowSize = 1.0f,
+							ShadowOffset = new Vector2(7.0f, 7.0f),
+						};
+						HighlightedFont = new PulsateBuddy()
+						{
+							ShadowSize = 1.0f,
+							ShadowOffset = new Vector2(7.0f, 7.0f),
+						};
+					}
+					break;
+				default:
+					{
+						if (StyleSheet.SmallFontHasShadow)
+						{
+							Font = new ShadowTextBuddy()
+							{
+								ShadowSize = 1.0f,
+								ShadowOffset = new Vector2(3.0f, 4.0f),
+							};
+						}
+						else
+						{
+							Font = new FontBuddy();
+						}
+
+						HighlightedFont = new PulsateBuddy()
+						{
+							ShadowSize = 1.0f,
+							ShadowOffset = new Vector2(3.0f, 4.0f),
+						};
+					}
+					break;
+			}
+
+			Font.LoadContent(content, fontResource);
+			HighlightedFont.LoadContent(content, fontResource);
+		}
+
+		protected virtual void InitializeFontPlus(ContentManager content, string fontResource, int? fontPlusSize)
+		{
+			fontResource = GetFontResource(fontResource);
+			var fontSize = GetFontPlusSize(fontPlusSize);
+
+			switch (FontSize)
+			{
+				case FontSize.Large:
+					{
+						Font = new FontBuddyPlus();
+						HighlightedFont = new PulsateBuddy();
+					}
+					break;
+				case FontSize.Medium:
+					{
+						Font = new ShadowTextBuddy()
+						{
+							ShadowSize = 1.0f,
+							ShadowOffset = new Vector2(7.0f, 7.0f),
+						};
+						HighlightedFont = new PulsateBuddy()
+						{
+							ShadowSize = 1.0f,
+							ShadowOffset = new Vector2(7.0f, 7.0f),
+						};
+					}
+					break;
+				default:
+					{
+						if (StyleSheet.SmallFontHasShadow)
+						{
+							Font = new ShadowTextBuddy()
+							{
+								ShadowSize = 1.0f,
+								ShadowOffset = new Vector2(3.0f, 4.0f),
+							};
+						}
+						else
+						{
+							Font = new FontBuddyPlus();
+						}
+
+						HighlightedFont = new PulsateBuddy()
+						{
+							ShadowSize = 1.0f,
+							ShadowOffset = new Vector2(3.0f, 4.0f),
+						};
+					}
+					break;
+			}
+
+			Font.LoadContent(content, fontResource, true, fontSize);
+			HighlightedFont.LoadContent(content, fontResource, true, fontSize);
+		}
+
+		private string GetFontResource(string fontResource)
 		{
 			if (string.IsNullOrEmpty(fontResource))
 			{
@@ -185,63 +308,32 @@ namespace MenuBuddy
 				}
 			}
 
-			switch (FontSize)
-			{
-				case FontSize.Large:
-					{
-						Font = new FontBuddy()
-						{
-							Font = content.Load<SpriteFont>(fontResource)
-						};
-						HighlightedFont = new PulsateBuddy()
-						{
-							Font = content.Load<SpriteFont>(fontResource)
-						};
-					}
-					break;
-				case FontSize.Medium:
-					{
-						Font = new ShadowTextBuddy()
-						{
-							ShadowSize = 1.0f,
-							ShadowOffset = new Vector2(7.0f, 7.0f),
-							Font = content.Load<SpriteFont>(fontResource)
-						};
-						HighlightedFont = new PulsateBuddy()
-						{
-							ShadowSize = 1.0f,
-							ShadowOffset = new Vector2(7.0f, 7.0f),
-							Font = content.Load<SpriteFont>(fontResource)
-						};
-					}
-					break;
-				default:
-					{
-						if (StyleSheet.SmallFontHasShadow)
-						{
-							Font = new ShadowTextBuddy()
-							{
-								ShadowSize = 1.0f,
-								ShadowOffset = new Vector2(3.0f, 4.0f),
-								Font = content.Load<SpriteFont>(fontResource),
-							};
-						}
-						else
-						{
-							Font = new FontBuddy()
-							{
-								Font = content.Load<SpriteFont>(fontResource),
-							};
-						}
+			return fontResource;
+		}
 
-						HighlightedFont = new PulsateBuddy()
+		private int GetFontPlusSize(int? fontPlusSize)
+		{
+			if (fontPlusSize.HasValue)
+			{
+				return fontPlusSize.Value;
+			}
+			else
+			{
+				switch (FontSize)
+				{
+					case FontSize.Large:
 						{
-							ShadowSize = 1.0f,
-							ShadowOffset = new Vector2(3.0f, 4.0f),
-							Font = content.Load<SpriteFont>(fontResource),
-						};
-					}
-					break;
+							return StyleSheet.LargeFontSize;
+						}
+					case FontSize.Medium:
+						{
+							return StyleSheet.MediumFontSize;
+						}
+					default:
+						{
+							return StyleSheet.SmallFontSize;
+						}
+				}
 			}
 		}
 

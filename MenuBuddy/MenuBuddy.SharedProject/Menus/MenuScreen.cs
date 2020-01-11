@@ -117,7 +117,7 @@ namespace MenuBuddy
 			CoveredByOtherScreens = true;
 
 			_menuEntryPosition = new Point(Resolution.TitleSafeArea.Center.X, (int)(Resolution.TitleSafeArea.Center.Y * 0.8f));
-			_menuTitlePosition = new Point(Resolution.TitleSafeArea.Center.X, (int)(Resolution.TitleSafeArea.Center.Y * 0.4f));
+			_menuTitlePosition = new Point(Resolution.TitleSafeArea.Center.X, (int)(Resolution.TitleSafeArea.Center.Y * 0.6f));
 		}
 
 		public override async Task LoadContent()

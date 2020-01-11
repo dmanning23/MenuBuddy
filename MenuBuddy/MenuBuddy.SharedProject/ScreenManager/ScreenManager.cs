@@ -120,14 +120,7 @@ namespace MenuBuddy
 		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
-			try
-			{
-				ScreenStack.Draw(gameTime);
-			}
-			catch (Exception ex)
-			{
-				ErrorScreen(ex);
-			}
+			ScreenStack.Draw(gameTime);
 		}
 
 		/// <summary>

@@ -18,8 +18,6 @@ namespace MenuBuddy
 
 		private Exception _error;
 
-		private SpriteFont _font;
-
 		#endregion //Fields
 
 		#region Methods
@@ -48,7 +46,13 @@ namespace MenuBuddy
 			await ScreenManager.AddScreen(new OkScreen(_message));
 
 			AddCancelButton();
-			_font = Content.Load<SpriteFont>(StyleSheet.SmallFontResource);
+
+			AddItem(new Label(_message, Content, FontSize.Small)
+			{
+				Position = new Point(Resolution.TitleSafeArea.Left, Resolution.TitleSafeArea.Top),
+				Horizontal = HorizontalAlignment.Left,
+				Vertical = VerticalAlignment.Top
+			});
 		}
 
 		/// <summary>
@@ -56,17 +60,8 @@ namespace MenuBuddy
 		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
-			//Draw at the upper left to try and fit as much text as possible on teh screen
-			Vector2 textPosition = new Vector2(Resolution.TitleSafeArea.Left, Resolution.TitleSafeArea.Top);
-
 			ScreenManager.SpriteBatchBegin();
-
-			// Darken down any other screens that were drawn beneath the popup.
 			FadeBackground();
-
-			// Draw the message box text.
-			ScreenManager.SpriteBatch.DrawString(_font, _error.ToString(), textPosition, Color.White, 0.0f, new Vector2(0.0f, 0.0f), 0.6f, SpriteEffects.None, 1.0f);
-
 			ScreenManager.SpriteBatchEnd();
 
 			base.Draw(gameTime);

@@ -98,12 +98,22 @@ namespace MenuBuddy
 			//Split up the label text into lines
 			var lines = Message.Split('\n').ToList();
 
+			//split the line into lines that will actuall fit on the screen
+			IFontBuddy tempFont;
+			if (StyleSheet.UseFontPlus)
+			{
+				tempFont = new FontBuddyPlus();
+				tempFont.LoadContent(Content, StyleSheet.SmallFontResource, true, StyleSheet.SmallFontSize);
+			}
+			else
+			{
+				tempFont = new FontBuddy();
+				tempFont.LoadContent(Content, StyleSheet.SmallFontResource);
+			}
+
 			//Add all the label text to the stack
 			foreach (var line in lines)
 			{
-				//split the line into lines that will actuall fit on the screen
-				var tempFont = new FontBuddy();
-				tempFont.LoadContent(Content, StyleSheet.SmallFontResource);
 				var splitLines = tempFont.BreakTextIntoList(line, Resolution.TitleSafeArea.Width - 64);
 				foreach (var splitLine in splitLines)
 				{

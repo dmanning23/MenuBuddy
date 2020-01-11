@@ -23,6 +23,14 @@ namespace MenuBuddy
 		/// </summary>
 		public static string SmallFontResource { get; set; }
 
+		public static int LargeFontSize { get; set; }
+
+		public static int MediumFontSize { get; set; }
+
+		public static int SmallFontSize { get; set; }
+
+		public static bool UseFontPlus { get; set; }
+
 		public static Color NeutralTextColor { get; set; }
 
 		public static Color HighlightedTextColor { get; set; }
@@ -92,6 +100,12 @@ namespace MenuBuddy
 			LargeFontResource = @"Fonts\ArialBlack72";
 			MediumFontResource = @"Fonts\ArialBlack48";
 			SmallFontResource = @"Fonts\ArialBlack24";
+
+			LargeFontSize = 144;
+			MediumFontSize = 96;
+			SmallFontSize = 48;
+
+			UseFontPlus = false;
 
 			NeutralTextColor = Color.White;
 			MessageBoxTextColor = Color.White;
