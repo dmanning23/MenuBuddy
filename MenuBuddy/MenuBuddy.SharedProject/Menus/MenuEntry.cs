@@ -216,7 +216,7 @@ namespace MenuBuddy
 			{
 				Horizontal = HorizontalAlignment.Center,
 				Vertical = VerticalAlignment.Center,
-				HasBackground = true,
+				HasBackground = this.HasBackground,
 			});
 
 			AddItem(Label);
