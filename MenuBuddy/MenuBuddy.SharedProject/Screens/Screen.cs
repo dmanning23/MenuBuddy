@@ -98,7 +98,7 @@ namespace MenuBuddy
 		/// this menu is given control over all subsequent screens, so other gamepads
 		/// are inactive until the controlling player returns to the main menu.
 		/// </summary>
-		public PlayerIndex? ControllingPlayer { get; set; }
+		public int? ControllingPlayer { get; set; }
 
 		/// <summary>
 		/// Gets or sets the name of this screen

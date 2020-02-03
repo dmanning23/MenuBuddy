@@ -71,19 +71,19 @@ namespace MenuBuddy
 		/// <summary>
 		/// Adds a new screen to the screen manager.
 		/// </summary>
-		Task AddScreen(IScreen screen, PlayerIndex? controllingPlayer = null);
+		Task AddScreen(IScreen screen, int? controllingPlayer = null);
 
 		/// <summary>
 		/// Adds a new screen to the screen manager.
 		/// </summary>
-		Task AddScreen(IScreen[] screens, PlayerIndex? controllingPlayer = null);
+		Task AddScreen(IScreen[] screens, int? controllingPlayer = null);
 
 		/// <summary>
 		/// Set the top screen
 		/// </summary>
 		/// <param name="screen"></param>
 		/// <param name="controllingPlayer"></param>
-		Task SetTopScreen(IScreen screen, PlayerIndex? controllingPlayer);
+		Task SetTopScreen(IScreen screen, int? controllingPlayer);
 
 		/// <summary>
 		/// Removes a screen from the screen manager. You should normally

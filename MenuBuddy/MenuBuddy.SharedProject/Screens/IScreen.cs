@@ -44,7 +44,7 @@ namespace MenuBuddy
 		/// </summary>
 		bool CoveredByOtherScreens { get; set; }
 
-		PlayerIndex? ControllingPlayer { get; set; }
+		int? ControllingPlayer { get; set; }
 
 		/// <summary>
 		/// Whether or not this is the active screen being displayed

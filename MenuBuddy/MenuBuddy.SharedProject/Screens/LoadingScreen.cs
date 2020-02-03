@@ -70,7 +70,7 @@ namespace MenuBuddy
 		}
 
 		public static Task Load(ScreenManager screenManager,
-								PlayerIndex controllingPlayer,
+								int controllingPlayer,
 								string loadSoundEffect,
 								params IScreen[] screensToLoad)
 		{

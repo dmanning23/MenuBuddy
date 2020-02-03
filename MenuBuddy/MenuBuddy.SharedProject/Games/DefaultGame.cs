@@ -127,7 +127,7 @@ namespace MenuBuddy
 		protected override void Update(GameTime gameTime)
 		{
 			// For Mobile devices, this logic will close the Game when the Back button is pressed
-			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+			if (GamePad.GetState(0).Buttons.Back == ButtonState.Pressed)
 			{
 #if !__IOS__
 				Exit();

@@ -160,7 +160,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Adds a new screen to the screen manager.
 		/// </summary>
-		public virtual async Task AddScreen(IScreen screen, PlayerIndex? controllingPlayer = null)
+		public virtual async Task AddScreen(IScreen screen, int? controllingPlayer = null)
 		{
 			screen.ControllingPlayer = controllingPlayer;
 			screen.ScreenManager = this;
@@ -177,7 +177,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// Adds a new screen to the screen manager.
 		/// </summary>
-		public virtual async Task AddScreen(IScreen[] screens, PlayerIndex? controllingPlayer = null)
+		public virtual async Task AddScreen(IScreen[] screens, int? controllingPlayer = null)
 		{
 			foreach (var screen in screens)
 			{
@@ -202,7 +202,7 @@ namespace MenuBuddy
 		/// </summary>
 		/// <param name="screen"></param>
 		/// <param name="controllingPlayer"></param>
-		public virtual async Task SetTopScreen(IScreen screen, PlayerIndex? controllingPlayer)
+		public virtual async Task SetTopScreen(IScreen screen, int? controllingPlayer)
 		{
 			screen.ControllingPlayer = controllingPlayer;
 			screen.ScreenManager = this;

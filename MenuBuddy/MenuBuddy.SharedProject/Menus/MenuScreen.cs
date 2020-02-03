@@ -205,9 +205,8 @@ namespace MenuBuddy
 			// If we pass a null controlling player, the InputState helper returns to
 			// us which player actually provided the input. We pass that through to
 			// OnSelectEntry and OnCancel, so they can tell which player triggered them.
-			PlayerIndex playerIndex;
 
-			if (inputState.IsMenuSelect(ControllingPlayer, out playerIndex))
+			if (inputState.IsMenuSelect(ControllingPlayer, out int playerIndex))
 			{
 				if (null != SelectedEntry)
 				{
