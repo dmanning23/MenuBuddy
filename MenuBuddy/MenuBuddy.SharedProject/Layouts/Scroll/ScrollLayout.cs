@@ -152,7 +152,24 @@ namespace MenuBuddy
 			get; set;
 		}
 
-		public bool ShowScrollBars { get; set; }
+		private bool _showScrollBars;
+		public bool ShowScrollBars
+		{
+			get
+			{
+				return _showScrollBars;
+			}
+			set
+			{
+				ShowVerticalScrollBars = value;
+				ShowHorizontalScrollBars = value;
+				_showScrollBars = value;
+			}
+		}
+
+		public bool ShowVerticalScrollBars { get; set; }
+
+		public bool ShowHorizontalScrollBars { get; set; }
 
 		private bool CurrentlyDragging { get; set; }
 
@@ -316,12 +333,12 @@ namespace MenuBuddy
 			//Draw the scroll bars if the mouse pointer or a touch is inside the layout
 			if (ShowScrollBars && DrawScrollbars)
 			{
-				if (DrawVerticalScrollBar)
+				if (ShowVerticalScrollBars && DrawVerticalScrollBar)
 				{
 					screen.ScreenManager.DrawHelper.DrawRect(screen, StyleSheet.HighlightedBackgroundColor, VerticalScrollBar, TransitionObject);
 				}
 
-				if (DrawHorizontalScrollBar)
+				if (ShowHorizontalScrollBars && DrawHorizontalScrollBar)
 				{
 					screen.ScreenManager.DrawHelper.DrawRect(screen, StyleSheet.HighlightedBackgroundColor, HorizontalScrollBar, TransitionObject);
 				}

@@ -2,9 +2,7 @@ using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using ResolutionBuddy;
-using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
@@ -118,24 +116,6 @@ namespace MenuBuddy
 		/// initialize the input to use for this game
 		/// </summary>
 		protected abstract void InitInput();
-
-		/// <summary>
-		/// Allows the game to run logic such as updating the world,
-		/// checking for collisions, gathering input, and playing audio.
-		/// </summary>
-		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		protected override void Update(GameTime gameTime)
-		{
-			// For Mobile devices, this logic will close the Game when the Back button is pressed
-			if (GamePad.GetState(0).Buttons.Back == ButtonState.Pressed)
-			{
-#if !__IOS__
-				Exit();
-#endif
-			}
-
-			base.Update(gameTime);
-		}
 
 		/// <summary>
 		/// This is called when the game should draw itself.
