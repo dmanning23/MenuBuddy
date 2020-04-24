@@ -35,6 +35,8 @@ namespace MenuBuddy
 
 		#region Properties
 
+		public string Name { get; set; } = "Widget";
+
 		public GameClock HighlightClock
 		{
 			get; protected set;
@@ -326,6 +328,11 @@ namespace MenuBuddy
 		public virtual void Dispose()
 		{
 			OnHighlight = null;
+		}
+
+		public override string ToString()
+		{
+			return Name;
 		}
 
 		#endregion //Methods

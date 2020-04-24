@@ -26,6 +26,8 @@ namespace MenuBuddy
 
 		#region Properties
 
+		public string Name { get; set; } = "Layout";
+
 		public bool Highlightable { get; set; }
 
 		public bool Clickable { get; set; }
@@ -375,6 +377,11 @@ namespace MenuBuddy
 			OnHighlight = null;
 			OnDrag = null;
 			OnDrop = null;
+		}
+
+		public override string ToString()
+		{
+			return Name;
 		}
 
 		#endregion //Methods

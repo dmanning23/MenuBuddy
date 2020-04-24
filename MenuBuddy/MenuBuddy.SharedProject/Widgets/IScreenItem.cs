@@ -10,6 +10,11 @@ namespace MenuBuddy
 	public interface IScreenItem : IHasContent
 	{
 		/// <summary>
+		/// Used for debugging
+		/// </summary>
+		string Name { get; set; }
+
+		/// <summary>
 		/// The screen realestate taken up by this item
 		/// </summary>
 		Rectangle Rect { get; }
