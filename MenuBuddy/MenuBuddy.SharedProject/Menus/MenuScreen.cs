@@ -22,7 +22,7 @@ namespace MenuBuddy
 		{
 			public int TabOrder { get; set; }
 			public int TabSubOrder { get; set; }
-			public IWidget Widget { get; set; }
+			public IScreenItem Widget { get; set; }
 
 			public override string ToString()
 			{
@@ -43,12 +43,12 @@ namespace MenuBuddy
 		/// <summary>
 		/// Get the currently selected menu entry index, -1 if no entry selected
 		/// </summary>
-		public int SelectedIndex { get; private set; }
+		public int SelectedIndex { get; set; }
 
 		/// <summary>
 		/// Get the currently selected menu entry, null if no menu entry selected
 		/// </summary>
-		public IWidget SelectedItem
+		public IScreenItem SelectedItem
 		{
 			get
 			{
@@ -87,7 +87,7 @@ namespace MenuBuddy
 			return base.LoadContent();
 		}
 
-		public void AddMenuItem(IWidget menuItem, int tabOrder = 0)
+		public void AddMenuItem(IScreenItem menuItem, int tabOrder = 0)
 		{
 			//create the tab item
 			var tabItem = new TabbedItem
@@ -173,9 +173,10 @@ namespace MenuBuddy
 				});
 			}
 
-			if (null != SelectedItem)
+			var highlightable = SelectedItem as IHighlightable;
+			if (null != highlightable)
 			{
-				SelectedItem.IsHighlighted = IsActive;
+				highlightable.IsHighlighted = IsActive;
 			}
 		}
 
@@ -184,11 +185,7 @@ namespace MenuBuddy
 			if (MenuItems.Count > 1)
 			{
 				//don't roll over
-				SelectedIndex = Math.Max(0, SelectedIndex - 1);
-
-				HighlightSelectedItem();
-
-				ResetInputTimer();
+				SetSelectedIndex(Math.Max(0, SelectedIndex - 1));
 			}
 		}
 
@@ -197,17 +194,27 @@ namespace MenuBuddy
 			if (MenuItems.Count > 1)
 			{
 				//don't roll over
-				SelectedIndex = Math.Min(SelectedIndex + 1, MenuItems.Count - 1);
-
-				HighlightSelectedItem();
-
-				ResetInputTimer();
+				SetSelectedIndex(Math.Min(SelectedIndex + 1, MenuItems.Count - 1));
 			}
+		}
+
+		public void SetSelectedIndex(int index)
+		{
+			SelectedIndex = index;
+
+			HighlightSelectedItem();
+
+			ResetInputTimer();
+		}
+
+		public void SetSelectedItem(IScreenItem item)
+		{
+			SetSelectedIndex(MenuItems.FindIndex(x => x.Widget == item));
 		}
 
 		private void MenuLeft()
 		{
-			var menuEntry = SelectedItem as IMenuEntry;
+			var menuEntry = SelectedItem as ILeftRightItem;
 			if (null != menuEntry)
 			{
 				//run the sleected evetn
@@ -219,7 +226,7 @@ namespace MenuBuddy
 
 		private void MenuRight()
 		{
-			var menuEntry = SelectedItem as IMenuEntry;
+			var menuEntry = SelectedItem as ILeftRightItem;
 			if (null != menuEntry)
 			{
 				//run the sleected evetn
@@ -233,7 +240,7 @@ namespace MenuBuddy
 		/// Remove a menu entry from the menu
 		/// </summary>
 		/// <param name="entry"></param>
-		public void RemoveMenuItem(IWidget entry)
+		public void RemoveMenuItem(IScreenItem entry)
 		{
 			//try to remove the entry from the list
 			RemoveMenuItem(MenuItems.FirstOrDefault(x => x.Widget == entry));
@@ -270,8 +277,11 @@ namespace MenuBuddy
 			//set teh highlighted item
 			for (int i = 0; i < MenuItems.Count; i++)
 			{
-				MenuItems[i].Widget.CheckHighlight(
-					new HighlightEventArgs(SelectedItem.Position.ToVector2(), ScreenManager.DefaultGame.InputHelper));
+				var highlightable = MenuItems[i].Widget as IHighlightable;
+				if (null != highlightable)
+				{
+					highlightable.CheckHighlight(new HighlightEventArgs(SelectedItem.Position.ToVector2(), ScreenManager.DefaultGame.InputHelper));
+				}
 			}
 		}
 

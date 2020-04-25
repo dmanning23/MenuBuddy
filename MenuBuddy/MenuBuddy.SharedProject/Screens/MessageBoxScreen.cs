@@ -13,7 +13,7 @@ namespace MenuBuddy
 	/// <summary>
 	/// A popup message box screen, used to display "are you sure?" confirmation messages.
 	/// </summary>
-	public class MessageBoxScreen : WidgetScreen, IClickable, IDisposable
+	public class MessageBoxScreen : MenuScreen, IClickable, IDisposable
 	{
 		#region Properties
 
@@ -192,13 +192,30 @@ namespace MenuBuddy
 			var okButton = await AddMessageBoxOkButton();
 			okButton.Horizontal = HorizontalAlignment.Left;
 			buttonLayout.AddItem(okButton);
+			AddMenuItem(okButton, 100);
 
 			var cancelButton = await AddMessageBoxCancelButton();
 			cancelButton.Horizontal = HorizontalAlignment.Right;
 			buttonLayout.AddItem(cancelButton);
+			AddMenuItem(cancelButton, 101);
+
+			//make sure user can left/right with controller
+			okButton.OnRight += (e, obj) =>
+			{
+				SetSelectedItem(cancelButton);
+			};
+			cancelButton.OnLeft += (e, obj) =>
+			{
+				SetSelectedItem(okButton);
+			};
 
 			stack.AddItem(buttonLayout);
 			stack.AddItem(new Shim(0, 16));
+		}
+
+		private void OkButton_OnRight(object sender, EventArgs e)
+		{
+			throw new NotImplementedException();
 		}
 
 		protected async Task<IButton> AddMessageBoxOkButton()

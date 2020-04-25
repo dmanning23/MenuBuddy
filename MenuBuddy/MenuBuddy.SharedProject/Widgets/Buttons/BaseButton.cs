@@ -163,6 +163,16 @@ namespace MenuBuddy
 
 		public string ClickedSound { get; set; }
 
+		/// <summary>
+		/// Event raised when the menu entry is selected.
+		/// </summary>
+		public event EventHandler OnLeft;
+
+		/// <summary>
+		/// Event raised when the menu entry is selected.
+		/// </summary>
+		public event EventHandler OnRight;
+
 		#endregion //Properties
 
 		#region Initialization
@@ -208,6 +218,8 @@ namespace MenuBuddy
 			HighlightedSoundEffect = inst.HighlightedSoundEffect;
 			ClickedSoundEffect = inst.ClickedSoundEffect;
 			_clickTimer = inst._clickTimer;
+			OnLeft = inst.OnLeft;
+			OnRight = inst.OnRight;
 
 			HighlightedSound = inst.HighlightedSound;
 			ClickedSound = inst.ClickedSound;
@@ -322,10 +334,40 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// Method for raising the Selected event.
+		/// </summary>
+		public virtual void OnLeftEntry()
+		{
+			if (OnLeft != null)
+			{
+				//play menu noise
+				PlayHighlightSound(this, new HighlightEventArgs(null));
+
+				OnLeft(this, new EventArgs());
+			}
+		}
+
+		/// <summary>
+		/// Method for raising the Selected event.
+		/// </summary>
+		public virtual void OnRightEntry()
+		{
+			if (OnRight != null)
+			{
+				//play menu noise
+				PlayHighlightSound(this, new HighlightEventArgs(null));
+
+				OnRight(this, new EventArgs());
+			}
+		}
+
 		public override void Dispose()
 		{
 			base.Dispose();
 			OnClick = null;
+			OnLeft = null;
+			OnRight = null;
 		}
 
 		#endregion //Methods

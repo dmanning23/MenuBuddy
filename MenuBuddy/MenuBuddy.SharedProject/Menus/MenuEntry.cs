@@ -1,5 +1,4 @@
 using FontBuddyLib;
-using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using ResolutionBuddy;
@@ -14,7 +13,7 @@ namespace MenuBuddy
 	/// entries in different ways. This also provides an event that will be raised
 	/// when the menu entry is selected.
 	/// </summary>
-	public class MenuEntry : RelativeLayoutButton, ILabel, IMenuEntry, IDisposable
+	public class MenuEntry : RelativeLayoutButton, ILabel, IDisposable
 	{
 		#region Fields
 
@@ -116,48 +115,6 @@ namespace MenuBuddy
 
 		#endregion //Properties
 
-		#region Events
-
-		/// <summary>
-		/// Event raised when the menu entry is selected.
-		/// </summary>
-		public event EventHandler Left;
-
-		/// <summary>
-		/// Event raised when the menu entry is selected.
-		/// </summary>
-		public event EventHandler Right;
-
-		/// <summary>
-		/// Method for raising the Selected event.
-		/// </summary>
-		public virtual void OnLeftEntry()
-		{
-			if (Left != null)
-			{
-				//play menu noise
-				PlayHighlightSound(this, new HighlightEventArgs(null));
-
-				Left(this, new EventArgs());
-			}
-		}
-
-		/// <summary>
-		/// Method for raising the Selected event.
-		/// </summary>
-		public virtual void OnRightEntry()
-		{
-			if (Right != null)
-			{
-				//play menu noise
-				PlayHighlightSound(this, new HighlightEventArgs(null));
-
-				Right(this, new EventArgs());
-			}
-		}
-
-		#endregion
-
 		#region Initialization
 
 		/// <summary>
@@ -195,8 +152,6 @@ namespace MenuBuddy
 		public MenuEntry(MenuEntry inst) : base(inst)
 		{
 			_text = inst._text;
-			Left = inst.Left;
-			Right = inst.Right;
 
 			Label = new Label(inst.Label);
 		}
@@ -231,13 +186,6 @@ namespace MenuBuddy
 		public override string ToString()
 		{
 			return Text;
-		}
-
-		public override void Dispose()
-		{
-			base.Dispose();
-			Left = null;
-			Right = null;
 		}
 
 		public void ScaleToFit(int rowWidth)

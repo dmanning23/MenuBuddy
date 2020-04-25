@@ -36,7 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Layouts\Tree\Tree.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Layouts\Tree\TreeItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Menus\ContinueMenuEntry.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Menus\IMenuEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ILeftRightItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Menus\IMenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Menus\MenuEntry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Menus\MenuEntryBool.cs" />

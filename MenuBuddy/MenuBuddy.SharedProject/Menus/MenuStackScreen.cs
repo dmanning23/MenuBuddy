@@ -120,7 +120,7 @@ namespace MenuBuddy
 			AddItem(MenuTitle);
 		}
 
-		protected void AddMenuEntry(IMenuEntry menuEntry)
+		protected void AddMenuEntry(IScreenItem menuEntry)
 		{
 			menuEntry.LoadContent(this);
 			AddMenuItem(menuEntry);
@@ -131,7 +131,7 @@ namespace MenuBuddy
 		/// <summary>
 		/// This method adds a continue button to the menu and attachs it to OnCancel
 		/// </summary>
-		protected IMenuEntry AddContinueButton()
+		protected ILeftRightItem AddContinueButton()
 		{
 			var continueButton = new ContinueMenuEntry(Content);
 			continueButton.OnClick += ((obj, e) => { ExitScreen(); });

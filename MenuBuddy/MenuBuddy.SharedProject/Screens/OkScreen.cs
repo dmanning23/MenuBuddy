@@ -19,7 +19,9 @@ namespace MenuBuddy
 		protected override async Task AddButtons(StackLayout stack)
 		{
 			//just an ok button on this screen
-			stack.AddItem(await AddMessageBoxOkButton());
+			var okButton = await AddMessageBoxOkButton();
+			stack.AddItem(okButton);
+			AddMenuItem(okButton);
 		}
 	}
 }

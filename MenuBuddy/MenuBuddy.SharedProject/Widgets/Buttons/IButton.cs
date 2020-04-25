@@ -7,7 +7,7 @@ namespace MenuBuddy
 	/// Interface for the button object
 	/// This is a widget that can be selected
 	/// </summary>
-	public interface IButton : IWidget, IScreenItemContainer, IClickable
+	public interface IButton : IWidget, IScreenItemContainer, IClickable, ILeftRightItem
 	{
 		bool IsQuiet { get; set; }
 

@@ -35,8 +35,8 @@ namespace MenuBuddy
 
 			SetMenuEntryText();
 
-			Left += ChangeBool;
-			Right += ChangeBool;
+			OnLeft += ChangeBool;
+			OnRight += ChangeBool;
 		}
 
 		public void ChangeBool(object sender, EventArgs e)

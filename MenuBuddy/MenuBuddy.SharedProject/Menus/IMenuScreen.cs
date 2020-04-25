@@ -8,9 +8,17 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IMenuScreen : IWidgetScreen, IGameScreen
 	{
-		void AddMenuItem(IWidget menuItem, int tabOrder = 0);
+		int SelectedIndex { get; }
 
-		void RemoveMenuItem(IWidget entry);
+		IScreenItem SelectedItem { get; }
+
+		void SetSelectedIndex(int index);
+
+		void SetSelectedItem(IScreenItem item);
+
+		void AddMenuItem(IScreenItem menuItem, int tabOrder = 0);
+
+		void RemoveMenuItem(IScreenItem entry);
 
 		void RemoveMenuItem(int index);
 	}

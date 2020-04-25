@@ -53,8 +53,8 @@ namespace MenuBuddy
 
 			SetMenuEntryText();
 
-			Left += Decrement;
-			Right += Increment;
+			OnLeft += Decrement;
+			OnRight += Increment;
 		}
 
 		public void Increment(object sender, EventArgs e)
