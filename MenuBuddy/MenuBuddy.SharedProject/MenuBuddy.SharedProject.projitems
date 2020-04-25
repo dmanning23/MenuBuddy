@@ -42,6 +42,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Menus\MenuEntryBool.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Menus\MenuEntryInt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Menus\MenuScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Menus\MenuStackScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Menus\MenuTitle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ScreenManager\IScreenManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ScreenManager\ScreenManager.cs" />

@@ -210,9 +210,9 @@ namespace MenuBuddy
 		{
 			//get the label height from the font being used
 			var labelHeight = Label.Rect.Height;
-			Size = new Vector2(Resolution.TitleSafeArea.Width, labelHeight * 2.5f);
+			Size = new Vector2(Resolution.TitleSafeArea.Width, labelHeight * 1.25f);
 
-			AddItem(new Shim(Size.X, labelHeight * 2f)
+			AddItem(new Shim(Size.X, labelHeight * 0.25f)
 			{
 				Horizontal = HorizontalAlignment.Center,
 				Vertical = VerticalAlignment.Center,

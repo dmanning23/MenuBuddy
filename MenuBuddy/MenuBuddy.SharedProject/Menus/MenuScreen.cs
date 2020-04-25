@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using ResolutionBuddy;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,32 +14,31 @@ namespace MenuBuddy
 	/// Base class for screens that contain a menu of options. The user can
 	/// move up and down to select an entry, or cancel to back out of the screen.
 	/// </summary>
-	public abstract class MenuScreen : WidgetScreen, IMenuScreen
+	public class MenuScreen : WidgetScreen, IMenuScreen
 	{
-		#region Fields
+		#region Properties
 
-		private Point _menuTitlePosition;
+		protected class TabbedItem
+		{
+			public int TabOrder { get; set; }
+			public int TabSubOrder { get; set; }
+			public IWidget Widget { get; set; }
 
-		private Point _menuEntryPosition;
+			public override string ToString()
+			{
+				return Widget.ToString();
+			}
+		}
 
 		/// <summary>
 		/// The game type, as loaded from the screenmanager.game
 		/// </summary>
 		private GameType _gameType;
 
-		#endregion
-
-		#region Properties
-
-		/// <summary>
-		/// The title of this menu
-		/// </summary>
-		public Label MenuTitle { get; private set; }
-
 		/// <summary>
 		/// Gets the list of menu entries, so derived classes can add or change the menu contents.
 		/// </summary>
-		protected StackLayout MenuEntries { get; private set; }
+		private List<TabbedItem> MenuItems { get; set; } = new List<TabbedItem>();
 
 		/// <summary>
 		/// Get the currently selected menu entry index, -1 if no entry selected
@@ -48,58 +48,19 @@ namespace MenuBuddy
 		/// <summary>
 		/// Get the currently selected menu entry, null if no menu entry selected
 		/// </summary>
-		public IMenuEntry SelectedEntry
+		public IWidget SelectedItem
 		{
 			get
 			{
 				if ((GameType.Controller == _gameType) &&
 					(SelectedIndex > -1) &&
-					(SelectedIndex < MenuEntries.Items.Count))
+					(SelectedIndex < MenuItems.Count))
 				{
-					return MenuEntries.Items[SelectedIndex] as IMenuEntry;
+					return MenuItems[SelectedIndex].Widget;
 				}
 
 				//no menu entry selected or something is not setup correctly
 				return null;
-			}
-		}
-
-		protected Point MenuTitlePosition
-		{
-			get { return _menuTitlePosition; }
-			set
-			{
-				_menuTitlePosition = value;
-				if (null != MenuTitle)
-				{
-					MenuTitle.Position = _menuTitlePosition;
-				}
-			}
-		}
-
-		protected Point MenuEntryPosition
-		{
-			get { return _menuEntryPosition; }
-			set
-			{
-				_menuEntryPosition = value;
-				MenuEntries.Position = _menuEntryPosition;
-			}
-		}
-
-		public override string ScreenName
-		{
-			get
-			{
-				return base.ScreenName;
-			}
-			set
-			{
-				base.ScreenName = value;
-				if (null != MenuTitle)
-				{
-					MenuTitle.Text = base.ScreenName;
-				}
 			}
 		}
 
@@ -110,65 +71,52 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		protected MenuScreen(string menuTitle = "", ContentManager content = null)
+		public MenuScreen(string menuTitle = "", ContentManager content = null)
 			: base(menuTitle, content)
 		{
 			CoverOtherScreens = true;
 			CoveredByOtherScreens = true;
 
-			_menuEntryPosition = new Point(Resolution.TitleSafeArea.Center.X, (int)(Resolution.TitleSafeArea.Center.Y * 0.8f));
-			_menuTitlePosition = new Point(Resolution.TitleSafeArea.Center.X, (int)(Resolution.TitleSafeArea.Center.Y * 0.6f));
 		}
 
-		public override async Task LoadContent()
+		public override Task LoadContent()
 		{
-			await base.LoadContent();
-
 			var game = ScreenManager?.Game as DefaultGame;
 			_gameType = null != game ? game.GameType : GameType.Controller;
 
-			//Create the stack layout for teh menu entries
-			MenuEntries = new StackLayout()
-			{
-				Alignment = StackAlignment.Top,
-				Horizontal = HorizontalAlignment.Center,
-				Layer = 1.0f,
-				Position = MenuEntryPosition
-			};
-			AddItem(MenuEntries);
-
-			//Add the menu title
-			MenuTitle = new MenuTitle(ScreenName, Content)
-			{
-				Layer = 2.0f,
-				Position = MenuTitlePosition
-			};
-			MenuTitle.ShrinkToFit(Resolution.TitleSafeArea.Width);
-			AddItem(MenuTitle);
+			return base.LoadContent();
 		}
 
-		protected void AddMenuEntry(IMenuEntry menuEntry)
+		public void AddMenuItem(IWidget menuItem, int tabOrder = 0)
 		{
-			menuEntry.LoadContent(this);
-			MenuEntries.AddItem(menuEntry);
-		}
+			//create the tab item
+			var tabItem = new TabbedItem
+			{
+				TabOrder = tabOrder,
+				TabSubOrder = MenuItems.Count,
+				Widget = menuItem
+			};
+			MenuItems.Add(tabItem);
 
-		/// <summary>
-		/// This method adds a continue button to the menu and attachs it to OnCancel
-		/// </summary>
-		protected IMenuEntry AddContinueButton()
-		{
-			var continueButton = new ContinueMenuEntry(Content);
-			continueButton.OnClick += ((obj, e) => { ExitScreen(); });
-			AddMenuEntry(continueButton);
-			return continueButton;
+			//Sort the list
+			MenuItems.Sort((a, b) =>
+			{
+				if (a.TabOrder != b.TabOrder)
+				{
+					return a.TabOrder.CompareTo(b.TabOrder);
+				}
+				else
+				{
+					return a.TabSubOrder.CompareTo(b.TabSubOrder);
+				}
+			});
 		}
 
 		#endregion //Methods
 
 		#region Handle Input
 
-		public void CheckInput(IInputState input)
+		public void HandleInput(IInputState input)
 		{
 			var inputState = input as InputState;
 			if (null == inputState)
@@ -208,9 +156,10 @@ namespace MenuBuddy
 
 			if (inputState.IsMenuSelect(ControllingPlayer, out int playerIndex))
 			{
-				if (null != SelectedEntry)
+				var selectedItem = SelectedItem as IButton;
+				if (null != selectedItem)
 				{
-					SelectedEntry.Clicked(this, new ClickEventArgs
+					selectedItem.Clicked(this, new ClickEventArgs
 					{
 						PlayerIndex = playerIndex
 					});
@@ -224,20 +173,20 @@ namespace MenuBuddy
 				});
 			}
 
-			if (null != SelectedEntry)
+			if (null != SelectedItem)
 			{
-				SelectedEntry.IsHighlighted = IsActive;
+				SelectedItem.IsHighlighted = IsActive;
 			}
 		}
 
 		private void MenuUp()
 		{
-			if (MenuEntries.Items.Count > 1)
+			if (MenuItems.Count > 1)
 			{
 				//don't roll over
 				SelectedIndex = Math.Max(0, SelectedIndex - 1);
 
-				HighlightSeslectedItem();
+				HighlightSelectedItem();
 
 				ResetInputTimer();
 			}
@@ -245,12 +194,12 @@ namespace MenuBuddy
 
 		private void MenuDown()
 		{
-			if (MenuEntries.Items.Count > 1)
+			if (MenuItems.Count > 1)
 			{
 				//don't roll over
-				SelectedIndex = Math.Min(SelectedIndex + 1, MenuEntries.Items.Count - 1);
+				SelectedIndex = Math.Min(SelectedIndex + 1, MenuItems.Count - 1);
 
-				HighlightSeslectedItem();
+				HighlightSelectedItem();
 
 				ResetInputTimer();
 			}
@@ -258,7 +207,7 @@ namespace MenuBuddy
 
 		private void MenuLeft()
 		{
-			var menuEntry = SelectedEntry as IMenuEntry;
+			var menuEntry = SelectedItem as IMenuEntry;
 			if (null != menuEntry)
 			{
 				//run the sleected evetn
@@ -270,7 +219,7 @@ namespace MenuBuddy
 
 		private void MenuRight()
 		{
-			var menuEntry = SelectedEntry as IMenuEntry;
+			var menuEntry = SelectedItem as IMenuEntry;
 			if (null != menuEntry)
 			{
 				//run the sleected evetn
@@ -284,75 +233,45 @@ namespace MenuBuddy
 		/// Remove a menu entry from the menu
 		/// </summary>
 		/// <param name="entry"></param>
-		protected void RemoveMenuEntry(IMenuEntry entry)
+		public void RemoveMenuItem(IWidget entry)
 		{
 			//try to remove the entry from the list
-			if (MenuEntries.RemoveItem(entry))
-			{
-				//set the selected item if needed
-				if (SelectedIndex >= MenuEntries.Items.Count)
-				{
-					SelectedIndex = MenuEntries.Items.Count - 1;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Remove a menu entry from the menu
-		/// </summary>
-		/// <param name="entryText">the text of the item to remove</param>
-		protected virtual void RemoveMenuEntry(string entryText)
-		{
-			//get the menu items as buttons
-			var buttons = MenuEntries.Items.OfType<IMenuEntry>();
-
-			foreach (var menuItem in buttons)
-			{
-				//check if the menu item has the same text
-				if (menuItem.Text == entryText)
-				{
-					RemoveMenuEntry(menuItem);
-					return;
-				}
-			}
+			RemoveMenuItem(MenuItems.FirstOrDefault(x => x.Widget == entry));
 		}
 
 		/// <summary>
 		/// Remove a menu entry from the menu
 		/// </summary>
 		/// <param name="index">the index of the item to remove</param>
-		protected virtual void RemoveMenuEntry(int index)
+		public virtual void RemoveMenuItem(int index)
 		{
-			//get the menu items as buttons
-			var buttons = MenuEntries.Items.OfType<IMenuEntry>().ToList();
-
 			//check if there are enough items
-			if (index < buttons.Count())
+			if (index < MenuItems.Count())
 			{
-				RemoveMenuEntry(buttons[index]);
+				RemoveMenuItem(MenuItems[index]);
 			}
 		}
 
-		#endregion
+		private void RemoveMenuItem(TabbedItem item)
+		{
+			//try to remove the entry from the list
+			if (null != item && MenuItems.Remove(item))
+			{
+				//set the selected item if needed
+				if (SelectedIndex >= MenuItems.Count)
+				{
+					SelectedIndex = MenuItems.Count - 1;
+				}
+			}
+		}
 
-		#region Update and Draw
-
-		///// <summary>
-		///// Updates the menu.
-		///// </summary>
-		//public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
-		//{
-		//	base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
-		//}
-
-		private void HighlightSeslectedItem()
+		private void HighlightSelectedItem()
 		{
 			//set teh highlighted item
-			var entries = MenuEntries.Items.OfType<IMenuEntry>().ToList();
-			for (int i = 0; i < entries.Count; i++)
+			for (int i = 0; i < MenuItems.Count; i++)
 			{
-				entries[i].CheckHighlight(
-					new HighlightEventArgs(SelectedEntry.Position.ToVector2(), ScreenManager.DefaultGame.InputHelper));
+				MenuItems[i].Widget.CheckHighlight(
+					new HighlightEventArgs(SelectedItem.Position.ToVector2(), ScreenManager.DefaultGame.InputHelper));
 			}
 		}
 

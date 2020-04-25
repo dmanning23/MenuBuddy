@@ -4,13 +4,14 @@ using InputHelper;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// Base class for screens that contain a stack of menu options. 
-	/// The user can move up and down to select an entry, or cancel to back out of the screen.
+	/// This is a class that has several options that can be tabbed through by the player.
 	/// </summary>
-	public interface IMenuScreen : IWidgetScreen
+	public interface IMenuScreen : IWidgetScreen, IGameScreen
 	{
-		void CheckInput(IInputState input);
+		void AddMenuItem(IWidget menuItem, int tabOrder = 0);
 
-		void Cancelled(object obj, ClickEventArgs e);
+		void RemoveMenuItem(IWidget entry);
+
+		void RemoveMenuItem(int index);
 	}
 }

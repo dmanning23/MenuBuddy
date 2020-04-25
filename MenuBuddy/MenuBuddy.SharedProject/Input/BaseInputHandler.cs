@@ -44,13 +44,6 @@ namespace MenuBuddy
 			{
 				game.HandleInput(InputState);
 			}
-
-			//check if is a menu screen
-			var menu = screen as IMenuScreen;
-			if (null != menu)
-			{
-				menu.CheckInput(InputState);
-			}
 		}
 
 		protected override void Dispose(bool disposing)
