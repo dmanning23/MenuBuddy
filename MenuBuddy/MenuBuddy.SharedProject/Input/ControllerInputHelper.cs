@@ -1,4 +1,5 @@
 ﻿using InputHelper;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 namespace MenuBuddy
@@ -17,7 +18,7 @@ namespace MenuBuddy
 
 		public List<PinchEventArgs> Pinches { get; set; }
 
-		public ControllerInputHelper()
+		public ControllerInputHelper(Game game)
 		{
 			Clicks = new List<ClickEventArgs>();
 			Highlights = new List<HighlightEventArgs>();
@@ -25,6 +26,8 @@ namespace MenuBuddy
 			Drops = new List<DropEventArgs>();
 			Flicks = new List<FlickEventArgs>();
 			Pinches = new List<PinchEventArgs>();
+
+			game.Services.AddService(typeof(IInputHelper), this);
 		}
 	}
 }

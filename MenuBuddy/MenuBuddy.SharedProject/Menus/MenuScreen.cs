@@ -76,7 +76,6 @@ namespace MenuBuddy
 		{
 			CoverOtherScreens = true;
 			CoveredByOtherScreens = true;
-
 		}
 
 		public override Task LoadContent()
@@ -174,7 +173,7 @@ namespace MenuBuddy
 			}
 
 			var highlightable = SelectedItem as IHighlightable;
-			if (null != highlightable)
+			if (null != highlightable && highlightable.Highlightable)
 			{
 				highlightable.IsHighlighted = IsActive;
 			}
@@ -280,7 +279,8 @@ namespace MenuBuddy
 				var highlightable = MenuItems[i].Widget as IHighlightable;
 				if (null != highlightable)
 				{
-					highlightable.CheckHighlight(new HighlightEventArgs(SelectedItem.Position.ToVector2(), ScreenManager.DefaultGame.InputHelper));
+					var position = i == SelectedIndex ? SelectedItem.Position.ToVector2() : Vector2.Zero;
+					highlightable.CheckHighlight(new HighlightEventArgs(position, ScreenManager.DefaultGame.InputHelper));
 				}
 			}
 		}

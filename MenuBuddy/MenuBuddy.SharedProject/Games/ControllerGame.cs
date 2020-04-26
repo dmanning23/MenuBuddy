@@ -14,7 +14,7 @@ namespace MenuBuddy
 		protected override void InitInput()
 		{
 			//add the input helper for menus
-			InputHelper = new ControllerInputHelper();
+			InputHelper = new ControllerInputHelper(this);
 
 			var input = new ControllerInputHandler(this);
 		}
