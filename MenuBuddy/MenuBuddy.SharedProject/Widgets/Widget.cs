@@ -175,6 +175,8 @@ namespace MenuBuddy
 
 		protected IInputHelper InputHelper { get; set; }
 
+		public bool IsHidden { get; set; } = false;
+
 		#endregion //Properties
 
 		#region Initialization
@@ -265,7 +267,7 @@ namespace MenuBuddy
 		protected bool ShouldDraw(IScreen screen)
 		{
 			//check if we don't want to draw this widget when inactive
-			return (DrawWhenInactive || screen.IsActive);
+			return (!IsHidden && (DrawWhenInactive || screen.IsActive));
 		}
 
 		public virtual void DrawBackground(IScreen screen, GameClock gameTime)
