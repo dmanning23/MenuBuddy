@@ -193,7 +193,7 @@ namespace MenuBuddy
 		{
 			if (OwnsContent)
 			{
-				Content?.Unload();
+				Content?.Dispose();
 			}
 			Content = null;
 		}

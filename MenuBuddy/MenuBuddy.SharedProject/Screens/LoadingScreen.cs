@@ -1,3 +1,4 @@
+using GameTimer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,7 +25,7 @@ namespace MenuBuddy
 	/// </summary>
 	public class LoadingScreen : WidgetScreen
 	{
-		#region Fields
+		#region Properties
 
 		private IScreen[] ScreensToLoad { get; set; }
 
@@ -34,9 +35,13 @@ namespace MenuBuddy
 
 		public string Font { get; set; }
 
-		#endregion
+#if DESKTOP
+		CountdownTimer timer = new CountdownTimer();
+#endif
 
-		#region Initialization
+#endregion //Properties
+
+		#region Methods
 
 		/// <summary>
 		/// The constructor is private: loading screens should be activated via the static Load method instead.
@@ -160,17 +165,33 @@ namespace MenuBuddy
 				sound.Play();
 			}
 
+#if DESKTOP
+			timer.Start(1f);
+#else
 			// Start up the background thread, which will update the network session and draw the animation while we are loading.
 			_backgroundThread = new BackgroundWorker();
 			_backgroundThread.WorkerSupportsCancellation = true;
 			_backgroundThread.DoWork += new DoWorkEventHandler(BackgroundWorkerThread);
 			_backgroundThread.RunWorkerCompleted += new RunWorkerCompletedEventHandler(CleanUp);
 			_backgroundThread.RunWorkerAsync();
+#endif
 		}
 
-		#endregion //Initialization
+#if DESKTOP
+		public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+		{
+			base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
-		#region Update and Draw
+			timer.Update(gameTime);
+
+			//If this is Desktop and a second has elapsed, load all the screen content
+			if (IsActive && !timer.HasTimeRemaining)
+			{
+				BackgroundWorkerThread(this, new DoWorkEventArgs(null));
+				CleanUp(this, new RunWorkerCompletedEventArgs(null, null, false));
+			}
+		}
+#endif
 
 		/// <summary>
 		/// Draws the loading screen.

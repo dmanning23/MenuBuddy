@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using ResolutionBuddy;
+using System;
 
 namespace MenuBuddy
 {
@@ -99,8 +100,15 @@ namespace MenuBuddy
 
 		protected override void LoadContent()
 		{
-			// Activate the first screens.
-			LoadingScreen.Load(ScreenManager, GetMainMenuScreenStack());
+			try
+			{
+				// Activate the first screens.
+				LoadingScreen.Load(ScreenManager, GetMainMenuScreenStack());
+			}
+			catch (Exception ex)
+			{
+				ScreenManager.ErrorScreen(ex);
+			}
 
 			base.LoadContent();
 		}
