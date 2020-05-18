@@ -56,7 +56,7 @@
       <HintPath>..\packages\MouseBuddy.2.0.2\lib\Xamarin.iOS10\MouseBuddy.iOS.dll</HintPath>
     </Reference>
     <Reference Include="PrimitiveBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PrimitiveBuddy.2.0.0\lib\Xamarin.iOS10\PrimitiveBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\PrimitiveBuddy.2.0.1\lib\Xamarin.iOS10\PrimitiveBuddy.iOS.dll</HintPath>
     </Reference>
     <Reference Include="RandomExtensions.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RandomExtensions.dmanning23.2.0.0\lib\Xamarin.iOS10\RandomExtensions.iOS.dll</HintPath>

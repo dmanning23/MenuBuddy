@@ -217,10 +217,11 @@ namespace MenuBuddy
 
 		public virtual void UnloadContent()
 		{
-			for (int i = 0; i < Items.Count; i++)
+			for (int i = 0; i < Items?.Count; i++)
 			{
 				Items[i].UnloadContent();
 			}
+			Items = null;
 		}
 
 		#endregion //Initialzation

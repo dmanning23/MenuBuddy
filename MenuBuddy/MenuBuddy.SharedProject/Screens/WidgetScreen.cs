@@ -13,7 +13,7 @@ namespace MenuBuddy
 	/// </summary>
 	public class WidgetScreen : Screen, IWidgetScreen, IDisposable
 	{
-		#region Fields
+		#region Properties
 
 		public bool Highlightable { get; set; }
 
@@ -30,10 +30,6 @@ namespace MenuBuddy
 		public event EventHandler<DragEventArgs> OnDrag;
 		public event EventHandler<DropEventArgs> OnDrop;
 #pragma warning restore 0414
-
-		#endregion
-
-		#region Properties
 
 		protected AbsoluteLayout Layout { get; private set; }
 
@@ -100,7 +96,14 @@ namespace MenuBuddy
 		public override void UnloadContent()
 		{
 			base.UnloadContent();
-			Layout.UnloadContent();
+
+			Layout?.UnloadContent();
+			Layout = null;
+
+			OnClick = null;
+			OnHighlight = null;
+			OnDrag = null;
+			OnDrop = null;
 		}
 
 		#endregion Initialization
@@ -122,7 +125,7 @@ namespace MenuBuddy
 				TimeSinceInput.Update(gameTime);
 			}
 
-			Layout.Update(this, Time);
+			Layout?.Update(this, Time);
 		}
 
 		/// <summary>
@@ -254,10 +257,7 @@ namespace MenuBuddy
 
 		public override void Dispose()
 		{
-			OnClick = null;
-			OnHighlight = null;
-			OnDrag = null;
-			OnDrop = null;
+			UnloadContent();
 		}
 
 		#endregion //Methods

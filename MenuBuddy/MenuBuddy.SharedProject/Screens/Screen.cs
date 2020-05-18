@@ -321,6 +321,7 @@ namespace MenuBuddy
 
 		public virtual void Dispose()
 		{
+			UnloadContent();
 			Exiting = null;
 
 			//just double check that this is getting called

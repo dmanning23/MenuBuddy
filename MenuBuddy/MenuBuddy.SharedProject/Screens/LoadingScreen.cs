@@ -228,6 +228,8 @@ namespace MenuBuddy
 		{
 			//clean up all the memory from those other screens
 			GC.Collect();
+			GC.WaitForPendingFinalizers();
+			GC.Collect();
 
 			ExitScreen();
 
