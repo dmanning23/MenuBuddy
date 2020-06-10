@@ -53,7 +53,7 @@
       <HintPath>..\packages\MonoGame.Framework.iOS.3.7.1.189\lib\XamariniOS\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="MouseBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MouseBuddy.2.0.2\lib\Xamarin.iOS10\MouseBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\MouseBuddy.2.0.3\lib\Xamarin.iOS10\MouseBuddy.iOS.dll</HintPath>
     </Reference>
     <Reference Include="PrimitiveBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\PrimitiveBuddy.2.0.1\lib\Xamarin.iOS10\PrimitiveBuddy.iOS.dll</HintPath>
@@ -68,7 +68,7 @@
       <HintPath>..\packages\SpriteFontPlus.MonoGame.0.7.0.22\lib\netstandard2.0\SpriteFontPlus.dll</HintPath>
     </Reference>
     <Reference Include="StateMachineBuddy.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StateMachineBuddy.2.0.20\lib\Xamarin.iOS10\StateMachineBuddy.iOS.dll</HintPath>
+      <HintPath>..\packages\StateMachineBuddy.2.0.21\lib\Xamarin.iOS10\StateMachineBuddy.iOS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
