@@ -144,7 +144,7 @@ namespace MenuBuddy
 
 			Label = new Label(Text, font, highlightedFont)
 			{
-				Vertical = VerticalAlignment.Center,
+				Vertical = VerticalAlignment.Top,
 				Horizontal = HorizontalAlignment.Center
 			};
 		}
@@ -165,15 +165,18 @@ namespace MenuBuddy
 		{
 			//get the label height from the font being used
 			var labelHeight = Label.Rect.Height;
-			Size = new Vector2(Resolution.TitleSafeArea.Width, labelHeight * 1.25f);
+			var labelWidth = Resolution.TitleSafeArea.Width;
 
-			AddItem(new Shim(Size.X, labelHeight * 0.25f)
+			var shim = new Shim(labelWidth, labelHeight * 0.7f)
 			{
 				Horizontal = HorizontalAlignment.Center,
-				Vertical = VerticalAlignment.Center,
+				Vertical = VerticalAlignment.Bottom,
 				HasBackground = this.HasBackground,
-			});
+			};
 
+			Size = new Vector2(labelWidth, labelHeight + shim.Rect.Height);
+
+			AddItem(shim);
 			AddItem(Label);
 
 			await base.LoadContent(screen);
