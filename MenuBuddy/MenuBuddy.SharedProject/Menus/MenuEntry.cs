@@ -131,6 +131,8 @@ namespace MenuBuddy
 				Vertical = VerticalAlignment.Center,
 				Horizontal = HorizontalAlignment.Center
 			};
+
+			Init();
 		}
 
 		/// <summary>
@@ -147,6 +149,8 @@ namespace MenuBuddy
 				Vertical = VerticalAlignment.Top,
 				Horizontal = HorizontalAlignment.Center
 			};
+
+			Init();
 		}
 
 		public MenuEntry(MenuEntry inst) : base(inst)
@@ -154,14 +158,11 @@ namespace MenuBuddy
 			_text = inst._text;
 
 			Label = new Label(inst.Label);
+
+			Init();
 		}
 
-		public override IScreenItem DeepCopy()
-		{
-			return new MenuEntry(this);
-		}
-
-		public override async Task LoadContent(IScreen screen)
+		private void Init()
 		{
 			//get the label height from the font being used
 			var labelHeight = Label.Rect.Height;
@@ -178,8 +179,11 @@ namespace MenuBuddy
 
 			AddItem(shim);
 			AddItem(Label);
+		}
 
-			await base.LoadContent(screen);
+		public override IScreenItem DeepCopy()
+		{
+			return new MenuEntry(this);
 		}
 
 		#endregion //Initialization
