@@ -126,11 +126,7 @@ namespace MenuBuddy
 			Horizontal = HorizontalAlignment.Center;
 			Vertical = VerticalAlignment.Top;
 
-			Label = new Label(Text, content, FontSize.Medium)
-			{
-				Vertical = VerticalAlignment.Center,
-				Horizontal = HorizontalAlignment.Center
-			};
+			Label = CreateLabel(content);
 
 			Init();
 		}
@@ -144,11 +140,7 @@ namespace MenuBuddy
 			Horizontal = HorizontalAlignment.Center;
 			Vertical = VerticalAlignment.Top;
 
-			Label = new Label(Text, font, highlightedFont)
-			{
-				Vertical = VerticalAlignment.Top,
-				Horizontal = HorizontalAlignment.Center
-			};
+			Label = CreateLabel(font, highlightedFont);
 
 			Init();
 		}
@@ -157,9 +149,32 @@ namespace MenuBuddy
 		{
 			_text = inst._text;
 
-			Label = new Label(inst.Label);
+			Label = CreateLabel(inst.Label);
 
 			Init();
+		}
+
+		public virtual Label CreateLabel(ContentManager content)
+		{
+			return new Label(Text, content, FontSize.Medium)
+			{
+				Vertical = VerticalAlignment.Center,
+				Horizontal = HorizontalAlignment.Center
+			};
+		}
+
+		public virtual Label CreateLabel(IFontBuddy font, IFontBuddy highlightedFont = null)
+		{
+			return new Label(Text, font, highlightedFont)
+			{
+				Vertical = VerticalAlignment.Center,
+				Horizontal = HorizontalAlignment.Center
+			};
+		}
+
+		public virtual Label CreateLabel(Label inst)
+		{
+			return new Label(inst);
 		}
 
 		private void Init()
