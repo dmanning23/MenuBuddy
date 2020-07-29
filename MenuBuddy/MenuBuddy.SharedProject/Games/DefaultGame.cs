@@ -38,6 +38,8 @@ namespace MenuBuddy
 
 		protected bool Letterbox { get; set; }
 
+		protected bool LoadContentWithLoadingScreen { get; set; } = true;
+
 		public new ContentManager Content
 		{
 			get
@@ -102,8 +104,15 @@ namespace MenuBuddy
 		{
 			try
 			{
-				// Activate the first screens.
-				LoadingScreen.Load(ScreenManager, GetMainMenuScreenStack());
+				if (LoadContentWithLoadingScreen)
+				{
+					// Activate the first screens.
+					LoadingScreen.Load(ScreenManager, GetMainMenuScreenStack());
+				}
+				else
+				{
+					ScreenManager.AddScreen(GetMainMenuScreenStack(), null);
+				}
 			}
 			catch (Exception ex)
 			{

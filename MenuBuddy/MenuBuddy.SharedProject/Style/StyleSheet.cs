@@ -61,7 +61,7 @@ namespace MenuBuddy
 
 		public static Color MessageBoxTextColor { get; set; }
 
-		public static bool SmallFontHasShadow { get;set;}
+		public static bool SmallFontHasShadow { get; set; }
 
 		public static string CancelButtonImageResource { get; set; }
 
@@ -90,6 +90,8 @@ namespace MenuBuddy
 		public static TransitionWipeType DefaultTransition { get; set; }
 
 		public static int? CancelButtonSize { get; set; }
+
+		public static Color ClearColor { get; set; }
 
 		#endregion //Options
 
@@ -133,9 +135,10 @@ namespace MenuBuddy
 			FadeBackgroundImageResource = string.Empty;
 			HasOutline = true;
 			DefaultTransition = TransitionWipeType.SlideLeft;
+			ClearColor = new Color(0.0f, 0.1f, 0.2f);
 
 			CancelButtonSize = null;
-	}
+		}
 
 		#endregion //Methods
 	}

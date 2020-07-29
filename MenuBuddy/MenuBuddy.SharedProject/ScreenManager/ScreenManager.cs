@@ -55,7 +55,7 @@ namespace MenuBuddy
 
 			ScreenStack = new ScreenStack();
 
-			ClearColor = new Color(0.0f, 0.1f, 0.2f);
+			ClearColor = StyleSheet.ClearColor;
 
 			//get the touch service
 			Input = game.Services.GetService<IInputHandler>();
