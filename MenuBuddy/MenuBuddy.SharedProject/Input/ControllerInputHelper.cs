@@ -18,6 +18,8 @@ namespace MenuBuddy
 
 		public List<PinchEventArgs> Pinches { get; set; }
 
+		public List<HoldEventArgs> Holds { get; set; }
+
 		public ControllerInputHelper(Game game)
 		{
 			Clicks = new List<ClickEventArgs>();
@@ -26,6 +28,7 @@ namespace MenuBuddy
 			Drops = new List<DropEventArgs>();
 			Flicks = new List<FlickEventArgs>();
 			Pinches = new List<PinchEventArgs>();
+			Holds = new List<HoldEventArgs>();
 
 			game.Services.AddService(typeof(IInputHelper), this);
 		}

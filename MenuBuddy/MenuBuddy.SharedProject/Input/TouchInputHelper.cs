@@ -162,6 +162,24 @@ namespace MenuBuddy
 					}
 				}
 			}
+
+			//check hold operations
+			var holdScreen = screen as IHoldable;
+			if (null != holdScreen && !hasPinch)
+			{
+				int i = 0;
+				while (i < InputHelper.Holds.Count)
+				{
+					if (holdScreen.CheckHold(InputHelper.Holds[i]))
+					{
+						InputHelper.Holds.RemoveAt(i);
+					}
+					else
+					{
+						i++;
+					}
+				}
+			}
 		}
 
 		#endregion //Methods
