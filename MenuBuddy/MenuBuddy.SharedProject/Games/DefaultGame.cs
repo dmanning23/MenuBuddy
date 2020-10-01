@@ -36,6 +36,8 @@ namespace MenuBuddy
 
 		protected bool Fullscreen { get; set; }
 
+		protected bool? UseDeviceResolution { get; set; }
+
 		protected bool Letterbox { get; set; }
 
 		protected bool LoadContentWithLoadingScreen { get; set; } = true;
@@ -70,6 +72,7 @@ namespace MenuBuddy
 			ScreenResolution = new Point(1280, 720);
 			Fullscreen = false;
 			Letterbox = false;
+			UseDeviceResolution = null;
 
 			GameType = gameType;
 
@@ -91,7 +94,7 @@ namespace MenuBuddy
 		/// </summary>
 		protected override void Initialize()
 		{
-			ResolutionComponent = new ResolutionComponent(this, Graphics, VirtualResolution, ScreenResolution, Fullscreen, Letterbox);
+			ResolutionComponent = new ResolutionComponent(this, Graphics, VirtualResolution, ScreenResolution, Fullscreen, Letterbox, UseDeviceResolution);
 			InitStyles();
 
 			// Create the screen manager component.
