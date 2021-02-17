@@ -89,7 +89,7 @@
       <HintPath>..\packages\HadoukInput.2.0.32\lib\net451\HadoukInput.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="InputHelper.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\InputHelper.2.0.13\lib\net451\InputHelper.WindowsDX.dll</HintPath>
+      <HintPath>..\packages\InputHelper.2.0.15\lib\net451\InputHelper.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="MatrixExtensions.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MatrixExtensions.2.0.0\lib\net451\MatrixExtensions.WindowsDX.dll</HintPath>
@@ -170,7 +170,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="TouchScreenBuddy.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TouchScreenBuddy.2.0.11\lib\net451\TouchScreenBuddy.WindowsDX.dll</HintPath>
+      <HintPath>..\packages\TouchScreenBuddy.2.0.13\lib\net451\TouchScreenBuddy.WindowsDX.dll</HintPath>
     </Reference>
     <Reference Include="Vector2Extensions.WindowsDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Vector2Extensions.2.0.2\lib\net451\Vector2Extensions.WindowsDX.dll</HintPath>

@@ -149,7 +149,7 @@ namespace MenuBuddy
 		/// <param name="gameTime"></param>
 		public void DrawBackground(IScreen screen, GameClock gameTime)
 		{
-			Layout.DrawBackground(screen, gameTime);
+			Layout?.DrawBackground(screen, gameTime);
 		}
 
 		/// <summary>
@@ -159,7 +159,7 @@ namespace MenuBuddy
 		/// <param name="gameTime"></param>
 		public void Draw(IScreen screen, GameClock gameTime)
 		{
-			Layout.Draw(screen, gameTime);
+			Layout?.Draw(screen, gameTime);
 		}
 
 		#endregion //Update & Draw
