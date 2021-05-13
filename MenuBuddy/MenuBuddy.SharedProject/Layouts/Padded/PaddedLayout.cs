@@ -133,6 +133,13 @@ namespace MenuBuddy
 			}
 		}
 
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+			_item?.UnloadContent();
+			_item = null;
+		}
+
 		#endregion //Methods
 	}
 }

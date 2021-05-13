@@ -255,11 +255,6 @@ namespace MenuBuddy
 			return Layout.CheckDrop(drop) || Modal;
 		}
 
-		public override void Dispose()
-		{
-			UnloadContent();
-		}
-
 		#endregion //Methods
 	}
 }

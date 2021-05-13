@@ -217,11 +217,18 @@ namespace MenuBuddy
 
 		public virtual void UnloadContent()
 		{
-			for (int i = 0; i < Items?.Count; i++)
+			if (null != Items)
 			{
-				Items[i].UnloadContent();
+				for (int i = 0; i < Items?.Count; i++)
+				{
+					Items[i].UnloadContent();
+				}
 			}
 			Items = null;
+			OnClick = null;
+			OnHighlight = null;
+			OnDrag = null;
+			OnDrop = null;
 		}
 
 		#endregion //Initialzation
@@ -237,6 +244,7 @@ namespace MenuBuddy
 
 		public virtual bool RemoveItem(IScreenItem item)
 		{
+			item.UnloadContent();
 			return Items.Remove(item);
 		}
 
@@ -374,10 +382,7 @@ namespace MenuBuddy
 
 		public virtual void Dispose()
 		{
-			OnClick = null;
-			OnHighlight = null;
-			OnDrag = null;
-			OnDrop = null;
+			UnloadContent();
 		}
 
 		public override string ToString()

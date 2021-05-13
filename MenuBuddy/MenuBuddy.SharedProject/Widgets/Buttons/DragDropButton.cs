@@ -1,5 +1,4 @@
 using InputHelper;
-using Microsoft.Xna.Framework;
 using System;
 
 namespace MenuBuddy
@@ -40,6 +39,13 @@ namespace MenuBuddy
 		public override IScreenItem DeepCopy()
 		{
 			return new DragDropButton(this);
+		}
+
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+			OnDrag = null;
+			OnDrop = null;
 		}
 
 		#endregion //Initialization
@@ -109,13 +115,6 @@ namespace MenuBuddy
 
 			return false;
 		}
-
-		public override void Dispose()
-		{
-			base.Dispose();
-			OnDrag = null;
-			OnDrop = null;
-	}
 
 		#endregion
 	}

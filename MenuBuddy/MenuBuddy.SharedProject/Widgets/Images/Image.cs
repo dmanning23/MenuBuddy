@@ -152,6 +152,12 @@ namespace MenuBuddy
 			return new Image(this);
 		}
 
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+			OnClick = null;
+		}
+
 		#endregion //Initialization
 
 		#region Methods
@@ -239,12 +245,6 @@ namespace MenuBuddy
 		public bool CheckClick(ClickEventArgs click)
 		{
 			return false;
-		}
-
-		public override void Dispose()
-		{
-			base.Dispose();
-			OnClick = null;
 		}
 
 		#endregion //Methods

@@ -44,6 +44,11 @@ namespace MenuBuddy
 
 		public abstract Vector2 Position(IScreen screen, Vector2 pos);
 
+		public void Dispose()
+		{
+			ScreenTransition = null;
+		}
+
 		#endregion //Methods
 	}
 }

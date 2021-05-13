@@ -83,11 +83,13 @@ namespace MenuBuddy
 			{
 				screen.UnloadContent();
 			}
+			Screens = null;
 
 			if (null != TopScreen)
 			{
 				TopScreen.UnloadContent();
 			}
+			TopScreen = null;
 		}
 
 		public void Update(GameTime gameTime, IInputHandler input, bool otherWindowHasFocus)

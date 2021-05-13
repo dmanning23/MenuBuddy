@@ -182,6 +182,12 @@ namespace MenuBuddy
 			await base.LoadContent(screen);
 		}
 
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+			OnTextEdited = null;
+		}
+
 		public void SetText(string text)
 		{
 			if (Text != text)
@@ -194,12 +200,6 @@ namespace MenuBuddy
 
 				PlaySelectedSound(this, new ClickEventArgs());
 			}
-		}
-
-		public override void Dispose()
-		{
-			base.Dispose();
-			OnTextEdited = null;
 		}
 
 		public void ScaleToFit(int rowWidth)

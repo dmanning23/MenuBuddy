@@ -153,6 +153,12 @@ namespace MenuBuddy
 			await base.LoadContent(screen);
 		}
 
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+			OnNumberEdited = null;
+		}
+
 		/// <summary>
 		/// Method that gets called when the label is clicked to create the numpad.
 		/// Adds a new screen with a numpad.
@@ -186,12 +192,6 @@ namespace MenuBuddy
 				//you can't set it to the provided number.
 				Number = Number;
 			}
-		}
-
-		public override void Dispose()
-		{
-			base.Dispose();
-			OnNumberEdited = null;
 		}
 
 		#endregion //Methods

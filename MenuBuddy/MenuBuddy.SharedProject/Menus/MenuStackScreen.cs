@@ -99,7 +99,6 @@ namespace MenuBuddy
 			var game = ScreenManager?.Game as DefaultGame;
 			_gameType = null != game ? game.GameType : GameType.Controller;
 
-
 			//Create the stack layout for teh menu entries
 			MenuEntries = new StackLayout()
 			{
@@ -137,6 +136,16 @@ namespace MenuBuddy
 			continueButton.OnClick += ((obj, e) => { ExitScreen(); });
 			AddMenuEntry(continueButton);
 			return continueButton;
+		}
+
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+			MenuEntries?.UnloadContent();
+			MenuEntries = null;
+
+			MenuTitle?.UnloadContent();
+			MenuTitle = null;
 		}
 
 		#endregion //Methods

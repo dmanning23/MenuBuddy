@@ -2,7 +2,6 @@ using HadoukInput;
 using InputHelper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using ResolutionBuddy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,6 +83,12 @@ namespace MenuBuddy
 			_gameType = null != game ? game.GameType : GameType.Controller;
 
 			return base.LoadContent();
+		}
+
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+			MenuItems = null;
 		}
 
 		public void AddMenuItem(IScreenItem menuItem, int tabOrder = 0)

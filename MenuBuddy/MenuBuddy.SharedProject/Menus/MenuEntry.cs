@@ -201,6 +201,13 @@ namespace MenuBuddy
 			return new MenuEntry(this);
 		}
 
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+			Label?.UnloadContent();
+			Label = null;
+		}
+
 		#endregion //Initialization
 
 		#region Methods

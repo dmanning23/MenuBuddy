@@ -148,7 +148,11 @@ namespace MenuBuddy
 		public override void UnloadContent()
 		{
 			base.UnloadContent();
-			Background.UnloadContent();
+			Background?.UnloadContent();
+			Background = null;
+			Stack?.UnloadContent();
+			Stack = null;
+			OnSelectedItemChange = null;
 		}
 
 		public override IScreenItem DeepCopy()
@@ -216,12 +220,6 @@ namespace MenuBuddy
 			}
 
 			return removed;
-		}
-
-		public override void Dispose()
-		{
-			base.Dispose();
-			OnSelectedItemChange = null;
 		}
 
 		public override void DrawBackground(IScreen screen, GameClock gameTime)

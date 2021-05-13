@@ -48,11 +48,11 @@ namespace MenuBuddy.Tests
 		}
 
 		[SetUp]
-		public void Setup()
+		public async Task Setup()
 		{
 			var screen = new WidgetScreen("Test");
 			_tree = new Tree<string>(screen);
-			_tree.LoadContent(screen);
+			await _tree.LoadContent(screen);
 		}
 
 		#endregion //Setup

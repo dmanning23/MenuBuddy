@@ -25,7 +25,7 @@ namespace MenuBuddy.Tests
 		#region Setup
 
 		[SetUp]
-		public void Setup()
+		public async Task Setup()
 		{
 			var resolution = new Mock<IResolution>();
 			resolution.Setup(x => x.ScreenArea).Returns(new Rectangle(0, 0, 1280, 720));
@@ -39,7 +39,7 @@ namespace MenuBuddy.Tests
 			_screen = new Mock<IScreen>();
 
 			_entry = new MenuEntry("test", _font);
-			_entry.LoadContent(_screen.Object);
+			await _entry.LoadContent(_screen.Object);
 		}
 
 		#endregion //Setup

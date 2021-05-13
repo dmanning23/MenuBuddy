@@ -76,7 +76,10 @@ namespace MenuBuddy
 			protected set
 			{
 				_layout = value;
-				_layout.TransitionObject = TransitionObject;
+				if (null != _layout)
+				{
+					_layout.TransitionObject = TransitionObject;
+				}
 			}
 		}
 
@@ -244,6 +247,18 @@ namespace MenuBuddy
 			await base.LoadContent(screen);
 		}
 
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+
+			Layout?.UnloadContent();
+			Layout = null;
+
+			OnClick = null;
+			OnLeft = null;
+			OnRight = null;
+		}
+
 		#endregion //Initialization
 
 		#region Methods
@@ -360,14 +375,6 @@ namespace MenuBuddy
 
 				OnRight(this, new EventArgs());
 			}
-		}
-
-		public override void Dispose()
-		{
-			base.Dispose();
-			OnClick = null;
-			OnLeft = null;
-			OnRight = null;
 		}
 
 		#endregion //Methods

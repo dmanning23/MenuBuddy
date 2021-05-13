@@ -1,11 +1,12 @@
 using Microsoft.Xna.Framework;
+using System;
 
 namespace MenuBuddy
 {
 	/// <summary>
 	/// This is an interface of an obect that can transition on & off the screen.
 	/// </summary>
-	public interface ITransitionObject
+	public interface ITransitionObject : IDisposable
 	{
 		/// <summary>
 		/// Whether the transition object is transitioning to the left or to the right

@@ -68,6 +68,11 @@ namespace MenuBuddy
 		public bool IsClicked { get; set; }
 
 		/// <summary>
+		/// Whether or not this label will take care of it's own fonts
+		/// </summary>
+		private bool ManagedFonts { get; set; } = false;
+
+		/// <summary>
 		/// If this is set, use it to draw this label
 		/// </summary>
 		public IFontBuddy Font { get; set; }
@@ -117,6 +122,8 @@ namespace MenuBuddy
 			_fontSize = fontSize;
 			Text = text;
 			Clickable = true;
+
+			ManagedFonts = true;
 
 			//If there is no value for the font plus flag, grab it from the stylesheet
 			if (!useFontPlus.HasValue)
@@ -337,6 +344,22 @@ namespace MenuBuddy
 			}
 		}
 
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+
+			OnClick = null;
+
+			if (ManagedFonts)
+			{
+				Font?.Dispose();
+				Font = null;
+
+				HighlightedFont?.Dispose();
+				HighlightedFont = null;
+			}
+		}
+
 		#endregion //Initialization
 
 		#region Methods
@@ -517,12 +540,6 @@ namespace MenuBuddy
 			{
 				Scale = Font.ShrinkToFit(Text, rowWidth);
 			}
-		}
-
-		public override void Dispose()
-		{
-			base.Dispose();
-			OnClick = null;
 		}
 
 		#endregion //Methods

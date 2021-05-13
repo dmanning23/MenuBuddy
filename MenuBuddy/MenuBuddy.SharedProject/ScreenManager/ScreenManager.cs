@@ -100,7 +100,8 @@ namespace MenuBuddy
 		/// </summary>
 		protected override void UnloadContent()
 		{
-			ScreenStack.UnloadContent();
+			ScreenStack?.UnloadContent();
+			ScreenStack = null;
 
 			DrawHelper?.Dispose();
 			DrawHelper = null;

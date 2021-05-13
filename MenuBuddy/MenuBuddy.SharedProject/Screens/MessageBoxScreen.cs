@@ -127,6 +127,9 @@ namespace MenuBuddy
 				}
 			}
 
+			tempFont.Dispose();
+			tempFont = null;
+
 			try
 			{
 				await AddAdditionalControls();
@@ -161,6 +164,13 @@ namespace MenuBuddy
 			{
 				AddBackgroundImage(labelStack);
 			}
+		}
+
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+			OnSelect = null;
+			OnCancel = null;
 		}
 
 		/// <summary>
@@ -329,13 +339,6 @@ namespace MenuBuddy
 			ScreenManager.SpriteBatchEnd();
 
 			base.Draw(gameTime);
-		}
-
-		public override void Dispose()
-		{
-			base.Dispose();
-			OnSelect = null;
-			OnCancel = null;
 		}
 
 		#endregion //Methods

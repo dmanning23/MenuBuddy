@@ -121,7 +121,7 @@ namespace MenuBuddy
 		{
 			get
 			{
-				return Transition.State;
+				return Transition?.State ?? TransitionState.Hidden;
 			}
 		}
 
@@ -196,6 +196,9 @@ namespace MenuBuddy
 				Content?.Dispose();
 			}
 			Content = null;
+			Transition = null;
+			ScreenManager = null;
+			Exiting = null;
 		}
 
 		#endregion
@@ -322,7 +325,6 @@ namespace MenuBuddy
 		public virtual void Dispose()
 		{
 			UnloadContent();
-			Exiting = null;
 
 			//just double check that this is getting called
 			if (null != Content)

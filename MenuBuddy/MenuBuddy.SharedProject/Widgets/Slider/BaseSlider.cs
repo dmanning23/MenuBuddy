@@ -173,6 +173,13 @@ namespace MenuBuddy
 			OnClick = inst.OnClick;
 		}
 
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+			OnDrag = null;
+			OnClick = null;
+		}
+
 		#endregion //Initialization
 
 		#region Methods
@@ -315,13 +322,6 @@ namespace MenuBuddy
 		{
 			//convert back to slider coords and set the slider pos
 			HandlePosition = SolveSliderPos(_slideRect.Left, _slideRect.Right, pos.X, Min, Max);
-		}
-
-		public override void Dispose()
-		{
-			base.Dispose();
-			OnDrag = null;
-			OnClick = null;
 		}
 
 		public bool CheckClick(ClickEventArgs click)

@@ -22,8 +22,6 @@ namespace MenuBuddy
 
 		private float _scale;
 
-		private Vector2 _padding;
-
 		public event EventHandler<HighlightEventArgs> OnHighlight;
 
 		/// <summary>
@@ -190,7 +188,6 @@ namespace MenuBuddy
 			_horizontal = HorizontalAlignment.Left;
 			_vertical = VerticalAlignment.Top;
 			_scale = 1.0f;
-			_padding = Vector2.Zero;
 			HighlightClock = new GameClock();
 			TransitionObject = new WipeTransitionObject(StyleSheet.DefaultTransition);
 			Background = new Background();
@@ -239,6 +236,8 @@ namespace MenuBuddy
 
 		public virtual void UnloadContent()
 		{
+			TransitionObject = null;
+			OnHighlight = null;
 		}
 
 		/// <summary>
@@ -329,7 +328,7 @@ namespace MenuBuddy
 
 		public virtual void Dispose()
 		{
-			OnHighlight = null;
+			UnloadContent();
 		}
 
 		public override string ToString()

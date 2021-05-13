@@ -8,7 +8,7 @@ namespace MenuBuddy
 	/// </summary>
 	public class AbsoluteLayout : Layout, IScalable
 	{
-		#region Fields
+		#region Properties
 
 		protected Vector2 _size;
 
@@ -19,10 +19,6 @@ namespace MenuBuddy
 		{
 			get; set;
 		}
-
-		#endregion //Fields
-
-		#region Properties
 
 		public virtual Vector2 Size
 		{

@@ -151,6 +151,25 @@ namespace MenuBuddy
 			await base.LoadContent(screen);
 		}
 
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+			OnSelectedItemChange = null;
+			Screen = null;
+
+			DropButton?.UnloadContent();
+			DropButton = null;
+
+			if (DropdownItems != null)
+			{
+				for (int i = 0; i < DropdownItems?.Count; i++)
+				{
+					DropdownItems[i].UnloadContent();
+				}
+			}
+			DropdownItems = null;
+		}
+
 		/// <summary>
 		/// Method that gets called when the dropdown button is clicked to create the droplist.
 		/// Adds a new screen with the GetDropdownList content.
@@ -213,12 +232,6 @@ namespace MenuBuddy
 		{
 			SelectedItem = default(T);
 			DropdownItems.Clear();
-		}
-
-		public override void Dispose()
-		{
-			base.Dispose();
-			OnSelectedItemChange = null;
 		}
 
 		public void AddDropdownItem(IDropdownItem<T> dropdownItem)
