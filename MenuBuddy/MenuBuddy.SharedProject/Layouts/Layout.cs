@@ -244,8 +244,15 @@ namespace MenuBuddy
 
 		public virtual bool RemoveItem(IScreenItem item)
 		{
-			item.UnloadContent();
-			return Items.Remove(item);
+			if (item != null)
+			{
+				item.UnloadContent();
+				return Items.Remove(item);
+			}
+			else
+			{
+				return false;
+			}
 		}
 
 		public bool RemoveItems<T>() where T:IScreenItem
