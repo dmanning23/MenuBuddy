@@ -42,7 +42,10 @@ namespace MenuBuddy
 				throw new Exception("Cannot initialize TouchInputHelper without first adding IInputHelper service");
 			}
 
-			InputChecker = new MouseScreenInputChecker(InputHelper, this);
+			InputChecker = new MouseScreenInputChecker(InputHelper, this)
+			{
+				InputState = this.InputState
+			};
 
 			//Register ourselves to implement the DI container service.
 			game.Components.Add(this);

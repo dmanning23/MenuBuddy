@@ -1,3 +1,4 @@
+using HadoukInput;
 using InputHelper;
 using System;
 
@@ -8,6 +9,8 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IInputHandler
 	{
+		IInputState InputState { get; }
+
 		/// <summary>
 		/// Handle teh input and pass it to the current top screen.
 		/// </summary>

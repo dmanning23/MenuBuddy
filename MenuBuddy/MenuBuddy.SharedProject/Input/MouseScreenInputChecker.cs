@@ -1,4 +1,5 @@
-﻿using InputHelper;
+﻿using HadoukInput;
+using InputHelper;
 using System;
 
 namespace MenuBuddy
@@ -15,6 +16,8 @@ namespace MenuBuddy
 		/// warning: this dude might be null if the compoent isnt in this game
 		/// </summary>
 		public IInputHelper InputHelper { get; private set; }
+
+		public IInputState InputState { get; set; }
 
 		private MouseInputHandler MouseInputHandler { get; set; }
 
