@@ -197,7 +197,6 @@ namespace MenuBuddy
 			}
 			Content = null;
 			Transition = null;
-			ScreenManager = null;
 			Exiting = null;
 		}
 
