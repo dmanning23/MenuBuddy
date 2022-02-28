@@ -273,6 +273,18 @@ namespace MenuBuddy
 			return result;
 		}
 
+		public void Clear()
+		{
+			//get a list of items
+			var items = Items.ToList();
+
+			//remove all the items
+			foreach (var item in items)
+			{
+				RemoveItem(item);
+			}
+		}
+
 		public virtual void Update(IScreen screen, GameClock gameTime)
 		{
 			//update all the items

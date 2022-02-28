@@ -14,5 +14,7 @@ namespace MenuBuddy
 		}
 
 		bool RemoveItems<T>() where T : IScreenItem;
+
+		void Clear();
 	}
 }

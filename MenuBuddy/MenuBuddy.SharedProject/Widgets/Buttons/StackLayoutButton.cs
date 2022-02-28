@@ -28,7 +28,7 @@ namespace MenuBuddy
 		{
 			get
 			{
-				return (Layout as StackLayout).Items;
+				return Layout.Items;
 			}
 		}
 
@@ -88,16 +88,16 @@ namespace MenuBuddy
 			_rect = new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
 
 			//Set the position of the internal layout
-			var relLayout = Layout as StackLayout;
-			if (null != relLayout)
+			var layout = Layout as StackLayout;
+			if (null != layout)
 			{
-				relLayout.Scale = Scale;
-				relLayout.Vertical = VerticalAlignment.Top;
-				relLayout.Horizontal = HorizontalAlignment.Left;
-				relLayout.Position = pos.ToPoint();
+				layout.Scale = Scale;
+				layout.Vertical = VerticalAlignment.Top;
+				layout.Horizontal = HorizontalAlignment.Left;
+				layout.Position = pos.ToPoint();
 			}
 
-			_rect = relLayout.Rect;
+			_rect = layout.Rect;
 		}
 
 		public void InsertItem(IScreenItem item, IScreenItem prevItem)
@@ -112,17 +112,22 @@ namespace MenuBuddy
 
 		public bool RemoveItems<T>() where T : IScreenItem
 		{
-			return (Layout as StackLayout).RemoveItems<T>();
+			return Layout.RemoveItems<T>();
+		}
+
+		public void Clear()
+		{
+			Layout.Clear();
 		}
 
 		public bool CheckDrag(DragEventArgs drag)
 		{
-			return (Layout as StackLayout).CheckDrag(drag);
+			return Layout.CheckDrag(drag);
 		}
 
 		public bool CheckDrop(DropEventArgs drop)
 		{
-			return (Layout as StackLayout).CheckDrop(drop);
+			return Layout.CheckDrop(drop);
 		}
 
 		#endregion
