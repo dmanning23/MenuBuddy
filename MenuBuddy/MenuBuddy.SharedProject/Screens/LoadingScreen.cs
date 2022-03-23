@@ -117,6 +117,11 @@ namespace MenuBuddy
 				Position = Resolution.TitleSafeArea.Center,
 			};
 
+			if (string.IsNullOrEmpty(Font))
+			{
+				Font = StyleSheet.MediumFontResource;
+			}
+
 			//create the message widget
 			var width = 0f;
 			var msg = new Label("Loading...", Content, FontSize.Medium, Font)
