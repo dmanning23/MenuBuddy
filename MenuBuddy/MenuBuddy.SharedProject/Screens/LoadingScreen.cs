@@ -35,6 +35,8 @@ namespace MenuBuddy
 
 		public string Font { get; set; }
 
+		public string Message { get; set; }
+
 #if DESKTOP
 		CountdownTimer timer = new CountdownTimer();
 #endif
@@ -67,41 +69,55 @@ namespace MenuBuddy
 		/// <param name="loadSoundEffect">Play the transition sound here instead of in the screen that initiated the load.</param>
 		/// <param name="screensToLoad">Params list of all the screens we want to load.</param>
 		public static Task Load(ScreenManager screenManager,
-								params IScreen[] screensToLoad)
+								IScreen[] screensToLoad,
+								string message = "Loading...")
 		{
 			// Create and activate the loading screen.
-			var loadingScreen = new LoadingScreen(null, screensToLoad);
+			var loadingScreen = new LoadingScreen(null, screensToLoad)
+			{
+				Message = message
+			};
 			return screenManager.AddScreen(loadingScreen, null);
 		}
 
 		public static Task Load(ScreenManager screenManager,
 								int controllingPlayer,
 								string loadSoundEffect,
-								params IScreen[] screensToLoad)
+								IScreen[] screensToLoad,
+								string message = "Loading...")
 		{
 			// Create and activate the loading screen.
-			var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad);
+			var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad)
+			{
+				Message = message
+			};
 			return screenManager.AddScreen(loadingScreen, controllingPlayer);
 		}
 
 		public static Task Load(ScreenManager screenManager,
 								string loadSoundEffect,
-								params IScreen[] screensToLoad)
+								IScreen[] screensToLoad,
+								string message = "Loading...")
 		{
 			// Create and activate the loading screen.
-			var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad);
+			var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad)
+			{
+				Message = message
+			};
 			return screenManager.AddScreen(loadingScreen, null);
 		}
 
 		public static Task Load(ScreenManager screenManager,
 								string loadSoundEffect,
 								string fontResource,
-								params IScreen[] screensToLoad)
+								IScreen[] screensToLoad,
+								string message = "Loading...")
 		{
 			// Create and activate the loading screen.
 			var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad)
 			{
 				Font = fontResource,
+				Message = message
 			};
 			return screenManager.AddScreen(loadingScreen, null);
 		}
@@ -124,7 +140,7 @@ namespace MenuBuddy
 
 			//create the message widget
 			var width = 0f;
-			var msg = new Label("Loading...", Content, FontSize.Medium, Font)
+			var msg = new Label(Message, Content, FontSize.Medium, Font)
 			{
 				Highlightable = false,
 				Horizontal = HorizontalAlignment.Right,
