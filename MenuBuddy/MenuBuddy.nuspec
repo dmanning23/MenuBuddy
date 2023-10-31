@@ -2,73 +2,69 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>MenuBuddy</id>
-		<version>2.0.93</version>
+		<version>4.0.5</version>
 		<title>MenuBuddy</title>
 		<authors>dmanning23</authors>
-		<owners>dmanning23</owners>
 		<projectUrl>https://github.com/dmanning23/MenuBuddy</projectUrl>
 		<licenseUrl>https://github.com/dmanning23/MenuBuddy/blob/master/LICENSE.txt</licenseUrl>
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>MonoGame library for menus and game state management</description>
-		<releaseNotes />
-		<copyright>Copyright 2016</copyright>
 		<tags>android, ios, windows universal, monogame, xamarin</tags>
 		<dependencies>
 
 			<!--Xamarin.Android-->
 			<group targetFramework="MonoAndroid10">
 				<dependency id="MonoGame.Framework.Android" version="3.7"/>
-				<dependency id="FilenameBuddy" version="2.0"/>
-				<dependency id="InputHelper" version="2.0"/>
-				<dependency id="StateMachineBuddy" version="2.0"/>
-				<dependency id="FontBuddy" version="2.0"/>
-				<dependency id="GameTimer" version="2.0"/>
-				<dependency id="HadoukInput" version="2.0"/>
-				<dependency id="MatrixExtensions" version="2.0"/>
-				<dependency id="MouseBuddy" version="2.0"/>
-				<dependency id="PrimitiveBuddy" version="2.0"/>
-				<dependency id="RandomExtensions.dmanning23" version="2.0"/>
-				<dependency id="ResolutionBuddy" version="2.0"/>
-				<dependency id="TouchScreenBuddy" version="2.0"/>
-				<dependency id="Vector2Extensions" version="2.0"/>
-				<dependency id="XmlBuddy" version="2.0"/>
+				<dependency id="FilenameBuddy" version="4.0"/>
+				<dependency id="InputHelper" version="4.0"/>
+				<dependency id="StateMachineBuddy" version="4.0"/>
+				<dependency id="FontBuddy" version="4.0"/>
+				<dependency id="GameTimer" version="4.0"/>
+				<dependency id="HadoukInput" version="4.0"/>
+				<dependency id="MatrixExtensions" version="4.0"/>
+				<dependency id="MouseBuddy" version="4.0"/>
+				<dependency id="PrimitiveBuddy" version="4.0"/>
+				<dependency id="RandomExtensions.dmanning23" version="4.0"/>
+				<dependency id="ResolutionBuddy" version="4.0"/>
+				<dependency id="TouchScreenBuddy" version="4.0"/>
+				<dependency id="Vector2Extensions" version="4.0"/>
+				<dependency id="XmlBuddy" version="4.0"/>
 			</group>
 
 			<!--Xamarin.iOS Unified-->
 			<group targetFramework="Xamarin.iOS10">
 				<dependency id="MonoGame.Framework.iOS" version="3.7"/>
-				<dependency id="FilenameBuddy" version="2.0"/>
-				<dependency id="InputHelper" version="2.0"/>
-				<dependency id="StateMachineBuddy" version="2.0"/>
-				<dependency id="FontBuddy" version="2.0"/>
-				<dependency id="GameTimer" version="2.0"/>
-				<dependency id="HadoukInput" version="2.0"/>
-				<dependency id="MatrixExtensions" version="2.0"/>
-				<dependency id="MouseBuddy" version="2.0"/>
-				<dependency id="PrimitiveBuddy" version="2.0"/>
-				<dependency id="RandomExtensions.dmanning23" version="2.0"/>
-				<dependency id="ResolutionBuddy" version="2.0"/>
-				<dependency id="TouchScreenBuddy" version="2.0"/>
-				<dependency id="Vector2Extensions" version="2.0"/>
-				<dependency id="XmlBuddy" version="2.0"/>
+				<dependency id="FilenameBuddy" version="4.0"/>
+				<dependency id="InputHelper" version="4.0"/>
+				<dependency id="StateMachineBuddy" version="4.0"/>
+				<dependency id="FontBuddy" version="4.0"/>
+				<dependency id="GameTimer" version="4.0"/>
+				<dependency id="HadoukInput" version="4.0"/>
+				<dependency id="MatrixExtensions" version="4.0"/>
+				<dependency id="MouseBuddy" version="4.0"/>
+				<dependency id="PrimitiveBuddy" version="4.0"/>
+				<dependency id="RandomExtensions.dmanning23" version="4.0"/>
+				<dependency id="ResolutionBuddy" version="4.0"/>
+				<dependency id="TouchScreenBuddy" version="4.0"/>
+				<dependency id="Vector2Extensions" version="4.0"/>
+				<dependency id="XmlBuddy" version="4.0"/>
 			</group>
 
-			<group targetFramework="net451">
+			<group targetFramework="net452">
 				<dependency id="MonoGame.Framework.WindowsDX" version="3.7"/>
-				<dependency id="FilenameBuddy" version="2.0"/>
-				<dependency id="InputHelper" version="2.0"/>
-				<dependency id="StateMachineBuddy" version="2.0"/>
-				<dependency id="FontBuddy" version="2.0"/>
-				<dependency id="GameTimer" version="2.0"/>
-				<dependency id="HadoukInput" version="2.0"/>
-				<dependency id="MatrixExtensions" version="2.0"/>
-				<dependency id="MouseBuddy" version="2.0"/>
-				<dependency id="PrimitiveBuddy" version="2.0"/>
-				<dependency id="RandomExtensions.dmanning23" version="2.0"/>
-				<dependency id="ResolutionBuddy" version="2.0"/>
-				<dependency id="TouchScreenBuddy" version="2.0"/>
-				<dependency id="Vector2Extensions" version="2.0"/>
-				<dependency id="XmlBuddy" version="2.0"/>
+				<dependency id="FilenameBuddy" version="4.0"/>
+				<dependency id="InputHelper" version="4.0"/>
+				<dependency id="StateMachineBuddy" version="4.0"/>
+				<dependency id="FontBuddy" version="4.0"/>
+				<dependency id="GameTimer" version="4.0"/>
+				<dependency id="HadoukInput" version="4.0"/>
+				<dependency id="MatrixExtensions" version="4.0"/>
+				<dependency id="MouseBuddy" version="4.0"/>
+				<dependency id="PrimitiveBuddy" version="4.0"/>
+				<dependency id="RandomExtensions.dmanning23" version="4.0"/>
+				<dependency id="ResolutionBuddy" version="4.0"/>
+				<dependency id="TouchScreenBuddy" version="4.0"/>
+				<dependency id="Vector2Extensions" version="4.0"/>
+				<dependency id="XmlBuddy" version="4.0"/>
 			</group>
 
 		</dependencies>
@@ -84,8 +80,8 @@
 		<file src="MenuBuddy.iOS\bin\Release\MenuBuddy.iOS.dll" target="lib\Xamarin.iOS10\MenuBuddy.iOS.dll" />
 
 		<!--WindowsDX-->
-		<file src="MenuBuddy.WindowsDX\bin\Release\MenuBuddy.WindowsDX.pdb" target="lib\net451\MenuBuddy.WindowsDX.pdb" />
-		<file src="MenuBuddy.WindowsDX\bin\Release\MenuBuddy.WindowsDX.dll" target="lib\net451\MenuBuddy.WindowsDX.dll" />
+		<file src="MenuBuddy.WindowsDX\bin\Release\MenuBuddy.WindowsDX.pdb" target="lib\net452\MenuBuddy.WindowsDX.pdb" />
+		<file src="MenuBuddy.WindowsDX\bin\Release\MenuBuddy.WindowsDX.dll" target="lib\net452\MenuBuddy.WindowsDX.dll" />
 
 	</files>
 </package>
