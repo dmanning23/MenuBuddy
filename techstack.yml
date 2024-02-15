@@ -1,0 +1,1147 @@
+repo_name: dmanning23/MenuBuddy
+report_id: e7bccb5381cfa65ee9423b99262cad6b
+version: 0.1
+repo_type: Public
+timestamp: '2024-02-15T14:44:00+00:00'
+requested_by: dmanning23
+provider: github
+branch: master
+detected_tools_count: 84
+tools:
+- name: ASP.NET
+  description: An open source web framework for building modern web apps and services
+    with .NET
+  website_url: https://www.asp.net/
+  version: '9.0'
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/6755/2c45151a4a11d3a3c8e71bb34dd069d6_400x400.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/MenuBuddy.Android.csproj
+  detection_source: MenuBuddy/MenuBuddy.Android/MenuBuddy.Android.csproj
+  last_updated_by: Dan Manning
+  last_updated_on: 2016-04-08 04:18:52.000000000 Z
+- name: C#
+  description: Simple, general-purpose, object-oriented programming language for the
+    .NET platform
+  website_url: http://csharp.net
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1015/1200px-C_Sharp_wordmark.svg.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy
+  detection_source: Repo Metadata
+- name: ".NET"
+  description: A free, cross-platform, open source developer platform for building
+    many different types of applications
+  website_url: http://www.microsoft.com/net/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/1014/IoPy1dce_400x400.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.iOS/packages.config
+  detection_source: MenuBuddy/MenuBuddy.iOS/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: Castle Core
+  description: It provides common Castle Project abstractions including logging services
+  website_url: https://github.com/castleproject/Core
+  open_source: true
+  hosted_saas: false
+  category: Monitoring
+  sub_category: Logging Tools
+  image_url: https://img.stackshare.io/service/20916/default_6d17162c9963bc83521ee29cf394f349c95173f3.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy
+  detection_source: Repo Metadata
+- name: Moq
+  description: The most popular and friendly mocking framework for .NET
+  website_url: https://github.com/Moq/moq4
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/1628/1434934.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2016-04-08 04:18:52.000000000 Z
+- name: NUnit
+  description: An open-source unit testing framework
+  website_url: http://www.nunit.org/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/2371/jZ6MYx5Y_400x400.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: NuGet
+  description: The package manager for .NET
+  website_url: https://www.nuget.org/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/service/2637/6I3oEOP4_400x400.jpg
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.iOS/packages.config
+  detection_source: MenuBuddy/MenuBuddy.iOS/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2016-04-08 04:18:52.000000000 Z
+- name: Visual Studio
+  description: State-of-the-art tools and services that you can use to create great
+    apps for devices, the cloud, and everything in between.
+  website_url: http://msdn.microsoft.com/en-us/vstudio/aa718325.aspx
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Integrated Development Environment
+  image_url: https://img.stackshare.io/service/1451/SR2hUhQN.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.sln
+  detection_source: MenuBuddy/MenuBuddy.sln
+  last_updated_by: Dan Manning
+  last_updated_on: 2019-07-10 20:28:04.000000000 Z
+- name: PowerShell
+  description: A task automation and configuration management framework
+  website_url: https://docs.microsoft.com/en-us/powershell/
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/3681/powershell-logo.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy
+  detection_source: Repo Metadata
+- name: FakeItEasy
+  description: It's faking amazing! The easy mocking library for .NET that works great
+    in C# and VB.NET alike
+  package_url: https://www.nuget.org/FakeItEasy
+  version: 7.1.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13471/default_eb78542773998d1500f13778aa04738ef49376bd.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-07-22 21:31:58.000000000 Z
+- name: FilenameBuddy
+  description: A simple filename helper class for content files
+  package_url: https://www.nuget.org/FilenameBuddy
+  version: 4.0.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/14571/default_490406fdda9dc75804913583bc9d0f6648768698.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: FontBuddy
+  description: Put some text on the screen easier with MonoGame
+  package_url: https://www.nuget.org/FontBuddy
+  version: 4.0.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/15632/default_488c4e4b43a6fe22b3965bca76de9590df2cbb77.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: GameTimer
+  description: Some handy Monogame timer objects that can be used for time effects
+    like hiererchical time
+  package_url: https://www.nuget.org/GameTimer
+  version: 4.0.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/14860/default_b7dd5bddbb7caaf25c2f6e41e3de444d37ca87a9.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: MatrixExtensions
+  description: Several extension methods for the MonoGame Matrix class
+  package_url: https://www.nuget.org/MatrixExtensions
+  version: 4.0.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/14980/default_a1cf04b1835754674809717530747159e4499835.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: Microsoft.CSharp
+  description: Provides support for compilation and code generation, including dynamic,
+    using the C# language
+  package_url: https://www.nuget.org/Microsoft.CSharp
+  version: 4.7.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12845/default_ccf90b566c21ad9eaa59733f297e535ea39fb3b4.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2022-02-28 16:44:07.000000000 Z
+- name: Microsoft.NETCore.Platforms
+  description: Provides runtime information required to resolve target framework,
+    platform, and runtime specific implementations of .NETCore packages
+  package_url: https://www.nuget.org/Microsoft.NETCore.Platforms
+  version: 5.0.2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12907/default_4b18ad6ce0b5b2bd1dc822207c362ce8e0f74098.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2022-02-28 16:44:07.000000000 Z
+- name: Microsoft.Win32.Primitives
+  description: Provides common types for Win32-based libraries
+  package_url: https://www.nuget.org/Microsoft.Win32.Primitives
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13149/default_048f7c1081704627a12b8b5e168cfdbc9f28fb33.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: MonoGame.Framework.Android
+  description: MonoGame is an open source implementation of the Microsoft XNA 4.x
+    Framework
+  package_url: https://www.nuget.org/MonoGame.Framework.Android
+  version: 3.7.1
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13630/default_3e69852d36136f860cbd7840ffb14e3d1b96e265.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: MonoGame.Framework.WindowsDX
+  description: MonoGame is an open source implementation of the Microsoft XNA 4.x
+    Framework
+  package_url: https://www.nuget.org/MonoGame.Framework.WindowsDX
+  version: 3.7.1
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13523/default_96764b6f9c3f0e632eb68cb4bd063b080ee3b713.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: MonoGame.Framework.iOS
+  description: MonoGame is an open source implementation of the Microsoft XNA 4.x
+    Framework
+  package_url: https://www.nuget.org/MonoGame.Framework.iOS
+  version: 3.7.1
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13659/default_3e69852d36136f860cbd7840ffb14e3d1b96e265.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.iOS/packages.config
+  detection_source: MenuBuddy/MenuBuddy.iOS/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: NETStandard.Library
+  description: A set of standard .NET APIs that are prescribed to be used and supported
+    together
+  package_url: https://www.nuget.org/NETStandard.Library
+  version: 2.0.3
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12843/default_0f5233770e71818507f2339042e7e61bef904e70.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: Newtonsoft.Json
+  description: Json.NET is a popular high-performance JSON framework for .NET
+  package_url: https://www.nuget.org/Newtonsoft.Json
+  version: 13.0.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/nuget/image.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2022-02-28 16:44:07.000000000 Z
+- name: PrimitiveBuddy
+  description: MonoGame library for drawing primitive shapes
+  package_url: https://www.nuget.org/PrimitiveBuddy
+  version: 4.0.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/15154/default_67b382fa8014241c954cded29043c81890c3009a.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: ResolutionBuddy
+  description: Easily manage the window resolution of an MonoGame project
+  package_url: https://www.nuget.org/ResolutionBuddy
+  version: 4.0.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/15428/default_659999cff2915806ccf14d600a70864cbda58cdd.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: SharpDX
+  description: Core assembly for all SharpDX assemblies
+  package_url: https://www.nuget.org/SharpDX
+  version: 4.2.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13411/default_de77a8370e47861dfbe30f06e25c22916ed609b5.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2022-02-28 16:44:07.000000000 Z
+- name: SharpDX.DXGI
+  description: Assembly providing DirectX - DXGI managed API
+  package_url: https://www.nuget.org/SharpDX.DXGI
+  version: 4.2.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13707/default_7e85943e00e5b8451be72dcd9480fe58fa599e72.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2022-02-28 16:44:07.000000000 Z
+- name: SharpDX.Direct2D1
+  description: Assembly providing DirectX - Direct2D
+  package_url: https://www.nuget.org/SharpDX.Direct2D1
+  version: 4.2.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13598/default_b3a9fa7efbcc92b2b6d42b9fa9afd23454bef416.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2022-02-28 16:44:07.000000000 Z
+- name: SharpDX.Direct3D11
+  description: Assembly providing DirectX - Direct3D11
+  package_url: https://www.nuget.org/SharpDX.Direct3D11
+  version: 4.2.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13640/default_68f579b2fdb37f974ffe5edb6e34476d1305c023.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2022-02-28 16:44:07.000000000 Z
+- name: SharpDX.Direct3D9
+  description: Assembly providing DirectX - Direct3D9 managed API
+  package_url: https://www.nuget.org/SharpDX.Direct3D9
+  version: 4.2.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/15128/default_dc800e17338bd483f5af86a8fa4848599fb18d34.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2022-02-28 16:44:07.000000000 Z
+- name: SharpDX.Mathematics
+  description: Assembly providing DirectX - Mathematics managed API
+  package_url: https://www.nuget.org/SharpDX.Mathematics
+  version: 4.2.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/14348/default_11623d31c9a0fe3552bdd0ec51d1dc8e7c373f9a.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2022-02-28 16:44:07.000000000 Z
+- name: SharpDX.MediaFoundation
+  description: Assembly providing DirectX - MediaFoundation managed API
+  package_url: https://www.nuget.org/SharpDX.MediaFoundation
+  version: 4.2.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/15656/default_8ecc759a1edcd117364c5cceefb691b1e862d31f.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: SharpDX.XAudio2
+  description: Assembly providing DirectX - XAudio2
+  package_url: https://www.nuget.org/SharpDX.XAudio2
+  version: 4.2.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/15001/default_608ee0aff47637bc045274178edebc63c8a3c05e.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2022-02-28 16:44:07.000000000 Z
+- name: SharpDX.XInput
+  description: Assembly providing DirectX - XInput managed API
+  package_url: https://www.nuget.org/SharpDX.XInput
+  version: 4.2.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/15124/default_dc800e17338bd483f5af86a8fa4848599fb18d34.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: Shouldly
+  description: Shouldly - Assertion framework for .NET
+  package_url: https://www.nuget.org/Shouldly
+  version: 4.0.3
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13821/default_d358fd76413e7b8cc458411fede039268825f8c2.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.AppContext
+  description: Provides the System.AppContext class, which allows access to the BaseDirectory
+    property and other application specific data
+  package_url: https://www.nuget.org/System.AppContext
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13144/default_a5e8cd728170fc92850284a53a17ff7deb73f318.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Buffers
+  description: Provides resource pooling of any type for performance-critical applications
+    that allocate and deallocate objects frequently
+  package_url: https://www.nuget.org/System.Buffers
+  version: 4.5.1
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13038/default_a0b0eac5a401515996bd8fc359ffcfbc844cbe90.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Collections
+  description: Provides classes that define generic collections
+  package_url: https://www.nuget.org/System.Collections
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12855/default_4e8402857d2ce7356903ee7422d9b4a0f23cc137.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Collections.Concurrent
+  description: Provides several thread-safe collection classes that should be used
+    in place of the corresponding types in the System.Collections.NonGeneric and System.Collections
+    packages when...
+  package_url: https://www.nuget.org/System.Collections.Concurrent
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12925/default_2aeaea161c566d1abfbaf3f2206fda12b1eea9cd.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Console
+  description: Provides the System.Console class, which represents the standard input,
+    output and error streams for console applications
+  package_url: https://www.nuget.org/System.Console
+  version: 4.3.1
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12992/default_971bb108ce002c2032e407a9046135e1542c46c7.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Diagnostics.Debug
+  description: Provides classes and attributes that allows basic interaction with
+    a debugger
+  package_url: https://www.nuget.org/System.Diagnostics.Debug
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12887/default_e43fb8cd51d87352a1197706afa527de5c3baecd.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Diagnostics.DiagnosticSource
+  description: Provides Classes that allow you to decouple code logging rich
+  package_url: https://www.nuget.org/System.Diagnostics.DiagnosticSource
+  version: 5.0.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13012/default_dd10728859f7e363ef13345d855b2daba48cace4.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Diagnostics.Tools
+  description: Provides attributes, such as GeneratedCodeAttribute and SuppresMessageAttribute,
+    that are emitted or consumed by analysis tools
+  package_url: https://www.nuget.org/System.Diagnostics.Tools
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12946/default_3bbc310dbe28a83b0e799743dc3f0afaa77665c9.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Diagnostics.Tracing
+  description: Provides class that enable you to create high performance tracing events
+    to be captured by event tracing for Windows
+  package_url: https://www.nuget.org/System.Diagnostics.Tracing
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13072/default_a057bdad489be3cb053d372a68695da4ac94962d.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Globalization
+  description: Provides classes that define culture-related information
+  package_url: https://www.nuget.org/System.Globalization
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12895/default_4e8402857d2ce7356903ee7422d9b4a0f23cc137.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Globalization.Calendars
+  description: Provides classes for performing date calculations using specific calendars,
+    including the Gregorian, Julian, Hijri and Korean calendars
+  package_url: https://www.nuget.org/System.Globalization.Calendars
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13335/default_9a849f196ca7930b27f663ae8f15c937ea1b49e5.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.IO
+  description: Provides base input and output
+  package_url: https://www.nuget.org/System.IO
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12901/default_4b18ad6ce0b5b2bd1dc822207c362ce8e0f74098.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.IO.Compression
+  description: Provides classes that support the compression and decompression of
+    streams
+  package_url: https://www.nuget.org/System.IO.Compression
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12997/default_aa8a6e377c22dbeff795489a5ab127b1d597b5ed.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.IO.Compression.ZipFile
+  description: Provides classes that support the compression and decompression of
+    streams using file system paths
+  package_url: https://www.nuget.org/System.IO.Compression.ZipFile
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13240/default_43ce02ab18bb400d4d6b410ac4dc3a50f87e634a.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.IO.FileSystem
+  description: Provides types that allow reading and writing to files and types that
+    provide basic file and directory support
+  package_url: https://www.nuget.org/System.IO.FileSystem
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12931/default_2aeaea161c566d1abfbaf3f2206fda12b1eea9cd.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.IO.FileSystem.Primitives
+  description: Provides common enumerations and exceptions for path-based I/O libraries
+  package_url: https://www.nuget.org/System.IO.FileSystem.Primitives
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13111/default_623cfb3f5700f77ec1aadc91de41d13f3aa2ae3d.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Linq
+  description: Provides classes and interfaces that supports queries that use Language-Integrated
+    Query
+  package_url: https://www.nuget.org/System.Linq
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12857/default_ccf90b566c21ad9eaa59733f297e535ea39fb3b4.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Linq.Expressions
+  description: Provides classes, interfaces and enumerations that enable language-level
+    code expressions to be represented as objects in the form of expression trees
+  package_url: https://www.nuget.org/System.Linq.Expressions
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12924/default_2aeaea161c566d1abfbaf3f2206fda12b1eea9cd.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Memory
+  description: Provides types for efficient representation and pooling of managed
+  package_url: https://www.nuget.org/System.Memory
+  version: 4.5.4
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12974/default_d871263d8798790404638a4d3692cc70b6389166.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Net.Http
+  description: Provides a programming interface for modern HTTP applications
+  package_url: https://www.nuget.org/System.Net.Http
+  version: 4.3.4
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12860/default_ccf90b566c21ad9eaa59733f297e535ea39fb3b4.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Net.Primitives
+  description: Provides common types for network-based libraries, including System.Net.IPAddress,
+    System.Net.IPEndPoint, and System.Net.CookieContainer
+  package_url: https://www.nuget.org/System.Net.Primitives
+  version: 4.3.1
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12985/default_dd10728859f7e363ef13345d855b2daba48cace4.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Net.Sockets
+  description: Provides classes such as Socket, TcpClient and UdpClient, which enable
+    developers to send and receive data over the network
+  package_url: https://www.nuget.org/System.Net.Sockets
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13036/default_a0b0eac5a401515996bd8fc359ffcfbc844cbe90.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Numerics.Vectors
+  description: Provides hardware-accelerated numeric types, suitable for high-performance
+    processing and graphics applications
+  package_url: https://www.nuget.org/System.Numerics.Vectors
+  version: 4.5.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13087/default_1b8be57b16f1f491c0e5f67e5d1021f4df68ea30.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.ObjectModel
+  description: Provides types and interfaces that allow the creation of observable
+    types that provide notifications to clients when changes are made to it
+  package_url: https://www.nuget.org/System.ObjectModel
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12994/default_971bb108ce002c2032e407a9046135e1542c46c7.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Reflection
+  description: Provides types that retrieve information about assemblies, modules,
+    members, parameters, and other entities in managed code by examining their metadata
+  package_url: https://www.nuget.org/System.Reflection
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12874/default_4b18ad6ce0b5b2bd1dc822207c362ce8e0f74098.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Reflection.Extensions
+  description: Provides custom attribute extension methods for System.Reflection types
+  package_url: https://www.nuget.org/System.Reflection.Extensions
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12900/default_4b18ad6ce0b5b2bd1dc822207c362ce8e0f74098.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Reflection.Primitives
+  description: Provides common enumerations for reflection-based libraries
+  package_url: https://www.nuget.org/System.Reflection.Primitives
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13006/default_12f7186a6d439da94c192c70c3589768d943782d.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Resources.ResourceManager
+  description: Provides classes and attributes that allow developers to create, store,
+    and manage various culture-specific resources used in an application
+  package_url: https://www.nuget.org/System.Resources.ResourceManager
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12898/default_1763b424d3c06c730dd020813f1a1a6ffb953bc2.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Runtime
+  description: Provides the fundamental primitives
+  package_url: https://www.nuget.org/System.Runtime
+  version: 4.3.1
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12849/default_0f5233770e71818507f2339042e7e61bef904e70.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Runtime.Extensions
+  description: Provides commonly-used classes for performing mathematical functions,
+    conversions, string comparisons and querying environment information
+  package_url: https://www.nuget.org/System.Runtime.Extensions
+  version: 4.3.1
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12872/default_1763b424d3c06c730dd020813f1a1a6ffb953bc2.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Runtime.Handles
+  description: Provides base classes, including System.Runtime.InteropServices.CriticalHandle
+    and System.Runtime.InteropServices.SafeHandle, for types that represent operating
+    system handles
+  package_url: https://www.nuget.org/System.Runtime.Handles
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13103/default_9a42ff760d96a634e61dad6d7a7d76e2d1506229.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Runtime.InteropServices
+  description: Provides types that support COM interop and platform invoke services
+  package_url: https://www.nuget.org/System.Runtime.InteropServices
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12908/default_2aeaea161c566d1abfbaf3f2206fda12b1eea9cd.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Runtime.InteropServices.RuntimeInformation
+  description: Provides APIs to query about runtime and OS information
+  package_url: https://www.nuget.org/System.Runtime.InteropServices.RuntimeInformation
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12960/default_cd4457378b2b3dee674f43707df49edfbc5c04e5.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Runtime.Numerics
+  description: Provides the numeric types System.Numerics.BigInteger and System.Numerics.Complex,
+    which complement the numeric primitives, such as System.Byte, System.Double and
+    System.Int32
+  package_url: https://www.nuget.org/System.Runtime.Numerics
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13039/default_ed36ff3c005af695725e05bb15ea5b1f03de31f3.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Security.Cryptography.Algorithms
+  description: Provides base types for cryptographic algorithms, including hashing,
+    encryption, and signing operations
+  package_url: https://www.nuget.org/System.Security.Cryptography.Algorithms
+  version: 4.3.1
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12929/default_039376cf26bae25623c106aea6185b89980a1e50.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Security.Cryptography.Encoding
+  description: Provides types for representing Abstract Syntax Notation One
+  package_url: https://www.nuget.org/System.Security.Cryptography.Encoding
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13179/default_42e87535b59c0cd77a89678c1c4ed24abc143f58.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Security.Cryptography.Primitives
+  description: Provides common types for the cryptographic libraries
+  package_url: https://www.nuget.org/System.Security.Cryptography.Primitives
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13109/default_f0c74e534077001eb65a152707758ce46a2dc970.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Security.Cryptography.X509Certificates
+  description: Provides types for reading, exporting and verifying Authenticode X.509
+    v3 certificates
+  package_url: https://www.nuget.org/System.Security.Cryptography.X509Certificates
+  version: 4.3.2
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13009/default_aa8a6e377c22dbeff795489a5ab127b1d597b5ed.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Text.Encoding
+  description: Provides base abstract encoding classes for converting blocks of characters
+    to and from blocks of bytes
+  package_url: https://www.nuget.org/System.Text.Encoding
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12933/default_e43fb8cd51d87352a1197706afa527de5c3baecd.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Text.Encoding.Extensions
+  description: Provides support for specific encodings, including ASCII, UTF-7, UTF-8,
+    UTF-16, and UTF-32
+  package_url: https://www.nuget.org/System.Text.Encoding.Extensions
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12973/default_3bbc310dbe28a83b0e799743dc3f0afaa77665c9.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Text.RegularExpressions
+  description: Provides the System.Text.RegularExpressions.Regex class, an implementation
+    of a regular expression engine
+  package_url: https://www.nuget.org/System.Text.RegularExpressions
+  version: 4.3.1
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12916/default_2aeaea161c566d1abfbaf3f2206fda12b1eea9cd.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Threading
+  description: Provides the fundamental synchronization primitives, including System.Threading.Monitor
+    and System.Threading.Mutex, that are required when writing asynchronous code
+  package_url: https://www.nuget.org/System.Threading
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12861/default_3ee9e3bfd65cbae9db28ab78b712a58bcd81af27.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: System.Threading.Tasks
+  description: Provides types that simplify the work of writing concurrent and asynchronous
+    code
+  package_url: https://www.nuget.org/System.Threading.Tasks
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12899/default_4b18ad6ce0b5b2bd1dc822207c362ce8e0f74098.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2022-02-28 16:44:07.000000000 Z
+- name: System.Threading.Tasks.Extensions
+  description: Provides additional types that simplify the work of writing concurrent
+    and asynchronous code
+  package_url: https://www.nuget.org/System.Threading.Tasks.Extensions
+  version: 4.5.4
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12998/default_aa8a6e377c22dbeff795489a5ab127b1d597b5ed.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Tests/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Tests/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Threading.Timer
+  description: Provides the System.Threading.Timer class, which is a mechanism for
+    executing a method at specified intervals
+  package_url: https://www.nuget.org/System.Threading.Timer
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13016/default_aa8a6e377c22dbeff795489a5ab127b1d597b5ed.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Xml.ReaderWriter
+  description: Provides provides a fast, non-cached, forward-only way to read and
+    write Extensible Markup Language
+  package_url: https://www.nuget.org/System.Xml.ReaderWriter
+  version: 4.3.1
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12962/default_bd8397841d0aa5de035298a9130ee2dc9d9b0ece.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: System.Xml.XDocument
+  description: Provides the classes for Language-Integrated Query
+  package_url: https://www.nuget.org/System.Xml.XDocument
+  version: 4.3.0
+  open_source: false
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12964/default_aa8a6e377c22dbeff795489a5ab127b1d597b5ed.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2021-05-13 22:09:28.000000000 Z
+- name: Vector2Extensions
+  description: Several helpful extensions methods for the Vector2 class in MonoGame
+  package_url: https://www.nuget.org/Vector2Extensions
+  version: 4.0.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/14570/default_04c230a7faf108c837aa3e6d645603d730fef980.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
+- name: XmlBuddy
+  description: Quick library for helping to read in content from xml files
+  package_url: https://www.nuget.org/XmlBuddy
+  version: 4.0.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/15638/default_377113acdd941f50a77fd19dd149f78f636a1f74.png
+  detection_source_url: https://github.com/dmanning23/MenuBuddy/blob/master/MenuBuddy/MenuBuddy.Android/packages.config
+  detection_source: MenuBuddy/MenuBuddy.Android/packages.config
+  last_updated_by: Dan Manning
+  last_updated_on: 2023-10-31 19:59:51.000000000 Z
