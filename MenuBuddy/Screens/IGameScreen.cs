@@ -4,16 +4,15 @@ using Microsoft.Xna.Framework;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// A game screen is something like an xbox or ouya game 
-	/// that requires the controller for input.
-	/// Should inherit from this and also Screen
+	/// Interface for gameplay screens that handle controller/keyboard input directly.
+	/// Implementing classes should also inherit from a Screen class.
 	/// </summary>
 	public interface IGameScreen : IScreen
 	{
 		/// <summary>
-		/// Do the input logic for the main game.
+		/// Handles input for the gameplay logic.
 		/// </summary>
-		/// <param name="input"></param>
+		/// <param name="input">The current input state containing keyboard and controller data.</param>
 		void HandleInput(IInputState input);
 	}
 }

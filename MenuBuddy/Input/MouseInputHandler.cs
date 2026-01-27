@@ -6,20 +6,25 @@ using System;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// This is an input helper that does mouse/touchscreen input
+	/// Input handler for mouse-based input. Processes highlight, click, drag, and drop events.
 	/// </summary>
 	public class MouseInputHandler : BaseInputHandler
 	{
 		#region Properties
 
 		/// <summary>
-		/// the touch manager service component.
-		/// warning: this dude might be null if the compoent isnt in this game
+		/// Gets the input helper service component for mouse events.
 		/// </summary>
 		public IInputHelper InputHelper { get; private set; }
 
+		/// <summary>
+		/// Gets or sets the sprite batch used for rendering.
+		/// </summary>
 		private SpriteBatch SpriteBatch { get; set; }
 
+		/// <summary>
+		/// Gets or sets the input checker that processes mouse events for screens.
+		/// </summary>
 		private MouseScreenInputChecker InputChecker { get; set; }
 
 		#endregion //Properties
@@ -27,9 +32,11 @@ namespace MenuBuddy
 		#region Initialization
 
 		/// <summary>
-		/// Constructor
+		/// Initializes a new instance of the <see cref="MouseInputHandler"/> class
+		/// and registers it as the <see cref="IInputHandler"/> service.
 		/// </summary>
-		/// <param name="game"></param>
+		/// <param name="game">The game instance.</param>
+		/// <exception cref="Exception">Thrown if <see cref="IInputHelper"/> service is not registered.</exception>
 		public MouseInputHandler(Game game)
 			: base(game)
 		{
@@ -67,6 +74,10 @@ namespace MenuBuddy
 
 		#region Methods
 
+		/// <summary>
+		/// Handles input for the specified screen by processing mouse events.
+		/// </summary>
+		/// <param name="screen">The screen to receive input.</param>
 		public override void HandleInput(IScreen screen)
 		{
 			base.HandleInput(screen);

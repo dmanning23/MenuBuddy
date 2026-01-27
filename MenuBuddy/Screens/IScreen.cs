@@ -17,51 +17,73 @@ namespace MenuBuddy
 		#region Properties
 
 		/// <summary>
-		/// Gets the manager that this screen belongs to.
+		/// Gets or sets the screen manager that this screen belongs to.
 		/// </summary>
 		ScreenManager ScreenManager { get; set; }
 
+		/// <summary>
+		/// Gets the content manager used to load assets for this screen.
+		/// </summary>
 		ContentManager Content { get; }
 
 		/// <summary>
-		/// Gets or sets the name of this screen
+		/// Gets or sets the name of this screen.
 		/// </summary>
 		string ScreenName { get; set; }
 
+		/// <summary>
+		/// Gets the game clock used for timing and animations.
+		/// </summary>
 		GameClock Time { get; }
 
+		/// <summary>
+		/// Gets the transition controller for this screen.
+		/// </summary>
 		IScreenTransition Transition { get; }
 
+		/// <summary>
+		/// Gets the current transition state of this screen.
+		/// </summary>
 		TransitionState TransitionState { get; }
 
 		/// <summary>
-		/// Whether or not screens underneath this one should tranisition off
+		/// Gets or sets whether screens underneath this one should transition off.
 		/// </summary>
 		bool CoverOtherScreens { get; set; }
 
 		/// <summary>
-		/// Whether or not this screen should transition off when covered by other screens
+		/// Gets or sets whether this screen should transition off when covered by other screens.
 		/// </summary>
 		bool CoveredByOtherScreens { get; set; }
 
+		/// <summary>
+		/// Gets or sets the player index that controls this screen, or null for any player.
+		/// </summary>
 		int? ControllingPlayer { get; set; }
 
 		/// <summary>
-		/// Whether or not this is the active screen being displayed
+		/// Gets whether this screen is currently active and can receive input.
 		/// </summary>
 		bool IsActive { get; }
 
+		/// <summary>
+		/// Gets whether this screen currently has focus.
+		/// </summary>
 		bool HasFocus { get; }
 
+		/// <summary>
+		/// Gets whether this screen is in the process of exiting.
+		/// </summary>
 		bool IsExiting { get; }
 
 		/// <summary>
-		/// Set the layer of a screen to change it's location in the ScreenStack
+		/// Gets or sets the layer of this screen in the screen stack. Higher layers are drawn on top.
 		/// </summary>
 		int Layer { get; set; }
 
 		/// <summary>
-		/// Used by the ScreenStack to sort screens. Don't touch!
+		/// Gets or sets the sub-layer used by ScreenStack for sorting screens within the same layer.
+		/// This is managed internally and should not be modified directly.
 		/// </summary>
 		int SubLayer { get; set; }
 
@@ -86,6 +108,12 @@ namespace MenuBuddy
 		/// </summary>
 		void Update(GameTime gameTime, bool otherWindowHasFocus, bool covered);
 
+		/// <summary>
+		/// Updates the transition state of this screen.
+		/// </summary>
+		/// <param name="screenTransition">The screen transition to update.</param>
+		/// <param name="gameTime">The current game time.</param>
+		/// <returns>True if the transition is complete, false otherwise.</returns>
 		bool UpdateTransition(IScreenTransition screenTransition, GameClock gameTime);
 
 		/// <summary>

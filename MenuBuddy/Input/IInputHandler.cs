@@ -5,19 +5,24 @@ using System;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// This is an interface for managing highlighting and selection of items based on user input
+	/// Interface for managing highlighting and selection of items based on user input.
 	/// </summary>
 	public interface IInputHandler
 	{
+		/// <summary>
+		/// Gets the current input state containing keyboard, gamepad, and other input information.
+		/// </summary>
 		IInputState InputState { get; }
 
 		/// <summary>
-		/// Handle teh input and pass it to the current top screen.
+		/// Handles input and passes it to the specified screen.
 		/// </summary>
-		/// <param name="screen"></param>
-		/// <returns></returns>
+		/// <param name="screen">The screen to receive input.</param>
 		void HandleInput(IScreen screen);
 
+		/// <summary>
+		/// Event raised when a click has been handled by a screen or widget.
+		/// </summary>
 		event EventHandler<ClickEventArgs> OnClickHandled;
 	}
 }

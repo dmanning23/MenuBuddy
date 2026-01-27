@@ -3,16 +3,23 @@ using MouseBuddy;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// This is some boilerplate code for doing a mousepointer based game.
+	/// Base class for games that use mouse input.
+	/// Automatically sets up mouse input handling.
 	/// </summary>
 	public abstract class MouseGame : DefaultGame
 	{
 		#region Methods
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MouseGame"/> class.
+		/// </summary>
 		protected MouseGame() : base(GameType.Mouse)
 		{
 		}
 
+		/// <summary>
+		/// Initializes mouse input handling for this game.
+		/// </summary>
 		protected override void InitInput()
 		{
 			InputHelper = new MouseComponent(this, ResolutionBuddy.Resolution.ScreenToGameCoord);

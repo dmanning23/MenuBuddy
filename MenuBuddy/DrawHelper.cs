@@ -7,25 +7,36 @@ using System;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// This dude just helps out with some of the drawing tasks needed for menu buddies.
+	/// Helper class for common drawing operations needed by menu screens and widgets.
+	/// Provides methods for drawing rectangles, outlines, and fade backgrounds.
 	/// </summary>
 	public class DrawHelper : IDisposable
 	{
 		#region Properties
 
+		/// <summary>
+		/// The SpriteBatch used for rendering.
+		/// </summary>
 		public SpriteBatch SpriteBatch { get; set; }
 
 		/// <summary>
-		/// basic primitive for drawing the outline arounds touch buttons
+		/// Primitive renderer for drawing outlines around buttons and other widgets.
 		/// </summary>
 		public Primitive Prim { get; set; }
 
+		/// <summary>
+		/// Optional background image used for fade transitions. If null, a solid black rectangle is used instead.
+		/// </summary>
 		public Texture2D FadeBackgroundImage { get; set; }
 
 		#endregion //Properties
 
 		#region Methods
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DrawHelper"/> class.
+		/// </summary>
+		/// <param name="screenManager">The screen manager providing graphics device and sprite batch.</param>
 		public DrawHelper(ScreenManager screenManager)
 		{
 			SpriteBatch = screenManager.SpriteBatch;
@@ -98,8 +109,12 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// Draw a 
+		/// Draws a rectangle with transition effects applied.
 		/// </summary>
+		/// <param name="screen">The screen providing transition state.</param>
+		/// <param name="color">The color of the rectangle.</param>
+		/// <param name="rect">The rectangle bounds.</param>
+		/// <param name="transition">The transition object for position and alpha calculations.</param>
 		public void DrawRect(IScreen screen, Color color, Rectangle rect, ITransitionObject transition)
 		{
 			//get the color for the background & border
@@ -113,6 +128,14 @@ namespace MenuBuddy
 			DrawRect(screenTransition.AlphaColor(color), rect);
 		}
 
+		/// <summary>
+		/// Draws a rectangular outline with transition effects applied.
+		/// </summary>
+		/// <param name="screen">The screen providing transition state.</param>
+		/// <param name="color">The color of the outline.</param>
+		/// <param name="rect">The rectangle bounds.</param>
+		/// <param name="transition">The transition object for position and alpha calculations.</param>
+		/// <param name="lineWidth">The width of the outline in pixels. Default is 5.</param>
 		public void DrawOutline(IScreen screen, Color color, Rectangle rect, ITransitionObject transition, float lineWidth = 5f)
 		{
 			//set the transition location
@@ -123,6 +146,12 @@ namespace MenuBuddy
 			DrawOutline(screenTransition.AlphaColor(color), rect, lineWidth);
 		}
 
+		/// <summary>
+		/// Draws a rectangular outline without transition effects.
+		/// </summary>
+		/// <param name="color">The color of the outline.</param>
+		/// <param name="rect">The rectangle bounds.</param>
+		/// <param name="lineWidth">The width of the outline in pixels. Default is 5.</param>
 		public void DrawOutline(Color color, Rectangle rect, float lineWidth = 5f)
 		{
 			//draw the button outline
@@ -130,6 +159,9 @@ namespace MenuBuddy
 			Prim.Rectangle(rect, color);
 		}
 
+		/// <summary>
+		/// Releases resources used by the DrawHelper.
+		/// </summary>
 		public void Dispose()
 		{
 			Prim?.Dispose();

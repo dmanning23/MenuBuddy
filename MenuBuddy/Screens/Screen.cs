@@ -28,7 +28,7 @@ namespace MenuBuddy
 		private bool CurrentlyCovered { get; set; }
 
 		/// <summary>
-		/// Whether or not screens underneath this one should tranisition off
+		/// Gets or sets whether screens underneath this one should transition off.
 		/// </summary>
 		public virtual bool CoverOtherScreens { get; set; }
 
@@ -61,6 +61,11 @@ namespace MenuBuddy
 
 		private bool _isExiting = false;
 
+		/// <summary>
+		/// Gets whether this screen is active and can respond to input.
+		/// A screen is active when the window has focus, it's not covered (or doesn't care about being covered),
+		/// and it's in the TransitionOn or Active state.
+		/// </summary>
 		public bool IsActive
 		{
 			get
@@ -71,6 +76,11 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// Gets whether this screen currently has focus.
+		/// A screen has focus when the window has focus, it's not covered by another screen,
+		/// and it's in the TransitionOn or Active state.
+		/// </summary>
 		public bool HasFocus
 		{
 			get
@@ -86,8 +96,14 @@ namespace MenuBuddy
 		/// </summary>
 		public ScreenManager ScreenManager { get; set; }
 
+		/// <summary>
+		/// Gets whether this screen owns its content manager and should dispose it.
+		/// </summary>
 		private bool OwnsContent { get; set; }
 
+		/// <summary>
+		/// Gets the content manager used to load assets for this screen.
+		/// </summary>
 		public ContentManager Content { get; private set; }
 
 		/// <summary>
@@ -110,13 +126,19 @@ namespace MenuBuddy
 		/// </summary>
 		public event EventHandler Exiting;
 
+		/// <summary>
+		/// Gets the game clock used for timing and animations.
+		/// </summary>
 		public GameClock Time { get; private set; }
 
 		/// <summary>
-		/// Object used to aid in transitioning on and off
+		/// Gets or sets the transition controller used for transitioning on and off.
 		/// </summary>
 		public IScreenTransition Transition { get; set; }
 
+		/// <summary>
+		/// Gets the current transition state of this screen.
+		/// </summary>
 		public TransitionState TransitionState
 		{
 			get
@@ -132,15 +154,19 @@ namespace MenuBuddy
 		public StyleSheet Style { get; private set; }
 
 		/// <summary>
-		/// Set the layer of a screen to change it's location in the ScreenStack
+		/// Gets or sets the layer of this screen in the screen stack. Higher layers are drawn on top.
 		/// </summary>
 		public int Layer { get; set; }
 
 		/// <summary>
-		/// Used by the ScreenStack to sort screens. Don't touch!
+		/// Gets or sets the sub-layer used by ScreenStack for sorting screens within the same layer.
+		/// This is managed internally and should not be modified directly.
 		/// </summary>
 		public int SubLayer { get; set; }
 
+		/// <summary>
+		/// Gets whether this screen has finished loading its content.
+		/// </summary>
 		public bool FinishedLoading { get; protected set; }
 
 		#endregion
@@ -148,8 +174,10 @@ namespace MenuBuddy
 		#region Initialization
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="MenuBuddy.GameScreen"/> class.
+		/// Initializes a new instance of the <see cref="Screen"/> class.
 		/// </summary>
+		/// <param name="screenName">The name of this screen.</param>
+		/// <param name="content">Optional content manager. If null, one will be created when LoadContent is called.</param>
 		protected Screen(string screenName = "", ContentManager content = null)
 		{
 			OwnsContent = content == null;
@@ -232,6 +260,12 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// Updates the transition state of this screen.
+		/// </summary>
+		/// <param name="screenTransition">The screen transition to update.</param>
+		/// <param name="gameTime">The current game time.</param>
+		/// <returns>True if the transition is still in progress, false if complete.</returns>
 		public bool UpdateTransition(IScreenTransition screenTransition, GameClock gameTime)
 		{
 			var transitionResult = false;
@@ -316,11 +350,18 @@ namespace MenuBuddy
 			IsExiting = true;
 		}
 
+		/// <summary>
+		/// Returns the screen name.
+		/// </summary>
+		/// <returns>The screen name.</returns>
 		public override string ToString()
 		{
 			return ScreenName;
 		}
 
+		/// <summary>
+		/// Releases resources used by this screen.
+		/// </summary>
 		public virtual void Dispose()
 		{
 			UnloadContent();
@@ -332,6 +373,10 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// Called when the back button is pressed.
+		/// </summary>
+		/// <returns>True if this screen handled the back button, false otherwise.</returns>
 		public virtual bool OnBackButton()
 		{
 			return false;

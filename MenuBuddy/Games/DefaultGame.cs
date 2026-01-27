@@ -8,40 +8,72 @@ using System;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// This is some boilerplate code for doing a game.
+	/// Abstract base class for MenuBuddy games. Provides boilerplate setup for screen management,
+	/// resolution handling, and input initialization.
 	/// </summary>
 	public abstract class DefaultGame : Game
 	{
 		#region Properties
 
+		/// <summary>
+		/// Gets or sets the input helper used for processing user input.
+		/// </summary>
 		public IInputHelper InputHelper { get; protected set; }
 
 		/// <summary>
-		/// The graphics device used by this game
+		/// Gets the graphics device manager used by this game.
 		/// </summary>
 		public GraphicsDeviceManager Graphics { get; private set; }
 
 		/// <summary>
-		/// The screenmanager used by this game
+		/// Gets the screen manager used by this game.
 		/// </summary>
 		protected ScreenManager ScreenManager { get; private set; }
 
+		/// <summary>
+		/// Gets or sets the resolution component for handling screen resolution and scaling.
+		/// </summary>
 		public ResolutionComponent ResolutionComponent { get; set; }
 
+		/// <summary>
+		/// Gets the input type used by this game (Controller, Mouse, or Touch).
+		/// </summary>
 		public GameType GameType { get; private set; }
 
+		/// <summary>
+		/// Gets or sets the virtual resolution used for game logic and rendering.
+		/// </summary>
 		protected Point VirtualResolution { get; set; }
 
+		/// <summary>
+		/// Gets or sets the actual screen resolution.
+		/// </summary>
 		protected Point ScreenResolution { get; set; }
 
+		/// <summary>
+		/// Gets or sets whether the game runs in fullscreen mode.
+		/// </summary>
 		protected bool Fullscreen { get; set; }
 
+		/// <summary>
+		/// Gets or sets whether to use the device's native resolution. If null, uses <see cref="ScreenResolution"/>.
+		/// </summary>
 		protected bool? UseDeviceResolution { get; set; }
 
+		/// <summary>
+		/// Gets or sets whether to use letterboxing when aspect ratios don't match.
+		/// </summary>
 		protected bool Letterbox { get; set; }
 
+		/// <summary>
+		/// Gets or sets whether to display a loading screen while loading initial content. Default is true.
+		/// </summary>
 		protected bool LoadContentWithLoadingScreen { get; set; } = true;
 
+		/// <summary>
+		/// Throws an exception to prevent use of Game.Content. Use screen-specific content managers instead.
+		/// </summary>
+		/// <exception cref="System.Exception">Always thrown to prevent direct access.</exception>
 		public new ContentManager Content
 		{
 			get
@@ -53,12 +85,19 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the root directory for content loading. Default is "Content".
+		/// </summary>
 		public string ContentRootDirectory { get; protected set; }
 
 		#endregion //Properties
 
 		#region Methods
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DefaultGame"/> class.
+		/// </summary>
+		/// <param name="gameType">The input type used by this game.</param>
 		protected DefaultGame(GameType gameType)
 		{
 			Graphics = new GraphicsDeviceManager(this)
@@ -81,9 +120,9 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// Get the set of screens needed for the main menu
+		/// Gets the initial stack of screens to display when the game starts.
 		/// </summary>
-		/// <returns>The gameplay screen stack.</returns>
+		/// <returns>An array of screens to add to the screen manager, typically including a background and main menu.</returns>
 		public abstract IScreen[] GetMainMenuScreenStack();
 
 		/// <summary>
@@ -103,6 +142,9 @@ namespace MenuBuddy
 			base.Initialize();
 		}
 
+		/// <summary>
+		/// Loads game content and initializes the main menu screens.
+		/// </summary>
 		protected override void LoadContent()
 		{
 			try
@@ -133,7 +175,7 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// initialize the input to use for this game
+		/// Initializes the input system for this game. Must be implemented by derived classes.
 		/// </summary>
 		protected abstract void InitInput();
 

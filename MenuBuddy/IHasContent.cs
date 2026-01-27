@@ -4,16 +4,20 @@ using System.Threading.Tasks;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// any item that has content that needs to be loaded
+	/// Interface for items that have content requiring loading and unloading.
 	/// </summary>
 	public interface IHasContent
 	{
 		/// <summary>
-		/// Available load content method for child classes.
+		/// Loads content required by this item.
 		/// </summary>
-		/// <param name="screen"></param>
+		/// <param name="screen">The screen providing access to content managers and services.</param>
+		/// <returns>A task representing the asynchronous load operation.</returns>
 		Task LoadContent(IScreen screen);
 
+		/// <summary>
+		/// Unloads and releases content held by this item.
+		/// </summary>
 		void UnloadContent();
 	}
 }

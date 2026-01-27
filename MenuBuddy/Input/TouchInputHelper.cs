@@ -6,15 +6,14 @@ using System;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// This is an input helper that does mouse/touchscreen input
+	/// Input handler for touch screen input. Processes highlights, clicks, drags, drops, pinches, flicks, and holds.
 	/// </summary>
 	public class TouchInputHelper : BaseInputHandler
 	{
 		#region Properties
 
 		/// <summary>
-		/// the touch manager service component.
-		/// warning: this dude might be null if the compoent isnt in this game
+		/// Gets the input helper service component for touch events.
 		/// </summary>
 		public IInputHelper InputHelper { get; private set; }
 
@@ -23,9 +22,11 @@ namespace MenuBuddy
 		#region Initialization
 
 		/// <summary>
-		/// Constructor
+		/// Initializes a new instance of the <see cref="TouchInputHelper"/> class
+		/// and registers it as the <see cref="IInputHandler"/> service.
 		/// </summary>
-		/// <param name="game"></param>
+		/// <param name="game">The game instance.</param>
+		/// <exception cref="Exception">Thrown if <see cref="IInputHelper"/> service is not registered.</exception>
 		public TouchInputHelper(Game game)
 			: base(game)
 		{
@@ -49,6 +50,12 @@ namespace MenuBuddy
 
 		#region Methods
 
+		/// <summary>
+		/// Processes touch input events and routes them to the specified screen.
+		/// Handles highlights, clicks, drags, drops, pinches, flicks, and holds.
+		/// Pinch operations take priority and disable other gesture processing.
+		/// </summary>
+		/// <param name="screen">The screen to receive input.</param>
 		public override void HandleInput(IScreen screen)
 		{
 			base.HandleInput(screen);

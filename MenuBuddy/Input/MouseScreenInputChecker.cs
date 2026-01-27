@@ -5,20 +5,25 @@ using System;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// This is an input helper that does mouse/touchscreen input
+	/// Processes mouse input events (highlights, clicks, drags, drops) and routes them to screens.
 	/// </summary>
 	public class MouseScreenInputChecker : IInputHandler
 	{
 		#region Properties
 
 		/// <summary>
-		/// the touch manager service component.
-		/// warning: this dude might be null if the compoent isnt in this game
+		/// Gets the input helper that provides mouse events.
 		/// </summary>
 		public IInputHelper InputHelper { get; private set; }
 
+		/// <summary>
+		/// Gets or sets the input state for keyboard and controller input.
+		/// </summary>
 		public IInputState InputState { get; set; }
 
+		/// <summary>
+		/// Gets the parent mouse input handler, if any.
+		/// </summary>
 		private MouseInputHandler MouseInputHandler { get; set; }
 
 		#endregion //Properties
@@ -26,9 +31,10 @@ namespace MenuBuddy
 		#region Initialization
 
 		/// <summary>
-		/// Constructor
+		/// Initializes a new instance of the <see cref="MouseScreenInputChecker"/> class.
 		/// </summary>
-		/// <param name="game"></param>
+		/// <param name="inputHelper">The input helper providing mouse events.</param>
+		/// <param name="mouseInputHandler">Optional parent handler to notify when clicks are handled.</param>
 		public MouseScreenInputChecker(IInputHelper inputHelper, MouseInputHandler mouseInputHandler = null)
 		{
 			//Find all the components we need
@@ -36,12 +42,20 @@ namespace MenuBuddy
 			MouseInputHandler = mouseInputHandler;
 		}
 
+		/// <summary>
+		/// Event raised when a click has been handled.
+		/// </summary>
 		public event EventHandler<ClickEventArgs> OnClickHandled;
 
 		#endregion //Initialization
 
 		#region Methods
 
+		/// <summary>
+		/// Processes mouse input events and routes them to the specified screen.
+		/// Handles highlights, clicks, drags, and drops.
+		/// </summary>
+		/// <param name="screen">The screen to receive input.</param>
 		public void HandleInput(IScreen screen)
 		{
 			//check highlights
