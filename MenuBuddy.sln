@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuBuddySample", "MenuBudd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuScreenTests", "MenuScreenTests\MenuScreenTests.csproj", "{EFB814F6-A2AE-41E9-A987-B48B144EAE3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{4835F37E-9768-4688-B5C6-FAE022A24A58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{EFB814F6-A2AE-41E9-A987-B48B144EAE3B}.Release|x64.Build.0 = Release|Any CPU
 		{EFB814F6-A2AE-41E9-A987-B48B144EAE3B}.Release|x86.ActiveCfg = Release|Any CPU
 		{EFB814F6-A2AE-41E9-A987-B48B144EAE3B}.Release|x86.Build.0 = Release|Any CPU
+		{4835F37E-9768-4688-B5C6-FAE022A24A58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4835F37E-9768-4688-B5C6-FAE022A24A58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4835F37E-9768-4688-B5C6-FAE022A24A58}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4835F37E-9768-4688-B5C6-FAE022A24A58}.Debug|x64.Build.0 = Debug|Any CPU
+		{4835F37E-9768-4688-B5C6-FAE022A24A58}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4835F37E-9768-4688-B5C6-FAE022A24A58}.Debug|x86.Build.0 = Debug|Any CPU
+		{4835F37E-9768-4688-B5C6-FAE022A24A58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4835F37E-9768-4688-B5C6-FAE022A24A58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4835F37E-9768-4688-B5C6-FAE022A24A58}.Release|x64.ActiveCfg = Release|Any CPU
+		{4835F37E-9768-4688-B5C6-FAE022A24A58}.Release|x64.Build.0 = Release|Any CPU
+		{4835F37E-9768-4688-B5C6-FAE022A24A58}.Release|x86.ActiveCfg = Release|Any CPU
+		{4835F37E-9768-4688-B5C6-FAE022A24A58}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

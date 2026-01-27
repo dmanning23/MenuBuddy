@@ -8,13 +8,25 @@ using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
+	/// <summary>
+	/// A modal screen that displays a numpad grid for editing a numeric value.
+	/// Supports digits 0-9, decimal point, sign toggle, and backspace.
+	/// </summary>
     public class NumPadScreen : WidgetScreen, IHighlightable
 	{
 		#region Fields
 
 		private ScrollLayout _layout;
 		private StackLayout _rows;
+
+		/// <summary>
+		/// Whether the decimal point button is shown on the numpad.
+		/// </summary>
 		private bool AllowDecimal { get; set; }
+
+		/// <summary>
+		/// Whether the negative sign button is shown on the numpad.
+		/// </summary>
 		private bool AllowNegative { get; set; }
 
 		#endregion //Fields
@@ -22,10 +34,13 @@ namespace MenuBuddy
 		#region Properties
 
 		/// <summary>
-		/// The dropdown that created this screen
+		/// The numeric edit widget that created this screen.
 		/// </summary>
 		public INumEdit NumEditWidget { get; set; }
 
+		/// <summary>
+		/// The transition object for this screen (set to no transition).
+		/// </summary>
 		private ITransitionObject TransitionObject { get; set; }
 
 		#endregion //Properties
@@ -33,9 +48,11 @@ namespace MenuBuddy
 		#region Methods
 
 		/// <summary>
-		/// Constructor
+		/// Initializes a new <see cref="NumPadScreen"/> for editing the specified numeric widget.
 		/// </summary>
-		/// <param name="widget"></param>
+		/// <param name="widget">The numeric edit widget whose value will be edited.</param>
+		/// <param name="allowDecimal">Whether to show the decimal point button.</param>
+		/// <param name="allowNegative">Whether to show the negative sign button.</param>
 		public NumPadScreen(INumEdit widget, bool allowDecimal = true, bool allowNegative = true) : base("NumPad")
 		{
 			TransitionObject = new WipeTransitionObject(TransitionWipeType.None);
@@ -47,6 +64,9 @@ namespace MenuBuddy
 			AllowNegative = allowNegative;
 		}
 
+		/// <summary>
+		/// Loads the numpad layout, creating rows of digit buttons, and positions the pad below or above the widget.
+		/// </summary>
 		public override async Task LoadContent()
 		{
 			await base.LoadContent();
@@ -122,6 +142,10 @@ namespace MenuBuddy
 			AddItem(_layout);
 		}
 
+		/// <summary>
+		/// Adds a screen item with its transition set to none.
+		/// </summary>
+		/// <param name="item">The screen item to add.</param>
 		public override void AddItem(IScreenItem item)
 		{
 			var widget = item as ITransitionable;
@@ -132,14 +156,24 @@ namespace MenuBuddy
 			base.AddItem(item);
 		}
 
+		/// <summary>
+		/// Checks highlighting and prevents items on underlying screens from being highlighted.
+		/// </summary>
+		/// <param name="highlight">The highlight event arguments.</param>
+		/// <returns><c>true</c> if this screen is active, consuming the highlight.</returns>
 		public override bool CheckHighlight(HighlightEventArgs highlight)
 		{
 			base.CheckHighlight(highlight);
 
-			//don't highlight other items when this dude is on top
+			//don't highlight other items when this screen is on top
 			return IsActive;
 		}
 
+		/// <summary>
+		/// Handles clicks. Clicking outside the numpad commits the number and exits the screen.
+		/// </summary>
+		/// <param name="click">The click event arguments.</param>
+		/// <returns>Always <c>true</c>, consuming the click.</returns>
 		public override bool CheckClick(ClickEventArgs click)
 		{
 			//check if the user clicked one of the items
@@ -164,6 +198,9 @@ namespace MenuBuddy
 			return true;
 		}
 
+		/// <summary>
+		/// Draws the numpad background and button grid.
+		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
 			ScreenManager.SpriteBatchBegin();
@@ -179,6 +216,10 @@ namespace MenuBuddy
 			base.Draw(gameTime);
 		}
 
+		/// <summary>
+		/// Creates a new horizontal stack layout row for numpad buttons.
+		/// </summary>
+		/// <returns>A configured stack layout for a row of buttons.</returns>
 		private StackLayout GetRow()
 		{
 			return new StackLayout(StackAlignment.Left)

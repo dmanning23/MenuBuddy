@@ -8,23 +8,24 @@ using System.Threading.Tasks;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// A TextEdit control. 
-	/// This is a widget with text in it. 
-	/// When the widget is clicked, the user can edit the text using the keyboard.
-	/// After the user finishes editing the text, a special event is fired off.
+	/// Abstract base class for text input widgets. Displays editable text in a button and raises
+	/// <see cref="OnTextEdited"/> when the user finishes editing.
 	/// </summary>
 	public abstract class BaseTextEdit : RelativeLayoutButton, ITextEdit, IDisposable
 	{
 		#region Properties
 
 		/// <summary>
-		/// the screen that holds this guy
+		/// The screen that contains this text edit widget.
 		/// </summary>
 		protected IScreen Screen
 		{
 			get; set;
 		}
 
+		/// <summary>
+		/// The current text value. Setting this updates the inner label.
+		/// </summary>
 		public string Text
 		{
 			get
@@ -48,6 +49,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// Whether the text should be masked with asterisks. Delegates to the inner label.
+		/// </summary>
 		public bool IsPassword
 		{
 			get
@@ -64,10 +68,11 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// The label that displays the text
+		/// The label widget that displays the current text.
 		/// </summary>
 		public Label TextLabel { get; protected set; }
 
+		/// <inheritdoc/>
 		public FontSize FontSize
 		{
 			get
@@ -76,6 +81,7 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <inheritdoc/>
 		public Color? ShadowColor
 		{
 			get
@@ -88,6 +94,7 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <inheritdoc/>
 		public Color? TextColor
 		{
 			get
@@ -100,6 +107,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The horizontal alignment. Setting this also updates the inner label's alignment.
+		/// </summary>
 		public override HorizontalAlignment Horizontal
 		{
 			get
@@ -116,6 +126,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The vertical alignment. Setting this also updates the inner label's alignment.
+		/// </summary>
 		public override VerticalAlignment Vertical
 		{
 			get
@@ -132,6 +145,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The font used to render text. Delegates to the inner label.
+		/// </summary>
 		public IFontBuddy Font
 		{
 			get
@@ -148,7 +164,7 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// Event that gets fired when the user finishes changing the number from the numpad
+		/// Raised when the user finishes editing and the text value has changed.
 		/// </summary>
 		public event EventHandler<TextChangedEventArgs> OnTextEdited;
 
@@ -156,6 +172,12 @@ namespace MenuBuddy
 
 		#region Methods
 
+		/// <summary>
+		/// Initializes a new <see cref="BaseTextEdit"/> with managed fonts from the content manager.
+		/// </summary>
+		/// <param name="text">The initial text value.</param>
+		/// <param name="content">The content manager used to load font resources.</param>
+		/// <param name="fontSize">The font size category. Defaults to <see cref="FontSize.Medium"/>.</param>
 		protected BaseTextEdit(string text, ContentManager content, FontSize fontSize = FontSize.Medium)
 		{
 			TextLabel = new Label(text, content, fontSize)
@@ -166,6 +188,12 @@ namespace MenuBuddy
 			AddItem(TextLabel);
 		}
 
+		/// <summary>
+		/// Initializes a new <see cref="BaseTextEdit"/> with pre-loaded fonts.
+		/// </summary>
+		/// <param name="text">The initial text value.</param>
+		/// <param name="font">The font to use for normal rendering.</param>
+		/// <param name="highlightedFont">An optional font to use when highlighted.</param>
 		protected BaseTextEdit(string text, IFontBuddy font, IFontBuddy highlightedFont = null)
 		{
 			TextLabel = new Label(text, font, highlightedFont)
@@ -176,18 +204,23 @@ namespace MenuBuddy
 			AddItem(TextLabel);
 		}
 
+		/// <inheritdoc/>
 		public override async Task LoadContent(IScreen screen)
 		{
 			Screen = screen;
 			await base.LoadContent(screen);
 		}
 
+		/// <summary>
+		/// Unloads content and releases the <see cref="OnTextEdited"/> event handler.
+		/// </summary>
 		public override void UnloadContent()
 		{
 			base.UnloadContent();
 			OnTextEdited = null;
 		}
 
+		/// <inheritdoc/>
 		public void SetText(string text)
 		{
 			if (Text != text)
@@ -202,11 +235,13 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <inheritdoc/>
 		public void ScaleToFit(int rowWidth)
 		{
 			TextLabel.ScaleToFit(rowWidth);
 		}
 
+		/// <inheritdoc/>
 		public void ShrinkToFit(int rowWidth)
 		{
 			TextLabel.ShrinkToFit(rowWidth);

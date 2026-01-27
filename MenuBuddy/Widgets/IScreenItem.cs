@@ -4,70 +4,70 @@ using Microsoft.Xna.Framework;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// This is an item that can be added to a page.
-	/// Can be a label, stack panel, buttons, etc.
+	/// Base interface for all items that can be added to a screen, such as labels, buttons, and layout panels.
 	/// </summary>
 	public interface IScreenItem : IHasContent
 	{
 		/// <summary>
-		/// Used for debugging
+		/// A name for this item, used for debugging purposes.
 		/// </summary>
 		string Name { get; set; }
 
 		/// <summary>
-		/// The screen realestate taken up by this item
+		/// The bounding rectangle occupied by this item on screen.
 		/// </summary>
 		Rectangle Rect { get; }
 
 		/// <summary>
-		/// Set the position of this screen item
+		/// The position of this screen item, used as the anchor point for alignment.
 		/// </summary>
 		Point Position { get; set; }
 
 		/// <summary>
-		/// Where to layer the item.
-		/// low numbers go in the back, higher numbers in the front
+		/// The draw layer of this item. Lower values are drawn further back; higher values are drawn in front.
 		/// </summary>
 		float Layer { get; set; }
 
 		/// <summary>
-		/// You can set this flag to prevent drawing this button when the screen is inactive.
+		/// Whether to draw this item when its parent screen is inactive. Set to <c>false</c> to hide it during inactive states.
 		/// </summary>
 		bool DrawWhenInactive { set; }
 
 		/// <summary>
-		/// horizontal alignment of this item
+		/// The horizontal alignment of this item relative to its position.
 		/// </summary>
 		HorizontalAlignment Horizontal { get; set; }
 
 		/// <summary>
-		/// vertical alignment of this item
+		/// The vertical alignment of this item relative to its position.
 		/// </summary>
 		VerticalAlignment Vertical { get; set; }
 
 		/// <summary>
-		/// Get a deep copy of this item
+		/// Creates a deep copy of this screen item.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>A new <see cref="IScreenItem"/> that is a copy of this instance.</returns>
 		IScreenItem DeepCopy();
 
 		/// <summary>
-		/// Updates the screen item.
+		/// Updates this screen item for the current frame.
 		/// </summary>
+		/// <param name="screen">The screen this item belongs to.</param>
+		/// <param name="gameTime">The current game time.</param>
 		void Update(IScreen screen, GameClock gameTime);
 
 		/// <summary>
-		/// Draws the background of this item
+		/// Draws the background layer of this item (e.g., background fill and outline).
 		/// </summary>
-		/// <param name="screen">the screen this dude is part of</param>
-		/// <param name="gameTime">the current gametime</param>
+		/// <param name="screen">The screen this item belongs to.</param>
+		/// <param name="gameTime">The current game time.</param>
 		void DrawBackground(IScreen screen, GameClock gameTime);
 
 		/// <summary>
-		/// Draws this screen item. This can be overridden to customize the appearance.
+		/// Draws this screen item. Override to customize the appearance.
 		/// </summary>
-		/// <param name="screen">the screen this dude is part of</param>
-		/// <param name="gameTime">the current gametime</param>
+		/// <param name="screen">The screen this item belongs to.</param>
+		/// <param name="gameTime">The current game time.</param>
 		void Draw(IScreen screen, GameClock gameTime);
 	}
 }

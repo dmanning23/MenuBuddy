@@ -14,16 +14,31 @@ namespace MenuBuddy
 	{
 		#region Properties
 
+		/// <summary>
+		/// The list of menu items to display in the hamburger menu.
+		/// </summary>
 		private List<ContextMenuItem> HamburgerItems { get; set; }
 
+		/// <summary>
+		/// The hamburger icon texture displayed at the top of the menu.
+		/// </summary>
 		private Texture2D HamburgerIcon { get; set; }
 
+		/// <summary>
+		/// Whether the menu is aligned to the left (<c>true</c>) or right (<c>false</c>) side of the screen.
+		/// </summary>
 		protected bool LeftRight { get; set; }
 
 		#endregion //Properties
 
 		#region Methods
 
+		/// <summary>
+		/// Initializes a new <see cref="HamburgerMenuScreen"/> with the specified icon, items, and alignment.
+		/// </summary>
+		/// <param name="hamburgerIcon">The hamburger icon texture displayed at the top.</param>
+		/// <param name="hamburgerItems">The list of menu items to display.</param>
+		/// <param name="leftRight">Whether the menu is aligned to the left (<c>true</c>) or right (<c>false</c>).</param>
 		public HamburgerMenuScreen(Texture2D hamburgerIcon, List<ContextMenuItem> hamburgerItems, bool leftRight) : base("HamburgerMenuScreen")
 		{
 			HamburgerIcon = hamburgerIcon;
@@ -34,6 +49,9 @@ namespace MenuBuddy
 			CoveredByOtherScreens = false;
 		}
 
+		/// <summary>
+		/// Loads the hamburger menu layout, creating a scrollable stack of the icon and menu items.
+		/// </summary>
 		public override async Task LoadContent()
 		{
 			await base.LoadContent();
@@ -69,6 +87,11 @@ namespace MenuBuddy
 			AddItem(scroll);
 		}
 
+		/// <summary>
+		/// Creates a button widget for the specified menu item and adds it to the stack layout.
+		/// </summary>
+		/// <param name="hamburgerItem">The menu item data to create a button for.</param>
+		/// <param name="stack">The stack layout to add the button to.</param>
 		private void CreateButton(ContextMenuItem hamburgerItem, StackLayout stack)
 		{
 			var button = new StackLayoutButton()

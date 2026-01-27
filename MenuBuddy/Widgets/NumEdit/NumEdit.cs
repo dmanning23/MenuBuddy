@@ -7,17 +7,14 @@ using System.Threading.Tasks;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// A NumEdit control. 
-	/// This is a widget with a number in it. 
-	/// When the widget is clicked, a numpad pops up where the user can edit the number.
-	/// Wehn the user edits the number with the 9pad, a special event is fired off.
+	/// A numeric input widget that displays a number and opens a <see cref="NumPadScreen"/> for editing when clicked.
 	/// </summary>
 	public class NumEdit : RelativeLayoutButton, INumEdit, IDisposable
 	{
 		#region Fields
 
 		/// <summary>
-		/// backgin field for the number of this dude
+		/// Backing field for <see cref="Number"/>.
 		/// </summary>
 		private float _number;
 
@@ -26,7 +23,7 @@ namespace MenuBuddy
 		#region Properties
 
 		/// <summary>
-		/// the screen that holds this guy
+		/// The screen that contains this numeric edit widget.
 		/// </summary>
 		private IScreen Screen
 		{
@@ -34,7 +31,7 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// Property to get or set the number of this dude.
+		/// The current numeric value. Setting this updates the label text.
 		/// </summary>
 		public float Number
 		{
@@ -52,6 +49,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The text representation of the number, used during numpad editing. May contain partial input such as a trailing decimal point.
+		/// </summary>
 		public string NumberText
 		{
 			get
@@ -77,10 +77,11 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// The label that displays the text
+		/// The label widget that displays the current number.
 		/// </summary>
 		private Label NumLabel { get; set; }
 
+		/// <inheritdoc/>
 		public FontSize FontSize
 		{
 			get
@@ -89,6 +90,7 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <inheritdoc/>
 		public Color? ShadowColor
 		{
 			get
@@ -101,6 +103,7 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <inheritdoc/>
 		public Color? TextColor
 		{
 			get
@@ -114,19 +117,40 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// Event that gets fired when the user finishes changing the number from the numpad
+		/// Raised when the user finishes editing and the number value has changed.
 		/// </summary>
 		public event EventHandler<NumChangeEventArgs> OnNumberEdited;
 
+		/// <summary>
+		/// The minimum allowed value for this numeric input.
+		/// </summary>
 		public float Min { get; set; }
+
+		/// <summary>
+		/// The maximum allowed value for this numeric input.
+		/// </summary>
 		public float Max { get; set; }
+
+		/// <summary>
+		/// Whether the numpad allows decimal point input.
+		/// </summary>
 		public bool AllowDecimal { get; set; }
+
+		/// <summary>
+		/// Whether the numpad allows toggling the sign to negative.
+		/// </summary>
 		public bool AllowNegative { get; set; }
 
 		#endregion //Properties
 
 		#region Methods
 
+		/// <summary>
+		/// Initializes a new <see cref="NumEdit"/> with the specified initial number.
+		/// </summary>
+		/// <param name="num">The initial numeric value.</param>
+		/// <param name="content">The content manager used to load font resources.</param>
+		/// <param name="fontSize">The font size category. Defaults to <see cref="FontSize.Medium"/>.</param>
 		public NumEdit(float num, ContentManager content, FontSize fontSize = FontSize.Medium)
 		{
 			Min = float.MinValue;
@@ -143,16 +167,25 @@ namespace MenuBuddy
 			AddItem(NumLabel);
 		}
 
+		/// <summary>
+		/// Initializes a new <see cref="NumEdit"/> with a default value of 0.
+		/// </summary>
+		/// <param name="content">The content manager used to load font resources.</param>
+		/// <param name="fontSize">The font size category. Defaults to <see cref="FontSize.Medium"/>.</param>
 		public NumEdit(ContentManager content, FontSize fontSize = FontSize.Medium) : this(0, content, fontSize)
 		{
 		}
 
+		/// <inheritdoc/>
 		public override async Task LoadContent(IScreen screen)
 		{
 			Screen = screen;
 			await base.LoadContent(screen);
 		}
 
+		/// <summary>
+		/// Unloads content and releases the <see cref="OnNumberEdited"/> event handler.
+		/// </summary>
 		public override void UnloadContent()
 		{
 			base.UnloadContent();
@@ -160,11 +193,10 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// Method that gets called when the label is clicked to create the numpad.
-		/// Adds a new screen with a numpad.
+		/// Creates and displays a <see cref="NumPadScreen"/> for numeric input.
 		/// </summary>
-		/// <param name="obj"></param>
-		/// <param name="e"></param>
+		/// <param name="obj">The source of the click event.</param>
+		/// <param name="e">The click event arguments.</param>
 		public async void CreateNumPad(object obj, ClickEventArgs e)
 		{
 			//create the dropdown screen
@@ -174,6 +206,7 @@ namespace MenuBuddy
 			await Screen.ScreenManager.AddScreen(numpad);
 		}
 
+		/// <inheritdoc/>
 		public void SetNumber(float num)
 		{
 			if (Number != num &&

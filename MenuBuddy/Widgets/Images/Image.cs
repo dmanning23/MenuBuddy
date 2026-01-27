@@ -7,13 +7,20 @@ using System;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// An image that is displayed onteh screen
+	/// A widget that displays a texture on screen, with optional pulsate animation when highlighted or always.
 	/// </summary>
 	public class Image : Widget, IImage, IDisposable
 	{
 		#region Fields
 
+		/// <summary>
+		/// The amplitude of the pulsate effect.
+		/// </summary>
 		private const float _pulsateSize = 1.0f;
+
+		/// <summary>
+		/// The speed of the pulsate oscillation.
+		/// </summary>
 		private const float _pulsateSpeed = 4.0f;
 
 		private Vector2 _size;
@@ -21,7 +28,14 @@ namespace MenuBuddy
 		private Texture2D _texture;
 
 #pragma warning disable 0414
+		/// <summary>
+		/// Whether this image can be clicked.
+		/// </summary>
 		public bool Clickable { get; set; }
+
+		/// <summary>
+		/// Raised when this image is clicked.
+		/// </summary>
 		public event EventHandler<ClickEventArgs> OnClick;
 #pragma warning restore 0414
 
@@ -29,6 +43,9 @@ namespace MenuBuddy
 
 		#region Properties
 
+		/// <summary>
+		/// The width of the texture in pixels, or 0 if no texture is set.
+		/// </summary>
 		public virtual int Width
 		{
 			get
@@ -37,6 +54,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The height of the texture in pixels, or 0 if no texture is set.
+		/// </summary>
 		public virtual int Height
 		{
 			get
@@ -45,6 +65,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The bounding rectangle of the texture, or <see cref="Rectangle.Empty"/> if no texture is set.
+		/// </summary>
 		public virtual Rectangle Bounds
 		{
 			get
@@ -53,6 +76,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The target size for this image when <see cref="FillRect"/> is <c>true</c>. Setting this recalculates the bounding rectangle.
+		/// </summary>
 		public Vector2 Size
 		{
 			protected get
@@ -69,6 +95,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The texture displayed by this image. Setting this recalculates the bounding rectangle.
+		/// </summary>
 		public Texture2D Texture
 		{
 			get { return _texture; }
@@ -79,6 +108,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// Whether the image should stretch to fill the specified <see cref="Size"/>. Setting this recalculates the bounding rectangle.
+		/// </summary>
 		public bool FillRect
 		{
 			get
@@ -95,18 +127,30 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// Whether this image plays a pulsate animation when highlighted or clicked.
+		/// </summary>
 		public bool PulsateOnHighlight
 		{
 			get; set;
 		}
 
+		/// <summary>
+		/// Whether this image continuously plays a pulsate animation, regardless of highlight state.
+		/// </summary>
 		public bool AlwaysPulsate
 		{
 			get; set;
 		}
 
+		/// <summary>
+		/// Whether this image is currently in a clicked visual state.
+		/// </summary>
 		public bool IsClicked { get; set; }
 
+		/// <summary>
+		/// The tint color applied when drawing this image. Use <see cref="Color.White"/> for no tint.
+		/// </summary>
 		public Color FillColor { private get; set; }
 
 		#endregion //Properties
@@ -114,7 +158,7 @@ namespace MenuBuddy
 		#region Initialization
 
 		/// <summary>
-		/// only for unit testing
+		/// Initializes a new <see cref="Image"/> with no texture. Intended for unit testing.
 		/// </summary>
 		public Image()
 		{
@@ -125,14 +169,19 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// constructor!
+		/// Initializes a new <see cref="Image"/> with the specified texture.
 		/// </summary>
+		/// <param name="texture">The texture to display.</param>
 		public Image(Texture2D texture) : this()
 		{
 			FillRect = false;
 			Texture = texture;
 		}
 
+		/// <summary>
+		/// Initializes a new <see cref="Image"/> by copying values from an existing instance.
+		/// </summary>
+		/// <param name="inst">The image to copy from.</param>
 		public Image(Image inst) : base(inst)
 		{
 			Clickable = inst.Clickable;
@@ -144,14 +193,17 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// Get a deep copy of this item
+		/// Creates a deep copy of this image.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>A new <see cref="Image"/> that is a copy of this instance.</returns>
 		public override IScreenItem DeepCopy()
 		{
 			return new Image(this);
 		}
 
+		/// <summary>
+		/// Unloads content and releases the click event handler.
+		/// </summary>
 		public override void UnloadContent()
 		{
 			base.UnloadContent();
@@ -162,6 +214,7 @@ namespace MenuBuddy
 
 		#region Methods
 
+		/// <inheritdoc/>
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
 			if (!ShouldDraw(screen) || null == Texture)
@@ -181,6 +234,11 @@ namespace MenuBuddy
 			screen.ScreenManager.SpriteBatch.Draw(Texture, rect, color);
 		}
 
+		/// <summary>
+		/// Computes the draw rectangle, applying pulsate scaling if enabled.
+		/// </summary>
+		/// <param name="pos">The base draw position.</param>
+		/// <returns>The rectangle to draw the image into.</returns>
 		private Rectangle DrawRect(Vector2 pos)
 		{
 			Rectangle rect;
@@ -210,6 +268,7 @@ namespace MenuBuddy
 			return rect;
 		}
 
+		/// <inheritdoc/>
 		protected override void CalculateRect()
 		{
 			//get the size of the rect
@@ -242,6 +301,11 @@ namespace MenuBuddy
 			_rect = new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
 		}
 
+		/// <summary>
+		/// Images do not handle clicks directly. Always returns <c>false</c>.
+		/// </summary>
+		/// <param name="click">The click event arguments.</param>
+		/// <returns>Always <c>false</c>.</returns>
 		public bool CheckClick(ClickEventArgs click)
 		{
 			return false;

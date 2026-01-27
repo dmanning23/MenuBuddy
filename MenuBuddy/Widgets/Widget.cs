@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// A widget is a screen item that can be displayed
+	/// Abstract base class for all displayable widgets. Provides positioning, scaling, alignment,
+	/// highlighting, transitions, background rendering, and tap detection.
 	/// </summary>
 	public abstract class Widget : IWidget, IDisposable
 	{
@@ -22,10 +23,13 @@ namespace MenuBuddy
 
 		private float _scale;
 
+		/// <summary>
+		/// Raised when this widget becomes highlighted.
+		/// </summary>
 		public event EventHandler<HighlightEventArgs> OnHighlight;
 
 		/// <summary>
-		/// whether or not this dude is highlighted
+		/// Whether this widget is currently highlighted.
 		/// </summary>
 		private bool _highlight = false;
 
@@ -33,13 +37,20 @@ namespace MenuBuddy
 
 		#region Properties
 
+		/// <summary>
+		/// A name for this widget, used for debugging purposes.
+		/// </summary>
 		public string Name { get; set; } = "Widget";
 
+		/// <summary>
+		/// A clock that tracks elapsed time since the widget was last highlighted, used for pulsate effects.
+		/// </summary>
 		public GameClock HighlightClock
 		{
 			get; protected set;
 		}
 
+		/// <inheritdoc/>
 		public virtual bool IsHighlighted
 		{
 			get
@@ -58,7 +69,7 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// The area of this item
+		/// The bounding rectangle occupied by this widget on screen.
 		/// </summary>
 		public virtual Rectangle Rect
 		{
@@ -69,7 +80,7 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// set the position of the item
+		/// The position of this widget, used as the anchor point for alignment. Setting this recalculates the bounding rectangle.
 		/// </summary>
 		public virtual Point Position
 		{
@@ -87,6 +98,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The horizontal alignment of this widget relative to its position. Setting this recalculates the bounding rectangle.
+		/// </summary>
 		public virtual HorizontalAlignment Horizontal
 		{
 			get
@@ -103,6 +117,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The vertical alignment of this widget relative to its position. Setting this recalculates the bounding rectangle.
+		/// </summary>
 		public virtual VerticalAlignment Vertical
 		{
 			get
@@ -119,6 +136,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// Whether to draw this widget when its parent screen is inactive.
+		/// </summary>
 		public virtual bool DrawWhenInactive
 		{
 			get
@@ -137,6 +157,9 @@ namespace MenuBuddy
 		/// </summary>
 		public float Layer { get; set; }
 
+		/// <summary>
+		/// The scale factor applied to this widget. Default is 1.0. Setting this recalculates the bounding rectangle.
+		/// </summary>
 		public virtual float Scale
 		{
 			get
@@ -153,26 +176,47 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <inheritdoc/>
 		public bool HasBackground { get; set; }
 
+		/// <inheritdoc/>
 		public bool HasOutline { get; set; }
 
+		/// <summary>
+		/// The transition object controlling how this widget animates during screen transitions.
+		/// </summary>
 		public virtual ITransitionObject TransitionObject { get; set; }
 
+		/// <summary>
+		/// Whether this widget can be highlighted by user input.
+		/// </summary>
 		public bool Highlightable { get; set; }
 
+		/// <summary>
+		/// The background renderer for this widget.
+		/// </summary>
 		protected Background Background { get; set; }
 
+		/// <summary>
+		/// Whether a tap was held on the previous frame, used to detect rising edges.
+		/// </summary>
 		private bool _prevTapHeld;
 
+		/// <inheritdoc/>
 		public bool WasTapped { get; private set; }
 
+		/// <inheritdoc/>
 		public bool IsTapHeld { get; private set; }
 
+		/// <inheritdoc/>
 		public bool IsTappable { get; set; }
 
+		/// <summary>
+		/// The input helper service, used for tap and highlight detection.
+		/// </summary>
 		protected IInputHelper InputHelper { get; set; }
 
+		/// <inheritdoc/>
 		public bool IsHidden { get; set; } = false;
 
 		#endregion //Properties
@@ -180,7 +224,7 @@ namespace MenuBuddy
 		#region Initialization
 
 		/// <summary>
-		/// constructor!
+		/// Initializes a new <see cref="Widget"/> with default values.
 		/// </summary>
 		protected Widget()
 		{
@@ -195,6 +239,10 @@ namespace MenuBuddy
 			_prevTapHeld = false;
 		}
 
+		/// <summary>
+		/// Initializes a new <see cref="Widget"/> by copying values from an existing instance.
+		/// </summary>
+		/// <param name="inst">The widget to copy from.</param>
 		protected Widget(Widget inst)
 		{
 			_horizontal = inst.Horizontal;
@@ -214,9 +262,9 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// Get a deep copy of this item
+		/// Creates a deep copy of this widget.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>A new <see cref="IScreenItem"/> that is a copy of this instance.</returns>
 		public abstract IScreenItem DeepCopy();
 
 		#endregion //Initialization
@@ -224,9 +272,9 @@ namespace MenuBuddy
 		#region Methods
 
 		/// <summary>
-		/// Available load content method for child classes.
+		/// Loads content for this widget, including the background texture and input helper service.
 		/// </summary>
-		/// <param name="screen"></param>
+		/// <param name="screen">The screen whose services and content manager are used for loading.</param>
 		public virtual async Task LoadContent(IScreen screen)
 		{
 			await Background.LoadContent(screen);
@@ -234,6 +282,9 @@ namespace MenuBuddy
 			InputHelper = screen.ScreenManager.Game.Services.GetService<IInputHelper>();
 		}
 
+		/// <summary>
+		/// Unloads content and releases references held by this widget.
+		/// </summary>
 		public virtual void UnloadContent()
 		{
 			TransitionObject = null;
@@ -241,10 +292,15 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// Recalculate the rect of this widget
+		/// Recalculates the bounding rectangle based on the current position, size, scale, and alignment.
 		/// </summary>
 		protected abstract void CalculateRect();
 
+		/// <summary>
+		/// Updates this widget for the current frame, including highlight clock and tap detection.
+		/// </summary>
+		/// <param name="screen">The screen this widget belongs to.</param>
+		/// <param name="gameTime">The current game time.</param>
 		public virtual void Update(IScreen screen, GameClock gameTime)
 		{
 			HighlightClock.Update(gameTime);
@@ -258,17 +314,21 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// Check if we should draw this widget.
-		/// Widgets can be hidden is the screen is inactive
+		/// Determines whether this widget should be drawn, based on its hidden state and the screen's active state.
 		/// </summary>
-		/// <param name="screen"></param>
-		/// <returns></returns>
+		/// <param name="screen">The screen this widget belongs to.</param>
+		/// <returns><c>true</c> if the widget should be drawn; otherwise, <c>false</c>.</returns>
 		protected bool ShouldDraw(IScreen screen)
 		{
 			//check if we don't want to draw this widget when inactive
 			return (!IsHidden && (DrawWhenInactive || screen.IsActive));
 		}
 
+		/// <summary>
+		/// Draws the background fill and outline for this widget when the screen is active.
+		/// </summary>
+		/// <param name="screen">The screen this widget belongs to.</param>
+		/// <param name="gameTime">The current game time.</param>
 		public virtual void DrawBackground(IScreen screen, GameClock gameTime)
 		{
 			if (!ShouldDraw(screen))
@@ -276,25 +336,37 @@ namespace MenuBuddy
 				return;
 			}
 
-			//darw the background rectangle if in touch mode
+			//draw the background rectangle if in touch mode
 			if (screen.IsActive)
 			{
 				Background.Draw(this, screen);
 			}
 		}
 
+		/// <summary>
+		/// Draws this widget. Subclasses must implement this to render their content.
+		/// </summary>
+		/// <param name="screen">The screen this widget belongs to.</param>
+		/// <param name="gameTime">The current game time.</param>
 		public abstract void Draw(IScreen screen, GameClock gameTime);
 
 		/// <summary>
-		/// Get teh position to draw this widget
+		/// Gets the draw position of this widget, adjusted for screen transitions.
 		/// </summary>
-		/// <returns></returns>
+		/// <param name="screen">The screen used to compute the transition offset.</param>
+		/// <returns>The adjusted position to draw this widget at.</returns>
 		protected virtual Point DrawPosition(IScreen screen)
 		{
 			//take the transition position into account
 			return TransitionObject.Position(screen, Rect);
 		}
 
+		/// <summary>
+		/// Checks whether this widget should become highlighted based on the current input position,
+		/// and raises the <see cref="OnHighlight"/> event when newly highlighted.
+		/// </summary>
+		/// <param name="highlight">The highlight event arguments containing the input position.</param>
+		/// <returns><c>true</c> if this widget is highlighted; otherwise, <c>false</c>.</returns>
 		public virtual bool CheckHighlight(HighlightEventArgs highlight)
 		{
 			if (Highlightable)
@@ -326,11 +398,18 @@ namespace MenuBuddy
 			return IsHighlighted;
 		}
 
+		/// <summary>
+		/// Disposes this widget by unloading its content.
+		/// </summary>
 		public virtual void Dispose()
 		{
 			UnloadContent();
 		}
 
+		/// <summary>
+		/// Returns the name of this widget.
+		/// </summary>
+		/// <returns>The <see cref="Name"/> of this widget.</returns>
 		public override string ToString()
 		{
 			return Name;

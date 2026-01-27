@@ -4,25 +4,29 @@ using System.Collections.Generic;
 
 namespace MenuBuddy
 {
+	/// <summary>
+	/// Generic interface for a slider widget that allows the user to select a value by dragging a handle.
+	/// </summary>
+	/// <typeparam name="T">The type of the slider value (e.g., <c>float</c> or <c>int</c>).</typeparam>
 	public interface ISlider<T> : IWidget, IDraggable, IHighlightable
 	{
 		/// <summary>
-		/// the min value of teh slider
+		/// The minimum value of the slider range.
 		/// </summary>
 		float Min { get; set; }
 
 		/// <summary>
-		/// the max value of the slider
+		/// The maximum value of the slider range.
 		/// </summary>
 		float Max { get; set; }
 
 		/// <summary>
-		/// the position of the handle of the slider
+		/// The current position of the slider handle within the range.
 		/// </summary>
 		T SliderPosition { get; set; }
 
 		/// <summary>
-		/// The size of this widget in pixels
+		/// The overall size of the slider widget in pixels.
 		/// </summary>
 		Vector2 Size
 		{
@@ -30,7 +34,7 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// The size of the slider handle in pixels
+		/// The size of the draggable handle in pixels.
 		/// </summary>
 		Vector2 HandleSize
 		{
@@ -38,10 +42,13 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// A list of hask marks to draw on the slider
+		/// A list of values at which hash marks are drawn on the slider track.
 		/// </summary>
 		List<float> Marks { get; }
 
+		/// <summary>
+		/// Whether the slider accepts user input. When <c>false</c>, the handle is not drawn and dragging is ignored.
+		/// </summary>
 		bool Enabled { get; set; }
 	}
 }

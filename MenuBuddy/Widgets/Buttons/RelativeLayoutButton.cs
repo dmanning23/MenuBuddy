@@ -4,29 +4,33 @@ using Vector2Extensions;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// This is a button thhat contains a relaitve layout
+	/// A button that uses a <see cref="RelativeLayout"/> to position its child items.
 	/// </summary>
 	public class RelativeLayoutButton : LayoutButton<RelativeLayout>
 	{
 		#region Initialization
 
 		/// <summary>
-		/// Constructs a new menu entry with the specified text.
+		/// Initializes a new <see cref="RelativeLayoutButton"/> with a default relative layout.
 		/// </summary>
 		public RelativeLayoutButton()
 		{
 			Layout = new RelativeLayout();
 		}
 
+		/// <summary>
+		/// Initializes a new <see cref="RelativeLayoutButton"/> by copying values from an existing instance.
+		/// </summary>
+		/// <param name="inst">The button to copy from.</param>
 		public RelativeLayoutButton(RelativeLayoutButton inst) : base(inst)
 		{
 			Layout = new RelativeLayout(inst.Layout as RelativeLayout);
 		}
 
 		/// <summary>
-		/// Get a deep copy of this item
+		/// Creates a deep copy of this button.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>A new <see cref="RelativeLayoutButton"/> that is a copy of this instance.</returns>
 		public override IScreenItem DeepCopy()
 		{
 			return new RelativeLayoutButton(this);
@@ -36,6 +40,7 @@ namespace MenuBuddy
 
 		#region Methods
 
+		/// <inheritdoc/>
 		protected override void CalculateRect()
 		{
 			//get the size of the rect

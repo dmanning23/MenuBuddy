@@ -9,10 +9,17 @@ using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
+	/// <summary>
+	/// A dropdown widget that displays a selected item and opens a <see cref="DropdownScreen{T}"/> with available options when clicked.
+	/// </summary>
+	/// <typeparam name="T">The type of the items in the dropdown.</typeparam>
 	public class Dropdown<T> : RelativeLayout, IDropdown<T>, IDisposable
 	{
 		#region Events
 
+		/// <summary>
+		/// Raised when the selected item changes.
+		/// </summary>
 		public event EventHandler<SelectionChangeEventArgs<T>> OnSelectedItemChange;
 
 		#endregion //Events
@@ -20,7 +27,7 @@ namespace MenuBuddy
 		#region Properties
 
 		/// <summary>
-		/// the screen that holds this guy
+		/// The screen that contains this dropdown widget.
 		/// </summary>
 		protected IScreen Screen
 		{
@@ -28,7 +35,7 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// The currently selected item
+		/// The currently selected dropdown item widget. Setting this fires <see cref="OnSelectedItemChange"/>.
 		/// </summary>
 		private IDropdownItem<T> _selectedDropdownItem;
 		public IDropdownItem<T> SelectedDropdownItem
@@ -49,6 +56,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The currently selected item value. Setting this finds the matching dropdown item in the list.
+		/// </summary>
 		public T SelectedItem
 		{
 			get
@@ -72,10 +82,13 @@ namespace MenuBuddy
 		public List<IDropdownItem<T>> DropdownItems { get; private set; }
 
 		/// <summary>
-		/// the dropdown icon that is displayed at the right of the widget
+		/// The dropdown arrow button displayed at the right of the widget.
 		/// </summary>
 		private RelativeLayoutButton DropButton { get; set; }
 
+		/// <summary>
+		/// Sets the selected item by its index in <see cref="DropdownItems"/>.
+		/// </summary>
 		public int SelectedIndex
 		{
 			set
@@ -87,7 +100,11 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The transition object for this dropdown and its child items.
+		/// </summary>
 		private ITransitionObject _transitionObject;
+		/// <inheritdoc/>
 		public override ITransitionObject TransitionObject
 		{
 			get
@@ -101,14 +118,22 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <inheritdoc/>
 		public bool HasBackground { get; set; }
 
+		/// <summary>
+		/// The background renderer for this dropdown.
+		/// </summary>
 		protected Background Background { get; set; }
 
 		#endregion //Properties
 
 		#region Methods
 
+		/// <summary>
+		/// Initializes a new <see cref="Dropdown{T}"/> on the specified screen.
+		/// </summary>
+		/// <param name="screen">The screen that contains this dropdown.</param>
 		public Dropdown(IScreen screen)
 		{
 			Screen = screen;
@@ -117,6 +142,7 @@ namespace MenuBuddy
 			Background = new Background();
 		}
 
+		/// <inheritdoc/>
 		public override async Task LoadContent(IScreen screen)
 		{
 			await Background.LoadContent(screen);
@@ -151,6 +177,7 @@ namespace MenuBuddy
 			await base.LoadContent(screen);
 		}
 
+		/// <inheritdoc/>
 		public override void UnloadContent()
 		{
 			base.UnloadContent();
@@ -174,8 +201,8 @@ namespace MenuBuddy
 		/// Method that gets called when the dropdown button is clicked to create the droplist.
 		/// Adds a new screen with the GetDropdownList content.
 		/// </summary>
-		/// <param name="obj"></param>
-		/// <param name="e"></param>
+		/// <param name="obj">The source of the click event.</param>
+		/// <param name="e">The click event arguments.</param>
 		public async void CreateDropdownList(object obj, ClickEventArgs e)
 		{
 			if (e.Button == MouseButton.Left)
@@ -188,6 +215,10 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// Replaces the currently displayed item with the specified selection.
+		/// </summary>
+		/// <param name="selectedItem">The new selected dropdown item, or <c>null</c> to clear the selection.</param>
 		private void SetSelectedDropdownItem(IDropdownItem<T> selectedItem)
 		{
 			if (selectedItem != SelectedDropdownItem)
@@ -228,12 +259,16 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// Clears the selected item and removes all dropdown items.
+		/// </summary>
 		public void Clear()
 		{
 			SelectedItem = default(T);
 			DropdownItems.Clear();
 		}
 
+		/// <inheritdoc/>
 		public void AddDropdownItem(IDropdownItem<T> dropdownItem)
 		{
 			if (null == dropdownItem)
@@ -244,6 +279,7 @@ namespace MenuBuddy
 			DropdownItems.Add(dropdownItem);
 		}
 
+		/// <inheritdoc/>
 		public override void DrawBackground(IScreen screen, GameClock gameTime)
 		{
 			Background.Draw(this, screen);
@@ -251,6 +287,7 @@ namespace MenuBuddy
 			base.DrawBackground(screen, gameTime);
 		}
 
+		/// <inheritdoc/>
 		public override bool CheckClick(ClickEventArgs click)
 		{
 			var result = base.CheckClick(click);

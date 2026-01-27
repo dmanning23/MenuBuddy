@@ -7,33 +7,55 @@ using System.Threading.Tasks;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// THis is a menu entry that pops up from the bottom of a window and says "Continue"
+	/// A button that exits the current screen when clicked, typically positioned at the top-right corner
+	/// with a pop-right transition effect.
 	/// </summary>
 	public class CancelButton : RelativeLayoutButton
 	{
 		#region Properties
 
+		/// <summary>
+		/// The texture resource name for the cancel icon.
+		/// </summary>
 		private string IconTextureName { get; set; }
 
+		/// <summary>
+		/// The image widget displaying the cancel icon.
+		/// </summary>
 		public Image CancelIcon { get; private set; }
 
+		/// <summary>
+		/// An optional custom size for the cancel icon, in pixels. If <c>null</c>, the style sheet or texture size is used.
+		/// </summary>
 		private int? CustomSize;
 
 		#endregion //Properties
 
 		#region Methods
 
+		/// <summary>
+		/// Initializes a new <see cref="CancelButton"/> with an optional custom icon texture.
+		/// </summary>
+		/// <param name="iconTextureName">The texture resource name for the icon, or empty to use the style sheet default.</param>
 		public CancelButton(string iconTextureName = "")
 		{
 			ClickedSound = StyleSheet.CancelButtonSoundResource;
 			IconTextureName = !string.IsNullOrEmpty(iconTextureName) ? iconTextureName : StyleSheet.CancelButtonImageResource;
 		}
 
+		/// <summary>
+		/// Initializes a new <see cref="CancelButton"/> with a custom icon size.
+		/// </summary>
+		/// <param name="customSize">The size in pixels for the cancel icon, or <c>null</c> to use the default.</param>
 		public CancelButton(int? customSize) : this()
 		{
 			CustomSize = customSize;
 		}
 
+		/// <summary>
+		/// Loads the cancel icon, configures positioning and transitions, and wires up the click handler to exit the screen.
+		/// </summary>
+		/// <param name="screen">The screen whose content manager is used for loading.</param>
 		public override async Task LoadContent(IScreen screen)
 		{
 			await base.LoadContent(screen);

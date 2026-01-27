@@ -4,30 +4,40 @@ using Microsoft.Xna.Framework;
 namespace MenuBuddy
 {
 	/// <summary>
-	/// Interface for the button object
-	/// This is a widget that can be selected
+	/// Interface for a clickable button widget that supports sound effects, click events, and left/right navigation.
 	/// </summary>
 	public interface IButton : IWidget, IScreenItemContainer, IClickable, ILeftRightItem
 	{
+		/// <summary>
+		/// Whether this button suppresses sound effects when highlighted or clicked.
+		/// </summary>
 		bool IsQuiet { get; set; }
 
+		/// <summary>
+		/// The size of this button.
+		/// </summary>
 		Vector2 Size { set; }
 
 		/// <summary>
-		/// A description of the function of the button.
+		/// A text description of this button's function.
 		/// </summary>
 		string Description { get; }
 
 		/// <summary>
-		/// name of the sound effect to play when this thing is highlighted
+		/// The name of the sound effect resource to play when this button is highlighted.
 		/// </summary>
 		string HighlightedSound { set; }
 
 		/// <summary>
-		/// name of the sound effect to play when this thing is selected
+		/// The name of the sound effect resource to play when this button is clicked.
 		/// </summary>
 		string ClickedSound { set; }
 
+		/// <summary>
+		/// Handles a click event on this button.
+		/// </summary>
+		/// <param name="obj">The source of the click event.</param>
+		/// <param name="e">The click event arguments containing position information.</param>
 		void Clicked(object obj, ClickEventArgs e);
 	}
 }

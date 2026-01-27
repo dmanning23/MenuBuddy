@@ -8,23 +8,46 @@ using System.Threading.Tasks;
 
 namespace MenuBuddy
 {
+	/// <summary>
+	/// A modal screen that displays a context menu at the position where the user clicked.
+	/// </summary>
 	public class ContextMenu : WidgetScreen, IContextMenu
 	{
 		#region Properties
 
+		/// <summary>
+		/// The scroll layout containing the context menu items.
+		/// </summary>
 		private ScrollLayout _layout;
+
+		/// <summary>
+		/// The stack layout holding the menu items vertically.
+		/// </summary>
 		private StackLayout _stack;
 
+		/// <summary>
+		/// The screen position where the context menu was invoked.
+		/// </summary>
 		private Vector2 _clickPos;
 
+		/// <summary>
+		/// The list of items to display in the context menu.
+		/// </summary>
 		private List<ContextMenuItem> ContextMenuItems { get; set; }
 
+		/// <summary>
+		/// The transition object controlling the pop animation direction.
+		/// </summary>
 		ITransitionObject TransitionObject { get; set; }
 
 		#endregion //Properties
 
 		#region Methods
 
+		/// <summary>
+		/// Initializes a new <see cref="ContextMenu"/> at the specified screen position.
+		/// </summary>
+		/// <param name="clickPos">The screen position where the context menu should appear.</param>
 		public ContextMenu(Vector2 clickPos) : base("ContextMenuScreen")
 		{
 			ContextMenuItems = new List<ContextMenuItem>();
@@ -36,11 +59,15 @@ namespace MenuBuddy
 			Transition.OffTime = 0.2f;
 		}
 
+		/// <inheritdoc/>
 		public void AddItem(Texture2D icon, string iconText, ClickDelegate clickEvent)
 		{
 			ContextMenuItems.Add(new ContextMenuItem(icon, iconText, clickEvent));
 		}
 
+		/// <summary>
+		/// Loads the context menu layout, positioning it relative to the click position and adjusting direction based on screen bounds.
+		/// </summary>
 		public override async Task LoadContent()
 		{
 			await base.LoadContent();
@@ -101,6 +128,11 @@ namespace MenuBuddy
 			};
 		}
 
+		/// <summary>
+		/// Creates a button widget for the specified menu item and adds it to the stack layout.
+		/// </summary>
+		/// <param name="hamburgerItem">The menu item data to create a button for.</param>
+		/// <param name="stack">The stack layout to add the button to.</param>
 		private void CreateButton(ContextMenuItem hamburgerItem, StackLayout stack)
 		{
 			var button = new StackLayoutButton()
@@ -160,6 +192,11 @@ namespace MenuBuddy
 			});
 		}
 
+		/// <summary>
+		/// Handles clicks. Clicking outside the menu dismisses it; clicking an item activates it.
+		/// </summary>
+		/// <param name="click">The click event arguments.</param>
+		/// <returns>Always <c>true</c>, consuming the click.</returns>
 		public override bool CheckClick(ClickEventArgs click)
 		{
 			//check if the user clicked one of the items
@@ -172,6 +209,9 @@ namespace MenuBuddy
 			return true;
 		}
 
+		/// <summary>
+		/// Draws the context menu background and items.
+		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
 			ScreenManager.SpriteBatchBegin();

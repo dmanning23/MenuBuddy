@@ -6,6 +6,11 @@ using System.Collections.Generic;
 
 namespace MenuBuddy
 {
+	/// <summary>
+	/// Abstract base class for slider widgets. Provides track rendering, handle positioning, drag and click handling,
+	/// and hash mark display.
+	/// </summary>
+	/// <typeparam name="T">The type of the slider value.</typeparam>
 	public abstract class BaseSlider<T> : Widget, ISlider<T>, IDisposable, IClickable
 	{
 		#region Fields
@@ -13,17 +18,17 @@ namespace MenuBuddy
 		private Vector2 _size;
 
 		/// <summary>
-		/// the minimum value of the slider
+		/// The minimum value of the slider range.
 		/// </summary>
 		private float _min;
 
 		/// <summary>
-		/// the maximum location of the slider
+		/// The maximum value of the slider range.
 		/// </summary>
 		private float _max;
 
 		/// <summary>
-		/// the current value of the handle
+		/// The current handle position within the slider range.
 		/// </summary>
 		private float _handlePosition;
 
@@ -32,17 +37,29 @@ namespace MenuBuddy
 		private Rectangle _slideRect;
 		private Rectangle _handleRect;
 
+		/// <summary>
+		/// Raised during a drag operation on this slider.
+		/// </summary>
 		public event EventHandler<DragEventArgs> OnDrag;
+
+		/// <summary>
+		/// Raised when this slider is clicked.
+		/// </summary>
 		public event EventHandler<ClickEventArgs> OnClick;
 
+		/// <inheritdoc/>
 		public List<float> Marks { get; set; }
 
+		/// <inheritdoc/>
 		public bool Enabled { get; set; }
 
 		#endregion //Fields
 
 		#region Properties
 
+		/// <summary>
+		/// The overall size of the slider widget in pixels. Setting this recalculates the bounding rectangle.
+		/// </summary>
 		public Vector2 Size
 		{
 			get
@@ -59,6 +76,7 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <inheritdoc/>
 		public float Min
 		{
 			get
@@ -75,6 +93,7 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <inheritdoc/>
 		public float Max
 		{
 			get
@@ -91,6 +110,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The current handle position, constrained within the slider range. Setting this recalculates the handle rectangle.
+		/// </summary>
 		protected virtual float HandlePosition
 		{
 			get
@@ -112,10 +134,13 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// the position of the handle of the slider
+		/// The current slider value, expressed in the slider's value type.
 		/// </summary>
 		public abstract T SliderPosition { get; set; }
 
+		/// <summary>
+		/// The size of the draggable handle in pixels. Setting this recalculates the bounding rectangle.
+		/// </summary>
 		public Vector2 HandleSize
 		{
 			private get
@@ -132,8 +157,14 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// Whether this slider can be clicked to set the handle position.
+		/// </summary>
 		public bool Clickable { get; set; }
 
+		/// <summary>
+		/// Whether this slider is currently in a clicked visual state.
+		/// </summary>
 		public bool IsClicked { get; set; }
 
 		#endregion //Properties
@@ -141,7 +172,7 @@ namespace MenuBuddy
 		#region Initialization
 
 		/// <summary>
-		/// constructor
+		/// Initializes a new <see cref="BaseSlider{T}"/> with default values.
 		/// </summary>
 		public BaseSlider()
 		{
@@ -152,6 +183,10 @@ namespace MenuBuddy
 			Clickable = true;
 		}
 
+		/// <summary>
+		/// Initializes a new <see cref="BaseSlider{T}"/> by copying values from an existing instance.
+		/// </summary>
+		/// <param name="inst">The slider to copy from.</param>
 		public BaseSlider(BaseSlider<T> inst) : base(inst)
 		{
 			Marks = new List<float>();
@@ -173,6 +208,9 @@ namespace MenuBuddy
 			OnClick = inst.OnClick;
 		}
 
+		/// <summary>
+		/// Unloads content and releases drag and click event handlers.
+		/// </summary>
 		public override void UnloadContent()
 		{
 			base.UnloadContent();
@@ -184,10 +222,16 @@ namespace MenuBuddy
 
 		#region Methods
 
+		/// <inheritdoc/>
 		public override void Update(IScreen screen, GameClock gameTime)
 		{
 		}
 
+		/// <summary>
+		/// Draws the slider track background and any hash marks.
+		/// </summary>
+		/// <param name="screen">The screen this slider belongs to.</param>
+		/// <param name="gameTime">The current game time.</param>
 		public override void DrawBackground(IScreen screen, GameClock gameTime)
 		{
 			base.DrawBackground(screen, gameTime);
@@ -208,6 +252,11 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// Draws the slider handle if the slider is enabled.
+		/// </summary>
+		/// <param name="screen">The screen this slider belongs to.</param>
+		/// <param name="gameTime">The current game time.</param>
 		public override void Draw(IScreen screen, GameClock gameTime)
 		{
 			if (Enabled)
@@ -219,6 +268,7 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <inheritdoc/>
 		protected override void CalculateRect()
 		{
 			//get the size of the rect
@@ -245,6 +295,9 @@ namespace MenuBuddy
 			CalculateHandleRect();
 		}
 
+		/// <summary>
+		/// Recalculates the slide track rectangle and handle rectangle based on the current position and size.
+		/// </summary>
 		private void CalculateHandleRect()
 		{
 			//get the slide rect
@@ -260,6 +313,11 @@ namespace MenuBuddy
 			_handleRect = new Rectangle((int)xLoc, (int)yLoc, (int)HandleSize.X, (int)HandleSize.Y);
 		}
 
+		/// <summary>
+		/// Clamps the given position to be within the slider's <see cref="Min"/> and <see cref="Max"/> range.
+		/// </summary>
+		/// <param name="pos">The position to constrain.</param>
+		/// <returns>The clamped position.</returns>
 		public float ConstrainSliderPos(float pos)
 		{
 			if (pos < Min)
@@ -275,22 +333,15 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// solve for pos2:
-		/// 
-		/// max1 - min1       max2 - min2
-		/// -----------   =   ------------
-		/// max1 - pos1       max2 - pos2
-		///                           ^
-		///                           
-		/// pos2 = (((range2 * (max1 - pos1)) / range1) - max2) * -1
-		/// 
+		/// Maps a position from one range to another using linear interpolation.
+		/// Given a position within [min1, max1], returns the corresponding position within [min2, max2].
 		/// </summary>
-		/// <param name="min1"></param>
-		/// <param name="max1"></param>
-		/// <param name="pos1"></param>
-		/// <param name="min2"></param>
-		/// <param name="max2"></param>
-		/// <returns></returns>
+		/// <param name="min1">The minimum of the source range.</param>
+		/// <param name="max1">The maximum of the source range.</param>
+		/// <param name="pos1">The position within the source range.</param>
+		/// <param name="min2">The minimum of the target range.</param>
+		/// <param name="max2">The maximum of the target range.</param>
+		/// <returns>The corresponding position within the target range.</returns>
 		public static float SolveSliderPos(float min1, float max1, float pos1, float min2, float max2)
 		{
 			var range1 = max1 - min1;
@@ -300,6 +351,11 @@ namespace MenuBuddy
 			return (((range2 * ratio1) / range1) - max2) * -1;
 		}
 
+		/// <summary>
+		/// Checks whether the drag started within this slider's bounds, and if so, updates the handle position.
+		/// </summary>
+		/// <param name="drag">The drag event arguments.</param>
+		/// <returns><c>true</c> if the drag started within this slider; otherwise, <c>false</c>.</returns>
 		public bool CheckDrag(DragEventArgs drag)
 		{
 			var result = Rect.Contains(drag.Start);
@@ -318,12 +374,21 @@ namespace MenuBuddy
 			return result;
 		}
 
+		/// <summary>
+		/// Updates the handle position by converting screen coordinates back to slider value coordinates.
+		/// </summary>
+		/// <param name="pos">The screen position to convert.</param>
 		public void UpdateHandlePosition(Vector2 pos)
 		{
 			//convert back to slider coords and set the slider pos
 			HandlePosition = SolveSliderPos(_slideRect.Left, _slideRect.Right, pos.X, Min, Max);
 		}
 
+		/// <summary>
+		/// Checks whether the click is within this slider's bounds, and if so, updates the handle position.
+		/// </summary>
+		/// <param name="click">The click event arguments.</param>
+		/// <returns><c>true</c> if this slider was clicked; otherwise, <c>false</c>.</returns>
 		public bool CheckClick(ClickEventArgs click)
 		{
 			//check if the widget was clicked

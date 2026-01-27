@@ -7,6 +7,9 @@ namespace MenuBuddy
 	/// </summary>
 	public interface IShim : IWidget
 	{
+		/// <summary>
+		/// The width and height of the shim.
+		/// </summary>
 		Vector2 Size
 		{
 			set;

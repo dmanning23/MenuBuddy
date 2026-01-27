@@ -7,20 +7,38 @@ using System.Collections.Generic;
 
 namespace MenuBuddy
 {
+	/// <summary>
+	/// A hamburger menu button that displays a three-line icon and opens a <see cref="HamburgerMenuScreen"/> when clicked.
+	/// </summary>
 	public class Hamburger : RelativeLayoutButton, IContextMenu
 	{
 		#region Properties
 
+		/// <summary>
+		/// The image widget displaying the hamburger icon.
+		/// </summary>
 		protected IImage HamburgerImage { get; set; }
 
+		/// <summary>
+		/// Whether the hamburger menu opens from the left (<c>true</c>) or right (<c>false</c>) side of the screen.
+		/// </summary>
 		protected bool LeftRight { get; set; }
 
+		/// <summary>
+		/// The list of menu items displayed when the hamburger menu is opened.
+		/// </summary>
 		private List<ContextMenuItem> HamburgerItems { get; set; }
 
 		#endregion //Properties
 
 		#region Methods
 
+		/// <summary>
+		/// Initializes a new <see cref="Hamburger"/> button with the specified icon and screen alignment.
+		/// </summary>
+		/// <param name="hamburgerIcon">The texture to use for the hamburger icon.</param>
+		/// <param name="leftRight">Whether the menu opens from the left (<c>true</c>) or right (<c>false</c>).</param>
+		/// <param name="screenManager">The screen manager used to display the hamburger menu screen.</param>
 		public Hamburger(Texture2D hamburgerIcon, bool leftRight, ScreenManager screenManager)
 		{
 			HamburgerItems = new List<ContextMenuItem>();
@@ -49,6 +67,7 @@ namespace MenuBuddy
 			};
 		}
 
+		/// <inheritdoc/>
 		public void AddItem(Texture2D icon, string iconText, ClickDelegate clickEvent)
 		{
 			HamburgerItems.Add(new ContextMenuItem(icon, iconText, clickEvent));
