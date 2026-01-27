@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
+    <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <PackageId>MenuBuddy</PackageId>
-    <Version>5.0.0</Version>
+    <Version>5.0.1</Version>
     <Title>MenuBuddy</Title>
     <Authors>dmanning23</Authors>
-    <description>MonoGame library for menus and game state management</description>
+    <description>A complete MonoGame library for building menu systems and managing game state transitions</description>
     <PackageProjectUrl>https://github.com/dmanning23/MenuBuddy</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/dmanning23/MenuBuddy</RepositoryUrl>
@@ -14,7 +14,12 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*">
       <PrivateAssets>All</PrivateAssets>
