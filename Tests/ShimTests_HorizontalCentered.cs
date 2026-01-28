@@ -28,17 +28,17 @@ namespace MenuBuddy.Tests
 		[Test]
 		public void ShimTests_HorizontalCentered_NullRect()
 		{
-			Assert.AreEqual(0, _shim.Rect.X);
-			Assert.AreEqual(0, _shim.Rect.Y);
-			Assert.AreEqual(0, _shim.Rect.Width);
-			Assert.AreEqual(0, _shim.Rect.Height);
+			_shim.Rect.X.ShouldBe(0);
+			_shim.Rect.Y.ShouldBe(0);
+			_shim.Rect.Width.ShouldBe(0);
+			_shim.Rect.Height.ShouldBe(0);
 		}
 
 		[Test]
 		public void ShimTests_HorizontalCentered_NullPosition()
 		{
-			Assert.AreEqual(0, _shim.Rect.X);
-			Assert.AreEqual(0, _shim.Rect.Y);
+			_shim.Rect.X.ShouldBe(0);
+			_shim.Rect.Y.ShouldBe(0);
 		}
 
 		#endregion //Defaults
@@ -51,8 +51,8 @@ namespace MenuBuddy.Tests
 			var _shim = new Shim();
 			_shim.Position = new Point(50, 60);
 
-			Assert.AreEqual(50, _shim.Rect.X);
-			Assert.AreEqual(60, _shim.Rect.Y);
+			_shim.Rect.X.ShouldBe(50);
+			_shim.Rect.Y.ShouldBe(60);
 		}
 
 		[Test]
@@ -61,10 +61,10 @@ namespace MenuBuddy.Tests
 			var _shim = new Shim();
 			_shim.Position = new Point(10, 20);
 
-			Assert.AreEqual(10, _shim.Rect.X);
-			Assert.AreEqual(20, _shim.Rect.Y);
-			Assert.AreEqual(0, _shim.Rect.Width);
-			Assert.AreEqual(0, _shim.Rect.Height);
+			_shim.Rect.X.ShouldBe(10);
+			_shim.Rect.Y.ShouldBe(20);
+			_shim.Rect.Width.ShouldBe(0);
+			_shim.Rect.Height.ShouldBe(0);
 		}
 
 		[Test]
@@ -73,10 +73,10 @@ namespace MenuBuddy.Tests
 			_shim.Position = new Point(10, 20);
 			_shim.Size = new Vector2(30, 40);
 
-			Assert.AreEqual(-5, _shim.Rect.X);
-			Assert.AreEqual(20, _shim.Rect.Y);
-			Assert.AreEqual(30, _shim.Rect.Width);
-			Assert.AreEqual(40, _shim.Rect.Height);
+			_shim.Rect.X.ShouldBe(-5);
+			_shim.Rect.Y.ShouldBe(20);
+			_shim.Rect.Width.ShouldBe(30);
+			_shim.Rect.Height.ShouldBe(40);
 		}
 
 		[Test]
@@ -85,8 +85,8 @@ namespace MenuBuddy.Tests
 			_shim.Position = new Point(10, 20);
 			_shim.Size = new Vector2(30, 40);
 
-			Assert.AreEqual(-5, _shim.Rect.X);
-			Assert.AreEqual(20, _shim.Rect.Y);
+			_shim.Rect.X.ShouldBe(-5);
+			_shim.Rect.Y.ShouldBe(20);
 		}
 
 		#endregion //Rect & Position 
@@ -100,10 +100,10 @@ namespace MenuBuddy.Tests
 			_shim.Size = new Vector2(30, 40);
 			_shim.Scale = 2.0f;
 
-			Assert.AreEqual(-20, _shim.Rect.X);
-			Assert.AreEqual(20, _shim.Rect.Y);
-			Assert.AreEqual(60, _shim.Rect.Width);
-			Assert.AreEqual(80, _shim.Rect.Height);
+			_shim.Rect.X.ShouldBe(-20);
+			_shim.Rect.Y.ShouldBe(20);
+			_shim.Rect.Width.ShouldBe(60);
+			_shim.Rect.Height.ShouldBe(80);
 		}
 
 		[Test]
@@ -113,10 +113,10 @@ namespace MenuBuddy.Tests
 			_shim.Position = new Point(10, 20);
 			_shim.Size = new Vector2(30, 40);
 
-			Assert.AreEqual(-20, _shim.Rect.X);
-			Assert.AreEqual(20, _shim.Rect.Y);
-			Assert.AreEqual(60, _shim.Rect.Width);
-			Assert.AreEqual(80, _shim.Rect.Height);
+			_shim.Rect.X.ShouldBe(-20);
+			_shim.Rect.Y.ShouldBe(20);
+			_shim.Rect.Width.ShouldBe(60);
+			_shim.Rect.Height.ShouldBe(80);
 		}
 
 		[Test]
@@ -125,10 +125,10 @@ namespace MenuBuddy.Tests
 			_shim.Position = new Point(10, 20);
 			_shim.Scale = 2f;
 
-			Assert.AreEqual(10, _shim.Rect.X);
-			Assert.AreEqual(20, _shim.Rect.Y);
-			Assert.AreEqual(0, _shim.Rect.Width);
-			Assert.AreEqual(0, _shim.Rect.Height);
+			_shim.Rect.X.ShouldBe(10);
+			_shim.Rect.Y.ShouldBe(20);
+			_shim.Rect.Width.ShouldBe(0);
+			_shim.Rect.Height.ShouldBe(0);
 		}
 
 		[Test]
@@ -137,10 +137,10 @@ namespace MenuBuddy.Tests
 			_shim.Scale = 2f;
 			_shim.Position = new Point(10, 20);
 
-			Assert.AreEqual(10, _shim.Rect.X);
-			Assert.AreEqual(20, _shim.Rect.Y);
-			Assert.AreEqual(0, _shim.Rect.Width);
-			Assert.AreEqual(0, _shim.Rect.Height);
+			_shim.Rect.X.ShouldBe(10);
+			_shim.Rect.Y.ShouldBe(20);
+			_shim.Rect.Width.ShouldBe(0);
+			_shim.Rect.Height.ShouldBe(0);
 		}
 
 		#endregion //Scale
@@ -154,10 +154,10 @@ namespace MenuBuddy.Tests
 			_shim.Size = new Vector2(30, 40);
 			_shim.Scale = 2f;
 
-			Assert.AreEqual(-20, _shim.Rect.X);
-			Assert.AreEqual(20, _shim.Rect.Y);
-			Assert.AreEqual(60, _shim.Rect.Width);
-			Assert.AreEqual(80, _shim.Rect.Height);
+			_shim.Rect.X.ShouldBe(-20);
+			_shim.Rect.Y.ShouldBe(20);
+			_shim.Rect.Width.ShouldBe(60);
+			_shim.Rect.Height.ShouldBe(80);
 		}
 
 		[Test]
@@ -167,10 +167,10 @@ namespace MenuBuddy.Tests
 			_shim.Size = new Vector2(30, 40);
 			_shim.Scale = 2f;
 
-			Assert.AreEqual(-20, _shim.Rect.X);
-			Assert.AreEqual(20, _shim.Rect.Y);
-			Assert.AreEqual(60, _shim.Rect.Width);
-			Assert.AreEqual(80, _shim.Rect.Height);
+			_shim.Rect.X.ShouldBe(-20);
+			_shim.Rect.Y.ShouldBe(20);
+			_shim.Rect.Width.ShouldBe(60);
+			_shim.Rect.Height.ShouldBe(80);
 		}
 
 		[Test]
@@ -180,10 +180,10 @@ namespace MenuBuddy.Tests
 			_shim.Size = new Vector2(30, 40);
 			_shim.Scale = 2f;
 
-			Assert.AreEqual(-20, _shim.Rect.X);
-			Assert.AreEqual(20, _shim.Rect.Y);
-			Assert.AreEqual(60, _shim.Rect.Width);
-			Assert.AreEqual(80, _shim.Rect.Height);
+			_shim.Rect.X.ShouldBe(-20);
+			_shim.Rect.Y.ShouldBe(20);
+			_shim.Rect.Width.ShouldBe(60);
+			_shim.Rect.Height.ShouldBe(80);
 		}
 
 		[Test]
@@ -193,10 +193,10 @@ namespace MenuBuddy.Tests
 			_shim.Position = new Point(10, 20);
 			_shim.Size = new Vector2(30, 40);
 
-			Assert.AreEqual(-20, _shim.Rect.X);
-			Assert.AreEqual(20, _shim.Rect.Y);
-			Assert.AreEqual(60, _shim.Rect.Width);
-			Assert.AreEqual(80, _shim.Rect.Height);
+			_shim.Rect.X.ShouldBe(-20);
+			_shim.Rect.Y.ShouldBe(20);
+			_shim.Rect.Width.ShouldBe(60);
+			_shim.Rect.Height.ShouldBe(80);
 		}
 
 		[Test]
@@ -206,10 +206,10 @@ namespace MenuBuddy.Tests
 			_shim.Position = new Point(10, 20);
 			_shim.Size = new Vector2(30, 40);
 
-			Assert.AreEqual(-20, _shim.Rect.X);
-			Assert.AreEqual(20, _shim.Rect.Y);
-			Assert.AreEqual(60, _shim.Rect.Width);
-			Assert.AreEqual(80, _shim.Rect.Height);
+			_shim.Rect.X.ShouldBe(-20);
+			_shim.Rect.Y.ShouldBe(20);
+			_shim.Rect.Width.ShouldBe(60);
+			_shim.Rect.Height.ShouldBe(80);
 		}
 
 		[Test]
@@ -219,10 +219,10 @@ namespace MenuBuddy.Tests
 			_shim.Position = new Point(10, 20);
 			_shim.Size = new Vector2(30, 40);
 
-			Assert.AreEqual(-20, _shim.Rect.X);
-			Assert.AreEqual(20, _shim.Rect.Y);
-			Assert.AreEqual(60, _shim.Rect.Width);
-			Assert.AreEqual(80, _shim.Rect.Height);
+			_shim.Rect.X.ShouldBe(-20);
+			_shim.Rect.Y.ShouldBe(20);
+			_shim.Rect.Width.ShouldBe(60);
+			_shim.Rect.Height.ShouldBe(80);
 		}
 
 		#endregion //Rect, Padding, & Scale

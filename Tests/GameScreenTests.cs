@@ -158,7 +158,7 @@ namespace MenuBuddy.Tests
 			screens.Update(new GameTime(), mouseHandler, false);
 
 			//Verify that the screen states are correct
-			Assert.IsTrue(bottomScreen.Object.IsActive);
+			bottomScreen.Object.IsActive.ShouldBeTrue();
 		}
 
 		[Test]
@@ -193,7 +193,7 @@ namespace MenuBuddy.Tests
 			screens.Update(new GameTime(), mouseHandler, false);
 
 			//Verify that the screen states are correct
-			Assert.IsTrue(menuScreen.Object.IsActive);
+			menuScreen.Object.IsActive.ShouldBeTrue();
 		}
 
 		[Test]
@@ -276,7 +276,7 @@ namespace MenuBuddy.Tests
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
 
 			bottomScreen.Object.Update(new GameTime(), true, true);
-			Assert.IsFalse(bottomScreen.Object.HasFocus);
+			bottomScreen.Object.HasFocus.ShouldBeFalse();
 		}
 
 		[Test]
@@ -289,7 +289,7 @@ namespace MenuBuddy.Tests
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
 
 			bottomScreen.Object.Update(new GameTime(), false, true);
-			Assert.IsFalse(bottomScreen.Object.HasFocus);
+			bottomScreen.Object.HasFocus.ShouldBeFalse();
 		}
 
 		[Test]
@@ -302,7 +302,7 @@ namespace MenuBuddy.Tests
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
 
 			bottomScreen.Object.Update(new GameTime(), false, false);
-			Assert.IsTrue(bottomScreen.Object.HasFocus);
+			bottomScreen.Object.HasFocus.ShouldBeTrue();
 		}
 
 		[Test]
@@ -315,7 +315,7 @@ namespace MenuBuddy.Tests
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
 
 			bottomScreen.Object.Update(new GameTime(), true, true);
-			Assert.IsFalse(bottomScreen.Object.IsActive);
+			bottomScreen.Object.IsActive.ShouldBeFalse();
 		}
 
 		[Test]
@@ -328,7 +328,7 @@ namespace MenuBuddy.Tests
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
 
 			bottomScreen.Object.Update(new GameTime(), false, true);
-			Assert.IsFalse(bottomScreen.Object.IsActive);
+			bottomScreen.Object.IsActive.ShouldBeFalse();
 		}
 
 		[Test]
@@ -341,7 +341,7 @@ namespace MenuBuddy.Tests
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
 
 			bottomScreen.Object.Update(new GameTime(), false, true);
-			Assert.IsTrue(bottomScreen.Object.IsActive);
+			bottomScreen.Object.IsActive.ShouldBeTrue();
 		}
 
 		[Test]
@@ -354,7 +354,7 @@ namespace MenuBuddy.Tests
 			bottomScreen.Setup(x => x.IsExiting).Returns(false);
 
 			bottomScreen.Object.Update(new GameTime(), false, false);
-			Assert.IsTrue(bottomScreen.Object.IsActive);
+			bottomScreen.Object.IsActive.ShouldBeTrue();
 		}
 	}
 }

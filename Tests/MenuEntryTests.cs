@@ -49,27 +49,27 @@ namespace MenuBuddy.Tests
 		[Test]
 		public void MenuEntryTests_Default()
 		{
-			Assert.AreEqual(0, _entry.Position.X);
-			Assert.AreEqual(0, _entry.Position.Y);
-			Assert.AreEqual(-384, _entry.Rect.X);
-			Assert.AreEqual(0, _entry.Rect.Y);
-			Assert.AreEqual(768, _entry.Rect.Width);
-			Assert.AreEqual(40, _entry.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Center, _entry.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _entry.Vertical);
+			_entry.Position.X.ShouldBe(0);
+			_entry.Position.Y.ShouldBe(0);
+			_entry.Rect.X.ShouldBe(-384);
+			_entry.Rect.Y.ShouldBe(0);
+			_entry.Rect.Width.ShouldBe(768);
+			_entry.Rect.Height.ShouldBe(40);
+			_entry.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			_entry.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
 		public void MenuEntryTests_Label_Default()
 		{
-			Assert.AreEqual(0f, _entry.Label.Position.X);
-			Assert.AreEqual(0f, _entry.Label.Position.Y);
-			Assert.AreEqual(-15f, _entry.Label.Rect.X);
-			Assert.AreEqual(0, _entry.Label.Rect.Y);
-			Assert.AreEqual(30f, _entry.Label.Rect.Width);
-			Assert.AreEqual(40f, _entry.Label.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Center, _entry.Label.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _entry.Label.Vertical);
+			_entry.Label.Position.X.ShouldBe(0);
+			_entry.Label.Position.Y.ShouldBe(0);
+			_entry.Label.Rect.X.ShouldBe(-15);
+			_entry.Label.Rect.Y.ShouldBe(0);
+			_entry.Label.Rect.Width.ShouldBe(30);
+			_entry.Label.Rect.Height.ShouldBe(40);
+			_entry.Label.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			_entry.Label.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -77,15 +77,15 @@ namespace MenuBuddy.Tests
 		{
 			_entry.Scale = .5f;
 
-			Assert.AreEqual(384, _entry.Layout.Rect.Width);
-			Assert.AreEqual(20, _entry.Layout.Rect.Height);
+			_entry.Layout.Rect.Width.ShouldBe(384);
+			_entry.Layout.Rect.Height.ShouldBe(20);
 		}
 
 		[Test]
 		public void MenuEntryTests_LabelScaled()
 		{
 			_entry.Scale = .5f;
-			Assert.AreEqual(.5f, _entry.Label.Scale);
+			_entry.Label.Scale.ShouldBe(.5f);
 		}
 
 		[Test]
@@ -93,12 +93,12 @@ namespace MenuBuddy.Tests
 		{
 			_entry.Scale = .5f;
 
-			Assert.AreEqual(384, _entry.Rect.Width);
-			Assert.AreEqual(20, _entry.Rect.Height);
+			_entry.Rect.Width.ShouldBe(384);
+			_entry.Rect.Height.ShouldBe(20);
 
-			Assert.AreEqual(.5f, _entry.Label.Scale);
-			Assert.AreEqual(15f, _entry.Label.Rect.Width);
-			Assert.AreEqual(20f, _entry.Label.Rect.Height);
+			_entry.Label.Scale.ShouldBe(.5f);
+			_entry.Label.Rect.Width.ShouldBe(15);
+			_entry.Label.Rect.Height.ShouldBe(20);
 		}
 
 		#endregion //Defaults

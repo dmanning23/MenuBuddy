@@ -48,7 +48,7 @@ namespace MenuBuddy.Tests
 
 			_slider.SliderPosition = 0;
 
-			Assert.AreEqual(1f, _slider.SliderPosition);
+			_slider.SliderPosition.ShouldBe(1f);
 		}
 
 		[Test]
@@ -62,7 +62,7 @@ namespace MenuBuddy.Tests
 
 			_slider.SliderPosition = 10f;
 
-			Assert.AreEqual(5f, _slider.SliderPosition);
+			_slider.SliderPosition.ShouldBe(5f);
 		}
 
 		[Test]
@@ -76,7 +76,7 @@ namespace MenuBuddy.Tests
 
 			_slider.SliderPosition = 3f;
 
-			Assert.AreEqual(3f, _slider.SliderPosition);
+			_slider.SliderPosition.ShouldBe(3f);
 		}
 
 		[Test]
@@ -88,7 +88,7 @@ namespace MenuBuddy.Tests
 			var min2 = 200f;
 			var max2 = 600f;
 
-			Assert.AreEqual(400f, Slider.SolveSliderPos(min1, max1, pos1, min2, max2));
+			Slider.SolveSliderPos(min1, max1, pos1, min2, max2).ShouldBe(400f);
 		}
 
 		[Test]
@@ -100,7 +100,7 @@ namespace MenuBuddy.Tests
 			var min2 = 1f;
 			var max2 = 5f;
 
-			Assert.AreEqual(3f, Slider.SolveSliderPos(min1, max1, pos1, min2, max2));
+			Slider.SolveSliderPos(min1, max1, pos1, min2, max2).ShouldBe(3f);
 		}
 
 		#endregion //Tests

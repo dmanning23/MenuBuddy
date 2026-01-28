@@ -27,12 +27,12 @@ namespace MenuBuddy.Tests
 		[Test]
 		public void RelativeLayoutTests_Default()
 		{
-			Assert.AreEqual(0, _layout.Rect.X);
-			Assert.AreEqual(0, _layout.Rect.Y);
-			Assert.AreEqual(0, _layout.Rect.Width);
-			Assert.AreEqual(0, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(0);
+			_layout.Rect.Y.ShouldBe(0);
+			_layout.Rect.Width.ShouldBe(0);
+			_layout.Rect.Height.ShouldBe(0);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		#endregion //Defaults
@@ -43,24 +43,24 @@ namespace MenuBuddy.Tests
 		public void RelativeLayoutTests_Pos()
 		{
 			_layout.Position = new Point(10, 20);
-			Assert.AreEqual(10, _layout.Rect.X);
-			Assert.AreEqual(20, _layout.Rect.Y);
-			Assert.AreEqual(0, _layout.Rect.Width);
-			Assert.AreEqual(0, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(10);
+			_layout.Rect.Y.ShouldBe(20);
+			_layout.Rect.Width.ShouldBe(0);
+			_layout.Rect.Height.ShouldBe(0);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
 		public void RelativeLayoutTests_Size()
 		{
 			_layout.Size = new Vector2(30f, 40f);
-			Assert.AreEqual(0, _layout.Rect.X);
-			Assert.AreEqual(0, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(0);
+			_layout.Rect.Y.ShouldBe(0);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		#endregion //Basic Changes
@@ -75,12 +75,12 @@ namespace MenuBuddy.Tests
 			_layout.Horizontal = HorizontalAlignment.Left;
 			_layout.Vertical = VerticalAlignment.Top;
 
-			Assert.AreEqual(10, _layout.Rect.X);
-			Assert.AreEqual(20, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(10);
+			_layout.Rect.Y.ShouldBe(20);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -91,12 +91,12 @@ namespace MenuBuddy.Tests
 			_layout.Horizontal = HorizontalAlignment.Center;
 			_layout.Vertical = VerticalAlignment.Top;
 
-			Assert.AreEqual(-5, _layout.Rect.X);
-			Assert.AreEqual(20, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Center, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(-5);
+			_layout.Rect.Y.ShouldBe(20);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -107,12 +107,12 @@ namespace MenuBuddy.Tests
 			_layout.Horizontal = HorizontalAlignment.Right;
 			_layout.Vertical = VerticalAlignment.Top;
 
-			Assert.AreEqual(-20, _layout.Rect.X);
-			Assert.AreEqual(20, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Right, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(-20);
+			_layout.Rect.Y.ShouldBe(20);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -123,12 +123,12 @@ namespace MenuBuddy.Tests
 			_layout.Horizontal = HorizontalAlignment.Left;
 			_layout.Vertical = VerticalAlignment.Center;
 
-			Assert.AreEqual(10, _layout.Rect.X);
-			Assert.AreEqual(0, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(10);
+			_layout.Rect.Y.ShouldBe(0);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Center);
 		}
 
 		[Test]
@@ -139,12 +139,12 @@ namespace MenuBuddy.Tests
 			_layout.Horizontal = HorizontalAlignment.Center;
 			_layout.Vertical = VerticalAlignment.Center;
 
-			Assert.AreEqual(-5, _layout.Rect.X);
-			Assert.AreEqual(0, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Center, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(-5);
+			_layout.Rect.Y.ShouldBe(0);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Center);
 		}
 
 		[Test]
@@ -155,12 +155,12 @@ namespace MenuBuddy.Tests
 			_layout.Horizontal = HorizontalAlignment.Right;
 			_layout.Vertical = VerticalAlignment.Center;
 
-			Assert.AreEqual(-20, _layout.Rect.X);
-			Assert.AreEqual(0, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Right, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(-20);
+			_layout.Rect.Y.ShouldBe(0);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Center);
 		}
 
 		[Test]
@@ -171,12 +171,12 @@ namespace MenuBuddy.Tests
 			_layout.Horizontal = HorizontalAlignment.Left;
 			_layout.Vertical = VerticalAlignment.Bottom;
 
-			Assert.AreEqual(10, _layout.Rect.X);
-			Assert.AreEqual(-20, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(10);
+			_layout.Rect.Y.ShouldBe(-20);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -187,12 +187,12 @@ namespace MenuBuddy.Tests
 			_layout.Horizontal = HorizontalAlignment.Center;
 			_layout.Vertical = VerticalAlignment.Bottom;
 
-			Assert.AreEqual(-5, _layout.Rect.X);
-			Assert.AreEqual(-20, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Center, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(-5);
+			_layout.Rect.Y.ShouldBe(-20);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -203,12 +203,12 @@ namespace MenuBuddy.Tests
 			_layout.Horizontal = HorizontalAlignment.Right;
 			_layout.Vertical = VerticalAlignment.Bottom;
 
-			Assert.AreEqual(-20, _layout.Rect.X);
-			Assert.AreEqual(-20, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Right, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(-20);
+			_layout.Rect.Y.ShouldBe(-20);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		#endregion //Alignment Changes
@@ -229,15 +229,15 @@ namespace MenuBuddy.Tests
 				Vertical = VerticalAlignment.Top
 			};
 			_layout.AddItem(item);
-			Assert.AreEqual(10, item.Rect.X);
-			Assert.AreEqual(20, item.Rect.Y);
+			item.Rect.X.ShouldBe(10);
+			item.Rect.Y.ShouldBe(20);
 
-			Assert.AreEqual(10, _layout.Rect.X);
-			Assert.AreEqual(20, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(10);
+			_layout.Rect.Y.ShouldBe(20);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -254,17 +254,17 @@ namespace MenuBuddy.Tests
 				Vertical = VerticalAlignment.Top
 			};
 			_layout.AddItem(item);
-			Assert.AreEqual(25, item.Rect.X);
-			Assert.AreEqual(20, item.Rect.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, item.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, item.Vertical);
+			item.Rect.X.ShouldBe(25);
+			item.Rect.Y.ShouldBe(20);
+			item.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			item.Vertical.ShouldBe(VerticalAlignment.Top);
 
-			Assert.AreEqual(10, _layout.Rect.X);
-			Assert.AreEqual(20, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(10);
+			_layout.Rect.Y.ShouldBe(20);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -281,17 +281,17 @@ namespace MenuBuddy.Tests
 				Vertical = VerticalAlignment.Top
 			};
 			_layout.AddItem(item);
-			Assert.AreEqual(40, item.Rect.X);
-			Assert.AreEqual(20, item.Rect.Y);
-			Assert.AreEqual(HorizontalAlignment.Right, item.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, item.Vertical);
+			item.Rect.X.ShouldBe(40);
+			item.Rect.Y.ShouldBe(20);
+			item.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			item.Vertical.ShouldBe(VerticalAlignment.Top);
 
-			Assert.AreEqual(10, _layout.Rect.X);
-			Assert.AreEqual(20, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(10);
+			_layout.Rect.Y.ShouldBe(20);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -308,17 +308,17 @@ namespace MenuBuddy.Tests
 				Vertical = VerticalAlignment.Center
 			};
 			_layout.AddItem(item);
-			Assert.AreEqual(10, item.Rect.X);
-			Assert.AreEqual(40, item.Rect.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, item.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, item.Vertical);
+			item.Rect.X.ShouldBe(10);
+			item.Rect.Y.ShouldBe(40);
+			item.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			item.Vertical.ShouldBe(VerticalAlignment.Center);
 
-			Assert.AreEqual(10, _layout.Rect.X);
-			Assert.AreEqual(20, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(10);
+			_layout.Rect.Y.ShouldBe(20);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -335,17 +335,17 @@ namespace MenuBuddy.Tests
 				Vertical = VerticalAlignment.Bottom
 			};
 			_layout.AddItem(item);
-			Assert.AreEqual(10, item.Rect.X);
-			Assert.AreEqual(60, item.Rect.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, item.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, item.Vertical);
+			item.Rect.X.ShouldBe(10);
+			item.Rect.Y.ShouldBe(60);
+			item.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			item.Vertical.ShouldBe(VerticalAlignment.Bottom);
 
-			Assert.AreEqual(10, _layout.Rect.X);
-			Assert.AreEqual(20, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(10);
+			_layout.Rect.Y.ShouldBe(20);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		#endregion //Item Alignment Tests
@@ -368,17 +368,17 @@ namespace MenuBuddy.Tests
 			_layout.AddItem(item);
 
 			_layout.Position = new Point(100, 200);
-			Assert.AreEqual(100, item.Rect.X);
-			Assert.AreEqual(200, item.Rect.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, item.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, item.Vertical);
+			item.Rect.X.ShouldBe(100);
+			item.Rect.Y.ShouldBe(200);
+			item.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			item.Vertical.ShouldBe(VerticalAlignment.Top);
 
-			Assert.AreEqual(100, _layout.Rect.X);
-			Assert.AreEqual(200, _layout.Rect.Y);
-			Assert.AreEqual(30f, _layout.Rect.Width);
-			Assert.AreEqual(40f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(100);
+			_layout.Rect.Y.ShouldBe(200);
+			_layout.Rect.Width.ShouldBe(30);
+			_layout.Rect.Height.ShouldBe(40);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -397,17 +397,17 @@ namespace MenuBuddy.Tests
 			_layout.AddItem(item);
 
 			_layout.Size = new Vector2(100f, 200f);
-			Assert.AreEqual(110, item.Rect.X);
-			Assert.AreEqual(220, item.Rect.Y);
-			Assert.AreEqual(HorizontalAlignment.Right, item.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, item.Vertical);
+			item.Rect.X.ShouldBe(110);
+			item.Rect.Y.ShouldBe(220);
+			item.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			item.Vertical.ShouldBe(VerticalAlignment.Bottom);
 
-			Assert.AreEqual(10, _layout.Rect.X);
-			Assert.AreEqual(20, _layout.Rect.Y);
-			Assert.AreEqual(100f, _layout.Rect.Width);
-			Assert.AreEqual(200f, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(10);
+			_layout.Rect.Y.ShouldBe(20);
+			_layout.Rect.Width.ShouldBe(100);
+			_layout.Rect.Height.ShouldBe(200);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		#endregion //Change Layout Properties

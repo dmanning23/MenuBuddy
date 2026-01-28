@@ -45,10 +45,10 @@ namespace MenuBuddy.Tests
 
 			var screens = screenStack.FindScreens<ITest>();
 
-			Assert.AreEqual(2, screens.Count());
-			Assert.AreEqual(1, screens.Where(x => x.ScreenName == "First").Count());
-			Assert.AreEqual(1, screens.Where(x => x.ScreenName == "Second").Count());
-			Assert.AreEqual(0, screens.Where(x => x.ScreenName == "Third").Count());
+			screens.Count().ShouldBe(2);
+			screens.Where(x => x.ScreenName == "First").Count().ShouldBe(1);
+			screens.Where(x => x.ScreenName == "Second").Count().ShouldBe(1);
+			screens.Where(x => x.ScreenName == "Third").Count().ShouldBe(0);
 		}
 
 		[Test]

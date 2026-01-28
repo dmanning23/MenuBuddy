@@ -27,12 +27,12 @@ namespace MenuBuddy.Tests
 		[Test]
 		public void ScrollLayout_Default()
 		{
-			Assert.AreEqual(0, _layout.Rect.X);
-			Assert.AreEqual(0, _layout.Rect.Y);
-			Assert.AreEqual(0, _layout.Rect.Width);
-			Assert.AreEqual(0, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(0);
+			_layout.Rect.Y.ShouldBe(0);
+			_layout.Rect.Width.ShouldBe(0);
+			_layout.Rect.Height.ShouldBe(0);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		#endregion //Defaults
@@ -42,10 +42,10 @@ namespace MenuBuddy.Tests
 		[Test]
 		public void ScrollLayout_TotalDefault()
 		{
-			Assert.AreEqual(0, _layout.TotalRect.X);
-			Assert.AreEqual(0, _layout.TotalRect.Y);
-			Assert.AreEqual(0, _layout.TotalRect.Width);
-			Assert.AreEqual(0, _layout.TotalRect.Height);
+			_layout.TotalRect.X.ShouldBe(0);
+			_layout.TotalRect.Y.ShouldBe(0);
+			_layout.TotalRect.Width.ShouldBe(0);
+			_layout.TotalRect.Height.ShouldBe(0);
 		}
 
 		[Test]
@@ -56,12 +56,12 @@ namespace MenuBuddy.Tests
 				Position = new Point(0, 0),
 				Size = new Vector2(30, 40)
 			});
-			Assert.AreEqual(0, _layout.TotalRect.Left);
-			Assert.AreEqual(0, _layout.TotalRect.Top);
-			Assert.AreEqual(30, _layout.TotalRect.Right);
-			Assert.AreEqual(40, _layout.TotalRect.Bottom);
-			Assert.AreEqual(30, _layout.TotalRect.Width);
-			Assert.AreEqual(40, _layout.TotalRect.Height);
+			_layout.TotalRect.Left.ShouldBe(0);
+			_layout.TotalRect.Top.ShouldBe(0);
+			_layout.TotalRect.Right.ShouldBe(30);
+			_layout.TotalRect.Bottom.ShouldBe(40);
+			_layout.TotalRect.Width.ShouldBe(30);
+			_layout.TotalRect.Height.ShouldBe(40);
 		}
 
 		[Test]
@@ -72,12 +72,12 @@ namespace MenuBuddy.Tests
 				Position = new Point(-10, -20),
 				Size = new Vector2(30, 40)
 			});
-			Assert.AreEqual(-10, _layout.TotalRect.Left);
-			Assert.AreEqual(-20, _layout.TotalRect.Top);
-			Assert.AreEqual(20, _layout.TotalRect.Right);
-			Assert.AreEqual(20, _layout.TotalRect.Bottom);
-			Assert.AreEqual(30, _layout.TotalRect.Width);
-			Assert.AreEqual(40, _layout.TotalRect.Height);
+			_layout.TotalRect.Left.ShouldBe(-10);
+			_layout.TotalRect.Top.ShouldBe(-20);
+			_layout.TotalRect.Right.ShouldBe(20);
+			_layout.TotalRect.Bottom.ShouldBe(20);
+			_layout.TotalRect.Width.ShouldBe(30);
+			_layout.TotalRect.Height.ShouldBe(40);
 		}
 
 		[Test]
@@ -94,12 +94,12 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20),
 				Size = new Vector2(30, 40)
 			});
-			Assert.AreEqual(-10, _layout.TotalRect.Left);
-			Assert.AreEqual(-20, _layout.TotalRect.Top);
-			Assert.AreEqual(40, _layout.TotalRect.Right);
-			Assert.AreEqual(60, _layout.TotalRect.Bottom);
-			Assert.AreEqual(50, _layout.TotalRect.Width);
-			Assert.AreEqual(80, _layout.TotalRect.Height);
+			_layout.TotalRect.Left.ShouldBe(-10);
+			_layout.TotalRect.Top.ShouldBe(-20);
+			_layout.TotalRect.Right.ShouldBe(40);
+			_layout.TotalRect.Bottom.ShouldBe(60);
+			_layout.TotalRect.Width.ShouldBe(50);
+			_layout.TotalRect.Height.ShouldBe(80);
 		}
 
 		[Test]
@@ -114,12 +114,12 @@ namespace MenuBuddy.Tests
 				Size = new Vector2(100, 200)
 			});
 
-			Assert.AreEqual(0, _layout.TotalRect.Left);
-			Assert.AreEqual(0, _layout.TotalRect.Top);
-			Assert.AreEqual(100, _layout.TotalRect.Right);
-			Assert.AreEqual(200, _layout.TotalRect.Bottom);
-			Assert.AreEqual(100, _layout.TotalRect.Width);
-			Assert.AreEqual(200, _layout.TotalRect.Height);
+			_layout.TotalRect.Left.ShouldBe(0);
+			_layout.TotalRect.Top.ShouldBe(0);
+			_layout.TotalRect.Right.ShouldBe(100);
+			_layout.TotalRect.Bottom.ShouldBe(200);
+			_layout.TotalRect.Width.ShouldBe(100);
+			_layout.TotalRect.Height.ShouldBe(200);
 		}
 
 		#endregion //Rect Tests
@@ -138,7 +138,7 @@ namespace MenuBuddy.Tests
 				Size = new Vector2(100, 200)
 			});
 
-			Assert.AreEqual(-10, _layout.MinScroll.X);
+			_layout.MinScroll.X.ShouldBe(-10);
 		}
 
 		[Test]
@@ -153,7 +153,7 @@ namespace MenuBuddy.Tests
 				Size = new Vector2(100, 200)
 			});
 
-			Assert.AreEqual(-20, _layout.MinScroll.Y);
+			_layout.MinScroll.Y.ShouldBe(-20);
 		}
 
 		[Test]
@@ -168,7 +168,7 @@ namespace MenuBuddy.Tests
 				Size = new Vector2(100, 200)
 			});
 
-			Assert.AreEqual(60, _layout.MaxScroll.X);
+			_layout.MaxScroll.X.ShouldBe(60);
 		}
 
 		[Test]
@@ -183,7 +183,7 @@ namespace MenuBuddy.Tests
 				Size = new Vector2(100, 200)
 			});
 
-			Assert.AreEqual(140, _layout.MaxScroll.Y);
+			_layout.MaxScroll.Y.ShouldBe(140);
 		}
 
 		#endregion //MinMax Scroll
@@ -203,8 +203,8 @@ namespace MenuBuddy.Tests
 			});
 
 			_layout.ScrollPosition = new Vector2(50, 60);
-			Assert.AreEqual(50, _layout.ScrollPosition.X);
-			Assert.AreEqual(60, _layout.ScrollPosition.Y);
+			_layout.ScrollPosition.X.ShouldBe(50);
+			_layout.ScrollPosition.Y.ShouldBe(60);
 		}
 
 		[Test]
@@ -219,10 +219,10 @@ namespace MenuBuddy.Tests
 				Size = new Vector2(100, 200)
 			});
 
-			Assert.AreEqual(-10, _layout.MinScroll.X);
+			_layout.MinScroll.X.ShouldBe(-10);
 
 			_layout.ScrollPosition = new Vector2(-50, 60);
-			Assert.AreEqual(-10, _layout.ScrollPosition.X);
+			_layout.ScrollPosition.X.ShouldBe(-10);
 		}
 
 		[Test]
@@ -237,10 +237,10 @@ namespace MenuBuddy.Tests
 				Size = new Vector2(100, 200)
 			});
 
-			Assert.AreEqual(-20, _layout.MinScroll.Y);
+			_layout.MinScroll.Y.ShouldBe(-20);
 
 			_layout.ScrollPosition = new Vector2(50, -60);
-			Assert.AreEqual(-20, _layout.ScrollPosition.Y);
+			_layout.ScrollPosition.Y.ShouldBe(-20);
 		}
 
 		[Test]
@@ -255,10 +255,10 @@ namespace MenuBuddy.Tests
 				Size = new Vector2(100, 200)
 			});
 
-			Assert.AreEqual(60, _layout.MaxScroll.X);
+			_layout.MaxScroll.X.ShouldBe(60);
 
 			_layout.ScrollPosition = new Vector2(500, 60);
-			Assert.AreEqual(60, _layout.ScrollPosition.X);
+			_layout.ScrollPosition.X.ShouldBe(60);
 		}
 
 		[Test]
@@ -273,10 +273,10 @@ namespace MenuBuddy.Tests
 				Size = new Vector2(100, 200)
 			});
 
-			Assert.AreEqual(140, _layout.MaxScroll.Y);
+			_layout.MaxScroll.Y.ShouldBe(140);
 
 			_layout.ScrollPosition = new Vector2(50, 600);
-			Assert.AreEqual(140, _layout.ScrollPosition.Y);
+			_layout.ScrollPosition.Y.ShouldBe(140);
 		}
 
 		#endregion //Constrain Scroll
@@ -286,32 +286,32 @@ namespace MenuBuddy.Tests
 		[Test]
 		public void Scrollbar__defaultvertical()
 		{
-			Assert.AreEqual(_layout.Rect.Right - ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.X);
-			Assert.AreEqual(0, _layout.VerticalScrollBar.Y);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
-			Assert.AreEqual(0, _layout.VerticalScrollBar.Height);
+			_layout.VerticalScrollBar.X.ShouldBe((int)(_layout.Rect.Right - ScrollLayout.ScrollBarWidth));
+			_layout.VerticalScrollBar.Y.ShouldBe(0);
+			_layout.VerticalScrollBar.Width.ShouldBe((int)ScrollLayout.ScrollBarWidth);
+			_layout.VerticalScrollBar.Height.ShouldBe(0);
 		}
 
 		[Test]
 		public void Scrollbar__defaulthorizontal()
 		{
-			Assert.AreEqual(0, _layout.HorizontalScrollBar.X);
-			Assert.AreEqual(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Y);
-			Assert.AreEqual(0, _layout.HorizontalScrollBar.Width);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+			_layout.HorizontalScrollBar.X.ShouldBe(0);
+			_layout.HorizontalScrollBar.Y.ShouldBe((int)(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth));
+			_layout.HorizontalScrollBar.Width.ShouldBe(0);
+			_layout.HorizontalScrollBar.Height.ShouldBe((int)ScrollLayout.ScrollBarWidth);
 		}
 
 		[Test]
 		public void Scrollbar__defaultdraw_1()
 		{
-			Assert.AreEqual(true, _layout.ShowScrollBars);
+			_layout.ShowScrollBars.ShouldBe(true);
 		}
 
 		[Test]
 		public void Scrollbar__defaultdraw()
 		{
-			Assert.AreEqual(false, _layout.DrawVerticalScrollBar);
-			Assert.AreEqual(false, _layout.DrawHorizontalScrollBar);
+			_layout.DrawVerticalScrollBar.ShouldBe(false);
+			_layout.DrawHorizontalScrollBar.ShouldBe(false);
 		}
 
 		[Test]
@@ -325,17 +325,17 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim);
 
-			Assert.AreEqual(84, _layout.VerticalScrollBar.X);
-			Assert.AreEqual(0, _layout.VerticalScrollBar.Y);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
-			Assert.AreEqual(0, _layout.VerticalScrollBar.Height);
+			_layout.VerticalScrollBar.X.ShouldBe(84);
+			_layout.VerticalScrollBar.Y.ShouldBe(0);
+			_layout.VerticalScrollBar.Width.ShouldBe((int)ScrollLayout.ScrollBarWidth);
+			_layout.VerticalScrollBar.Height.ShouldBe(0);
 
-			Assert.AreEqual(Vector2.Zero, _layout.MinScroll);
-			Assert.AreEqual(100, _layout.MaxScroll.X);
-			Assert.AreEqual(0, _layout.MaxScroll.Y);
+			_layout.MinScroll.ShouldBe(Vector2.Zero);
+			_layout.MaxScroll.X.ShouldBe(100);
+			_layout.MaxScroll.Y.ShouldBe(0);
 
-			Assert.AreEqual(false, _layout.DrawVerticalScrollBar);
-			Assert.AreEqual(true, _layout.DrawHorizontalScrollBar);
+			_layout.DrawVerticalScrollBar.ShouldBe(false);
+			_layout.DrawHorizontalScrollBar.ShouldBe(true);
 		}
 
 		[Test]
@@ -349,10 +349,10 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim);
 
-			Assert.AreEqual(0, _layout.HorizontalScrollBar.X);
-			Assert.AreEqual(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Y);
-			Assert.AreEqual(50, _layout.HorizontalScrollBar.Width);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+			_layout.HorizontalScrollBar.X.ShouldBe(0);
+			_layout.HorizontalScrollBar.Y.ShouldBe((int)(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth));
+			_layout.HorizontalScrollBar.Width.ShouldBe(50);
+			_layout.HorizontalScrollBar.Height.ShouldBe((int)ScrollLayout.ScrollBarWidth);
 		}
 
 		[Test]
@@ -368,10 +368,10 @@ namespace MenuBuddy.Tests
 
 			_layout.ScrollPosition = new Vector2(50, 0);
 
-			Assert.AreEqual(25, _layout.HorizontalScrollBar.X);
-			Assert.AreEqual(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Y);
-			Assert.AreEqual(50, _layout.HorizontalScrollBar.Width);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+			_layout.HorizontalScrollBar.X.ShouldBe(25);
+			_layout.HorizontalScrollBar.Y.ShouldBe((int)(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth));
+			_layout.HorizontalScrollBar.Width.ShouldBe(50);
+			_layout.HorizontalScrollBar.Height.ShouldBe((int)ScrollLayout.ScrollBarWidth);
 		}
 
 		[Test]
@@ -387,10 +387,10 @@ namespace MenuBuddy.Tests
 
 			_layout.ScrollPosition = new Vector2(100, 0);
 
-			Assert.AreEqual(50, _layout.HorizontalScrollBar.X);
-			Assert.AreEqual(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Y);
-			Assert.AreEqual(50, _layout.HorizontalScrollBar.Width);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+			_layout.HorizontalScrollBar.X.ShouldBe(50);
+			_layout.HorizontalScrollBar.Y.ShouldBe((int)(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth));
+			_layout.HorizontalScrollBar.Width.ShouldBe(50);
+			_layout.HorizontalScrollBar.Height.ShouldBe((int)ScrollLayout.ScrollBarWidth);
 		}
 
 		[Test]
@@ -404,17 +404,17 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim);
 
-			Assert.AreEqual(0, _layout.HorizontalScrollBar.X);
-			Assert.AreEqual(84, _layout.HorizontalScrollBar.Y);
-			Assert.AreEqual(0, _layout.HorizontalScrollBar.Width);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+			_layout.HorizontalScrollBar.X.ShouldBe(0);
+			_layout.HorizontalScrollBar.Y.ShouldBe(84);
+			_layout.HorizontalScrollBar.Width.ShouldBe(0);
+			_layout.HorizontalScrollBar.Height.ShouldBe((int)ScrollLayout.ScrollBarWidth);
 
-			Assert.AreEqual(Vector2.Zero, _layout.MinScroll);
-			Assert.AreEqual(0, _layout.MaxScroll.X);
-			Assert.AreEqual(100, _layout.MaxScroll.Y);
+			_layout.MinScroll.ShouldBe(Vector2.Zero);
+			_layout.MaxScroll.X.ShouldBe(0);
+			_layout.MaxScroll.Y.ShouldBe(100);
 
-			Assert.AreEqual(true, _layout.DrawVerticalScrollBar);
-			Assert.AreEqual(false, _layout.DrawHorizontalScrollBar);
+			_layout.DrawVerticalScrollBar.ShouldBe(true);
+			_layout.DrawHorizontalScrollBar.ShouldBe(false);
 		}
 
 		[Test]
@@ -428,10 +428,10 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim);
 
-			Assert.AreEqual(_layout.Rect.Right - ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.X);
-			Assert.AreEqual(0, _layout.VerticalScrollBar.Y);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
-			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+			_layout.VerticalScrollBar.X.ShouldBe((int)(_layout.Rect.Right - ScrollLayout.ScrollBarWidth));
+			_layout.VerticalScrollBar.Y.ShouldBe(0);
+			_layout.VerticalScrollBar.Width.ShouldBe((int)ScrollLayout.ScrollBarWidth);
+			_layout.VerticalScrollBar.Height.ShouldBe(50);
 		}
 
 		[Test]
@@ -447,10 +447,10 @@ namespace MenuBuddy.Tests
 
 			_layout.ScrollPosition = new Vector2(0, 50);
 
-			Assert.AreEqual(_layout.Rect.Right - ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.X);
-			Assert.AreEqual(25, _layout.VerticalScrollBar.Y);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
-			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+			_layout.VerticalScrollBar.X.ShouldBe((int)(_layout.Rect.Right - ScrollLayout.ScrollBarWidth));
+			_layout.VerticalScrollBar.Y.ShouldBe(25);
+			_layout.VerticalScrollBar.Width.ShouldBe((int)ScrollLayout.ScrollBarWidth);
+			_layout.VerticalScrollBar.Height.ShouldBe(50);
 		}
 
 		[Test]
@@ -466,10 +466,10 @@ namespace MenuBuddy.Tests
 
 			_layout.ScrollPosition = new Vector2(0, 100);
 
-			Assert.AreEqual(_layout.Rect.Right - ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.X);
-			Assert.AreEqual(50, _layout.VerticalScrollBar.Y);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
-			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+			_layout.VerticalScrollBar.X.ShouldBe((int)(_layout.Rect.Right - ScrollLayout.ScrollBarWidth));
+			_layout.VerticalScrollBar.Y.ShouldBe(50);
+			_layout.VerticalScrollBar.Width.ShouldBe((int)ScrollLayout.ScrollBarWidth);
+			_layout.VerticalScrollBar.Height.ShouldBe(50);
 		}
 
 		[Test]
@@ -483,19 +483,19 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim);
 
-			Assert.AreEqual(0, _layout.HorizontalScrollBar.X);
-			Assert.AreEqual(84, _layout.HorizontalScrollBar.Y);
-			Assert.AreEqual(500, _layout.HorizontalScrollBar.Width);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+			_layout.HorizontalScrollBar.X.ShouldBe(0);
+			_layout.HorizontalScrollBar.Y.ShouldBe(84);
+			_layout.HorizontalScrollBar.Width.ShouldBe(500);
+			_layout.HorizontalScrollBar.Height.ShouldBe((int)ScrollLayout.ScrollBarWidth);
 
-			Assert.AreEqual(984, _layout.VerticalScrollBar.X);
-			Assert.AreEqual(0, _layout.VerticalScrollBar.Y);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
-			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+			_layout.VerticalScrollBar.X.ShouldBe(984);
+			_layout.VerticalScrollBar.Y.ShouldBe(0);
+			_layout.VerticalScrollBar.Width.ShouldBe((int)ScrollLayout.ScrollBarWidth);
+			_layout.VerticalScrollBar.Height.ShouldBe(50);
 
-			Assert.AreEqual(Vector2.Zero, _layout.MinScroll);
-			Assert.AreEqual(1000, _layout.MaxScroll.X);
-			Assert.AreEqual(100, _layout.MaxScroll.Y);
+			_layout.MinScroll.ShouldBe(Vector2.Zero);
+			_layout.MaxScroll.X.ShouldBe(1000);
+			_layout.MaxScroll.Y.ShouldBe(100);
 		}
 
 		[Test]
@@ -511,15 +511,15 @@ namespace MenuBuddy.Tests
 
 			_layout.ScrollPosition = new Vector2(500, 50);
 
-			Assert.AreEqual(250, _layout.HorizontalScrollBar.X);
-			Assert.AreEqual(84, _layout.HorizontalScrollBar.Y);
-			Assert.AreEqual(500, _layout.HorizontalScrollBar.Width);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+			_layout.HorizontalScrollBar.X.ShouldBe(250);
+			_layout.HorizontalScrollBar.Y.ShouldBe(84);
+			_layout.HorizontalScrollBar.Width.ShouldBe(500);
+			_layout.HorizontalScrollBar.Height.ShouldBe((int)ScrollLayout.ScrollBarWidth);
 
-			Assert.AreEqual(984, _layout.VerticalScrollBar.X);
-			Assert.AreEqual(25, _layout.VerticalScrollBar.Y);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
-			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+			_layout.VerticalScrollBar.X.ShouldBe(984);
+			_layout.VerticalScrollBar.Y.ShouldBe(25);
+			_layout.VerticalScrollBar.Width.ShouldBe((int)ScrollLayout.ScrollBarWidth);
+			_layout.VerticalScrollBar.Height.ShouldBe(50);
 		}
 
 		[Test]
@@ -535,15 +535,15 @@ namespace MenuBuddy.Tests
 
 			_layout.ScrollPosition = new Vector2(1000, 100);
 
-			Assert.AreEqual(500, _layout.HorizontalScrollBar.X);
-			Assert.AreEqual(84, _layout.HorizontalScrollBar.Y);
-			Assert.AreEqual(500, _layout.HorizontalScrollBar.Width);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+			_layout.HorizontalScrollBar.X.ShouldBe(500);
+			_layout.HorizontalScrollBar.Y.ShouldBe(84);
+			_layout.HorizontalScrollBar.Width.ShouldBe(500);
+			_layout.HorizontalScrollBar.Height.ShouldBe((int)ScrollLayout.ScrollBarWidth);
 
-			Assert.AreEqual(984, _layout.VerticalScrollBar.X);
-			Assert.AreEqual(50, _layout.VerticalScrollBar.Y);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
-			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+			_layout.VerticalScrollBar.X.ShouldBe(984);
+			_layout.VerticalScrollBar.Y.ShouldBe(50);
+			_layout.VerticalScrollBar.Width.ShouldBe((int)ScrollLayout.ScrollBarWidth);
+			_layout.VerticalScrollBar.Height.ShouldBe(50);
 		}
 
 		[Test]
@@ -558,14 +558,14 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim);
 
-			Assert.AreEqual(10000, _layout.HorizontalScrollBar.X);
-			Assert.AreEqual(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Y);
-			Assert.AreEqual(500, _layout.HorizontalScrollBar.Width);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+			_layout.HorizontalScrollBar.X.ShouldBe(10000);
+			_layout.HorizontalScrollBar.Y.ShouldBe((int)(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth));
+			_layout.HorizontalScrollBar.Width.ShouldBe(500);
+			_layout.HorizontalScrollBar.Height.ShouldBe((int)ScrollLayout.ScrollBarWidth);
 
-			Assert.AreEqual(Vector2.Zero, _layout.MinScroll);
-			Assert.AreEqual(1000, _layout.MaxScroll.X);
-			Assert.AreEqual(100, _layout.MaxScroll.Y);
+			_layout.MinScroll.ShouldBe(Vector2.Zero);
+			_layout.MaxScroll.X.ShouldBe(1000);
+			_layout.MaxScroll.Y.ShouldBe(100);
 		}
 
 		[Test]
@@ -580,14 +580,14 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim);
 
-			Assert.AreEqual(_layout.Rect.Right - ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.X);
-			Assert.AreEqual(10000, _layout.VerticalScrollBar.Y);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
-			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+			_layout.VerticalScrollBar.X.ShouldBe((int)(_layout.Rect.Right - ScrollLayout.ScrollBarWidth));
+			_layout.VerticalScrollBar.Y.ShouldBe(10000);
+			_layout.VerticalScrollBar.Width.ShouldBe((int)ScrollLayout.ScrollBarWidth);
+			_layout.VerticalScrollBar.Height.ShouldBe(50);
 
-			Assert.AreEqual(Vector2.Zero, _layout.MinScroll);
-			Assert.AreEqual(1000, _layout.MaxScroll.X);
-			Assert.AreEqual(100, _layout.MaxScroll.Y);
+			_layout.MinScroll.ShouldBe(Vector2.Zero);
+			_layout.MaxScroll.X.ShouldBe(1000);
+			_layout.MaxScroll.Y.ShouldBe(100);
 		}
 
 		[Test]
@@ -604,15 +604,15 @@ namespace MenuBuddy.Tests
 
 			_layout.ScrollPosition = new Vector2(500, 50);
 
-			Assert.AreEqual(10250, _layout.HorizontalScrollBar.X);
-			Assert.AreEqual(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Y);
-			Assert.AreEqual(500, _layout.HorizontalScrollBar.Width);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+			_layout.HorizontalScrollBar.X.ShouldBe(10250);
+			_layout.HorizontalScrollBar.Y.ShouldBe((int)(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth));
+			_layout.HorizontalScrollBar.Width.ShouldBe(500);
+			_layout.HorizontalScrollBar.Height.ShouldBe((int)ScrollLayout.ScrollBarWidth);
 
-			Assert.AreEqual(_layout.Rect.Right - ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.X);
-			Assert.AreEqual(10025, _layout.VerticalScrollBar.Y);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
-			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+			_layout.VerticalScrollBar.X.ShouldBe((int)(_layout.Rect.Right - ScrollLayout.ScrollBarWidth));
+			_layout.VerticalScrollBar.Y.ShouldBe(10025);
+			_layout.VerticalScrollBar.Width.ShouldBe((int)ScrollLayout.ScrollBarWidth);
+			_layout.VerticalScrollBar.Height.ShouldBe(50);
 		}
 
 		[Test]
@@ -629,15 +629,15 @@ namespace MenuBuddy.Tests
 
 			_layout.ScrollPosition = new Vector2(1000, 100);
 
-			Assert.AreEqual(10500, _layout.HorizontalScrollBar.X);
-			Assert.AreEqual(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Y);
-			Assert.AreEqual(500, _layout.HorizontalScrollBar.Width);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.HorizontalScrollBar.Height);
+			_layout.HorizontalScrollBar.X.ShouldBe(10500);
+			_layout.HorizontalScrollBar.Y.ShouldBe((int)(_layout.Rect.Bottom - ScrollLayout.ScrollBarWidth));
+			_layout.HorizontalScrollBar.Width.ShouldBe(500);
+			_layout.HorizontalScrollBar.Height.ShouldBe((int)ScrollLayout.ScrollBarWidth);
 
-			Assert.AreEqual(_layout.Rect.Right - ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.X);
-			Assert.AreEqual(10050, _layout.VerticalScrollBar.Y);
-			Assert.AreEqual(ScrollLayout.ScrollBarWidth, _layout.VerticalScrollBar.Width);
-			Assert.AreEqual(50, _layout.VerticalScrollBar.Height);
+			_layout.VerticalScrollBar.X.ShouldBe((int)(_layout.Rect.Right - ScrollLayout.ScrollBarWidth));
+			_layout.VerticalScrollBar.Y.ShouldBe(10050);
+			_layout.VerticalScrollBar.Width.ShouldBe((int)ScrollLayout.ScrollBarWidth);
+			_layout.VerticalScrollBar.Height.ShouldBe(50);
 		}
 
 		#endregion //Scrollbar tests

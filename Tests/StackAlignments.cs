@@ -32,9 +32,9 @@ namespace MenuBuddy.Tests
 		[Test]
 		public void StackAlignments_Default()
 		{
-			Assert.AreEqual(StackAlignment.Top, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Center, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Top);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		#endregion //Defaults
@@ -48,9 +48,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Top;
 			_stack.Horizontal = HorizontalAlignment.Left;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -60,9 +60,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Top;
 			_stack.Horizontal = HorizontalAlignment.Center;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Center, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -72,9 +72,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Top;
 			_stack.Horizontal = HorizontalAlignment.Right;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -84,9 +84,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Center;
 			_stack.Horizontal = HorizontalAlignment.Left;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -96,9 +96,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Center;
 			_stack.Horizontal = HorizontalAlignment.Center;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Center, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -108,9 +108,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Center;
 			_stack.Horizontal = HorizontalAlignment.Right;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -120,9 +120,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Bottom;
 			_stack.Horizontal = HorizontalAlignment.Left;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -132,9 +132,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Bottom;
 			_stack.Horizontal = HorizontalAlignment.Center;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Center, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -144,9 +144,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Bottom;
 			_stack.Horizontal = HorizontalAlignment.Right;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		#endregion //BottomAlignment
@@ -160,9 +160,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Top;
 			_stack.Horizontal = HorizontalAlignment.Left;
 
-			Assert.AreEqual(StackAlignment.Top, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Top);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -172,9 +172,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Top;
 			_stack.Horizontal = HorizontalAlignment.Center;
 
-			Assert.AreEqual(StackAlignment.Top, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Center, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Top);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -184,9 +184,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Top;
 			_stack.Horizontal = HorizontalAlignment.Right;
 
-			Assert.AreEqual(StackAlignment.Top, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Top);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -196,9 +196,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Center;
 			_stack.Horizontal = HorizontalAlignment.Left;
 
-			Assert.AreEqual(StackAlignment.Top, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Top);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -208,9 +208,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Center;
 			_stack.Horizontal = HorizontalAlignment.Center;
 
-			Assert.AreEqual(StackAlignment.Top, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Center, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Top);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -220,9 +220,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Center;
 			_stack.Horizontal = HorizontalAlignment.Right;
 
-			Assert.AreEqual(StackAlignment.Top, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Top);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -232,9 +232,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Bottom;
 			_stack.Horizontal = HorizontalAlignment.Left;
 
-			Assert.AreEqual(StackAlignment.Top, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Top);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -244,9 +244,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Bottom;
 			_stack.Horizontal = HorizontalAlignment.Center;
 
-			Assert.AreEqual(StackAlignment.Top, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Center, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Top);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -256,9 +256,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Bottom;
 			_stack.Horizontal = HorizontalAlignment.Right;
 
-			Assert.AreEqual(StackAlignment.Top, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Top);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		#endregion //TopAlignment
@@ -272,9 +272,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Top;
 			_stack.Horizontal = HorizontalAlignment.Left;
 
-			Assert.AreEqual(StackAlignment.Left, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Left);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -284,9 +284,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Top;
 			_stack.Horizontal = HorizontalAlignment.Center;
 
-			Assert.AreEqual(StackAlignment.Left, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Left);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -296,9 +296,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Top;
 			_stack.Horizontal = HorizontalAlignment.Right;
 
-			Assert.AreEqual(StackAlignment.Left, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Left);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -308,9 +308,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Center;
 			_stack.Horizontal = HorizontalAlignment.Left;
 
-			Assert.AreEqual(StackAlignment.Left, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Left);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Center);
 		}
 
 		[Test]
@@ -320,9 +320,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Center;
 			_stack.Horizontal = HorizontalAlignment.Center;
 
-			Assert.AreEqual(StackAlignment.Left, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Left);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Center);
 		}
 
 		[Test]
@@ -332,9 +332,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Center;
 			_stack.Horizontal = HorizontalAlignment.Right;
 
-			Assert.AreEqual(StackAlignment.Left, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Left);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Center);
 		}
 
 		[Test]
@@ -344,9 +344,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Bottom;
 			_stack.Horizontal = HorizontalAlignment.Left;
 
-			Assert.AreEqual(StackAlignment.Left, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Left);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -356,9 +356,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Bottom;
 			_stack.Horizontal = HorizontalAlignment.Center;
 
-			Assert.AreEqual(StackAlignment.Left, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Left);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -368,9 +368,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Bottom;
 			_stack.Horizontal = HorizontalAlignment.Right;
 
-			Assert.AreEqual(StackAlignment.Left, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Left);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		#endregion //LeftAlignment
@@ -384,9 +384,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Top;
 			_stack.Horizontal = HorizontalAlignment.Left;
 
-			Assert.AreEqual(StackAlignment.Right, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Right);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -396,9 +396,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Top;
 			_stack.Horizontal = HorizontalAlignment.Center;
 
-			Assert.AreEqual(StackAlignment.Right, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Right);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -408,9 +408,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Top;
 			_stack.Horizontal = HorizontalAlignment.Right;
 
-			Assert.AreEqual(StackAlignment.Right, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Right);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -420,9 +420,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Center;
 			_stack.Horizontal = HorizontalAlignment.Left;
 
-			Assert.AreEqual(StackAlignment.Right, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Right);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Center);
 		}
 
 		[Test]
@@ -432,9 +432,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Center;
 			_stack.Horizontal = HorizontalAlignment.Center;
 
-			Assert.AreEqual(StackAlignment.Right, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Right);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Center);
 		}
 
 		[Test]
@@ -444,9 +444,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Center;
 			_stack.Horizontal = HorizontalAlignment.Right;
 
-			Assert.AreEqual(StackAlignment.Right, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Right);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Center);
 		}
 
 		[Test]
@@ -456,9 +456,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Bottom;
 			_stack.Horizontal = HorizontalAlignment.Left;
 
-			Assert.AreEqual(StackAlignment.Right, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Right);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -468,9 +468,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Bottom;
 			_stack.Horizontal = HorizontalAlignment.Center;
 
-			Assert.AreEqual(StackAlignment.Right, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Right);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -480,9 +480,9 @@ namespace MenuBuddy.Tests
 			_stack.Vertical = VerticalAlignment.Bottom;
 			_stack.Horizontal = HorizontalAlignment.Right;
 
-			Assert.AreEqual(StackAlignment.Right, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Right);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		#endregion //RightAlignment
@@ -497,9 +497,9 @@ namespace MenuBuddy.Tests
 			_stack.Horizontal = HorizontalAlignment.Left;
 			_stack.Alignment = StackAlignment.Bottom;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -510,9 +510,9 @@ namespace MenuBuddy.Tests
 			_stack.Horizontal = HorizontalAlignment.Center;
 			_stack.Alignment = StackAlignment.Bottom;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Center, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -523,9 +523,9 @@ namespace MenuBuddy.Tests
 			_stack.Horizontal = HorizontalAlignment.Right;
 			_stack.Alignment = StackAlignment.Bottom;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -536,9 +536,9 @@ namespace MenuBuddy.Tests
 			_stack.Horizontal = HorizontalAlignment.Left;
 			_stack.Alignment = StackAlignment.Bottom;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -549,9 +549,9 @@ namespace MenuBuddy.Tests
 			_stack.Horizontal = HorizontalAlignment.Center;
 			_stack.Alignment = StackAlignment.Bottom;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Center, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -562,9 +562,9 @@ namespace MenuBuddy.Tests
 			_stack.Horizontal = HorizontalAlignment.Right;
 			_stack.Alignment = StackAlignment.Bottom;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -575,9 +575,9 @@ namespace MenuBuddy.Tests
 			_stack.Horizontal = HorizontalAlignment.Left;
 			_stack.Alignment = StackAlignment.Bottom;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -588,9 +588,9 @@ namespace MenuBuddy.Tests
 			_stack.Horizontal = HorizontalAlignment.Center;
 			_stack.Alignment = StackAlignment.Bottom;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Center, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -601,9 +601,9 @@ namespace MenuBuddy.Tests
 			_stack.Horizontal = HorizontalAlignment.Right;
 			_stack.Alignment = StackAlignment.Bottom;
 
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		#endregion //BottomAlignment

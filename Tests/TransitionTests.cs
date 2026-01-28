@@ -20,7 +20,7 @@ namespace MenuBuddy.Tests
 			transition.OffTime = 0f;
 
 			transition.Update(new GameClock(), true);
-			Assert.AreEqual(0f, transition.TransitionPosition);
+			transition.TransitionPosition.ShouldBe(0f);
 		}
 
 		[Test]
@@ -31,7 +31,7 @@ namespace MenuBuddy.Tests
 			transition.OffTime = 0f;
 
 			transition.Update(new GameClock(), false);
-			Assert.AreEqual(1f, transition.TransitionPosition);
+			transition.TransitionPosition.ShouldBe(1f);
 		}
 
 		[Test]
@@ -42,7 +42,7 @@ namespace MenuBuddy.Tests
 			transition.OffTime = 0f;
 
 			transition.Update(new GameClock(), true);
-			Assert.AreEqual(1f, transition.TransitionPosition);
+			transition.TransitionPosition.ShouldBe(1f);
 		}
 
 		[Test]
@@ -59,7 +59,7 @@ namespace MenuBuddy.Tests
 			clock.Update(new GameTime(new TimeSpan(0, 0, 0, 0, 500), new TimeSpan(0, 0, 0, 0, 500)));
 
 			transition.Update(clock, false);
-			Assert.AreEqual(.5f, transition.TransitionPosition);
+			transition.TransitionPosition.ShouldBe(.5f);
 		}
 
 		[Test]
@@ -73,7 +73,7 @@ namespace MenuBuddy.Tests
 			clock.Update(new GameTime(new TimeSpan(0, 0, 0, 0, 500), new TimeSpan(0, 0, 0, 0, 500)));
 
 			transition.Update(clock, true);
-			Assert.AreEqual(.5f, transition.TransitionPosition);
+			transition.TransitionPosition.ShouldBe(.5f);
 		}
 
 		[Test]
@@ -90,7 +90,7 @@ namespace MenuBuddy.Tests
 			clock.Update(new GameTime(new TimeSpan(0, 0, 0, 0, 250), new TimeSpan(0, 0, 0, 0, 250)));
 
 			transition.Update(clock, false);
-			Assert.AreEqual(.25f, transition.TransitionPosition);
+			transition.TransitionPosition.ShouldBe(.25f);
 		}
 
 		[Test]
@@ -104,7 +104,7 @@ namespace MenuBuddy.Tests
 			clock.Update(new GameTime(new TimeSpan(0, 0, 0, 0, 250), new TimeSpan(0, 0, 0, 0, 250)));
 
 			transition.Update(clock, true);
-			Assert.AreEqual(.75f, transition.TransitionPosition);
+			transition.TransitionPosition.ShouldBe(.75f);
 		}
 
 		[Test]
@@ -115,7 +115,7 @@ namespace MenuBuddy.Tests
 			transition.OffTime = 0f;
 
 			transition.Update(new GameClock(), true);
-			Assert.AreEqual(1f, transition.Alpha);
+			transition.Alpha.ShouldBe(1f);
 		}
 
 		[Test]
@@ -126,7 +126,7 @@ namespace MenuBuddy.Tests
 			transition.OffTime = 0f;
 
 			transition.Update(new GameClock(), false);
-			Assert.AreEqual(0f, transition.Alpha);
+			transition.Alpha.ShouldBe(0f);
 		}
 
 		[Test]
@@ -137,7 +137,7 @@ namespace MenuBuddy.Tests
 			transition.OffTime = 0f;
 
 			transition.Update(new GameClock(), true);
-			Assert.AreEqual(0f, transition.Alpha);
+			transition.Alpha.ShouldBe(0f);
 		}
 
 		[Test]
@@ -151,7 +151,7 @@ namespace MenuBuddy.Tests
 			transition.OffTime = 1f;
 
 			transition.Update(new GameClock(), false);
-			Assert.AreEqual(1f, transition.Alpha);
+			transition.Alpha.ShouldBe(1f);
 		}
 
 		[Test]
@@ -162,7 +162,7 @@ namespace MenuBuddy.Tests
 			transition.OffTime = 1f;
 
 			transition.Update(new GameClock(), true);
-			Assert.AreEqual(0f, transition.Alpha);
+			transition.Alpha.ShouldBe(0f);
 		}
 
 		[Test]
@@ -174,7 +174,7 @@ namespace MenuBuddy.Tests
 
 			transition.Update(new GameClock(), true);
 			var target = new Color(255, 255, 255, 255);
-			Assert.AreEqual(target, transition.AlphaColor(Color.White));
+			transition.AlphaColor(Color.White).ShouldBe(target);
 		}
 
 		[Test]
@@ -189,7 +189,7 @@ namespace MenuBuddy.Tests
 
 			transition.Update(new GameClock(), false);
 			var target = new Color(255, 255, 255, 0);
-			Assert.AreEqual(target, transition.AlphaColor(Color.White));
+			transition.AlphaColor(Color.White).ShouldBe(target);
 		}
 
 		[Test]
@@ -201,7 +201,7 @@ namespace MenuBuddy.Tests
 
 			transition.Update(new GameClock(), true);
 			var target = new Color(255, 255, 255, 0);
-			Assert.AreEqual(target, transition.AlphaColor(Color.White));
+			transition.AlphaColor(Color.White).ShouldBe(target);
 		}
 
 		[Test]
@@ -216,7 +216,7 @@ namespace MenuBuddy.Tests
 
 			transition.Update(new GameClock(), false);
 			var target = new Color(255, 255, 255, 255);
-			Assert.AreEqual(target, transition.AlphaColor(Color.White));
+			transition.AlphaColor(Color.White).ShouldBe(target);
 		}
 
 		[Test]
@@ -228,7 +228,7 @@ namespace MenuBuddy.Tests
 
 			transition.Update(new GameClock(), true);
 			var target = new Color(255, 255, 255, 0);
-			Assert.AreEqual(target, transition.AlphaColor(Color.White));
+			transition.AlphaColor(Color.White).ShouldBe(target);
 		}
 
 		[Test]
@@ -241,7 +241,7 @@ namespace MenuBuddy.Tests
 			transition.Update(new GameClock(), true);
 			var color = new Color(255, 255, 255, 127);
 			var target = new Color(255, 255, 255, 127);
-			Assert.AreEqual(target, transition.AlphaColor(color));
+			transition.AlphaColor(color).ShouldBe(target);
 		}
 
 		[Test]
@@ -254,7 +254,7 @@ namespace MenuBuddy.Tests
 			transition.Update(new GameClock(), false);
 			var color = new Color(255, 255, 255, 127);
 			var target = new Color(255, 255, 255, 0);
-			Assert.AreEqual(target, transition.AlphaColor(color));
+			transition.AlphaColor(color).ShouldBe(target);
 		}
 
 		[Test]
@@ -267,7 +267,7 @@ namespace MenuBuddy.Tests
 			transition.Update(new GameClock(), true);
 			var color = new Color(255, 255, 255, 127);
 			var target = new Color(255, 255, 255, 0);
-			Assert.AreEqual(target, transition.AlphaColor(color));
+			transition.AlphaColor(color).ShouldBe(target);
 		}
 
 		[Test]
@@ -285,7 +285,7 @@ namespace MenuBuddy.Tests
 
 			transition.Update(clock, false);
 			var target = new Color(255, 255, 255, 127);
-			Assert.AreEqual(target, transition.AlphaColor(Color.White));
+			transition.AlphaColor(Color.White).ShouldBe(target);
 		}
 
 		[Test]
@@ -300,7 +300,7 @@ namespace MenuBuddy.Tests
 
 			transition.Update(clock, true);
 			var target = new Color(255, 255, 255, 127);
-			Assert.AreEqual(target, transition.AlphaColor(Color.White));
+			transition.AlphaColor(Color.White).ShouldBe(target);
 		}
 
 		[Test]
@@ -319,7 +319,7 @@ namespace MenuBuddy.Tests
 			transition.Update(clock, false);
 			var color = new Color(255, 255, 255, 255);
 			var target = new Color(255, 255, 255, 127);
-			Assert.AreEqual(target, transition.AlphaColor(color));
+			transition.AlphaColor(color).ShouldBe(target);
 		}
 
 		[Test]
@@ -335,7 +335,7 @@ namespace MenuBuddy.Tests
 			transition.Update(clock, true);
 			var color = new Color(255, 255, 255, 255);
 			var target = new Color(255, 255, 255, 127);
-			Assert.AreEqual(target, transition.AlphaColor(color));
+			transition.AlphaColor(color).ShouldBe(target);
 		}
 
 		#region return values
@@ -347,7 +347,7 @@ namespace MenuBuddy.Tests
 			transition.OnTime = 0f;
 			transition.OffTime = 0f;
 
-			Assert.IsFalse(transition.Update(new GameClock(), true));
+			transition.Update(new GameClock(), true).ShouldBeFalse();
 		}
 
 		[Test]
@@ -357,7 +357,7 @@ namespace MenuBuddy.Tests
 			transition.OnTime = 0f;
 			transition.OffTime = 0f;
 
-			Assert.IsFalse(transition.Update(new GameClock(), false));
+			transition.Update(new GameClock(), false).ShouldBeFalse();
 		}
 
 		[Test]
@@ -367,7 +367,7 @@ namespace MenuBuddy.Tests
 			transition.OnTime = 1f;
 			transition.OffTime = 0f;
 
-			Assert.IsTrue(transition.Update(new GameClock(), true));
+			transition.Update(new GameClock(), true).ShouldBeTrue();
 		}
 
 		[Test]
@@ -380,7 +380,7 @@ namespace MenuBuddy.Tests
 			transition.OnTime = 1f;
 			transition.OffTime = 1f;
 
-			Assert.IsTrue(transition.Update(new GameClock(), false));
+			transition.Update(new GameClock(), false).ShouldBeTrue();
 		}
 
 		[Test]
@@ -390,7 +390,7 @@ namespace MenuBuddy.Tests
 			transition.OnTime = 1f;
 			transition.OnTime = 1f;
 
-			Assert.IsTrue(transition.Update(new GameClock(), true));
+			transition.Update(new GameClock(), true).ShouldBeTrue();
 		}
 
 		[Test]
@@ -403,7 +403,7 @@ namespace MenuBuddy.Tests
 			transition.OnTime = 1f;
 			transition.OffTime = 1f;
 
-			Assert.IsTrue(transition.Update(new GameClock(), false));
+			transition.Update(new GameClock(), false).ShouldBeTrue();
 		}
 
 		[Test]
@@ -413,7 +413,7 @@ namespace MenuBuddy.Tests
 			transition.OnTime = 1f;
 			transition.OnTime = 1f;
 
-			Assert.IsTrue(transition.Update(new GameClock(), true));
+			transition.Update(new GameClock(), true).ShouldBeTrue();
 		}
 
 		#endregion //return values
@@ -424,7 +424,7 @@ namespace MenuBuddy.Tests
 		public void DefaultState()
 		{
 			var transition = new ScreenTransition();
-			Assert.AreEqual(TransitionState.Hidden, transition.State);
+			transition.State.ShouldBe(TransitionState.Hidden);
 		}
 
 		[Test]
@@ -434,7 +434,7 @@ namespace MenuBuddy.Tests
 			{
 				State = TransitionState.Active
 			};
-			Assert.IsTrue(transition.StateChange(false));
+			transition.StateChange(false).ShouldBeTrue();
 		}
 
 		[Test]
@@ -444,7 +444,7 @@ namespace MenuBuddy.Tests
 			{
 				State = TransitionState.TransitionOn
 			};
-			Assert.IsTrue(transition.StateChange(false));
+			transition.StateChange(false).ShouldBeTrue();
 		}
 
 		[Test]
@@ -454,7 +454,7 @@ namespace MenuBuddy.Tests
 			{
 				State = TransitionState.Hidden
 			};
-			Assert.IsFalse(transition.StateChange(false));
+			transition.StateChange(false).ShouldBeFalse();
 		}
 
 		[Test]
@@ -464,7 +464,7 @@ namespace MenuBuddy.Tests
 			{
 				State = TransitionState.TransitionOff
 			};
-			Assert.IsFalse(transition.StateChange(false));
+			transition.StateChange(false).ShouldBeFalse();
 		}
 
 		[Test]
@@ -474,7 +474,7 @@ namespace MenuBuddy.Tests
 			{
 				State = TransitionState.Active
 			};
-			Assert.IsFalse(transition.StateChange(true));
+			transition.StateChange(true).ShouldBeFalse();
 		}
 
 		[Test]
@@ -484,7 +484,7 @@ namespace MenuBuddy.Tests
 			{
 				State = TransitionState.TransitionOn
 			};
-			Assert.IsFalse(transition.StateChange(true));
+			transition.StateChange(true).ShouldBeFalse();
 		}
 
 		[Test]
@@ -494,7 +494,7 @@ namespace MenuBuddy.Tests
 			{
 				State = TransitionState.Hidden
 			};
-			Assert.IsTrue(transition.StateChange(true));
+			transition.StateChange(true).ShouldBeTrue();
 		}
 
 		[Test]
@@ -504,7 +504,7 @@ namespace MenuBuddy.Tests
 			{
 				State = TransitionState.TransitionOff
 			};
-			Assert.IsTrue(transition.StateChange(true));
+			transition.StateChange(true).ShouldBeTrue();
 		}
 
 		[Test]
@@ -514,7 +514,7 @@ namespace MenuBuddy.Tests
 			{
 				State = TransitionState.TransitionOff
 			};
-			Assert.IsTrue(transition.Update(new GameClock(), true));
+			transition.Update(new GameClock(), true).ShouldBeTrue();
 		}
 
 		[Test]
@@ -530,7 +530,7 @@ namespace MenuBuddy.Tests
 				stateChanged = true;
 			};
 			transition.Update(new GameClock(), true);
-			Assert.IsTrue(stateChanged);
+			stateChanged.ShouldBeTrue();
 		}
 
 		#endregion //transition state

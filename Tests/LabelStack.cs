@@ -59,16 +59,16 @@ namespace MenuBuddy.Tests
 				Position = new Point(10, 20)
 			};
 
-			Assert.AreEqual(10f, _stack.Position.X);
-			Assert.AreEqual(20f, _stack.Position.Y);
-			Assert.AreEqual(10f, _stack.Rect.Left);
-			Assert.AreEqual(20f, _stack.Rect.Bottom);
-			Assert.AreEqual(0f, _stack.Rect.Width);
-			Assert.AreEqual(0f, _stack.Rect.Height);
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
-			Assert.AreEqual(0, _stack.Items.Count);
+			_stack.Position.X.ShouldBe(10);
+			_stack.Position.Y.ShouldBe(20);
+			_stack.Rect.Left.ShouldBe(10);
+			_stack.Rect.Bottom.ShouldBe(20);
+			_stack.Rect.Width.ShouldBe(0);
+			_stack.Rect.Height.ShouldBe(0);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
+			_stack.Items.Count.ShouldBe(0);
 		}
 
 		#endregion //Default
@@ -89,16 +89,16 @@ namespace MenuBuddy.Tests
 			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
-			Assert.AreEqual(10f, _stack.Position.X);
-			Assert.AreEqual(20f, _stack.Position.Y);
-			Assert.AreEqual(10f, _stack.Rect.Left);
-			Assert.AreEqual(20f, _stack.Rect.Bottom);
-			Assert.AreEqual(30f, _stack.Rect.Width);
-			Assert.AreEqual(40f, _stack.Rect.Height);
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
-			Assert.AreEqual(1, _stack.Items.Count);
+			_stack.Position.X.ShouldBe(10);
+			_stack.Position.Y.ShouldBe(20);
+			_stack.Rect.Left.ShouldBe(10);
+			_stack.Rect.Bottom.ShouldBe(20);
+			_stack.Rect.Width.ShouldBe(30);
+			_stack.Rect.Height.ShouldBe(40);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
+			_stack.Items.Count.ShouldBe(1);
 		}
 
 		[Test]
@@ -115,14 +115,14 @@ namespace MenuBuddy.Tests
 			var label1 = new Label("butt", _mediumFont);
 			_stack.AddItem(label1);
 
-			Assert.AreEqual(10f, label1.Position.X);
-			Assert.AreEqual(20f, label1.Position.Y);
-			Assert.AreEqual(10f, label1.Rect.Left);
-			Assert.AreEqual(20f, label1.Rect.Bottom);
-			Assert.AreEqual(30f, label1.Rect.Width);
-			Assert.AreEqual(40f, label1.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, label1.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, label1.Vertical);
+			label1.Position.X.ShouldBe(10);
+			label1.Position.Y.ShouldBe(20);
+			label1.Rect.Left.ShouldBe(10);
+			label1.Rect.Bottom.ShouldBe(20);
+			label1.Rect.Width.ShouldBe(30);
+			label1.Rect.Height.ShouldBe(40);
+			label1.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			label1.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		#endregion //OneItem
@@ -146,16 +146,16 @@ namespace MenuBuddy.Tests
 			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
-			Assert.AreEqual(10f, _stack.Position.X);
-			Assert.AreEqual(20f, _stack.Position.Y);
-			Assert.AreEqual(10f, _stack.Rect.Left);
-			Assert.AreEqual(20f, _stack.Rect.Bottom);
-			Assert.AreEqual(30f, _stack.Rect.Width);
-			Assert.AreEqual(80f, _stack.Rect.Height);
-			Assert.AreEqual(StackAlignment.Bottom, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
-			Assert.AreEqual(2, _stack.Items.Count);
+			_stack.Position.X.ShouldBe(10);
+			_stack.Position.Y.ShouldBe(20);
+			_stack.Rect.Left.ShouldBe(10);
+			_stack.Rect.Bottom.ShouldBe(20);
+			_stack.Rect.Width.ShouldBe(30);
+			_stack.Rect.Height.ShouldBe(80);
+			_stack.Alignment.ShouldBe(StackAlignment.Bottom);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
+			_stack.Items.Count.ShouldBe(2);
 		}
 
 		[Test]
@@ -175,14 +175,14 @@ namespace MenuBuddy.Tests
 			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
-			Assert.AreEqual(10f, label1.Position.X);
-			Assert.AreEqual(20f, label1.Position.Y);
-			Assert.AreEqual(10f, label1.Rect.Left);
-			Assert.AreEqual(20f, label1.Rect.Bottom);
-			Assert.AreEqual(30f, label1.Rect.Width);
-			Assert.AreEqual(40f, label1.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, label1.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, label1.Vertical);
+			label1.Position.X.ShouldBe(10);
+			label1.Position.Y.ShouldBe(20);
+			label1.Rect.Left.ShouldBe(10);
+			label1.Rect.Bottom.ShouldBe(20);
+			label1.Rect.Width.ShouldBe(30);
+			label1.Rect.Height.ShouldBe(40);
+			label1.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			label1.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -202,14 +202,14 @@ namespace MenuBuddy.Tests
 			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
-			Assert.AreEqual(10f, label2.Position.X);
-			Assert.AreEqual(-20f, label2.Position.Y);
-			Assert.AreEqual(10f, label2.Rect.Left);
-			Assert.AreEqual(-20f, label2.Rect.Bottom);
-			Assert.AreEqual(30f, label2.Rect.Width);
-			Assert.AreEqual(40f, label2.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, label1.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, label1.Vertical);
+			label2.Position.X.ShouldBe(10);
+			label2.Position.Y.ShouldBe(-20);
+			label2.Rect.Left.ShouldBe(10);
+			label2.Rect.Bottom.ShouldBe(-20);
+			label2.Rect.Width.ShouldBe(30);
+			label2.Rect.Height.ShouldBe(40);
+			label1.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			label1.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		#endregion //TwoItems_BottomAlignment
@@ -233,16 +233,16 @@ namespace MenuBuddy.Tests
 			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
-			Assert.AreEqual(10f, _stack.Position.X);
-			Assert.AreEqual(20f, _stack.Position.Y);
-			Assert.AreEqual(10f, _stack.Rect.Left);
-			Assert.AreEqual(100f, _stack.Rect.Bottom);
-			Assert.AreEqual(30f, _stack.Rect.Width);
-			Assert.AreEqual(80f, _stack.Rect.Height);
-			Assert.AreEqual(StackAlignment.Top, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _stack.Vertical);
-			Assert.AreEqual(2, _stack.Items.Count);
+			_stack.Position.X.ShouldBe(10);
+			_stack.Position.Y.ShouldBe(20);
+			_stack.Rect.Left.ShouldBe(10);
+			_stack.Rect.Bottom.ShouldBe(100);
+			_stack.Rect.Width.ShouldBe(30);
+			_stack.Rect.Height.ShouldBe(80);
+			_stack.Alignment.ShouldBe(StackAlignment.Top);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Top);
+			_stack.Items.Count.ShouldBe(2);
 		}
 
 		[Test]
@@ -262,14 +262,14 @@ namespace MenuBuddy.Tests
 			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
-			Assert.AreEqual(10f, label1.Position.X);
-			Assert.AreEqual(20f, label1.Position.Y);
-			Assert.AreEqual(10f, label1.Rect.Left);
-			Assert.AreEqual(60f, label1.Rect.Bottom);
-			Assert.AreEqual(30f, label1.Rect.Width);
-			Assert.AreEqual(40f, label1.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, label1.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, label1.Vertical);
+			label1.Position.X.ShouldBe(10);
+			label1.Position.Y.ShouldBe(20);
+			label1.Rect.Left.ShouldBe(10);
+			label1.Rect.Bottom.ShouldBe(60);
+			label1.Rect.Width.ShouldBe(30);
+			label1.Rect.Height.ShouldBe(40);
+			label1.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			label1.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -289,14 +289,14 @@ namespace MenuBuddy.Tests
 			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
-			Assert.AreEqual(10f, label2.Position.X);
-			Assert.AreEqual(60f, label2.Position.Y);
-			Assert.AreEqual(10f, label2.Rect.Left);
-			Assert.AreEqual(100f, label2.Rect.Bottom);
-			Assert.AreEqual(30f, label2.Rect.Width);
-			Assert.AreEqual(40f, label2.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, label1.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, label1.Vertical);
+			label2.Position.X.ShouldBe(10);
+			label2.Position.Y.ShouldBe(60);
+			label2.Rect.Left.ShouldBe(10);
+			label2.Rect.Bottom.ShouldBe(100);
+			label2.Rect.Width.ShouldBe(30);
+			label2.Rect.Height.ShouldBe(40);
+			label1.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			label1.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		#endregion //TwoItems_TopAlignment
@@ -320,17 +320,17 @@ namespace MenuBuddy.Tests
 			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
-			Assert.AreEqual(10f, _stack.Position.X);
-			Assert.AreEqual(20f, _stack.Position.Y);
-			Assert.AreEqual(10f, _stack.Rect.Left);
-			Assert.AreEqual(70f, _stack.Rect.Right);
-			Assert.AreEqual(20f, _stack.Rect.Bottom);
-			Assert.AreEqual(60f, _stack.Rect.Width);
-			Assert.AreEqual(40f, _stack.Rect.Height);
-			Assert.AreEqual(StackAlignment.Left, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Left, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
-			Assert.AreEqual(2, _stack.Items.Count);
+			_stack.Position.X.ShouldBe(10);
+			_stack.Position.Y.ShouldBe(20);
+			_stack.Rect.Left.ShouldBe(10);
+			_stack.Rect.Right.ShouldBe(70);
+			_stack.Rect.Bottom.ShouldBe(20);
+			_stack.Rect.Width.ShouldBe(60);
+			_stack.Rect.Height.ShouldBe(40);
+			_stack.Alignment.ShouldBe(StackAlignment.Left);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
+			_stack.Items.Count.ShouldBe(2);
 		}
 
 		[Test]
@@ -350,14 +350,14 @@ namespace MenuBuddy.Tests
 			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
-			Assert.AreEqual(10f, label1.Position.X);
-			Assert.AreEqual(20f, label1.Position.Y);
-			Assert.AreEqual(10f, label1.Rect.Left);
-			Assert.AreEqual(20f, label1.Rect.Bottom);
-			Assert.AreEqual(30f, label1.Rect.Width);
-			Assert.AreEqual(40f, label1.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, label1.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, label1.Vertical);
+			label1.Position.X.ShouldBe(10);
+			label1.Position.Y.ShouldBe(20);
+			label1.Rect.Left.ShouldBe(10);
+			label1.Rect.Bottom.ShouldBe(20);
+			label1.Rect.Width.ShouldBe(30);
+			label1.Rect.Height.ShouldBe(40);
+			label1.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			label1.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -377,14 +377,14 @@ namespace MenuBuddy.Tests
 			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
-			Assert.AreEqual(40f, label2.Position.X);
-			Assert.AreEqual(20f, label2.Position.Y);
-			Assert.AreEqual(40f, label2.Rect.Left);
-			Assert.AreEqual(20f, label2.Rect.Bottom);
-			Assert.AreEqual(30f, label2.Rect.Width);
-			Assert.AreEqual(40f, label2.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, label1.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, label1.Vertical);
+			label2.Position.X.ShouldBe(40);
+			label2.Position.Y.ShouldBe(20);
+			label2.Rect.Left.ShouldBe(40);
+			label2.Rect.Bottom.ShouldBe(20);
+			label2.Rect.Width.ShouldBe(30);
+			label2.Rect.Height.ShouldBe(40);
+			label1.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			label1.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		#endregion //TwoItems_LeftAlignment
@@ -408,16 +408,16 @@ namespace MenuBuddy.Tests
 			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
-			Assert.AreEqual(10f, _stack.Position.X);
-			Assert.AreEqual(20f, _stack.Position.Y);
-			Assert.AreEqual(-50f, _stack.Rect.Left);
-			Assert.AreEqual(20f, _stack.Rect.Bottom);
-			Assert.AreEqual(60f, _stack.Rect.Width);
-			Assert.AreEqual(40f, _stack.Rect.Height);
-			Assert.AreEqual(StackAlignment.Right, _stack.Alignment);
-			Assert.AreEqual(HorizontalAlignment.Right, _stack.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, _stack.Vertical);
-			Assert.AreEqual(2, _stack.Items.Count);
+			_stack.Position.X.ShouldBe(10);
+			_stack.Position.Y.ShouldBe(20);
+			_stack.Rect.Left.ShouldBe(-50);
+			_stack.Rect.Bottom.ShouldBe(20);
+			_stack.Rect.Width.ShouldBe(60);
+			_stack.Rect.Height.ShouldBe(40);
+			_stack.Alignment.ShouldBe(StackAlignment.Right);
+			_stack.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			_stack.Vertical.ShouldBe(VerticalAlignment.Bottom);
+			_stack.Items.Count.ShouldBe(2);
 		}
 
 		[Test]
@@ -437,14 +437,14 @@ namespace MenuBuddy.Tests
 			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
-			Assert.AreEqual(10f, label1.Position.X);
-			Assert.AreEqual(20f, label1.Position.Y);
-			Assert.AreEqual(-20f, label1.Rect.Left);
-			Assert.AreEqual(20f, label1.Rect.Bottom);
-			Assert.AreEqual(30f, label1.Rect.Width);
-			Assert.AreEqual(40f, label1.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Right, label1.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, label1.Vertical);
+			label1.Position.X.ShouldBe(10);
+			label1.Position.Y.ShouldBe(20);
+			label1.Rect.Left.ShouldBe(-20);
+			label1.Rect.Bottom.ShouldBe(20);
+			label1.Rect.Width.ShouldBe(30);
+			label1.Rect.Height.ShouldBe(40);
+			label1.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			label1.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		[Test]
@@ -464,14 +464,14 @@ namespace MenuBuddy.Tests
 			var label2 = new Label("nuts", _mediumFont);
 			_stack.AddItem(label2);
 
-			Assert.AreEqual(-20f, label2.Position.X);
-			Assert.AreEqual(20f, label2.Position.Y);
-			Assert.AreEqual(-50f, label2.Rect.Left);
-			Assert.AreEqual(20f, label2.Rect.Bottom);
-			Assert.AreEqual(30f, label2.Rect.Width);
-			Assert.AreEqual(40f, label2.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Right, label1.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Bottom, label1.Vertical);
+			label2.Position.X.ShouldBe(-20);
+			label2.Position.Y.ShouldBe(20);
+			label2.Rect.Left.ShouldBe(-50);
+			label2.Rect.Bottom.ShouldBe(20);
+			label2.Rect.Width.ShouldBe(30);
+			label2.Rect.Height.ShouldBe(40);
+			label1.Horizontal.ShouldBe(HorizontalAlignment.Right);
+			label1.Vertical.ShouldBe(VerticalAlignment.Bottom);
 		}
 
 		#endregion //TwoItems_RightAlignment
@@ -486,7 +486,7 @@ namespace MenuBuddy.Tests
 				Scale = 0.5f
 			};
 
-			Assert.AreEqual(.5f, label1.Scale);
+			label1.Scale.ShouldBe(.5f);
 		}
 
 		[Test]
@@ -508,7 +508,7 @@ namespace MenuBuddy.Tests
 
 			label1.Scale = .5f;
 
-			Assert.AreEqual(.5f, label1.Scale);
+			label1.Scale.ShouldBe(.5f);
 		}
 
 		[Test]
@@ -537,8 +537,8 @@ namespace MenuBuddy.Tests
 			label1.Scale = .5f;
 			label2.Scale = .25f;
 
-			Assert.AreEqual(.5f, label1.Scale);
-			Assert.AreEqual(.25f, label2.Scale);
+			label1.Scale.ShouldBe(.5f);
+			label2.Scale.ShouldBe(.25f);
 		}
 
 		#endregion //Scale

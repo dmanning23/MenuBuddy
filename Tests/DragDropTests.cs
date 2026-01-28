@@ -35,12 +35,12 @@ namespace MenuBuddy.Tests
 		{
 			_button.Position = new Point(10, 20);
 			_button.Size = new Vector2(200f, 100f);
-			Assert.AreEqual(10, _button.Rect.X);
-			Assert.AreEqual(20, _button.Rect.Y);
-			Assert.AreEqual(200f, _button.Rect.Width);
-			Assert.AreEqual(100f, _button.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _button.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _button.Vertical);
+			_button.Rect.X.ShouldBe(10);
+			_button.Rect.Y.ShouldBe(20);
+			_button.Rect.Width.ShouldBe(200);
+			_button.Rect.Height.ShouldBe(100);
+			_button.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_button.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -55,7 +55,7 @@ namespace MenuBuddy.Tests
 				Current = new Vector2(50, 100)
 			};
 
-			Assert.IsTrue(_button.CheckDrag(e));
+			_button.CheckDrag(e).ShouldBeTrue();
 		}
 
 		[Test]
@@ -72,12 +72,12 @@ namespace MenuBuddy.Tests
 
 			_button.CheckDrag(e);
 
-			Assert.AreEqual(50, _button.Rect.X);
-			Assert.AreEqual(100, _button.Rect.Y);
-			Assert.AreEqual(200f, _button.Rect.Width);
-			Assert.AreEqual(100f, _button.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _button.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _button.Vertical);
+			_button.Rect.X.ShouldBe(50);
+			_button.Rect.Y.ShouldBe(100);
+			_button.Rect.Width.ShouldBe(200);
+			_button.Rect.Height.ShouldBe(100);
+			_button.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_button.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		#endregion //tests

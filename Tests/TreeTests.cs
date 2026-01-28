@@ -62,24 +62,24 @@ namespace MenuBuddy.Tests
 		[Test]
 		public void Tree_Default()
 		{
-			Assert.AreEqual(0, _tree.Rect.X);
-			Assert.AreEqual(0, _tree.Rect.Y);
-			Assert.AreEqual(0, _tree.Rect.Width);
-			Assert.AreEqual(0, _tree.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _tree.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _tree.Vertical);
+			_tree.Rect.X.ShouldBe(0);
+			_tree.Rect.Y.ShouldBe(0);
+			_tree.Rect.Width.ShouldBe(0);
+			_tree.Rect.Height.ShouldBe(0);
+			_tree.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_tree.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
 		public void Tree_Default2()
 		{
 			_tree.Position = new Point(10, 20);
-			Assert.AreEqual(10, _tree.Rect.X);
-			Assert.AreEqual(20, _tree.Rect.Y);
-			Assert.AreEqual(0, _tree.Rect.Width);
-			Assert.AreEqual(0, _tree.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _tree.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _tree.Vertical);
+			_tree.Rect.X.ShouldBe(10);
+			_tree.Rect.Y.ShouldBe(20);
+			_tree.Rect.Width.ShouldBe(0);
+			_tree.Rect.Height.ShouldBe(0);
+			_tree.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_tree.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		#endregion //Defaults
@@ -92,10 +92,10 @@ namespace MenuBuddy.Tests
 			//create the top item
 			var cat = AddItem();
 
-			Assert.AreEqual(cat.Rect.Width, _tree.TotalRect.Right);
-			Assert.AreEqual(cat.Rect.Height, _tree.TotalRect.Bottom);
-			Assert.AreEqual(cat.Rect.Width, _tree.TotalRect.Width);
-			Assert.AreEqual(cat.Rect.Height, _tree.TotalRect.Height);
+			_tree.TotalRect.Right.ShouldBe(cat.Rect.Width);
+			_tree.TotalRect.Bottom.ShouldBe(cat.Rect.Height);
+			_tree.TotalRect.Width.ShouldBe(cat.Rect.Width);
+			_tree.TotalRect.Height.ShouldBe(cat.Rect.Height);
 		}
 
 		[Test]
@@ -110,7 +110,7 @@ namespace MenuBuddy.Tests
 			var expectedWidth = Math.Max(cat.Rect.Width, cat1.Rect.Width);
 			var expectedHeight = cat.Rect.Height + cat1.Rect.Height;
 
-			Assert.AreEqual(expectedWidth, _tree.TotalRect.Right);
+			_tree.TotalRect.Right.ShouldBe(expectedWidth);
 		}
 
 		[Test]
@@ -125,7 +125,7 @@ namespace MenuBuddy.Tests
 			var expectedWidth = cat.Rect.Width + cat1.Rect.Width;
 			var expectedHeight = cat.Rect.Height + cat1.Rect.Height;
 
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Bottom);
+			_tree.TotalRect.Bottom.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -140,7 +140,7 @@ namespace MenuBuddy.Tests
 			var expectedWidth = Math.Max(cat.Rect.Width, cat1.Rect.Width);
 			var expectedHeight = cat.Rect.Height + cat1.Rect.Height;
 
-			Assert.AreEqual(expectedWidth, _tree.TotalRect.Width);
+			_tree.TotalRect.Width.ShouldBe(expectedWidth);
 		}
 
 		[Test]
@@ -155,7 +155,7 @@ namespace MenuBuddy.Tests
 			var expectedWidth = cat.Rect.Width + cat1.Rect.Width;
 			var expectedHeight = cat.Rect.Height + cat1.Rect.Height;
 
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Height);
+			_tree.TotalRect.Height.ShouldBe(expectedHeight);
 		}
 
 		#endregion //unexpanded tests
@@ -173,10 +173,10 @@ namespace MenuBuddy.Tests
 			var expectedWidth = Math.Max(cat.Rect.Width, sub.Rect.Width);
 			var expectedHeight = cat.Rect.Height + sub.Rect.Height;
 
-			Assert.AreEqual(expectedWidth, _tree.TotalRect.Right);
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Bottom);
-			Assert.AreEqual(expectedWidth, _tree.TotalRect.Width);
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Height);
+			_tree.TotalRect.Right.ShouldBe(expectedWidth);
+			_tree.TotalRect.Bottom.ShouldBe(expectedHeight);
+			_tree.TotalRect.Width.ShouldBe(expectedWidth);
+			_tree.TotalRect.Height.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -190,7 +190,7 @@ namespace MenuBuddy.Tests
 			var expectedWidth = Math.Max(cat.Rect.Width, sub.Rect.Width);
 			var expectedHeight = cat.Rect.Height + sub.Rect.Height;
 
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Bottom);
+			_tree.TotalRect.Bottom.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -204,7 +204,7 @@ namespace MenuBuddy.Tests
 			var expectedWidth = Math.Max(cat.Rect.Width, sub.Rect.Width);
 			var expectedHeight = cat.Rect.Height + sub.Rect.Height;
 
-			Assert.AreEqual(expectedWidth, _tree.TotalRect.Width);
+			_tree.TotalRect.Width.ShouldBe(expectedWidth);
 		}
 
 		[Test]
@@ -218,7 +218,7 @@ namespace MenuBuddy.Tests
 			var expectedWidth = Math.Max(cat.Rect.Width, sub.Rect.Width);
 			var expectedHeight = cat.Rect.Height + sub.Rect.Height;
 
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Height);
+			_tree.TotalRect.Height.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -236,9 +236,9 @@ namespace MenuBuddy.Tests
 			expectedWidth = Math.Max(expectedWidth, cat1.Rect.Width);
 			var expectedHeight = cat.Rect.Height + sub.Rect.Height + cat1.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedWidth, _tree.TotalRect.Right);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.TotalRect.Right.ShouldBe(expectedWidth);
 		}
 
 		[Test]
@@ -256,9 +256,9 @@ namespace MenuBuddy.Tests
 				sub.Rect.Height +
 				cat1.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Bottom);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.TotalRect.Bottom.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -275,9 +275,9 @@ namespace MenuBuddy.Tests
 			expectedWidth = Math.Max(expectedWidth, cat1.Rect.Width);
 			var expectedHeight = cat.Rect.Height + sub.Rect.Height + cat1.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedWidth, _tree.TotalRect.Width);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.TotalRect.Width.ShouldBe(expectedWidth);
 		}
 
 		[Test]
@@ -293,9 +293,9 @@ namespace MenuBuddy.Tests
 
 			var expectedHeight = cat.Rect.Height + sub.Rect.Height + cat1.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Height);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.TotalRect.Height.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -312,9 +312,9 @@ namespace MenuBuddy.Tests
 
 			var expectedHeight = cat.Rect.Height + sub.Rect.Height + cat1.Rect.Height + sub1.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Height);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.TotalRect.Height.ShouldBe(expectedHeight);
 		}
 
 		#endregion //multiple expand tests
@@ -337,9 +337,9 @@ namespace MenuBuddy.Tests
 
 			var expectedHeight = cat.Rect.Height + cat1.Rect.Height + sub1.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Height);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.TotalRect.Height.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -359,9 +359,9 @@ namespace MenuBuddy.Tests
 
 			var expectedHeight = cat.Rect.Height + cat1.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Height);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.TotalRect.Height.ShouldBe(expectedHeight);
 		}
 
 		#endregion //expand unexpand tests
@@ -375,7 +375,7 @@ namespace MenuBuddy.Tests
 			var sub = AddSubItem(cat);
 			
 
-			Assert.AreEqual(_tree.MaxScroll.Y, _tree.TotalRect.Height);
+			_tree.TotalRect.Height.ShouldBe((int)_tree.MaxScroll.Y);
 		}
 
 		[Test]
@@ -386,7 +386,7 @@ namespace MenuBuddy.Tests
 
 			var expectedHeight = cat.Rect.Height;
 
-			Assert.AreEqual(expectedHeight, _tree.MaxScroll.Y);
+			_tree.MaxScroll.Y.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -402,9 +402,9 @@ namespace MenuBuddy.Tests
 
 			var expectedHeight = cat.Rect.Height + sub.Rect.Height + cat1.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.MaxScroll.Y);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.MaxScroll.Y.ShouldBe(expectedHeight);
 		}
 
 		#endregion //unexpanded tests
@@ -432,9 +432,9 @@ namespace MenuBuddy.Tests
 				sub1.Rect.Height +
 				cat.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Height);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.TotalRect.Height.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -460,9 +460,9 @@ namespace MenuBuddy.Tests
 				cat.Rect.Height +
 				sub.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Height);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.TotalRect.Height.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -490,9 +490,9 @@ namespace MenuBuddy.Tests
 				cat.Rect.Height +
 				sub.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Height);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.TotalRect.Height.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -521,9 +521,9 @@ namespace MenuBuddy.Tests
 				cat.Rect.Height +
 				sub.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Height);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.TotalRect.Height.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -552,9 +552,9 @@ namespace MenuBuddy.Tests
 				//sub1.Rect.Height +
 				cat.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.TotalRect.Height);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.TotalRect.Height.ShouldBe(expectedHeight);
 		}
 
 		#endregion //three items tests
@@ -582,9 +582,9 @@ namespace MenuBuddy.Tests
 				sub1.Rect.Height +
 				cat.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.MaxScroll.Y);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.MaxScroll.Y.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -610,9 +610,9 @@ namespace MenuBuddy.Tests
 				cat.Rect.Height +
 				sub.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.MaxScroll.Y);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.MaxScroll.Y.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -640,9 +640,9 @@ namespace MenuBuddy.Tests
 				cat.Rect.Height +
 				sub.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.MaxScroll.Y);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.MaxScroll.Y.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -671,9 +671,9 @@ namespace MenuBuddy.Tests
 				cat.Rect.Height +
 				sub.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.MaxScroll.Y);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.MaxScroll.Y.ShouldBe(expectedHeight);
 		}
 
 		[Test]
@@ -702,9 +702,9 @@ namespace MenuBuddy.Tests
 				//sub1.Rect.Height +
 				cat.Rect.Height;
 
-			Assert.AreEqual(0, _tree.TotalRect.Left);
-			Assert.AreEqual(0, _tree.TotalRect.Top);
-			Assert.AreEqual(expectedHeight, _tree.MaxScroll.Y);
+			_tree.TotalRect.Left.ShouldBe(0);
+			_tree.TotalRect.Top.ShouldBe(0);
+			_tree.MaxScroll.Y.ShouldBe(expectedHeight);
 		}
 
 		#endregion //three items tests
@@ -726,11 +726,11 @@ namespace MenuBuddy.Tests
 			cat2.ToggleExpansion(this, new ClickEventArgs(Vector2.Zero, InputHelper.MouseButton.Left, null));
 			cat1.ToggleExpansion(this, new ClickEventArgs(Vector2.Zero, InputHelper.MouseButton.Left, null));
 
-			Assert.AreEqual(0, cat.Position.Y);
-			Assert.AreEqual(cat.Rect.Bottom, cat1.Position.Y);
-			Assert.AreEqual(cat1.Rect.Bottom, sub1.Position.Y);
-			Assert.AreEqual(sub1.Rect.Bottom, cat2.Position.Y);
-			Assert.AreEqual(cat2.Rect.Bottom, sub2.Position.Y);
+			cat.Position.Y.ShouldBe(0);
+			cat1.Position.Y.ShouldBe(cat.Rect.Bottom);
+			sub1.Position.Y.ShouldBe(cat1.Rect.Bottom);
+			cat2.Position.Y.ShouldBe(sub1.Rect.Bottom);
+			sub2.Position.Y.ShouldBe(cat2.Rect.Bottom);
 		}
 
 		[Test]
@@ -749,12 +749,12 @@ namespace MenuBuddy.Tests
 			cat1.ToggleExpansion(this, new ClickEventArgs(Vector2.Zero, InputHelper.MouseButton.Left, null));
 			cat.ToggleExpansion(this, new ClickEventArgs(Vector2.Zero, InputHelper.MouseButton.Left, null));
 
-			Assert.AreEqual(0, cat.Position.Y);
-			Assert.AreEqual(cat.Rect.Bottom, sub.Position.Y);
-			Assert.AreEqual(sub.Rect.Bottom, cat1.Position.Y);
-			Assert.AreEqual(cat1.Rect.Bottom, sub1.Position.Y);
-			Assert.AreEqual(sub1.Rect.Bottom, cat2.Position.Y);
-			Assert.AreEqual(cat2.Rect.Bottom, sub2.Position.Y);
+			cat.Position.Y.ShouldBe(0);
+			sub.Position.Y.ShouldBe(cat.Rect.Bottom);
+			cat1.Position.Y.ShouldBe(sub.Rect.Bottom);
+			sub1.Position.Y.ShouldBe(cat1.Rect.Bottom);
+			cat2.Position.Y.ShouldBe(sub1.Rect.Bottom);
+			sub2.Position.Y.ShouldBe(cat2.Rect.Bottom);
 		}
 
 		[Test]
@@ -775,11 +775,11 @@ namespace MenuBuddy.Tests
 
 			cat1.ToggleExpansion(this, new ClickEventArgs(Vector2.Zero, InputHelper.MouseButton.Left, null));
 
-			Assert.AreEqual(0, cat.Position.Y);
-			Assert.AreEqual(cat.Rect.Bottom, sub.Position.Y);
-			Assert.AreEqual(sub.Rect.Bottom, cat1.Position.Y);
-			Assert.AreEqual(cat1.Rect.Bottom, cat2.Position.Y);
-			Assert.AreEqual(cat2.Rect.Bottom, sub2.Position.Y);
+			cat.Position.Y.ShouldBe(0);
+			sub.Position.Y.ShouldBe(cat.Rect.Bottom);
+			cat1.Position.Y.ShouldBe(sub.Rect.Bottom);
+			cat2.Position.Y.ShouldBe(cat1.Rect.Bottom);
+			sub2.Position.Y.ShouldBe(cat2.Rect.Bottom);
 		}
 
 		[Test]
@@ -801,10 +801,10 @@ namespace MenuBuddy.Tests
 			cat2.ToggleExpansion(this, new ClickEventArgs(Vector2.Zero, InputHelper.MouseButton.Left, null));
 			cat1.ToggleExpansion(this, new ClickEventArgs(Vector2.Zero, InputHelper.MouseButton.Left, null));
 
-			Assert.AreEqual(0, cat.Position.Y);
-			Assert.AreEqual(cat.Rect.Bottom, sub.Position.Y);
-			Assert.AreEqual(sub.Rect.Bottom, cat1.Position.Y);
-			Assert.AreEqual(cat1.Rect.Bottom, cat2.Position.Y);
+			cat.Position.Y.ShouldBe(0);
+			sub.Position.Y.ShouldBe(cat.Rect.Bottom);
+			cat1.Position.Y.ShouldBe(sub.Rect.Bottom);
+			cat2.Position.Y.ShouldBe(cat1.Rect.Bottom);
 		}
 
 		[Test]
@@ -827,9 +827,9 @@ namespace MenuBuddy.Tests
 			cat2.ToggleExpansion(this, new ClickEventArgs(Vector2.Zero, InputHelper.MouseButton.Left, null));
 			cat1.ToggleExpansion(this, new ClickEventArgs(Vector2.Zero, InputHelper.MouseButton.Left, null));
 
-			Assert.AreEqual(0, cat.Position.Y);
-			Assert.AreEqual(cat.Rect.Bottom, cat1.Position.Y);
-			Assert.AreEqual(cat1.Rect.Bottom, cat2.Position.Y);
+			cat.Position.Y.ShouldBe(0);
+			cat1.Position.Y.ShouldBe(cat.Rect.Bottom);
+			cat2.Position.Y.ShouldBe(cat1.Rect.Bottom);
 		}
 
 		#endregion //three items locations
@@ -887,23 +887,23 @@ namespace MenuBuddy.Tests
 			pants.ToggleExpansion(this, new ClickEventArgs(Vector2.Zero, InputHelper.MouseButton.Left, null));
 			cat.ToggleExpansion(this, new ClickEventArgs(Vector2.Zero, InputHelper.MouseButton.Left, null));
 
-			Assert.AreEqual(0, cat.Position.Y);
-			Assert.AreEqual(cat.Rect.Bottom, cat_sub1.Position.Y);
-			Assert.AreEqual(cat_sub1.Rect.Bottom, cat_sub2.Position.Y);
-			Assert.AreEqual(cat_sub2.Rect.Bottom, cat_sub3.Position.Y);
-			Assert.AreEqual(cat_sub3.Rect.Bottom, pants.Position.Y);
-			Assert.AreEqual(pants.Rect.Bottom, pants_sub1.Position.Y);
-			Assert.AreEqual(pants_sub1.Rect.Bottom, pants_sub2.Position.Y);
-			Assert.AreEqual(pants_sub2.Rect.Bottom, pants_sub3.Position.Y);
-			Assert.AreEqual(pants_sub3.Rect.Bottom, buttnuts.Position.Y);
-			Assert.AreEqual(buttnuts.Rect.Bottom, buttnuts_sub1.Position.Y);
-			Assert.AreEqual(buttnuts_sub1.Rect.Bottom, buttnuts_sub2.Position.Y);
-			Assert.AreEqual(buttnuts_sub2.Rect.Bottom, buttnuts_sub3.Position.Y);
-			Assert.AreEqual(buttnuts_sub3.Rect.Bottom, cat1.Position.Y);
-			Assert.AreEqual(cat1.Rect.Bottom, pants1.Position.Y);
-			Assert.AreEqual(pants1.Rect.Bottom, whoa.Position.Y);
-			Assert.AreEqual(whoa.Rect.Bottom, test1.Position.Y);
-			Assert.AreEqual(test1.Rect.Bottom, test2.Position.Y);
+			cat.Position.Y.ShouldBe(0);
+			cat_sub1.Position.Y.ShouldBe(cat.Rect.Bottom);
+			cat_sub2.Position.Y.ShouldBe(cat_sub1.Rect.Bottom);
+			cat_sub3.Position.Y.ShouldBe(cat_sub2.Rect.Bottom);
+			pants.Position.Y.ShouldBe(cat_sub3.Rect.Bottom);
+			pants_sub1.Position.Y.ShouldBe(pants.Rect.Bottom);
+			pants_sub2.Position.Y.ShouldBe(pants_sub1.Rect.Bottom);
+			pants_sub3.Position.Y.ShouldBe(pants_sub2.Rect.Bottom);
+			buttnuts.Position.Y.ShouldBe(pants_sub3.Rect.Bottom);
+			buttnuts_sub1.Position.Y.ShouldBe(buttnuts.Rect.Bottom);
+			buttnuts_sub2.Position.Y.ShouldBe(buttnuts_sub1.Rect.Bottom);
+			buttnuts_sub3.Position.Y.ShouldBe(buttnuts_sub2.Rect.Bottom);
+			cat1.Position.Y.ShouldBe(buttnuts_sub3.Rect.Bottom);
+			pants1.Position.Y.ShouldBe(cat1.Rect.Bottom);
+			whoa.Position.Y.ShouldBe(pants1.Rect.Bottom);
+			test1.Position.Y.ShouldBe(whoa.Rect.Bottom);
+			test2.Position.Y.ShouldBe(test1.Rect.Bottom);
 		}
 
 		#endregion //three items locations

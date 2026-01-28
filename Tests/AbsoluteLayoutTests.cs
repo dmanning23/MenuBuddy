@@ -30,12 +30,12 @@ namespace MenuBuddy.Tests
 		public void AbsoluteLayoutTests_Default()
 		{
 			_layout.Position = new Point(10, 20);
-			Assert.AreEqual(10, _layout.Rect.X);
-			Assert.AreEqual(20, _layout.Rect.Y);
-			Assert.AreEqual(0, _layout.Rect.Width);
-			Assert.AreEqual(0, _layout.Rect.Height);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
+			_layout.Rect.X.ShouldBe(10);
+			_layout.Rect.Y.ShouldBe(20);
+			_layout.Rect.Width.ShouldBe(0);
+			_layout.Rect.Height.ShouldBe(0);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		#endregion //Defaults
@@ -54,14 +54,14 @@ namespace MenuBuddy.Tests
 			};
             _layout.AddItem(shim);
 
-			Assert.AreEqual(10, _layout.Rect.X);
-			Assert.AreEqual(20, _layout.Rect.Y);
-			Assert.AreEqual(0, _layout.Rect.Width);
-			Assert.AreEqual(0, _layout.Rect.Height);
-			Assert.AreEqual(110, shim.Rect.X);
-			Assert.AreEqual(220, shim.Rect.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, shim.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, shim.Vertical);
+			_layout.Rect.X.ShouldBe(10);
+			_layout.Rect.Y.ShouldBe(20);
+			_layout.Rect.Width.ShouldBe(0);
+			_layout.Rect.Height.ShouldBe(0);
+			shim.Rect.X.ShouldBe(110);
+			shim.Rect.Y.ShouldBe(220);
+			shim.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			shim.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -77,10 +77,10 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim);
 
-			Assert.AreEqual(110, shim.Rect.X);
-			Assert.AreEqual(220, shim.Rect.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, shim.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, shim.Vertical);
+			shim.Rect.X.ShouldBe(110);
+			shim.Rect.Y.ShouldBe(220);
+			shim.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			shim.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -96,10 +96,10 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim);
 
-			Assert.AreEqual(110, shim.Rect.X);
-			Assert.AreEqual(220, shim.Rect.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, shim.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, shim.Vertical);
+			shim.Rect.X.ShouldBe(110);
+			shim.Rect.Y.ShouldBe(220);
+			shim.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			shim.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -116,9 +116,9 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim);
 
-			Assert.AreEqual(110, shim.Rect.X);
-			Assert.AreEqual(220, shim.Rect.Y);
-			Assert.AreEqual(VerticalAlignment.Top, shim.Vertical);
+			shim.Rect.X.ShouldBe(110);
+			shim.Rect.Y.ShouldBe(220);
+			shim.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -135,8 +135,8 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim);
 
-			Assert.AreEqual(110, shim.Rect.X);
-			Assert.AreEqual(220, shim.Rect.Y);
+			shim.Rect.X.ShouldBe(110);
+			shim.Rect.Y.ShouldBe(220);
 		}
 
 		#endregion //OneItem
@@ -161,10 +161,10 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim2);
 
-			Assert.AreEqual(110, shim1.Rect.X);
-			Assert.AreEqual(220, shim1.Rect.Y);
-			Assert.AreEqual(110, shim2.Rect.X);
-			Assert.AreEqual(220, shim2.Rect.Y);
+			shim1.Rect.X.ShouldBe(110);
+			shim1.Rect.Y.ShouldBe(220);
+			shim2.Rect.X.ShouldBe(110);
+			shim2.Rect.Y.ShouldBe(220);
 		}
 
 		[Test]
@@ -186,12 +186,12 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim2);
 
-			Assert.AreEqual(110, shim1.Rect.X);
-			Assert.AreEqual(220, shim1.Rect.Y);
-			Assert.AreEqual(110, shim2.Rect.X);
-			Assert.AreEqual(220, shim2.Rect.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, shim1.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, shim1.Vertical);
+			shim1.Rect.X.ShouldBe(110);
+			shim1.Rect.Y.ShouldBe(220);
+			shim2.Rect.X.ShouldBe(110);
+			shim2.Rect.Y.ShouldBe(220);
+			shim1.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			shim1.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -213,12 +213,12 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim2);
 
-			Assert.AreEqual(110, shim1.Rect.X);
-			Assert.AreEqual(220, shim1.Rect.Y);
-			Assert.AreEqual(110, shim2.Rect.X);
-			Assert.AreEqual(220, shim2.Rect.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, shim1.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, shim1.Vertical);
+			shim1.Rect.X.ShouldBe(110);
+			shim1.Rect.Y.ShouldBe(220);
+			shim2.Rect.X.ShouldBe(110);
+			shim2.Rect.Y.ShouldBe(220);
+			shim1.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			shim1.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -241,12 +241,12 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim2);
 
-			Assert.AreEqual(110, shim1.Rect.X);
-			Assert.AreEqual(220, shim1.Rect.Y);
-			Assert.AreEqual(110, shim2.Rect.X);
-			Assert.AreEqual(220, shim2.Rect.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, shim1.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, shim1.Vertical);
+			shim1.Rect.X.ShouldBe(110);
+			shim1.Rect.Y.ShouldBe(220);
+			shim2.Rect.X.ShouldBe(110);
+			shim2.Rect.Y.ShouldBe(220);
+			shim1.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			shim1.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -269,12 +269,12 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim2);
 
-			Assert.AreEqual(110, shim1.Rect.X);
-			Assert.AreEqual(220, shim1.Rect.Y);
-			Assert.AreEqual(110, shim2.Rect.X);
-			Assert.AreEqual(220, shim2.Rect.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, shim1.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, shim1.Vertical);
+			shim1.Rect.X.ShouldBe(110);
+			shim1.Rect.Y.ShouldBe(220);
+			shim2.Rect.X.ShouldBe(110);
+			shim2.Rect.Y.ShouldBe(220);
+			shim1.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			shim1.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -297,12 +297,12 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim2);
 
-			Assert.AreEqual(110, shim1.Rect.X);
-			Assert.AreEqual(220, shim1.Rect.Y);
-			Assert.AreEqual(160, shim2.Rect.X);
-			Assert.AreEqual(260, shim2.Rect.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, shim1.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, shim1.Vertical);
+			shim1.Rect.X.ShouldBe(110);
+			shim1.Rect.Y.ShouldBe(220);
+			shim2.Rect.X.ShouldBe(160);
+			shim2.Rect.Y.ShouldBe(260);
+			shim1.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			shim1.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		#endregion //OneItem
@@ -326,17 +326,17 @@ namespace MenuBuddy.Tests
 			};
 			_layout.AddItem(shim);
 
-			Assert.AreEqual(10, _layout.Rect.X);
-			Assert.AreEqual(20, _layout.Rect.Y);
-			Assert.AreEqual(300, _layout.Rect.Width);
-			Assert.AreEqual(400, _layout.Rect.Height);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
+			_layout.Rect.X.ShouldBe(10);
+			_layout.Rect.Y.ShouldBe(20);
+			_layout.Rect.Width.ShouldBe(300);
+			_layout.Rect.Height.ShouldBe(400);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
 
-			Assert.AreEqual(110, shim.Rect.X);
-			Assert.AreEqual(220, shim.Rect.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, shim.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, shim.Vertical);
+			shim.Rect.X.ShouldBe(110);
+			shim.Rect.Y.ShouldBe(220);
+			shim.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			shim.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -358,17 +358,17 @@ namespace MenuBuddy.Tests
 
 			_layout.Position = new Point(1000, 2000);
 
-			Assert.AreEqual(1000, _layout.Rect.X);
-			Assert.AreEqual(2000, _layout.Rect.Y);
-			Assert.AreEqual(100, _layout.Rect.Width);
-			Assert.AreEqual(200, _layout.Rect.Height);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
+			_layout.Rect.X.ShouldBe(1000);
+			_layout.Rect.Y.ShouldBe(2000);
+			_layout.Rect.Width.ShouldBe(100);
+			_layout.Rect.Height.ShouldBe(200);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
 
-			Assert.AreEqual(1100, shim.Position.X);
-			Assert.AreEqual(2200, shim.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, shim.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, shim.Vertical);
+			shim.Position.X.ShouldBe(1100);
+			shim.Position.Y.ShouldBe(2200);
+			shim.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			shim.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -390,17 +390,17 @@ namespace MenuBuddy.Tests
 
 			_layout.Horizontal = HorizontalAlignment.Right;
 
-			Assert.AreEqual(-90, _layout.Rect.X);
-			Assert.AreEqual(20, _layout.Rect.Y);
-			Assert.AreEqual(100, _layout.Rect.Width);
-			Assert.AreEqual(200, _layout.Rect.Height);
-			Assert.AreEqual(VerticalAlignment.Top, _layout.Vertical);
-			Assert.AreEqual(HorizontalAlignment.Right, _layout.Horizontal);
+			_layout.Rect.X.ShouldBe(-90);
+			_layout.Rect.Y.ShouldBe(20);
+			_layout.Rect.Width.ShouldBe(100);
+			_layout.Rect.Height.ShouldBe(200);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Top);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Right);
 
-			Assert.AreEqual(10, shim.Position.X);
-			Assert.AreEqual(220, shim.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, shim.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, shim.Vertical);
+			shim.Position.X.ShouldBe(10);
+			shim.Position.Y.ShouldBe(220);
+			shim.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			shim.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -422,17 +422,17 @@ namespace MenuBuddy.Tests
 
 			_layout.Vertical = VerticalAlignment.Bottom;
 
-			Assert.AreEqual(10, _layout.Rect.X);
-			Assert.AreEqual(-180, _layout.Rect.Y);
-			Assert.AreEqual(100, _layout.Rect.Width);
-			Assert.AreEqual(200, _layout.Rect.Height);
-			Assert.AreEqual(VerticalAlignment.Bottom, _layout.Vertical);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
+			_layout.Rect.X.ShouldBe(10);
+			_layout.Rect.Y.ShouldBe(-180);
+			_layout.Rect.Width.ShouldBe(100);
+			_layout.Rect.Height.ShouldBe(200);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Bottom);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
 
-			Assert.AreEqual(110, shim.Position.X);
-			Assert.AreEqual(20, shim.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, shim.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, shim.Vertical);
+			shim.Position.X.ShouldBe(110);
+			shim.Position.Y.ShouldBe(20);
+			shim.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			shim.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		[Test]
@@ -455,17 +455,17 @@ namespace MenuBuddy.Tests
 			_layout.Vertical = VerticalAlignment.Bottom;
 			_layout.Size = new Vector2(100f, 400f);
 
-			Assert.AreEqual(10, _layout.Rect.X);
-			Assert.AreEqual(-380, _layout.Rect.Y);
-			Assert.AreEqual(100, _layout.Rect.Width);
-			Assert.AreEqual(400, _layout.Rect.Height);
-			Assert.AreEqual(VerticalAlignment.Bottom, _layout.Vertical);
-			Assert.AreEqual(HorizontalAlignment.Left, _layout.Horizontal);
+			_layout.Rect.X.ShouldBe(10);
+			_layout.Rect.Y.ShouldBe(-380);
+			_layout.Rect.Width.ShouldBe(100);
+			_layout.Rect.Height.ShouldBe(400);
+			_layout.Vertical.ShouldBe(VerticalAlignment.Bottom);
+			_layout.Horizontal.ShouldBe(HorizontalAlignment.Left);
 
-			Assert.AreEqual(110, shim.Position.X);
-			Assert.AreEqual(-180, shim.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Left, shim.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Top, shim.Vertical);
+			shim.Position.X.ShouldBe(110);
+			shim.Position.Y.ShouldBe(-180);
+			shim.Horizontal.ShouldBe(HorizontalAlignment.Left);
+			shim.Vertical.ShouldBe(VerticalAlignment.Top);
 		}
 
 		#endregion //ChangeProperties

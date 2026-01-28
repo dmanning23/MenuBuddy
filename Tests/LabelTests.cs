@@ -37,17 +37,17 @@ namespace MenuBuddy.Tests
 		[Test]
 		public void LabelTests_NullRect()
 		{
-			Assert.AreEqual(0, _label.Rect.X);
-			Assert.AreEqual(0, _label.Rect.Y);
-			Assert.AreEqual(30, _label.Rect.Width);
-			Assert.AreEqual(40, _label.Rect.Height);
+			_label.Rect.X.ShouldBe(0);
+			_label.Rect.Y.ShouldBe(0);
+			_label.Rect.Width.ShouldBe(30);
+			_label.Rect.Height.ShouldBe(40);
 		}
 
 		[Test]
 		public void LabelTests_NullPosition()
 		{
-			Assert.AreEqual(0, _label.Rect.X);
-			Assert.AreEqual(0, _label.Rect.Y);
+			_label.Rect.X.ShouldBe(0);
+			_label.Rect.Y.ShouldBe(0);
 		}
 
 		#endregion //Defaults
@@ -59,8 +59,8 @@ namespace MenuBuddy.Tests
 		{
 			_label.Position = new Point(50, 60);
 
-			Assert.AreEqual(50, _label.Rect.X);
-			Assert.AreEqual(60, _label.Rect.Y);
+			_label.Rect.X.ShouldBe(50);
+			_label.Rect.Y.ShouldBe(60);
 		}
 
 		[Test]
@@ -68,10 +68,10 @@ namespace MenuBuddy.Tests
 		{
 			_label.Position = new Point(10, 20);
 
-			Assert.AreEqual(10, _label.Rect.X);
-			Assert.AreEqual(20, _label.Rect.Y);
-			Assert.AreEqual(30, _label.Rect.Width);
-			Assert.AreEqual(40, _label.Rect.Height);
+			_label.Rect.X.ShouldBe(10);
+			_label.Rect.Y.ShouldBe(20);
+			_label.Rect.Width.ShouldBe(30);
+			_label.Rect.Height.ShouldBe(40);
 		}
 
 		[Test]
@@ -82,8 +82,8 @@ namespace MenuBuddy.Tests
 				.Returns(new Vector2(50f, 60f));
 			_label.Text = "buttnuts";
 
-			Assert.AreEqual(50, _label.Rect.Width);
-			Assert.AreEqual(60, _label.Rect.Height);
+			_label.Rect.Width.ShouldBe(50);
+			_label.Rect.Height.ShouldBe(60);
 		}
 
 		#endregion //Rect & Position 
@@ -96,10 +96,10 @@ namespace MenuBuddy.Tests
 			_label.Position = new Point(10, 20);
 			_label.Scale = 2.0f;
 
-			Assert.AreEqual(10, _label.Rect.X);
-			Assert.AreEqual(20, _label.Rect.Y);
-			Assert.AreEqual(60, _label.Rect.Width);
-			Assert.AreEqual(80, _label.Rect.Height);
+			_label.Rect.X.ShouldBe(10);
+			_label.Rect.Y.ShouldBe(20);
+			_label.Rect.Width.ShouldBe(60);
+			_label.Rect.Height.ShouldBe(80);
 		}
 
 		[Test]
@@ -108,10 +108,10 @@ namespace MenuBuddy.Tests
 			_label.Scale = 2f;
 			_label.Position = new Point(10, 20);
 
-			Assert.AreEqual(10, _label.Rect.X);
-			Assert.AreEqual(20, _label.Rect.Y);
-			Assert.AreEqual(60, _label.Rect.Width);
-			Assert.AreEqual(80, _label.Rect.Height);
+			_label.Rect.X.ShouldBe(10);
+			_label.Rect.Y.ShouldBe(20);
+			_label.Rect.Width.ShouldBe(60);
+			_label.Rect.Height.ShouldBe(80);
 		}
 
 		[Test]
@@ -120,10 +120,10 @@ namespace MenuBuddy.Tests
 			_label.Position = new Point(10, 20);
 			_label.Scale = 2f;
 
-			Assert.AreEqual(10, _label.Rect.X);
-			Assert.AreEqual(20, _label.Rect.Y);
-			Assert.AreEqual(60, _label.Rect.Width);
-			Assert.AreEqual(80, _label.Rect.Height);
+			_label.Rect.X.ShouldBe(10);
+			_label.Rect.Y.ShouldBe(20);
+			_label.Rect.Width.ShouldBe(60);
+			_label.Rect.Height.ShouldBe(80);
 		}
 
 		[Test]
@@ -132,10 +132,10 @@ namespace MenuBuddy.Tests
 			_label.Scale = 2f;
 			_label.Position = new Point(10, 20);
 
-			Assert.AreEqual(10, _label.Rect.X);
-			Assert.AreEqual(20, _label.Rect.Y);
-			Assert.AreEqual(60, _label.Rect.Width);
-			Assert.AreEqual(80, _label.Rect.Height);
+			_label.Rect.X.ShouldBe(10);
+			_label.Rect.Y.ShouldBe(20);
+			_label.Rect.Width.ShouldBe(60);
+			_label.Rect.Height.ShouldBe(80);
 		}
 
 		#endregion //Scale
@@ -147,7 +147,7 @@ namespace MenuBuddy.Tests
 		{
 			_label.Text = "buttnuts";
 			var copyLabel = new Label(_label as Label);
-			Assert.AreEqual("buttnuts", copyLabel.Text);
+			copyLabel.Text.ShouldBe("buttnuts");
 		}
 
 		//[Test]
@@ -155,7 +155,7 @@ namespace MenuBuddy.Tests
 		//{
 		//	_label.FontSize = FontSize.Large;
 		//	var copyLabel = new Label(_label as Label);
-		//	Assert.AreEqual(FontSize.Large, copyLabel.FontSize);
+		//	copyLabel.FontSize.ShouldBe(FontSize.Large);
 		//}
 
 		[Test]
@@ -163,7 +163,7 @@ namespace MenuBuddy.Tests
 		{
 			_label.TextColor = Color.Pink;
 			var copyLabel = new Label(_label as Label);
-			Assert.AreEqual(Color.Pink, copyLabel.TextColor);
+			copyLabel.TextColor.ShouldBe(Color.Pink);
 		}
 
 		[Test]
@@ -171,7 +171,7 @@ namespace MenuBuddy.Tests
 		{
 			_label.ShadowColor = Color.Pink;
 			var copyLabel = new Label(_label as Label);
-			Assert.AreEqual(Color.Pink, copyLabel.ShadowColor);
+			copyLabel.ShadowColor.ShouldBe(Color.Pink);
 		}
 
 		#endregion //Copy

@@ -67,17 +67,17 @@ namespace MenuBuddy.Tests
 		[Test]
 		public void ImageTests_NullRect()
 		{
-			Assert.AreEqual(0, _image.Rect.X);
-			Assert.AreEqual(0, _image.Rect.Y);
-			Assert.AreEqual(30, _image.Rect.Width);
-			Assert.AreEqual(40, _image.Rect.Height);
+			_image.Rect.X.ShouldBe(0);
+			_image.Rect.Y.ShouldBe(0);
+			_image.Rect.Width.ShouldBe(30);
+			_image.Rect.Height.ShouldBe(40);
 		}
 
 		[Test]
 		public void ImageTests_NullPosition()
 		{
-			Assert.AreEqual(0, _image.Rect.X);
-			Assert.AreEqual(0, _image.Rect.Y);
+			_image.Rect.X.ShouldBe(0);
+			_image.Rect.Y.ShouldBe(0);
 		}
 
 		#endregion //Defaults
@@ -89,8 +89,8 @@ namespace MenuBuddy.Tests
 		{
 			_image.Position = new Point(50, 60);
 
-			Assert.AreEqual(50, _image.Rect.X);
-			Assert.AreEqual(60, _image.Rect.Y);
+			_image.Rect.X.ShouldBe(50);
+			_image.Rect.Y.ShouldBe(60);
 		}
 
 		[Test]
@@ -98,10 +98,10 @@ namespace MenuBuddy.Tests
 		{
 			_image.Position = new Point(10, 20);
 
-			Assert.AreEqual(10, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(30, _image.Rect.Width);
-			Assert.AreEqual(40, _image.Rect.Height);
+			_image.Rect.X.ShouldBe(10);
+			_image.Rect.Y.ShouldBe(20);
+			_image.Rect.Width.ShouldBe(30);
+			_image.Rect.Height.ShouldBe(40);
 		}
 
 		[Test]
@@ -114,8 +114,8 @@ namespace MenuBuddy.Tests
 			_mockImage.Setup(x => x.Bounds).Returns(new Rectangle(Point.Zero, new Point(50, 60)));
 			_image.Texture = null;
 
-			Assert.AreEqual(50, _image.Rect.Width);
-			Assert.AreEqual(60, _image.Rect.Height);
+			_image.Rect.Width.ShouldBe(50);
+			_image.Rect.Height.ShouldBe(60);
 		}
 
 		#endregion //Rect & Position 
@@ -128,10 +128,10 @@ namespace MenuBuddy.Tests
 			_image.Position = new Point(10, 20);
 			_image.Scale = 2.0f;
 
-			Assert.AreEqual(10, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(60, _image.Rect.Width);
-			Assert.AreEqual(80, _image.Rect.Height);
+			_image.Rect.X.ShouldBe(10);
+			_image.Rect.Y.ShouldBe(20);
+			_image.Rect.Width.ShouldBe(60);
+			_image.Rect.Height.ShouldBe(80);
 		}
 
 		[Test]
@@ -140,10 +140,10 @@ namespace MenuBuddy.Tests
 			_image.Scale = 2f;
 			_image.Position = new Point(10, 20);
 
-			Assert.AreEqual(10, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(60, _image.Rect.Width);
-			Assert.AreEqual(80, _image.Rect.Height);
+			_image.Rect.X.ShouldBe(10);
+			_image.Rect.Y.ShouldBe(20);
+			_image.Rect.Width.ShouldBe(60);
+			_image.Rect.Height.ShouldBe(80);
 		}
 
 		[Test]
@@ -152,10 +152,10 @@ namespace MenuBuddy.Tests
 			_image.Position = new Point(10, 20);
 			_image.Scale = 2f;
 
-			Assert.AreEqual(10, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(60, _image.Rect.Width);
-			Assert.AreEqual(80, _image.Rect.Height);
+			_image.Rect.X.ShouldBe(10);
+			_image.Rect.Y.ShouldBe(20);
+			_image.Rect.Width.ShouldBe(60);
+			_image.Rect.Height.ShouldBe(80);
 		}
 
 		[Test]
@@ -164,10 +164,10 @@ namespace MenuBuddy.Tests
 			_image.Scale = 2f;
 			_image.Position = new Point(10, 20);
 
-			Assert.AreEqual(10, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(60, _image.Rect.Width);
-			Assert.AreEqual(80, _image.Rect.Height);
+			_image.Rect.X.ShouldBe(10);
+			_image.Rect.Y.ShouldBe(20);
+			_image.Rect.Width.ShouldBe(60);
+			_image.Rect.Height.ShouldBe(80);
 		}
 
 		#endregion //Scale
@@ -182,10 +182,10 @@ namespace MenuBuddy.Tests
 			_image.Position = new Point(10, 20);
 			_image.Size = new Vector2(30, 40);
 
-			Assert.AreEqual(-5, _image.Rect.X);
-			Assert.AreEqual(20, _image.Rect.Y);
-			Assert.AreEqual(30, _image.Rect.Width);
-			Assert.AreEqual(40, _image.Rect.Height);
+			_image.Rect.X.ShouldBe(-5);
+			_image.Rect.Y.ShouldBe(20);
+			_image.Rect.Width.ShouldBe(30);
+			_image.Rect.Height.ShouldBe(40);
 		}
 
 		#endregion //Rect, Padding, & Scale

@@ -40,8 +40,8 @@ namespace MenuBuddy.Tests
 		{
 			_text.Position = new Point(50, 60);
 
-			Assert.AreEqual(50, _text.Rect.X);
-			Assert.AreEqual(60, _text.Rect.Y);
+			_text.Rect.X.ShouldBe(50);
+			_text.Rect.Y.ShouldBe(60);
 		}
 
 		#endregion //Rect & Position 

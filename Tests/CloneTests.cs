@@ -52,21 +52,21 @@ namespace MenuBuddy.Tests
 
 			var clone = layout.DeepCopy() as AbsoluteLayout;
 
-			Assert.AreEqual(20, layout.Size.X);
-			Assert.AreEqual(30, layout.Size.Y);
-			Assert.AreEqual(40, layout.Position.X);
-			Assert.AreEqual(50, layout.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, layout.Vertical);
-			Assert.AreEqual(.5f, layout.Scale);
+			layout.Size.X.ShouldBe(20);
+			layout.Size.Y.ShouldBe(30);
+			layout.Position.X.ShouldBe(40);
+			layout.Position.Y.ShouldBe(50);
+			layout.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			layout.Vertical.ShouldBe(VerticalAlignment.Center);
+			layout.Scale.ShouldBe(.5f);
 
-			Assert.AreEqual(20, clone.Size.X);
-			Assert.AreEqual(30, clone.Size.Y);
-			Assert.AreEqual(40, clone.Position.X);
-			Assert.AreEqual(50, clone.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, clone.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, clone.Vertical);
-			Assert.AreEqual(.5f, clone.Scale);
+			clone.Size.X.ShouldBe(20);
+			clone.Size.Y.ShouldBe(30);
+			clone.Position.X.ShouldBe(40);
+			clone.Position.Y.ShouldBe(50);
+			clone.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			clone.Vertical.ShouldBe(VerticalAlignment.Center);
+			clone.Scale.ShouldBe(.5f);
 		}
 
 		[Test]
@@ -89,13 +89,13 @@ namespace MenuBuddy.Tests
 			layout.Vertical = VerticalAlignment.Bottom;
 			layout.Scale = 2.5f;
 
-			Assert.AreEqual(20, clone.Size.X);
-			Assert.AreEqual(30, clone.Size.Y);
-			Assert.AreEqual(40, clone.Position.X);
-			Assert.AreEqual(50, clone.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, clone.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, clone.Vertical);
-			Assert.AreEqual(.5f, clone.Scale);
+			clone.Size.X.ShouldBe(20);
+			clone.Size.Y.ShouldBe(30);
+			clone.Position.X.ShouldBe(40);
+			clone.Position.Y.ShouldBe(50);
+			clone.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			clone.Vertical.ShouldBe(VerticalAlignment.Center);
+			clone.Scale.ShouldBe(.5f);
 		}
 
 		#endregion //Absolute Layout 
@@ -117,22 +117,22 @@ namespace MenuBuddy.Tests
 
 			var clone = layout.DeepCopy() as RelativeLayout;
 
-			Assert.AreEqual(20, layout.Size.X);
-			Assert.AreEqual(30, layout.Size.Y);
-			Assert.AreEqual(40, layout.Position.X);
-			Assert.AreEqual(50, layout.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, layout.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, layout.Vertical);
-			Assert.AreEqual(.5f, layout.Scale);
+			layout.Size.X.ShouldBe(20);
+			layout.Size.Y.ShouldBe(30);
+			layout.Position.X.ShouldBe(40);
+			layout.Position.Y.ShouldBe(50);
+			layout.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			layout.Vertical.ShouldBe(VerticalAlignment.Center);
+			layout.Scale.ShouldBe(.5f);
 
-			Assert.AreEqual(20, clone.Size.X);
-			Assert.AreEqual(30, clone.Size.Y);
-			Assert.AreEqual(40, clone.Position.X);
-			Assert.AreEqual(50, clone.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, clone.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, clone.Vertical);
-			Assert.AreEqual(.5f, clone.Scale);
-			Assert.AreEqual(1000, clone.Layer);
+			clone.Size.X.ShouldBe(20);
+			clone.Size.Y.ShouldBe(30);
+			clone.Position.X.ShouldBe(40);
+			clone.Position.Y.ShouldBe(50);
+			clone.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			clone.Vertical.ShouldBe(VerticalAlignment.Center);
+			clone.Scale.ShouldBe(.5f);
+			clone.Layer.ShouldBe(1000);
 		}
 
 		[Test]
@@ -157,14 +157,14 @@ namespace MenuBuddy.Tests
 			layout.Scale = 2.5f;
 			layout.Layer = 2000;
 
-			Assert.AreEqual(20, clone.Size.X);
-			Assert.AreEqual(30, clone.Size.Y);
-			Assert.AreEqual(40, clone.Position.X);
-			Assert.AreEqual(50, clone.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, clone.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, clone.Vertical);
-			Assert.AreEqual(.5f, clone.Scale);
-			Assert.AreEqual(1000, clone.Layer);
+			clone.Size.X.ShouldBe(20);
+			clone.Size.Y.ShouldBe(30);
+			clone.Position.X.ShouldBe(40);
+			clone.Position.Y.ShouldBe(50);
+			clone.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			clone.Vertical.ShouldBe(VerticalAlignment.Center);
+			clone.Scale.ShouldBe(.5f);
+			clone.Layer.ShouldBe(1000);
 		}
 
 		#endregion //Absolute Layout 
@@ -189,18 +189,18 @@ namespace MenuBuddy.Tests
 
 			var clone = layout.DeepCopy() as ScrollLayout;
 
-			Assert.AreEqual(20, clone.Size.X);
-			Assert.AreEqual(30, clone.Size.Y);
-			Assert.AreEqual(40, clone.Position.X);
-			Assert.AreEqual(50, clone.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, clone.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, clone.Vertical);
-			Assert.AreEqual(.5f, clone.Scale);
-			Assert.AreEqual(TransitionWipeType.PopTop, (clone.TransitionObject as WipeTransitionObject).WipeType);
-			Assert.AreEqual(100, clone.MinScroll.X);
-			Assert.AreEqual(200, clone.MinScroll.Y);
-			Assert.AreEqual(80, clone.MaxScroll.X);
-			Assert.AreEqual(90, clone.MaxScroll.Y);
+			clone.Size.X.ShouldBe(20);
+			clone.Size.Y.ShouldBe(30);
+			clone.Position.X.ShouldBe(40);
+			clone.Position.Y.ShouldBe(50);
+			clone.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			clone.Vertical.ShouldBe(VerticalAlignment.Center);
+			clone.Scale.ShouldBe(.5f);
+			(clone.TransitionObject as WipeTransitionObject).WipeType.ShouldBe(TransitionWipeType.PopTop);
+			clone.MinScroll.X.ShouldBe(100);
+			clone.MinScroll.Y.ShouldBe(200);
+			clone.MaxScroll.X.ShouldBe(80);
+			clone.MaxScroll.Y.ShouldBe(90);
 		}
 
 		[Test]
@@ -230,18 +230,18 @@ namespace MenuBuddy.Tests
 			layout.MinScroll = new Vector2(400, 500);
 			layout.MaxScroll = new Vector2(600, 700);
 
-			Assert.AreEqual(20, clone.Size.X);
-			Assert.AreEqual(30, clone.Size.Y);
-			Assert.AreEqual(40, clone.Position.X);
-			Assert.AreEqual(50, clone.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, clone.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, clone.Vertical);
-			Assert.AreEqual(.5f, clone.Scale);
-			Assert.AreEqual(TransitionWipeType.PopTop, (clone.TransitionObject as WipeTransitionObject).WipeType);
-			Assert.AreEqual(100, clone.MinScroll.X);
-			Assert.AreEqual(200, clone.MinScroll.Y);
-			Assert.AreEqual(80, clone.MaxScroll.X);
-			Assert.AreEqual(90, clone.MaxScroll.Y);
+			clone.Size.X.ShouldBe(20);
+			clone.Size.Y.ShouldBe(30);
+			clone.Position.X.ShouldBe(40);
+			clone.Position.Y.ShouldBe(50);
+			clone.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			clone.Vertical.ShouldBe(VerticalAlignment.Center);
+			clone.Scale.ShouldBe(.5f);
+			(clone.TransitionObject as WipeTransitionObject).WipeType.ShouldBe(TransitionWipeType.PopTop);
+			clone.MinScroll.X.ShouldBe(100);
+			clone.MinScroll.Y.ShouldBe(200);
+			clone.MaxScroll.X.ShouldBe(80);
+			clone.MaxScroll.Y.ShouldBe(90);
 		}
 
 		#endregion //Scroll Layout 
@@ -264,15 +264,15 @@ namespace MenuBuddy.Tests
 
 			var clone = layout.DeepCopy() as Shim;
 
-			Assert.AreEqual(20, clone.Size.X);
-			Assert.AreEqual(30, clone.Size.Y);
-			Assert.AreEqual(40, clone.Position.X);
-			Assert.AreEqual(50, clone.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, clone.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, clone.Vertical);
-			Assert.AreEqual(.5f, clone.Scale);
-			Assert.AreEqual(false, clone.DrawWhenInactive);
-			Assert.AreEqual(1000, clone.Layer);
+			clone.Size.X.ShouldBe(20);
+			clone.Size.Y.ShouldBe(30);
+			clone.Position.X.ShouldBe(40);
+			clone.Position.Y.ShouldBe(50);
+			clone.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			clone.Vertical.ShouldBe(VerticalAlignment.Center);
+			clone.Scale.ShouldBe(.5f);
+			clone.DrawWhenInactive.ShouldBe(false);
+			clone.Layer.ShouldBe(1000);
 		}
 
 		[Test]
@@ -285,7 +285,7 @@ namespace MenuBuddy.Tests
 
 			var clone = layout.DeepCopy() as Shim;
 
-			Assert.AreEqual(true, clone.DrawWhenInactive);
+			clone.DrawWhenInactive.ShouldBe(true);
 		}
 
 		[Test]
@@ -312,15 +312,15 @@ namespace MenuBuddy.Tests
 			layout.DrawWhenInactive = true;
 			layout.Layer = 2000;
 
-			Assert.AreEqual(20, clone.Size.X);
-			Assert.AreEqual(30, clone.Size.Y);
-			Assert.AreEqual(40, clone.Position.X);
-			Assert.AreEqual(50, clone.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, clone.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, clone.Vertical);
-			Assert.AreEqual(.5f, clone.Scale);
-			Assert.AreEqual(false, clone.DrawWhenInactive);
-			Assert.AreEqual(1000, clone.Layer);
+			clone.Size.X.ShouldBe(20);
+			clone.Size.Y.ShouldBe(30);
+			clone.Position.X.ShouldBe(40);
+			clone.Position.Y.ShouldBe(50);
+			clone.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			clone.Vertical.ShouldBe(VerticalAlignment.Center);
+			clone.Scale.ShouldBe(.5f);
+			clone.DrawWhenInactive.ShouldBe(false);
+			clone.Layer.ShouldBe(1000);
 		}
 
 		#endregion //Shim
@@ -352,15 +352,15 @@ namespace MenuBuddy.Tests
 
 			layout.AddItem(original);
 
-			Assert.AreEqual(20, original.Size.X);
-			Assert.AreEqual(30, original.Size.Y);
-			Assert.AreEqual(40, original.Position.X);
-			Assert.AreEqual(50, original.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, original.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, original.Vertical);
-			Assert.AreEqual(.5f, original.Scale);
-			Assert.AreEqual(false, original.DrawWhenInactive);
-			Assert.AreEqual(1000, original.Layer);
+			original.Size.X.ShouldBe(20);
+			original.Size.Y.ShouldBe(30);
+			original.Position.X.ShouldBe(40);
+			original.Position.Y.ShouldBe(50);
+			original.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			original.Vertical.ShouldBe(VerticalAlignment.Center);
+			original.Scale.ShouldBe(.5f);
+			original.DrawWhenInactive.ShouldBe(false);
+			original.Layer.ShouldBe(1000);
 		}
 
 		[Test]
@@ -389,7 +389,7 @@ namespace MenuBuddy.Tests
 			layout.AddItem(original);
 
 			var clone = layout.DeepCopy() as AbsoluteLayout;
-			Assert.NotNull(clone.Items);
+			clone.Items.ShouldNotBeNull();
 		}
 
 		[Test]
@@ -418,7 +418,7 @@ namespace MenuBuddy.Tests
 			layout.AddItem(original);
 
 			var clone = layout.DeepCopy() as AbsoluteLayout;
-			Assert.AreEqual(1, clone.Items.Count);
+			clone.Items.Count.ShouldBe(1);
 		}
 
 		[Test]
@@ -448,7 +448,7 @@ namespace MenuBuddy.Tests
 
 			var clone = layout.DeepCopy() as AbsoluteLayout;
 			var copiedShim = clone.Items[0] as Shim;
-			Assert.NotNull(copiedShim);
+			copiedShim.ShouldNotBeNull();
 		}
 
 		[Test]
@@ -488,15 +488,15 @@ namespace MenuBuddy.Tests
 
 			var copiedShim = clone.Items[0] as Shim;
 
-			Assert.AreEqual(20, copiedShim.Size.X);
-			Assert.AreEqual(30, copiedShim.Size.Y);
-			Assert.AreEqual(40, copiedShim.Position.X);
-			Assert.AreEqual(50, copiedShim.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, copiedShim.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, copiedShim.Vertical);
-			Assert.AreEqual(.5f, copiedShim.Scale);
-			Assert.AreEqual(false, copiedShim.DrawWhenInactive);
-			Assert.AreEqual(1000, copiedShim.Layer);
+			copiedShim.Size.X.ShouldBe(20);
+			copiedShim.Size.Y.ShouldBe(30);
+			copiedShim.Position.X.ShouldBe(40);
+			copiedShim.Position.Y.ShouldBe(50);
+			copiedShim.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			copiedShim.Vertical.ShouldBe(VerticalAlignment.Center);
+			copiedShim.Scale.ShouldBe(.5f);
+			copiedShim.DrawWhenInactive.ShouldBe(false);
+			copiedShim.Layer.ShouldBe(1000);
 		}
 
 		#endregion //Add a thing
@@ -534,15 +534,15 @@ namespace MenuBuddy.Tests
 
 			var copiedShim = button.Layout.Items[0] as Shim;
 
-			Assert.AreEqual(20, copiedShim.Size.X);
-			Assert.AreEqual(30, copiedShim.Size.Y);
-			Assert.AreEqual(40, copiedShim.Position.X);
-			Assert.AreEqual(49, copiedShim.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, copiedShim.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, copiedShim.Vertical);
-			Assert.AreEqual(.5f, copiedShim.Scale);
-			Assert.AreEqual(false, copiedShim.DrawWhenInactive);
-			Assert.AreEqual(1000, copiedShim.Layer);
+			copiedShim.Size.X.ShouldBe(20);
+			copiedShim.Size.Y.ShouldBe(30);
+			copiedShim.Position.X.ShouldBe(40);
+			copiedShim.Position.Y.ShouldBe(49);
+			copiedShim.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			copiedShim.Vertical.ShouldBe(VerticalAlignment.Center);
+			copiedShim.Scale.ShouldBe(.5f);
+			copiedShim.DrawWhenInactive.ShouldBe(false);
+			copiedShim.Layer.ShouldBe(1000);
 		}
 
 		[Test]
@@ -578,15 +578,15 @@ namespace MenuBuddy.Tests
 
 			var copiedShim = button.Layout.Items[0] as Shim;
 
-			Assert.AreEqual(20, copiedShim.Size.X);
-			Assert.AreEqual(30, copiedShim.Size.Y);
-			Assert.AreEqual(50, copiedShim.Position.X);
-			Assert.AreEqual(59, copiedShim.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, copiedShim.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, copiedShim.Vertical);
-			Assert.AreEqual(.5f, copiedShim.Scale);
-			Assert.AreEqual(false, copiedShim.DrawWhenInactive);
-			Assert.AreEqual(1000, copiedShim.Layer);
+			copiedShim.Size.X.ShouldBe(20);
+			copiedShim.Size.Y.ShouldBe(30);
+			copiedShim.Position.X.ShouldBe(50);
+			copiedShim.Position.Y.ShouldBe(59);
+			copiedShim.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			copiedShim.Vertical.ShouldBe(VerticalAlignment.Center);
+			copiedShim.Scale.ShouldBe(.5f);
+			copiedShim.DrawWhenInactive.ShouldBe(false);
+			copiedShim.Layer.ShouldBe(1000);
 		}
 
 		[Test]
@@ -621,15 +621,15 @@ namespace MenuBuddy.Tests
 			var buttonClone = button.DeepCopy() as RelativeLayoutButton;
 			buttonClone.Position = new Point(50, 60);
 
-			Assert.AreEqual(20, original.Size.X);
-			Assert.AreEqual(30, original.Size.Y);
-			Assert.AreEqual(40, original.Position.X);
-			Assert.AreEqual(49, original.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, original.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, original.Vertical);
-			Assert.AreEqual(.5f, original.Scale);
-			Assert.AreEqual(false, original.DrawWhenInactive);
-			Assert.AreEqual(1000, original.Layer);
+			original.Size.X.ShouldBe(20);
+			original.Size.Y.ShouldBe(30);
+			original.Position.X.ShouldBe(40);
+			original.Position.Y.ShouldBe(49);
+			original.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			original.Vertical.ShouldBe(VerticalAlignment.Center);
+			original.Scale.ShouldBe(.5f);
+			original.DrawWhenInactive.ShouldBe(false);
+			original.Layer.ShouldBe(1000);
 		}
 
 		[Test]
@@ -673,15 +673,15 @@ namespace MenuBuddy.Tests
 
 			var copiedShim = clone.Layout.Items[0] as Shim;
 
-			Assert.AreEqual(20, copiedShim.Size.X);
-			Assert.AreEqual(30, copiedShim.Size.Y);
-			Assert.AreEqual(40, copiedShim.Position.X);
-			Assert.AreEqual(49, copiedShim.Position.Y);
-			Assert.AreEqual(HorizontalAlignment.Center, copiedShim.Horizontal);
-			Assert.AreEqual(VerticalAlignment.Center, copiedShim.Vertical);
-			Assert.AreEqual(.5f, copiedShim.Scale);
-			Assert.AreEqual(false, copiedShim.DrawWhenInactive);
-			Assert.AreEqual(1000, copiedShim.Layer);
+			copiedShim.Size.X.ShouldBe(20);
+			copiedShim.Size.Y.ShouldBe(30);
+			copiedShim.Position.X.ShouldBe(40);
+			copiedShim.Position.Y.ShouldBe(49);
+			copiedShim.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			copiedShim.Vertical.ShouldBe(VerticalAlignment.Center);
+			copiedShim.Scale.ShouldBe(.5f);
+			copiedShim.DrawWhenInactive.ShouldBe(false);
+			copiedShim.Layer.ShouldBe(1000);
 		}
 
 		#endregion //button
@@ -713,17 +713,17 @@ namespace MenuBuddy.Tests
 
 			//layout.AddItem(original);
 
-			//Assert.AreEqual(20, original.Size.X);
-			//Assert.AreEqual(30, original.Size.Y);
-			//Assert.AreEqual(40, original.Position.X);
-			//Assert.AreEqual(50, original.Position.Y);
-			//Assert.AreEqual(HorizontalAlignment.Center, original.Horizontal);
-			//Assert.AreEqual(VerticalAlignment.Center, original.Vertical);
-			//Assert.AreEqual(.5f, original.Scale);
-			//Assert.AreEqual(false, original.DrawWhenInactive);
-			//Assert.AreEqual(1000, original.Layer);
-			//Assert.AreEqual(100, original.Padding.X);
-			//Assert.AreEqual(200, original.Padding.Y);
+			//original.Size.X.ShouldBe(20);
+			//original.Size.Y.ShouldBe(30);
+			//original.Position.X.ShouldBe(40);
+			//original.Position.Y.ShouldBe(50);
+			//original.Horizontal.ShouldBe(HorizontalAlignment.Center);
+			//original.Vertical.ShouldBe(VerticalAlignment.Center);
+			//original.Scale.ShouldBe(.5f);
+			//original.DrawWhenInactive.ShouldBe(false);
+			//original.Layer.ShouldBe(1000);
+			//original.Padding.X.ShouldBe(100);
+			//original.Padding.Y.ShouldBe(200);
 		}
 
 		#endregion //Dropdown
