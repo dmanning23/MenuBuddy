@@ -1,3 +1,27 @@
 theme: jekyll-theme-cayman
 title: MenuBuddy
-description: Your library description
+description: A complete MonoGame library for building menu systems and managing game state transitions.
+baseurl: /MenuBuddy
+url: https://dmanning23.github.io
+
+nav:
+  - title: Home
+    url: /
+  - title: Getting Started
+    url: /getting-started
+  - title: Architecture
+    url: /architecture
+  - title: Screens
+    url: /screens
+  - title: Widgets
+    url: /widgets
+  - title: Layouts
+    url: /layouts
+  - title: Styling
+    url: /styling
+  - title: Transitions
+    url: /transitions
+  - title: Input
+    url: /input
+  - title: API Reference
+    url: /api-reference
