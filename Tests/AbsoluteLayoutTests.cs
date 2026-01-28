@@ -6,15 +6,17 @@ namespace MenuBuddy.Tests
 	[TestFixture]
 	public class AbsoluteLayoutTests
 	{
-		#region Fields
+        #region Fields
 
-		private AbsoluteLayout _layout;
+#pragma warning disable NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
+        private AbsoluteLayout _layout;
+#pragma warning restore NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
 
-		#endregion //Fields
+        #endregion //Fields
 
-		#region Setup
+        #region Setup
 
-		[SetUp]
+        [SetUp]
 		public void Setup()
 		{
 			_layout = new AbsoluteLayout();
