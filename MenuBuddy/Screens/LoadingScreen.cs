@@ -27,17 +27,35 @@ namespace MenuBuddy
 	{
 		#region Properties
 
+		/// <summary>
+		/// The screens to load and activate after the loading screen is displayed.
+		/// </summary>
 		private IScreen[] ScreensToLoad { get; set; }
 
+		/// <summary>
+		/// Background worker thread that loads screen content off the main thread on non-desktop platforms.
+		/// </summary>
 		BackgroundWorker _backgroundThread;
 
+		/// <summary>
+		/// Optional sound effect resource name to play while loading begins.
+		/// </summary>
 		private string LoadSoundEffect { get; set; }
 
+		/// <summary>
+		/// Optional font resource name for the loading message label. Defaults to <see cref="StyleSheet.MediumFontResource"/>.
+		/// </summary>
 		public string Font { get; set; }
 
+		/// <summary>
+		/// The text displayed on screen while loading. Defaults to "Loading...".
+		/// </summary>
 		public string Message { get; set; }
 
 #if DESKTOP
+		/// <summary>
+		/// Short delay before loading begins on desktop, giving the loading screen one frame to render before the main thread blocks.
+		/// </summary>
 		CountdownTimer timer = new CountdownTimer();
 #endif
 
@@ -46,8 +64,10 @@ namespace MenuBuddy
 		#region Methods
 
 		/// <summary>
-		/// The constructor is private: loading screens should be activated via the static Load method instead.
+		/// Private — use the static <see cref="Load(ScreenManager, IScreen[], string)"/> overloads to create and push a loading screen.
 		/// </summary>
+		/// <param name="loadSoundEffect">Sound effect resource name to play at load start, or null for silence.</param>
+		/// <param name="screensToLoad">The screens to add once previous screens have finished transitioning off.</param>
 		private LoadingScreen(string loadSoundEffect, IScreen[] screensToLoad)
 			: base("Loading")
 		{
@@ -61,13 +81,11 @@ namespace MenuBuddy
 		}
 
 		/// <summary>
-		/// Activates the loading screen.
+		/// Activates the loading screen without a sound effect or controlling player.
 		/// </summary>
-		/// <param name="screenManager">The screenmanager.</param>
-		/// <param name="loadingIsSlow">If true, the loading screen will be displayed, otherwise will just pop up screensToLoad</param>
-		/// <param name="controllingPlayer">The player that loaded the screen. Just pass null!!!</param>
-		/// <param name="loadSoundEffect">Play the transition sound here instead of in the screen that initiated the load.</param>
-		/// <param name="screensToLoad">Params list of all the screens we want to load.</param>
+		/// <param name="screenManager">The screen manager to push the loading screen onto.</param>
+		/// <param name="screensToLoad">The screens to load and display after the loading screen exits.</param>
+		/// <param name="message">The loading message to display. Defaults to "Loading...".</param>
 		public static Task Load(ScreenManager screenManager,
 								IScreen[] screensToLoad,
 								string message = "Loading...")
@@ -80,6 +98,14 @@ namespace MenuBuddy
 			return screenManager.AddScreen(loadingScreen, null);
 		}
 
+		/// <summary>
+		/// Activates the loading screen for a specific controlling player with a transition sound.
+		/// </summary>
+		/// <param name="screenManager">The screen manager.</param>
+		/// <param name="controllingPlayer">The player index that initiated the load.</param>
+		/// <param name="loadSoundEffect">Sound effect resource name to play at load start.</param>
+		/// <param name="screensToLoad">The screens to load and display after the loading screen exits.</param>
+		/// <param name="message">The loading message to display.</param>
 		public static Task Load(ScreenManager screenManager,
 								int controllingPlayer,
 								string loadSoundEffect,
@@ -94,6 +120,13 @@ namespace MenuBuddy
 			return screenManager.AddScreen(loadingScreen, controllingPlayer);
 		}
 
+		/// <summary>
+		/// Activates the loading screen with a transition sound.
+		/// </summary>
+		/// <param name="screenManager">The screen manager.</param>
+		/// <param name="loadSoundEffect">Sound effect resource name to play at load start.</param>
+		/// <param name="screensToLoad">The screens to load and display after the loading screen exits.</param>
+		/// <param name="message">The loading message to display.</param>
 		public static Task Load(ScreenManager screenManager,
 								string loadSoundEffect,
 								IScreen[] screensToLoad,
@@ -107,6 +140,14 @@ namespace MenuBuddy
 			return screenManager.AddScreen(loadingScreen, null);
 		}
 
+		/// <summary>
+		/// Activates the loading screen with a transition sound and a custom font for the message label.
+		/// </summary>
+		/// <param name="screenManager">The screen manager.</param>
+		/// <param name="loadSoundEffect">Sound effect resource name to play at load start.</param>
+		/// <param name="fontResource">Font resource name to use for the loading message.</param>
+		/// <param name="screensToLoad">The screens to load and display after the loading screen exits.</param>
+		/// <param name="message">The loading message to display.</param>
 		public static Task Load(ScreenManager screenManager,
 								string loadSoundEffect,
 								string fontResource,
@@ -122,6 +163,11 @@ namespace MenuBuddy
 			return screenManager.AddScreen(loadingScreen, null);
 		}
 
+		/// <summary>
+		/// Builds the loading UI: a centered label with an optional hourglass image, plays the load sound if set,
+		/// then kicks off content loading. On desktop, starts a short timer so the screen can render once before
+		/// the main thread blocks; on other platforms, spins up a <see cref="BackgroundWorker"/> instead.
+		/// </summary>
 		public override async Task LoadContent()
 		{
 			await base.LoadContent();
@@ -199,6 +245,13 @@ namespace MenuBuddy
 		}
 
 #if DESKTOP
+		/// <summary>
+		/// Desktop-only update. Waits one second after the screen becomes active before triggering
+		/// the load synchronously on the main thread, ensuring the loading UI is visible first.
+		/// </summary>
+		/// <param name="gameTime">Snapshot of the current game timing.</param>
+		/// <param name="otherScreenHasFocus">True when the application window does not have OS focus.</param>
+		/// <param name="coveredByOtherScreen">True when another screen is stacked on top of this one.</param>
 		public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
 		{
 			base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
@@ -215,16 +268,12 @@ namespace MenuBuddy
 #endif
 
 		/// <summary>
-		/// Draws the loading screen.
+		/// Draws the loading screen. Fades the background behind the loading UI,
+		/// then delegates to the base class to draw the message label and hourglass.
 		/// </summary>
+		/// <param name="gameTime">Snapshot of the current game timing.</param>
 		public override void Draw(GameTime gameTime)
 		{
-			// The gameplay screen takes a while to load, so we display a loading
-			// message while that is going on, but the menus load very quickly, and
-			// it would look silly if we flashed this up for just a fraction of a
-			// second while returning from the game to the menus. This parameter
-			// tells us how long the loading is going to take, so we know whether
-			// to bother drawing the message.
 			ScreenManager.SpriteBatchBegin();
 			FadeBackground();
 			ScreenManager.SpriteBatchEnd();
@@ -237,14 +286,18 @@ namespace MenuBuddy
 		#region Background Thread
 
 		/// <summary>
-		/// Worker thread draws the loading animation and updates the network
-		/// session while the load is taking place.
+		/// Background worker entry point. Adds <see cref="ScreensToLoad"/> to the screen manager
+		/// on a separate thread so the loading UI stays responsive.
 		/// </summary>
 		void BackgroundWorkerThread(object sender, DoWorkEventArgs e)
 		{
 			ScreenManager.AddScreen(ScreensToLoad, ControllingPlayer).Wait();
 		}
 
+		/// <summary>
+		/// Called when the background worker completes. Forces garbage collection, exits the loading screen,
+		/// and resets the game's elapsed time so the engine doesn't try to catch up.
+		/// </summary>
 		void CleanUp(object sender, RunWorkerCompletedEventArgs e)
 		{
 			//clean up all the memory from those other screens

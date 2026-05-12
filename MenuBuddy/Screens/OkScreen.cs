@@ -16,6 +16,9 @@ namespace MenuBuddy
 		{
 		}
 
+		/// <summary>
+		/// Adds only the OK button; no cancel button is shown for simple alert dialogs.
+		/// </summary>
 		protected override async Task AddButtons(StackLayout stack)
 		{
 			//just an ok button on this screen

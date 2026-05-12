@@ -18,22 +18,44 @@ namespace MenuBuddy
 		#region Properties
 
 		/// <summary>
-		/// The message to be displayed 
+		/// The message to be displayed.
 		/// </summary>
 		public string Message { get; private set; }
 
+		/// <summary>
+		/// Raised when the user clicks the OK/confirm button.
+		/// </summary>
 		public event EventHandler<ClickEventArgs> OnSelect;
 
+		/// <summary>
+		/// Raised when the user clicks the Cancel button or presses back.
+		/// </summary>
 		public event EventHandler<ClickEventArgs> OnCancel;
 
+		/// <summary>
+		/// The stack layout that holds the message text and any additional controls.
+		/// </summary>
 		protected IStackLayout ControlStack { get; private set; }
 
+		/// <summary>
+		/// Gets or sets the label text for the OK/confirm button. Defaults to "Ok".
+		/// </summary>
 		public string OkText { get; set; }
 
+		/// <summary>
+		/// Gets or sets the label text for the Cancel button. Defaults to "Cancel".
+		/// </summary>
 		public string CancelText { get; set; }
 
+		/// <summary>
+		/// Gets or sets whether a background image is drawn behind the message box content.
+		/// </summary>
 		public bool HasBackground { get; set; }
 
+		/// <summary>
+		/// Gets or sets whether the screen exits automatically when the OK button is clicked.
+		/// Set to false to keep the dialog open (e.g., for validation errors).
+		/// </summary>
 		public bool ExitOnOk { get; set; }
 
 		#endregion //Properties
@@ -166,6 +188,7 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <inheritdoc/>
 		public override void UnloadContent()
 		{
 			base.UnloadContent();
@@ -190,6 +213,10 @@ namespace MenuBuddy
 			return true;
 		}
 
+		/// <summary>
+		/// Adds the OK and Cancel buttons to the dialog. Override to customize button layout.
+		/// </summary>
+		/// <param name="stack">The stack layout to add buttons to.</param>
 		protected virtual async Task AddButtons(StackLayout stack)
 		{
 			var buttonLayout = new RelativeLayout()
@@ -228,6 +255,9 @@ namespace MenuBuddy
 			throw new NotImplementedException();
 		}
 
+		/// <summary>
+		/// Creates and returns the OK button wired to <see cref="OnSelect"/> and optional screen exit.
+		/// </summary>
 		protected async Task<IButton> AddMessageBoxOkButton()
 		{
 			var button = await CreateButton(true);
@@ -251,6 +281,9 @@ namespace MenuBuddy
 			return button;
 		}
 
+		/// <summary>
+		/// Creates and returns the Cancel button wired to <see cref="OnCancel"/> and screen exit.
+		/// </summary>
 		protected async Task<IButton> AddMessageBoxCancelButton()
 		{
 			var button = await CreateButton(false);
@@ -266,6 +299,10 @@ namespace MenuBuddy
 			return button;
 		}
 
+		/// <summary>
+		/// Creates a styled button with a label and optional background image from the stylesheet.
+		/// </summary>
+		/// <param name="okButton">True to build the OK button; false for the Cancel button.</param>
 		private async Task<IButton> CreateButton(bool okButton)
 		{
 			//Create the menu entry "Cancel"
@@ -308,6 +345,10 @@ namespace MenuBuddy
 			return button;
 		}
 
+		/// <summary>
+		/// Adds the background image behind the dialog content, sized to fit the label stack.
+		/// </summary>
+		/// <param name="labelStack">The layout whose bounds determine the background image size.</param>
 		public virtual void AddBackgroundImage(ILayout labelStack)
 		{
 			//get the background image dimensions

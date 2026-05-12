@@ -2,7 +2,7 @@
     <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <PackageId>MenuBuddy</PackageId>
-    <Version>5.0.1</Version>
+    <Version>5.1.0</Version>
     <Title>MenuBuddy</Title>
     <Authors>dmanning23</Authors>
     <description>A complete MonoGame library for building menu systems and managing game state transitions</description>
@@ -31,7 +31,7 @@
     <PackageReference Include="GameTimer" Version="5.*" />
     <PackageReference Include="HadoukInput" Version="5.*" />
     <PackageReference Include="MatrixExtensions" Version="5.*" />
-    <PackageReference Include="MouseBuddy" Version="5.*" />
+    <PackageReference Include="MouseBuddy" Version="5.1.*" />
     <PackageReference Include="PrimitiveBuddy" Version="5.*" />
     <PackageReference Include="RandomExtensions.dmanning23" Version="5.*" />
     <PackageReference Include="ResolutionBuddy" Version="5.*" />

@@ -22,6 +22,10 @@ namespace MenuBuddy
 
 		#region Methods
 
+		/// <summary>
+		/// Constructs an error screen displaying the given message string.
+		/// </summary>
+		/// <param name="error">The error message to display.</param>
 		public ErrorScreen(string error) : base("Error Screen")
 		{
 			_message = error;
