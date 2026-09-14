@@ -2,7 +2,7 @@
     <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <PackageId>MenuBuddy</PackageId>
-    <Version>5.2.0</Version>
+    <Version>5.2.2</Version>
     <Title>MenuBuddy</Title>
     <Authors>dmanning23</Authors>
     <description>A complete MonoGame library for building menu systems and managing game state transitions</description>
