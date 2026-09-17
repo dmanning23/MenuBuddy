@@ -34,9 +34,34 @@ namespace MenuBuddy
 		/// <summary>
 		/// Constructs an error message box from the specified exception.
 		/// </summary>
-		public ErrorScreen(Exception exception) : this(exception.Message)
+		public ErrorScreen(Exception exception) : this(BuildDisplayMessage(exception))
 		{
 			_error = exception;
+
+			//Dump the full exception, including all inner exceptions and stack traces, to the console.
+			Console.WriteLine(exception.ToString());
+		}
+
+		/// <summary>
+		/// Builds a short, human-readable message for the given exception. Since the useful
+		/// information is often buried in an inner exception rather than the top-level one,
+		/// this includes the innermost exception's type and message as well.
+		/// </summary>
+		/// <param name="exception">The exception to describe.</param>
+		private static string BuildDisplayMessage(Exception exception)
+		{
+			var innermost = exception;
+			while (null != innermost.InnerException)
+			{
+				innermost = innermost.InnerException;
+			}
+
+			if (innermost == exception)
+			{
+				return $"{exception.GetType().Name}: {exception.Message}";
+			}
+
+			return $"{exception.GetType().Name}: {exception.Message}\n\nCaused by {innermost.GetType().Name}: {innermost.Message}";
 		}
 
 		/// <summary>

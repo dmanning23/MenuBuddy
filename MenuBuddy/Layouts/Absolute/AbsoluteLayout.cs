@@ -10,6 +10,9 @@ namespace MenuBuddy
 	{
 		#region Properties
 
+		/// <summary>
+		/// The size of this layout.
+		/// </summary>
 		protected Vector2 _size;
 
 		/// <summary>
@@ -20,6 +23,9 @@ namespace MenuBuddy
 			get; set;
 		}
 
+		/// <summary>
+		/// The size of this layout.
+		/// </summary>
 		public virtual Vector2 Size
 		{
 			get
@@ -34,6 +40,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The position of this layout.
+		/// </summary>
 		public override Point Position
 		{
 			get
@@ -48,6 +57,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The horizontal alignment of this layout.
+		/// </summary>
 		public override HorizontalAlignment Horizontal
 		{
 			get
@@ -65,6 +77,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The vertical alignment of this layout.
+		/// </summary>
 		public override VerticalAlignment Vertical
 		{
 			get
@@ -82,6 +97,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The scale of this layout.
+		/// </summary>
 		public override float Scale
 		{
 			get
@@ -94,6 +112,9 @@ namespace MenuBuddy
 			}
 		}
 
+		/// <summary>
+		/// The bounding rectangle of this layout.
+		/// </summary>
 		public override Rectangle Rect
 		{
 			get
@@ -106,16 +127,27 @@ namespace MenuBuddy
 
 		#region Init
 
+		/// <summary>
+		/// Create a new absolute layout.
+		/// </summary>
 		public AbsoluteLayout()
 		{
 		}
 
+		/// <summary>
+		/// Copy constructor
+		/// </summary>
+		/// <param name="inst">The instance to copy</param>
 		public AbsoluteLayout(AbsoluteLayout inst) : base(inst)
 		{
 			_size = new Vector2(inst._size.X, inst._size.Y);
 			PreviousRect = inst.PreviousRect;
 		}
 
+		/// <summary>
+		/// Create a deep copy of this layout.
+		/// </summary>
+		/// <returns>The copied layout</returns>
 		public override IScreenItem DeepCopy()
 		{
 			return new AbsoluteLayout(this);
@@ -143,6 +175,10 @@ namespace MenuBuddy
 			PreviousRect = CalculateRect();
 		}
 
+		/// <summary>
+		/// Calculate the bounding rectangle of this layout based on its position, size, and alignment.
+		/// </summary>
+		/// <returns>The calculated rectangle</returns>
 		protected virtual Rectangle CalculateRect()
 		{
 			var pos = Position;
@@ -162,6 +198,9 @@ namespace MenuBuddy
 			return new Rectangle(pos.X, pos.Y, (int)Size.X, (int)Size.Y);
 		}
 
+		/// <summary>
+		/// Update the positions of all the items in this layout.
+		/// </summary>
 		protected virtual void UpdateItems()
 		{
 			//Grab the rect for this layout
