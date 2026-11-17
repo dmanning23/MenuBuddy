@@ -268,7 +268,7 @@ namespace MenuBuddy
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
             //If we are loading on the main thread and the screen is active, load all the screen content
-            if (IsActive && LoadAsync)
+            if (IsActive && !LoadAsync)
             {
                 BackgroundWorkerThread(this, new DoWorkEventArgs(null));
                 CleanUp(this, new RunWorkerCompletedEventArgs(null, null, false));
