@@ -33,7 +33,7 @@ namespace MenuBuddy
         private IScreen[] ScreensToLoad { get; set; }
 
         /// <summary>
-        /// Background worker thread that loads screen content off the main thread on non-desktop platforms.
+        /// Background worker thread that loads screen content off the main thread when <see cref="LoadAsync"/> is true.
         /// </summary>
         BackgroundWorker _backgroundThread;
 
@@ -52,23 +52,25 @@ namespace MenuBuddy
         /// </summary>
         public string Message { get; set; }
 
-#if DESKTOP
-		/// <summary>
-		/// Short delay before loading begins on desktop, giving the loading screen one frame to render before the main thread blocks.
-		/// </summary>
-		CountdownTimer timer = new CountdownTimer();
-#endif
+        /// <summary>
+        /// True to load the screens on a background thread, which keeps the loading UI animating.
+        /// False (the default) to load them on the main thread. Use false if any of the screens
+        /// allocate graphics resources while loading: creating a RenderTarget2D on a background
+        /// thread can crash the game.
+        /// </summary>
+        public bool LoadAsync { get; set; } = false;
 
         #endregion //Properties
 
         #region Methods
 
         /// <summary>
-        /// Private — use the static <see cref="Load(ScreenManager, IScreen[], string)"/> overloads to create and push a loading screen.
+        /// Private — use the static <see cref="Load(ScreenManager, IScreen[], string, bool)"/> overloads to create and push a loading screen.
         /// </summary>
         /// <param name="loadSoundEffect">Sound effect resource name to play at load start, or null for silence.</param>
         /// <param name="screensToLoad">The screens to add once previous screens have finished transitioning off.</param>
-        private LoadingScreen(string loadSoundEffect, IScreen[] screensToLoad)
+        /// <param name="loadAsync">True to load the screens on a background thread, false to load them on the main thread. See <see cref="LoadAsync"/>.</param>
+        private LoadingScreen(string loadSoundEffect, IScreen[] screensToLoad, bool loadAsync)
             : base("Loading")
         {
             ScreensToLoad = screensToLoad;
@@ -76,6 +78,8 @@ namespace MenuBuddy
 
             CoveredByOtherScreens = false;
             CoverOtherScreens = true;
+
+            LoadAsync = loadAsync;
 
             Transition.OnTime = 0.5f;
         }
@@ -86,12 +90,14 @@ namespace MenuBuddy
         /// <param name="screenManager">The screen manager to push the loading screen onto.</param>
         /// <param name="screensToLoad">The screens to load and display after the loading screen exits.</param>
         /// <param name="message">The loading message to display. Defaults to "Loading...".</param>
+        /// <param name="loadAsync">True to load the screens on a background thread, false to load them on the main thread. See <see cref="LoadAsync"/>.</param>
         public static Task Load(ScreenManager screenManager,
                                 IScreen[] screensToLoad,
-                                string message = "Loading...")
+                                string message = "Loading...",
+                                bool loadAsync = false)
         {
             // Create and activate the loading screen.
-            var loadingScreen = new LoadingScreen(null, screensToLoad)
+            var loadingScreen = new LoadingScreen(null, screensToLoad, loadAsync)
             {
                 Message = message
             };
@@ -106,14 +112,16 @@ namespace MenuBuddy
         /// <param name="loadSoundEffect">Sound effect resource name to play at load start.</param>
         /// <param name="screensToLoad">The screens to load and display after the loading screen exits.</param>
         /// <param name="message">The loading message to display.</param>
+        /// <param name="loadAsync">True to load the screens on a background thread, false to load them on the main thread. See <see cref="LoadAsync"/>.</param>
         public static Task Load(ScreenManager screenManager,
                                 int controllingPlayer,
                                 string loadSoundEffect,
                                 IScreen[] screensToLoad,
-                                string message = "Loading...")
+                                string message = "Loading...",
+                                bool loadAsync = false)
         {
             // Create and activate the loading screen.
-            var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad)
+            var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad, loadAsync)
             {
                 Message = message
             };
@@ -127,13 +135,15 @@ namespace MenuBuddy
         /// <param name="loadSoundEffect">Sound effect resource name to play at load start.</param>
         /// <param name="screensToLoad">The screens to load and display after the loading screen exits.</param>
         /// <param name="message">The loading message to display.</param>
+        /// <param name="loadAsync">True to load the screens on a background thread, false to load them on the main thread. See <see cref="LoadAsync"/>.</param>
         public static Task Load(ScreenManager screenManager,
                                 string loadSoundEffect,
                                 IScreen[] screensToLoad,
-                                string message = "Loading...")
+                                string message = "Loading...",
+                                bool loadAsync = false)
         {
             // Create and activate the loading screen.
-            var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad)
+            var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad, loadAsync)
             {
                 Message = message
             };
@@ -148,14 +158,16 @@ namespace MenuBuddy
         /// <param name="fontResource">Font resource name to use for the loading message.</param>
         /// <param name="screensToLoad">The screens to load and display after the loading screen exits.</param>
         /// <param name="message">The loading message to display.</param>
+        /// <param name="loadAsync">True to load the screens on a background thread, false to load them on the main thread. See <see cref="LoadAsync"/>.</param>
         public static Task Load(ScreenManager screenManager,
                                 string loadSoundEffect,
                                 string fontResource,
                                 IScreen[] screensToLoad,
-                                string message = "Loading...")
+                                string message = "Loading...",
+                                bool loadAsync = false)
         {
             // Create and activate the loading screen.
-            var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad)
+            var loadingScreen = new LoadingScreen(loadSoundEffect, screensToLoad, loadAsync)
             {
                 Font = fontResource,
                 Message = message
@@ -165,8 +177,8 @@ namespace MenuBuddy
 
         /// <summary>
         /// Builds the loading UI: a centered label with an optional hourglass image, plays the load sound if set,
-        /// then kicks off content loading. On desktop, starts a short timer so the screen can render once before
-        /// the main thread blocks; on other platforms, spins up a <see cref="BackgroundWorker"/> instead.
+        /// then kicks off content loading if <see cref="LoadAsync"/> is true by spinning up a <see cref="BackgroundWorker"/>.
+        /// Otherwise the load is left for <see cref="Update"/> to run on the main thread.
         /// </summary>
         public override async Task LoadContent()
         {
@@ -233,40 +245,35 @@ namespace MenuBuddy
                 sound.Play();
             }
 
-#if DESKTOP
-			timer.Start(1f);
-#else
-            // Start up the background thread, which will update the network session and draw the animation while we are loading.
-            _backgroundThread = new BackgroundWorker();
-            _backgroundThread.WorkerSupportsCancellation = true;
-            _backgroundThread.DoWork += new DoWorkEventHandler(BackgroundWorkerThread);
-            _backgroundThread.RunWorkerCompleted += new RunWorkerCompletedEventHandler(CleanUp);
-            _backgroundThread.RunWorkerAsync();
-#endif
+            if (LoadAsync)
+            {
+                // Start up the background thread, so the main thread can keep updating and drawing the loading UI while the screens load.
+                _backgroundThread = new BackgroundWorker();
+                _backgroundThread.WorkerSupportsCancellation = true;
+                _backgroundThread.DoWork += new DoWorkEventHandler(BackgroundWorkerThread);
+                _backgroundThread.RunWorkerCompleted += new RunWorkerCompletedEventHandler(CleanUp);
+                _backgroundThread.RunWorkerAsync();
+            }
         }
 
-#if DESKTOP
-		/// <summary>
-		/// Desktop-only update. Waits one second after the screen becomes active before triggering
-		/// the load synchronously on the main thread, ensuring the loading UI is visible first.
-		/// </summary>
-		/// <param name="gameTime">Snapshot of the current game timing.</param>
-		/// <param name="otherScreenHasFocus">True when the application window does not have OS focus.</param>
-		/// <param name="coveredByOtherScreen">True when another screen is stacked on top of this one.</param>
-		public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
-		{
-			base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+        /// <summary>
+        /// Updates the screen. When <see cref="LoadAsync"/> is false, triggers the load synchronously
+        /// on the main thread once the screen is active, which blocks the game until the load finishes.
+        /// </summary>
+        /// <param name="gameTime">Snapshot of the current game timing.</param>
+        /// <param name="otherScreenHasFocus">True when the application window does not have OS focus.</param>
+        /// <param name="coveredByOtherScreen">True when another screen is stacked on top of this one.</param>
+        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        {
+            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
-			timer.Update(gameTime);
-
-			//If this is Desktop and a second has elapsed, load all the screen content
-			if (IsActive && !timer.HasTimeRemaining)
-			{
-				BackgroundWorkerThread(this, new DoWorkEventArgs(null));
-				CleanUp(this, new RunWorkerCompletedEventArgs(null, null, false));
-			}
-		}
-#endif
+            //If we are loading on the main thread and the screen is active, load all the screen content
+            if (IsActive && LoadAsync)
+            {
+                BackgroundWorkerThread(this, new DoWorkEventArgs(null));
+                CleanUp(this, new RunWorkerCompletedEventArgs(null, null, false));
+            }
+        }
 
         /// <summary>
         /// Draws the loading screen. Fades the background behind the loading UI,
@@ -287,8 +294,8 @@ namespace MenuBuddy
         #region Background Thread
 
         /// <summary>
-        /// Background worker entry point. Adds <see cref="ScreensToLoad"/> to the screen manager
-        /// on a separate thread so the loading UI stays responsive.
+        /// Adds <see cref="ScreensToLoad"/> to the screen manager and blocks until they have loaded.
+        /// Runs on the background worker when <see cref="LoadAsync"/> is true, otherwise on the main thread.
         /// </summary>
         void BackgroundWorkerThread(object sender, DoWorkEventArgs e)
         {
@@ -296,7 +303,7 @@ namespace MenuBuddy
         }
 
         /// <summary>
-        /// Called when the background worker completes. Forces garbage collection, exits the loading screen,
+        /// Called when the load completes. Forces garbage collection, exits the loading screen,
         /// and resets the game's elapsed time so the engine doesn't try to catch up.
         /// </summary>
         void CleanUp(object sender, RunWorkerCompletedEventArgs e)

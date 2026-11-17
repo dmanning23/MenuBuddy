@@ -29,9 +29,7 @@ cp ./bin/Release/*.nupkg ~/Documents/Source/Nugets
 cp ./bin/Release/*.snupkg ~/Documents/Source/Nugets
 
 # Upload to NuGet.org
-echo "Uploading to NuGet.org..."
-NUPKG_FILE=$(find bin/Release -name "*.nupkg" | head -1)
-echo $NUPKG_FILE
-dotnet nuget push "$NUPKG_FILE" --api-key $NUGET_API_KEY --source nuget.org
+echo "Triggering publish workflow..."
+gh workflow run publish.yml
 
 echo "Package published successfully!"
