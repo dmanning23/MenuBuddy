@@ -16,7 +16,8 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - run: dotnet pack MenuBuddy/MenuBuddy.csproj -c Release -o artifacts
+      - run: dotnet build MenuBuddy/MenuBuddy.csproj -c Release
+      - run: dotnet pack MenuBuddy/MenuBuddy.csproj -c Release --no-build -o artifacts
 
       - name: NuGet login (OIDC → temp API key)
         uses: NuGet/login@v1
